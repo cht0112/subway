@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="windowReceiver" tag-name="div" icon="dialog_icon_min.gif"
+		text="windowReceiver" binding-component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver"
+		display-property="id" component-class="WindowReceiver" component-type="formControl" parent-range="view"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+		</properties>
+		
+		<property-editors>
+		</property-editors>
+		
+		<events>
+			<event name="onReceive" parameters="event"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

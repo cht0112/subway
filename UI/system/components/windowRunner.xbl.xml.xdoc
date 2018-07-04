@@ -1,0 +1,252 @@
+/**
+	@name UI.windowRunner
+	@component /UI/system/components/windowRunner.xbl.xml#windowRunner
+	@class justep.WindowRunner
+	@extends justep.ObjectEvent
+	@model UI
+	@description <b>[rich]</b>windowRunner组件，使用平台门户打开页
+	@see UI.windowDialog
+	@see UI.windowFrame
+	@see UI.windowOpener
+	@see UI.windowReceiver
+	@example 
+	关于数据传递请参考windowDialog
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/windowRunner.xbl.xml#windowRunner" 
+		id="windowRunner1"
+		url="/demo/components/process/windowRunner/subWindow.w" 
+		title="新功能页" 
+		onSend="windowRunner.windowRunner1Send" 
+		onReceive="windowRunner.windowRunner1Receive" 
+		maximise="false"/>
+</xmp>	
+	<b>JS使用说明：</b>
+<xmp>
+	1、使用js调用需要引入：
+		/UI/system/components/windowRunner/windowRunner.js
+	2、代码:
+		if(!runner){
+			//创建对话框，绑定事件            
+	 		runner = new justep.WindowRunner(url,title);
+			//增加事件绑定
+			runner.attachEvent("onReceive", function(event){alert('接收到：'+event.data);}, runner);
+			runner.setProcess(process);  
+			runner.setActivity(activity);  
+		}
+		runner.open2({data:'传入的数据'});
+</xmp>	
+*/
+
+/**
+	@name UI.windowRunner#windowRunner
+	@function
+	@param {string} url 被打开页面的url，参见{@link UI.windowRunner#url}
+	@param {string} title 功能标题，参见{@link UI.windowRunner#title}
+	@param {boolean} maximise 最大化，参见{@link UI.windowRunner#maximise}
+	@param {function} onSend 发送事件，该事件函数的返回值将传递给新打开的页面，参见{@link UI.windowRunner#onSend}
+	@param {function} onReceive 接收运行页面回传数据，参见{@link UI.windowRunner#onReceive}
+	@description 构造函数
+	@example
+	//动态创建
+	var runner = new justep.WindowRunner(url,title);
+*/
+
+/**
+	@name UI.windowRunner#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/windowRunner.xbl.xml#windowRunner"
+*/
+
+/**
+	@name UI.windowRunner#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.windowRunner#url
+	@attribute
+	@description 被打开页面的url，如：.w文件的url、其他第三方页面的url
+*/
+
+/**
+	@name UI.windowRunner#title
+	@attribute
+	@description 功能标题
+*/
+
+/**
+	@name UI.windowRunner#maximise
+	@attribute
+	@description 最大化，对于经典门户为true时隐藏功能树
+	@default false
+*/
+
+/**
+	@name UI.windowRunner#process
+	@attribute
+	@description 打开窗口使用的process，默认使用当前环境中的process
+*/
+
+/**
+	@name UI.windowRunner#activity
+	@attribute
+	@description 打开窗口使用的activity，默认使用当前环境中的activity
+*/
+
+/**
+	@name UI.windowRunner#onSend
+	@event
+	@description <b>[回调型事件]</b> 发送事件，该事件函数的返回值将传递给新打开的页面
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传递给打开页面的数据，可修改open方法传递的数据
+	}
+	</xmp>
+	@see UI.windowRunner#open
+*/
+
+/**
+	@name UI.windowRunner#onReceive
+	@event
+	@description <b>[回调型事件]接收运行页面回传数据，参考：{@link UI.windowReceiver}
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传回的数据
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowRunner#open
+	@function
+	@param {object} data 打开传给功能的数据，接管onSend事件可以影响
+	@param {string} url 打开功能页的地址
+	@param {string} title 新打开功能页的title
+ 	@param {string} process 缺省取环境里的
+ 	@param {string} activity 缺省取环境里的
+ 	@param {string} executor 执行者，缺省取环境里的
+ 	@param {string} executeContext 执行环境，缺省取环境里的
+	@description <b>[兼容保留]</b>打开功能页
+	@see UI.windowRunner#onSend
+	@see UI.windowRunner#open2
+*/
+
+/**
+	@name UI.windowRunner#open2
+	@function 
+	@description <b>[推荐使用]</b>打开功能页
+	@param {object} options 打开参数
+	<br/><b>参数说明：</b>
+	<xmp>
+	{
+		data : {object} 打开传给功能的数据，接管onSend事件可以影响,
+		title : {string} 对话框的标题,
+		url : {string} 指定要打开的功能页的地址,
+		process : {string} 缺省取环境里的,
+		activity : {string} 缺省取环境里的,
+		executor : {string} 执行者，缺省取环境里的,
+		executeContext : {string} 执行环境，缺省取环境里的
+	}
+	</xmp>
+	@example 
+	注：同一个url只会运行一个功能页，如果需要多次打开同一个功能传入不同参数时请在url上增加时间戳
+	
+	<b>代码示例：</b>
+	var options = {
+		"data" : data, 
+		"title" : title, 
+		"url" : '/UI/demo/components/process/windowRunner/subWindow.w?t='+((new Date()).getTime()), 
+		"process" : process, 
+		"activity" : activity, 
+		"executor" : executor, 
+		"executorContext" : executorContext
+	};
+	justep.xbl(组件ID).open2(options);
+	@see UI.windowRunner#onSend
+ */
+
+/**
+	@name UI.windowRunner#setTitle
+	@function
+	@description 设置title属性
+*/
+
+/**
+	@name UI.windowRunner#refresh
+	@function
+	@description 刷新打开的功能页面
+*/
+
+/**
+	@name UI.windowRunner#getURL
+	@function
+	@return {string}
+	@description 获取url属性
+*/
+
+/**
+	@name UI.windowRunner#setURL
+	@function
+	@param url
+	@description 设置url属性
+*/
+
+/**
+ @name UI.windowRunner#getFrame
+ @function
+ @returns {iframe} 
+ @description 获取打开功能的iframe对象
+*/
+
+/**
+ @name UI.windowRunner#setProcess
+ @function
+ @param {string} process <b>[required]</b>process
+ @description 设置windowRunner使用的process，默认使用当前环境中的process
+*/
+
+/**
+ @name UI.windowRunner#getProcess
+ @function
+ @return {string}
+ @description 获取windowRunner使用的process，没有set过时取环境中的process
+*/
+
+/**
+ @name UI.windowRunner#setActivity
+ @function
+ @param {string} <b>[required]</b>activity
+ @description 设置windowRunner使用的activity，默认使用当前环境中的activity
+*/
+
+/**
+ @name UI.windowRunner#getActivity
+ @function
+ @return {string}
+ @description 获取windowRunner使用的activity，没有set过时取环境中的activity
+*/
+
+/**
+ @name UI.windowRunner#getContentDocument
+ @function
+ @returns {document}
+ @description 获取打开功能的document对象
+*/
+
+/**
+ @name UI.windowRunner#getContentWindow
+ @function
+ @returns {window}
+ @description 获取打开功能的window对象
+*/

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root> 
+  <enabled>true</enabled>  
+  <data-model>/OA/asset/data</data-model>  
+  <biz-concept>OA_AS_BuyApplyM</biz-concept>  
+  <execute-concept>OA_AS_BuyExecute</execute-concept>  
+  <execute-dialog> 
+    <verdict-displayed>financeDirectorActivity,managerDirectorActivity</verdict-displayed>  
+    <opinion-required>none</opinion-required>  
+    <advance-enabled>all</advance-enabled>  
+    <back-enabled>deptAuditActivity,mainDeptDirectorActivity,financeDirectorActivity,departManagerDirectorActivity,managerDirectorActivity</back-enabled>  
+    <transfer-enabled>none</transfer-enabled>  
+    <abort-enabled>all</abort-enabled> 
+  </execute-dialog>  
+  <execute-list> 
+    <displayed-activities/> 
+  </execute-list> 
+</root>
+ 
+ 

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="reportData" tag-name="data" icon="reportData.gif"
+		text="报表数据"  display-property="id"
+		binding-component="/UI/system/components/reportData.xbl.xml#data" parent-range="model,modelQ"
+		component-class="ReportData" component-type="data" base-class="data" >
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="source" text="数据集定义" editor-ref="actionsDlg" is-virtual = 'true'  fixed-value='[...]'/>
+		</properties>
+		<property-editors>
+			<property-editor name="actionsDlg" type="dialog">
+				<dialog-page class-name="ReportDataDataSourceDialog" />
+			</property-editor>
+		</property-editors>
+		<templates>
+			<template name="default">
+			<![CDATA[ 
+				<data _xmlns="" id="" component="/UI/system/components/reportData.xbl.xml#data"> 
+					<source>
+					</source>
+				</data>
+		   	]]>
+		   </template><!-- 
+			<transpose>
+				<group-row></group-row>
+			    <group-column></group-column>
+			    <value 统计="sum,count,avg,max,min,value">
+			    	<filed></filed>
+			        <filed></filed>
+			    </value>
+			</transpose>
+		    -->
+		</templates>
+		<events>
+			
+		</events>
+		<toolbar>
+		</toolbar>
+	</element>
+</elements>

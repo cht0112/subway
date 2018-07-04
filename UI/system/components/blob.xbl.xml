@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript"
+		src="/UI/system/components/blob/blob.js" />
+	
+	<!-- 		   
+	<xhtml:div component="/UI/system/components/blob.xml#blob"
+				id="sPhotoBlob"
+				process="/SA/OPM/person/personProcess"?? 
+				activity="mainActivity"??
+				relation="sPhoto"
+				data="main"
+				width="150px"  
+				height="20%"
+				key-relation-1="personKey">
+		<group name="show">
+		</group>
+	</xhtml:div>
+	
+	组件属性详解:
+		@id 唯一标示
+		@process 当前process,可选
+		@activity 当前activity,可选
+		@data data的id
+		@data-model 操作的数据模块
+		@concept 操作的概念
+		@relation blob类型的relation名
+		@onRefreshButton 更新按钮状态的控制函数 ,删除按钮状态的控制函数
+		@onRefresh 数据刷新
+		@onSubmit 提交前
+		@update-image 更新按钮图片
+		@unupdate-image 更新按钮不可用图片
+		@delete-image 删除按钮可用图片
+		@undelete-image 删除按钮不可用图片
+	 -->
+	<xbl:binding id="blob">
+		<xbl:template template-type="xslt">
+							<xsl:template match="/*" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+				xmlns:xforms="http://www.justep.com/xforms"
+				
+				xmlns:ev="http://www.w3.org/2001/xml-events">
+								<root xbl:class='xui-blob' xmlns:xbl="http://www.w3.org/ns/xbl">
+									<xsl:variable name="id" select="if(@id) then @id else generate-global-id()" />
+									<xsl:variable name="dialog-id" select="concat('dlg-',$id)" />
+									<xsl:variable name="div-form" select="concat('form-',$id)" />
+									<xsl:variable name="div-delete-form" select="concat('form-delete-',$id)" />
+									<xsl:variable name="div-iframe" select="concat('iframe-',$id)" />
+									<xsl:variable name="div-ctrl" select="concat('ctrl-',$id)" />
+									<xsl:variable name="div-edit-button" select="concat('btn-edit-',$id)" />
+									<xsl:variable name="div-delete-button" select="concat('btn-del-',$id)" />
+
+									<!-- 修改上传的窗口 
+									-->                         
+									<xhtml:div id="{$dialog-id}" width="300" height="112"
+									    closable="true"
+									    minmaxable="false"
+									    resizable="false"
+									    modal="true">
+											<xsl:attribute name="title">i18n{title}</xsl:attribute>
+											<xsl:attribute name="component">/UI/system/components/dialog.xbl.xml#dialog</xsl:attribute>
+											<xhtml:table style="width:100%;height:100%;table-layout:fixed" border="0" cellspacing="8" cellpadding="0">
+												<xhtml:tr>
+													<xhtml:td>
+														<xhtml:form style="margin:0 auto;" enctype="multipart/form-data" name="f" id="{$div-form}" action="/UI/system/service/common/bizAction.j" method="post" target="{$div-iframe}">
+															<xhtml:input name="dataModel" type="hidden" />
+															<xhtml:input name="concept" type="hidden" />
+															<xhtml:input name="relation" type="hidden" />
+															<xhtml:input name="id" type="hidden" />
+															<xhtml:input name="size" type="hidden" />
+															<xhtml:input name="process" type="hidden" />
+															<xhtml:input name="activity" type="hidden" />
+															<xhtml:input name="action" type="hidden" value="blobUpdateAction"/>
+															<xhtml:input style="width:100%;height:22px;vertical-align:middle;line-height:18px;" name="blobData" type="file" />
+														</xhtml:form>
+													</xhtml:td>
+												</xhtml:tr>
+												<xhtml:tr height="22px">
+													<xhtml:td>
+											            <xforms:trigger  style="float:right;width:75px;" appearance="minimal"> 
+											              <xforms:label ><![CDATA[i18n{cancel}]]></xforms:label>  
+											              <xforms:action ev:event="DOMActivate" > 
+											                <xforms:script >justep.xbl('<xsl:value-of select="$id"/>').dialogCancel();</xforms:script> 
+											              </xforms:action> 
+											            </xforms:trigger>  
+											            <xforms:trigger style="float:right;margin-right:8px;width:75px;" class="button-green"> 
+											              <xforms:label ><![CDATA[i18n{ok}]]></xforms:label>  
+											              <xforms:action ev:event="DOMActivate" > 
+											                <xforms:script >justep.xbl('<xsl:value-of select="$id"/>').dialogOk();</xforms:script> 
+											              </xforms:action> 
+											            </xforms:trigger>  
+											           <!-- 
+											            
+														<xhtml:input type="button" style="width:75px;">
+															<xsl:attribute name="class">xui-button</xsl:attribute>
+														    <xsl:attribute name="onclick">justep.xbl('<xsl:value-of select="$id"/>').dialogCancel();</xsl:attribute>
+														    <xsl:attribute name="value">取消</xsl:attribute>
+														</xhtml:input>
+														<xhtml:input type="button" style="float:right;margin-right:8px;width:75px;">
+															<xsl:attribute name="class">xui-button</xsl:attribute>
+														    <xsl:attribute name="onclick">justep.xbl('<xsl:value-of select="$id"/>').dialogOk();</xsl:attribute>
+														    <xsl:attribute name="value">确定</xsl:attribute>
+														</xhtml:input>
+											            -->
+													</xhtml:td>
+												</xhtml:tr>
+											</xhtml:table>
+											<xhtml:iframe id="{$div-iframe}" name="{$div-iframe}" style="display:none">
+												<xsl:attribute name="onload">var o=justep.xbl('<xsl:value-of select="$id"/>');if(o)o.checkResult(this);</xsl:attribute>
+											</xhtml:iframe>
+									</xhtml:div>
+									
+									<xhtml:span xblid="attribute" 
+										xbl-obj-id="{$id}" 
+										edit-button="{$div-edit-button}" 
+										delete-button="{$div-delete-button}"
+										dialog-id="{$dialog-id}"
+										form-id="{$div-form}" 
+										form-delete-id="{$div-delete-form}"
+										ctrl-id="{$div-ctrl}" 
+										style="display:none"/>
+									
+									<xhtml:table style="position:relative;table-layout:fixed;border:0px solid;width:100%;height:100%;" cellpadding="0" cellspacing="0">
+										<xsl:attribute name="onmouseover">
+											<xsl:value-of
+													select="concat('var o=justep.xbl(''',$id,''');','if(o) o.domouseover(this);')" />
+										</xsl:attribute>
+										<xsl:attribute name="onmouseout">
+											<xsl:value-of
+													select="concat('var o=justep.xbl(''',$id,''');','if(o) o.domouseout(this);')" />
+										</xsl:attribute>
+										<xhtml:tr valign="middle" style="height:100%;">
+											<xhtml:td align="center" style="height:100%;">
+												<xhtml:div style="height:100%;">
+													<xsl:copy-of select="./*[local-name()='group' and @name='show']/*"/>
+												</xhtml:div>
+		                                                        
+												<xhtml:div id="{$div-ctrl}" style="POSITION:absolute;display:none">
+													<xhtml:table>
+														<xhtml:tr>
+															<xhtml:td>
+																<xhtml:div id="{$div-edit-button}"/>
+															</xhtml:td>
+															<xhtml:td>
+																<xhtml:div id="{$div-delete-button}"/>
+															</xhtml:td>
+														</xhtml:tr>
+													</xhtml:table>
+												</xhtml:div>
+										</xhtml:td>
+									</xhtml:tr>
+								</xhtml:table>
+								</root>
+							</xsl:template>
+		</xbl:template>
+		
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    
+				justep.Object.extend(this, new justep.Blob(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		})
+		]]>	
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+				<![CDATA[
+				.xui-blob{
+					width:200px;
+					height:300px;
+					background-color:#E3EBF7;		
+				}
+				]]>
+			</xbl:style>
+		</xbl:resources>
+		
+	</xbl:binding>
+	
+	<xbl:binding id="image">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:xforms="http://www.justep.com/xforms">
+				<root xbl:class='xui-blob' xmlns:xbl="http://www.w3.org/ns/xbl">
+				    <xsl:variable name="id" select="if(@id) then @id else generate-global-id()" />
+				    <xsl:variable name="blob-id" select="concat('blob-',$id)" />
+				    <xsl:variable name="img-id" select="concat('img-',$id)" />
+				    <xsl:variable name="refresh-func" select="concat('func_refr',replace(generate-global-id(),'-','_'))" />
+				    <xsl:variable name="submit-func" select="concat('func_sub',replace(generate-global-id(),'-','_'))" />
+				    <xhtml:script>
+				    		<xsl:value-of select="concat('function ',$refresh-func,'(event){')"/>
+				    		<xsl:value-of>justep.xbl("</xsl:value-of>
+				    		<xsl:value-of select="$id"/>
+				    		<xsl:value-of>").doRefresh(event);</xsl:value-of>
+				    		<xsl:value-of select="'}  '"/>
+
+				    		<xsl:value-of select="concat('function ',$submit-func,'(event){')"/>
+				    		<xsl:value-of>return justep.xbl("</xsl:value-of>
+				    		<xsl:value-of select="$id"/>
+				    		<xsl:value-of>").doSubmit(event);</xsl:value-of>
+				    		<xsl:value-of select="'}  '"/>
+				    </xhtml:script>
+					<xhtml:div xblid="blob" component="/UI/system/components/blob.xbl.xml#blob" id="{$blob-id}" style="width:100%;height:100%;background-color:transparent">
+						<xsl:if test="@disabled">
+							<xsl:attribute name="disabled" select="@disabled"/>
+						</xsl:if>
+						<xsl:if test="@process">
+							<xsl:attribute name="process" select="@process"/>
+						</xsl:if>
+						<xsl:if test="@activity">
+							<xsl:attribute name="activity" select="@activity"/>
+						</xsl:if>
+						<xsl:if test="@data">
+							<xsl:attribute name="data" select="@data"/>
+						</xsl:if>
+						<xsl:if test="@data-model">
+							<xsl:attribute name="data-model" select="@data-model"/>
+						</xsl:if>
+						<xsl:if test="@concept">
+							<xsl:attribute name="concept" select="@concept"/>
+						</xsl:if>
+						<xsl:if test="@relation">
+							<xsl:attribute name="relation" select="@relation"/>
+						</xsl:if>
+						<xsl:if test="@size">
+							<xsl:attribute name="size" select="@size"/>
+						</xsl:if>
+						<xsl:if test="@onRefreshButton">
+							<xsl:attribute name="onRefreshButton" select="@onRefreshButton"/>
+						</xsl:if>
+						<xsl:if test="@update-image">
+							<xsl:attribute name="update-image" select="@update-image"/>
+						</xsl:if>
+						<xsl:if test="@unupdate-image">
+							<xsl:attribute name="unupdate-image" select="@unupdate-image"/>
+						</xsl:if>
+						<xsl:if test="@delete-image">
+							<xsl:attribute name="delete-image" select="@delete-image"/>
+						</xsl:if>
+						<xsl:if test="@undelete-image">
+							<xsl:attribute name="undelete-image" select="@undelete-image"/>
+						</xsl:if>
+						<xsl:attribute name="onRefresh" select="$refresh-func"/>
+						<xsl:attribute name="onSubmit" select="$submit-func"/>
+						<group name="show">
+							<xhtml:img src="none" id="{$img-id}" onerror="this.src=justep.Request.convertURL('/UI/system/images/doc/empty.gif', true)" style="vertical-align:middle;width:100%;height:100%"/>
+						</group>
+					</xhtml:div>
+				</root>
+			</xsl:template>
+		</xbl:template>	
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function(){
+				this.stretch = "false"==this.domNode.getAttribute("stretch")? false: true;
+				var blob_object = this.getElementByXblID('blob');
+			}, 
+			"setDisabled" : function(disabled){
+				var blob_object = this.getElementByXblID('blob');
+				if(blob_object && blob_object.xblObject){
+					blob_object.xblObject.disabled = disabled;
+				}
+			},
+			"getDisabled" : function(){
+				var blob_object = this.getElementByXblID('blob');
+				if(blob_object && blob_object.xblObject){
+					return blob_object.xblObject.disabled;
+				}
+			},
+			"doSubmit" : function(event){
+				var func = this.domNode.getAttribute('onSubmit');
+				if(func) func = justep.Function.get(func);
+				if(!func){
+					return justep.Blob.imgFileTest(event);
+				}else{
+					return func(event);
+				}
+			},
+			"doRefresh" : function(event){
+				this.setImgSrc(event.url);
+				var func = this.domNode.getAttribute('onRefresh');
+				if(func){
+					func = justep.Function.get(func);
+					if(func) func(event);
+				}
+			},
+			"refresh" : function(rowid){
+				var blob_object = justep.XBLObject.getXBLObject(this.getElementByXblID('blob'));
+				if(blob_object){
+					blob_object.refresh(rowid);
+				}
+			},
+			"setImgSrc" : function(src){
+				if(!src) return;
+				var blob_object = this.getElementByXblID('blob');
+				var imgWidth = $(blob_object).innerWidth();
+				var imgHeight = $(blob_object).innerHeight();
+				var img = $('#img-'+this.domNode.id);
+				if (!this.stretch) {
+					var tempImage = new Image();  
+					tempImage.onload = function() {
+						/* tempImage用于获取高度和宽度 */
+						if(imgWidth && imgHeight){
+							var scaleH = tempImage.width / imgWidth;
+							var scaleV = tempImage.height / imgHeight;
+							var scale = 1;
+							if (scaleH > scaleV) {
+								scale = scaleH;
+							}
+							else {
+								scale = scaleV;
+							}
+							img.height(tempImage.height/scale).width(tempImage.width/scale);
+						}
+						img.attr('src',src);
+						tempImage = null;
+					};
+					tempImage.onerror = function() {
+						img.attr('src',src);
+						tempImage = null;
+					};
+					tempImage.src = src;
+				}else {
+					if(imgWidth && imgHeight) img.height(imgHeight).width(imgWidth);
+					img.attr('src',src);
+				}
+			}
+		})
+		]]>	
+		</xbl:implementation>
+		
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+			]]>
+			</xbl:style>
+		</xbl:resources>				
+	</xbl:binding>	
+</xbl:xbl>

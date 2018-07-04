@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="dialog"  tag-type="rich" tag-name="div" icon="dialog_icon_min.gif"
+		text="对话框" binding-component="/UI/system/components/dialog.xbl.xml#dialog"
+		display-property="id" component-class="Dialog" component-type="formControl" parent-range="view"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="title" text="对话框标题"/>
+			<property name="show-title" text="显示标题栏" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="modal" text="模态" editor-ref="booleanList" readonly="true" data-type="boolean" allow-empty="true"/>
+			<property name="width" text="宽度，只支持PX单位" allow-empty="true"/>
+			<property name="height" text="高度，只支持PX单位" allow-empty="true" />
+			<property name="left" text="窗口打开的位置(左)" allow-empty="true" />
+			<property name="top" text="窗口打开的位置(上)" allow-empty="true" />
+			<property name="neighbor" text="显示在某个元素下方(填写元素的ID)" />
+			<property name="closable" text="关闭按钮" editor-ref="booleanList" readonly="true" data-type="boolean" default-value="true" />
+			<property name="minmaxable" text="最大化最小化按钮" editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="resizable" text="改变大小" editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="status" text="初始化状态" editor-ref="dialog-status" readonly="true" enum-values=""/>
+			<property name="content" text="文档内容" editor-ref="contextDialog" readonly="true" />
+		</properties>
+		
+		<property-editors>
+			<property-editor name="dialog-status" type="list">
+				<static-data value=",minimize,maximize" />
+			</property-editor>
+			<property-editor name="dialogContentDlg" type="dialog">
+				<dialog-page class-name="DialogContentPage"/>				
+			</property-editor>
+			<property-editor name="contextDialog" type="dialog">
+				<dialog-page class-name="EditContextPage"/>				
+			</property-editor>
+		</property-editors>
+		
+		<events>
+			<event name="onInit" />
+			<event name="onOpen" />
+			<event name="onClose" />
+		</events>
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div component="/UI/system/components/dialog.xbl.xml#dialog"  
+					modal="true"
+					width="400"     
+					height="300"/> 
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

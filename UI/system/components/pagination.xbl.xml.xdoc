@@ -1,0 +1,53 @@
+/**
+	@name UI.pagination
+	@component /UI/system/components/pagination.xbl.xml#pagination
+	@class 
+	@model UI 
+	@description <b>[rich]</b>分页导航组件
+	@example 
+<xmp>
+	<xhtml:div component="/UI/system/components/pagination.xbl.xml#pagination" items="first last pre next" id="pagination1" align="right" data="main"/>
+</xmp>
+*/
+
+/**
+	@name UI.pagination#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b> 组件标识
+	@default "/UI/system/components/pagination.xbl.xml#pagination"
+*/
+
+/**
+	@name UI.pagination#id
+	@property 
+	@description <b>[attribute]</b> id标识
+*/
+
+/**
+	@name UI.pagination#data
+	@property
+	@type string 
+	@description <b>[attribute]</b> 关联的数据的ID
+*/
+
+/**
+	@name UI.pagination#items
+	@property
+	@type string 
+	@description <b>[attribute]</b> 显示的按钮项, 可选值包括"first last pre next"
+*/
+
+/**
+	@name UI.pagination#align	
+	@property
+	@type string 
+	@description <b>[attribute]</b> 显示的位置, 可选值包括"left center right"
+*/
+
+/**
+	@name UI.pagination#class
+	@property
+	@type string 
+	@description <b>[attribute]</b> 标准的dom class属性, 可选风格 small
+*/
+

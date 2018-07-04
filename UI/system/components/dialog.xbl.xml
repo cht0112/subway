@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<xbl:script src="dialog/dialog.js"/>
+	
+	<!-- xyh 2010-5-6 -->
+	<xbl:binding id="dialog">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" 
+				xmlns:xforms="http://www.justep.com/xforms">
+				<root>
+					<xhtml:div style="display:none;height:100%;width:100%">
+						<xsl:attribute name="id"><xsl:value-of select="@id"/>-content</xsl:attribute>
+						<xsl:copy-of select="text()|*"/>
+					</xhtml:div>
+				</root>
+			</xsl:template>
+		</xbl:template>
+
+		<xbl:implementation>
+		({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.Dialog(node.getAttribute("id"),node.getAttribute("title"),node.getAttribute("modal")=="true",node.getAttribute("status"),node.getAttribute("width"),node.getAttribute("height"),node.getAttribute("left"),node.getAttribute("top")
+					,node.getAttribute("onInit"),node.getAttribute("onOpen"),node.getAttribute("onClose")
+				);
+				dialog.setClosable(node.getAttribute("closable")!="false");
+				dialog.setMinmaxable(node.getAttribute("minmaxable")!="false");
+				dialog.setResizable(node.getAttribute("resizable")!="false");
+				dialog.setNeighbor(node.getAttribute("neighbor"));
+				dialog.setAutoSize(node.getAttribute("auto-size")=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				justep.Object.extend(this, dialog);
+			} 
+		})
+			
+		</xbl:implementation>
+	</xbl:binding>
+	
+</xbl:xbl>

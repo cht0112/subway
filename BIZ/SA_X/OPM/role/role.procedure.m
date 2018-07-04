@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model xmlns="http://www.justep.com/model">  
+  <procedure name="roleProcessAfterSaveOPRoleActionProcedure" code="Role.roleProcessAfterSaveOPRoleAction"/><procedure name="roleProcessAfterAssignFunPermissionsActionProcedure" code="Role.roleProcessAfterAssignFunPermissionsAction"/><procedure name="roleProcessBeforeDeletePermissionsActionProcedure" code="Role.roleProcessBeforeDeletePermissionsAction"/><procedure name="roleProcessAfterSetActionsPolicyActionProcedure" code="Role.roleProcessAfterSetActionsPolicyAction"/><procedure name="roleProcessAfterDeleteRolesActionProcedure" code="Role.roleProcessAfterDeleteRolesAction"/></model>

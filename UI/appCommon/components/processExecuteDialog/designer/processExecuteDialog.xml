@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="processExecuteDialog" tag-name="div" icon="dialog_icon_min.png"
+		text="通用流程处理对话框" 
+		binding-component="/UI/appCommon/components/processExecuteDialog.xbl.xml#processExecuteDialog"
+		display-property="id" component-class="ProcessExecuteDialog" component-type="formControl"
+		design-view="web-designer">
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+					<xhtml:div component="/UI/appCommon/components/processExecuteDialog.xbl.xml#processExecuteDialog" />
+		   		]]>
+		   	</template>
+		</templates>
+
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="数据"  required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data" />
+			<property name="process-engine" text="流程引擎" required="true" is-id-ref="true" editor-ref="processList" />
+		</properties>
+		<events>
+			<event name="onBeforeExecute"  parameters="event"/>
+			<event name="onAfterExecute"  parameters="event"/>
+		</events>
+		<property-editors>
+			<property-editor name="processList" type="list" >
+				<dynamic-data xpath="//*[@component='/UI/system/components/process.xbl.xml#process']/@id" /> 
+			</property-editor>
+		</property-editors>		
+	</element>
+</elements>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;">  
+  <head>
+    <xhtml:script language="javascript" src="/component/data/data.js"/>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <!-- 
+		<script type="text/javascript" src="/base/base.js"/>
+		<script type="text/javascript" src="/form/form.js"/>
+		 -->  
+    <script>
+		 <![CDATA[
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) && msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length > 0 ? msgs[0] : "";
+					var detail = msgs.length > 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length > 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null && activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		]]>
+		</script>  
+    <!--  
+		<script id="__script"/>
+		-->  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/system/config/user.css"/>
+    <xhtml:script id="htmlScript1" src="/UI/metrodetection/detection_case_info_view/process/importCase/mainActivity.js"/>
+    <xhtml:script><![CDATA[new justep.XBizData('dectionBaseInfoData',true,false,{'queryAction':"queryDECTION_BASED_ON_INFOAction",'saveAction':"saveDECTION_BASED_ON_INFOAction",'newAction':"createDECTION_BASED_ON_INFOAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"xml",'concept':"{'DECTION_BASED_ON_INFO':'DECTION_BASED_ON_INFO'}",'limit':20,'idColumn':"{'name':'DECTION_BASED_ON_INFO','relation':'DECTION_BASED_ON_INFO','define':'DECTION_BASED_ON_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dECTIONBASEDONNAME':{'type':'String','relation':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','define':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','label':'检测依据文件名称'},'vALIDDATETIME':{'type':'DateTime','relation':'DECTION_BASED_ON_INFO.vALIDDATETIME','define':'DECTION_BASED_ON_INFO.vALIDDATETIME','label':'依据生效时间'},'vALIDSTATE':{'type':'Integer','relation':'DECTION_BASED_ON_INFO.vALIDSTATE','define':'DECTION_BASED_ON_INFO.vALIDSTATE','label':'依据有效状态'},'version':{'type':'Integer','relation':'DECTION_BASED_ON_INFO.version','define':'DECTION_BASED_ON_INFO.version','label':'版本'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XCommonData('tempData',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'refreshConfirmText':"xml"});]]></xhtml:script>
+    <xforms:model id="model1" style="width:153px;top:10px;left:10px;height:65px;"> 
+      <xforms:instance id="dectionBaseInfoData" update-mode="whereAll" concept="DECTION_BASED_ON_INFO" type="simple"/>
+      <xforms:bind nodeset="instance('dectionBaseInfoData')/vALIDDATETIME" type="xsd:dateTime"/>
+      <xforms:bind nodeset="instance('dectionBaseInfoData')/vALIDSTATE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dectionBaseInfoData')/version" type="xsd:integer"/>  
+      <xforms:instance id="tempData" type="simple" columnids="name">
+        <rows xmlns="" id="default4">  
+          <row id="default5"> 
+            <cell id="default6"/> 
+          </row> 
+        </rows>
+      </xforms:instance> 
+    </xforms:model>
+    <xhtml:script id="xbl_script" language="javascript"><![CDATA[__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+	var ids=[{id:'ceafa6344e8b427fa336650d7e6a6142', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'default7', name:'xforms:label'},{id:'default8', name:'xforms:value'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+]]></xhtml:script>
+  </head>  
+  <!-- onunload="_closeActivity_();" -->  
+  <body style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <!-- 可视部分 即用户描述的界面 -->  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <xhtml:div id="rootView" class="" style="height:100%;width:100%"> 
+        <xhtml:div xforms:lazy="false" id="view1" class="xui-container" style="position:relative;;width:814px;height:518px;">  
+          <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect2" ref="data('tempData')/name" default-label-ref="'请选择检测依据'" class="component_E1635FC7 gridSelect" style="position:absolute;top:64px;width:213px;left:266px;"> 
+            <xforms:label ref="dECTIONBASEDONNAME" id="default7"/>  
+            <xforms:value ref="DECTION_BASED_ON_INFO" id="default8"/>  
+            <xforms:itemset id="default9" data="dectionBaseInfoData" auto-load-data="false"> 
+              <xforms:column ref="DECTION_BASED_ON_INFO" visible="false" id="default11"/>  
+              <xforms:column ref="dECTIONBASEDONNAME" id="default12"/>  
+              <xforms:column ref="vALIDDATETIME" visible="false"/>  
+              <xforms:column ref="vALIDSTATE" visible="false"/>  
+              <xforms:column ref="version" visible="false"/> 
+            </xforms:itemset> 
+          </xforms:gridselect1>  
+          <xhtml:label id="label1" style="position:absolute;top:68px;left:170px;" class="xui-label">请选择检测依据</xhtml:label>  
+          <xhtml:input type="text" value="" id="caseVersion" style="position:absolute;top:115px;left:266px;width:213px;" class="xui-input"/>  
+          <xhtml:label id="label3" style="position:absolute;top:115px;left:170px;" class="xui-label">请输入用例版本</xhtml:label>  
+          <form xmlns="http://www.justep.com/xui" action="" enctype="multipart/form-data" id="fileupload" method="post" name="fileupload" target="bbb">  
+            <hidden id="caseVersion" name="caseVersion"/>  
+            <hidden id="jianceyiju" name="jianceyiju"/>  
+            <span style="position:absolute;height:24px;left:170px;top:180px;">请选择用例文件</span>  
+            <input id="file" name="file" style="position:absolute;height:24px;left:266px;top:180px;" type="file"/>  
+            <input type="checkbox" id="importModel" name="importModel" style="position:absolute;left:260px;height:24px;top:220px;"/>  
+            <span style="position:absolute;left:280px;height:24px;top:228px;">覆盖已存在用例</span>  
+            <input class="xui-button" id="sub" name="sub" onclick="uploadCase();" style="position:absolute;left:260px;height:24px;top:280px;" type="button" value="上传"/> 
+          </form>  
+          <xhtml:iframe id="bbb" name="bbb" onload="mainActivity.afterImportCase(this);" src="about:blank" style="display:none;"/> 
+        </xhtml:div> 
+      </xhtml:div>
+    </div> 
+  </body>  
+</html>

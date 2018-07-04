@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$vb7e0b550e5b24ad09174b8f2147fe02a/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vd7e42f5ec7094242aa02304fe85af65e/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v44eef526021848529dd8daa0e4601d85/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v6752a5e886e447a49518a400ccbc22ce/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v195d63e963844d99befa4d1ee0467315/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vff1c92c505fa4a4fa898574981ac1d80/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v367b3c096b7f4ad48dd5ddae53a6dce3/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v3f376925f7084a08a3449bf5ca81fb69/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v30b97cb4316a4677a8b0889a24f51956/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v1c71ac446b9d4c3b9f09d728f31d689a/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v959b899ddacd4425afa74afb6a23ab3f/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v49c90e960dde49229bf5ed21ef4e0d69/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/x5/$v694cfbb8548c4aa39133c0f6121b9b1a/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v8195a10d4eb44de9a3dfb791d7e830cb/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$vac0453d3357540c0861fcd64a001bb09/UI/metrodetection/toolProtect/process/toolProtect/mainActivity.js?language=zh_CN">
+</script>      <script id="htmlScript2" src="/x5/$v3fe550017ed04d45b451ba0a8b1af599/UI/metrodetection/toolProtect/process/toolProtect/mainActivity3.js?language=zh_CN">
+</script>      <script>
+new justep.XBizData('laboratoryData',true,false,{'queryAction':"queryDETECTION_TOOL_INFOAction",'saveAction':"saveDETECTION_TOOL_INFOAction",'newAction':"createDETECTION_TOOL_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DETECTION_TOOL_INFO':'DETECTION_TOOL_INFO'}",'limit':20,'idColumn':"{'name':'DETECTION_TOOL_INFO','relation':'DETECTION_TOOL_INFO','define':'DETECTION_TOOL_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLCNAME':{'type':'String','relation':'DETECTION_TOOL_INFO.tOOLCNAME','define':'DETECTION_TOOL_INFO.tOOLCNAME','label':'工具名称'},'tOOLENAME':{'type':'String','relation':'DETECTION_TOOL_INFO.tOOLENAME','define':'DETECTION_TOOL_INFO.tOOLENAME','label':'工具英文名称'},'tOOLTYPEID':{'type':'Integer','relation':'DETECTION_TOOL_INFO.tOOLTYPEID','define':'DETECTION_TOOL_INFO.tOOLTYPEID','label':'工具类型'},'tOOLMODEL':{'type':'String','relation':'DETECTION_TOOL_INFO.tOOLMODEL','define':'DETECTION_TOOL_INFO.tOOLMODEL','label':'工具型号'},'tOOLSTANDARDS':{'type':'String','relation':'DETECTION_TOOL_INFO.tOOLSTANDARDS','define':'DETECTION_TOOL_INFO.tOOLSTANDARDS','label':'工具规格'},'tOOLID':{'type':'String','relation':'DETECTION_TOOL_INFO.tOOLID','define':'DETECTION_TOOL_INFO.tOOLID','label':'工具id'},'uSESTATECODE':{'type':'Integer','relation':'DETECTION_TOOL_INFO.uSESTATECODE','define':'DETECTION_TOOL_INFO.uSESTATECODE','label':'状态'},'tOOLUNIT':{'type':'String','relation':'DETECTION_TOOL_INFO.tOOLUNIT','define':'DETECTION_TOOL_INFO.tOOLUNIT','label':'计量单位'},'mANUFACTUREID':{'type':'Integer','relation':'DETECTION_TOOL_INFO.mANUFACTUREID','define':'DETECTION_TOOL_INFO.mANUFACTUREID','label':'供应商ID'},'tOOLRESOURCE':{'type':'Integer','relation':'DETECTION_TOOL_INFO.tOOLRESOURCE','define':'DETECTION_TOOL_INFO.tOOLRESOURCE','label':'资产来源'},'iNDATE':{'type':'Date','relation':'DETECTION_TOOL_INFO.iNDATE','define':'DETECTION_TOOL_INFO.iNDATE','label':'入账时间'},'iNPRICE':{'type':'Integer','relation':'DETECTION_TOOL_INFO.iNPRICE','define':'DETECTION_TOOL_INFO.iNPRICE','label':'入账价值'},'sHAREDFLAG':{'type':'Integer','relation':'DETECTION_TOOL_INFO.sHAREDFLAG','define':'DETECTION_TOOL_INFO.sHAREDFLAG','label':'是否允许资源共用'},'mEMO':{'type':'String','relation':'DETECTION_TOOL_INFO.mEMO','define':'DETECTION_TOOL_INFO.mEMO','label':'备注'},'aSSETSORTCODE':{'type':'String','relation':'DETECTION_TOOL_INFO.aSSETSORTCODE','define':'DETECTION_TOOL_INFO.aSSETSORTCODE','label':'固定资产分类'},'rECIVESTATE':{'type':'Integer','relation':'DETECTION_TOOL_INFO.rECIVESTATE','define':'DETECTION_TOOL_INFO.rECIVESTATE','label':'接受状态'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('proData',false,false,{'queryAction':"queryJINDU_VIEWAction",'saveAction':"saveJINDU_VIEWAction",'newAction':"createJINDU_VIEWAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'JINDU_VIEW':'JINDU_VIEW'}",'limit':-1,'idColumn':"{'name':'JINDU_VIEW','relation':'JINDU_VIEW','define':'JINDU_VIEW','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'FID':{'type':'String','relation':'JINDU_VIEW.FID','define':'JINDU_VIEW.FID','label':'FID'},'FPARENTID':{'type':'String','relation':'JINDU_VIEW.FPARENTID','define':'JINDU_VIEW.FPARENTID','label':'FPARENTID'},'TNAME':{'type':'String','relation':'JINDU_VIEW.TNAME','define':'JINDU_VIEW.TNAME','label':'TNAME'},'TPERSON':{'type':'String','relation':'JINDU_VIEW.TPERSON','define':'JINDU_VIEW.TPERSON','label':'TPERSON'},'TPERSONNAME':{'type':'String','relation':'JINDU_VIEW.TPERSONNAME','define':'JINDU_VIEW.TPERSONNAME','label':'TPERSONNAME'},'TSTART':{'type':'DateTime','relation':'JINDU_VIEW.TSTART','define':'JINDU_VIEW.TSTART','label':'TSTART'},'TEND':{'type':'DateTime','relation':'JINDU_VIEW.TEND','define':'JINDU_VIEW.TEND','label':'TEND'},'TEXECUTE':{'type':'String','relation':'JINDU_VIEW.TEXECUTE','define':'JINDU_VIEW.TEXECUTE','label':'TEXECUTE'},'TCHECK':{'type':'String','relation':'JINDU_VIEW.TCHECK','define':'JINDU_VIEW.TCHECK','label':'TCHECK'},'ROOMID':{'type':'Integer','relation':'JINDU_VIEW.ROOMID','define':'JINDU_VIEW.ROOMID','label':'ROOMID'},'ROOMAREA':{'type':'String','relation':'JINDU_VIEW.ROOMAREA','define':'JINDU_VIEW.ROOMAREA','label':'ROOMAREA'},'TOOLNO':{'type':'Integer','relation':'JINDU_VIEW.TOOLNO','define':'JINDU_VIEW.TOOLNO','label':'TOOLNO'},'LINEID':{'type':'Integer','relation':'JINDU_VIEW.LINEID','define':'JINDU_VIEW.LINEID','label':'LINEID'},'TASKID':{'type':'String','relation':'JINDU_VIEW.TASKID','define':'JINDU_VIEW.TASKID','label':'TASKID'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'FPARENTID'}"},'proData_part',{});</script>  
+    <script type="text/javascript" src="/x5/$vec163fd3489645ff86c8a183df45cc4b/UI/metrodetection/toolProtect/process/toolProtect/.cache/mainActivity3_zh_CN_x5_26a261a5fbc54495ad139f2f4001f719.js?language=zh_CN&amp;$version=2271a930-7f7d-41c7-bb32-890ba51bfa70"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="xui-splitter component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="15%" has-arrow-button="true" has-drag-bar="true" id="HSplitter1" mode="horz" style="height:100%;width:100%;line-height:20px;"> 
+          <div class="xui-splitter-root"> 
+            <div class="xui-splitter-region xui-splitter-left"> 
+              <div class="component_6298A7A1 grid" data="laboratoryData" id="grid1" onRowClick="mainActivity3.grid1RowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;width:100%;line-height:normal;;overflow:hidden" system-columns="tOOLENAME,tOOLTYPEID,tOOLMODEL,tOOLSTANDARDS,tOOLID,uSESTATECODE,tOOLUNIT,mANUFACTUREID,tOOLRESOURCE,iNDATE,iNPRICE,sHAREDFLAG,mEMO,aSSETSORTCODE,rECIVESTATE"></div> 
+            </div>  
+            <div class="xui-splitter-region xui-splitter-right"> 
+              <div class="component_6298A7A1 grid" data="proData" id="grid2" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;width:100%;;overflow:hidden" system-columns="FID,FPARENTID,TPERSON,ROOMID,ROOMAREA,TOOLNO,LINEID,TASKID"></div> 
+            </div>  
+            <div class="xui-splitter-handler xui-splitter-handler-h"> 
+              <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                <i class="icon-system-left-dir white-icon"></i> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

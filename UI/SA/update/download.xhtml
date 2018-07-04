@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xbl="http://www.w3.org/ns/xbl"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:exf="http://www.exforms.org/exf/1-0"
+  xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:justep="http://www.justep.com/x5#">  
+  <xhtml:head id="head">
+  	<!-- 
+  	<xhtml:script>
+  		function copyToClipboard(){
+  			var e = document.getElementById("addr");
+  			var text = e.innerText;
+  			window.clipboardData.setData("Text",text);
+  			alert("复制成功！");
+  		}
+  	</xhtml:script>
+  	-->
+  </xhtml:head>   
+  <xhtml:body> 
+  	<xhtml:h4>说明</xhtml:h4>
+  	<xhtml:h5 style='color:red'>注意:由于浏览器插件是32位程序,请用32位浏览器打开页面(如:32位IE)</xhtml:h5>
+  	<div style="position:relative;">
+	  	<xhtml:table id="table2" class="xui-container" > 
+	  		<xhtml:tr>
+	  			<xhtml:td>
+	  				1.点击<a id="a" href="/UI/SA/update/Update.exe?filename=Update.exe">X5软件管理器</a>下载X5软件管理器到本地文件夹
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	  		<xhtml:tr>
+	  			<xhtml:td>
+	  				2.双击下载的Update.exe执行，弹出如下窗口：
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	  		<xhtml:tr>
+	  			<xhtml:td>
+			          <xhtml:img src="/UI/SA/update/update.jpg" alt="" id="image2"/> 
+			          <xhtml:div style="position:absolute; top:99px;left:75px;"><xsl:value-of select="/update-server"/></xhtml:div>
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	  		<xhtml:tr>
+	  			<xhtml:td>
+	  				3.在“下载地址”输入：
+	        		<a id="a" ><b id="addr"><xsl:value-of select="/update-server"/></b></a>
+	        		<!--
+	        		<button onclick="copyToClipboard()">复制</button> 
+	        		--> 
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	  		<xhtml:tr>
+	  			<xhtml:td>
+	  				4.点击“右侧箭头”按钮，软件列表中列出所需下载的软件
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	  		<xhtml:tr>
+	  			<xhtml:td>
+	  				5.在软件列表中选择要下载的软件
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	  		<xhtml:tr>
+	  			<xhtml:td>
+	  				6.点击“下载/更新”按钮，下载所选择的软件
+	  			</xhtml:td>
+	  		</xhtml:tr>
+	    </xhtml:table>
+    </div>
+  </xhtml:body> 
+</xhtml:html>
+</xsl:template></xsl:stylesheet>

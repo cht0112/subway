@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	
+
+<!-- 使用说明 -->
+<!--
+	1.必须有id属性
+	2.title属性：折叠区域的标题
+	3.style属性：和标准css相同
+	4.fixed属性：是否允许折叠展开
+	5.state属性：值为"collapsed"的时候，表示初始化折叠，否则为展开
+	6.onExpand 用来声明组件展开时要执行的动作
+	7.onCollapse 用来声明组件折叠时要执行的动作
+	8.<group name="panelarea"> 用来声明内容
+
+    <div component="/UI/system/components/collapsePanel.xbl.xml#collapsePanel" onExpand="" onCollapse="" id="test2" title="expanded panel" style="width:1000;"
+        fixed="true">
+        
+        <group name="panelarea">
+            <table border="0" width="100%">
+                <tr>
+                    <td>
+                        <xforms:input ref="instance('dataset')/integer"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>This is test2.</td>
+                </tr>
+            </table>
+
+        </group>
+    </div>
+-->
+
+	<xbl:binding id="collapsePanel">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:xforms="http://www.justep.com/xforms">
+				<xsl:variable name="title" select="@title" />
+				<xsl:variable name="id" select="@id" />
+				<xsl:variable name="display" select="@status" />
+				<xsl:variable name="style" select="@style" />
+				<root>
+				<xhtml:table class="xui-collapsePanel-div-title">
+					<xhtml:tr>
+						<xhtml:td>
+							<xsl:value-of select="$title" />
+						</xhtml:td>
+						<xhtml:td>
+							<xhtml:img class="xui-collapsePanel-img" src="{if($display='collapsed') then '/UI/system/images/expanded.gif' else '/UI/system/images/collapsed.gif'}" xblid="collapsePanel-img"/>
+						</xhtml:td>
+					</xhtml:tr>
+				</xhtml:table>
+				<xhtml:div class="xui-collapsePanel-div-content" xblid="collapsePanel-content">
+					<xsl:if test="$display='collapsed'">
+						<xsl:attribute name="style">display:none;</xsl:attribute>
+					</xsl:if>
+					<xsl:apply-templates select="*[local-name()='group' and @name='panelarea']" />
+				</xhtml:div>
+				</root>	
+			</xsl:template>
+			<xsl:template match="*[local-name()='group' and @name='panelarea']">
+				<xhtml:div class="xui-collapsePanel-panelarea" style="margin:0;padding:0;">
+					<xsl:apply-templates />
+				</xhtml:div>
+			</xsl:template>
+		</xbl:template>
+ 		<xbl:implementation>
+			({
+				"initXBL" : function() {
+					this.__id = this.domNode.id;
+					if('true'==jQuery(this.domNode).attr('fixed')){
+						var slef = this;
+						jQuery(this.domNode).children(".xui-collapsePanel-div-title").bind("click",function(event){slef.changeLayout();});
+					}
+					this.__open = this.domNode.getAttribute("status")!="collapsed";
+					this.__layout = this.getElementByXblID('collapsePanel-content');
+					this.__img = this.getElementByXblID('collapsePanel-img');
+					this.__onCollapse = this.domNode.getAttribute("onCollapse")?justep.Function.get(this.domNode.getAttribute("onCollapse")):null;
+					this.__onExpand = this.domNode.getAttribute("onExpand")?justep.Function.get(this.domNode.getAttribute("onExpand")):null;
+				},
+				"collapse" : function() {
+						if(this.__onCollapse) 
+							this.__onCollapse({source: this});
+						this.__layout.style.display = "none";
+						this.__img.src= justep.Request.convertURL("/UI/system/images/expanded.gif", true);
+						this.__open = false;
+				},
+				"expand" : function() {
+						if(this.__onExpand)
+							this.__onExpand({source: this});
+						this.__layout.style.display = "block";
+						this.__img.src= justep.Request.convertURL("/UI/system/images/collapsed.gif", true);
+						this.__open = true;						
+						justep.XBLObject.resize(this.domNode.id);						
+				},
+				"changeLayout" : function() {
+					if (this.__open) {
+						this.collapse();
+					}
+					else {
+						this.expand();
+					}
+				}
+			})
+			</xbl:implementation>  
+		<xbl:resources>
+			<xbl:style>
+				<![CDATA[
+.xui-collapsePanel-div-title {
+	width:100%;
+	background-color:#C9D6E6;
+	font-weight:bold;
+	font-family:Arial;
+	color:#000000;
+	padding-left:4px;
+	padding-right:4px;
+}
+.xui-collapsePanel-div-content {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	border:1px solid #C9D6E6;
+}
+
+.xui-collapsePanel-img {
+	float:right;
+	margin-top:3px;
+	width:16px;
+}
+
+.xui-collapsePanel .xui-collapsePanel-div-title{
+	height:24px;
+	line-height:24px;
+}
+
+.xui-collapsePanel-m .xui-collapsePanel-div-title{
+	line-height:32px;
+	height:32px;
+}
+							]]>
+			</xbl:style>
+		</xbl:resources>
+	</xbl:binding>
+	
+
+</xbl:xbl>
+

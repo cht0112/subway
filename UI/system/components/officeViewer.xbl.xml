@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<binding id="officeViewer">
+		<implementation>
+		<![CDATA[
+			({
+				initXBL : function() {
+					justep.Utils.extend(this, justep.OfficeViewer, null, true);
+					this.initComponent();
+				},
+				initXBL2 : function() {
+					this.initContent();
+				},
+			})
+		]]>
+		</implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-officeViewer{
+					width:720px;
+					height:400px;
+					overflow:auto;
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>
+		
+	</binding>	
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/docUtil2.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/officeViewer/officeViewer.js"></xbl:script>
+</xbl:xbl>	

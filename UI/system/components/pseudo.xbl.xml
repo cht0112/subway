@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl" 
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events" 
+	script-type="text/javascript">
+	<script src="/UI/system/components/common/common.js" />
+	<script src="/UI/system/components/dateFilter/dateFilter.js"/>
+	<!--
+		这个组件是为了使xf组件可以有一个xbl初始化的时机 
+	 -->
+	<binding id="pseudo">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+					
+				</root>
+			</xsl:template>
+		</xbl:template>
+		<implementation><![CDATA[
+			({
+				initXBL : function() {
+					var el = $(this.domNode);
+					var target = $("#"+el.attr("target"));
+					if(target[0]){
+						target = target[0];
+						var grid = target.xformsObject.grid;
+						if (grid.onWindowResize){
+							this.onWindowResize = function(){
+								grid.onWindowResize();
+								if (grid._fake)
+									grid._fake._correctSplit();
+							}
+						}
+					}
+				}
+			})			
+		]]></implementation>		
+	</binding>
+</xbl:xbl>

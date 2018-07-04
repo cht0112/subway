@@ -1,0 +1,474 @@
+/**
+	@name UI.excelExport
+	@component /UI/system/components/excel.xbl.xml#export
+	@class justep.ExportExcel
+	@description <b>[rich]</b>导出excel组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/excel.xbl.xml#export" data="" id="export1"/>
+</xmp>
+*/
+
+/**
+	@name UI.excelExport#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/excel.xbl.xml#export"
+*/
+
+/**
+	@name UI.excelExport#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.excelExport#data
+	@attribute 
+	@description 导出的DataID，导出excel的数据来源，目前只支持bizData
+*/
+
+/**
+	@name UI.excelExport#from
+	@attribute 
+	@description 导出的数据来源方式，取值范围:"UI"/"DB"，
+	@default DB
+	@example 
+	UI：取当前data加载的数据导出；
+	DB：使用data关联的queryAction查询数据导出，data的filter会施加到queryAction，但是不受limit、offset参数影响
+*/
+
+/**
+	@name UI.excelExport#relations
+	@attribute 
+	@description 导出列，格式(列:宽)
+	@example
+	为空时导出data的所有列
+	导出的列名受“运行时导出参数配置框”中标题列名和relation的label属性影响，默认使用relation的label
+	<b>格式：</b>
+	列:宽,列:宽,...
+	如：
+	sName:300,sLock:400
+*/
+
+/**
+	@name UI.excelExport#download__sub__filename
+	@attribute 
+	@description 导出的文件名
+	@default download.xls
+	@see UI.excelExport#downloadFilename
+*/
+
+/**
+	@name UI.excelExport#use__sub__config__sub__dlg
+	@attribute 
+	@description 是否使用导出参数配置，导出时弹出参数配置框可以设置列顺序、名称、宽度等
+	@deafult true
+*/
+
+/**
+	@name UI.excelExport#export__sub__key__sub__relation
+	@attribute 
+	@description 是否导出主键
+	@default false
+*/
+
+/**
+	@name UI.excelExport#export__sub__calc__sub__relation
+	@attribute 
+	@description 是否允许导出前端计算列，from='UI'时有效
+	@default false
+*/
+
+/**
+	@name UI.excelExport#appearance
+	@attribute
+	@description 显示方式，取值:默认显示为按钮，minimal显示为超链接，image显示为图片，image-text显示为图片加文字
+*/
+
+/**
+	@name UI.excelExport#image__sub__text__sub__mode
+	@attribute
+	@description 显示方式为image-text时生效，包括左右和上下排列
+*/
+
+/**
+	@name UI.excelExport#image
+	@attribute
+	@description 显示方式为image时，可用状态时显示的图片路径
+*/
+
+/**
+	@name UI.excelExport#dis__sub__image
+	@attribute
+	@description 显示方式为image时，不可用状态时显示的图片路径
+*/
+
+/**
+	@name UI.excelExport#label
+	@attribute
+	@description 导出按钮上显示的文字
+*/
+
+/**
+	@name UI.excelExport#exportExcel
+	@function 
+	@description 导出excel
+	@example
+	justep.xbl("excelExport1").exportExcel();
+*/
+
+/**
+	@name UI.excelExport#downloadFilename
+	@property 
+	@description 导出的文件名
+	@see UI.excelExport#download__sub__filename
+	@example
+	justep.xbl("excelExport1").downloadFilename='aaa.xls';
+*/
+
+/**
+	@name UI.excelExport#onBeforeExport
+	@event 
+	@description <b>[回调型事件]</b>导出前
+	@returns {boolean} 控制 导出动作是否继续
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.excelExport#onAfterExport
+	@event 
+	@description <b>[回调型事件]</b>导出成功
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.excelExport#onError
+	@event 
+	@description <b>[回调型事件]</b>导出失败
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"message" : 导出错误信息,
+		"result" : http请求返回
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.excelExport#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.excelExport#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.excelExport#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.excelExport#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.excelExport#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.excelExport#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.excelExport#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.excelExport#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.excelExport#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.excelImport
+	@component /UI/system/components/excel.xbl.xml#import
+	@class justep.ImportExcel
+	@model UI
+	@description <b>[rich]</b>数据导入excel组件
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/excel.xbl.xml#import" data="" mapping-src="..." id="import1"/>
+</xmp>
+*/
+
+/**
+	@name UI.excelImport#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/excel.xbl.xml#export"
+*/
+
+/**
+	@name UI.excelImport#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.excelImport#data
+	@attribute 
+	@description 导入的DataID，目前只支持bizData
+*/
+
+/**
+	@name UI.excelImport#to
+	@attribute 
+	@description 导入的数据方式，取值范围:"UI"/"DB"
+	@default DB
+	@example 
+	UI：excel中的数据以新增方式导入UI；
+	DB：使用data关联的createAction、saveAction将数据导入数据库
+*/
+
+/**
+	@name UI.excelImport#use__sub__default
+	@attribute 
+	@type {boolean}
+	@description 是否使用默认映射文件中导入参数配置
+	@default false
+*/
+
+/**
+	@name UI.excelImport#mapping__sub__src
+	@attribute 
+	@description 导入的映射配置文件URL
+	@example 
+	<b>映射配置文件格式说明：</b>
+	<xmp>
+	<mapping>
+		<default-config>
+			<sheet all="false" start="1" end="1"/>
+			<row all="false" start="2" end="100"/>
+		</default-config>
+		<concept name="SA_OPPerson"> 
+		    <primary-key>
+		    	<key-value cell-number="1" check="true"/>
+		    </primary-key>
+			<relation name="sName" cell-number="2" check="true"/>
+			<relation name="sCode" cell-number="3"/>
+			<relation name="sSex" cell-number="4"/>
+			<relation name="sMobilePhone" cell-number="5"/>
+			<relation name="sMainOrgID" cell-number="6"/>
+			<relation name="sBirthday" cell-number="7"/>		
+		</concept>	
+	</mapping>
+	</xmp>
+
+	default-config: 导入默认参数
+		sheet：excel页
+			all：是否导入全部页
+			start：导入开始页
+			end：导入结束页
+		row：excel行
+			all：是否导入全部行
+			start：导入开始行
+			end：导入全部行
+	concept：数据映射
+	    check: excel中行数据是否有效判断，当check="true"时cell-number对应列值为空，认为此行数据无效将被忽略
+		name：概念名称 
+    	relation：关系
+        	name： 关系名称
+         	value-type：数据类型，需要转换成的数据类型，没有定义时取relation的类型。类型包括：string,integer,float,date,datetime,time,decimal,text
+         	cell-number：关系在excel中对应的列号，从1开始。
+         	date-pattern：数据转换格式，如excel中为文本类型，导入关系为日期类型时，可通过定义该属性设置转换规则，格式如："yyyy-MM-dd hh:mm:ss"
+	         
+   	注意：
+    	系统会读取excel单元格类型，当excel单元格的类型与所导入关系类型不一致时，需要通过定义 value-type或date-pattern属性进行格式转换。否则将造成导入失败的问题。
+*/
+
+/**
+	@name UI.excelImport#appearance
+	@attribute
+	@description 显示方式，取值：默认显示为按钮，minimal显示为超链接，image显示为图片，image-text显示为图片加文字
+*/
+
+/**
+	@name UI.excelImport#image__sub__text__sub__mode
+	@attribute
+	@description 显示方式为image-text时生效，包括左右和上下排列
+*/
+
+/**
+	@name UI.excelImport#image
+	@attribute
+	@description 显示方式为image时，可用状态时显示的图片路径
+*/
+
+/**
+	@name UI.excelImport#dis__sub__image
+	@attribute
+	@description 显示方式为image时，不可用状态时显示的图片路径
+*/
+
+/**
+	@name UI.excelImport#label
+	@attribute
+	@description  导入按钮上显示的文字
+*/
+
+/**
+	@name UI.excelImport#importExcel
+	@function 
+	@description 导入excel
+	@example
+	justep.xbl("excelImport1").importExcel();
+*/
+
+/**
+	@name UI.excelImport#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.excelImport#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.excelImport#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.excelImport#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.excelImport#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.excelImport#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.excelImport#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.excelImport#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.excelImport#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.excelImport#onBeforeImport
+	@event 
+	@description <b>[回调型事件]</b>导入前
+	@returns {boolean} 控制 导入动作是否继续
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.excelImport#onAfterImport
+	@event 
+	@description <b>[回调型事件]</b>导入成功
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.excelImport#onError
+	@event 
+	@description <b>[回调型事件]</b>导入失败
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"message" : 导出错误信息,
+		"result" : http请求返回
+	}
+	</xmp>	
+*/

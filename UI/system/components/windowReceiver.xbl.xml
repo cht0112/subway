@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript" src="/UI/system/components/windowReceiver/windowReceiver.js"/>
+	
+	<!-- 
+	特殊逻辑,由于xbl有初始化的时机问题,这里组件初始化不依赖xbl机制,使用自己创建逻辑
+	 -->
+	
+	<xbl:binding id="windowReceiver">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+					<xhtml:script>new justep.WindowReceiver('<xsl:value-of select="@id"/>');</xhtml:script>
+				</root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+				this.domNode._xblObject.initXBL();
+			},
+			"initXBL2" : function() {
+				this.domNode._xblObject.initXBL2();
+			}
+		})			
+		]]>		
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

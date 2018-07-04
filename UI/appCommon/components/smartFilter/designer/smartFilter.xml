@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="extSmartFilter" tag-name="div" icon="Control_TextBox.gif" text="智能过滤" 
+		binding-component="/UI/appCommon/components/smartFilter.xbl.xml#smartFilter"
+        namespace="xforms"  namespace-uri="http://www.justep.com/xforms"
+        display-property="id" 
+        component-class="SmartFilter" 
+        component-type="formControl" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="true"/>		
+
+			<property name="filter-data" text="过滤数据集" required="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="filter-relations" text="过滤关系，多个用逗号分隔" required="true" editor-ref="relationsDlg" editor-parameter="filter-data" ref-type="Relation" ref-context="filter-data/d"/>
+
+			<property name="auto-refresh" text="当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）" editor-ref="booleanList" readonly="true" default-value="true"/>
+
+			<property name="auto-size" text="自动尺寸" editor-ref="booleanList" default-value="false" readonly="true"/>
+			<property name="style" text="样式" editor-ref="styleDialog" />
+		</properties>
+		<events>
+			<event name="onGetCondition" text="构造过滤条件"/>
+		</events>
+		
+		<property-editors>
+		</property-editors>
+		
+		<templates>
+		   	<template name="default">
+		   		<![CDATA[ 
+				<xhtml:div component="/UI/appCommon/components/smartFilter.xbl.xml#smartFilter" style="width:140px" />
+		   		]]>
+		   	</template>
+		</templates>
+	</element>
+</elements>

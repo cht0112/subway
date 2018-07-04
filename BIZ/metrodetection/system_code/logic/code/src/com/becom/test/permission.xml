@@ -1,0 +1,61 @@
+<mapping>
+	<!-- 个人认证信息 -->
+	<class name="com.becom.test.Permission" auto-complete="true">
+		<map-to xml="Permission" />
+		<!-- 个人用户基本信息 -->
+		<field name="userDto" type="com.becom.test.UserDto">
+			<bind-xml name="user" node="element"></bind-xml>
+		</field>
+		<!-- 个人用户功能信息-->
+		<field name="funcList" type="com.becom.test.FuncList">
+			<bind-xml name="modules" node="element"></bind-xml>
+		</field>
+	</class>
+	
+	<!-- 个人用户基本信息 -->
+	<class name="com.becom.test.UserDto" auto-complete="true">
+		<map-to xml="UserDto" />
+		<field name="loginID" type="string">
+			<bind-xml name="loginID" node="element"></bind-xml>
+		</field>
+		<field name="loginName" type="string">
+			<bind-xml name="loginName" node="element"></bind-xml>
+		</field>
+		<field name="passwd" type="string">
+			<bind-xml name="passwd" node="element"></bind-xml>
+		</field>
+		<field name="expiration" type="string">
+			<bind-xml name="expiration" node="element"></bind-xml>
+		</field>
+		<field name="post" type="string">
+			<bind-xml name="post" node="element"></bind-xml>
+		</field>
+	</class>
+	
+	<!-- 个人用户功能信息 -->
+	<class name="com.becom.test.FuncList" auto-complete="true">
+		<map-to xml="FuncList" />
+		<field name="funcList" type="com.becom.test.FuncDto" collection="arraylist">
+			<bind-xml name="module" node="element"></bind-xml>
+		</field>
+	</class>
+
+	<class name="com.becom.test.FuncDto" auto-complete="true">
+		<map-to xml="FuncDto" />
+		<field name="systemType" type="string">
+			<bind-xml name="SystemType" node="element"></bind-xml>
+		</field>
+		<field name="deviceId" type="string">
+			<bind-xml name="DeviceId" node="element"></bind-xml>
+		</field>
+		<field name="moduleId" type="string">
+			<bind-xml name="moduleId" node="element"></bind-xml>
+		</field>
+		<field name="moduleName" type="string">
+			<bind-xml name="moduleName" node="element"></bind-xml>
+		</field>
+		<field name="privilege" type="string">
+			<bind-xml name="privilege" node="element"></bind-xml>
+		</field>
+	</class>
+</mapping>

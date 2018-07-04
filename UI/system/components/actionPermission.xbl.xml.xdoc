@@ -1,0 +1,82 @@
+/**
+	@name UI.actionPermission
+	@component /UI/system/components/actionPermission.xbl.xml#actionPermission
+	@class 动作权限组件
+	@model UI
+	@description 动作权限组件，用于感知动作权限；可以绑定控件，自动设置控件的disable。
+	@example 
+<xmp><xhtml:div component="/UI/system/components/actionPermission.xbl.xml#actionPermission">
+      <item action="" control=""/>  
+</xhtml:div>
+</xmp>
+*/
+
+/**@name UI.actionPermissionion#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.actionPermission#item_action
+	@property 
+	@description <b>[attribute]</b>动作
+*/
+
+/**
+	@name UI.actionPermission#item_control
+	@property 
+	@description <b>[attribute]</b>绑定控件
+*/
+
+/**
+	@name UI.actionPermission#getItems
+	@function
+	@returns {json数组}	[{"action":string, "control":string, "hasPermission":boolean}, ...]
+	@description 获取动作权限配置项
+*/
+
+/**
+	@name UI.actionPermission#getItemsByAction
+	@function
+	@param action {string} 动作名称（不带路径）
+	@returns {json数组}	[{"action":string, "control":string, "hasPermission":boolean}, ...]
+	@description 获取指定动作的权限配置项
+*/
+
+/**
+	@name UI.actionPermission#getPermissionByAction
+	@function
+	@param action {string} 动作名称
+	@returns {boolean}
+	@description 获取指定动作是否有权限
+*/
+
+
+
+/**
+	@name UI.actionPermission.setControlDisabled
+	@function
+	@param controlID {string} 控件ID 
+	@param disable {boolean} 是否禁用
+	@description 设置控件禁用
+*/
+
+/**
+	@name UI.actionPermission.checkActionPermission
+	@function
+	@param action {string} 动作名称 
+	@param process {boolean} 过程路径（可选）
+	@param activity {string} 活动名称（可选）
+	@param executor {string} 执行者（可选）
+	@returns {boolean} 是否有动作权限
+	@description 判断动作权限
+*/
+
+/**
+	@name UI.actionPermission.checkActionPermissions
+	@function
+	@param actions {json数组}	[{"action":string, "process":string, "activity":string, "executor":string}, ...] 
+	@returns {json数组}	[{"action":string, "process":string, "activity":string, "executor":string, "hasPermission":boolean}, ...] 
+	@description 一次判断多个动作的权限
+*/
+

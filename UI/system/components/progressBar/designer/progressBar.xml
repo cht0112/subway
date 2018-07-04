@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="progressBar" tag-type="rich" tag-name="div" icon="TrackBar.gif" text="进度条"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/progressBar.xbl.xml#progressBar"
+		display-property="id" component-class="ProgressBar" component-type="formControl">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="ref" text="引用数据" editor-ref="dataRef" required="true"/>
+			<property name="show-value" text="显示数值"  default-value="false" editor-ref="booleanList"/>
+			<property name="inner-height" text="内部高度" data-type="integer" default-value="10"/>
+			<property name="precision" data-type="integer"  default-value="2" text="精度"/>
+			<property name="readonly" default-value="false"  editor-ref="booleanList" data-type="boolean" text="只读"/>
+			<property name="active-img" text="进度图片" editor-ref="fileDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp"/>
+			<property name="deactive-img" text="进度图片" editor-ref="fileDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp"/>
+			<property name="default-class"  text="默认class" default-value="xui-progressBar" readonly="true"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+		</properties>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" show-value="false" inner-height="10" precision="2"            
+					component="/UI/system/components/progressBar.xbl.xml#progressBar"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js">
+</script>      <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js">
+</script>      <style rel="stylesheet" type="text/css"></style>      <script language="javascript" src="/UI/appCommon/js/appCommon.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/extDateFilter/js/extDateFilter.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/filter/js/filter.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/OA/asset/process/assetCard/assetCardActivity.js">
+</script>      <script src="/UI/appCommon/js/appCommon.js" type="text/javascript">
+</script>      <link href="/UI/appCommon/css/common.css" rel="STYLESHEET" type="text/css"></link>      <script>
+new justep.XBizData('dAssetCard',false,false,{'queryAction':"queryASCardAction",'saveAction':"saveASCardAction",'newAction':"createASCardAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_Card':'OA_AS_Card'}",'limit':20,'idColumn':"{'name':'OA_AS_Card','relation':'OA_AS_Card','define':'OA_AS_Card','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"fKind,fCode,fName,fSpecType,fStatusName,fOriginValue,fRemainValue,fDutyDeptName,fDutyPsnName,fAddDepreValue,fSourceName,fDetailInfo,fRemark,fCreateTime,fAssetConfirm,fExtendStr1,fExtendStr2,fExtendStr3,fExtendStr4,fExtendDate1,fExtendDate2",'updateMode':"whereVersion",'orderBys':"{'fCode':1}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_Card.version','define':'OA_AS_Card.version','label':'版本'},'fKindID':{'type':'String','relation':'OA_AS_Card.fKindID','define':'OA_AS_Card.fKindID','label':'资产类别ID'},'fKind':{'type':'String','relation':'OA_AS_Card.fKind','define':'OA_AS_Card.fKind','label':'资产类别'},'fCode':{'type':'String','relation':'OA_AS_Card.fCode','define':'OA_AS_Card.fCode','label':'资产编码'},'fName':{'type':'String','relation':'OA_AS_Card.fName','define':'OA_AS_Card.fName','label':'资产名称'},'fSpecType':{'type':'String','relation':'OA_AS_Card.fSpecType','define':'OA_AS_Card.fSpecType','label':'规格型号'},'fUnitID':{'type':'String','relation':'OA_AS_Card.fUnitID','define':'OA_AS_Card.fUnitID','label':'单位ID'},'fUnit':{'type':'String','relation':'OA_AS_Card.fUnit','define':'OA_AS_Card.fUnit','label':'单位'},'fStatus':{'type':'String','relation':'OA_AS_Card.fStatus','define':'OA_AS_Card.fStatus','label':'状态'},'fStatusName':{'type':'String','relation':'OA_AS_Card.fStatusName','define':'OA_AS_Card.fStatusName','label':'状态'},'fOriginValue':{'type':'Decimal','relation':'OA_AS_Card.fOriginValue','define':'OA_AS_Card.fOriginValue','label':'资产原值'},'fRemainValue':{'type':'Decimal','relation':'OA_AS_Card.fRemainValue','define':'OA_AS_Card.fRemainValue','label':'资产净残值'},'fServiceYear':{'type':'Decimal','relation':'OA_AS_Card.fServiceYear','define':'OA_AS_Card.fServiceYear','label':'耐用年限'},'fDutyOgnID':{'type':'String','relation':'OA_AS_Card.fDutyOgnID','define':'OA_AS_Card.fDutyOgnID','label':'责任机构ID'},'fDutyOgnName':{'type':'String','relation':'OA_AS_Card.fDutyOgnName','define':'OA_AS_Card.fDutyOgnName','label':'责任机构'},'fDutyOgnFID':{'type':'String','relation':'OA_AS_Card.fDutyOgnFID','define':'OA_AS_Card.fDutyOgnFID','label':'责任机构FID'},'fDutyDeptID':{'type':'String','relation':'OA_AS_Card.fDutyDeptID','define':'OA_AS_Card.fDutyDeptID','label':'责任部门ID'},'fDutyDeptName':{'type':'String','relation':'OA_AS_Card.fDutyDeptName','define':'OA_AS_Card.fDutyDeptName','label':'责任部门'},'fDutyPosID':{'type':'String','relation':'OA_AS_Card.fDutyPosID','define':'OA_AS_Card.fDutyPosID','label':'责任岗位ID'},'fDutyPosName':{'type':'String','relation':'OA_AS_Card.fDutyPosName','define':'OA_AS_Card.fDutyPosName','label':'责任岗位'},'fDutyPsnID':{'type':'String','relation':'OA_AS_Card.fDutyPsnID','define':'OA_AS_Card.fDutyPsnID','label':'责任人ID'},'fDutyPsnName':{'type':'String','relation':'OA_AS_Card.fDutyPsnName','define':'OA_AS_Card.fDutyPsnName','label':'责任人'},'fDutyPsnFID':{'type':'String','relation':'OA_AS_Card.fDutyPsnFID','define':'OA_AS_Card.fDutyPsnFID','label':'责任人FID'},'fDutyPsnFName':{'type':'String','relation':'OA_AS_Card.fDutyPsnFName','define':'OA_AS_Card.fDutyPsnFName','label':'责任人FName'},'fBgDepreYear':{'type':'Integer','relation':'OA_AS_Card.fBgDepreYear','define':'OA_AS_Card.fBgDepreYear','label':'开始折旧年'},'fBgDepreMonth':{'type':'Integer','relation':'OA_AS_Card.fBgDepreMonth','define':'OA_AS_Card.fBgDepreMonth','label':'开始折旧月'},'fAddDepreValue':{'type':'Decimal','relation':'OA_AS_Card.fAddDepreValue','define':'OA_AS_Card.fAddDepreValue','label':'累计折旧'},'fFactory':{'type':'String','relation':'OA_AS_Card.fFactory','define':'OA_AS_Card.fFactory','label':'制造商'},'fFactoryDate':{'type':'Date','relation':'OA_AS_Card.fFactoryDate','define':'OA_AS_Card.fFactoryDate','label':'出厂日期'},'fSupplier':{'type':'String','relation':'OA_AS_Card.fSupplier','define':'OA_AS_Card.fSupplier','label':'供应商'},'fSource':{'type':'String','relation':'OA_AS_Card.fSource','define':'OA_AS_Card.fSource','label':'资产来源'},'fSourceName':{'type':'String','relation':'OA_AS_Card.fSourceName','define':'OA_AS_Card.fSourceName','label':'资产来源'},'fDetailInfo':{'type':'String','relation':'OA_AS_Card.fDetailInfo','define':'OA_AS_Card.fDetailInfo','label':'详细配置'},'fCheckID':{'type':'String','relation':'OA_AS_Card.fCheckID','define':'OA_AS_Card.fCheckID','label':'验收单ID'},'fCheckNO':{'type':'String','relation':'OA_AS_Card.fCheckNO','define':'OA_AS_Card.fCheckNO','label':'验收单号'},'fBuyApplyID':{'type':'String','relation':'OA_AS_Card.fBuyApplyID','define':'OA_AS_Card.fBuyApplyID','label':'采购单ID'},'fBuyApplyNO':{'type':'String','relation':'OA_AS_Card.fBuyApplyNO','define':'OA_AS_Card.fBuyApplyNO','label':'采购单号'},'fAssetInID':{'type':'String','relation':'OA_AS_Card.fAssetInID','define':'OA_AS_Card.fAssetInID','label':'入库ID'},'fAssetInNO':{'type':'String','relation':'OA_AS_Card.fAssetInNO','define':'OA_AS_Card.fAssetInNO','label':'入库单号'},'fRemark':{'type':'String','relation':'OA_AS_Card.fRemark','define':'OA_AS_Card.fRemark','label':'备注'},'fCreateOgnID':{'type':'String','relation':'OA_AS_Card.fCreateOgnID','define':'OA_AS_Card.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_Card.fCreateOgnName','define':'OA_AS_Card.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_Card.fCreateDeptID','define':'OA_AS_Card.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_Card.fCreateDeptName','define':'OA_AS_Card.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_AS_Card.fCreatePosID','define':'OA_AS_Card.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_AS_Card.fCreatePosName','define':'OA_AS_Card.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_AS_Card.fCreatePsnID','define':'OA_AS_Card.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_Card.fCreatePsnName','define':'OA_AS_Card.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_Card.fCreatePsnFID','define':'OA_AS_Card.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_AS_Card.fCreatePsnFName','define':'OA_AS_Card.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_Card.fCreateTime','define':'OA_AS_Card.fCreateTime','label':'创建时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_Card.fUpdatePsnID','define':'OA_AS_Card.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_Card.fUpdatePsnName','define':'OA_AS_Card.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_Card.fUpdateTime','define':'OA_AS_Card.fUpdateTime','label':'修改时间'},'fArrangeDate':{'type':'Date','relation':'OA_AS_Card.fArrangeDate','define':'OA_AS_Card.fArrangeDate','label':'安排日期'},'fChecked':{'type':'Integer','relation':'OA_AS_Card.fChecked','define':'OA_AS_Card.fChecked','label':'选中'},'fAssetConfirm':{'type':'String','relation':'OA_AS_Card.fAssetConfirm','define':'OA_AS_Card.fAssetConfirm','label':'资产确认'},'fExtendStr1':{'type':'String','relation':'OA_AS_Card.fExtendStr1','define':'OA_AS_Card.fExtendStr1','label':'Service Tag'},'fExtendStr2':{'type':'String','relation':'OA_AS_Card.fExtendStr2','define':'OA_AS_Card.fExtendStr2','label':'Express Service Code'},'fExtendStr3':{'type':'String','relation':'OA_AS_Card.fExtendStr3','define':'OA_AS_Card.fExtendStr3','label':'存放位置'},'fExtendStr4':{'type':'String','relation':'OA_AS_Card.fExtendStr4','define':'OA_AS_Card.fExtendStr4','label':'续保'},'fExtendStr5':{'type':'String','relation':'OA_AS_Card.fExtendStr5','define':'OA_AS_Card.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_AS_Card.fExtendStr6','define':'OA_AS_Card.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_AS_Card.fExtendStr7','define':'OA_AS_Card.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_AS_Card.fExtendStr8','define':'OA_AS_Card.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_AS_Card.fExtendStr9','define':'OA_AS_Card.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_AS_Card.fExtendDate1','define':'OA_AS_Card.fExtendDate1','label':'开始时间'},'fExtendDate2':{'type':'Date','relation':'OA_AS_Card.fExtendDate2','define':'OA_AS_Card.fExtendDate2','label':'到期时间'},'fExtendDate3':{'type':'Date','relation':'OA_AS_Card.fExtendDate3','define':'OA_AS_Card.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_AS_Card.fExtendDate4','define':'OA_AS_Card.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_AS_Card.fExtendDate5','define':'OA_AS_Card.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_AS_Card.fExtendNum1','define':'OA_AS_Card.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_AS_Card.fExtendNum2','define':'OA_AS_Card.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_AS_Card.fExtendNum3','define':'OA_AS_Card.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_AS_Card.fExtendNum4','define':'OA_AS_Card.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_AS_Card.fExtendNum5','define':'OA_AS_Card.fExtendNum5','label':'扩展字段'}}",'defCalcRelations':"{'recNo':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dAssetCard_part',{}).attachEvents({'onAfterRefresh':'assetCardActivity.dAssetCardAfterRefresh'});</script>  
+    <script>
+new justep.XCommonData('dAssetStatus',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('extDateFilter1_data_874742148',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('gridFilterStatus_data_509068601',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/appCommon/components/filter.xbl.xml#gridFilter"] = _xbl_JSClassDefine_gridFilter;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/menu.xbl.xml#menu"] = _xbl_JSClassDefine_menu;
+justep.XBLObject._classes["/UI/system/components/tableLayout.xbl.xml#tableLayout"] = _xbl_JSClassDefine_tableLayout;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"] = _xbl_JSClassDefine_bizDataFilterPattern;
+justep.XBLObject._classes["/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter"] = _xbl_JSClassDefine_extDateFilter;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"] = _xbl_JSClassDefine_bizDataFilterDialog;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_gridFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_gridFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.GridFilter(this));
+				}
+			}));
+
+_xbl_JSClassDefine_gridFilter.prototype.ClassName='_xbl_JSClassDefine_gridFilter';
+_xbl_JSClassDefine_gridFilter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_gridFilter_j_xbl_e_;
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+function _xbl_JSClassDefine_menu(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_menu.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_id": null,
+				"_itemsets": null,
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len &gt; i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+				}
+			}));
+
+_xbl_JSClassDefine_menu.prototype.ClassName='_xbl_JSClassDefine_menu';
+_xbl_JSClassDefine_menu.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_menu_j_xbl_e_;
+function _xbl_JSClassDefine_tableLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tableLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.trs = $("&gt;tbody tr", this.el);
+			   	this.spacing = this._getSpace();
+			   	/*为了兼容ie789, cellpadding都强设为0*/
+			   	this.el.attr("cellpadding", "0");
+			   	$("&gt;tbody&gt;tr&gt;td", this.el).css("padding", "0");
+			   	this.padding = this._getPadding();
+		   		this.onWindowResize();
+			},
+			_getSpace : function(){
+				/*默认2是为了解决ie下无法获得默认值的问题*/
+				var spacing = this.el.attr("cellspacing") || (!justep.Browser.IE?this.el.css("border-spacing"):null) || "2px";
+			   	spacing = spacing.split(" ");
+			   	return parseInt(spacing[1] || spacing[0]) || 0;  
+			},
+			_getPadding : function(){
+				/*默认是为了解决ie下无法获得默认值的问题，ie7默认是2px,ie89默认是1px*/
+				var ret = parseInt(this.el.attr("cellpadding"));
+				return ret || (ret===0 ? 0 : (justep.Browser.IE7 ? "2" : "1")); 
+			},
+			onWindowResize : function(){
+				if(!justep.Browser.IE){
+					$("&gt;tbody &gt;tr", this.el).each(function(index, tr){
+						var td = $(tr.children[0]);
+						tr = $(tr);
+						var h = tr.attr('height') || tr.get(0).style["height"],
+							hd = td.attr('height') || td.get(0).style["height"];
+						if((h == null || h == '') &amp;&amp; (hd == null || hd == '')){
+							td.get(0).height = '100%';
+							td.get(0).style["height"] = '100%';
+						}
+					});
+					return;
+				}	
+				var el = this.el;
+				if(el.parent().get(0).tagName.toLowerCase()=="td"){
+					el = el.parent();
+				}
+				var h = el.height(),that = this,
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).height || tr.get(0).style["height"],
+						hd = td.get(0).height || td.get(0).style["height"];
+					/*为了兼容已有应用*/ 
+					if(h=='100%') {
+						h=null;
+						tr.get(0).height = null;
+						tr.get(0).style["height"] = null;
+					}
+					if(hd=='100%') {
+						hd=null;
+						td.get(0).height = null;
+						td.get(0).style["height"] = null;
+					}
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						var mh = Math.max(
+							parseInt(tr.get(0).height)||0,
+							parseInt(tr.get(0).style["height"])||0,
+							(parseInt(td.get(0).height) + that.padding*2)||0,
+							(parseInt(td.get(0).style["height"]) + that.padding*2)||0
+						);
+						b += mh;
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));/*这是防止td被内容撑开*/
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					if(a[0].get(0).children[0]){
+						/*第一个td*/
+						var mh = h-b-this.padding*2; 
+						a[0].get(0).children[0].setAttribute("height", (h-b-this.padding*2)+"px");
+						var td = $(a[0].get(0).children[0]);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			},   	
+			resize2 : function(){
+				var h = this.el.parent().height(),that = this,
+					w = this.el.parent().width(),
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.el.width(w);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).style["height"] || tr.attr('height'),
+						hd = td.get(0).style["height"] || tr.attr('height');
+					/*为了兼容已有应用*/ 
+					if(h=='100%') h=null;
+					if(hd=='100%') hd=null;
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						b += tr.outerHeight();
+						/*这是防止td被内容撑开*/
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(td.height()));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(td.height());
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					/*第一个td*/
+					var td;
+					if(td = a[0].get(0).children[0]){
+						var mh = h-b-this.padding*2; 
+						td.setAttribute("height", mh+"px");
+						td = $(td);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);			}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			}   	
+		}));
+
+_xbl_JSClassDefine_tableLayout.prototype.ClassName='_xbl_JSClassDefine_tableLayout';
+_xbl_JSClassDefine_tableLayout.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_tableLayout_j_xbl_e_;
+function _xbl_JSClassDefine_bizDataFilterPattern(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterPattern.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var menuEl = this.getElementByXblID("filter-pattern-menu");
+				this.menuId = $(menuEl).firstElement().getAttribute("menu-id");
+				var dialogEl = this.getElementByXblID("filter-pattern-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-pattern-dialog-iframe");
+				this.iframeId = frameEl.getAttribute("name");
+			},
+			"show": function(data, controlId, filterDlgId) {
+				if (typeof(data) == "string") {
+					data = justep.xbl(data);
+				}
+				if (data) {
+					if (typeof(data.advanceFilter) != "undefined") {
+						var frameEl = document.getElementById(this.iframeId);
+						if (frameEl) {
+							frameEl.dialogId = this.dialogId;
+							frameEl.currData = data;
+							frameEl.advanceFilter = data.advanceFilter.getFilter();
+							showFilterPatternMenu(data, this.menuId, controlId, filterDlgId);
+						}
+					}
+				}
+			}
+		}));
+
+_xbl_JSClassDefine_bizDataFilterPattern.prototype.ClassName='_xbl_JSClassDefine_bizDataFilterPattern';
+_xbl_JSClassDefine_bizDataFilterPattern.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_bizDataFilterPattern_j_xbl_e_;
+function _xbl_JSClassDefine_extDateFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_extDateFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ExtDateFilter(this));
+				}
+			}));
+
+_xbl_JSClassDefine_extDateFilter.prototype.ClassName='_xbl_JSClassDefine_extDateFilter';
+_xbl_JSClassDefine_extDateFilter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_extDateFilter_j_xbl_e_;
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+_xbl_JSClassDefine_toolbars.prototype.ClassName='_xbl_JSClassDefine_toolbars';
+_xbl_JSClassDefine_toolbars.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_toolbars_j_xbl_e_;
+function _xbl_JSClassDefine_bizDataFilterDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var dialogEl = this.getElementByXblID("filter-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-dialog-iframe");
+				this.iframeId = frameEl.id;
+			},
+			"show": function(data, callBack) {
+				var filterData = data;
+				if (typeof(filterData) == "string") {
+					filterData = justep.xbl(filterData);
+				}
+				if (filterData) {
+					if (typeof(filterData.advanceFilter) != "undefined") {
+						var dialog = xforms(this.dialogId);
+						if(dialog) {
+							var frameEl = justep(this.iframeId);
+							if (frameEl) {
+								frameEl.dialogId = this.dialogId;
+								frameEl.filterData = filterData;
+								frameEl.callBack = callBack;
+								dialog.open();
+								return true;
+							}
+						}
+					}
+				}
+				return false;
+			}
+		}));
+
+_xbl_JSClassDefine_bizDataFilterDialog.prototype.ClassName='_xbl_JSClassDefine_bizDataFilterDialog';
+_xbl_JSClassDefine_bizDataFilterDialog.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_bizDataFilterDialog_j_xbl_e_;
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		}));
+
+_xbl_JSClassDefine_pageNavigator.prototype.ClassName='_xbl_JSClassDefine_pageNavigator';
+_xbl_JSClassDefine_pageNavigator.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_pageNavigator_j_xbl_e_;
+	var ids=[{id:'4b747e02f2b745bfa776278ad88e69c4', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'table', name:'/UI/system/components/tableLayout.xbl.xml#tableLayout', children:[{id:'tbrAssetCard', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'insert', name:'xforms:trigger', children:[{id:'xuiLabel1', name:'xforms:label'}]},{id:'bc81d128177b48598530f473058eda5e', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'},{id:'trgClear', name:'xforms:trigger', children:[{id:'xuiLabel5', name:'xforms:label'}]}]},{id:'extDateFilter1', name:'/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter', children:[{id:'extDateFilter1_select_874742148', name:'xforms:gridselect1', children:[{id:'a6f749371ea7414289d2e0e81f8f1982', name:'xforms:value'},{id:'e8bafefbb9c64f728db192e39c63b076', name:'xforms:label'}]},{id:'extDateFilter1_dialog_874742148', name:'xforms:dialog', children:[{id:'da74cb498a5649bbaa755e9df539e208', name:'xforms:input'},{id:'d2e95291c01548f98e3faebabf66ca77', name:'xforms:input'}]}]},{id:'gridFilterStatus', name:'/UI/appCommon/components/filter.xbl.xml#gridFilter', children:[{id:'gridFilterStatus_select_509068601', name:'xforms:gridselect', children:[{id:'default19', name:'xforms:value'},{id:'xuiLabel2', name:'xforms:label'}]},{id:'gridFilterStatus_defaultValue_509068601', name:'xforms:output'}]},{id:'grdAssetCard', name:'xforms:grid'}]},{id:'filter-dialog-67eec0ca-cf97-44d1-a861-acca3f682abd', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_N1294713437', name:'xforms:dialog'}]},{id:'filter-pattern-2c70201b-f3b2-4e9a-9390-347f274e0ebe', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'2e1639e6b44b467cbfaf3722aa9258e8', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_2101325774', name:'xforms:menu'}]},{id:'GLOBAL_ID_865534220', name:'xforms:dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'insert');xf._a('insert','xuiLabel1');xf._a(null,'trgClear');xf._a('trgClear','xuiLabel5');xf._a(null,'extDateFilter1_select_874742148');xf._a('extDateFilter1_select_874742148','e8bafefbb9c64f728db192e39c63b076');xf._a('extDateFilter1_select_874742148','xf-itemset-0');xf._a(null,'da74cb498a5649bbaa755e9df539e208');xf._a(null,'d2e95291c01548f98e3faebabf66ca77');xf._a(null,'gridFilterStatus_select_509068601');xf._a('gridFilterStatus_select_509068601','xuiLabel2');xf._a('gridFilterStatus_select_509068601','default20');xf._a(null,'gridFilterStatus_defaultValue_509068601');xf._a(null,'grdAssetCard');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dAssetCard')/fDetailInfo",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fDetailInfo')))));	
+xf._b("true()",xf._f('true'));	
+xf._b("instance('dAssetCard')/fCreateTime",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dAssetCard')/fRemark",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fRemark')))));	
+xf._b("instance('dAssetCard')/version",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dAssetCard')/fOriginValue",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fOriginValue')))));	
+xf._b("instance('dAssetCard')/fRemainValue",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fRemainValue')))));	
+xf._b("instance('dAssetCard')/fServiceYear",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fServiceYear')))));	
+xf._b("instance('dAssetCard')/fBgDepreYear",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fBgDepreYear')))));	
+xf._b("instance('dAssetCard')/fBgDepreMonth",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fBgDepreMonth')))));	
+xf._b("instance('dAssetCard')/fAddDepreValue",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fAddDepreValue')))));	
+xf._b("instance('dAssetCard')/fFactoryDate",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fFactoryDate')))));	
+xf._b("instance('dAssetCard')/fUpdateTime",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dAssetCard')/fArrangeDate",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fArrangeDate')))));	
+xf._b("instance('dAssetCard')/fChecked",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fChecked')))));	
+xf._b("instance('dAssetCard')/fExtendDate1",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendDate1')))));	
+xf._b("instance('dAssetCard')/fExtendDate2",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendDate2')))));	
+xf._b("instance('dAssetCard')/fExtendDate3",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendDate3')))));	
+xf._b("instance('dAssetCard')/fExtendDate4",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendDate4')))));	
+xf._b("instance('dAssetCard')/fExtendDate5",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendDate5')))));	
+xf._b("instance('dAssetCard')/fExtendNum1",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendNum1')))));	
+xf._b("instance('dAssetCard')/fExtendNum2",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendNum2')))));	
+xf._b("instance('dAssetCard')/fExtendNum3",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendNum3')))));	
+xf._b("instance('dAssetCard')/fExtendNum4",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendNum4')))));	
+xf._b("instance('dAssetCard')/fExtendNum5",xf._g(xf._f('instance',xf._i("dAssetCard")),xf._h(false, xf._k("child",xf._j('','fExtendNum5')))));	
+xf._b("instance('extDateFilter1_data_874742148')/beginDate",xf._g(xf._f('instance',xf._i("extDateFilter1_data_874742148")),xf._h(false, xf._k("child",xf._j('','beginDate')))));	
+xf._b("instance('extDateFilter1_data_874742148')/endDate",xf._g(xf._f('instance',xf._i("extDateFilter1_data_874742148")),xf._h(false, xf._k("child",xf._j('','endDate')))));	
+xf._b("instance('extDateFilter1_data_874742148')/value",xf._g(xf._f('instance',xf._i("extDateFilter1_data_874742148")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('extDateFilter1_data_874742148')/label",xf._g(xf._f('instance',xf._i("extDateFilter1_data_874742148")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("'全部'",xf._i("全部"));	
+xf._b("rowid",xf._h(false, xf._k("child",xf._j('','rowid'))));	
+xf._b("label",xf._h(false, xf._k("child",xf._j('','label'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))),'','');	
+xf._b("instance('gridFilterStatus_data_509068601')/value",xf._g(xf._f('instance',xf._i("gridFilterStatus_data_509068601")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('gridFilterStatus_data_509068601')/label",xf._g(xf._f('instance',xf._i("gridFilterStatus_data_509068601")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("'闲置,占用'",xf._i("闲置,占用"));	
+xf._b("value",xf._h(false, xf._k("child",xf._j('','value'))));	
+xf._b("'0,1'",xf._i("0,1"));	
+xf._b("recNo",xf._h(false, xf._k("child",xf._j('','recNo'))));	
+xf._b("fStatusName",xf._h(false, xf._k("child",xf._j('','fStatusName'))));	
+xf._b("fAssetConfirm",xf._h(false, xf._k("child",xf._j('','fAssetConfirm'))));	
+xf._b("fCode",xf._h(false, xf._k("child",xf._j('','fCode'))));	
+xf._b("fKind",xf._h(false, xf._k("child",xf._j('','fKind'))));	
+xf._b("fName",xf._h(false, xf._k("child",xf._j('','fName'))));	
+xf._b("fSpecType",xf._h(false, xf._k("child",xf._j('','fSpecType'))));	
+xf._b("fDetailInfo",xf._h(false, xf._k("child",xf._j('','fDetailInfo'))));	
+xf._b("fSourceName",xf._h(false, xf._k("child",xf._j('','fSourceName'))));	
+xf._b("fDutyDeptName",xf._h(false, xf._k("child",xf._j('','fDutyDeptName'))));	
+xf._b("fDutyPsnName",xf._h(false, xf._k("child",xf._j('','fDutyPsnName'))));	
+xf._b("fExtendStr3",xf._h(false, xf._k("child",xf._j('','fExtendStr3'))));	
+xf._b("fExtendStr1",xf._h(false, xf._k("child",xf._j('','fExtendStr1'))));	
+xf._b("fExtendStr2",xf._h(false, xf._k("child",xf._j('','fExtendStr2'))));	
+xf._b("fExtendStr4",xf._h(false, xf._k("child",xf._j('','fExtendStr4'))));	
+xf._b("fExtendDate1",xf._h(false, xf._k("child",xf._j('','fExtendDate1'))));	
+xf._b("fExtendDate2",xf._h(false, xf._k("child",xf._j('','fExtendDate2'))));	
+xf._b("fOriginValue",xf._h(false, xf._k("child",xf._j('','fOriginValue'))));	
+xf._b("fAddDepreValue",xf._h(false, xf._k("child",xf._j('','fAddDepreValue'))));	
+xf._b("fRemainValue",xf._h(false, xf._k("child",xf._j('','fRemainValue'))));	
+xf._b("fRemark",xf._h(false, xf._k("child",xf._j('','fRemark'))));	
+xf._b("fCreateTime",xf._h(false, xf._k("child",xf._j('','fCreateTime'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("not(call('justep.XData.canDo','dAssetCard','Save'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dAssetCard"),xf._i("Save"))));	
+xf._b("not(call('justep.XData.canDo','dAssetCard','Delete'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dAssetCard"),xf._i("Delete"))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('html', 'null');xforms.Schema.registerPrefix('txt', 'null');xforms.Schema.registerPrefix('ed', 'null');xforms.Schema.registerPrefix('dateTime', 'null');var xf_model_mdMain = new xforms.XFModel('mdMain',null);	
+new xforms.XFInstance2('dAssetStatus','mdMain',null,'&lt;rows id="default6"&gt;&lt;row id="default7"&gt;&lt;cell id="default8"&gt;闲置&lt;/cell&gt;&lt;cell id="default9"&gt;0&lt;/cell&gt;&lt;/row&gt;&lt;row id="default10"&gt;&lt;cell id="default11"&gt;占用&lt;/cell&gt;&lt;cell id="default12"&gt;1&lt;/cell&gt;&lt;/row&gt;&lt;row id="default13"&gt;&lt;cell id="default14"&gt;报废&lt;/cell&gt;&lt;cell id="default15"&gt;2&lt;/cell&gt;&lt;/row&gt;&lt;row id="default16"&gt;&lt;cell id="default17"&gt;处理&lt;/cell&gt;&lt;cell id="default18"&gt;3&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('dAssetStatus','label,value');	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mdMainxforms_model_construct_done(event)}));xf._p(justep('mdMain'),"xforms-model-construct-done",null,function(evt) { xforms.run(xf_action_action1,'mdMain', evt,false)});	
+var xf_trigger_insert=new xforms.XFTrigger('insert',null,"/UI/appCommon/images/insert.gif","/UI/appCommon/images/un_insert.gif",false,false,false,null,null,null);	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){insertDOMActivate(event)}));xf._p(justep('insert'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action2,'insert', evt,false)});	
+var xf_trigger_trgClear=new xforms.XFTrigger('trgClear',null,null,null,false,false,false,null,null,null);	
+var xf_action_action3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){assetCardActivity.trgClearClick(event)}));xf._p(justep('trgClear'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action3,'trgClear', evt,false)});	
+xforms.load_parts('vFilter');	
+xforms.load_parts('vAssetCard');	
+new xforms.XFDialog('GLOBAL_ID_N1294713437',"查询对话框",'modal',true,false,true,true,false,null,'490','340',null,null,null,null);	
+var xf_action_xf_action_5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var frameEl = justep('GLOBAL_ID_N965958906');									if (frameEl) {										if(frameEl.contentWindow.document.body){											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";										}										}justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_N965958906", "");}));xf._p(justep('GLOBAL_ID_N1294713437'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_5,'GLOBAL_ID_N1294713437', evt,false)});	
+var xf_menu_GLOBAL_ID_2101325774 = new xforms.XFMenu('GLOBAL_ID_2101325774','context');xf_menu_GLOBAL_ID_2101325774.menu.addContextZone('2e1639e6b44b467cbfaf3722aa9258e8');xforms.Event.attach(document.body, "click", function(){xf_menu_GLOBAL_ID_2101325774.hide()});xf_menu_GLOBAL_ID_2101325774.menu.setOpenMode('web');	
+var xf_action_xf_action_6=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){									var menuItemId = event.getData().itemId;									if (menuItemId == "glglms") {										var dialog = xforms("GLOBAL_ID_865534220");										if(dialog) {											event.getData().menuitem.dhtmlxMenu.$needLoad=true;											dialog.open();																					}									} else if (menuItemId == "qkdqgl") {										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.clear();										data.filters.deleteFilter(data.advanceFilter.filterName);										data.refreshData();									} else if (menuItemId == "zdycx"){										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(dataId) == "object") {											dataId = dataId.id;										}										if(dlgId) justep.xbl(dlgId).show(dataId);									} else {										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}					data.advanceFilter.setFilter(advanceFilter, true, true);									}}));xf._p(justep('GLOBAL_ID_2101325774'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_6,'GLOBAL_ID_2101325774', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_865534220',"过滤模式",'modal',true,false,true,true,false,null,'550','440',null,null,null,null);	
+var xf_action_xf_action_7=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_2093569034');									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";									}justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "GLOBAL_ID_2093569034", "");}));xf._p(justep('GLOBAL_ID_865534220'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_7,'GLOBAL_ID_865534220', evt,false)});	
+var xf_action_xf_action_8=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_2093569034');									if (iframe) {										var data = iframe.currData;										data.advanceFilter.setFilter(iframe.advanceFilter);									}}));xf._p(justep('GLOBAL_ID_865534220'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_action_xf_action_8,'GLOBAL_ID_865534220', evt,false)});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dAssetCard_part_loaded = false;	
+function load_dAssetCard_part(callback){if (dAssetCard_part_loaded) return;dAssetCard_part_loaded = true;	
+new xforms.XFInstance2('dAssetCard','mdMain',null,null,null,null,null,null,null,null,'recNo',null,'whereVersion');	
+xf._c('xf-bind-0','mdMain',"instance('dAssetCard')/fDetailInfo",null,"true()",null,null,null,null,null);	
+xf._c('xf-bind-1','mdMain',"instance('dAssetCard')/fCreateTime",null,"true()",null,null,null,null,null);	
+xf._c('xf-bind-2','mdMain',"instance('dAssetCard')/fRemark",null,"true()",null,null,null,null,null);	
+xf._c('xf-bind-3','mdMain',"instance('dAssetCard')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-4','mdMain',"instance('dAssetCard')/fOriginValue","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-5','mdMain',"instance('dAssetCard')/fRemainValue","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-6','mdMain',"instance('dAssetCard')/fServiceYear","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-7','mdMain',"instance('dAssetCard')/fBgDepreYear","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-8','mdMain',"instance('dAssetCard')/fBgDepreMonth","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-9','mdMain',"instance('dAssetCard')/fAddDepreValue","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-10','mdMain',"instance('dAssetCard')/fFactoryDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-11','mdMain',"instance('dAssetCard')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-12','mdMain',"instance('dAssetCard')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-13','mdMain',"instance('dAssetCard')/fArrangeDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-14','mdMain',"instance('dAssetCard')/fChecked","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-15','mdMain',"instance('dAssetCard')/fExtendDate1","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-16','mdMain',"instance('dAssetCard')/fExtendDate2","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-17','mdMain',"instance('dAssetCard')/fExtendDate3","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-18','mdMain',"instance('dAssetCard')/fExtendDate4","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-19','mdMain',"instance('dAssetCard')/fExtendDate5","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-20','mdMain',"instance('dAssetCard')/fExtendNum1","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-21','mdMain',"instance('dAssetCard')/fExtendNum2","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-22','mdMain',"instance('dAssetCard')/fExtendNum3","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-23','mdMain',"instance('dAssetCard')/fExtendNum4","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-24','mdMain',"instance('dAssetCard')/fExtendNum5","xsd:float",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dAssetCard_part_init_loaded = false;	
+function load_dAssetCard_part_init(){if (dAssetCard_part_init_loaded) return;dAssetCard_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+function load_vFilter(){if (justep("vFilter").getAttribute('loaded') &amp;&amp; justep("vFilter").getAttribute('loaded') == 'true') return;justep("vFilter").setAttribute('loaded', 'true');	
+if(typeof(load_vFilter_html) == 'function')load_vFilter_html();	
+var xf_model_extDateFilter1_model_874742148 = new xforms.XFModel('extDateFilter1_model_874742148',null);	
+xf._c('xf-bind-25','extDateFilter1_model_874742148',"instance('extDateFilter1_data_874742148')/beginDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-26','extDateFilter1_model_874742148',"instance('extDateFilter1_data_874742148')/endDate","xsd:date",null,null,null,null,null,null);	
+new xforms.XFInstance2('extDateFilter1_data_874742148','extDateFilter1_model_874742148',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('extDateFilter1_data_874742148','value,label,beginDate,endDate');	
+var xf_action_xf_action_3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.ExtDateFilter.setFilterCondition("extDateFilter1", justep.xbl("dAssetCard"), "single", "fCreateTime", "", "", "0", null, null, "", false); }));xf._p(justep('extDateFilter1_model_874742148'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_3,'extDateFilter1_model_874742148', evt,false)});	
+new xforms.XFExtSelect({id:'extDateFilter1_select_874742148',type:'gridselect1',defaultLabelRef:xf._q("'全部'"),allSelectedLabelRef:null,ref:xf._q("instance('extDateFilter1_data_874742148')/value"),labelRef:xf._q("instance('extDateFilter1_data_874742148')/label"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:null,columns:'label,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'',valueColumn:'rowid',labelColumn:'label',extColumn:null,labels:',',aligns:',',types:'ro,ro',widths:{widths:"#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows&gt;&lt;row id="0"&gt;&lt;cell&gt;全部&lt;/cell&gt;&lt;/row&gt;&lt;row id="1"&gt;&lt;cell&gt;今天&lt;/cell&gt;&lt;/row&gt;&lt;row id="2"&gt;&lt;cell&gt;昨天&lt;/cell&gt;&lt;/row&gt;&lt;row id="3"&gt;&lt;cell&gt;本周&lt;/cell&gt;&lt;/row&gt;&lt;row id="4"&gt;&lt;cell&gt;上周&lt;/cell&gt;&lt;/row&gt;&lt;row id="5"&gt;&lt;cell&gt;本月&lt;/cell&gt;&lt;/row&gt;&lt;row id="6"&gt;&lt;cell&gt;上月&lt;/cell&gt;&lt;/row&gt;&lt;row id="7"&gt;&lt;cell&gt;今年&lt;/cell&gt;&lt;/row&gt;&lt;row id="8"&gt;&lt;cell&gt;去年&lt;/cell&gt;&lt;/row&gt;&lt;row id="9"&gt;&lt;cell&gt;自定义...&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+new xforms.XFDialog('extDateFilter1_dialog_874742148',"自定义",'model',true,false,true,true,false,null,'250','135',null,null,null,null);	
+xf._d('da74cb498a5649bbaa755e9df539e208','text',xf._q("instance('extDateFilter1_data_874742148')/beginDate"),null,null,null,null,false,false);	
+xf._d('d2e95291c01548f98e3faebabf66ca77','text',xf._q("instance('extDateFilter1_data_874742148')/endDate"),null,null,null,null,false,false);	
+var xf_model_gridFilterStatus_model_509068601 = new xforms.XFModel('gridFilterStatus_model_509068601',null);	
+new xforms.XFInstance2('gridFilterStatus_data_509068601','gridFilterStatus_model_509068601',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('gridFilterStatus_data_509068601','value,label');	
+var xf_action_xf_action_4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.Filter.setFilterCondition("gridFilterStatus", justep.xbl("dAssetCard"), "fStatus", "", appCommon.component.Filter.getDefaultValueBinding("gridFilterStatus_defaultValue_509068601"), true, ",", "", false); }));xf._p(justep('gridFilterStatus_model_509068601'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_4,'gridFilterStatus_model_509068601', evt,false)});	
+new xforms.XFExtSelect({id:'gridFilterStatus_select_509068601',type:'gridselect',defaultLabelRef:xf._q("'闲置,占用'"),allSelectedLabelRef:xf._q("'全部'"),ref:xf._q("instance('gridFilterStatus_data_509068601')/value"),labelRef:xf._q("instance('gridFilterStatus_data_509068601')/label"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:null,dataId:'dAssetStatus',columns:'label,value,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'value',valueColumn:'value',labelColumn:'label',extColumn:null,labels:',,',aligns:',,',types:'checkbox,ro,ro',widths:{widths:"#,#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+var xf_output_gridFilterStatus_defaultValue_509068601=new xforms.XFOutput('gridFilterStatus_defaultValue_509068601',xf._q("'0,1'"),null,null);	
+}	
+function load_vFilter_xblinit(){if (justep("vFilter").getAttribute('xblloaded') &amp;&amp; justep("vFilter").getAttribute('xblloaded') == 'true') return;justep("vFilter").setAttribute('xblloaded', 'true');	
+if(xforms.ready)justep('extDateFilter1_model_874742148').xformsObject.construct_part();	
+if(xforms.ready)justep('gridFilterStatus_model_509068601').xformsObject.construct_part();	
+}	
+function load_vAssetCard(){if (justep("vAssetCard").getAttribute('loaded') &amp;&amp; justep("vAssetCard").getAttribute('loaded') == 'true') return;justep("vAssetCard").setAttribute('loaded', 'true');	
+if(typeof(load_vAssetCard_html) == 'function')load_vAssetCard_html();	
+new xforms.XFGrid({id:'grdAssetCard',instance:'dAssetCard',systemColumnsPro:'version,fKindID,fUnitID,fUnit,fStatus,fServiceYear,fDutyOgnID,fDutyOgnName,fDutyOgnFID,fDutyDeptID,fDutyPosID,fDutyPosName,fDutyPsnID,fDutyPsnFID,fDutyPsnFName,fBgDepreYear,fBgDepreMonth,fFactory,fFactoryDate,fSupplier,fSource,fCheckID,fCheckNO,fBuyApplyID,fBuyApplyNO,fAssetInID,fAssetInNO,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fArrangeDate,fChecked,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5',onInit:null,type:'grid',smartRender:null,delay:false,ids:'recNo,fStatusName,fAssetConfirm,fCode,fKind,fName,fSpecType,fDetailInfo,fSourceName,fDutyDeptName,fDutyPsnName,fExtendStr3,fExtendStr1,fExtendStr2,fExtendStr4,fExtendDate1,fExtendDate2,fOriginValue,fAddDepreValue,fRemainValue,fRemark,fCreateTime,space-column',headNames:'序号,状态,资产确认,资产编号,资产类别,名称,规格型号,详细配置,资产来源,责任部门,责任人,存放位置,Service Tag,Express Service Code,续保,开始时间,到期时间,资产原值,累计折旧,资产净残值,备注,创建时间,&amp;nbsp;',widths:'30,30,60,100,100,120,92,255,61,100,57,99,100,151,59,68,66,80,80,80,120,120,*',types:'cntr,ro,ro,html,ro,ro,ro,txt,ro,ed,ed,ed,ed,ed,ed,ed,ed,ro,ro,ed,txt,dateTime,ro',hiddenColumns:'fExtendStr1,fExtendStr2,fExtendStr4,fExtendDate1,fExtendDate2',aligns:'center,,center,,center,,,,,center,,,,,center,center,center,right,right,right,,,',serverSort:true,sorts:'na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:'grdAssetCardRowDblClick',onLastEditorPressEnter:null,initFun:function(){this.grid.bindColHTMLCallback(null,'fCode','grdAssetCard_fCodeRender');this.grid.bindColFormat(null,'fOriginValue','0,000.00');this.grid.bindColFormat(null,'fAddDepreValue','0,000.00');this.grid.bindColFormat(null,'fRemainValue','0,000.00');}});	
+}	
+function load_vAssetCard_xblinit(){if (justep("vAssetCard").getAttribute('xblloaded') &amp;&amp; justep("vAssetCard").getAttribute('xblloaded') == 'true') return;justep("vAssetCard").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <table class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table" style="width:100%;height:100%;table-layout:fixed;">           <tr id="default4">             <td id="td2" style="height:35px">               <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrAssetCard">                 <table cellpadding="0" cellspacing="0" style="width:100%">                   <tr>                     <td>                       <div class="toolbar-manager" name="toolbarmanager" width="100%">                         <div class="toolbar-style" name="toolbargroup">                           <table cellpadding="0" cellspacing="1px">                             <tr>                               <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"></td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="insert" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)">                                   <tbody>                                     <tr>                                       <td class="xxf-value">                                         <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="">                                           <img align="absmiddle" src="/UI/appCommon/images/insert.gif" tabindex="" title="新增"></img>                                         </button>                                       </td>                                        <td class="xxf-alert">                                         <span class="xforms-alert">                                           <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                                            <div class="xforms-alert-value" id=""></div>                                         </span>                                       </td>                                     </tr>                                   </tbody>                                 </table>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <table id="barItem2" model="mdMain" onclick="justep.xbl('dAssetCard').saveData(); " readonly="not(call('justep.XData.canDo','dAssetCard','Save'))">                                   <tr align="center" valign="middle">                                     <td align="center" valign="middle">                                       <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_save.gif" src="/UI/system/images/standardToolbar/standard/save.gif" style="border:none" title="保存"></img>                                     </td>                                      <td align="center" class="xforms-trigger-label" valign="middle">保存</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem3" model="mdMain" onclick="justep.xbl('dAssetCard').deleteData(); " readonly="not(call('justep.XData.canDo','dAssetCard','Delete'))"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_remove.gif" src="/UI/system/images/standardToolbar/standard/remove.gif" style="border:none" title="删除"></img> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">删除</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem4" model="mdMain" onclick="justep.xbl('dAssetCard').refreshData(); "> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem5" model="mdMain" onclick="justep.xbl('filter-dialog-67eec0ca-cf97-44d1-a861-acca3f682abd').show('dAssetCard');"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/UI/system/images/standardToolbar/standard/search.gif" style="border:none" title="查询"></img> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">查询</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem6" model="mdMain" onclick="justep.xbl('filter-pattern-2c70201b-f3b2-4e9a-9390-347f274e0ebe').show('dAssetCard', event.target||event.srcElement);"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" style="border:none" title="查询方案"></img> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">查询方案</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="dAssetCard" id="bc81d128177b48598530f473058eda5e" mode="IMG_TXT_LR" page-count="5"> 
+                                  <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;"> 
+                                    <tr class=""> 
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="第一页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">第一页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="上一页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">上一页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-page" nowrap="true" style=""></td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="下一页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">下一页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="最后页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">最后页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td> 
+                                    </tr> 
+                                  </table>  
+                                  <span count="" data="dAssetCard" limit="" offset="" page-count="5" style="display:none" xblid="attribute"></span> 
+                                </div> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgClear" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:63px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="xxf-value"> 
+                                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                          <span class="xforms-label " id="xuiLabel5">资产清查</span> 
+                                        </button> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td style="width:100%"></td> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id=""> 
+            <td id="td3" style="height:35px"> 
+              <div class="xui-container" id="vFilter" lazy="false" style="position:relative;height:100%;width:100%;;height:100%;width:66%;"> 
+                <label class="xui-label" id="label1" style="position:absolute;width:30px;height:14px;top:8px;left:0px;">时间</label>  
+                <div class="xui-select component_B42F6D5E extDateFilter" component="/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter" filter-data="dAssetCard" filter-date-mode="single" filter-date-relation1="fCreateTime" id="extDateFilter1" style="position:absolute;width:80px;top:3px;left:30px;"> 
+                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="extDateFilter1_select_874742148" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                              <tr style="border:none"> 
+                                <td style="width:100%;height:100%;border:none;"> 
+                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                </td>  
+                                <td style="border:none" width="20px"> 
+                                  <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                </td> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <div id="extDateFilter1_dialog_874742148" style="display:none"></div>  
+                  <div style="width:246px;height:110px;position:absolute;left:-9000px;top:-9000px"> 
+                    <div class="xforms-dialog" height="135" id="extDateFilter1_dialog_874742148-content" minmax="false" resizeable="false" style="width:100%;height:100%" title="自定义" width="250"> 
+                      <table style="margin: 5px; width: 220px; font-size: 12px;"> 
+                        <tr style="height: 25px"> 
+                          <td style="width: 67px; text-align: center;">开始日期</td>  
+                          <td> 
+                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="da74cb498a5649bbaa755e9df539e208" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="focus" style="display:none;width:0px"></td>  
+                                  <td class="xxf-value"> 
+                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                      <div class="xforms-alert-value" id=""></div> 
+                                    </span> 
+                                  </td>  
+                                  <td class="xui-ie-input-bug"></td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </td> 
+                        </tr>  
+                        <tr style="height: 25px"> 
+                          <td style="width: 67px; text-align: center;">结束日期</td>  
+                          <td> 
+                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="d2e95291c01548f98e3faebabf66ca77" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="focus" style="display:none;width:0px"></td>  
+                                  <td class="xxf-value"> 
+                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                      <div class="xforms-alert-value" id=""></div> 
+                                    </span> 
+                                  </td>  
+                                  <td class="xui-ie-input-bug"></td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </td> 
+                        </tr>  
+                        <tr style="height: 35px"> 
+                          <td colspan="2" style="text-align: center;"> 
+                            <input onclick="xforms.blur(true); if (justep.xbl('extDateFilter1')._doDialogCheck()) {xforms('extDateFilter1_dialog_874742148').close();}" style="width: 60px" type="button" value="确定"></input>  
+                            <input onclick="xforms('extDateFilter1_dialog_874742148').close();" style="width: 60px" type="button" value="取消"></input> 
+                          </td> 
+                        </tr> 
+                      </table> 
+                    </div> 
+                  </div>  
+                  <span auto-refresh="true" default-select="0" dialog-id="extDateFilter1_dialog_874742148" filter-data="dAssetCard" filter-date-mode="single" filter-date-relation1="fCreateTime" inner-data-id="extDateFilter1_data_874742148" model-id="extDateFilter1_model_874742148" select-id="extDateFilter1_select_874742148" style="display:none" xblid="attribute"></span> 
+                </div>  
+                <label class="xui-label" id="label2" style="position:absolute;width:55px;height:11px;top:8px;left:140px;">资产状态</label>  
+                <div all-selected-label="'全部'" class="xui-select component_E8111CC2 gridFilter" component="/UI/appCommon/components/filter.xbl.xml#gridFilter" default-label="'闲置,占用'" default-value="'0,1'" filter-data="dAssetCard" filter-relation="fStatus" id="gridFilterStatus" multi-select="true" style="position:absolute;width:100px;top:3px;left:195px;"> 
+                  <span auto-refresh="true" default-value-binding-id="gridFilterStatus_defaultValue_509068601" filter-data="dAssetCard" filter-relation="fStatus" inner-data-id="gridFilterStatus_data_509068601" model-id="gridFilterStatus_model_509068601" select-id="gridFilterStatus_select_509068601" style="display:none" xblid="attribute"></span>  
+                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect xforms-appearance-minimal xui-select" id="gridFilterStatus_select_509068601" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                              <tr style="border:none"> 
+                                <td style="width:100%;height:100%;border:none;"> 
+                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                </td>  
+                                <td style="border:none" width="20px"> 
+                                  <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                </td> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="gridFilterStatus_defaultValue_509068601" style="display:none"> 
+                    <tr> 
+                      <td> 
+                        <span class="xforms-value"></span>  
+                        <span class="xforms-alert"> 
+                          <span class="xforms-alert-icon"></span> 
+                        </span> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="default5"> 
+            <td id="td4"> 
+              <div class="" id="vAssetCard" lazy="false" style="height:100%"> 
+                <div class="component_6298A7A1 grid" data="dAssetCard" delay="false" id="grdAssetCard" onRowDblClick="grdAssetCardRowDblClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="version,fKindID,fUnitID,fUnit,fStatus,fServiceYear,fDutyOgnID,fDutyOgnName,fDutyOgnFID,fDutyDeptID,fDutyPosID,fDutyPosName,fDutyPsnID,fDutyPsnFID,fDutyPsnFName,fBgDepreYear,fBgDepreMonth,fFactory,fFactoryDate,fSupplier,fSource,fCheckID,fCheckNO,fBuyApplyID,fBuyApplyNO,fAssetInID,fAssetInNO,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fArrangeDate,fChecked,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5"></div> 
+              </div> 
+            </td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-67eec0ca-cf97-44d1-a861-acca3f682abd"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N1294713437" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N1294713437-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N965958906" name="GLOBAL_ID_N965958906" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-2c70201b-f3b2-4e9a-9390-347f274e0ebe"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="2e1639e6b44b467cbfaf3722aa9258e8" menu-id="GLOBAL_ID_2101325774" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_2101325774" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_2101325774" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_865534220" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_865534220-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_2093569034" name="GLOBAL_ID_2093569034" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

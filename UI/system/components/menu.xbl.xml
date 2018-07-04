@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript"
+	xmlns:xui="http://www.justep.com/xui">
+	  <!--
+     简单案例：
+	   <xhtml:div component="/UI/system/components/menu.xml#menu"> 
+        <xui:menuitem id="动态加载菜单的父级必须有id" label="New1"> 
+          <xui:menuitemset data:data="xui-data-id('')"> 
+            <xui:label ref="sName"/>  
+          </xui:menuitemset> 
+        </xui:menuitem>  
+        <xforms:action ev:event="xforms-menu-click"></xforms:action> 
+      </xhtml:div>  
+  复杂案例：	
+	   <xhtml:div component="/UI/system/components/menu.xml#menu" menu-id="" appearance="general or conlabel" targetID="" open-mode="win or web"> 
+        <xui:menuitem label="New1" disabled="false" id="" img="" dis-img=""> 
+          <xui:menuitemset init-loaded="true|false" replace="true" data:data="xui-data-id('')"> 
+            <xui:id ref=""/>  
+            <xui:label ref=""/>
+            <xui:自定义 ref=""/>  
+          </xui:menuitemset> 
+        </xui:menuitem>  
+        <xforms:action ev:event="xforms-menu-click"></xforms:action> 
+      </xhtml:div>
+      
+      
+属性：
+	@open-mode
+	  web   -  如果是常规菜单鼠标移动到菜单上就打开。
+	  win   -  单击菜单才打开     
+ 说明：
+ 
+ 	
+	菜单有两种,通过appearance属性设置1、general（普通固定菜单） 2、conlabel（浮动菜单）
+	每个menuitem都有id，id建议自己来写，推荐使用(上级菜单ID+_+本级菜单ID)的方式来命名
+	
+	菜单项的单击事件接收最早激活菜单事件，在javascript中使用ctx.event.getData().oldEvent。
+	在javascirpt引用页面dhtmlx的menu方法有：
+	1、$(菜单ID).xformsObject.menu
+	2、xf_menu_+菜单ID.menu
+	
+	动态菜单加载方法
+	 <xforms:script>
+		var info=new xforms.MenuItemInfo();
+		info.id="sChildren";
+		info.label="sName";
+		info.img=null;
+		info.readOnly=true;
+		xf_menu_testMenu.loadInstance("main_grid",info,true,"testMenu_file_new");
+  		/*
+			参数1：grid的id 或 simpleStore
+			参数2: 概念内对应菜单的信息
+			参数3：是否删除下级菜单
+			参数4：要加载的菜单项id，如果不传这个参数则说明是在菜单上增加
+		*/
+     </xforms:script>
+    
+    
+    1、菜单的点击事件获取定义的信息使用ctx.event.getData().itemInfo
+	2、动态加载的js方法名称是"reloadMenu_"+@fun-name
+常用的javascritp API:
+   dhtmlx:
+ 		删除所有子菜单：removeChildItem(id)
+ 		
+   xfmenu:
+                    增加菜单：addItem(item);
+                    
+                      
+                             例：  var item=new xforms.XFMenuItem(id,parentID,text);
+               XXXX_menu.addItem(item);
+                           
+           xforms.XFMenuItem的定义如下：
+              id:
+              parentID:
+              text:
+              disbled:
+              type:
+              pos:  菜单项的位置    
+           function xforms.XFMenuItem(id, parentID, text, disabled, type, pos,binding,img,disImg) {            
+		-->
+	<xbl:binding id="menu">
+	   <xbl:template template-type="java" src="Menu" />
+	
+	   <xbl:implementation>
+			({
+				"_id": null,
+				"_itemsets": null,
+				
+				
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len > i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len > i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+					
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len > i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+					
+				}
+			})
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

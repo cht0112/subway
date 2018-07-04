@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<reg-info>
+	<!-- 组件目录注册  -->
+	<component-dirs>
+		model,data,reportData,view,window,default,resource,
+		tabs,htmlTable,layout,trigger,dateFilter,
+		bar,toolbars,reportBar,orgSelect,select,html,action,
+		grid,input,output,label,list,textarea,orgTree,
+		orgFilter,pageNavigator,progressBar,tip,collapsePanel,group,
+		process,processChart,dialog,windowDialog,processBar,
+		messageDialog,splitter,attachmentEditor,attachmentEditor2,attachmentDialog,attachmentDialog2,attachmentImage,attachmentImage2,officeViewer,
+		bizDataFilterDialog,bizDataFilterPattern,bizDataFilterMenu,blob,excel,printHtml,customBar,numberSelect,
+		windowOpener,windowReceiver,windowFrame,windowRunner,filter,smartFilter,barcode,config,quickLocate,
+		borderLayout,cellLayout,report,chart,chartSeries,
+		actionPermission,
+		excelLayout,
+		operation,
+		orgDialog,
+		pagination,
+		buttonBar,
+		menuButton
+	</component-dirs>
+	
+	<!-- 组件工具箱配置 -->
+	<toolbox>
+		<catalog name="data" text="数据" >
+			<item component-name="model"/>
+			<item component-name="bizData"/>
+			<item component-name="data"/>	
+		</catalog>
+		<catalog name="layoutControl" text="布局"  >
+			<item component-name="view" design-view="excel"/>
+			<item component-name="tabPanel"/>
+			<item component-name="collapsePanel"/>
+			<item component-name="HSplitter"/>
+			<item component-name="VSplitter"/>
+			<item component-name="borderLayout"/>
+			<item component-name="cellLayout"/>
+			<item component-name="excelLayout"/>
+			<item component-name="group"/>
+		</catalog>
+		<catalog name="formControl" text="标准" initial-state="open" design-view="excel">
+			<item component-name="grid"/>	
+			<item component-name="tree"/>			
+			<item component-name="input"/>
+			<item component-name="secret"/>
+			<item component-name="output"/>
+			<!-- 
+			<item component-name="dateInput"/>
+			 -->
+			<item component-name="textarea"/>			
+			<item component-name="trigger"/>
+			<item component-name="menuButton"/>
+			<item component-name="radio"/>
+			<item component-name="checkbox"/>
+			<item component-name="simpleSelect"/>
+			<item component-name="gridSelect"/>
+			<item component-name="treeSelect"/>
+			<item component-name="pagination"/>
+			<!--流程 -->
+			<item component-name="process"/>
+		</catalog>	
+		<catalog name="toolbar" text="工具栏">
+			<item component-name="toolbars"/>
+			<item component-name="navigatorBar"/>
+			<item component-name="processBar"/>			
+			<item component-name="customBar"/>
+			<item component-name="separatorItem"/>
+			<item component-name="buttonBar"/>
+		</catalog>		
+		<catalog name="dialog-c" text="对话框" design-view="excel">
+			<item component-name="dialog"/>
+			<item component-name="windowDialog"/>
+			<item component-name="windowFrame"/>
+			<item component-name="windowRunner"/>
+			<item component-name="windowOpener"/>
+			<item component-name="windowReceiver"/>
+			<item component-name="messageDialog"/>
+			<item component-name="bizDataFilterMenu"/>
+			<item component-name="bizDataFilterDialog"/>
+		</catalog>		
+		<catalog name="report" text="报表" design-view="excel">
+			<item component-name="reportData"/>	
+			<item component-name="report"/>
+			<item component-name="chart"/>
+			<item component-name="printBar"/>
+			<item component-name="exportBar"/>
+		</catalog>		
+		<catalog name="ext" text="扩展" design-view="excel">
+			<!-- 附件 -->
+			<item component-name="attachmentEditor2"/>
+			<item component-name="attachmentDialog2"/>
+			<item component-name="attachmentImage2"/>
+			<item component-name="officeViewer"/>		
+			<!-- 组织机构  -->
+			<item component-name="orgSelect" design-view="excel"/>
+			<item component-name="orgTree" design-view="excel"/>
+			<item component-name="orgFilter" design-view="excel"/>
+			<item component-name="orgDialog"/>
+			<!-- Blob -->
+			<item component-name="blob" design-view="excel"/>
+			<item component-name="blobImage" design-view="excel"/>
+			<item component-name="barcodeImage" design-view="excel"/>
+			
+			<!-- Excel导入导出 -->
+			<item component-name="excelExport" design-view="excel"/>
+			<item component-name="excelImport" design-view="excel"/>
+
+			<!--  -->
+			<item component-name="controlLabel"/>
+			<item component-name="tip"/>
+			<item component-name="bizDataFilterPattern"/>
+			<item component-name="gridFilter" design-view="excel"/>
+			<item component-name="treeFilter" design-view="excel"/>
+			<item component-name="dateFilter" design-view="excel"/>
+			<item component-name="smartFilter" design-view="excel"/>
+			<item component-name="treeLocate" design-view="excel"/>
+			<item component-name="numberSelect" design-view="excel"/>			
+			<item component-name="pageNavigator"/>
+			<item component-name="progressBar"/>
+			<item component-name="printHtml" design-view="excel"/>
+
+			<!--流程 -->
+			<item component-name="processTrackChart"/>
+			<item component-name="processPertChart"/>
+			<item component-name="processChart"/>
+			
+			<item component-name="config"/>
+			<item component-name="actionPermission"/>
+		</catalog>
+		
+		<catalog name="html" text="HTML" design-view="excel">
+			 <item component-name="input(button)"/>
+			 <item component-name="input(reset)"/>
+			 <item component-name="input(submit)"/>
+			 <item component-name="input(text)"/>
+			 <item component-name="input(file)"/>
+			 <item component-name="input(password)"/>
+			 <item component-name="input(checkbox)"/>
+			 <item component-name="input(radio)"/>
+			 <item component-name="input(hidden)"/>
+			 <item component-name="image"/>
+			 <item component-name="textarea(html)"/>
+			 <item component-name="select(html)"/>
+			 <item component-name="horizontalRule"/>		
+ 			 <!-- htmltable -->
+			 <item component-name="table"/>
+			 <item component-name="div"/>
+			 <item component-name="span"/>
+			 <item component-name="label"/>
+			 <item component-name="ul"/>
+			 <item component-name="li"/>
+			 <item component-name="h3"/>
+			 <item component-name="a"/>
+			 <item component-name="fieldset"/>
+			 <item component-name="button"/>
+		</catalog>
+	</toolbox>
+	 
+</reg-info>

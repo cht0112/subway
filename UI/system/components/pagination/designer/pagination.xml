@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="pagination" tag-type="rich" tag-name="div" icon="toolbars.gif"  text="导航条"  
+		discriminate-condition="@component=@/UI/system/components/pagination.xbl.xml#pagination" 
+		binding-component="/UI/system/components/pagination.xbl.xml#pagination" display-property="id" 
+		component-class="Pagination" 
+		component-type="formControl" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref=""/>
+			<property name="data" text="绑定数据" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="items" text="显示项"  editor-ref="PaginationButtonList" editor-parameter=","/>
+			<property name="align" editor-ref="PaginAtionalignEditor"/>
+			<property name="first-label" default-value="首页"/>
+			<property name="pre-label" default-value="上一页"/>
+			<property name="next-label" default-value="下一页"/>
+			<property name="last-label" default-value="末页"/>
+			<property name="page-count" data-type="positive-integer"/>
+			<property name="class"  text="class" editor-extend-data="small:small模式"/>
+			<property name="style"/>
+		</properties>
+		<property-editors>
+			<property-editor name="PaginationButtonList" type="list" mutil-selection='true'>
+				<static-data value="first:首页,pre:上一页,next:下一页,last:末页" />
+			</property-editor>
+				<property-editor name="PaginationButtonList" type="list" mutil-selection='true'>
+				<static-data value="first:首页,pre:上一页,next:下一页,last:末页" />
+			</property-editor>
+			<property-editor name="PaginAtionalignEditor" type="list">
+				<static-data value="left,centered,right"></static-data>
+			</property-editor>
+		</property-editors>		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div component="/UI/system/components/pagination.xbl.xml#pagination"  items="first last pre next"></xhtml:div>
+			]]></template>
+		</templates>
+	
+	</element>
+</elements>

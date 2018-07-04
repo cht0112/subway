@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v8c850a0771954618ab12fa4bfb2d7d97/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2153ed7b53c648529ce3c24b0cdfb031/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2d5b82d58a4d496080587ae745f14d9f/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v50225fe5d305477abebeb5733f27f1cb/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v507d28973a074dd2817a4e6baa83706b/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v27ecd8a7551a4e8e818ba27f6c997fc9/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2eb200b21af64850ae5ed07327f4ef83/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vf35536a79de749f78e8eace5df6cc934/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v7a91607f3579404586f6b53608b79d5a/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v718feb1e227b49caa433c44f5c657ec7/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v48d8725c6bc3438eb7e71307f3d16704/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v78f357a64f8e4c38b54f574d56da4401/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/x5/$v1f3e486425b24f2db6f6b5773e33c533/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v5238833814064302aae7670b56cdc556/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$v11522f14cf894d50b3aef534770f4980/UI/metrodetection/test_progress_info/process/LaboratoryTestProgressInfo/mainActivity.js?language=zh_CN">
+</script>      <script>
+new justep.XBizData('laboratoryData',true,false,{'queryAction':"queryDETECTION_ROOM_INFOAction",'saveAction':"saveDETECTION_ROOM_INFOAction",'newAction':"createDETECTION_ROOM_INFOAction",'dataModel':"/metrodetection/system_resource/data",'dataType':"json",'concept':"{'DETECTION_ROOM_INFO':'DETECTION_ROOM_INFO'}",'limit':-1,'idColumn':"{'name':'DETECTION_ROOM_INFO','relation':'DETECTION_ROOM_INFO','define':'DETECTION_ROOM_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'rOOMTYPE':{'type':'Integer','relation':'DETECTION_ROOM_INFO.rOOMTYPE','define':'DETECTION_ROOM_INFO.rOOMTYPE','label':'房间类型'},'rOOMCNAME':{'type':'String','relation':'DETECTION_ROOM_INFO.rOOMCNAME','define':'DETECTION_ROOM_INFO.rOOMCNAME','label':'房间名称'},'rOOMENAME':{'type':'String','relation':'DETECTION_ROOM_INFO.rOOMENAME','define':'DETECTION_ROOM_INFO.rOOMENAME','label':'房间英文名称'},'iMAGE':{'type':'Blob','relation':'DETECTION_ROOM_INFO.iMAGE','define':'DETECTION_ROOM_INFO.iMAGE','label':'房间位置图'},'mEMO':{'type':'String','relation':'DETECTION_ROOM_INFO.mEMO','define':'DETECTION_ROOM_INFO.mEMO','label':'备注'},'MANUFACTURE_ID':{'type':'Integer','relation':'DETECTION_ROOM_INFO.MANUFACTURE_ID','define':'DETECTION_ROOM_INFO.MANUFACTURE_ID','label':'mANUFACTUREID'},'IS_DELEGATE':{'type':'Integer','relation':'DETECTION_ROOM_INFO.IS_DELEGATE','define':'DETECTION_ROOM_INFO.IS_DELEGATE','label':'iSDELEGATE'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('proData',false,false,{'queryAction':"queryJINDU_VIEWAction",'saveAction':"saveJINDU_VIEWAction",'newAction':"createJINDU_VIEWAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'JINDU_VIEW':'JINDU_VIEW'}",'limit':-1,'idColumn':"{'name':'JINDU_VIEW','relation':'JINDU_VIEW','define':'JINDU_VIEW','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'FID':{'type':'String','relation':'JINDU_VIEW.FID','define':'JINDU_VIEW.FID','label':'FID'},'FPARENTID':{'type':'String','relation':'JINDU_VIEW.FPARENTID','define':'JINDU_VIEW.FPARENTID','label':'FPARENTID'},'TNAME':{'type':'String','relation':'JINDU_VIEW.TNAME','define':'JINDU_VIEW.TNAME','label':'TNAME'},'TPERSON':{'type':'String','relation':'JINDU_VIEW.TPERSON','define':'JINDU_VIEW.TPERSON','label':'TPERSON'},'TPERSONNAME':{'type':'String','relation':'JINDU_VIEW.TPERSONNAME','define':'JINDU_VIEW.TPERSONNAME','label':'TPERSONNAME'},'TSTART':{'type':'DateTime','relation':'JINDU_VIEW.TSTART','define':'JINDU_VIEW.TSTART','label':'TSTART'},'TEND':{'type':'DateTime','relation':'JINDU_VIEW.TEND','define':'JINDU_VIEW.TEND','label':'TEND'},'TEXECUTE':{'type':'String','relation':'JINDU_VIEW.TEXECUTE','define':'JINDU_VIEW.TEXECUTE','label':'TEXECUTE'},'TCHECK':{'type':'String','relation':'JINDU_VIEW.TCHECK','define':'JINDU_VIEW.TCHECK','label':'TCHECK'},'ROOMID':{'type':'Integer','relation':'JINDU_VIEW.ROOMID','define':'JINDU_VIEW.ROOMID','label':'ROOMID'},'ROOMAREA':{'type':'String','relation':'JINDU_VIEW.ROOMAREA','define':'JINDU_VIEW.ROOMAREA','label':'ROOMAREA'},'TOOLNO':{'type':'Integer','relation':'JINDU_VIEW.TOOLNO','define':'JINDU_VIEW.TOOLNO','label':'TOOLNO'},'LINEID':{'type':'Integer','relation':'JINDU_VIEW.LINEID','define':'JINDU_VIEW.LINEID','label':'LINEID'},'TASKID':{'type':'String','relation':'JINDU_VIEW.TASKID','define':'JINDU_VIEW.TASKID','label':'TASKID'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'FPARENTID'}"},'proData_part',{});</script>  
+    <script type="text/javascript" src="/x5/$vcf9143ba3a214d45a5e9d8275028e943/UI/metrodetection/test_progress_info/process/LaboratoryTestProgressInfo/.cache/mainActivity_zh_CN_x5_a58ae9a66d7f4c78959b71af96e98d36.js?language=zh_CN&amp;$version=7b47670c-b892-4456-950e-6180314ea5cc"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="xui-splitter component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="177px" has-arrow-button="true" has-drag-bar="true" id="HSplitter1" mode="horz" style="height:100%;width:100%;line-height:20px;"> 
+          <div class="xui-splitter-root"> 
+            <div class="xui-splitter-region xui-splitter-left"> 
+              <div class="component_6298A7A1 grid" data="laboratoryData" id="grid1" onRowClick="mainActivity.grid1RowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="0" style="height:100%;width:100%;line-height:normal;;overflow:hidden" system-columns="rOOMTYPE,rOOMENAME,iMAGE,mEMO,MANUFACTURE_ID,IS_DELEGATE"></div> 
+            </div>  
+            <div class="xui-splitter-region xui-splitter-right"> 
+              <div class="component_6298A7A1 grid" data="proData" delay="false" id="grid2" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;width:100%;;overflow:hidden" system-columns="FID,FPARENTID,TPERSON,ROOMID,ROOMAREA,TOOLNO,LINEID,TASKID"></div> 
+            </div>  
+            <div class="xui-splitter-handler xui-splitter-handler-h"> 
+              <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                <i class="icon-system-left-dir white-icon"></i> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

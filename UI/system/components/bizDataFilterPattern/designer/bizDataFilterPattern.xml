@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="bizDataFilterPattern" tag-type="rich" tag-name="bizDataFilterPattern" icon="dialog_icon_min.gif" text="过滤模式"  
+		discriminate-condition="@component=/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" 
+		binding-component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" display-property="id" 
+		component-class="BizDataFilterPattern" 
+		component-type="formControl" validator="ToolbarsValidator" design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true"/>
+<!--			<property name="data" text="引用数据" required="true"  editor-ref="contextComponent" editor-parameter="data" is-id-ref="true"/>-->
+		</properties>
+		<templates>
+			<template name="default">
+			<![CDATA[
+				<xhtml:div component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+			]]>
+			</template>
+		</templates>
+	</element>
+</elements>

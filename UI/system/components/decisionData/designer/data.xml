@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element tag-type="rich" name="decisionData" tag-name="data" icon="decisionData.gif"
+		text="决策数据"
+		binding-component="/UI/system/components/decisionData.xbl.xml#data" parent-range="model"
+		component-class="DecisionData" component-type="data">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="datasource" text="数据源" required="true" />
+			<property name="catalog" text="xx" required="true" />
+			<property name="mdx-sql" text="MDX语句" editor-ref="mdxDlg" is-virtual = 'true'  fixed-value='[...]'/>
+		</properties>
+		<property-editors>
+			<property-editor name="mdxDlg" type="dialog">
+				<dialog-page class-name="MDXSQLPage" />
+			</property-editor>
+		</property-editors>
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+				<data _xmlns="" id="" component="/UI/system/components/decisionData.xbl.xml#data" datasource="" catalog="">       	
+					<mdx-query>
+					</mdx-query>
+				</data>
+		   		]]>
+		   </template>
+		</templates>
+		<events>
+		</events>
+		<toolbar>
+		</toolbar>
+	</element>
+</elements>

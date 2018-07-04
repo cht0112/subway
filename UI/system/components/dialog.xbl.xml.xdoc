@@ -1,0 +1,276 @@
+/**
+	@name UI.dialog
+	@component /UI/system/components/dialog.xbl.xml#dialog
+	@class justep.Dialog
+	@extends justep.ObjectEvent
+	@model UI
+	@description <b>[rich]</b>对话框组件
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/dialog.xbl.xml#dialog"
+		title="对话框" modal="true" width="400" height="300" id="dialog1" />
+</xmp>
+	
+	<b>JS使用说明：</b>
+<xmp>
+	1、使用js调用需要引入：
+		/UI/system/components/dialog/dialog.js
+	2、代码:
+		if(!dialog){
+			//创建对话框，绑定事件            
+	 		dialog = new justep.Dialog(id,title,modal,status,width,height,left,top,onInit,onOpen,onClose);
+			//增加事件绑定
+			dialog.attachEvent("onInit", function(){alert('init event');}, dialog);
+			dialog.attachEvent("onOpen", function(){alert('open event');}, dialog);  
+			dialog.attachEvent("onClose", function(){alert('close event');}, dialog);
+		}
+		dialog.open();
+		...
+		dialog.setTitle("动态设置标题");
+		dialog.close();//关闭		                   
+</xmp>
+*/
+
+/**
+	@name UI.dialog#dialog
+	@function
+	@param {string} id <b>[required]</b>组件ID
+	@param {string} title <b>[required]</b>对话框标题
+	@param {boolean} modal 是否模态显示
+	@param {string} status 初始化状态，参见{@link UI.dialog#status}
+	@param {integer} width 对话框宽(单位px)
+	@param {integer} height 对话框高(单位px)
+	@param {integer} left 对话框距离页面左边框的距离(单位px)
+	@param {integer} top  对话框距离页面顶端的距离(单位px)，当left、top都没有时默认居中显示
+	@param {function} onInit 初始化事件，参见{@link UI.dialog#onInit}
+	@param {function} onOpen 对话框打开事件，参见{@link UI.dialog#onOpen}
+	@param {function} onClose  对话框关闭事件，参见{@link UI.dialog#onClose}
+	@description 对话框构造函数
+	@example
+	//动态创建对话框
+	var dialog = new justep.Dialog(id,title);
+*/
+
+/**
+	@name UI.dialog#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/dialog.xbl.xml#dialog"
+*/
+
+/**
+	@name UI.dialog#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+
+/**
+	@name UI.dialog#title
+	@attribute
+	@type {string}
+	@description 标题
+*/
+
+/**
+	@name UI.dialog#show__sub__title
+	@attribute
+	@type {boolean}
+	@description 是否显示标题
+	@default true
+*/
+
+/**
+	@name UI.dialog#modal
+	@attribute
+	@type {boolean}
+	@description 是否模态显示
+	@default false
+*/
+
+/**
+	@name UI.dialog#width
+	@attribute
+	@type {integer}
+	@description 宽度(单位px)
+*/
+
+/**
+	@name UI.dialog#height
+	@attribute
+	@type {integer}
+	@description 高度(单位px)
+*/
+
+/**
+	@name UI.dialog#left
+	@attribute
+	@type {integer}
+	@description 对话框距离页面左边框的距离(单位px)
+*/
+
+/**
+	@name UI.dialog#top
+	@attribute
+	@type {integer}
+	@description 对话框距离页面顶端的距离(单位px)
+*/
+
+/**
+	@name UI.dialog#closable
+	@attribute 
+	@type {boolean}
+	@description 是否显示关闭按钮
+	@default "true"
+*/
+
+/**
+	@name UI.dialog#minmaxable
+	@attribute 
+	@type {boolean}
+	@description 是否显示最小最大化按钮
+	@default "true"
+*/
+
+/**
+	@name UI.dialog#resizable
+	@attribute 
+	@type {boolean}
+	@description 是否可以拖拽改变大小
+	@default "true"
+*/
+
+/**
+	@name UI.dialog#neighbor 
+	@attribute
+	@type {string} 
+	@description 邻居节点(dom)的id, 若设置，则对话框会在他的下方显示
+*/
+
+/**
+	@name UI.dialog#status
+	@attribute 
+	@type {string}
+	@description 初始化状态，取值范围：minimize（最小化）、maximize（最大化），默认按width、height显示
+*/
+
+/**
+	@name UI.dialog#content
+	@attribute 
+	@description html格式内容
+	@example
+	<b>示例：</b>
+	<xmp>
+	<div>
+		<span>姓名：</span>
+		<input name='name'>
+	</div>
+	<div>
+		<span>年龄：</span>
+		<input name='age'>
+	</div>
+	</xmp>
+*/
+
+/**
+	@name UI.dialog#onInit
+	@event 
+	@description <b>[回调型事件]</b>初始化时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.dialog#onOpen
+	@event 
+	@description <b>[回调型事件]</b>打开时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.dialog#onClose
+	@event 
+	@description <b>[回调型事件]</b>关闭时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.dialog#setTitle
+	@function
+	@param {string} title  标题字符
+	@description 设置标题
+*/
+
+/**
+	@name UI.dialog#setContentHTML
+	@function
+	@param {string} html 内容html
+	@description 设置对话框内容
+*/
+
+/**
+	@name UI.dialog#setAutoSize
+	@function
+	@param {boolean} flag 是否
+	@description 是否自适应内容大小
+*/
+
+/**
+	@name UI.dialog#setNeighbor
+	@function
+	@param {string} neighbor 元素id
+	@description 显示在某个元素下方
+*/
+
+/**
+	@name UI.dialog#setResizable
+	@function
+	@param {boolean} flag 是否
+	@description 是否可改变大小
+*/
+
+/**
+	@name UI.dialog#setMinmaxable
+	@function
+	@param {boolean} flag 是否
+	@description 是否显示最大化最小化按钮
+*/
+
+/**
+	@name UI.dialog#setClosable
+	@function
+	@param {boolean} flag 是否
+	@description 是否显示关闭按钮
+*/
+
+/**
+	@name UI.dialog#close
+	@function
+	@description 关闭对话框
+*/
+
+/**
+	@name UI.dialog#open
+	@function
+	@description 打开对话框
+*/

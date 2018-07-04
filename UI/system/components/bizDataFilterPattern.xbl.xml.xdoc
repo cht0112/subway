@@ -1,0 +1,41 @@
+/**
+	@name UI.bizDataFilterPattern
+	@component /UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern
+	@class 过滤模式组件
+	@description <b>[rich]</b>过滤模式组件, 推荐使用 UI.bizDataFilterMenu
+	@model UI
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<xhtml:div component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"/>
+	</xmp>
+	@see UI.bizDataFilterMenu
+*/
+
+/**
+	@name UI.bizDataFilterPattern#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"
+*/
+
+/**
+	@name UI.bizDataFilterPattern#id
+	@attribute
+	@required 
+	@description id标识
+*/
+
+/**
+	@name UI.bizDataFilterPattern#show
+	@function
+	@description 显示过滤模式下拉菜单
+	@param {justep.XData/string} data <b>[required]</b> bizData组件的id或实例
+	@param {string} controlId 下拉菜单将显示在controlId所属组件的下方
+	@returns {void}
+	@example
+	<xmp>
+	justep.xbl('bizDataFilterPattern_id').show(data, buttonID);
+	</xmp>
+*/

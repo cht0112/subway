@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript" src="/UI/system/components/windowOpener/windowOpener.js"/>
+	
+	<xbl:binding id="windowOpener">
+		<xbl:template template-type="xslt">
+		</xbl:template>
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var option = {id:node.id,
+							  url:node.getAttribute('url'),
+							  modal:node.getAttribute('modal')=="true",
+							  width:node.getAttribute('width'),
+							  height:node.getAttribute('height'),
+							  left:node.getAttribute('left'),
+							  top:node.getAttribute('top'),
+							  parameters:node.getAttribute('parameters'),
+							  status:node.getAttribute('status'),
+							  resizable:node.getAttribute('resizable')!="false",
+							  process:node.getAttribute("process"),
+							  activity:node.getAttribute("activity"),
+				              onSend:node.getAttribute('onSend'), 
+				              onReceive:node.getAttribute('onReceive'),
+				              onOpen:node.getAttribute('onOpen'),
+				              onClose:node.getAttribute('onClose')};
+				var opener = new justep.WindowOpener(option);
+				justep.Object.extend(this, opener);
+			} 
+		})			
+		]]>		
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

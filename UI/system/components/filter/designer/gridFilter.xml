@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="gridFilter" tag-type="rich" tag-name="div" icon="Control_ListBox.gif" text="下拉列表过滤" 
+		binding-component="/UI/system/components/filter.xbl.xml#gridFilter"
+		display-property="id" component-class="GridFilter" component-type="formControl"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+
+			<property name="filter-data" text="过滤数据集" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="filter-relation" text="过滤关系" required="true" editor-ref="relationDlg" editor-parameter="filter-data"/>
+			<property name="default-value" text="当下拉列表选中数据为空时的过滤数据(xpath)" editor-ref="xpathEditor"/>
+			<property name="default-label" text="当下拉列表选中数据为空时的显示文本(xpath)" editor-ref="xpathEditor"/>
+			<property name="all-selected-label" text="全选显示(xpath)" editor-ref="xpathEditor"/>
+
+			<property name="auto-refresh" text="当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="multi-select" text="多选" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="value-separator" text="多选value分割字符" default-value="," />
+			<property name="label-separator" text="多选label分割字符" default-value="," />
+
+<!--			<property name="auto-size" text="自动尺寸" editor-ref="booleanList" readonly="true" default-value="false"/>-->
+			<property name="dropdown-height" text="下拉框高度" />
+			<property name="smart-render" text="智能渲染" />
+			<property name="delay-create-grid" text="延迟创建grid" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="input-changeable" text="允许在直接在input框中输入改变值，要求value和label指向同一列" editor-ref="booleanList" readonly="true" default-value="false"/>
+							
+			<group name="itemset">
+				<property name="data-ref" path="xforms:itemset/@data" text="引用data,优先级高于静态数" editor-ref="dataList" />
+				<property name="auto-load-data" path="xforms:itemset/@auto-load-data" text="第一次下拉时触发data动态加载" editor-ref="booleanList" readonly="true" default-value="false"/>
+				<property name="independence" path="xforms:itemset/@independence" default-value="false" text="为true时，多个select可以绑定同一个data，但只在下拉时刷新一次数据，数据改变后，需要用户主动触发刷新。" editor-ref="booleanList" readonly="true"/>
+				<property name="static-data" path="xforms:itemset/itemset-data/@description" type="complex" editor-ref="dataDialog"  readonly="true" is-virtual = 'true'  fixed-value='[静态数据]'/>
+				<property name="columns"  text="下拉表格列" path="xforms:itemset/@columns-description" type="complex" editor-ref="columnsDialog" readonly="true" is-virtual = 'true'  fixed-value='[...]' required="false"/>
+			</group>
+			<group name="column-ref"> 
+				<property name="value" path="xforms:value/@ref" text="过滤数据列" editor-ref="cols" required="true"/>
+				<property name="label" path="xforms:label/@ref" text="输入框显示列" editor-ref="cols" required="true"/>
+			</group>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-select"/>
+			<property name="class"  text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog" />
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly" default-value="false"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false"/>			
+		</properties>
+		
+		<events>  
+			<event name="onGetCondition" text="构造过滤条件"/>
+			<event name="onAfterRowFill"  text="行渲染结束"/>
+		</events>
+		
+		<property-editors>
+			<property-editor name="cols" type="list">
+				<dynamic-data xpath="*[local-name()='itemset']/*[local-name()='column']/@ref"/>								
+			</property-editor>
+			<property-editor name="dataList" type="list">
+				<static-data value=":无"/>
+				<dynamic-data xpath="//*[local-name()='data']/@id" />								
+			</property-editor>
+			<property-editor name="dataDialog" type="dialog">
+				<dialog-page class-name="SelectItemsetDataPage"/>				
+			</property-editor>
+			<property-editor name="columnsDialog" type="dialog">
+				<dialog-page class-name="SelectColumnPage"/>				
+			</property-editor>
+		</property-editors>
+
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+				<xhtml:div component="/UI/system/components/filter.xbl.xml#gridFilter" all-selected-label="'全部'">
+					<xforms:label ref=""/>
+					<xforms:value ref=""/>
+					<xforms:itemset>
+					</xforms:itemset>
+				</xhtml:div>
+		  		]]>
+		   	</template>
+		</templates>
+	</element>
+</elements>

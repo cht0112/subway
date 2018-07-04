@@ -1,0 +1,36 @@
+<xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:justep="http://www.justep.com/x5#" 
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xui="http://www.justep.com/xui">
+
+	<script src="/UI/appCommon/js/appCommon.js" />
+	<script src="/UI/appCommon/components/processExecuteListIframe/js/processExecuteListIframe.js"/>
+
+	<binding id="processExecuteListIframe">
+		<template template-type="java"  src="ProcessExecuteListIframe" /> 
+		<implementation>
+			({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ProcessExecuteListIframe(this));
+					var self = this;
+					if (this.getIframe().attachEvent) {
+						this.getIframe().attachEvent("onload", function() {
+							self._doAfterIframeLoaded();
+						});
+					} else {
+						this.getIframe().onload = function() {
+							self._doAfterIframeLoaded();
+						};
+					}
+					if (this._autoLoad) {
+						this.refreshList();
+					}
+				}
+			})			
+		</implementation>		
+	</binding>
+</xbl>

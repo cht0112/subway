@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="customBar" tag-type="rich" tag-name="bar" icon="customBar.gif" text="标准工具栏"  
+		display-property="id" 
+		component-class="CustomBar" parent-range="toolbars"
+		component-type="layoutContainer" validator="ToolbarsValidator" design-view="web-designer" 
+		binding-component="/UI/system/components/customBar.xbl.xml#customBar">
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref=""/>
+		</properties>
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xui:bar component="/UI/system/components/customBar.xbl.xml#customBar">   
+				 
+				</xui:bar>
+			]]></template>
+		</templates>
+	
+	</element>
+</elements>

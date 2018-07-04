@@ -1,0 +1,1988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js">
+</script>      <script language="javascript" src="/UI/system/components/dialog/dialog.js">
+</script>      <script language="javascript" src="/UI/system/components/./process/process.js">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js">
+</script>      <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js">
+</script>      <script language="javascript" src="/UI/system/components/common/common.js">
+</script>      <script language="javascript" src="/UI/system/components/dateFilter/dateFilter.js">
+</script>      <link href="/form/dhtmlx/dhtmlxCombo/dhtmlxcombo.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css">.xforms-readonly .dhx_combo_img { display:none; }</style>  
+    <style rel="stylesheet" type="text/css"></style>  
+    <script language="javascript" src="/UI/system/components/smartFilter/smartFilter.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/metrodetection/detection_Process_Related/process/detectionProcessQuery/mainActivity.js">
+</script>      <script id="htmlScript2" src="/UI/SA/task/js/common.js">
+</script>      <script>
+new justep.XBizData('main',false,false,{'queryAction':"detectionProcessQueryAction",'dataModel':"/system/data",'concept':"{'SA_Task':'SA_Task'}",'limit':20,'idColumn':"{'name':'SA_Task','relation':'SA_Task','define':'SA_Task','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"sName,sCreateTime,sLastModifyTime,sCreatorPersonName,sESField05",'updateMode':"whereVersion",'orderBys':"{'sCreateTime':0}",'defRelations':"{'sParent':{'type':'String','relation':'SA_Task.sParent','define':'SA_Task.sParent','label':'父任务'},'sName':{'type':'String','relation':'SA_Task.sName','define':'SA_Task.sName','label':'名称'},'sContent':{'type':'String','relation':'SA_Task.sContent','define':'SA_Task.sContent','label':'内容'},'sRemark':{'type':'String','relation':'SA_Task.sRemark','define':'SA_Task.sRemark','label':'处理情况'},'sFlowID':{'type':'String','relation':'SA_Task.sFlowID','define':'SA_Task.sFlowID','label':'流程实例'},'sSourceID':{'type':'String','relation':'SA_Task.sSourceID','define':'SA_Task.sSourceID','label':'回退的目标'},'sFrontID':{'type':'String','relation':'SA_Task.sFrontID','define':'SA_Task.sFrontID','label':'回退的起点'},'sCatalogID':{'type':'String','relation':'SA_Task.sCatalogID','define':'SA_Task.sCatalogID','label':'任务级别'},'sKindID':{'type':'String','relation':'SA_Task.sKindID','define':'SA_Task.sKindID','label':'任务分类'},'sResponsible':{'type':'String','relation':'SA_Task.sResponsible','define':'SA_Task.sResponsible','label':'负责人'},'sExecuteMode2':{'type':'String','relation':'SA_Task.sExecuteMode2','define':'SA_Task.sExecuteMode2','label':'执行模式2'},'sExecuteMode':{'type':'String','relation':'SA_Task.sExecuteMode','define':'SA_Task.sExecuteMode','label':'执行模式'},'sPreemptMode':{'type':'String','relation':'SA_Task.sPreemptMode','define':'SA_Task.sPreemptMode','label':'抢占模式'},'sRemindMode':{'type':'String','relation':'SA_Task.sRemindMode','define':'SA_Task.sRemindMode','label':'提醒模式'},'sTypeID':{'type':'String','relation':'SA_Task.sTypeID','define':'SA_Task.sTypeID','label':'任务类型ID'},'sTypeName':{'type':'String','relation':'SA_Task.sTypeName','define':'SA_Task.sTypeName','label':'任务类型'},'sImportanceID':{'type':'String','relation':'SA_Task.sImportanceID','define':'SA_Task.sImportanceID','label':'重要性ID'},'sImportanceName':{'type':'String','relation':'SA_Task.sImportanceName','define':'SA_Task.sImportanceName','label':'重要性'},'sEmergencyID':{'type':'String','relation':'SA_Task.sEmergencyID','define':'SA_Task.sEmergencyID','label':'紧迫度ID'},'sEmergencyName':{'type':'String','relation':'SA_Task.sEmergencyName','define':'SA_Task.sEmergencyName','label':'紧迫度'},'sCURL':{'type':'String','relation':'SA_Task.sCURL','define':'SA_Task.sCURL','label':'提交页面'},'sEURL':{'type':'String','relation':'SA_Task.sEURL','define':'SA_Task.sEURL','label':'执行页面'},'sDistributeTime':{'type':'DateTime','relation':'SA_Task.sDistributeTime','define':'SA_Task.sDistributeTime','label':'发布时间'},'sCreateTime':{'type':'DateTime','relation':'SA_Task.sCreateTime','define':'SA_Task.sCreateTime','label':'创建时间'},'sLastModifyTime':{'type':'DateTime','relation':'SA_Task.sLastModifyTime','define':'SA_Task.sLastModifyTime','label':'最后修改时间'},'sLimitTime':{'type':'DateTime','relation':'SA_Task.sLimitTime','define':'SA_Task.sLimitTime','label':'限制时间'},'sWarningTime':{'type':'DateTime','relation':'SA_Task.sWarningTime','define':'SA_Task.sWarningTime','label':'警告时间'},'sExecuteTime':{'type':'DateTime','relation':'SA_Task.sExecuteTime','define':'SA_Task.sExecuteTime','label':'处理时间'},'sExpectStartTime':{'type':'DateTime','relation':'SA_Task.sExpectStartTime','define':'SA_Task.sExpectStartTime','label':'预计开始时间'},'sExpectFinishTime':{'type':'DateTime','relation':'SA_Task.sExpectFinishTime','define':'SA_Task.sExpectFinishTime','label':'预计结束时间'},'sActualStartTime':{'type':'DateTime','relation':'SA_Task.sActualStartTime','define':'SA_Task.sActualStartTime','label':'开始时间'},'sActualFinishTime':{'type':'DateTime','relation':'SA_Task.sActualFinishTime','define':'SA_Task.sActualFinishTime','label':'结束时间'},'sCreatorFID':{'type':'String','relation':'SA_Task.sCreatorFID','define':'SA_Task.sCreatorFID','label':'提交者FID'},'sCreatorFName':{'type':'String','relation':'SA_Task.sCreatorFName','define':'SA_Task.sCreatorFName','label':'提交者'},'sExecutorFID':{'type':'String','relation':'SA_Task.sExecutorFID','define':'SA_Task.sExecutorFID','label':'执行者FID'},'sExecutorFName':{'type':'String','relation':'SA_Task.sExecutorFName','define':'SA_Task.sExecutorFName','label':'执行者'},'sCreatorPersonID':{'type':'String','relation':'SA_Task.sCreatorPersonID','define':'SA_Task.sCreatorPersonID','label':'提交人ID'},'sCreatorPersonName':{'type':'String','relation':'SA_Task.sCreatorPersonName','define':'SA_Task.sCreatorPersonName','label':'提交人'},'sCreatorPosID':{'type':'String','relation':'SA_Task.sCreatorPosID','define':'SA_Task.sCreatorPosID','label':'提交者岗位ID'},'sCreatorPosName':{'type':'String','relation':'SA_Task.sCreatorPosName','define':'SA_Task.sCreatorPosName','label':'提交者岗位'},'sCreatorDeptID':{'type':'String','relation':'SA_Task.sCreatorDeptID','define':'SA_Task.sCreatorDeptID','label':'提交者部门ID'},'sCreatorDeptName':{'type':'String','relation':'SA_Task.sCreatorDeptName','define':'SA_Task.sCreatorDeptName','label':'提交者部门'},'sCreatorOgnID':{'type':'String','relation':'SA_Task.sCreatorOgnID','define':'SA_Task.sCreatorOgnID','label':'提交者机构ID'},'sCreatorOgnName':{'type':'String','relation':'SA_Task.sCreatorOgnName','define':'SA_Task.sCreatorOgnName','label':'提交者机构'},'sExecutorPersonID':{'type':'String','relation':'SA_Task.sExecutorPersonID','define':'SA_Task.sExecutorPersonID','label':'执行人ID'},'sExecutorPersonName':{'type':'String','relation':'SA_Task.sExecutorPersonName','define':'SA_Task.sExecutorPersonName','label':'执行人'},'sExecutorPosID':{'type':'String','relation':'SA_Task.sExecutorPosID','define':'SA_Task.sExecutorPosID','label':'执行者岗位ID'},'sExecutorPosName':{'type':'String','relation':'SA_Task.sExecutorPosName','define':'SA_Task.sExecutorPosName','label':'执行者岗位'},'sExecutorDeptID':{'type':'String','relation':'SA_Task.sExecutorDeptID','define':'SA_Task.sExecutorDeptID','label':'执行者部门ID'},'sExecutorDeptName':{'type':'String','relation':'SA_Task.sExecutorDeptName','define':'SA_Task.sExecutorDeptName','label':'执行者部门'},'sExecutorOgnID':{'type':'String','relation':'SA_Task.sExecutorOgnID','define':'SA_Task.sExecutorOgnID','label':'执行者机构ID'},'sExecutorOgnName':{'type':'String','relation':'SA_Task.sExecutorOgnName','define':'SA_Task.sExecutorOgnName','label':'执行者机构'},'sExecutorNames':{'type':'String','relation':'SA_Task.sExecutorNames','define':'SA_Task.sExecutorNames','label':'执行者列表'},'sCustomerID':{'type':'String','relation':'SA_Task.sCustomerID','define':'SA_Task.sCustomerID','label':'客户ID'},'sCustomerName':{'type':'String','relation':'SA_Task.sCustomerName','define':'SA_Task.sCustomerName','label':'客户'},'sProjectID':{'type':'String','relation':'SA_Task.sProjectID','define':'SA_Task.sProjectID','label':'项目ID'},'sProjectName':{'type':'String','relation':'SA_Task.sProjectName','define':'SA_Task.sProjectName','label':'项目'},'sPlanID':{'type':'String','relation':'SA_Task.sPlanID','define':'SA_Task.sPlanID','label':'计划ID'},'sPlanName':{'type':'String','relation':'SA_Task.sPlanName','define':'SA_Task.sPlanName','label':'计划'},'sData1':{'type':'String','relation':'SA_Task.sData1','define':'SA_Task.sData1','label':'单据号'},'sData2':{'type':'String','relation':'SA_Task.sData2','define':'SA_Task.sData2','label':'业务数据2'},'sData3':{'type':'String','relation':'SA_Task.sData3','define':'SA_Task.sData3','label':'业务数据3'},'sData4':{'type':'String','relation':'SA_Task.sData4','define':'SA_Task.sData4','label':'业务数据4'},'sVariable':{'type':'String','relation':'SA_Task.sVariable','define':'SA_Task.sVariable','label':'变量'},'sActive':{'type':'String','relation':'SA_Task.sActive','define':'SA_Task.sActive','label':'激活'},'sStatusID':{'type':'String','relation':'SA_Task.sStatusID','define':'SA_Task.sStatusID','label':'任务状态ID'},'sStatusName':{'type':'String','relation':'SA_Task.sStatusName','define':'SA_Task.sStatusName','label':'任务状态'},'sAIActive':{'type':'String','relation':'SA_Task.sAIActive','define':'SA_Task.sAIActive','label':'环节激活'},'sAIID':{'type':'String','relation':'SA_Task.sAIID','define':'SA_Task.sAIID','label':'环节实例'},'sAIStatusID':{'type':'String','relation':'SA_Task.sAIStatusID','define':'SA_Task.sAIStatusID','label':'环节状态ID'},'sAIStatusName':{'type':'String','relation':'SA_Task.sAIStatusName','define':'SA_Task.sAIStatusName','label':'环节状态'},'sSequence':{'type':'Integer','relation':'SA_Task.sSequence','define':'SA_Task.sSequence','label':'序号'},'sLock':{'type':'String','relation':'SA_Task.sLock','define':'SA_Task.sLock','label':'编号'},'sHints':{'type':'String','relation':'SA_Task.sHints','define':'SA_Task.sHints','label':'提示'},'sShortcut':{'type':'String','relation':'SA_Task.sShortcut','define':'SA_Task.sShortcut','label':'快捷操作'},'sProcess':{'type':'String','relation':'SA_Task.sProcess','define':'SA_Task.sProcess','label':'过程'},'sActivity':{'type':'String','relation':'SA_Task.sActivity','define':'SA_Task.sActivity','label':'环节'},'sProcessName':{'type':'String','relation':'SA_Task.sProcessName','define':'SA_Task.sProcessName','label':'过程'},'sActivityName':{'type':'String','relation':'SA_Task.sActivityName','define':'SA_Task.sActivityName','label':'环节'},'version':{'type':'Integer','relation':'SA_Task.version','define':'SA_Task.version','label':'版本'},'sProcessTemplateID':{'type':'String','relation':'SA_Task.sProcessTemplateID','define':'SA_Task.sProcessTemplateID','label':'流程模板'},'sProcessTemplateItemSequence':{'type':'String','relation':'SA_Task.sProcessTemplateItemSequence','define':'SA_Task.sProcessTemplateItemSequence','label':'流程模板序号'},'sTempPermissionID':{'type':'String','relation':'SA_Task.sTempPermissionID','define':'SA_Task.sTempPermissionID','label':'临时权限'},'sESField01':{'type':'String','relation':'SA_Task.sESField01','define':'SA_Task.sESField01','label':'扩展01'},'sESField02':{'type':'String','relation':'SA_Task.sESField02','define':'SA_Task.sESField02','label':'扩展02'},'sESField03':{'type':'String','relation':'SA_Task.sESField03','define':'SA_Task.sESField03','label':'扩展03'},'sESField04':{'type':'String','relation':'SA_Task.sESField04','define':'SA_Task.sESField04','label':'扩展04'},'sESField05':{'type':'String','relation':'SA_Task.sESField05','define':'SA_Task.sESField05','label':'申请单据号'},'sESField06':{'type':'String','relation':'SA_Task.sESField06','define':'SA_Task.sESField06','label':'扩展06'},'sESField07':{'type':'String','relation':'SA_Task.sESField07','define':'SA_Task.sESField07','label':'扩展07'},'sESField08':{'type':'String','relation':'SA_Task.sESField08','define':'SA_Task.sESField08','label':'扩展08'},'sEDField21':{'type':'DateTime','relation':'SA_Task.sEDField21','define':'SA_Task.sEDField21','label':'扩展21'},'sEDField22':{'type':'DateTime','relation':'SA_Task.sEDField22','define':'SA_Task.sEDField22','label':'扩展22'},'sEDField23':{'type':'DateTime','relation':'SA_Task.sEDField23','define':'SA_Task.sEDField23','label':'扩展23'},'sEDField24':{'type':'DateTime','relation':'SA_Task.sEDField24','define':'SA_Task.sEDField24','label':'扩展24'},'sETField31':{'type':'Text','relation':'SA_Task.sETField31','define':'SA_Task.sETField31','label':'扩展31'},'sETField32':{'type':'Text','relation':'SA_Task.sETField32','define':'SA_Task.sETField32','label':'扩展32'},'sETField33':{'type':'Text','relation':'SA_Task.sETField33','define':'SA_Task.sETField33','label':'扩展33'},'sETField34':{'type':'Text','relation':'SA_Task.sETField34','define':'SA_Task.sETField34','label':'扩展34'},'sEIField41':{'type':'Integer','relation':'SA_Task.sEIField41','define':'SA_Task.sEIField41','label':'扩展41'},'sEIField42':{'type':'Integer','relation':'SA_Task.sEIField42','define':'SA_Task.sEIField42','label':'扩展42'},'sEIField43':{'type':'Integer','relation':'SA_Task.sEIField43','define':'SA_Task.sEIField43','label':'扩展43'},'sEIField44':{'type':'Integer','relation':'SA_Task.sEIField44','define':'SA_Task.sEIField44','label':'扩展44'},'sEBField51':{'type':'Blob','relation':'SA_Task.sEBField51','define':'SA_Task.sEBField51','label':'扩展51'},'sEBField52':{'type':'Blob','relation':'SA_Task.sEBField52','define':'SA_Task.sEBField52','label':'扩展52'},'sEBField53':{'type':'Blob','relation':'SA_Task.sEBField53','define':'SA_Task.sEBField53','label':'扩展53'},'sEBField54':{'type':'Blob','relation':'SA_Task.sEBField54','define':'SA_Task.sEBField54','label':'扩展54'},'sENField11':{'type':'Decimal','relation':'SA_Task.sENField11','define':'SA_Task.sENField11','label':'扩展11'},'sENField12':{'type':'Decimal','relation':'SA_Task.sENField12','define':'SA_Task.sENField12','label':'扩展12'},'sENField13':{'type':'Decimal','relation':'SA_Task.sENField13','define':'SA_Task.sENField13','label':'扩展13'},'sENField14':{'type':'Decimal','relation':'SA_Task.sENField14','define':'SA_Task.sENField14','label':'扩展14'},'sSummary':{'type':'String','relation':'SA_Task.sSummary','define':'SA_Task.sSummary','label':'摘要'},'sActivityNames':{'type':'String','relation':'SA_Task.sActivityNames','define':'SA_Task.sActivityNames','label':'当前活动环节'},'sCode':{'type':'String','relation':'SA_Task.sCode','define':'SA_Task.sCode','label':'编号'},'sWithdraw':{'type':'Integer','relation':'SA_Task.sWithdraw','define':'SA_Task.sWithdraw','label':'回收标记'},'sProcessTemplateID2':{'type':'String','relation':'SA_Task.sProcessTemplateID2','define':'SA_Task.sProcessTemplateID2','label':'父任务'},'sActivityInTemplate':{'type':'String','relation':'SA_Task.sActivityInTemplate','define':'SA_Task.sActivityInTemplate','label':'环节2'},'sStatusName1':{'type':'String','relation':'sStatusName1','define':'EXPRESS','label':'null'}}",'defCalcRelations':"{'calcIndex':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'main_part',{});</script>  
+    <script>
+new justep.XCommonData('custom_filter',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XBizData('data-1784490384',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'_valid_state_filter_':'SA_OPOrg.sValidState = 1'}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'1=1','nodeKindRelation':'sNodeKind'}"},'data-1784490384_part',{});</script>  
+    <script>
+new justep.XCommonData('smartFilter1_data_428881185',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/dialog.xbl.xml#dialog"] = _xbl_JSClassDefine_dialog;
+justep.XBLObject._classes["/UI/system/components/process.xbl.xml#process"] = _xbl_JSClassDefine_process;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"] = _xbl_JSClassDefine_bizDataFilterPattern;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/system/components/smartFilter.xbl.xml#smartFilter"] = _xbl_JSClassDefine_smartFilter;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/windowDialog.xbl.xml#windowDialog"] = _xbl_JSClassDefine_windowDialog;
+justep.XBLObject._classes["/UI/system/components/menu.xbl.xml#menu"] = _xbl_JSClassDefine_menu;
+justep.XBLObject._classes["/UI/system/components/tableLayout.xbl.xml#tableLayout"] = _xbl_JSClassDefine_tableLayout;
+justep.XBLObject._classes["/UI/system/components/dateFilter.xbl.xml#dateFilter"] = _xbl_JSClassDefine_dateFilter;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/orgFilter.xbl.xml#orgFilter"] = _xbl_JSClassDefine_orgFilter;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"] = _xbl_JSClassDefine_bizDataFilterDialog;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_dialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_dialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.Dialog(node.getAttribute("id"),node.getAttribute("title"),node.getAttribute("modal")=="true",node.getAttribute("status"),node.getAttribute("width"),node.getAttribute("height"),node.getAttribute("left"),node.getAttribute("top")
+					,node.getAttribute("onInit"),node.getAttribute("onOpen"),node.getAttribute("onClose")
+				);
+				dialog.setClosable(node.getAttribute("closable")!="false");
+				dialog.setMinmaxable(node.getAttribute("minmaxable")!="false");
+				dialog.setResizable(node.getAttribute("resizable")!="false");
+				dialog.setNeighbor(node.getAttribute("neighbor"));
+				dialog.setAutoSize(node.getAttribute("auto-size")=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+_xbl_JSClassDefine_dialog.prototype.ClassName='_xbl_JSClassDefine_dialog';
+_xbl_JSClassDefine_dialog.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_dialog_j_xbl_e_;
+function _xbl_JSClassDefine_process(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_process.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function(){
+					justep.supportCustomOperation(this);
+					justep.Object.extend(this, new justep.ProcessEngine(this));
+				}
+			}));
+
+_xbl_JSClassDefine_process.prototype.ClassName='_xbl_JSClassDefine_process';
+_xbl_JSClassDefine_process.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_process_j_xbl_e_;
+function _xbl_JSClassDefine_bizDataFilterPattern(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterPattern.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var menuEl = this.getElementByXblID("filter-pattern-menu");
+				this.menuId = $(menuEl).firstElement().getAttribute("menu-id");
+				var dialogEl = this.getElementByXblID("filter-pattern-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-pattern-dialog-iframe");
+				this.iframeId = frameEl.getAttribute("name");
+			},
+			"show": function(data, controlId, filterDlgId) {
+				if (typeof(data) == "string") {
+					data = justep.xbl(data);
+				}
+				if (data) {
+					if (typeof(data.advanceFilter) != "undefined") {
+						var frameEl = document.getElementById(this.iframeId);
+						if (frameEl) {
+							frameEl.dialogId = this.dialogId;
+							frameEl.currData = data;
+							frameEl.advanceFilter = data.advanceFilter.getFilter();
+							showFilterPatternMenu(data, this.menuId, controlId, filterDlgId);
+						}
+					}
+				}
+			}
+		}));
+
+_xbl_JSClassDefine_bizDataFilterPattern.prototype.ClassName='_xbl_JSClassDefine_bizDataFilterPattern';
+_xbl_JSClassDefine_bizDataFilterPattern.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_bizDataFilterPattern_j_xbl_e_;
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+_xbl_JSClassDefine_borderLayout.prototype.ClassName='_xbl_JSClassDefine_borderLayout';
+_xbl_JSClassDefine_borderLayout.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_borderLayout_j_xbl_e_;
+function _xbl_JSClassDefine_smartFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_smartFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new justep.SmartFilter(this));
+				}
+			}));
+
+_xbl_JSClassDefine_smartFilter.prototype.ClassName='_xbl_JSClassDefine_smartFilter';
+_xbl_JSClassDefine_smartFilter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_smartFilter_j_xbl_e_;
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+function _xbl_JSClassDefine_windowDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.WindowDialog(node.id,node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('modal')=="true",node.getAttribute('status'),
+				                  node.getAttribute('width'),node.getAttribute('height'),node.getAttribute('left'),node.getAttribute('top'),node.getAttribute("reload-on-open") =='true',
+				                  node.getAttribute('onSend') , node.getAttribute('onReceive') ,node.getAttribute('onInit') ,node.getAttribute('onOpen') ,node.getAttribute('onClose'));
+				dialog.setClosable(node.getAttribute('closable')!="false");
+				dialog.setMinmaxable(node.getAttribute('minmaxable')!="false");
+				dialog.setResizable(node.getAttribute('resizable')!="false");
+				dialog.setNeighbor(node.getAttribute('neighbor'));
+				dialog.setAutoSize(node.getAttribute('autosize')=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				dialog.setProcess(node.getAttribute("process"));
+				dialog.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+_xbl_JSClassDefine_windowDialog.prototype.ClassName='_xbl_JSClassDefine_windowDialog';
+_xbl_JSClassDefine_windowDialog.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_windowDialog_j_xbl_e_;
+function _xbl_JSClassDefine_menu(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_menu.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_id": null,
+				"_itemsets": null,
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len &gt; i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+				}
+			}));
+
+_xbl_JSClassDefine_menu.prototype.ClassName='_xbl_JSClassDefine_menu';
+_xbl_JSClassDefine_menu.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_menu_j_xbl_e_;
+function _xbl_JSClassDefine_tableLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tableLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.trs = $("&gt;tbody tr", this.el);
+			   	this.spacing = this._getSpace();
+			   	/*为了兼容ie789, cellpadding都强设为0*/
+			   	this.el.attr("cellpadding", "0");
+			   	$("&gt;tbody&gt;tr&gt;td", this.el).css("padding", "0");
+			   	this.padding = this._getPadding();
+		   		this.onWindowResize();
+			},
+			_getSpace : function(){
+				/*默认2是为了解决ie下无法获得默认值的问题*/
+				var spacing = this.el.attr("cellspacing") || (!justep.Browser.IE?this.el.css("border-spacing"):null) || "2px";
+			   	spacing = spacing.split(" ");
+			   	return parseInt(spacing[1] || spacing[0]) || 0;  
+			},
+			_getPadding : function(){
+				/*默认是为了解决ie下无法获得默认值的问题，ie7默认是2px,ie89默认是1px*/
+				var ret = parseInt(this.el.attr("cellpadding"));
+				return ret || (ret===0 ? 0 : (justep.Browser.IE7 ? "2" : "1")); 
+			},
+			onWindowResize : function(){
+				if(!justep.Browser.IE){
+					$("&gt;tbody &gt;tr", this.el).each(function(index, tr){
+						var td = $(tr.children[0]);
+						tr = $(tr);
+						var h = tr.attr('height') || tr.get(0).style["height"],
+							hd = td.attr('height') || td.get(0).style["height"];
+						if((h == null || h == '') &amp;&amp; (hd == null || hd == '')){
+							td.get(0).height = '100%';
+							td.get(0).style["height"] = '100%';
+						}
+					});
+					return;
+				}	
+				var el = this.el;
+				if(el.parent().get(0).tagName.toLowerCase()=="td"){
+					el = el.parent();
+				}
+				var h = el.height(),that = this,
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).height || tr.get(0).style["height"],
+						hd = td.get(0).height || td.get(0).style["height"];
+					/*为了兼容已有应用*/ 
+					if(h=='100%') {
+						h=null;
+						tr.get(0).height = null;
+						tr.get(0).style["height"] = null;
+					}
+					if(hd=='100%') {
+						hd=null;
+						td.get(0).height = null;
+						td.get(0).style["height"] = null;
+					}
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						var mh = Math.max(
+							parseInt(tr.get(0).height)||0,
+							parseInt(tr.get(0).style["height"])||0,
+							(parseInt(td.get(0).height) + that.padding*2)||0,
+							(parseInt(td.get(0).style["height"]) + that.padding*2)||0
+						);
+						b += mh;
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));/*这是防止td被内容撑开*/
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					if(a[0].get(0).children[0]){
+						/*第一个td*/
+						var mh = h-b-this.padding*2; 
+						a[0].get(0).children[0].setAttribute("height", (h-b-this.padding*2)+"px");
+						var td = $(a[0].get(0).children[0]);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			},   	
+			resize2 : function(){
+				var h = this.el.parent().height(),that = this,
+					w = this.el.parent().width(),
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.el.width(w);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).style["height"] || tr.attr('height'),
+						hd = td.get(0).style["height"] || tr.attr('height');
+					/*为了兼容已有应用*/ 
+					if(h=='100%') h=null;
+					if(hd=='100%') hd=null;
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						b += tr.outerHeight();
+						/*这是防止td被内容撑开*/
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(td.height()));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(td.height());
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					/*第一个td*/
+					var td;
+					if(td = a[0].get(0).children[0]){
+						var mh = h-b-this.padding*2; 
+						td.setAttribute("height", mh+"px");
+						td = $(td);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			}   	
+		}));
+
+_xbl_JSClassDefine_tableLayout.prototype.ClassName='_xbl_JSClassDefine_tableLayout';
+_xbl_JSClassDefine_tableLayout.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_tableLayout_j_xbl_e_;
+function _xbl_JSClassDefine_dateFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_dateFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					var labels = (new justep.Message(justep.Message.JUSTEP231074)).getMessage().split(",");
+					this.alertLabel1 = (new justep.Message(justep.Message.JUSTEP231075)).getMessage();
+					this.alertLabel2 = (new justep.Message(justep.Message.JUSTEP231076)).getMessage();
+					this.partId = this.domNode.id + "_part";
+					this.modelId = this.domNode.id + "_model";
+					this.dataId = this.domNode.id + "_data";
+					this.dialogId = this.domNode.id + "_dialog";
+					var el = jQuery(this.domNode);
+					var onChanged = el.attr("onChanged");
+					if(onChanged)
+						this.onChanged = justep.Function.get(onChanged);
+					var onGetCondition = el.attr('onGetCondition');
+					if(onGetCondition)	
+						this.onGetCondition = justep.Function.get(onGetCondition);
+					this.defaultValue = el.attr("default-select");
+					var width = el.width()||100;
+					var tabindex = el.attr("tabindex");
+					var disable = el.attr("disabled");
+					this.autoRefresh = el.attr('auto-refresh') == "true";
+					this.filterDateMode = el.attr('filter-date-mode');
+					this.filterDataID = el.attr('filter-data');
+					if(this.filterDataID)
+						this.filterData = justep.xbl(this.filterDataID);
+					this.dateRelation1 = el.attr('filter-date-relation1');
+					this.dateRelation2 = el.attr('filter-date-relation2');
+					this.dropdownHeight = el.attr("dropdown-height") || "225";
+					this._disabled = disable = disable ? ((''+disable)=="true"): false; 
+					window.dhx_globalImgPath=justep.Request.convertURL("/form/dhtmlx/dhtmlxCombo/imgs/", true);
+			    	this.combo = new dhtmlXCombo(this.domNode.id, "", width, "", tabindex);
+			    	this.combo.addOption([["0", labels[0]], ["1", labels[1]], ["2", labels[2]], ["3", labels[3]], ["4", labels[4]], ["5", labels[5]], ["6", labels[6]], ["7", labels[7]], ["8", labels[8]], ["9", labels[9]]]);
+			    	if(this.defaultValue != undefined) this.combo.setComboValue(this.defaultValue);
+			    	this.jelement = jQuery(this.combo.DOMelem); 
+			    	this.combo.readonly(true);
+			    	this.setDisabled(disable);
+			    	if(this.dropdownHeight){
+			    		if(this.dropdownHeight.indexOf("px") == -1 ) this.dropdownHeight = this.dropdownHeight + "px";
+			    		jQuery(this.combo.DOMlist).height(this.dropdownHeight);
+			    		if (this.combo.DOMlistF) 
+			    			jQuery(this.combo.DOMlistF).height(this.dropdownHeight);
+			    	}	
+
+		    		var that = this;
+		    		var callback = function(){
+		    			if(that.getCurrentSelect() == 9){
+		    				that.openDialog();
+		    			}else{
+			    			var event = {source: that};
+			    			that.setFilter();
+			    			if(that.onChanged)
+			    				that.onChanged.call(that, event);
+		    			}	
+		    		};
+		    		this.combo.attachEvent("onChange",callback);
+				},
+				setDisabled : function(disabled){
+					this.combo.disable(disabled);
+					if(disabled) this.jelement.addClass("xforms-readonly");
+					else this.jelement.removeClass("xforms-readonly");
+					this._disabled = disabled;
+				},
+				getDisabled : function(){
+					return this._disabled;
+				},
+				setReadonly : function(readonly){
+					this.setDisabled(readonly);
+				},
+				getReadonly : function(){
+					return this.getDisabled();
+				},
+				setTabIndex : function(tabIndex){
+					this._tabIndex = tabIndex;
+				},
+				getTabIndex : function(){
+					return this._tabIndex;
+				},
+				setAccessKey : function(key){
+					this._accessKey = key;
+				},
+				getAccessKey : function(){
+					return this._accessKey;
+				},
+				setAutoRefresh : function(autoRefresh){
+					this.autoRefresh = autoRefresh;
+				},
+				clearFilter : function(){
+					this.filterData.setFilter(this.getFilterName(),"");
+					if(this.defaultValue != undefined) 
+						this.combo.setComboValue(this.defaultValue);
+					else
+						this.combo.setComboValue("0");
+				},			
+				setFilter : function(){
+					if(!this.filterData || !this.dateRelation1) return;
+					var condition = this.getCondition();
+					var old = this.filterData.getFilter(this.getFilterName());
+					if (condition != old) {
+						this.filterData.setFilter(this.getFilterName(), condition);
+						if (this.autoRefresh)
+							this.filterData.refreshData();
+					}			
+				},
+				getCondition : function(){
+					var r = this.getDateRange();
+					var condition;
+					if (this.filterDateMode == "single"){
+						var relationAlias = justep.Components.FilterUtils.getRelationAlias(this.filterDataID,this.dateRelation1);
+						condition = justep.Components.FilterUtils.getDateFilter(relationAlias, r.beginDate, r.endDate);
+					}else{
+						var r1 = justep.Components.FilterUtils.getRelationAlias(this.filterDataID,this.dateRelation1);
+						var r2 = justep.Components.FilterUtils.getRelationAlias(this.filterDataID,this.dateRelation2);
+						condition = justep.Components.FilterUtils.getDateRangeFilter(r1, r2, r.beginDate, r.endDate);					
+					}
+					if (this.onGetCondition) {
+						var eventData = {
+							"filterData" : this.filterData,
+							"filterMode" : this.filterDateMode,
+							"dateRelation1" : this.dateRelation1,
+							"dateRelation2" : this.dateRelation2,
+							"currentSelect" : this.getCurrentSelect(),
+							"defaultSelect" : this.defaultValue,
+							"customBeginDate" : r.beginDate,
+							"customEndDate" : r.endDate,
+							"defaultCondition" : condition
+						};
+						var ret = this.onGetCondition(eventData);
+						if (ret)
+							condition = ret;
+					}
+					return condition;		
+				},
+				getFilterName : function(){
+					return "_" + this.domNode.id + "_filter";
+				},
+				getDateFilter : function(relation){
+					if(!relation) return '';
+					var range = this.getDateRange();
+					var r = justep.Components.FilterUtils.getRelationAlias(this.filterDataID,relation);
+					return justep.Components.FilterUtils.getDateFilter(r, range.beginDate, range.endDate);
+				},
+				getBeginDatetime : function(){
+					return this.getDateRange().beginDate;                   
+				},
+				getEndDatetime : function(){
+					return this.getDateRange().endDate;
+				},
+				getCurrentSelect : function(){
+					return this.combo.getSelectedValue();
+				},
+				getValue : function(){
+					return this.getCurrentSelect();
+				},
+				getInnerDialog : function(){
+					this._loadPart();
+					return this.dialog;				
+				},
+				getInnerSelect : function(){
+					return this.combo;
+				},
+				getDateRange : function() {
+					var select = this.combo.getSelectedValue();
+					var result = {'beginDate': null, 'endDate': null};
+					if(typeof(select) == "string" &amp;&amp; select) select = parseInt(select);
+					if(typeof(select) != "number") return result;
+					var today = justep.DateFilter._getToday();
+					switch(select){
+						case 0: break;
+						case 1:{
+							result.beginDate = today;
+							result.endDate = result.beginDate;
+							break;
+						}
+						case 2:{
+							result.beginDate = justep.Date.increase(today, -1, "d");
+							result.endDate = result.beginDate;
+							break;
+						}
+						case 3:{
+							result.beginDate = justep.Date.increase(today, -today.getDay(), "d");
+							result.endDate = justep.Date.increase(result.beginDate, 6, "d");
+							break;
+						}
+						case 4:{
+							result.beginDate = justep.Date.increase(today, -today.getDay()-7, "d");
+							result.endDate = justep.Date.increase(result.beginDate, 6, "d");
+							break;
+						}
+						case 5:{
+							result.beginDate = new Date(today.getFullYear(), today.getMonth(), 1);
+							result.endDate = justep.Date.increase(new Date(today.getFullYear(), today.getMonth()+1, 1), -1, "d");
+							break;
+						}
+						case 6:{
+							result.beginDate = new Date(today.getFullYear(), today.getMonth()-1, 1);
+							result.endDate = justep.Date.increase(new Date(today.getFullYear(), today.getMonth(), 1), -1, "d");
+							break;
+						}
+						case 7:{
+							result.beginDate = new Date(today.getFullYear(), 0, 1);
+							result.endDate = justep.Date.increase(new Date(today.getFullYear()+1, 0, 1), -1, "d");
+							break;
+						}
+						case 8:{
+							result.beginDate = new Date(today.getFullYear()-1, 0, 1);
+							result.endDate = justep.Date.increase(new Date(today.getFullYear(), 0, 1), -1, "d");
+							break;
+						}
+						case 9:{
+							customBeginDate = this.getCustomBeginDate();  
+							customEndDate = this.getCustomEndDate();
+							if (customBeginDate) 
+								result.beginDate = this._str2date(customBeginDate);
+							if (customEndDate) 
+								result.endDate = this._str2date(customEndDate);
+							break;
+						}
+					}
+					return result;	
+				},
+				getCustomBeginDate : function(){
+					return this.data.getValue("beginDate", 1);
+				},
+				getCustomEndDate : function(){
+					return this.data.getValue("endDate", 1);
+				},
+				openDialog : function(){
+					this._loadPart();
+					this.dialog.open();				
+				},
+				_loadPart : function(){
+					if(!this._hasLoaded){
+						xforms.load_part(this.partId);
+						this.model = justep.xbl(this.modelId);
+						this.data = justep.xbl(this.dataId);
+						this.dialog = justep.xbl(this.dialogId);
+						this._hasLoaded = true;
+						this.dialog.attachEvent("onOpen", function(event) {
+							this._doDialogOpen(event);
+						}, this);
+						this.dialog.attachEvent("onClose", function(event) {
+							this._doDialogClose(event);
+						}, this);
+						this._lastCustomBeginDate = null;
+						this._lastCustomEndDate = null;
+					}
+				},
+				_doDialogOpen : function(){
+					this._isDialogOK = false;
+					if (this.getCustomBeginDate() == "" &amp;&amp; this.getCustomEndDate() == "") {
+						var today = justep.Date.toString(this._getToday(), "YYYY-MM-DD");
+						this.data.setValue("beginDate", today, 1);
+						this.data.setValue("endDate", today, 1);
+					}
+				},
+				_getToday : function() {
+					return this._str2date(justep.System.datetimeString());
+				},
+				_doDialogClose : function(){
+					xforms.blur();
+					if (this._isDialogOK) {
+						this._lastCustomBeginDate = this.getCustomBeginDate();
+						this._lastCustomEndDate = this.getCustomEndDate();
+						this.setFilter();
+						if(this.onChanged) this.onChanged({'source':this});
+					} else {
+						this.data.setValue("beginDate", this._lastCustomBeginDate, 1);
+						this.data.setValue("endDate", this._lastCustomEndDate, 1);
+					}
+				},
+				getCurrentLabel : function(){
+					return this.combo.getComboText();
+				},
+				_str2date : function(d) {
+					return new Date(parseInt(d.substr(0, 4), 10), parseInt(d.substr(5, 2), 10) - 1, parseInt(d.substr(8, 2), 10));
+				},
+				_doDialogCheck : function(){
+					if (this.getCustomBeginDate() == "" || this.getCustomEndDate() == "") {
+						alert(this.alertLabel1);
+						return false;
+					}
+					var beginDate = this._str2date(this.getCustomBeginDate());
+					var endDate = this._str2date(this.getCustomEndDate());
+					if (beginDate &gt; endDate) {
+						alert(this.alertLabel2);
+						return false;
+					}
+					this._isDialogOK = true;
+					return true;
+				},
+				dispose: function(){
+					this.combo.destructor();
+					this.combo = null;
+					justep.XBLObject.prototype.dispose.call(this);
+				}
+			}));
+
+_xbl_JSClassDefine_dateFilter.prototype.ClassName='_xbl_JSClassDefine_dateFilter';
+_xbl_JSClassDefine_dateFilter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_dateFilter_j_xbl_e_;
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+_xbl_JSClassDefine_toolbars.prototype.ClassName='_xbl_JSClassDefine_toolbars';
+_xbl_JSClassDefine_toolbars.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_toolbars_j_xbl_e_;
+function _xbl_JSClassDefine_orgFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_orgFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"initXBL" : function() {
+					this.curPersonLabel = (new justep.Message(justep.Message.JUSTEP231077)).getMessage();
+					this.id = this.domNode.id;
+					this.__attribute_node = this.getElementByXblID('attribute');
+					this.__data_id = this.__attribute_node?this.__attribute_node.getAttribute('data-id'):'';
+					this.__select_id = this.__attribute_node?this.__attribute_node.getAttribute('select-id'):'';
+					this.__result_instance_id = this.__attribute_node?this.__attribute_node.getAttribute('instance-id'):'';
+					this.__data_obj = this.__data_id?justep.xbl(this.__data_id):null;
+					this.__select_obj = this.__select_id?xforms(this.__select_id):null;
+					this.__result_instance_obj = this.__result_instance_id?xforms(this.__result_instance_id):null;
+					this.hasCurrentPerson = this.domNode.getAttribute('has-current-person')!='false';
+					this.showOrgTypes = this.domNode.getAttribute('show-org-types');
+					this.showOrgTypes = this.showOrgTypes?this.showOrgTypes.split(','):[];
+					this.filterDataID = this.__attribute_node.getAttribute('filter-data');
+					this.personIDRelation = this.__attribute_node.getAttribute('person-id-relation');
+					this.orgURLRelation = this.__attribute_node.getAttribute('org-url-relation');
+					this.autoRefresh = this.__attribute_node.getAttribute('auto-refresh') == "true";
+					this.onGetCondition = this.__attribute_node.getAttribute('onGetCondition');
+					this.executeConcept = this.__attribute_node.getAttribute('execute-concept');
+					this.defaultValue = this.__attribute_node.getAttribute('default-value') ;
+					var filter = '';
+					for(var i=0;i&lt;this.showOrgTypes.length;i++){
+						var nodeType = this.showOrgTypes[i];
+						var s = justep.String.trim(nodeType);
+						if(s) filter += (filter!=''?",":"")+"'"+s+"'";
+					}
+					this.showOrgTypeFilter = filter!=''?'SA_OPOrg.sOrgKindID in ('+filter+')':'';
+					this.manageCodes =  justep.String.trim(this.domNode.getAttribute('manage-codes'));
+					if(!this.manageCodes) this.manageCodes='businessManagement';
+					this.__onChanged = this.domNode.getAttribute("onChanged")?justep.Function.get(this.domNode.getAttribute("onChanged")):null;
+					this.__onInit = this.domNode.getAttribute("onInit")?justep.Function.get(this.domNode.getAttribute("onInit")):null;
+					if(this.domNode.getAttribute("onDropdown")) this.__onDropdown = justep.Function.get(this.domNode.getAttribute("onDropdown")); else this.__onDropdown = null;
+					if(this.domNode.getAttribute("onRowExpand")) this.__onRowExpand = justep.Function.get(this.domNode.getAttribute("onRowExpand")); else this.__onRowExpand = null;
+					if(this.__select_obj){
+				        this.__select_obj.attachEvent("onCloseup", this.__closeup, this);
+				        if(this.__onRowExpand)
+							this.__select_obj.attachEvent("onRowExpand", this.__onRowExpand, this);
+						this.__select_obj.attachEvent("onShowNodeImg", this.__doShowNodeImg, this);
+						this.__select_obj.attachEvent("onDropdown", this.__doDropdown, this);
+					}
+					if(this.__data_obj){
+					    this.__data_obj.attachEvent("onBeforeNew", this._doBeforeNew, this);
+					    this.__data_obj.attachEvent("onBeforeDelete", this._doBeforeDelete, this);
+						this.__data_obj.attachEvent("onRefreshCreateParam", this._doCreateParam, this);
+					}
+					if(this.__result_instance_obj){
+						this.setDefaultValue(this.defaultValue,this.defaultValue);
+					}
+					if(this.__onInit) this.__onInit({'source':this});
+				},
+
+				"setDefaultValue" : function(value,label){
+					if(this.__result_instance_obj){
+						if(value==this.curPersonLabel) {value = justep.Context.getCurrentPersonID();label = this.curPersonLabel;}
+						var rowId = this.__result_instance_obj.getId();
+						this.__result_instance_obj.setValue('label',label,rowId);
+						this.__result_instance_obj.setValue('value',value,rowId);
+					}
+				},
+
+				"_doCreateParam" : function(event){
+					var queryParam = event.param;
+					var data = this.__data_obj;
+					var filter = this._getFilter();
+					var userFilter = data.buildFilter();
+					if(userFilter) filter = filter?'('+userFilter+') AND ('+filter+')':userFilter;
+					if(filter) queryParam.setString('filter', filter);
+					else queryParam.deleteParam('filter');
+
+					if(justep.XData.IS_TREE_ROOT==this.__data_obj.defTreeOption.loadTreeParent &amp;&amp; this.manageCodes){
+						queryParam.setString('manageCodes', this.manageCodes);
+					}else queryParam.deleteParam('manageCodes');
+				},
+				"_getFilter" : function(){
+					var orgFilter = this.showOrgTypeFilter;
+					if(orgFilter==""){
+						orgFilter += 'SA_OPOrg.sValidState=1';
+					}
+					else{
+						orgFilter += ' AND SA_OPOrg.sValidState=1';
+					}
+					return orgFilter;
+				},
+				"_doBeforeNew" : function(event){
+					event.cancel = true;
+				},
+
+				"_doBeforeDelete" : function(event){
+					event.cancel = true;
+				},
+				"getData" : function(){
+					return this.__data_obj;
+				},
+				"getSelect" : function(){
+					return this.__select_obj;
+				},
+				"__closeup" : function(event){
+					if(event.valueChanged &amp;&amp; this.getFilterData())
+						this._setFilter(this.id, this
+								.getFilterData(), this.personIDRelation, this.orgURLRelation,
+								this.executeConcept, this.getSelecteds(), this.onGetCondition,
+								this.autoRefresh);
+					if (this.__onChanged) this.__onChanged({'source':this});
+				},
+				"getFilterData" : function(){
+					return this.filterDataID?justep.xbl(this.filterDataID):null;
+				},
+				"setAutoRefresh" : function(autoRefresh){
+					this.autoRefresh = autoRefresh;
+				},				
+				"clearFilter" : function(){
+					this.getFilterData().setFilter(this.getFilterName(),"");
+					this.setDefaultValue(this.defaultValue,this.defaultValue);
+				},				
+				"getFilterName" : function(){
+					return "_" + this.id + "_filter";
+				},
+				"_setFilter" : function(id, filterData, personIDRelation, orgURLRelation, executeConcept, value, onGetConditionEvent, isRefresh){
+					var filterName = this.getFilterName();
+					var condition = this._doGetCondition(id,
+							filterData, personIDRelation, orgURLRelation, executeConcept,
+							value, onGetConditionEvent);
+					var oldCondition = filterData?filterData.getFilter(filterName):"";
+					if (condition != oldCondition) {
+						filterData.setFilter(filterName, condition, value);
+						if (isRefresh)
+							filterData.refreshData();
+					}
+				},
+				"_doGetCondition" : function(id, filterData,personIDRelation, orgURLRelation, executeConcept, value,onGetConditionEvent){
+					var condition = this._getFilterCondition(filterData, 
+							personIDRelation, orgURLRelation, executeConcept, value);
+					var fun = justep.Function.get(onGetConditionEvent);
+					if (fun) {
+						var eventData = {
+							"source" : this,
+							"id" : id,
+							"filterData" : filterData,
+							"personIDRelation" : personIDRelation,
+							"orgURLRelation" : orgURLRelation,
+							"executeConcept" : executeConcept,
+							"value" : value,
+							"defaultCondition" : condition,
+							"handled" : false
+						};
+						var customCondition = fun(eventData);
+						if (eventData.handled)
+							condition = customCondition;
+					}
+					return condition;				
+				},
+				"_getFilterCondition" : function(filterData, personIDRelation, orgURLRelation, executeConcept, value){				
+					if(!value &amp;&amp; this.defaultValue) {
+						value = this.defaultValue;
+						this.setDefaultValue(this.defaultValue,this.defaultValue);
+					}
+					if(!value ) return "";
+					var personR = personIDRelation?justep.Components.FilterUtils.getRelationAlias(this.filterDataID,personIDRelation):null;
+					var orgR = justep.Components.FilterUtils.getRelationAlias(this.filterDataID,orgURLRelation);
+					var condition = this.getFilter(orgR, personR);
+					return condition;				
+				},
+				"__addCurrentPerson" : function(data, grid){
+					if(!data) return;
+					justep.XData.disableControls();
+					try{
+						var currentPersonId = justep.Context.getCurrentPersonID();
+						data.insert(currentPersonId,0);
+						data.setValue('sName',this.curPersonLabel,currentPersonId);
+						data.setValue('sCode',justep.Context.getCurrentPersonCode(),currentPersonId);
+						data.setValue('sOrgKindID','psn',currentPersonId);
+						data.setValue('sValidState','1',currentPersonId);
+						if(grid) grid.setNodeLoadSuccess(currentPersonId);
+					}finally{justep.XData.enableControls();}
+				},
+				"__doDropdown" : function(event){
+					if(this.__onDropdown) this.__onDropdown(event);
+					if(!event.source.isLoadData){
+						var data = this.__data_obj;
+						if(!data) return;
+						if(this.hasCurrentPerson) this.__addCurrentPerson(data, this.getSelect());
+						event.source.isLoadData = data.loadTreeData(justep.XData.IS_TREE_ROOT);
+					}
+				},
+				"__doShowNodeImg" : function(event){
+					var data = justep.xbl(event.instance.element.id);
+					if(!data) return;
+					var orgKind = !event.grid._isVirtualRoot(event.rowId)?data.getValue('sOrgKindID', event.rowId):'root';
+					var ValidState = !event.grid._isVirtualRoot(event.rowId)?(1==data.getValue('sValidState', event.rowId)):true;
+					return justep.Resource.getOrgImgURL(orgKind, !ValidState);
+				},
+				"getSelecteds" : function(){
+					var data = this.getData();
+					var rowIds = this.getSelect().grid.getCheckedRowIds();
+					var values=[];
+					var names=['sName','sOrgKindID','sCode','sLongName','sFName','sFCode','sFID','sParent','sNodeKind','sValidState','sPersonID'];
+					if(!this.getSelect().isLoadData){
+						if(this.hasCurrentPerson &amp;&amp; this.curPersonLabel==this.domNode.getAttribute('default-value')){
+							var o = {};
+							o['sID'] = justep.Context.getCurrentPersonID();
+							o['sPersonID'] = o['sID'];
+							o['sCode'] = justep.Context.getCurrentPersonCode();
+							o['sName'] = justep.Context.getCurrentPersonName();
+							o['sOrgKindID'] = 'psn';
+							values.push(o);
+						}
+						return values;
+					}
+					for (var i = 0; i &lt; rowIds.length; i++) {
+						var o = {};
+						var isAdd = true;
+						var rowId = rowIds[i];
+						o['sID'] = rowId;
+						var FId = data.getValue('sFID',rowId);
+						var kind = data.getValue('sOrgKindID',rowId);
+						if('psn'!=kind){
+							for (var j=values.length-1; j&gt;=0; j--){
+								if('psn'==values[j].sOrgKindID) continue;
+							    var s = values[j].sFID;
+								if(0==s.indexOf(FId))
+									values.splice(j,1);
+								else if(0==FId.indexOf(s)) isAdd = false;	
+							}
+						}
+					    for (var j=0; j&lt;names.length; j++){
+					        var name = names[j];
+							var value = data.getValue(name,rowId);
+							o[name] = value;
+						}
+						if(isAdd) values.push(o);
+					}
+					return values;
+				},
+				"setTabIndex" : function(tabIndex){
+					this.__select_obj.setTabIndex(tabIndex);
+				},
+				"getTabIndex" : function(){
+					return this.__select_obj.getTabIndex();
+				},			
+				"setAccessKey" : function(key){
+					this.__select_obj.setAccessKey(key);
+				},			
+				"getAccessKey" : function(){
+					return this.__select_obj.getAccessKey();
+				},			
+				"setReadonly" : function(readonly){
+					this.__select_obj.setReadonly(readonly);
+				},			
+				"getReadonly" : function(){
+					return this.__select_obj.getReadonly();
+				},			
+				"setDisabled" : function(disabled){alert(disabled);
+					this.__select_obj.setDisabled(disabled);
+				},			
+				"getDisabled" : function(){
+					return this.__select_obj.getDisabled();
+				},
+				"getFilter" : function(orgFIdRelation, psnRelation, selectedValues){
+					var values = !selectedValues?this.getSelecteds():selectedValues;
+					var result = [];
+					for(var i=0;i&lt;values.length;i++){
+					    var o = values[i];
+						var s = '';
+						if('psn'==o.sOrgKindID){
+							s = psnRelation? ("(" + psnRelation + " LIKE '" + o.sID + "%')") : ("(" + orgFIdRelation + " LIKE '%" + o.sID + "@%')");
+						}else if('psm'==o.sOrgKindID){
+							s = psnRelation? ("(" + psnRelation + " = '" + o.sPersonID + "')") : ("(" + orgFIdRelation + " LIKE '%" + o.sID + ".psm')");
+						}else{
+						    s = "(" + orgFIdRelation + " LIKE '" + o.sFID + "%')";
+						}	
+						if(s) result.push(s);
+					}
+					return result.join(' OR ');
+				}
+			}));
+
+_xbl_JSClassDefine_orgFilter.prototype.ClassName='_xbl_JSClassDefine_orgFilter';
+_xbl_JSClassDefine_orgFilter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_orgFilter_j_xbl_e_;
+function _xbl_JSClassDefine_bizDataFilterDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var dialogEl = this.getElementByXblID("filter-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-dialog-iframe");
+				this.iframeId = frameEl.id;
+			},
+			"show": function(data, callBack) {
+				var filterData = data;
+				if (typeof(filterData) == "string") {
+					filterData = justep.xbl(filterData);
+				}
+				if (filterData) {
+					if (typeof(filterData.advanceFilter) != "undefined") {
+						var dialog = xforms(this.dialogId);
+						if(dialog) {
+							var frameEl = justep(this.iframeId);
+							if (frameEl) {
+								frameEl.dialogId = this.dialogId;
+								frameEl.filterData = filterData;
+								frameEl.callBack = callBack;
+								dialog.open();
+								return true;
+							}
+						}
+					}
+				}
+				return false;
+			}
+		}));
+
+_xbl_JSClassDefine_bizDataFilterDialog.prototype.ClassName='_xbl_JSClassDefine_bizDataFilterDialog';
+_xbl_JSClassDefine_bizDataFilterDialog.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_bizDataFilterDialog_j_xbl_e_;
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		}));
+
+_xbl_JSClassDefine_pageNavigator.prototype.ClassName='_xbl_JSClassDefine_pageNavigator';
+_xbl_JSClassDefine_pageNavigator.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_pageNavigator_j_xbl_e_;
+	var ids=[{id:'7ee009a143f14945afa89c5da2f264ca', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'dlgChart', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'process', name:'/UI/system/components/process.xbl.xml#process', children:[{id:'process_processControlDialog', name:'xforms:dialog'},{id:'process_processChartDialogID', name:'xforms:dialog'},{id:'process_processConfirmDialog', name:'xforms:dialog', children:[{id:'531ce6a82c81465cae68ffccd8542cea', name:'xforms:trigger', children:[{id:'af5dec42114144939b06ae49b10687dd', name:'xforms:label'}]},{id:'8aeecdc0a9b547c5a0b364a6952ba42b', name:'xforms:trigger', children:[{id:'b23c24a2a7984a75a2c6cbcacc2596b3', name:'xforms:label'}]}]},{id:'process_customizedDialogID', name:'/UI/system/components/dialog.xbl.xml#dialog'}]},{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'toolbars1', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'bc914e1fd16c4f4ba61a799820621396', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'}]},{id:'dateFilter1', name:'/UI/system/components/dateFilter.xbl.xml#dateFilter', children:[{id:'dateFilter1_part', name:'xforms:group', children:[{id:'dateFilter1_dialog', name:'xforms:dialog', children:[{id:'b14dcdf1bf014bc3b2c61a60bba059d3', name:'/UI/system/components/tableLayout.xbl.xml#tableLayout', children:[{id:'d0d56ce8d5914970a170798f9f2147d2', name:'xforms:input'},{id:'8a745477f5e44a989c1acb12200b2d53', name:'xforms:input'},{id:'5de4649e97104f5998c62c5d4b532fa2', name:'xforms:trigger', children:[{id:'65c6d620731442fc9aebe4fcb7badb6c', name:'xforms:label'}]},{id:'d346634d64504ad2bf73e6c5b69706fd', name:'xforms:trigger', children:[{id:'d1fe2b36f18849c9ae71602f77693a69', name:'xforms:label'}]}]}]}]}]},{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'xuiLabel6', name:'xforms:label'},{id:'default2', name:'xforms:value'}]},{id:'gridSelect1', name:'xforms:gridselect', children:[{id:'xuiLabel6', name:'xforms:label'},{id:'default2', name:'xforms:value'}]},{id:'smartFilter1', name:'/UI/system/components/smartFilter.xbl.xml#smartFilter', children:[{id:'smartFilter1_input_428881185', name:'xforms:input'}]},{id:'trgSearch', name:'xforms:trigger', children:[{id:'xuiLabel10', name:'xforms:label'}]},{id:'grid', name:'xforms:grid'}]},{id:'filter-pattern-316595ce-4ae6-491f-a81e-7a7bcb50b854', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'e741ca9f6d4f49f4b20878c78045ce8d', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_N1599856465', name:'xforms:menu'}]},{id:'GLOBAL_ID_1320417099', name:'xforms:dialog'}]},{id:'filter-dialog-e03c9e35-fa35-4f1f-9cc1-029132a61c50', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_210822198', name:'xforms:dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'531ce6a82c81465cae68ffccd8542cea');xf._a('531ce6a82c81465cae68ffccd8542cea','af5dec42114144939b06ae49b10687dd');xf._a(null,'8aeecdc0a9b547c5a0b364a6952ba42b');xf._a('8aeecdc0a9b547c5a0b364a6952ba42b','b23c24a2a7984a75a2c6cbcacc2596b3');xf._a(null,'dateFilter1_part');xf._a('dateFilter1_part','d0d56ce8d5914970a170798f9f2147d2');xf._a('dateFilter1_part','8a745477f5e44a989c1acb12200b2d53');xf._a('dateFilter1_part','5de4649e97104f5998c62c5d4b532fa2');xf._a('5de4649e97104f5998c62c5d4b532fa2','65c6d620731442fc9aebe4fcb7badb6c');xf._a('dateFilter1_part','d346634d64504ad2bf73e6c5b69706fd');xf._a('d346634d64504ad2bf73e6c5b69706fd','d1fe2b36f18849c9ae71602f77693a69');xf._a(null,'gridSelect2');xf._a('gridSelect2','xuiLabel6');xf._a('gridSelect2','default3');xf._a(null,'gridSelect1');xf._a('gridSelect1','xf-label-5');xf._a('gridSelect1','xf-itemset-1');xf._a(null,'smartFilter1_input_428881185');xf._a(null,'trgSearch');xf._a('trgSearch','xuiLabel10');xf._a(null,'grid');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('main')/sDistributeTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sDistributeTime')))));	
+xf._b("instance('main')/sCreateTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sCreateTime')))));	
+xf._b("instance('main')/sLastModifyTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sLastModifyTime')))));	
+xf._b("instance('main')/sLimitTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sLimitTime')))));	
+xf._b("instance('main')/sWarningTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sWarningTime')))));	
+xf._b("instance('main')/sExecuteTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sExecuteTime')))));	
+xf._b("instance('main')/sExpectStartTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sExpectStartTime')))));	
+xf._b("instance('main')/sExpectFinishTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sExpectFinishTime')))));	
+xf._b("instance('main')/sActualStartTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sActualStartTime')))));	
+xf._b("instance('main')/sActualFinishTime",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sActualFinishTime')))));	
+xf._b("instance('main')/sSequence",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sSequence')))));	
+xf._b("instance('main')/version",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('main')/sEDField21",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEDField21')))));	
+xf._b("instance('main')/sEDField22",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEDField22')))));	
+xf._b("instance('main')/sEDField23",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEDField23')))));	
+xf._b("instance('main')/sEDField24",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEDField24')))));	
+xf._b("instance('main')/sEIField41",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEIField41')))));	
+xf._b("instance('main')/sEIField42",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEIField42')))));	
+xf._b("instance('main')/sEIField43",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEIField43')))));	
+xf._b("instance('main')/sEIField44",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sEIField44')))));	
+xf._b("instance('main')/sENField11",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sENField11')))));	
+xf._b("instance('main')/sENField12",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sENField12')))));	
+xf._b("instance('main')/sENField13",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sENField13')))));	
+xf._b("instance('main')/sENField14",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sENField14')))));	
+xf._b("instance('main')/sWithdraw",xf._g(xf._f('instance',xf._i("main")),xf._h(false, xf._k("child",xf._j('','sWithdraw')))));	
+xf._b("instance('dateFilter1_data')/beginDate",xf._g(xf._f('instance',xf._i("dateFilter1_data")),xf._h(false, xf._k("child",xf._j('','beginDate')))),'','http://www.justep.com/xui');	
+xf._b("instance('dateFilter1_data')/endDate",xf._g(xf._f('instance',xf._i("dateFilter1_data")),xf._h(false, xf._k("child",xf._j('','endDate')))),'','http://www.justep.com/xui');	
+xf._b("data('custom_filter')/org",xf._g(xf._f('data',xf._i("custom_filter")),xf._h(false, xf._k("child",xf._j('','org')))),'','http://www.justep.com/xui');	
+xf._b("data('custom_filter')/orgLabel",xf._g(xf._f('data',xf._i("custom_filter")),xf._h(false, xf._k("child",xf._j('','orgLabel')))),'','http://www.justep.com/xui');	
+xf._b("col_1",xf._h(false, xf._k("child",xf._j('','col_1'))),'','http://www.justep.com/xui');	
+xf._b("col_0",xf._h(false, xf._k("child",xf._j('','col_0'))),'','http://www.justep.com/xui');	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))),'','');	
+xf._b("data('custom_filter')/status",xf._g(xf._f('data',xf._i("custom_filter")),xf._h(false, xf._k("child",xf._j('','status')))),'','http://www.justep.com/xui');	
+xf._b("data('custom_filter')/statusLabel",xf._g(xf._f('data',xf._i("custom_filter")),xf._h(false, xf._k("child",xf._j('','statusLabel')))),'','http://www.justep.com/xui');	
+xf._b("instance('smartFilter1_data_428881185')/value",xf._g(xf._f('instance',xf._i("smartFilter1_data_428881185")),xf._h(false, xf._k("child",xf._j('','value')))),'','http://www.justep.com/xui');	
+xf._b("calcIndex",xf._h(false, xf._k("child",xf._j('','calcIndex'))));	
+xf._b("sStatusName1",xf._h(false, xf._k("child",xf._j('','sStatusName1'))));	
+xf._b("sESField05",xf._h(false, xf._k("child",xf._j('','sESField05'))));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xf._b("sCreatorPersonName",xf._h(false, xf._k("child",xf._j('','sCreatorPersonName'))));	
+xf._b("sCreateTime",xf._h(false, xf._k("child",xf._j('','sCreateTime'))));	
+xf._b("sLastModifyTime",xf._h(false, xf._k("child",xf._j('','sLastModifyTime'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('html', 'null');var xf_model_model1 = new xforms.XFModel('model1',null);	
+new xforms.XFInstance2('custom_filter','model1',null,'&lt;rows id="default4"&gt;&lt;row id="default5"&gt;&lt;cell id="default6"&gt;&lt;/cell&gt;&lt;cell id="default7"&gt;&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('custom_filter','status,statusLabel,org,orgLabel');	
+var xf_action_action3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.model1Load(event)}));xf._p(justep('model1'),"onload",null,function(evt) { xforms.run(xf_action_action3,'model1', evt,false)});	
+var xf_model_xf_model_1 = new xforms.XFModel('xf-model-1',null);	
+var xf_action_xf_action_1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){}));xf._p(justep('xf-model-1'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_1,'xf-model-1', evt,false)});	
+new xforms.XFDialog('process_processControlDialog',"流转信息",'modal',true,false,true,true,false,"",'700','465',null,null,null,null);	
+var xf_script_xf_script_2=xf._o(null,null,function(element, ctx, event){var processControlDialog = justep('process_processControlDialog').xformsObject; var isOk = processControlDialog._isOk; var processControl = processControlDialog._processControl; var task = processControlDialog._task; var callback = processControlDialog._callback; var options = processControlDialog._options; processControlDialog._isOk = false; processControlDialog._processControl = null; processControlDialog._task = null; processControlDialog._callback = null; processControlDialog._options = null; if (isOk){ var process = justep.xbl('process'); process[callback](task, processControl, options); } justep('process_processControlDialogIFrame').src="";});xf._p(justep('process_processControlDialog'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_script_xf_script_2,'process_processControlDialog', evt,false)});	
+new xforms.XFDialog('process_processChartDialogID',"流程图",'modal',true,false,true,true,false,"",'700','445',null,null,null,'maximize');	
+var xf_script_xf_script_3=xf._o(null,null,function(element, ctx, event){justep('process_processChartDialogIFrame').src="";});xf._p(justep('process_processChartDialogID'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_script_xf_script_3,'process_processChartDialogID', evt,false)});	
+var xf_script_xf_script_4=xf._o(null,null,function(element, ctx, event){var url = "/UI/system/service/process/processChart.w?process=" + justep.Context.getCurrentProcess() + "&amp;activity=" + justep.Context.getCurrentActivity(); var task = justep.Context.getTask(); if (task != null){ url = url + "&amp;task=" + task; } url = justep.Request.convertURL(url); justep('process_processChartDialogIFrame').src=url;});xf._p(justep('process_processChartDialogID'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_script_xf_script_4,'process_processChartDialogID', evt,false)});	
+new xforms.XFDialog('process_processConfirmDialog',null,'modal',true,false,true,true,false,"",'250','90',null,null,null,null);	
+var xf_script_xf_script_5=xf._o(null,null,function(element, ctx, event){var processConfirmDialog = justep('process_processConfirmDialog').xformsObject; var isOk = processConfirmDialog._isOk; var processControl = processConfirmDialog._processControl; var task = processConfirmDialog._task; var callback = processConfirmDialog._callback; var options = processConfirmDialog._options; processConfirmDialog._isOk = false; processConfirmDialog._task = null; processConfirmDialog._processControl = null; processConfirmDialog._callback = null; processConfirmDialog._options = null; if (isOk &amp;&amp; processControl.isOk()){ var process = justep.xbl('process'); process[callback](task, processControl, options); }});xf._p(justep('process_processConfirmDialog'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_script_xf_script_5,'process_processConfirmDialog', evt,false)});	
+var xf_trigger_531ce6a82c81465cae68ffccd8542cea=new xforms.XFTrigger('531ce6a82c81465cae68ffccd8542cea',null,null,null,false,false,false,null,null,null);	
+var xf_action_xf_action_2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var processConfirmDialog = justep('process_processConfirmDialog').xformsObject; processConfirmDialog._isOk = true; xforms('process_processConfirmDialog').close();}));xf._p(justep('531ce6a82c81465cae68ffccd8542cea'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_2,'531ce6a82c81465cae68ffccd8542cea', evt,false)});	
+var xf_trigger_8aeecdc0a9b547c5a0b364a6952ba42b=new xforms.XFTrigger('8aeecdc0a9b547c5a0b364a6952ba42b',null,null,null,false,false,false,null,null,null);	
+var xf_action_xf_action_3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var processConfirmDialog = justep('process_processConfirmDialog').xformsObject; processConfirmDialog._isOk = false; xforms('process_processConfirmDialog').close();}));xf._p(justep('8aeecdc0a9b547c5a0b364a6952ba42b'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_3,'8aeecdc0a9b547c5a0b364a6952ba42b', evt,false)});	
+var xf_model_dateFilter1_model = new xforms.XFModel('dateFilter1_model',null);	
+var xf_action_xf_action_4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){justep.DateFilter.setFilter("dateFilter1", justep.xbl("main"), "single", "sCreateTime", "", "", "0", null, null, "", false);}));xf._p(justep('dateFilter1_model'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_4,'dateFilter1_model', evt,false)});	
+new xforms.XFExtSelect({id:'gridSelect2',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('custom_filter')/org"),labelRef:xf._q("data('custom_filter')/orgLabel"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:null,columns:'col_0,col_1,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'col_0',valueColumn:'col_0',labelColumn:'col_1',extColumn:null,labels:',,',aligns:',,',types:'ro,ro,ro',widths:{widths:"#,#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows id="default28"&gt;&lt;row id="default29"&gt;&lt;cell id="default30"&gt;0&lt;/cell&gt;&lt;cell id="default31"&gt;全部&lt;/cell&gt;&lt;/row&gt;&lt;row id="default32"&gt;&lt;cell id="default33"&gt;1&lt;/cell&gt;&lt;cell id="default34"&gt;本人&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:'mainActivity.gridSelect2Closeup'});	
+new xforms.XFExtSelect({id:'gridSelect1',type:'gridselect',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('custom_filter')/status"),labelRef:xf._q("data('custom_filter')/statusLabel"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:null,columns:'col_0,col_1,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'col_1',valueColumn:'col_0',labelColumn:'col_0',extColumn:null,labels:',,',aligns:',,',types:'checkbox,ro,ro',widths:{widths:"#,#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows id="default9"&gt;&lt;row id="default10"&gt;&lt;cell id="default11"&gt;处理中&lt;/cell&gt;&lt;/row&gt;&lt;row id="default12"&gt;&lt;cell id="default13"&gt;编辑中&lt;/cell&gt;&lt;/row&gt;&lt;row id="default14"&gt;&lt;cell id="default15"&gt;已完成&lt;/cell&gt;&lt;/row&gt;&lt;row id="default16"&gt;&lt;cell id="default17"&gt;已终止&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:'mainActivity.gridSelect1Closeup'});	
+var xf_model_smartFilter1_model_428881185 = new xforms.XFModel('smartFilter1_model_428881185',null);	
+new xforms.XFInstance2('smartFilter1_data_428881185','smartFilter1_model_428881185',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('smartFilter1_data_428881185','value');	
+xf._d('smartFilter1_input_428881185','text',xf._q("instance('smartFilter1_data_428881185')/value"),null,null,null,null,false,false);	
+var xf_trigger_trgSearch=new xforms.XFTrigger('trgSearch',null,"/UI/SA/task/taskCenter/images/search.png",null,false,false,false,null,null,null);	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.trgSearchClick(event)}));xf._p(justep('trgSearch'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action2,'trgSearch', evt,false)});	
+new xforms.XFGrid({id:'grid',instance:'main',systemColumnsPro:'sParent,sContent,sRemark,sFlowID,sSourceID,sFrontID,sCatalogID,sKindID,sResponsible,sExecuteMode2,sExecuteMode,sPreemptMode,sRemindMode,sTypeID,sTypeName,sImportanceID,sImportanceName,sEmergencyID,sEmergencyName,sCURL,sEURL,sDistributeTime,sLimitTime,sWarningTime,sExecuteTime,sExpectStartTime,sExpectFinishTime,sActualStartTime,sActualFinishTime,sCreatorFID,sCreatorFName,sExecutorFID,sExecutorFName,sCreatorPersonID,sCreatorPosID,sCreatorPosName,sCreatorDeptID,sCreatorDeptName,sCreatorOgnID,sCreatorOgnName,sExecutorPersonID,sExecutorPersonName,sExecutorPosID,sExecutorPosName,sExecutorDeptID,sExecutorDeptName,sExecutorOgnID,sExecutorOgnName,sExecutorNames,sCustomerID,sCustomerName,sProjectID,sProjectName,sPlanID,sPlanName,sData1,sData2,sData3,sData4,sVariable,sActive,sStatusID,sStatusName,sAIActive,sAIID,sAIStatusID,sAIStatusName,sSequence,sLock,sHints,sShortcut,sProcess,sActivity,sProcessName,sActivityName,version,sProcessTemplateID,sProcessTemplateItemSequence,sTempPermissionID,sESField01,sESField02,sESField03,sESField04,sESField06,sESField07,sESField08,sEDField21,sEDField22,sEDField23,sEDField24,sETField31,sETField32,sETField33,sETField34,sEIField41,sEIField42,sEIField43,sEIField44,sEBField51,sEBField52,sEBField53,sEBField54,sENField11,sENField12,sENField13,sENField14,sSummary,sActivityNames,sCode,sWithdraw,sProcessTemplateID2,sActivityInTemplate',onInit:null,type:'grid',smartRender:null,delay:false,ids:'calcIndex,sStatusName1,sESField05,sName,sCreatorPersonName,sCreateTime,sLastModifyTime,space-column',headNames:'&amp;nbsp;,状态,申请单据号,名称,提交人,提交时间,最后修改时间,&amp;nbsp;',widths:'30,60,121,827,76,145,165,*',types:'cntr,ro,html,ro,ro,ro,ro,ro',hiddenColumns:'',aligns:'center,center,,,,,,',serverSort:true,sorts:'na,na,na,na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:'mainActivity.gridRowDblClick',onLastEditorPressEnter:null,initFun:function(){this.grid.bindColHTMLCallback(null,'sESField05','mainActivity.grid_sESField05Render');this.grid.bindColFormat(null,'sCreateTime','yyyy-MM-dd');this.grid.bindColFormat(null,'sLastModifyTime','yyyy-MM-dd');}});	
+var xf_menu_GLOBAL_ID_N1599856465 = new xforms.XFMenu('GLOBAL_ID_N1599856465','context');xf_menu_GLOBAL_ID_N1599856465.menu.addContextZone('e741ca9f6d4f49f4b20878c78045ce8d');xforms.Event.attach(document.body, "click", function(){xf_menu_GLOBAL_ID_N1599856465.hide()});xf_menu_GLOBAL_ID_N1599856465.menu.setOpenMode('web');	
+var xf_action_xf_action_8=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){									var menuItemId = event.getData().itemId;									if (menuItemId == "glglms") {										var dialog = xforms("GLOBAL_ID_1320417099");										if(dialog) {											event.getData().menuitem.dhtmlxMenu.$needLoad=true;											dialog.open();																					}									} else if (menuItemId == "qkdqgl") {										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.clear();										data.filters.deleteFilter(data.advanceFilter.filterName);										data.refreshData();									} else if (menuItemId == "zdycx"){										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(dataId) == "object") {											dataId = dataId.id;										}										if(dlgId) justep.xbl(dlgId).show(dataId);									} else {										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.setFilter(advanceFilter, true, true);									}}));xf._p(justep('GLOBAL_ID_N1599856465'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_8,'GLOBAL_ID_N1599856465', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_1320417099',"过滤模式",'modal',true,false,true,true,false,null,'550','440',null,null,null,null);	
+var xf_action_xf_action_9=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_N1276910766');									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";									}justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "GLOBAL_ID_N1276910766", "");}));xf._p(justep('GLOBAL_ID_1320417099'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_9,'GLOBAL_ID_1320417099', evt,false)});	
+var xf_action_xf_action_10=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_N1276910766');									if (iframe) {										var data = iframe.currData;										data.advanceFilter.setFilter(iframe.advanceFilter);									}}));xf._p(justep('GLOBAL_ID_1320417099'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_action_xf_action_10,'GLOBAL_ID_1320417099', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_210822198',"查询对话框",'modal',true,false,true,true,false,null,'490','340',null,null,null,null);	
+var xf_action_xf_action_11=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var frameEl = justep('GLOBAL_ID_N1105434648');									if (frameEl) {										if(frameEl.contentWindow.document.body){											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";										}										}justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_N1105434648", "");}));xf._p(justep('GLOBAL_ID_210822198'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_11,'GLOBAL_ID_210822198', evt,false)});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var main_part_loaded = false;	
+function load_main_part(callback){if (main_part_loaded) return;main_part_loaded = true;	
+new xforms.XFInstance2('main','model1',null,null,null,null,null,null,null,null,'calcIndex',null,'whereVersion');	
+xf._c('xf-bind-0','model1',"instance('main')/sDistributeTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-1','model1',"instance('main')/sCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-2','model1',"instance('main')/sLastModifyTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-3','model1',"instance('main')/sLimitTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-4','model1',"instance('main')/sWarningTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-5','model1',"instance('main')/sExecuteTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-6','model1',"instance('main')/sExpectStartTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-7','model1',"instance('main')/sExpectFinishTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-8','model1',"instance('main')/sActualStartTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-9','model1',"instance('main')/sActualFinishTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-10','model1',"instance('main')/sSequence","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-11','model1',"instance('main')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-12','model1',"instance('main')/sEDField21","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-13','model1',"instance('main')/sEDField22","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-14','model1',"instance('main')/sEDField23","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-15','model1',"instance('main')/sEDField24","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-16','model1',"instance('main')/sEIField41","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-17','model1',"instance('main')/sEIField42","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-18','model1',"instance('main')/sEIField43","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-19','model1',"instance('main')/sEIField44","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-20','model1',"instance('main')/sENField11","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-21','model1',"instance('main')/sENField12","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-22','model1',"instance('main')/sENField13","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-23','model1',"instance('main')/sENField14","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-24','model1',"instance('main')/sWithdraw","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var main_part_init_loaded = false;	
+function load_main_part_init(){if (main_part_init_loaded) return;main_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+function load_dateFilter1_part(){if (justep("dateFilter1_part").getAttribute('loaded') &amp;&amp; justep("dateFilter1_part").getAttribute('loaded') == 'true') return;justep("dateFilter1_part").setAttribute('loaded', 'true');	
+if(typeof(load_dateFilter1_part_html) == 'function')load_dateFilter1_part_html();	
+new xforms.XFGroup('dateFilter1_part',null);var xf_model_xf_model_3 = new xforms.XFModel('xf-model-3',null);	
+xf._c('xf-bind-25','xf-model-3',"instance('dateFilter1_data')/beginDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-26','xf-model-3',"instance('dateFilter1_data')/endDate","xsd:date",null,null,null,null,null,null);	
+new xforms.XFInstance2('dateFilter1_data','xf-model-3',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('dateFilter1_data','value,label,beginDate,endDate');	
+new xforms.XFDialog('dateFilter1_dialog',"自定义",'model',true,false,true,false,false,null,'238','112',null,null,null,null);	
+xf._d('d0d56ce8d5914970a170798f9f2147d2','text',xf._q("instance('dateFilter1_data')/beginDate"),null,null,null,null,false,false);	
+xf._d('8a745477f5e44a989c1acb12200b2d53','text',xf._q("instance('dateFilter1_data')/endDate"),null,null,null,null,false,false);	
+var xf_trigger_5de4649e97104f5998c62c5d4b532fa2=new xforms.XFTrigger('5de4649e97104f5998c62c5d4b532fa2',null,null,null,false,false,false,null,null,null);	
+var xf_action_xf_action_5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){xforms.blur(true); if(justep.xbl('dateFilter1')._doDialogCheck()) xforms('dateFilter1_dialog').close();}));xf._p(justep('5de4649e97104f5998c62c5d4b532fa2'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_5,'5de4649e97104f5998c62c5d4b532fa2', evt,false)});	
+var xf_trigger_d346634d64504ad2bf73e6c5b69706fd=new xforms.XFTrigger('d346634d64504ad2bf73e6c5b69706fd',null,null,null,false,false,false,null,null,null);	
+var xf_action_xf_action_6=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){xforms('dateFilter1_dialog').close();}));xf._p(justep('d346634d64504ad2bf73e6c5b69706fd'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_6,'d346634d64504ad2bf73e6c5b69706fd', evt,false)});	
+}	
+function load_dateFilter1_part_xblinit(){if (justep("dateFilter1_part").getAttribute('xblloaded') &amp;&amp; justep("dateFilter1_part").getAttribute('xblloaded') == 'true') return;justep("dateFilter1_part").setAttribute('xblloaded', 'true');	
+if(xforms.ready)justep('xf-model-3').xformsObject.construct_part();	
+xforms.refresh(justep("dateFilter1_part"));	
+justep.XBLObject.loadXBL(justep("dateFilter1_part"));}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="300px" id="dlgChart" left="0" modal="true" resizable="true" status="maximize" style="top:249px;left:95px;" title="流程轨迹" top="0" url="/UI/SA/task/taskCenter/dialogs/processChart.w" width="400px"></div>          <div auto-close="false" auto-filter="false" auto-save="false" auto-start="false" class="component_E95FFB33 process" component="/UI/system/components/process.xbl.xml#process" id="process" style="width:24px;top:102px;left:433px;">           <div id="process_processControlDialog" style="display:none"></div>            <div style="width:696px;height:440px;position:absolute;left:-9000px;top:-9000px">             <div appearance="full" class="xforms-dialog" close="true" height="465" id="process_processControlDialog-content" level="modal" neighbor="" style="width:100%;height:100%" title="流转信息" visible="false" width="700">               <iframe frameborder="no" id="process_processControlDialogIFrame" name="process_processControlDialogIFrame" style="width:100%;height:100%;"></iframe>             </div>           </div>            <div id="process_processChartDialogID" style="display:none"></div>            <div style="width:696px;height:420px;position:absolute;left:-9000px;top:-9000px">             <div appearance="full" class="xforms-dialog" close="true" height="445" id="process_processChartDialogID-content" level="modal" neighbor="" show-title="false" status="maximize" style="width:100%;height:100%" title="流程图" visible="false" width="700">               <iframe frameborder="no" id="process_processChartDialogIFrame" name="process_processChartDialogIFrame" style="width:100%;height:100%;"></iframe>             </div>           </div>            <div id="process_processConfirmDialog" style="display:none"></div>            <div style="width:246px;height:65px;position:absolute;left:-9000px;top:-9000px">             <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="90" id="process_processConfirmDialog-content" level="modal" neighbor="" style="width:100%;height:100%" visible="false" width="250">               <table border="0" cellpadding="0" cellspacing="8" style="width:100%;height:100%;table-layout:fixed">                 <tr>                   <td>                     <div style="padding: 5px;" xblid="process_processConfirmContent"></div>                   </td>                 </tr>                  <tr height="22px">                   <td>                     <table border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;table-layout:fixed">                       <tr>                         <td align="right">                           <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="531ce6a82c81465cae68ffccd8542cea" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:75px;margin-right:8px;;table-layout:fixed">                             <tbody>                               <tr>                                 <td class="xxf-value">                                   <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button">                                     <span class="xforms-label " id="af5dec42114144939b06ae49b10687dd">确定</span> 
+                                  </button> 
+                                </td>  
+                                <td class="xxf-alert"> 
+                                  <span class="xforms-alert"> 
+                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                    <div class="xforms-alert-value" id=""></div> 
+                                  </span> 
+                                </td> 
+                              </tr> 
+                            </tbody> 
+                          </table> 
+                        </td>  
+                        <td width="75px"> 
+                          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="8aeecdc0a9b547c5a0b364a6952ba42b" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:75px;table-layout:fixed"> 
+                            <tbody> 
+                              <tr> 
+                                <td class="xxf-value"> 
+                                  <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                    <span class="xforms-label " id="b23c24a2a7984a75a2c6cbcacc2596b3">取消</span> 
+                                  </button> 
+                                </td>  
+                                <td class="xxf-alert"> 
+                                  <span class="xforms-alert"> 
+                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                    <div class="xforms-alert-value" id=""></div> 
+                                  </span> 
+                                </td> 
+                              </tr> 
+                            </tbody> 
+                          </table> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </td> 
+                </tr> 
+              </table> 
+            </div> 
+          </div>  
+          <div class="component_41508DE1 dialog" component="/UI/system/components/dialog.xbl.xml#dialog" height="405" id="process_customizedDialogID" modal="true" neighbor="" title="定制流程" width="500" xblid="_customizedDialog_"> 
+            <div id="process_customizedDialogID-content" style="display:none;height:100%;width:100%"> 
+              <iframe frameborder="no" id="process_customizedDialogIFrameID" name="process_customizedDialogIFrameID" scrolling="no" src="about:blank" style="width: 100%; height: 100%; overflow: hidden"></iframe> 
+            </div> 
+          </div>  
+          <div style="display:none"> 
+            <input customizedDialogID="process_customizedDialogID" customizedDialogIFrameID="process_customizedDialogIFrameID" iframeID="process_processControlDialogIFrame" processChartDialogID="process_processChartDialogID" processConfirmContentID="process_processConfirmContent" processConfirmDialogID="process_processConfirmDialog" processControlDialogID="process_processControlDialog" xblid="_processInputData_"></input> 
+          </div> 
+        </div>  
+        <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;"> 
+          <div borderSize="0" class="xui-borderlayout-root"> 
+            <div class="xui-borderlayout-area xui-borderlayout-top" size="70px" style=""> 
+              <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1"> 
+                <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                  <tr> 
+                    <td> 
+                      <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                        <div class="toolbar-style" name="toolbargroup"> 
+                          <table cellpadding="0" cellspacing="1px"> 
+                            <tr> 
+                              <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem4" model="model1" onclick="justep.xbl('main').refreshData(); "> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem2" model="model1" onclick="justep.xbl('filter-pattern-316595ce-4ae6-491f-a81e-7a7bcb50b854').show('main', event.target||event.srcElement, 'filter-dialog-e03c9e35-fa35-4f1f-9cc1-029132a61c50');"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/UI/system/images/standardToolbar/standard/search.gif" style="border:none" title="查询"></img> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">查询</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="main" id="bc914e1fd16c4f4ba61a799820621396" items="pre,next,ext" mode="IMG_TXT_LR" page-count="0"> 
+                                  <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;"> 
+                                    <tr class=""> 
+                                      <td class="xui-pageNavigator-button" style="display:none;"> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="第一页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">第一页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="上一页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">上一页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-page" nowrap="true" style="display:none;"></td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="下一页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">下一页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-button" style="display:none;"> 
+                                        <table xmlns="">  
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" style="" valign="middle"> 
+                                              <img align="absmiddle" style="border:0px" title="最后页"></img> 
+                                            </td>  
+                                            <td align="center" class="xui-pageNavigator-label" style="" valign="middle">最后页</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td> 
+                                    </tr> 
+                                  </table>  
+                                  <span count="" data="main" limit="" offset="" page-count="0" style="display:none" xblid="attribute"></span> 
+                                </div> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td style="width:100%"></td> 
+                  </tr> 
+                </table> 
+              </div>  
+              <table id="table2"> 
+                <tr id="tr4"> 
+                  <td id="td2">时间</td>  
+                  <td id="td4"> 
+                    <div auto-refresh="true" class="xui-select component_F761B721 dateFilter" component="/UI/system/components/dateFilter.xbl.xml#dateFilter" default-select="0" dropdown-height="200px" filter-data="main" filter-date-mode="single" filter-date-relation1="sCreateTime" id="dateFilter1" onChanged="" style="width:80px;float:left;margin-top:2px;"> 
+                      <div xmlns:xforms="http://www.justep.com/xforms" class="xforms-group" id="dateFilter1_part" xforms:lazy="true">  
+                        <div class="xforms-group-content" style=""> 
+                          <div id="dateFilter1_dialog" style="display:none"></div>  
+                          <div style="width:234px;height:87px;position:absolute;left:-9000px;top:-9000px"> 
+                            <div class="xforms-dialog" height="112" id="dateFilter1_dialog-content" minmax="false" resizable="false" style="width:100%;height:100%" title="自定义" width="238"> 
+                              <table border="0" cellpadding="0" cellspacing="8" class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="b14dcdf1bf014bc3b2c61a60bba059d3" style="width:100%;height:100%;tabel-layout:fixed"> 
+                                <tr style="height: 28px" valign="middle"> 
+                                  <td style="width: 56px;"> 
+                                    <div style="padding-top:8px">开始日期</div> 
+                                  </td>  
+                                  <td> 
+                                    <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="d0d56ce8d5914970a170798f9f2147d2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                      <tbody> 
+                                        <tr> 
+                                          <td class="focus" style="display:none;width:0px"></td>  
+                                          <td class="xxf-value"> 
+                                            <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                          </td>  
+                                          <td class="xxf-alert"> 
+                                            <span class="xforms-alert"> 
+                                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                              <div class="xforms-alert-value" id=""></div> 
+                                            </span> 
+                                          </td>  
+                                          <td class="xui-ie-input-bug"></td> 
+                                        </tr> 
+                                      </tbody> 
+                                    </table> 
+                                  </td> 
+                                </tr>  
+                                <tr style="height: 28px" valign="middle"> 
+                                  <td style="width: 56px;"> 
+                                    <div style="padding-top:8px">结束日期</div> 
+                                  </td>  
+                                  <td> 
+                                    <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="8a745477f5e44a989c1acb12200b2d53" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                      <tbody> 
+                                        <tr> 
+                                          <td class="focus" style="display:none;width:0px"></td>  
+                                          <td class="xxf-value"> 
+                                            <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                          </td>  
+                                          <td class="xxf-alert"> 
+                                            <span class="xforms-alert"> 
+                                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                              <div class="xforms-alert-value" id=""></div> 
+                                            </span> 
+                                          </td>  
+                                          <td class="xui-ie-input-bug"></td> 
+                                        </tr> 
+                                      </tbody> 
+                                    </table> 
+                                  </td> 
+                                </tr>  
+                                <tr valign="middle"> 
+                                  <td align="right" colspan="2"> 
+                                    <table cellpadding="0" cellspacing="0" class="button-green xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="5de4649e97104f5998c62c5d4b532fa2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:75px;margin-right:8px;;table-layout:fixed"> 
+                                      <tbody> 
+                                        <tr> 
+                                          <td class="xxf-value"> 
+                                            <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                              <span class="xforms-label " id="65c6d620731442fc9aebe4fcb7badb6c">确定</span> 
+                                            </button> 
+                                          </td>  
+                                          <td class="xxf-alert"> 
+                                            <span class="xforms-alert"> 
+                                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                              <div class="xforms-alert-value" id=""></div> 
+                                            </span> 
+                                          </td> 
+                                        </tr> 
+                                      </tbody> 
+                                    </table>  
+                                    <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="d346634d64504ad2bf73e6c5b69706fd" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:75px;;table-layout:fixed"> 
+                                      <tbody> 
+                                        <tr> 
+                                          <td class="xxf-value"> 
+                                            <a class="xui-button-label" tabindex=""> 
+                                              <i class="icon "></i>  
+                                              <span class="xforms-label " id="d1fe2b36f18849c9ae71602f77693a69">取消</span> 
+                                            </a> 
+                                          </td>  
+                                          <td class="xxf-alert"> 
+                                            <span class="xforms-alert"> 
+                                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                              <div class="xforms-alert-value" id=""></div> 
+                                            </span> 
+                                          </td> 
+                                        </tr> 
+                                      </tbody> 
+                                    </table> 
+                                  </td> 
+                                </tr> 
+                              </table> 
+                            </div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div> 
+                  </td>  
+                  <td id="td6">组织</td>  
+                  <td id="td7"> 
+                    <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:99px;;table-layout:fixed"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="focus" style="display:none;width:0px"></td>  
+                          <td class="xxf-value"> 
+                            <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                              <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                <tr style="border:none"> 
+                                  <td style="width:100%;height:100%;border:none;"> 
+                                    <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                  </td>  
+                                  <td style="border:none" width="20px"> 
+                                    <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                  </td> 
+                                </tr> 
+                              </table> 
+                            </div> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                              <div class="xforms-alert-value" id=""></div> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </td>  
+                  <td id="td8">状态</td>  
+                  <td id="td9"> 
+                    <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect xforms-appearance-minimal xui-select" id="gridSelect1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="float:left;margin-top:2px;width:74px;;table-layout:fixed"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="focus" style="display:none;width:0px"></td>  
+                          <td class="xxf-value"> 
+                            <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                              <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                <tr style="border:none"> 
+                                  <td style="width:100%;height:100%;border:none;"> 
+                                    <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                  </td>  
+                                  <td style="border:none" width="20px"> 
+                                    <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                  </td> 
+                                </tr> 
+                              </table> 
+                            </div> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                              <div class="xforms-alert-value" id=""></div> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </td>  
+                  <td id="td10">查找</td>  
+                  <td id="td11"> 
+                    <div auto-refresh="true" class="xui-input component_12112F17 smartFilter" component="/UI/system/components/smartFilter.xbl.xml#smartFilter" filter-data="main" filter-relations="sName,sTypeName,sCreatorPersonName,sExecutorPersonName,sStatusName" id="smartFilter1" style="width:100px;float:left;margin-top:2px;"> 
+                      <span auto-refresh="true" filter-data="main" filter-relations="sName,sTypeName,sCreatorPersonName,sExecutorPersonName,sStatusName" inner-data-id="smartFilter1_data_428881185" input-id="smartFilter1_input_428881185" model-id="smartFilter1_model_428881185" style="display:none" xblid="attribute"></span>  
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="smartFilter1_input_428881185" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </div> 
+                  </td>  
+                  <td id="td12"> 
+                    <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgSearch" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="xxf-value"> 
+                            <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                              <img src="/UI/SA/task/taskCenter/images/search.png"></img>  
+                              <span class="xforms-label " id="xuiLabel10">搜索</span> 
+                            </button> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                              <div class="xforms-alert-value" id=""></div> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </td> 
+                </tr> 
+              </table> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"></div>  
+            <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+              <div class="component_6298A7A1 grid" data="main" delay="false" id="grid" onRowDblClick="mainActivity.gridRowDblClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="sParent,sContent,sRemark,sFlowID,sSourceID,sFrontID,sCatalogID,sKindID,sResponsible,sExecuteMode2,sExecuteMode,sPreemptMode,sRemindMode,sTypeID,sTypeName,sImportanceID,sImportanceName,sEmergencyID,sEmergencyName,sCURL,sEURL,sDistributeTime,sLimitTime,sWarningTime,sExecuteTime,sExpectStartTime,sExpectFinishTime,sActualStartTime,sActualFinishTime,sCreatorFID,sCreatorFName,sExecutorFID,sExecutorFName,sCreatorPersonID,sCreatorPosID,sCreatorPosName,sCreatorDeptID,sCreatorDeptName,sCreatorOgnID,sCreatorOgnName,sExecutorPersonID,sExecutorPersonName,sExecutorPosID,sExecutorPosName,sExecutorDeptID,sExecutorDeptName,sExecutorOgnID,sExecutorOgnName,sExecutorNames,sCustomerID,sCustomerName,sProjectID,sProjectName,sPlanID,sPlanName,sData1,sData2,sData3,sData4,sVariable,sActive,sStatusID,sStatusName,sAIActive,sAIID,sAIStatusID,sAIStatusName,sSequence,sLock,sHints,sShortcut,sProcess,sActivity,sProcessName,sActivityName,version,sProcessTemplateID,sProcessTemplateItemSequence,sTempPermissionID,sESField01,sESField02,sESField03,sESField04,sESField06,sESField07,sESField08,sEDField21,sEDField22,sEDField23,sEDField24,sETField31,sETField32,sETField33,sETField34,sEIField41,sEIField42,sEIField43,sEIField44,sEBField51,sEBField52,sEBField53,sEBField54,sENField11,sENField12,sENField13,sENField14,sSummary,sActivityNames,sCode,sWithdraw,sProcessTemplateID2,sActivityInTemplate"></div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-316595ce-4ae6-491f-a81e-7a7bcb50b854"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="e741ca9f6d4f49f4b20878c78045ce8d" menu-id="GLOBAL_ID_N1599856465" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_N1599856465" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_N1599856465" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_1320417099" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_1320417099-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N1276910766" name="GLOBAL_ID_N1276910766" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-e03c9e35-fa35-4f1f-9cc1-029132a61c50"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_210822198" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_210822198-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N1105434648" name="GLOBAL_ID_N1105434648" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script>
+function func_1293199476(data){var oData = justep.XData.$('data-1784490384');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_1323751381(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

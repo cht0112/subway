@@ -1,0 +1,259 @@
+/**
+	@name UI.blob
+	@component /UI/system/components/blob.xbl.xml#blob
+	@class justep.Blob
+	@description <b>[rich]</b>blob组件
+	@model UI
+	@example
+	<b>blob组件扩展使用：</b>
+	<xmp>
+	通过blob组件实现blob image
+	1、选中blob组件，双击html下image组件，在blob组件内部放入image组件
+	2、选中image组件设置class：xui-autofill
+	3、接管blob组件的onRefresh事件
+		bolbRefresh = function(event){
+			//设置image的src属性
+			$('#img1').attr('src', event.url);
+		}
+	</xmp>
+	<b>xml格式：</b>
+	<xmp>
+	<div component="/UI/system/components/blob.xbl.xml#blob" id="blob1"/>
+	</xmp>
+*/
+
+/**
+	@name UI.blob#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/blob.xbl.xml#blob"
+*/
+
+/**
+	@name UI.blob#id
+	@attribute
+	@required 
+	@description id标识
+*/
+
+/**
+	@name UI.blob#data
+	@attribute 
+	@description 关联的data组件ID
+*/
+
+/**
+	@name UI.blob#concept
+	@attribute 
+	@description data不是bizData时需要指定概念属性
+*/
+
+/**
+	@name UI.blob#relation
+	@attribute
+	@required 
+	@description blob存放的关系
+*/
+
+/**
+	@name UI.blob#size
+	@attribute 
+	@description 上传文件限制大小，支持格式：1024,25B,100KB,390M,34G，单位支持：B、KB、M、G，默认单位是B
+*/
+
+/**
+	@name UI.blob#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.blob#onRefreshButton
+	@event 
+	@description <b>[回调型事件]</b>操作按钮刷新时
+	@returns {boolean} 控制按钮的可用性
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"kind" : 'edit'/'delete'
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.blob#onRefresh
+	@event 
+	@description <b>[回调型事件]</b>数据刷新时
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"url" : 获取数据的url
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.blob#onSubmit
+	@event 
+	@description <b>[回调型事件]</b>数据提交时
+	@returns {boolean} 控制提交动作是否继续
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"kind" : 'edit'/'delete',
+		"file" : edit时提交的文件名，delete时为空
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.blob#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.blob#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.blob#refresh
+	@function
+	@param {string} rowid 数据行id，缺省时取data当前行
+	@description 刷新blob组件
+*/
+
+/**
+	@name UI.blobImage
+	@component /UI/system/components/blob.xbl.xml#image
+	@class
+	@model UI
+	@description <b>[rich]</b>blob图片组件
+	@example 
+	<xmp>
+	<div component="/UI/system/components/blob.xbl.xml#image" id="blobImage1"/>
+	</xmp>
+*/
+
+/**
+	@name UI.blobImage#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/blob.xbl.xml#image"
+*/
+
+/**
+	@name UI.blobImage#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.blobImage#data
+	@attribute 
+	@description 关联的data组件ID
+*/
+
+/**
+	@name UI.blobImage#concept
+	@attribute 
+	@description data不是bizData时需要指定概念属性
+*/
+
+/**
+	@name UI.blobImage#relation
+	@attribute 
+	@required
+	@description image存放的关系
+*/
+
+/**
+	@name UI.blobImage#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.blobImage#stretch
+	@attribute 
+	@description 拉伸
+*/
+
+/**
+	@name UI.blobImage#onRefreshButton
+	@event 
+	@description <b>[回调型事件]</b>操作按钮刷新时
+	@returns {boolean} 控制按钮的可用性
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"kind" : 'edit'/'delete'
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.blobImage#onRefresh
+	@event 
+	@description <b>[回调型事件]</b>数据刷新时
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"url" : 获取数据的url
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.blobImage#onSubmit
+	@event 
+	@description <b>[回调型事件]</b>数据提交时
+	@returns {boolean} 控制提交动作是否继续
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"kind" : 'edit'/'delete',
+		"file" : edit时提交的文件名，delete时为空
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.blobImage#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.blobImage#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.blobImage#refresh
+	@function
+	@param rowid {string} 数据行id，缺省时取data当前行
+	@description 刷新blob组件
+*/

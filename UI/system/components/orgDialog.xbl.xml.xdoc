@@ -1,0 +1,339 @@
+/**
+	@name UI.orgDialog
+	@component /UI/system/components/orgDialog.xbl.xml#orgDialog
+	@class 组织机构选择对话框组件
+	@model UI
+	@description <b>[rich]</b>组织机构选择对话框组件
+	@example 
+		OrgDialog组件继承于WindowDialog组件，实现了对组织机构单选(orgSingleSelect.w)和多选(orgMultiSelect.w)页面的封装。
+		增加的属性有：
+			multi-select：是否多选
+			filter: 组织机构过滤条件
+			root-filter: 根过滤条件（与manage-codes属性互斥）
+			manage-codes: 业务管理权限编码，多个业务管理权限用逗号分割（与root-filter属性互斥）
+			org-kinds: 可选择的组织类型
+			include-disabled-org: 是否包含已禁用的组织
+			show-virtual-root: 是否显示虚拟根节点（单选模式）
+			cascade: 是否默认级联选择（多选模式）
+			list-mode: 列表模式
+			show-common-group: 是否显示常用组
+		覆盖了WindowDialog原来的open方法
+			function(data, title, multi, process, activity, executor, executorContext)
+			  对于组织机构选择对话框，data有固定的json格式，如果为null，则data来源于组件的对应属性
+			  {
+			    "filter": 过滤条件 string			
+			    "rootFilter": 根过滤条件 string			
+			    "manageCodes": 管理权限 string			
+			    "orgKinds": 可以选择的组织单元类型（逗号分隔） string			
+			    "includeDisabledOrg": 是否包含禁用的组织单元 boolean
+			    "showVirtualRoot": 是否显示虚拟根节点（单选模式） boolean			
+			    "cascade": 默认是否级联选择（多选模式） boolean
+			    "selected": 已选择的组织(SA_OPOrg)，sID或sFID数组 string[]
+			    "listMode": 列表模式
+			    "showCommonGroup": 是否显示常用组			
+			  }
+		示例：
+			显示所有的组织		
+			<xmp>    
+				<xhtml:div component="/UI/system/components/orgDialog.xbl.xml#orgDialog" title="组织多选" width="600px" height="500px" modal="true" id="orgDialog1" 
+				    multi-select="true"	root-filter="SA_OPOrg.sParent is null"> 
+			</xmp>
+			只显示当前人所在机构的组织		
+			<xmp>    
+				<xhtml:div component="/UI/system/components/orgDialog.xbl.xml#orgDialog" title="组织多选" width="600px" height="500px" modal="true" id="orgDialog1" 
+				    multi-select="true"	root-filter="SA_OPOrg = :currentOgnID()" filter="SA_OPOrg.sFID like concat(:currentOgnFID(), '%')"> 
+			</xmp>
+			显示当前人业务管理权限的下属		
+			<xmp>    
+				<xhtml:div component="/UI/system/components/orgDialog.xbl.xml#orgDialog" title="组织多选" width="600px" height="500px" modal="true" id="orgDialog1" 
+				    multi-select="true"	manage-codes="businsessManagement"> 
+			</xmp>
+*/
+
+
+/**
+	@name UI.orgDialog#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/orgDialog.xbl.xml#orgDialog"
+*/
+
+/**
+	@name UI.orgDialog#id
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>id标识
+*/
+
+/**
+	@name UI.orgDialog#multi-select
+	@property 
+	@description <b>[attribute]</b>是否多选
+*/
+
+/**
+	@name UI.orgDialog#filter
+	@property 
+	@description <b>[attribute]</b>组织机构过滤条件
+*/
+
+/**
+	@name UI.orgDialog#root-filter
+	@property 
+	@description <b>[attribute]</b>根过滤条件（与manage-codes属性互斥）
+*/
+
+/**
+	@name UI.orgDialog#manage-codes
+	@property 
+	@description <b>[attribute]</b>业务管理权限编码，多个业务管理权限用逗号分割（与root-filter属性互斥）
+*/
+
+/**
+	@name UI.orgDialog#org-kinds
+	@property 
+	@description <b>[attribute]</b>可选择的组织类型（ogn,dpt,pos,psm）
+*/
+
+/**
+	@name UI.orgDialog#include-disabled-org
+	@property 
+	@description <b>[attribute]</b>是否包含已禁用的组织
+*/
+
+/**
+	@name UI.orgDialog#cascade
+	@property 
+	@description <b>[attribute]</b>是否默认级联选择（多选模型下）
+*/
+
+/**
+	@name UI.orgDialog#list-mode
+	@property 
+	@description <b>[attribute]</b>列表模式
+*/
+
+/**
+	@name UI.orgDialog#show-common-group
+	@property 
+	@description <b>[attribute]</b>是否显示常用组
+*/
+
+/**
+	@name UI.orgDialog#title
+	@property 
+	@description <b>[attribute]</b>标题
+*/
+
+/**
+	@name UI.orgDialog#show__sub__title
+	@property 
+	@description <b>[attribute]</b>是否显示标题
+*/
+
+/**
+	@name UI.orgDialog#modal
+	@property 
+	@description <b>[attribute]</b>是否是模态
+	@default "false"
+*/
+
+/**
+	@name UI.orgDialog#status
+	@property 
+	@description <b>[attribute]</b>打开时状态, maximize:最大化
+*/
+
+/**
+	@name UI.orgDialog#width
+	@property 
+	@description <b>[attribute]</b>宽度
+*/
+
+/**
+	@name UI.orgDialog#height
+	@property 
+	@description <b>[attribute]</b>高度
+*/
+
+/**
+	@name UI.orgDialog#left
+	@property 
+	@description <b>[attribute]</b>对话框距离页面左边框的距离
+*/
+
+/**
+	@name UI.orgDialog#top
+	@property 
+	@description <b>[attribute]</b>对话框距离页面顶端的距离
+*/
+
+/**
+	@name UI.orgDialog#minmaxable
+	@property 
+	@description <b>[attribute]</b>是否显示 最小最大化按钮
+	@default "true"
+*/
+
+/**
+	@name UI.orgDialog#closable
+	@property 
+	@description <b>[attribute]</b>是否显示关闭按钮
+	@default "true"
+*/
+
+/**
+	@name UI.orgDialog#resizable
+	@property 
+	@description <b>[attribute]</b>是否可以拖拽改变大小
+	@default "true"
+*/
+
+/**
+	@name UI.orgDialog#neighbor 
+	@property 
+	@description <b>[attribute]</b>邻居节点(dom)的id, 若设置，则对话框会在他的下方显示
+*/
+
+/**
+	@name UI.orgDialog#process
+	@property 
+	@description <b>[attribute]</b>打开窗口的process，默认使用当前环境中的process
+*/
+
+/**
+	@name UI.orgDialog#activity
+	@property 
+	@description <b>[attribute]</b>打开窗口的activity，默认使用当前环境中的activity
+*/
+
+/**
+	@name UI.orgDialog#mapping 
+	@property 
+	@description <b>[attribute]</b>处理返回数据方式配置（windowEnsure()入参必须为simpleStore）
+*/
+
+/**
+	@name UI.orgDialog#onInit
+	@event 
+	@description <b>[回调型事件]</b>初始化时触发
+*/
+
+/**
+	@name UI.orgDialog#onOpen
+	@event 
+	@description <b>[回调型事件]</b>打开时触发
+*/
+
+/**
+	@name UI.orgDialog#onClose
+	@event 
+	@description <b>[回调型事件]</b>关闭时触发
+*/
+
+/**
+	@name UI.orgDialog#onSend
+	@event {"source":组件的js对象,"data":数据}
+	@description <b>[回调型事件]</b> 向对话框传递数据，该事件函数的返回值将传递给对话框
+*/
+
+/**
+	@name UI.orgDialog#onReceive
+	@event {"source":组件的js对象,"data":传回的数据}
+	@description <b>[回调型事件]</b> 对话框返回数据，该事件函数有一个参数event，是对话框返回的数据
+*/
+
+/**
+ @name UI.orgDialog#setURL
+ @function
+ @param url {string} <b>[required]</b>URL
+ @description 设置要打开的URL,重新设置URL后需要使用open刺激刷新
+*/
+
+/**
+ @name UI.orgDialog#open
+ @function
+ @param data {object} 打开传给window的数据
+ @param title {string} 对话框的标题
+ @param multi {boolean} 指定单选或者多选
+ @param process {string} 缺省取环境里的
+ @param activity {string} 缺省取环境里的
+ @param executor {string} 执行者，缺省取环境里的
+ @param executeContext {string} 执行环境，缺省取环境里的
+ @description 打开组织机构选择对话框
+ 	<xmp>
+ 	对于组织机构选择对话框，data有固定的json格式，如果为null，则data来源于组件的对应属性
+	{
+		"filter": 过滤条件 string			
+		"rootFilter": 根过滤条件 string			
+		"manageCodes": 管理权限 string			
+		"orgKinds": 可以选择的组织单元类型（逗号分隔） string			
+		"includeDisabledOrg": 是否包含禁用的组织单元 boolean			
+	    "showVirtualRoot": 是否显示虚拟根节点（单选模式） boolean			
+	    "cascade": 默认是否级联选择（多选模式） boolean
+		"selected": 已选择的组织(SA_OPOrg)，sID或sFID数组 string[]		
+		"listMode": 列表模式	
+		"showCommonGroup": 是否显示常用组
+	}
+	</xmp>
+*/
+
+/**
+ @name UI.orgDialog#close
+ @function
+ @description 关闭窗口
+**/
+
+/**
+ @name UI.orgDialog#refresh
+ @function
+ @description 刷新窗口
+**/
+
+/**
+ @name UI.orgDialog#setClosable
+ @function
+ @param isTrue {boolean}  是否显示
+ @description 是否显示关闭按钮
+*/
+
+/**
+ @name UI.orgDialog#setMinmaxable
+ @function
+ @param isTrue {boolean}  是否显示
+ @description 是否显示最大最小化按钮
+*/
+
+/**
+ @name UI.orgDialog#setResizable
+ @function
+ @param isTrue {boolean}  是否可以调整大小
+ @description 是否可以调整大小
+*/
+
+/**
+ @name UI.orgDialog#setNeighbor
+ @function
+ @param id {id}  元素ID
+ @description 显示在某个元素下方
+*/
+
+/**
+ @name UI.orgDialog#setAutoSize
+ @function
+ @param isTrue {boolean}  是否通过内容自适应大小
+ @description 是否通过内容自适应大小
+*/
+
+/**
+ @name UI.orgDialog#getFrame
+ @function
+ @returns iframe对象 
+ @description 获取iframe对象
+*/
+
+/**
+ @name UI.orgDialog#getContentDocument
+ @function
+ @returns document对象
+ @description 获取对话框中内容的document对象
+*/

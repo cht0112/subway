@@ -1,0 +1,139 @@
+/**
+	@name UI.trigger
+	@class
+	@component trigger
+	@model UI
+	@description <b>[rich]</b>按钮
+	@example 
+	四种表现模式：按钮、连接、图片、图片文字，通过appearance方式控制
+	<b>xml格式：</b>
+	<xmp>
+	<xforms:trigger id="trigger1">
+		<xforms:label>trigger</xforms:label>
+		<xforms:action ev:event="DOMActivate"/>	  
+	</xforms:trigger> 		
+	</xmp>
+*/
+ 
+/**
+	@name UI.trigger#id
+	@attribute
+	@required
+	@description 唯一标识
+*/
+
+/**
+	@name UI.trigger#ref
+	@attribute
+	@description 绑定引用
+*/
+
+/**
+	@name UI.trigger#appearance
+	@attribute
+	@description 显示方式，取值:默认显示为按钮,minimal显示为超链接,image显示为图片,image-text显示为图片加文字。
+*/
+
+/**
+	@name UI.trigger#image__sub__text__sub__mode
+	@attribute
+	@description 显示方式为image-text时生效，包括左右和上下排列。
+*/
+
+/**
+	@name UI.trigger#src
+	@attribute
+	@description 显示方式为image时，可用状态时显示的图片路径
+*/
+
+/**
+	@name UI.trigger#dis__sub__src
+	@attribute
+	@description 显示方式为image时，不可用状态时显示的图片路径
+*/
+
+/**
+	@name UI.trigger#label
+	@attribute
+	@description 文本
+*/
+
+/**
+	@name UI.trigger#onClick
+	@event
+	@description <b>[回调事件]</b> 点击按钮
+*/
+
+/**
+	@name UI.trigger#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.trigger#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.trigger#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.trigger#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.trigger#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.trigger#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.trigger#disabled
+	@attribute
+	@description 禁用
+*/
+
+/**
+	@name UI.trigger#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.trigger#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.trigger#getLabel
+	@function
+	@description 返回标签
+	@returns {string}
+*/
+
+/**
+	@name UI.trigger#setLabel
+	@function
+	@param label {string}标签
+	@description 设置标签
+*/

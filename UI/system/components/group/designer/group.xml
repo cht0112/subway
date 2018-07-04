@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="group" tag-type="rich" tag-name="group" icon="group.gif" text="分组" 
+        namespace="xforms"  namespace-uri="http://www.justep.com/xforms"
+        display-property="id" 
+        component-class="XformGroup" 
+        component-type="layout-container">
+		<properties>
+			<property name="id" text="编号" required="false"/>
+			<property name="ref" text="引用" editor-ref="dataRef"/>		
+			<property name="class"  text="class" editor-extend-data="xui-container:container"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+		</properties>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xforms:group></xforms:group>
+			]]></template>
+		</templates>
+		
+	</element>
+</elements>

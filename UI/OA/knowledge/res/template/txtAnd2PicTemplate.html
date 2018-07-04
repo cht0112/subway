@@ -1,0 +1,49 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Language" content="zh-cn" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>${Title}</title>
+		<style type="text/css"> label.title { font-family: "黑体"; font-size: 26px; }
+			label { font-family: "宋体"; font-size: 12px; } div.content
+			{font-family: "宋体"; font-size: 12px; } 
+			.table-style{BORDER-BOTTOM:
+			#87b5f2 0px solid; BORDER-LEFT: #87b5f2 0px solid; WIDTH: 100%; BORDER-TOP: #87b5f2 0px solid; BORDER-RIGHT: #87b5f2 0px solid}
+			.table-title-style{TEXT-ALIGN: center; FONT-FAMILY: 黑体; FONT-SIZE: 20pt; VERTICAL-ALIGN: middle} 
+			.style1 {text-align: center;}
+		</style>
+	</head>
+	<body>
+		<table
+			class="table-style">
+			<tr style="hight:50px">
+				<td width="10" ></td>
+				<td class="table-title-style" >
+					<label class="title">${fTitle}</label>
+				</td>
+				<td width="10" ></td>
+			</tr>
+			<tr>
+				<td width="10" ></td>
+				<td style="TEXT-ALIGN: right">
+					<label id="releaseInfoID">发布人：${fCreatePsnName} 发布日期：${fCreateTime}</label>
+				</td>
+				<td width="10" ></td>
+			</tr>
+			<tr>
+				<td width="10" ></td>
+				<td class="style1">	
+					<img src="${pic}" width="350" height="200" /><img src="${pic}" width="350" height="200" />
+				</td>
+				<td width="10" ></td>
+			</tr>
+
+			<tr>
+				<td width="10" ></td>
+				<td>
+					<div id="contentDiv" style="background:url('bj4.jpg') repeated;height:100%">  ${fContent}</div>
+				</td>
+				<td width="10" ></td>
+			</tr>
+		</table>
+	</body>
+</html>

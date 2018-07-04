@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="navigatorBar" tag-name="bar" icon="Control_ToolBar.gif" text="导航工具栏" tag-type="rich" 
+		discriminate-condition="@component=/UI/system/components/bar.xbl.xml#navigatorBar" 
+		binding-component="/UI/system/components/bar.xbl.xml#navigatorBar" display-property="id" 
+		component-class="NavigatorBar" parent-range="toolbars"
+		component-type="layoutContainer" validator="ToolbarsValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref=""/>
+			<property name="data" text="绑定数据" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="mode" text="显示模式" editor-ref="btnDisplayModes"/>    
+		</properties>
+		<property-editors>
+			<property-editor name="dataDlg" type="dialog">
+				<dynamic-data class-name="com.justep.studio.ui.editors.property.datasource.DataDatasource" method="getDatasource"/>
+				<dialog-page class-name="com.justep.studio.ui.editors.propertypage.DataPage"/>
+			</property-editor>	
+		</property-editors>		
+		<templates>
+			<template name="default"><![CDATA[ 
+	<xui:bar component="/UI/system/components/bar.xbl.xml#navigatorBar" mode="IMG_TXT_LR" xmlns:xui="http://www.justep.com/xui">    
+		<item name="insert-item"/>
+		<item name="save-item"/>
+		<item name="delete-item" />
+		<item name="refresh-item"/>
+		<item name="filter-pro-item"/>
+		<item name="separator" />
+		<item name="first-item"/>
+		<item name="pre-item"/>
+		<item name="next-item"/>
+		<item name="last-item"/>
+		<item name="separator" />
+		<item name="custom-page-item"/>
+	</xui:bar>
+			]]></template>
+		</templates>
+
+		
+		<toolbar>
+			<item text="设置项" method="setBarItem"/>
+		</toolbar>	
+	</element>
+
+	<element name="barItem" tag-name="item" icon="splitter.gif" text="工具按钮项" 
+		discriminate-condition="executeXpath((parent::node()/parent::node()/@component='/UI/system/components/toolbars.xbl.xml#toolbars' or parent::node()/parent::node()/@component='/UI/system/components/quick/toolbars.xbl.xml#toolbarsQ') and (@name='customized-process-item' or @name='transfer-task-item' or @name='back-process-item' or @name='process-chart-item' or @name='advance-process-item' or @name='transfer-task-item' or @name='suspend-process-item' or @name='abort-process-item' or @name='insert-item' or @name='save-item' or @name='delete-item' or @name='refresh-item' or @name='filter-item' or @name='filter-pattern-item' or @name='first-item' or @name='pre-item' or @name='next-item' or @name='last-item' or @name='next-page-item' or @name='all-page-item' or @name='create-new-child-item' or @name='create-new-brother-item' or @name='create-new-root-item' or @name='report-export-pdf-item' or @name='report-export-word-item' or @name='report-export-excel-item' or @name='report-page-setup-item' or @name='report-preview-item' or @name='report-print-item'))" 
+		component-class="BarItem"  display-property="name" 
+		component-type="barItem"  parent-range="navigatorBar,navigatorBarReserved,processBar"
+		validator="BarItemValidator">
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref="" visible="false"/>
+			<property name="name" text="名称" required="true" editor-ref="" readonly="true"/>
+			<property name="accesskey" text="快捷键" />
+			<!-- 
+			<property name="disabled" text="禁用" required="false" editor-ref="edit-disabled" default-value="false" data-type="boolean" allow-empty="true"/>   
+			 -->
+			<property name="readonly" text="只读" required="false" editor-ref="xpathEditor"/>
+			<property name="relevant" text="相关" required="false" editor-ref="xpathEditor"/>   
+		</properties>
+		<events>
+			<!-- 
+			<event name="DOMActivate" display-name="onClick" type="event" text="点击事件,设置后将替换原执行逻辑" parameters="event" is-script="true"/>
+			 -->
+		</events>
+		<property-editors>
+		</property-editors>
+	</element>
+
+	<element name="customPageItem" tag-name="item" icon="splitter.gif" text="分页导航项" 
+	    discriminate-condition="@name=custom-page-item"  component-type="barItem"  parent-range="navigatorBar,navigatorBarReserved"
+		component-class="CustomPageItem"  display-property="name" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref="" visible="false"/>
+			<property name="name" text="名称" required="true" readonly="true"/>
+			<property name="items" text="显示项" editor-ref="pageNavDisplayItems" default-value="first,pre,page,next,last,ext"/>    
+			<property name="page-count" data-type="integer" text="显示页码数" default-value="5" allow-empty="true"/>
+		</properties>
+		<templates>
+			<template name="default"><![CDATA[ 
+	  			<item name="custom-page-item" />
+			]]></template>
+		</templates>
+	</element>
+	
+	
+	<element name="customBarItem" tag-name="item" icon="splitter.gif" text="自定义工具按钮项" 
+		discriminate-condition="parent()/parent()/@component=/UI/system/components/toolbars.xbl.xml#toolbars"
+		component-class="BarItem" display-property="name" 
+		component-type="barItem" parent-range="navigatorBar,navigatorBarReserved,processBar,customBar"
+		validator="BarItemValidator">
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref="" visible="false"/>
+			<property name="name" text="名称" required="false" readonly="true" editor-ref="" />
+		</properties>
+		<property-editors>
+		</property-editors>
+	</element>
+
+	<element name="separatorItem" tag-name="item" icon="type.gif" text="工具栏分割条" 
+	    discriminate-condition="@name=separator"  component-type="barItem"  parent-range="navigatorBar,navigatorBarReserved,customBar,customBarQ,processBarQ"
+		component-class="BarItem"  display-property="name" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref="" visible="false"/>
+			<property name="name" text="名称" required="true" readonly="true"/>
+		</properties>
+		<templates>
+			<template name="default"><![CDATA[ 
+	  <item name="separator" />
+			]]></template>
+		</templates>
+	</element>
+
+<!-- 兼容保留 -->
+	<element name="navigatorBarReserved" tag-name="bar" icon="Control_ToolBar.gif" text="导航工具栏" tag-type="rich" 
+		discriminate-condition="@component=/UI/system/components/bar.xbl.xml#navigatorBarReserved" 
+		binding-component="/UI/system/components/bar.xbl.xml#navigatorBarReserved" display-property="id" 
+		component-class="NavigatorBar" parent-range="toolbars"
+		component-type="layoutContainer" validator="ToolbarsValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref=""/>
+			<property name="data" text="绑定数据" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>    
+		</properties>
+		<property-editors>
+			<property-editor name="dataDlg" type="dialog">
+				<dynamic-data class-name="com.justep.studio.ui.editors.property.datasource.DataDatasource" method="getDatasource"/>
+				<dialog-page class-name="com.justep.studio.ui.editors.propertypage.DataPage"/>
+			</property-editor>	
+		</property-editors>		
+		<templates>
+			<template name="default"><![CDATA[ 
+	<xui:bar component="/UI/system/components/bar.xbl.xml#navigatorBarReserved" xmlns:xui="http://www.justep.com/xui">    
+		<item name="insert-item"/>
+		<item name="save-item"/>
+		<item name="delete-item" />
+		<item name="refresh-item"/>
+		<item name="filter-item"/>
+		<item name="filter-pattern-item"/>
+		<item name="separator" />
+		<item name="first-item"/>
+		<item name="pre-item"/>
+		<item name="next-item"/>
+		<item name="last-item"/>
+		<item name="separator" />
+		<item name="custom-page-item"/>
+	</xui:bar>
+			]]></template>
+		</templates>
+
+		
+		<toolbar>
+			<item text="设置项" method="setBarItem"/>
+		</toolbar>	
+	</element>
+
+</elements>

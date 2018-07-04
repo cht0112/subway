@@ -1,0 +1,104 @@
+.jstabbar {
+	MARGIN: 0px;
+	WIDTH: 100%;
+	height:100%;
+	overflow: hidden;
+}
+
+.jstabbar .tabItems {
+	padding: 0 0 0 10px;
+	MARGIN: 0;
+	border-bottom: 1px solid #99CCFF;
+	-webkit-user-select:none;
+	position: relative;
+	clear:both;
+}
+
+.is-touch .tabItems {
+	HEIGHT: 32px;
+}
+
+.jstabbar .tabItems LI {
+	background-color:#f5faff;
+	border:1px solid #99bbe8;
+	border-bottom:none;
+	FLOAT: left;
+	MARGIN-RIGHT: 5px;
+	LIST-STYLE-TYPE: none;
+	height:23px;
+	cursor: pointer ;
+
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.is-touch .tabItems LI {
+	height:31px;
+}
+
+.jstabbar .tabItems LI.selected {
+	border-bottom:none;
+	border-color: #99CCFF;
+	background-color:white;
+}
+
+.jstabbar .tabItems LI button {
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	cursor: pointer;
+	font-weight: normal; 
+	height:100%;	
+	border: 0;
+	background-color:transparent;
+	color: #535353;
+}
+
+.jstabbar .tabItems LI.selected button {
+	font-weight: bold; 
+	height:100%;
+}
+
+
+.jstabbar .contents {
+	BACKGROUND-COLOR: #fff;
+}
+
+.jstabbar .contents DIV.selected {
+	DISPLAY: block;
+}
+.jstabbar .content {
+	/*
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	*/
+	DISPLAY: none;
+	border-width:0 1px 1px 1px;
+	border-style: solid;
+	border-color: #99CCFF;
+	overflow: auto;
+	position: relative;
+}
+
+.xui-no-border .jstabbar .content.selected,
+.noneborder .jstabbar .content.selected {
+	border: none;
+}
+
+.jstabbar .tabItems .selected {
+	border-top: 1px solid #99bbe8;
+	border-left: 1px solid #99bbe8;
+	border-right: 1px solid #99bbe8;
+	border-color: #99CCFF;
+	background-color:white;
+}
+
+.jstabbar .tabItems .selected button {
+	border: none;
+	font-weight: bold; 
+	height:100%;
+}

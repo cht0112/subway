@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v13455bb3d1724c1c8ce1afd7d9ae8fe4/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vd443e715bc6e4e0d9c39bc2859aa8835/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v32389eeb1fd644499780a95bcdd45127/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vf7dd719e26ab4383bcf86a8d58798c69/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v37d263d6333249e593f4f5ad9f40e63c/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vda864974f2fe44aebd0030e279e10abe/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$v6f01a3127fc34e73849a43353e103e87/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v4aff7d4d9bda42e8912f59b92981c61c/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v438d20f76ac04fd7b1a2da13347a215b/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v20b8b444bf0e4027bb7ca1b182cd9619/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$vbf35d87cbbb142968d5a6554c9dc99df/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v457682a9bec742c9b0db808ee27ab98a/UI/system/components/tabs/tabs.js?language=zh_CN">
+</script>      <link href="/x5/$v372efbc5eabc445197fe5a236625a8f5/UI/system/components/./tabs/tabs.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <style rel="stylesheet" type="text/css">ul.tabItems button:disabled { background-color:#EEEEEE; }</style>  
+    <script language="javascript" src="/x5/$vfd3722d284fb49f9b381547bae68d68f/UI/system/components/processChart/js/processChart.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"/>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>  
+    <link href="/x5/$v1b5759cd808741488d9bfb29896e59b6/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v417efe520b624808b36554325ef3dee6/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script id="htmlScript1" src="/x5/$v93f7438647534cafabb895b5dca57727/UI/system/service/process/processChart.js?language=zh_CN">
+</script>      <script type="text/javascript" src="/x5/$v4b573b9113a840358fd863dbe9d15e61/UI/system/service/process/.cache/processChart_zh_CN_x5_9c438b06b0124e4d85383c1772b37292.js?language=zh_CN&amp;$version=8f4c6f19-1117-430d-8b64-2d17036dfaf0"/>  </head>    <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"/>      <span id="infoPanel" style="position:absolute;display:none"/>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" lazy="false" style="height:100%;width:100%">         <div class="component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="GLOBAL_ID_1627837018" style="width:100%;height:100%;overflow:auto;">           <div class="jstabbar" id="GLOBAL_ID_1627837018_root">             <ul class="tabItems clearfix">               <li class="selected" id="GLOBAL_ID_1455152767_tab">                 <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('GLOBAL_ID_1455152767');this.blur();" type="button">轨迹图</button> 
+              </li>  
+              <li id="GLOBAL_ID_78611174_tab"> 
+                <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('GLOBAL_ID_78611174');this.blur();" type="button">波特图</button> 
+              </li> 
+            </ul>  
+            <div class="contents" id="GLOBAL_ID_1627837018_contents"> 
+              <div class="content selected" id="GLOBAL_ID_1455152767"> 
+                <div class="component_8CF08DD0 processTrackChart" component="/UI/system/components/processChart.xbl.xml#processTrackChart" id="track" style="height:100%;"> 
+                  <div style="display:none"> 
+                    <div chartControlID="track_GLOBAL_ID_1378423956" xblid="interface"/> 
+                  </div>  
+                  <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="bl2" style="height:100%;"> 
+                    <div borderSize="0" class="xui-borderlayout-root"> 
+                      <div class="xui-borderlayout-area xui-borderlayout-top" size="40px" style=""> 
+                        <table> 
+                          <tr> 
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:green; width:100%;height:2px"/> 
+                            </td>  
+                            <td align=""> 
+                              <span>已经过</span> 
+                            </td>  
+                            <td width="20"/>  
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:black; width:100%;height:2px"/> 
+                            </td>  
+                            <td> 
+                              <span>未经过</span> 
+                            </td>  
+                            <td width="20"/>  
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:red; width:100%;height:2px"/> 
+                            </td>  
+                            <td> 
+                              <span>回退</span> 
+                            </td>  
+                            <td width="20"/>  
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:#0080FF; border:1px #0080FF solid; width:100%;height:20px;border-style:solid;"/> 
+                            </td>  
+                            <td> 
+                              <span>当前环节</span> 
+                            </td>  
+                            <td width="20"/>  
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:green; border:1px green solid; width:100%;height:20px; border-style:solid;"/> 
+                            </td>  
+                            <td> 
+                              <span>已处理</span> 
+                            </td>  
+                            <td width="20"/>  
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:#ff6666; border:1px #ff6666 solid; width:100%;height:20px;border-style:solid;"/> 
+                            </td>  
+                            <td> 
+                              <span>已终止</span> 
+                            </td>  
+                            <td width="20"/>  
+                            <td width="30"> 
+                              <div style="overflow:hidden;display:block;background:yellow; border:1px yellow solid; width:100%;height:20px;border-style:solid;"/> 
+                            </td>  
+                            <td> 
+                              <span>已暂停</span> 
+                            </td> 
+                          </tr> 
+                        </table> 
+                      </div>  
+                      <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"/>  
+                      <div class="xui-borderlayout-area xui-borderlayout-center" style="overflow:auto;"> 
+                        <div id="track_GLOBAL_ID_1378423956" style="width:100%;height:100%;overflow:auto;"/> 
+                      </div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div>  
+              <div class="content" id="GLOBAL_ID_78611174" xforms-select="processChart.tabPage1Select"> 
+                <div class="component_4502B30A processPertChart" component="/UI/system/components/processChart.xbl.xml#processPertChart" id="pert" style="height:100%;"> 
+                  <div style="display:none"> 
+                    <div chartControlID="bot_GLOBAL_ID_N1604236172" xblid="interface"/> 
+                  </div>  
+                  <div id="bot_GLOBAL_ID_N1604236172" style="width:100%;height:100%;overflow:auto;"/> 
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

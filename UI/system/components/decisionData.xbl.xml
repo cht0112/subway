@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xforms="http://www.justep.com/xforms" xmlns:justep="http://www.justep.com/x5#"
+	script-type="text/javascript">
+	
+	<script src="./data/js/data.js"/>
+	<script src="./decisionData/decisionData.js"/>
+
+	<binding id="data" delete-bound-element="true" _order="inner">
+		<template template-type="java" src="DecisionData" />
+	</binding>
+	
+	
+</xbl>

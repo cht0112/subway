@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DetectionTask>
+  <Public>
+    <ProjectID>200</ProjectID>
+    <ProjectName>TST1104-II</ProjectName>
+    <ProductName>TST1104-II</ProductName>
+    <Assigned>广电运通</Assigned>
+    <Develop>松下集团</Develop>
+    <DetectionObjType>终端设备</DetectionObjType>
+    <DetectionObj>自动售票机</DetectionObj>
+    <BussinessType>入围检测</BussinessType>
+    <BussinessStage>入围检测阶段</BussinessStage>
+    <TaskID>133</TaskID>
+    <TaskName>zhufeng-自动售票机-接口测试</TaskName>
+    <PlanOperatorID>00579</PlanOperatorID>
+    <TaskPlanStartDate>2013-11-20 09:00:00</TaskPlanStartDate>
+    <TaskPlanEndDate>2013-11-20 10:00:00</TaskPlanEndDate>
+    <TaskArea>自动售票机入围检测入围检测阶段</TaskArea>
+    <TaskIterative>第1轮</TaskIterative>
+    <TaskReport>
+      <OperatorID>00000000</OperatorID>
+      <TaskStartDate>2013-11-20 09:00:00</TaskStartDate>
+      <TaskEndDate>2013-11-20 10:00:00</TaskEndDate>
+      <TaskStatus>0</TaskStatus>
+      <TaskCheck>0</TaskCheck>
+    </TaskReport>
+  </Public>
+  <TestCases>
+    <TestCase>
+      <TestCaseInfo CaseID="010101TEST221" CaseName="检测平台SC测试SLE开机时序" CasePrior="A|基本业务"
+        Description="">
+        <DetectionObject Type="01|终端设备" SubType="01|自动售票机"/>
+        <DetectionRange Type="01|接口测试" SubType="221|开机专项"/>
+      </TestCaseInfo>
+      <SubTestCases>
+        <SubTestCase>
+          <SubTestCaseInfo SubCaseID="010101TEST221001" SubCaseName="检测平台SC测试SLE-参数运营状态一致情况下开机时序"
+            SubCaseLevel="1" SubCaseSeq="1" SubCaseSpendTime="1">
+            <PreCondition>1、测试环境准备，SLE IP地址、SLE编号等信息与SC中的部署信息一致； 2、NTP协议配置正确 3、SC检测平台与TVM没有时间误差</PreCondition>
+            <SystemConfiguration AutoPowerOn="0|否" AutoParameterSync="0|否"/>
+          </SubTestCaseInfo>
+          <SubTestCaseReport SubCaseStatus="0|未执行" SubCaseCheck="0|未知" SubCaseStartTime=""
+            SubCaseElapsedTime="" SubCaseReportDate="" SubCaseDesc=""/>
+          <Steps>
+            <Step Description="检测平台SC接受到SLE发送连接认证请求" OperatePlace="1|检测平台" Type="93|车站计算机系统"
+              StepNo="1" StepResult="连接认证请求数据正确，请求代码（5109）" StepLevel="">
+              <Application Type="1|服务端" ProtocolType="1|导则定义" ConnectType="1|SOCKET"/>
+              <Execution Type="2|接收">
+                <Rules>
+                  <Rule Type="DetectionExecutionRuleParse">
+                    <Parse DataRecord="" ActionType="" DataCategory="4|控制数据"
+                      DataItem="7|请求数据" DataType="C093" DataSubType="">
+                      <FieldControls>
+                        <FieldControl Name="请求代码" Type="常量" Value="5109" Desc=""/>
+                      </FieldControls>
+                    </Parse>
+                  </Rule>
+                  <Rule Type="DetectionExecutionRuleReceive">
+                    <Receive ReceiveTime="0"/>
+                  </Rule>
+                </Rules>
+                <Pars>
+                  <Par1 Value=""/>
+                  <Par2 Value=""/>
+                  <Par3 Value=""/>
+                  <Par4 Value=""/>
+                  <Par5 Value=""/>
+                  <Par6 Value=""/>
+                </Pars>
+              </Execution>
+              <StepReoprt StepStatus="0|未执行" StepCheck="0|未知" StepStartDateTime=""
+                StepDesc="" StepReportDate="" StepUpLoad="" StepFile=""/>
+            </Step>
+          </Steps>
+        </SubTestCase>
+      </SubTestCases>
+    </TestCase>
+  </TestCases>
+  <Indexs/>
+  <md5/>
+</DetectionTask>

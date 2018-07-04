@@ -1,0 +1,305 @@
+/**
+	@name UI.processChart
+	@component /UI/system/components/processChart.xbl.xml#processChart
+	@class 
+	@model UI
+	@description 流程图组件(包括轨迹图和波特图)
+	@example 
+		<xmp>
+		   	<xhtml:div  
+		   		id="processChart1"
+		   		component="/UI/system/components/processChart.xbl.xml#processChart"
+		   		process="processComponent"/>
+		</xmp>
+*/
+
+/**
+	@name UI.processChart#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/processChart.xbl.xml#processChart"
+*/
+
+/**
+	@name UI.processChart#id
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>id标识
+*/
+
+/**
+	@name UI.processChart#load
+	@function
+	@description 如果系统参数中有task, 使用task加载流程图; 否则使用当前process加载流程图
+	@returns {void}
+*/
+
+/**
+	@name UI.processChart#loadByTask
+	@function
+	@description 根据指定的task加载流程图
+	@param task <b>[required]</b>
+	@returns {void}
+*/
+
+/**
+	@name UI.processChart#loadByPI
+	@function
+	@description 根据指定的流程实例加载流程图
+	@param pi <b>[required]</b>
+	@returns {void}
+*/
+
+/**
+	@name UI.processChart#loadByData
+	@function
+	@description 根据指定的流程实例加载流程图
+	@param process <b>[required]</b>流程标识的全称 
+	@param data <b>[required]</b>业务数据, 可以为null 
+	@returns {void}
+*/
+
+
+/**
+	@name UI.processTrackChart
+	@component /UI/system/components/processChart.xbl.xml#processTrackChart
+	@class 
+	@model UI
+	@description 流程轨迹图组件
+	@example 
+		<xmp>
+		   	<xhtml:div  
+		   		id="processTrackChart1"
+		   		component="/UI/system/components/processChart.xbl.xml#processTrackChart"
+		   		process="processComponent"/>
+		</xmp>
+*/
+
+/**
+	@name UI.processTrackChart#component
+	@property
+	@description <b>[attribute]</b>组件标识
+	@default "/UI/system/components/processChart.xbl.xml#processTrackChart"
+*/
+
+/**
+	@name UI.processTrackChart#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.processTrackChart#load
+	@function
+	@description 如果系统参数中有task, 使用task加载流程轨迹图; 否则使用当前process加载流程轨迹图
+	@returns {void}
+*/
+
+/**
+	@name UI.processTrackChart#loadByTask
+	@function
+	@description 根据指定的task加载流程轨迹图
+	@param task <b>[required]</b>
+	@returns {void}
+*/
+
+/**
+	@name UI.processTrackChart#loadByPI
+	@function
+	@description 根据指定的流程实例加载流程轨迹图
+	@param pi <b>[required]</b>
+	@returns {void}
+*/
+
+/**
+	@name UI.processTrackChart#loadByData
+	@function
+	@description 根据指定的流程实例加载流程轨迹图
+	@param process <b>[required]</b>流程标识的全称 
+	@param data <b>[required]</b>业务数据 
+	@returns {void}
+*/
+
+
+
+/**
+	@name UI.processPertChart
+	@component /UI/system/components/processChart.xbl.xml#processPertChart
+	@class 
+	@model UI
+	@description 流程波特图组件
+	@example 
+		<xmp>
+		   	<xhtml:div  
+		   		id="processPertChart1"
+		   		component="/UI/system/components/processChart.xbl.xml#processPertChart"
+		   		process="processComponent"/>
+		</xmp>
+*/
+
+/**
+	@name UI.processPertChart#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/processChart.xbl.xml#processPertChart"
+*/
+
+/**
+	@name UI.processPertChart#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.processPertChart#load
+	@function
+	@description 如果系统参数中有task, 使用task加载流程波特图; 否则使用当前process加载流程波特图
+	@returns {void}
+*/
+
+/**
+	@name UI.processPertChart#loadByTask
+	@function
+	@description 根据指定的task加载流程波特图
+	@param task <b>[required]</b>
+	@returns {void}
+*/
+
+/**
+	@name UI.processPertChart#loadByPI
+	@function
+	@description 根据指定的流程实例加载流程波特图
+	@param pi <b>[required]</b>
+	@returns {void}
+*/
+
+/**
+	@name UI.processPertChart#loadByData
+	@function
+	@description 根据指定的流程实例加载流程波特图
+	@param process <b>[required]</b>流程标识的全称 
+	@param data <b>[required]</b>业务数据 
+	@returns {void}
+*/
+
+/**
+	@name UI.processPertChart#onPertItemClick
+	@event
+	@description <b>[回调型事件]</b>在波特图上某个元素点击时触发
+	@param event 它的结构如下:
+<xmp>	
+		{
+			task: {id:"", sName:"", sStatusID:"", sStatusName:"",
+					sCreateTime:"",sActualFinishTime:"",
+					sCreatorFID:"", sCreatorFName:"",
+					sProcess:"",sProcessName:"", sActivity:"", 
+						sActivityName:"", sRefActivity:""}, 
+			executors: 
+				[{id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+					sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+					sCreateTime:"",sActualFinishTime:"", ext:[]},
+				 {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+				 	sCURL:"",sEURL:"",sStatusID:"",sStatusName:"",
+				 	sCreateTime:"",sActualFinishTime:"", ext:[]}
+				],
+			
+			curExecutor: {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+				sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", sCreateTime:"",
+				sActualFinishTime:"", ext:[]}
+		}
+</xmp>
+*/
+
+/**
+	@name UI.processTrackChart#onTrackItemClick
+	@event
+	@description <b>[回调型事件]</b>在轨迹图上某个业务环节点击时触发
+	@param event 它的结构如下:
+<xmp>	
+		{	
+			process: "", 
+			processName:"", 
+			activity:"", 
+			activityName:"", 
+			bot: {
+				task: {id:"", sName:"", sStatusID:"", sStatusName:"",
+						sCreateTime:"",sActualFinishTime:"",
+						sCreatorFID:"", sCreatorFName:"",
+						sProcess:"",sProcessName:"", sActivity:"", 
+							sActivityName:"", sRefActivity:""}, 
+				executors: 
+					[{id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+						sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+						sCreateTime:"",sActualFinishTime:"", ext:[]},
+					 {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+					 	sCURL:"",sEURL:"",sStatusID:"",sStatusName:"",
+					 	sCreateTime:"",sActualFinishTime:"", ext:[]}
+					],
+				curExecutor: {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+					sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+					sCreateTime:"",sActualFinishTime:"", ext:[]}
+			}
+
+		}
+</xmp>		
+*/
+
+/**
+	@name UI.processChart#onPertItemClick
+	@event
+	@description <b>[回调型事件]</b>在波特图上某个元素点击时触发
+	@param event 它的结构如下:
+<xmp>	
+		{
+			task: {id:"", sName:"", sStatusID:"", sStatusName:"",
+					sCreateTime:"",sActualFinishTime:"",
+					sCreatorFID:"", sCreatorFName:"",
+					sProcess:"",sProcessName:"", sActivity:"", 
+						sActivityName:"", sRefActivity:""}, 
+			executors: 
+				[{id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+					sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+					sCreateTime:"",sActualFinishTime:"", ext:[]},
+				 {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+				 	sCURL:"",sEURL:"",sStatusID:"",sStatusName:"",
+				 	sCreateTime:"",sActualFinishTime:"", ext:[]}
+				],
+			curExecutor: {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+				sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+				sCreateTime:"",sActualFinishTime:"", ext:[]}
+		}
+</xmp>		
+*/
+
+/**
+	@name UI.processChart#onTrackItemClick
+	@event
+	@description <b>[回调型事件]</b>在轨迹图上某个业务环节点击时触发
+	@param event 它的结构如下:
+<xmp>	
+		{	
+			process: "", 
+			processName:"", 
+			activity:"", 
+			activityName:"", 
+			bot: {
+				task: {id:"", sName:"", sStatusID:"", sStatusName:"",
+						sCreateTime:"",sActualFinishTime:"",
+						sCreatorFID:"", sCreatorFName:"",
+						sProcess:"",sProcessName:"", sActivity:"", 
+							sActivityName:"", sRefActivity:""}, 
+				executors: 
+					[{id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+						sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+						sCreateTime:"",sActualFinishTime:"", ext:[]},
+					 {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+					 	sCURL:"",sEURL:"",sStatusID:"",sStatusName:"",
+					 	sCreateTime:"",sActualFinishTime:"", ext:[]}
+					],
+				curExecutor: {id:"", sName:"", sExecutorFID:"", sExecutorFName:"", 
+					sCURL:"",sEURL:"",sStatusID:"",sStatusName:"", 
+					sCreateTime:"",sActualFinishTime:"", ext:[]}
+			}
+
+		}
+</xmp>		
+*/

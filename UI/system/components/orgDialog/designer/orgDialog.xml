@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="orgDialog" tag-type="rich" tag-name="div" icon="dialog_icon_min.gif"
+		text="组织对话框" binding-component="/UI/system/components/orgDialog.xbl.xml#orgDialog"
+		display-property="id" component-class="OrgDialog" component-type="formControl"  parent-range="view"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			
+			<property name="multi-select" text="多选" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="filter" text="组织机构过滤条件"/>
+			<property name="root-filter" text="根过滤条件（与manage-codes属性互斥）" enabled-condition="not(@manage-codes)" editor-ref="rootFilterList"/>
+			<property name="manage-codes" text="业务管理权限编码，多个业务管理权限用逗号分割（与root-filter属性互斥）" enabled-condition="not(@root-filter)"/>
+			<property name="org-kinds" text="可选择的组织类型" editor-ref="orgKindsList" readonly="true" default-value=""/>
+			<property name="include-disabled-org" text="是否包含已禁用的组织" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="show-virtual-root" text="是否显示虚拟根节点（单选模式）" editor-ref="booleanList" readonly="true" default-value="false" enabled-condition="@multi-select!='true'"/>
+			<property name="cascade" text="是否默认级联选择（多选模式）" editor-ref="booleanList" readonly="true" default-value="true" enabled-condition="@multi-select='true'"/>
+			<property name="list-mode" text="列表模式" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="show-common-group" text="是否显示常用组" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="title" text="对话框标题"/>
+			<property name="show-title" text="显示标题栏" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="modal" text="模态" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="width" text="宽度，只支持PX单位" default-value="600px"/>
+			<property name="height" text="高度，只支持PX单位" default-value="500px"/>
+			<property name="left" text="窗口打开的位置(左)"/>
+			<property name="top" text="窗口打开的位置(上)"/> 
+			<property name="neighbor" text="显示在某个元素下方(元素的ID)" is-id-ref="true"/>
+			<property name="reload-on-open" text="打开时刷新页面" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="status" text="初始化状态" editor-ref="dialogStatus" readonly="true" enum-values=""/>
+			<property name="resizable" text="是否可以改变大小" editor-ref="booleanList" default-value="true" readonly="true" data-type="boolean"/>
+			<property name="minmaxable" text="是否显示最大化最小化按钮" editor-ref="booleanList" default-value="true" readonly="true" data-type="boolean"/>
+			<property name="closable" text="是否显示关闭按钮" editor-ref="booleanList" default-value="true" readonly="true" data-type="boolean"/>
+			<property name="process" text="打开窗口的process，默认使用当前环境中的process"/>
+			<property name="activity" text="打开窗口的activity，默认使用当前环境中的activity"/>
+			<property name="mapping" text="配置返回数据的处理" editor-ref="orgDialogMappingDialog" readonly="true" is-virtual="true" fixed-value="[...]"/>
+		</properties>
+		
+		<property-editors>
+			<property-editor name="rootFilterList" type="list">
+				<static-data value=",SA_OPOrg.sParent is null" />
+			</property-editor>
+			<property-editor name="dialogStatus" type="list">
+				<static-data value=",minimize,maximize" />
+			</property-editor>
+			<property-editor name="orgDialogMappingDialog" type="dialog">
+  				<dialog-page class-name="OrgDialogEditMappingPage" /> 
+  			</property-editor>
+		</property-editors>
+		
+		<events>
+			<event name="onSend" />
+			<event name="onReceive" parameters="event"/>
+			<event name="onInit"/>
+			<event name="onOpen" parameters="event"/>
+			<event name="onClose"  parameters="event"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/orgDialog.xbl.xml#orgDialog" xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+					title=""
+					width="600px"
+					height="500px"
+					modal="true"
+					root-filter="SA_OPOrg.sParent is null"
+				/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

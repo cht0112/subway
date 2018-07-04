@@ -1,0 +1,145 @@
+.functreeview {
+	height: 240px;
+	background-color: white;
+	margin: 0 auto;
+	position: relative;
+}
+.functreeview .column .empty {
+	display: block;
+	font-size: 16px;
+	font-family:\9ED1\4F53;
+	color: #ddd;
+	margin: 0 auto;
+}
+.functreeview .column {
+	width: 190px;
+	height: 240px;
+	border: 0;
+	overflow: auto;
+	position: absolute !important;
+	top: 0;
+	left: 0;
+}
+
+.functreeview .detail{
+	border: none;
+	overflow: auto;
+	height: 240px;
+}
+
+.functreeview .column ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.functreeview .column ul li {
+	display: block;
+}
+
+.functreeview .column ul li[extended=on] {
+	background-color: #eee;
+}
+.functreeview .column ul li a{
+	text-decoration: none;
+	display: block;
+	padding: 5px 5px 5px 24px;
+}
+
+.functreeview .column ul li[role=dir] a {
+	background: url(./images/arrow3.png) 5px center no-repeat;
+}
+
+.functreeview .column ul li[role=func] a {
+	background: url(../../../../../system/images/default16.png) 5px center no-repeat;
+}
+
+.functreeview .column ul li a {
+	color: black;
+}
+.functreeview .detail .info,
+.functreeview .detail .pos {
+	border: none;
+	margin: 10px 5px 5px 5px;
+	border-top: 1px solid #ddd;
+	padding-top: 10px;
+}
+
+.functreeview .detail .pos {
+	border-top: 0;
+	display: none;
+}
+
+.functreeview .detail .info .more-info-btn,
+.functreeview .detail .pos .more-info-btn {
+	margin-left: 10px;
+	color: #666;
+}
+
+.functreeview .detail .info .more-info-close-btn,
+.functreeview .detail .pos .more-info-close-btn {
+	display: block;
+	margin-top: 10px;
+	color: #666;
+}
+	
+.functreeview .detail .info .more,
+.functreeview .detail .pos .more {
+	margin-top: 10px;
+	display: none;
+}
+
+.functreeview .detail .pos .more a {
+	color: black;
+}
+
+.functreeview .detail .bar {
+	height: 20px;
+	margin: 5px;
+}
+
+.functreeview .detail .bar ul {
+	list-style: none;	
+	margin: 0;
+	padding: 0;
+}
+
+.functreeview .detail .bar ul li {
+	display: block;
+	float: left;
+	margin-right: 20px;
+}
+.functreeview .detail .bar ul li a{
+	display: block;
+	line-height: 20px;
+	padding: 0 8px;
+	color: #666;
+}
+
+.functreeview .detail .bar ul li .fun-run-btn {
+	text-decoration: none;
+	display: block;
+	line-height: 20px;
+	padding: 0 8px;
+	font-weight: bold;
+	border: 1px solid #5595C4;
+	color: white;
+	background: #57A0DE;
+	background: -webkit-linear-gradient(top,#6DB2E4,#57A0DE);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6DB2E4', endColorstr='#57A0DE');
+}
+
+.functreeview .close{
+	position: absolute;
+	color: white;
+	right: 16px;
+	top: 14px;
+	display: block;
+	width: 18px;
+	height: 0px;
+	padding-top: 18px;
+	background-image: url(../sortablebar/images/sprite-8bit.png);
+	background-position: 0 58px;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 10;
+}

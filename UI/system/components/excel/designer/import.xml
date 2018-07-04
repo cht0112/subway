@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="excelImport" tag-type="rich" tag-name="div" icon="iconImport.gif" text="data数据excel导入"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/excel.xbl.xml#import"
+		display-property="id" component-class="ExcelImport" component-type="formControl">
+
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="导入data" required="true" is-id-ref="true" editor-ref="bizDatalist"/>
+			<property name="to" text="导入的数据去向方式" readonly="true" default-value="DB" editor-ref="toList" enum-values=""/>
+			<property name="mapping-src" text="数据导入映射文件" editor-ref="fileTreeDialog" editor-parameter=".xml#true#true#false"/>
+			<property name="use-default" text="使用映射文件中定义的导入参数" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="action" text="指定导入excel的action" editor-ref="actionDlg"/>
+			<property name="label" text="提示标签内容" default-value="导入Excel"/>
+			<property name="appearance" text="表现"  editor-ref="triggerAppearanceList" default-value="image"/>
+			<property name="icon-class"  text="icon-class" editor-ref="iconSelectionDlg" />
+			<property name="image-text-mode" text="image-text模式下显示方式"  enabled-condition="@appearance='image-text'" editor-ref="imageTextModes" enum-values="LR"/>
+			<property name="image" text="可用时的图片" editor-ref="triggerImgDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp" enabled-condition="@appearance='image' or @appearance='image-text'" default-value="/UI/system/components/excel/images/import.gif" allow-empty="false"/>  
+			<property name="dis-image" text="不可用时的图片" editor-ref="triggerImgDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp" enabled-condition="@appearance='image' or @appearance='image-text'" default-value="/UI/system/components/excel/images/unimport.gif"/>    
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+		</properties>
+
+		<property-editors>
+  			<property-editor name="triggerImgDialog" type="dialog" class-name="EditSrcPage"/>		
+			<property-editor name="triggerAppearanceList" type="list">
+				<static-data value="button,image,image-text,minimal,image-minimal"></static-data>
+			</property-editor>
+			<property-editor name="imageTextModes" type="list">
+				<static-data value="LR:左右,TB:上下"></static-data>
+			</property-editor>
+			<property-editor name="bizDatalist" type="list">
+						<dynamic-data xpath="//*[@component='/UI/system/components/data.xbl.xml#bizData']/@id"/>								
+			</property-editor>
+			
+			<property-editor name="toList" type="list" > 
+				<static-data value="UI,DB" /> 
+			</property-editor>		
+		</property-editors>		
+	
+		<events>  <!--组件事件-->			
+			<event name="onBeforeImport"  text="导入前"/>
+			<event name="onAfterImport"  text="导入成功"/>
+			<event name="onError"  text="导入失败"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" appearance="image-minimal" component="/UI/system/components/excel.xbl.xml#import"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

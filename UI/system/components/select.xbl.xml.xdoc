@@ -1,0 +1,1081 @@
+/**
+	@name UI.simpleselect
+	@component /UI/system/components/select.xbl.xml#simpleSelect
+	@class
+	@model UI
+	@description 下拉选择组件（简单）
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<!--绑定 data-->
+	<xhtml:div component="/UI/system/components/select.xbl.xml#simpleSelect"
+		id="taskImportance" 
+		label-ref="data('main')/sImportanceName" 
+		ref="data('main')/sImportanceID" 
+		dropdown-height="75px"
+		option-data="task_importance" 
+		option-label="sName" 
+		option-value="rowid"
+		onCloseup="mainActivity.WorkAdviceImportanceCloseup"/>
+		
+	<!--内部静态数据-->
+	<xhtml:div component="/UI/system/components/select.xbl.xml#simpleSelect" 
+		id="div1" 
+		style="margin: 0px 0 0 0; width:100px;" 
+		multi-select="true" 
+		dropdown-height="75px"
+		ref="data('custom_filter')/status">
+		<option value="waiting">待办</option>
+		<option value="finished">已办</option>
+		<option value="submited">提交</option>
+	</xhtml:div>
+</xmp>
+*/
+
+/**
+	@name UI.simpleselect#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/select.xbl.xml#simpleSelect"
+*/
+
+/**
+	@name UI.simpleselect#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.simpleselect#ref
+	@attribute
+	@required
+	@description 绑定引用
+*/
+
+/**
+	@name UI.simpleselect#label__sub__ref
+	@attribute
+	@description label引用。有此属性时，文本框里内容将显示此引用的值；没有此属性时，将会根据ref的值到下拉列表中查找对应。
+*/
+
+/**
+	@name UI.simpleselect#value__sub__separator
+	@attribute
+	@description 多选时，值分隔字符。
+*/
+
+/**
+	@name UI.simpleselect#label__sub__separator
+	@attribute
+	@description 多选时，文本标签分隔字符。
+*/
+
+/**
+	@name UI.simpleselect#multi__sub__select
+	@attribute
+	@default false
+	@type boolean
+	@description 是否多选
+*/
+
+/**
+	@name UI.simpleselect#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.simpleselect#dropdown__sub__height
+	@attribute
+	@type integer
+	@description 下拉框最大高度，超过这个高度将会出现滚动条。若没有这个属性，高度随数据量增加。
+*/
+
+/**
+	@name UI.simpleselect#option
+	@attribute
+	@description 下拉选择项，设计器通过“编辑选项”操作进行修改
+	@example
+	<b>格式如下：</b>
+<xmp>
+      	<option value="waiting">待办</option>
+      	<option value="finished">已办</option>
+      	<option value="submited">提交</option>
+</xmp>      	
+*/
+
+/**
+	@name UI.simpleselect#option__sub__data
+	@attribute
+	@description 下拉绑定data的ID
+*/
+/**
+	@name UI.simpleselect#option__sub__label
+	@attribute
+	@description 下拉显示的字段
+*/
+
+/**
+	@name UI.simpleselect#option__sub__value
+	@attribute
+	@description 下拉项的 值
+*/
+
+/**
+	@name UI.simpleselect#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.simpleselect#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.simpleselect#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.simpleselect#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.simpleselect#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.simpleselect#disabled
+	@attribute
+	@description 禁用
+*/
+
+/**
+	@name UI.simpleselect#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.simpleselect#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+
+/**
+	@name UI.simpleselect#onDropdown
+	@event
+	@description <b>[回调事件]</b> 显示下拉事件
+	@param {object} event<br/> 
+	<b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.simpleselect#onCloseup
+	@event
+	@description <b>[回调事件]</b> 关闭下拉事件
+	@param {object} event <br/>
+	<b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件对象,
+		"label" : 选择的label,
+		"value" : 选择的value,
+		"valueChanged" : value是否改变
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect
+	@component /UI/system/components/select.xbl.xml#gridSelect
+	@class grid选择组件
+	@model UI
+	@description <b>[rich]</b>grid选择组件
+	@example 
+<xmp>
+	<!--绑定 data-->
+	<xhtml:div component="/UI/system/components/select.xbl.xml#gridSelect" id="gridSelect1">
+		<xforms:label ref="col_0" />
+		<xforms:value ref="col_1" />
+		<xforms:itemset data="dataId" independence="false/true"> <!--与data一对一/多个select对应一个data-->
+			<xforms:column ref="col_0" />
+			<xforms:column ref="col_1" />
+			<xforms:column ref="col_2" />
+		</xforms:itemset>
+	</xhtml:div>
+
+	<!--内部静态数据-->
+	<xhtml:div component="/UI/system/components/select.xbl.xml#gridSelect" id="gridSelect1">
+		<xforms:label ref="col_0" />
+		<xforms:value ref="col_1" />
+		<xforms:itemset>
+			<itemset-data xmlns="">
+				<rows>
+					<row>
+						<cell>a1</cell>
+						<cell>a2</cell>
+						<cell>a3</cell>
+					</row>
+					<row>
+						<cell>b1</cell>
+						<cell>b2</cell>
+						<cell>b3</cell>
+					</row>
+				</rows>
+			</itemset-data>
+		</xforms:itemset>
+	</xhtml:div>
+</xmp>
+*/
+
+/**
+	@name UI.gridselect#component
+	@attribute
+	@required
+	@description 组件标识
+	@default /UI/system/components/select.xbl.xml#gridSelect
+*/
+
+/**
+	@name UI.gridselect#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.gridselect#ref
+	@attribute
+	@required
+	@description 绑定引用
+*/
+
+/**
+	@name UI.gridselect#label__sub__ref
+	@attribute
+	@description label引用。有此属性时，文本框里内容将显示此引用的值；没有此属性时，将会根据ref的值到下拉列表中查找对应。
+*/
+
+/**
+	@name UI.gridselect#ext__sub__ref
+	@attribute
+	@description 扩展引用。
+*/
+
+/**
+	@name UI.gridselect#default__sub__label__sub__ref
+	@attribute
+	@description 空值引用。空值时，用此ref显示在输入框。
+*/
+
+
+/**
+	@name UI.gridselect#all__sub__selected__sub__label__sub__ref
+	@attribute
+	@description 全选引用。全选时，用此ref显示在输入框。
+*/
+
+/**
+	@name UI.gridselect#multi__sub__select
+	@attribute
+	@default false
+	@type boolean
+	@description 是否多选
+*/
+
+/**
+	@name UI.gridselect#dropdown__sub__height
+	@attribute
+	@type integer
+	@description 下拉框最大高度，超过这个高度将会出现滚动条。若没有这个属性，高度随数据量增加。
+*/
+
+/**
+	@name UI.gridselect#dropdown__sub__class
+	@attribute
+	@type integer
+	@description 下拉框class
+*/
+
+/**
+	@name UI.gridselect#row__sub__height
+	@attribute
+	@type integer
+	@description 下拉表格行高(px)，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.gridselect#column__sub__header__sub__height
+	@attribute
+	@type integer
+	@description 下拉表格列头高(px)，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.gridselect#smart__sub__render
+	@attribute
+	@type integer
+	@description 智能渲染
+*/
+
+/**
+	@name UI.gridselect#value__sub__separator
+	@attribute
+	@description 多选时，值分隔字符。
+*/
+
+/**
+	@name UI.gridselect#label__sub__separator
+	@attribute
+	@description 多选时，文本标签分隔字符。
+*/
+
+/**
+	@name UI.gridselect#ext__sub__separator
+	@attribute
+	@description 多选时，扩展列分隔字符。
+*/
+
+/**
+	@name UI.gridselect#input__sub__changeable
+	@attribute
+	@type boolean
+	@description 通过在文本框输入改变ref值。必须为单选，并且value和label指向同一column。
+*/
+
+/**
+	@name UI.gridselect#delay__sub__create__sub__grid
+	@attribute
+	@type boolean
+	@description 延迟绘制下拉框内部grid。注意：设置该属性为true后，下拉关联的data在下拉前不能使用。如果有其它select使用同一data，则该select进行下拉前，其它select不能使用。
+*/
+
+/**
+	@name UI.gridselect#itemset
+	@attribute
+	@description <b>[child]</b>
+	@example
+	<xmp>
+	
+	属性：
+	 	data-ref: 绑定data的ID
+	 	static-data: 静态下拉数据，使用后可以不绑定data-ref，内容格式依赖定义的列                     
+	 	auto-load-data：{boolean} 默认false。动态触发data加载数据。
+	 	independence:{boolean} 默认false。
+                     false: 每个select只能绑定一个data。
+                     true: 多个select可以使用一个data，只从data读取一次数据到下拉表格，如果数据更改，不会自动刷新下拉表格，用户需要通过justep.xbl('select_id').refreshData()刷新数据
+	
+	静态数据格式：
+		<xforms:itemset>
+			<itemset-data xmlns="">
+				<rows>
+					<row>
+						<cell>a1</cell>
+						<cell>a2</cell>
+						<cell>a3</cell>
+					</row>
+					<row>
+						<cell>b1</cell>
+						<cell>b2</cell>
+						<cell>b3</cell>
+					</row>
+				</rows>
+		</itemset-data>
+		</xforms:itemset>
+	
+	</xmp>
+
+*/
+			
+
+/**
+	@name UI.gridselect#value
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为ref对应的列。
+	@example
+	<xmp>
+	   <xforms:value ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#label
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为显示在文本框中的值；也是label-ref对应的列
+	@example
+	<xmp>
+	   <xforms:label ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#ext
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为ext-ref的对应列
+	@example
+	<xmp>
+	   <xforms:ext-value ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#refreshData
+	@function
+	@description 同步data中的数据到下拉列表。用于itemset上设置independence的情况下。
+	@returns {void}
+*/
+
+/**
+	@name UI.gridselect#onRowDisabled
+	@event
+	@description <b>[回调事件]</b> 行是否可选回调
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+	@return {boolean} 返回true 可选，false不可选。 
+*/
+
+/**
+	@name UI.gridselect#onAfterRowFill
+	@event
+	@description <b>[回调事件]</b> 下拉表格行渲染完成后 
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#onDropdown
+	@event
+	@description <b>[回调事件]</b> 显示下拉事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#onCloseup
+	@event
+	@description <b>[回调事件]</b> 关闭下拉事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"label" : 选择的label,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象,
+		"value" : 选择的value,
+		"valueChanged" : value是否改变
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#onKeyDown
+	@event
+	@description <b>[回调事件]</b> 按键按下事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"event" : 事件对象,
+		"keyCode" : 键值,
+		"value" : 输入框的值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#onKeyUp
+	@event
+	@description <b>[回调事件]</b> 按键抬起事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"event" : 事件对象,
+		"keyCode" : 键值,
+		"value" : 输入框的值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#onKeyPress
+	@event
+	@description <b>[回调事件]</b> 按键按下又抬起事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"event" : 事件对象,
+		"keyCode" : 键值,
+		"value" : 输入框的值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridselect#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.gridselect#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.gridselect#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.gridselect#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.gridselect#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.gridselect#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.gridselect#readonly
+	@attribute 
+	@description 只读
+*/
+
+/**
+	@name UI.gridselect#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.gridselect#setReadonly
+	@function
+	@param {boolean} readonly <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.gridselect#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.gridselect#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.gridselect#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.treeSelect
+	@component /UI/system/components/select.xbl.xml#treeSelect
+	@class tree选择组件
+	@model UI
+	@description <b>[rich]</b>tree选择组件
+	@example 
+<xmp>
+	<!--绑定 data-->
+	<xhtml:div component="/UI/system/components/select.xbl.xml#treeSelect" id="treeSelect1">
+		<xforms:label ref="col_0" />
+		<xforms:value ref="col_1" />
+		<xforms:itemset data="dataId" independence="false/true"> <!--与data一对一/多个select对应一个data-->
+			<xforms:column ref="col_0" />
+			<xforms:column ref="col_1" />
+			<xforms:column ref="col_2" />
+		</xforms:itemset>
+	</xhtml:div>
+</xmp>
+*/
+
+/**
+	@name UI.treeSelect#component
+	@attribute
+	@required
+	@description 组件标识
+	@default /UI/system/components/select.xbl.xml#treeSelect
+*/
+
+/**
+	@name UI.treeSelect#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.treeSelect#ref
+	@attribute
+	@required
+	@description 绑定引用
+*/
+
+/**
+	@name UI.treeSelect#label__sub__ref
+	@attribute
+	@description label引用。有此属性时，文本框里内容将显示此引用的值；没有此属性时，将会根据ref的值到下拉列表中查找对应。
+*/
+
+/**
+	@name UI.treeSelect#ext__sub__ref
+	@attribute
+	@description label扩展引用。
+*/
+
+/**
+	@name UI.treeSelect#default__sub__label__sub__ref
+	@attribute
+	@description 空值引用。空值时，用此ref显示在输入框。
+*/
+
+
+/**
+	@name UI.treeSelect#all__sub__selected__sub__label__sub__ref
+	@attribute
+	@description 全选引用。全选时，用此ref显示在输入框。
+*/
+
+/**
+	@name UI.treeSelect#multi__sub__select
+	@attribute
+	@default false
+	@type boolean
+	@description 是否多选
+*/
+
+/**
+	@name UI.treeSelect#dropdown__sub__height
+	@attribute
+	@type integer
+	@description 下拉框最大高度，超过这个高度将会出现滚动条。若没有这个属性，高度随数据量增加。
+*/
+
+/**
+	@name UI.treeSelect#dropdown__sub__class
+	@attribute
+	@type integer
+	@description 下拉框class
+*/
+
+/**
+	@name UI.treeSelect#row__sub__height
+	@attribute
+	@type integer
+	@description 下拉表格行高(px)，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.treeSelect#column__sub__header__sub__height
+	@attribute
+	@type integer
+	@description 下拉表格列头高(px)，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.treeSelect#smart__sub__render
+	@attribute
+	@type integer
+	@description 智能渲染
+*/
+			
+/**
+	@name UI.treeSelect#delay
+	@attribute
+	@type boolean
+	@default false
+	@description 树节点延迟加载
+*/
+
+/**
+	@name UI.treeSelect#cascade
+	@attribute
+	@type boolean
+	@default false
+	@description 树节点级联勾选
+*/
+
+/**
+	@name UI.treeSelect#value__sub__separator
+	@attribute
+	@description 多选时，值分隔字符。默认用空格分隔
+*/
+
+/**
+	@name UI.treeSelect#label__sub__separator
+	@attribute
+	@description 多选时，文本标签分隔字符。默认用空格分隔
+*/
+
+/**
+	@name UI.treeSelect#ext__sub__separator
+	@attribute
+	@description 多选时，扩展列分隔字符。默认用空格分隔
+*/
+
+/**
+	@name UI.treeSelect#appearence
+	@attribute
+	@description 显示样式，tree：不显示网格，grid：显示网格
+*/
+
+/**
+	@name UI.treeSelect#delay__sub__create__sub__grid
+	@attribute
+	@type boolean
+	@description 延迟绘制下拉框内部grid。注意：设置该属性为true后，下拉关联的data在下拉前不能使用。如果有其它select使用同一data，则该select进行下拉前，其它select不能使用。
+*/
+
+/**
+	@name UI.treeSelect#itemset
+	@attribute
+	@description <b>[child]</b>
+	@example
+	<xmp>
+	属性：
+	 	data-ref: 绑定data的ID
+	 	auto-load-data：{boolean}默认false。动态触发data加载数据。
+	 	independence: {boolean} 默认false。
+	 	              false:select与data一一对应。
+	 	              true:多select可以对应一个data，只从data读取一次数据到下拉表格，如果数据更改，
+	 	                                                不会自动刷新下拉表格，用户需要通过xforms('select_id').refreshData()刷新数据
+	</xmp>
+*/
+			
+
+/**
+	@name UI.treeSelect#value
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为ref对应的列。
+	@example
+	<xmp>
+	   <xforms:value ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#label
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为显示在文本框中的值；也是label-ref对应的列
+	@example
+	<xmp>
+	   <xforms:label ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#ext
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为ext-ref的对应列
+	@example
+	<xmp>
+	   <xforms:ext-value ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#refreshData
+	@function
+	@description 同步data中的数据到下拉列表。用于itemset上设置independence的情况下。
+	@returns void
+*/
+
+/**
+	@name UI.treeSelect#onRowDisabled
+	@event
+	@description <b>[回调事件]</b> 行是否可选回调
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+	@return {boolean} 返回true 可选，false不可选。 
+*/
+
+/**
+	@name UI.treeSelect#onShowNodeImg
+	@event
+	@description <b>[回调事件]</b> 树节点图标回调
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+	@return {string} 返回图片路径
+*/
+
+/**
+	@name UI.treeSelect#onAfterRowFill
+	@event
+	@description <b>[回调事件]</b> 下拉表格行渲染完成后 
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 展开行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#onRowExpand
+	@event
+	@description <b>[回调事件]</b> 树节点展开事件 
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象,
+		"delay" : 是否未被展开过
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#onDropdown
+	@event
+	@description <b>[回调事件]</b> 显示下拉事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#onCloseup
+	@event
+	@description <b>[回调事件]</b> 关闭下拉事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"label" : 选择的label,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象,
+		"value" : 选择的value,
+		"valueChanged" : value是否改变
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#onKeyDown
+	@event
+	@description <b>[回调事件]</b> 按键按下事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"event" : 事件对象,
+		"keyCode" : 键值,
+		"value" : 输入框的值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#onKeyUp
+	@event
+	@description <b>[回调事件]</b> 按键抬起事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"event" : 事件对象,
+		"keyCode" : 键值,
+		"value" : 输入框的值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#onKeyPress
+	@event
+	@description <b>[回调事件]</b> 按键按下又抬起事件
+	@param {object} event <br/>
+	<b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"event" : 事件对象,
+		"keyCode" : 键值,
+		"value" : 输入框的值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeSelect#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.treeSelect#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.treeSelect#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.treeSelect#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.treeSelect#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.treeSelect#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.treeSelect#readonly
+	@attribute
+	@description 只读
+*/
+
+/**
+	@name UI.treeSelect#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.treeSelect#setReadonly
+	@function
+	@param {boolean} readonly <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.treeSelect#disabled
+	@attribute
+	@description 禁用
+*/
+
+/**
+	@name UI.treeSelect#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.treeSelect#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/

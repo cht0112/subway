@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="input" tag-type="rich" tag-name="input" icon="input.gif" text="文本输入框" 
+        namespace="xforms"  namespace-uri="http://www.justep.com/xforms"
+        display-property="id" 
+        component-class="XformInput" 
+        component-type="formControl" validator="InputValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false"/>		
+			<property name="ref" text="引用" required="true" editor-ref="dataRef" />	
+			<property name="input-regex" text="正则表达式输入控制" editor-ref="regexList" readonly="false"/>
+			<property name="format" text="格式化" editor-ref="formatList"  readonly="false"/>
+			<property name="default-class"  text="默认class" default-value="xui-input" readonly="true"/>
+			<property name="class"  text="class" editor-extend-data="xui-input:input"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly" default-value="false" data-type="boolean"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+		</properties>
+		<property-editors>
+		</property-editors>		
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel">				
+			</item>			
+		</toolbar>
+		
+		<events>
+			<event name="xforms-value-changed" display-name="onChange" type="event" text="值改变事件" parameters="event" is-script="true"/>
+			<event name="DOMFocusIn" display-name="onFocus" type="event" text="焦点移入事件" parameters="event" is-script="true"/>
+			<event name="DOMFocusOut" display-name="onBlur" type="event" text="焦点移出事件" parameters="event" is-script="true"/>
+		</events>
+		
+		<templates>
+		   <template name="default"><![CDATA[ 
+				<xforms:input xmlns:xforms="http://www.justep.com/xforms" />
+		   ]]></template>
+		</templates>
+	</element>
+	
+	<element name="secret" tag-type="rich" tag-name="secret" icon="secret.gif" text="密码输入框" 
+        namespace="xforms"  namespace-uri="http://www.justep.com/xforms"
+        display-property="id" 
+        component-class="XformSecret" 
+        component-type="formControl" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false"/>		
+			<property name="ref" text="引用" required="true" editor-ref="dataRef" />	
+			<property name="default-class"  text="默认class" default-value="xui-input" readonly="true"/>
+			<property name="class"  text="class" editor-extend-data="xui-input:input"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly" default-value="false" data-type="boolean"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+		</properties>
+		<property-editors>
+		</property-editors>		
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel">				
+			</item>			
+		</toolbar>
+		
+		<events>
+			<event name="xforms-value-changed" display-name="onChange" type="event" text="值改变事件" parameters="event" is-script="true"/>
+			<event name="DOMFocusIn" display-name="onFocus" type="event" text="焦点移入事件" parameters="event" is-script="true"/>
+			<event name="DOMFocusOut" display-name="onBlur" type="event" text="焦点移出事件" parameters="event" is-script="true"/>
+		</events>
+		
+		<templates>
+		   <template name="default"><![CDATA[ 
+				<xforms:secret xmlns:xforms="http://www.justep.com/xforms" />
+		   ]]></template>
+		</templates>
+	</element>
+	
+	
+	<!-- 
+	<element name="dateInput" tag-name="input" icon="input_datePicker.gif" text="日期输入框" 
+        display-property="id" discriminate-condition="hasAttribute('format')=true"
+        component-class="XformDateInput" 
+        component-type="formControl" validator="InputValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="true"/>		
+			<property name="ref" text="引用" editor-ref="dataRef" required="true"/>			
+			<property name="format" text="格式" editor-ref="formatList" namespace="xforms" namespace-uri="http://www.justep.com/xforms"/>
+			<property name="auto-size" text="格式" editor-ref="booleanList" readonly="true"/>
+			<group name="style" is-style="true">
+				<property name="width" text="宽度" />
+			</group>
+		</properties>
+		 
+		<property-editors>
+			<property-editor name="formatList" type="list" >
+				<static-data value="format-date('yyyy-MM-dd'),format-dateTime('yyyy-MM-dd hh:mm')" /> 				
+			</property-editor>
+		</property-editors>
+		<templates>
+		   <template name="default"><![CDATA[ 
+				<xforms:input ref="" xforms:format="format-date('yyyy-MM-dd')"/>
+		   ]]></template>
+		</templates>
+	</element>
+	 -->
+</elements>

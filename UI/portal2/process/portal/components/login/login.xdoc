@@ -1,0 +1,38 @@
+/**
+	@name justep.Portal.Login
+	@model UI
+	@class 
+	@language js
+	@description 负责登陆的组件，在login.w中使用
+	@example 
+	<xmp>
+	var loginer = new Login({id: 'login', setting: setting});
+	loginer.attachEvent('error', function(message){
+		//登陆出错后执行
+	});
+	</xmp>
+*/
+
+/**
+	@name justep.Portal.Login#disable
+	@function
+	@description 设置输入框不可用
+*/
+
+/**
+	@name justep.Portal.Login#login
+	@function
+	@description 登录系统
+*/
+
+/**
+	@name justep.Portal.Login#check
+	@function
+	@description 检查输入的用户名、密码是否合法
+*/
+
+/**
+	@name justep.Portal.Login#enableCookie
+	@function
+	@description 设置是否启用cookie记录用户名等选项
+*/

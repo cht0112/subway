@@ -1,0 +1,103 @@
+<xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xforms="http://www.justep.com/xforms"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"> 
+    
+    <xbl:script src="/UI/system/components/quickLocate/js/treeLocate.js"/>
+	<xbl:binding id="treeLocate">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">				
+				<root xbl:class="xui-quickLocate">
+					<xhtml:table border="0" cellspacing="0" cellpadding="0" style="width:100%;height:100%;table-layout:fixed">
+						<xhtml:tr>
+							<xhtml:td>
+								<xhtml:input id="{concat('input-',@id)}" class="xui-input" style="width:100%" type="text" onkeydown="if(event.keyCode==13) justep.XBLObject.getXBLObject(this).locate();">
+									<xsl:if test="@tabindex">
+										<xsl:attribute name="tabindex" select="@tabindex"/>
+									</xsl:if>
+									<xsl:if test="@accesskey">
+										<xsl:attribute name="accesskey" select="@accesskey"/>
+									</xsl:if>
+									<xsl:if test="@readonly and @readonly='true'">
+										<xsl:attribute name="readonly" select="@readonly"/>
+									</xsl:if>
+									<xsl:if test="@disabled and @disabled='true'">
+										<xsl:attribute name="disabled" select="@disabled"/>
+									</xsl:if>
+									
+								</xhtml:input>
+								
+							</xhtml:td>
+							<xhtml:td width="24px">
+								<xhtml:img alt="查询" onclick="justep.XBLObject.getXBLObject(this).locate();" src="/UI/system/images/search24.gif" />
+								<xforms:trigger style="width: 26px;" component="/UI/system/components/trigger.xbl.xml#trigger" appearance="image" class="btn-search button-yellow" icon-class="icon-system-search">
+   									<xforms:label>搜索</xforms:label>
+   									<xforms:action ev:event="DOMActivate">
+    									<xforms:script>justep.xbl("<xsl:value-of select="@id" />").locate();</xforms:script>
+    								</xforms:action>
+    							</xforms:trigger>
+							</xhtml:td>
+						</xhtml:tr>
+					</xhtml:table>
+					<!--
+					<xhtml:div style="float:left;margin-top:2px;">
+					</xhtml:div>
+					<xhtml:div style="float:left;margin-left:2px;border-left:#dfe8f6 1px solid" >
+					</xhtml:div>
+					-->
+				</root>
+			</xsl:template>
+		</xbl:template>
+		
+		<xbl:implementation>
+		<![CDATA[
+			({
+				initXBL : function() {
+					var id = this.domNode.id;
+					/*调整input的width*/
+					$('#input-'+id).width($(this.domNode).width()-24-4);
+					var data = this.domNode.getAttribute("data");
+					var relations = this.domNode.getAttribute("relations");
+					var pathRelation = this.domNode.getAttribute("path-relation");
+					var treeId = this.domNode.getAttribute("tree");
+					var onGetCondition = this.domNode.getAttribute("onGetCondition");
+					
+					justep.Object.extend(this, new justep.TreeLocate({
+						id : id,
+						data : data,
+						relation : relations,
+						pathRelation : pathRelation,
+						treeId : treeId
+					}));
+				}
+			})	
+		]]>		
+		</xbl:implementation>	
+		
+		<xbl:resources>
+			<xbl:style>
+				<![CDATA[
+					.xui-quickLocate{
+						vertical-align:middle;
+						white-space:nowrap;
+					}
+					.xui-quickLocate input{
+						line-height:18px;
+					}
+					.btn-search {
+						display: none;
+					}
+					.xui-quickLocate.ui-light .btn-search{
+						display: inline-table;
+					}
+					.xui-quickLocate.ui-light img{
+						display: none;
+					}
+				]]>
+			</xbl:style>
+		</xbl:resources>
+			
+	</xbl:binding>	
+</xbl>	

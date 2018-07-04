@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="decisionGrid" tag-type="rich" tag-name="div" icon="cube.gif" text="图表" 
+		binding-component="/UI/system/components/decisionGrid.xbl.xml#grid" display-property="id" 
+		component-class="DecisionGrid" 
+		component-type="formControl">
+		<templates>
+			<template name="default">
+				<![CDATA[ 	
+					<xhtml:div component="/UI/system/components/decisionGrid.xbl.xml#grid" id="" data="" auto-load="false" />			
+				]]>
+			</template>
+		</templates>
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref=""/>
+			<property name="data" text="数据源" required="true" editor-ref="decisionDatalist" />
+			<property name="auto-load" text="自动加载" required="true" editor-ref="itemList"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-decisionGrid"/>
+			<property name="class" text="class"/>
+			<group name="style" is-style="true">
+				<property name="width" text="高度" /> 
+				<property name="height" text="宽度" />
+			</group>
+		</properties>
+		<property-editors>
+			<property-editor name="decisionDatalist" type="list">
+				<dynamic-data xpath="//*[local-name()='data' and @component='/UI/system/components/decisionData.xbl.xml#data']/@id"/>								
+			</property-editor>
+			<property-editor name="itemList" type="list" >
+				<static-data value="true,false" />				
+			</property-editor>	
+		</property-editors>		
+	</element>	
+	
+</elements>

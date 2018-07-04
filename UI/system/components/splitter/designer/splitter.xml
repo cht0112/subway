@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="HSplitter" tag-name="div" icon="hsplitter_icon.gif"
+		text="水平分隔条" 
+		display-property="id" component-class="HSplitter" component-type="layout-container"
+		discriminate-condition="@component=/UI/system/components/splitter.xbl.xml#splitter and @mode=horz"
+		design-view="web-designer">
+		<properties> 
+			<property name="id" text="编号" required="false" />
+			<property name="fix-size" text="固定区域初始化宽度" default-value="50%"/>
+			<property name="fix-type" text="固定区域" editor-ref="splitterFixTypeList" default-value="left" readonly="true"/>
+			<property name="resizable" text="是否允许拖拽" editor-ref="booleanList" default-value="true" readonly="true"/>
+			<property name="has-drag-bar" text="显示分割条" editor-ref="booleanList" readonly="true" data-type="boolean"/>
+			<property name="has-arrow-button" enabled-condition="@has-drag-bar='true'" text="在分割条中显示箭头" editor-ref="booleanList" readonly="true" data-type="boolean"/>
+			<property name="status" text="初始化状态" editor-ref="splitterSatusList" readonly="true" default-value="normal" enum-values=""/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog" use-default="true"/>
+		</properties>
+		
+		<property-editors>
+			<property-editor name="splitterSatusList" type="list">
+				<static-data value="normal,show-left,show-right"></static-data>
+			</property-editor>
+			<property-editor name="splitterFixTypeList" type="list">
+				<static-data value="left,right"></static-data>
+			</property-editor>
+		</property-editors>
+		
+		<events>
+			<event name="onRegionResize"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+		<xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+				fix-size="50%" 
+				mode="horz">				
+			<xhtml:div region="left">
+			</xhtml:div>
+			<xhtml:div region="right">
+			</xhtml:div>
+		</xhtml:div>  
+		   ]]></template>
+		</templates>
+	</element>
+	
+	
+	<element name="VSplitter" tag-name="div" icon="vsplitter_icon.gif"  
+		text="垂直分隔条" discriminate-condition="@component=/UI/system/components/splitter.xbl.xml#splitter and @mode=vert"
+		display-property="id" component-class="VSplitter" component-type="layout-container"
+		design-view="web-designer">
+				<properties> 
+			<property name="id" text="编号" required="false" />
+			<property name="fix-size" text="固定区域初始化高度" />
+			<property name="fix-type" text="固定区域" editor-ref="splitterFixTypeList" default-value="top"/>
+			<property name="resizable" text="是否允许拖拽" editor-ref="booleanList" default-value="true"/>
+			<property name="has-drag-bar" text="显示分割条" editor-ref="booleanList" readonly="true" data-type="boolean"/>
+			<property name="has-arrow-button" enabled-condition="@has-drag-bar='true'" text="在分割条中显示箭头" editor-ref="booleanList" readonly="true"/>
+			<property name="status" text="初始化状态" editor-ref="splitterSatusList" readonly="true" default-value="normal"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+			<property name="class" text="class"/>
+		</properties>
+		
+		<property-editors>
+			<property-editor name="splitterSatusList" type="list">
+				<static-data value="normal,show-top,show-bottom"></static-data>
+			</property-editor>
+			<property-editor name="splitterFixTypeList" type="list">
+				<static-data value="top,bottom"></static-data>
+			</property-editor>
+		</property-editors>
+		
+		<events>
+			<event name="onRegionResize"/>
+		</events>
+		<templates>
+			<template name="default"><![CDATA[ 
+		<xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+				fix-size="50%" 
+				mode="vert">
+			<xhtml:div region="top">
+			</xhtml:div>
+			<xhtml:div region="bottom">
+			</xhtml:div>
+		</xhtml:div>  
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

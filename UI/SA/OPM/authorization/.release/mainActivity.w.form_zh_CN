@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <link href="/UI/system/components/buttonBar/buttonBar.css" rel="stylesheet" type="text/css"></link>  
+    <script language="javascript" src="/UI/system/components/tabs/tabs.js">
+</script>      <link href="/UI/system/components/./tabs/tabs.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css">ul.tabItems button:disabled { background-color:#EEEEEE; }</style>  
+    <script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js">
+</script>      <script language="javascript" src="/UI/system/components/dialog/dialog.js">
+</script>      <style rel="stylesheet" type="text/css"></style>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/SA/OPM/authorization/mainActivity.js">
+</script>      <script id="opmUtils" src="/UI/SA/OPM/js/OpmUtils.js">
+</script>      <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="STYLESHEET" type="text/css"></link>      <script id="htmlScript2" src="/UI/system/service/org/orgUtils.js">
+</script>      <script>
+new justep.XBizData('dOrgTree',true,false,{'queryAction':"queryOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'filterValidState':'SA_OPOrg.sValidState = 1'}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'Object','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'sParent is null','nodeKindRelation':'sNodeKind'}"},'',{}).attachEvents({'onAfterRefresh':'mainActivity.dOrgTreeAfterRefresh','onIndexChanged':'mainActivity.dOrgTreeIndexChanged'});</script>  
+    <script>
+new justep.XBizData('dAuthorize',false,false,{'queryAction':"queryOPAuthorizeAction",'dataModel':"/system/data",'concept':"{'SA_OPAuthorize':'SA_OPAuthorize'}",'limit':20,'idColumn':"{'name':'SA_OPAuthorize','relation':'SA_OPAuthorize','define':'SA_OPAuthorize','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sOrgID':{'type':'String','relation':'SA_OPAuthorize.sOrgID','define':'SA_OPAuthorize.sOrgID','label':'组织'},'sOrgFID':{'type':'String','relation':'SA_OPAuthorize.sOrgFID','define':'SA_OPAuthorize.sOrgFID','label':'组织全路径ID'},'sOrgName':{'type':'String','relation':'SA_OPAuthorize.sOrgName','define':'SA_OPAuthorize.sOrgName','label':'组织名'},'sOrgFName':{'type':'String','relation':'SA_OPAuthorize.sOrgFName','define':'SA_OPAuthorize.sOrgFName','label':'组织全路径名'},'sAuthorizeRoleID':{'type':'String','relation':'SA_OPAuthorize.sAuthorizeRoleID','define':'SA_OPAuthorize.sAuthorizeRoleID','label':'授权角色'},'sDescription':{'type':'String','relation':'SA_OPAuthorize.sDescription','define':'SA_OPAuthorize.sDescription','label':'描述'},'sCreatorFID':{'type':'String','relation':'SA_OPAuthorize.sCreatorFID','define':'SA_OPAuthorize.sCreatorFID','label':'授权人'},'sCreatorFName':{'type':'String','relation':'SA_OPAuthorize.sCreatorFName','define':'SA_OPAuthorize.sCreatorFName','label':'授权人'},'sCreateTime':{'type':'DateTime','relation':'SA_OPAuthorize.sCreateTime','define':'SA_OPAuthorize.sCreateTime','label':'创建时间'},'version':{'type':'Integer','relation':'SA_OPAuthorize.version','define':'SA_OPAuthorize.version','label':'版本'},'roleName':{'type':'String','relation':'SA_OPRole.sName','define':'SA_OPRole.sName','label':'名称'},'roleCatalog':{'type':'String','relation':'SA_OPRole.sCatalog','define':'SA_OPRole.sCatalog','label':'分类'},'roleDescription':{'type':'String','relation':'SA_OPRole.sDescription','define':'SA_OPRole.sDescription','label':'描述'},'roleParentRolesNames':{'type':'String','relation':'SA_OPRole.sParentRolesNames','define':'SA_OPRole.sParentRolesNames','label':'父角色名称列表'},'roleRoleKind':{'type':'String','relation':'SA_OPRole.sRoleKind','define':'SA_OPRole.sRoleKind','label':'角色类型'}}",'defCalcRelations':"{'calcCheckBox':{'type':'http://www.w3.org/2001/XMLSchema#string'},'calcIndex':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dAuthorize_part',{});</script>  
+    <script>
+new justep.XBizData('dAuthorizePermission',false,false,{'queryAction':"queryOPAuthorizePermissionByOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPPermission':'SA_OPPermission'}",'limit':20,'idColumn':"{'name':'SA_OPPermission','relation':'SA_OPPermission','define':'SA_OPPermission','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sPermissionRoleID':{'type':'String','relation':'SA_OPPermission.sPermissionRoleID','define':'SA_OPPermission.sPermissionRoleID','label':'所属角色'},'sProcess':{'type':'String','relation':'SA_OPPermission.sProcess','define':'SA_OPPermission.sProcess','label':'过程'},'sActivityFName':{'type':'String','relation':'SA_OPPermission.sActivityFName','define':'SA_OPPermission.sActivityFName','label':'活动全路径名'},'sActivity':{'type':'String','relation':'SA_OPPermission.sActivity','define':'SA_OPPermission.sActivity','label':'活动'},'sActionsNames':{'type':'String','relation':'SA_OPPermission.sActionsNames','define':'SA_OPPermission.sActionsNames','label':'动作名称'},'sActions':{'type':'Text','relation':'SA_OPPermission.sActions','define':'SA_OPPermission.sActions','label':'动作权限'},'sSemanticDP':{'type':'String','relation':'SA_OPPermission.sSemanticDP','define':'SA_OPPermission.sSemanticDP','label':'语义数据权限'},'sPermissionKind':{'type':'Integer','relation':'SA_OPPermission.sPermissionKind','define':'SA_OPPermission.sPermissionKind','label':'权限类型'},'sDescription':{'type':'String','relation':'SA_OPPermission.sDescription','define':'SA_OPPermission.sDescription','label':'描述'},'sSequence':{'type':'Integer','relation':'SA_OPPermission.sSequence','define':'SA_OPPermission.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPPermission.sValidState','define':'SA_OPPermission.sValidState','label':'可用状态'},'version':{'type':'Integer','relation':'SA_OPPermission.version','define':'SA_OPPermission.version','label':'版本'},'actionsLabel':{'type':'String','relation':'actionsLabel','define':'EXPRESS','label':'null'},'roleName':{'type':'String','relation':'SA_OPRole.sName','define':'SA_OPRole.sName','label':'名称'},'roleCode':{'type':'String','relation':'SA_OPRole.sCode','define':'SA_OPRole.sCode','label':'编码'}}",'defCalcRelations':"{'calcIndex':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dAuthorizePermission_part',{}).attachEvents({'onRefreshCreateParam':'mainActivity.dAuthorizePermissionRefreshCreateParam'});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/buttonBar.xbl.xml#buttonBar"] = _xbl_JSClassDefine_buttonBar;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/tabs.xbl.xml#tabs"] = _xbl_JSClassDefine_tabs;
+justep.XBLObject._classes["/UI/system/components/windowDialog.xbl.xml#windowDialog"] = _xbl_JSClassDefine_windowDialog;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/system/components/trigger.xbl.xml#trigger"] = _xbl_JSClassDefine_trigger;
+justep.XBLObject._classes["/UI/system/components/splitter.xbl.xml#splitter"] = _xbl_JSClassDefine_splitter;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_buttonBar(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_buttonBar.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL: function(){
+					this.$el = $(this.domNode);
+					this.expandable = this.$el.attr('expandable') == 'true';
+					if(this.expandable){
+						this.expanded = this.$el.attr('expanded') == 'true';
+						this.expandedLabel = this.$el.attr('expanded-label');
+						this.collapsedLabel = this.$el.attr('collapsed-label');
+						this.iconExpanded = this.$el.attr('icon-expanded') || 'icon-system-plus-circle';
+						this.iconCollapsed= this.$el.attr('icon-collapsed') || 'icon-system-minus-circle';
+						this.btn = justep.xbl(this.domNode.id + '-extend');
+						this.expandedItems = $('li.extend ~ li', this.$el); 
+					}
+				},
+				toggle: function(){
+					this.expandable &amp;&amp; this.extend(!this.expanded);
+				},
+				extend: function(value){
+					if(this.expandable &amp;&amp; this.expanded != value){
+						this.expanded = value;
+						this.btn.setLabel(this.expanded? this.collapsedLabel : this.expandedLabel);
+						if(this.expanded){
+							this.expandedItems.show();
+							$('.icon', this.btn.element).removeClass(this.iconExpanded).addClass(this.iconCollapsed);
+						}else{
+							this.expandedItems.hide();
+							$('.icon', this.btn.element).removeClass(this.iconCollapsed).addClass(this.iconExpanded);
+						}	
+					}
+				}
+			}));
+
+_xbl_JSClassDefine_buttonBar.prototype.ClassName='_xbl_JSClassDefine_buttonBar';
+_xbl_JSClassDefine_buttonBar.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_buttonBar_j_xbl_e_;
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+function _xbl_JSClassDefine_tabs(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tabs.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.tabbar = new justep.JSTabbar(this.domNode.id);
+				justep.Utils.proxable(this, this.tabbar, justep.JSTabbar);
+			}
+		}));
+
+_xbl_JSClassDefine_tabs.prototype.ClassName='_xbl_JSClassDefine_tabs';
+_xbl_JSClassDefine_tabs.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_tabs_j_xbl_e_;
+function _xbl_JSClassDefine_windowDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.WindowDialog(node.id,node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('modal')=="true",node.getAttribute('status'),
+				                  node.getAttribute('width'),node.getAttribute('height'),node.getAttribute('left'),node.getAttribute('top'),node.getAttribute("reload-on-open") =='true',
+				                  node.getAttribute('onSend') , node.getAttribute('onReceive') ,node.getAttribute('onInit') ,node.getAttribute('onOpen') ,node.getAttribute('onClose'));
+				dialog.setClosable(node.getAttribute('closable')!="false");
+				dialog.setMinmaxable(node.getAttribute('minmaxable')!="false");
+				dialog.setResizable(node.getAttribute('resizable')!="false");
+				dialog.setNeighbor(node.getAttribute('neighbor'));
+				dialog.setAutoSize(node.getAttribute('autosize')=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				dialog.setProcess(node.getAttribute("process"));
+				dialog.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+_xbl_JSClassDefine_windowDialog.prototype.ClassName='_xbl_JSClassDefine_windowDialog';
+_xbl_JSClassDefine_windowDialog.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_windowDialog_j_xbl_e_;
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+_xbl_JSClassDefine_borderLayout.prototype.ClassName='_xbl_JSClassDefine_borderLayout';
+_xbl_JSClassDefine_borderLayout.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_borderLayout_j_xbl_e_;
+function _xbl_JSClassDefine_trigger(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_trigger.prototype = justep.Object.extend(new justep.XBLObject(), eval({	
+			"initXBL" : function() {
+				this.$el = $(this.domNode);
+				justep.Utils.proxable(this, this.domNode.xformsObject, xforms.XFTrigger);
+			},
+			"initXBL2" : function() {
+				this.domNode.xformsObject.initOperation();
+			}
+		}));
+
+_xbl_JSClassDefine_trigger.prototype.ClassName='_xbl_JSClassDefine_trigger';
+_xbl_JSClassDefine_trigger.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_trigger_j_xbl_e_;
+function _xbl_JSClassDefine_splitter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_splitter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-splitter-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+				this.status = this.el.attr("status") || "normal";
+				this.fixType = this.el.attr("fix-type");
+				this.state = 1;
+				if(this.status=='show-first' || this.status=='show-left' || this.status=='show-top'){
+				   	this.state = 0;
+				}else if(this.status=="show-second" || this.status=='show-right' || this.status=='show-bottom'){
+				   	this.state = 2;
+				}
+				this.spacing = 5;
+				this.resizable = this.domNode.getAttribute('resizable')?this.domNode.getAttribute('resizable')=="true": true;
+			   	this.isHorz = this.el.attr("mode") === 'horz';
+			   	this.hasHandler = this.el.attr("has-drag-bar") === 'true';
+			   	this.hasArrowBtn = this.el.attr("has-arrow-button") === 'true';
+			   	this.fixSize = this.el.attr("fix-size") || '50%';
+			   	this.isAnchor = this.fixSize.indexOf('%') != -1;/*是百分比的*/
+
+
+				this.onRegionResize = justep.Function.get($(this.domNode).attr("onRegionResize"));
+
+			   	this.rootEl = $("&gt;div" + baseCls + "root", this.el);
+			   	var s = "&gt;div" + baseCls + "root &gt;div";
+			   	this.leftEl = this.isHorz ? $(s + baseCls + "left", this.el) : $(s + baseCls + "top", this.el);
+			   	this.rightEl = this.isHorz ? $(s + baseCls + "right", this.el) : $(s + baseCls + "bottom", this.el);
+			   	this.handlerEl = $(s + baseCls + "handler", this.el);
+			   	var that = this;
+			   	if(this.hasHandler &amp;&amp; this.hasArrowBtn){
+			   		this.arrowBtn = $("#" + id+" &gt; "+baseCls + "root &gt; "+baseCls + "handler &gt;"+baseCls + "btn");
+			   		if(this.state != 1){
+				   		var dir = this.arrowBtn.attr("role");
+				   		$('i', this.arrowBtn).removeClass('icon-system-' + dir + '-dir');
+				   		switch(dir){
+				   			case 'up': dir = 'down'; break;
+				   			case 'down': dir = 'up'; break;
+				   			case 'left': dir = 'right'; break;
+				   			case 'right': dir = 'left'; break;
+				   		}
+				   		$('i', this.arrowBtn).addClass('icon-system-' + dir + '-dir');
+				   		this.arrowBtn.attr('role', dir);
+			   		}
+				   	this.arrowBtn.css('cursor', 'pointer');
+				   	this.arrowBtn.bind('mousedown', function(event){
+				   		that.splitBtnClick = true;
+				   		setTimeout(function(){
+				   			that.splitBtnClick = false;
+				   		}, 50);
+				   		var dir = $(this).attr("role");
+				   		that._onResizeBtnClick(dir);
+				   		$('i', this).removeClass('icon-system-' + dir + '-dir');
+				   		switch(dir){
+				   			case 'up': dir = 'down'; break;
+				   			case 'down': dir = 'up'; break;
+				   			case 'left': dir = 'right'; break;
+				   			case 'right': dir = 'left'; break;
+				   		}
+				   		$('i', this).addClass('icon-system-' + dir + '-dir');
+				   		$(this).attr('role', dir);
+				   		if(event.stopPropagation)
+				   			event.stopPropagation();
+				   	});
+			   	}
+			},
+			_onResizeBtnClick: function(role){
+				if(!this.isHorz){
+					role = role==='up'?'left':'right';
+				}
+				if((this.state === 0 &amp;&amp; role==='right')||(this.state === 2 &amp;&amp; role==='left')){
+					return;
+				}
+				var oldState = this.state;
+				if(this.state === 1){
+					if(role==='left'){
+						this.state = 2;
+					}else{
+						this.state = 0;
+					}
+				}else{
+					if(this.state === 0){
+						if(role==='left'){
+							this.state = 1;
+						}
+					}else{
+						if(role==='right'){
+							this.state = 1;
+						}	
+					}
+				}
+				if(this.state!=oldState){
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			_getBorderWidth: function(el, s){
+				if(s == 'tb'){
+					return (parseInt(el.css("padding-top"))||0) 
+						+ (parseInt(el.css("padding-bottom"))||0) 
+						+ (parseInt(el.css("border-top"))||0) 
+						+ (parseInt(el.css("border-bottom"))||0);  
+				}else{
+					return (parseInt(el.css("padding-left"))||0)
+						+ (parseInt(el.css("padding-right"))||0) 
+						+ (parseInt(el.css("border-left"))||0)
+						+ (parseInt(el.css("border-right"))||0);  
+				}
+			},
+			moveToStart: function(){
+				if(this.state != 2){
+					this.state = 2;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			moveToMiddle: function(){
+				if(this.state != 1){
+					this.state = 1;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			moveToEnd: function(){
+				if(this.state != 0){
+					this.state = 0;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			onWindowResize: function(){
+				var el = this.rootEl;
+
+				/*为了解决 当前套在tab次页下时，初次有不显示的缺陷*/
+				if(justep.Browser.IE7){
+					el.width(this.el.width());
+					el.height(this.el.height());
+				}
+				var l = this.isHorz ? el.width() : el.height();
+				if(this.hasHandler){
+					l -= this.isHorz ? this.handlerEl.width() : this.handlerEl.height();
+				}
+				var lw = rw = 0;
+				if(!this.isNotCalcWidth){
+					var	f = parseFloat(this.fixSize);
+					if(this.isAnchor){
+						lw = Math.round(l*f*0.01);
+					}else{
+						lw = Math.round(f);
+					}
+					this.calcWidth = lw;
+				}
+				if(this.state === 1){
+					if(this.fixType == 'right' || this.fixType == 'bottom'){
+						rw = this.calcWidth;
+						lw = l - rw;
+					}else{
+						lw = this.calcWidth;
+						rw = l - lw;
+					}
+				}else if(this.state === 0){
+					lw = l;
+					rw = 0;
+				}else if(this.state === 2){
+					lw = 0;
+					rw = l;
+				}
+				this.leftEl.css("overflow", "hidden");
+				this.rightEl.css("overflow", "hidden");
+				if(this.isHorz){
+					this.leftEl.width(lw);
+					this.rightEl.width(rw);
+				}else{
+					this.leftEl.height(lw);
+					this.rightEl.height(rw);
+				}
+
+				if(this.hasHandler){
+					if(this.isHorz){
+						this.handlerEl.css("left", lw+"px");
+					}else{
+						this.handlerEl.css("top", lw+"px");
+					}
+				}
+				var that = this;
+				setTimeout(function(){
+					that.leftEl.css("overflow", "auto");
+					that.rightEl.css("overflow", "auto");
+				}, 1);
+			   	if(this.hasHandler &amp;&amp; this.resizable &amp;&amp; !this.mousedowned){
+			   		this.mousedowned = true;
+					this.handlerEl.bind("mousedown",function(){
+						if(that.status=="normal"){
+							if(!that.splitBtnClick) 
+								that.buildDrag();
+						}	
+					});		
+			   	}
+			},
+			buildDrag: function() {
+				var me = this;
+				if(!this.$H)
+					this.$H = $("&lt;div /&gt;").appendTo("body");
+				if(xforms.Core.isIE){
+					this.$H[0].setCapture();
+				}
+				var splitter = this.handlerEl[0];
+				var pos = this.cumulativeOffset(splitter);
+				this.$H.css({position:"absolute",backgroundColor:"#999999",zIndex:"99999",fontSize:"1px"
+						,top:pos[1],left:pos[0],height:splitter.offsetHeight,width:splitter.offsetWidth});
+				this.$H.show();		
+				this.minPosition = this.rootEl.offset()[this.isHorz?"left":"top"];
+				this.maxPosition = this.minPosition + (this.isHorz?this.rootEl.outerWidth():this.rootEl.outerHeight()) - this.spacing;
+				me.orgPos = {
+					x : pos[0],
+					y : pos[1]
+				};
+				me.draging_call = function(e) {
+					me.draging(e);
+				};
+				me.done_call = function(e) {
+					me.done(e);
+				};
+				$(document).bind("mousemove",me.draging_call);
+				$(document).bind("mouseup",me.done_call);
+			},
+			cumulativeOffset: function(element) {
+				var valueT = 0, valueL = 0;
+				do {
+					valueT += element.offsetTop  || 0;
+					valueL += element.offsetLeft || 0;
+					element = element.offsetParent;
+			    }while(element);
+			    return [valueL, valueT];
+			},
+			draging: function(e) {
+				var attr = this.isHorz? "pageX" : "pageY";
+				this.$H.css(this.isHorz?"left":"top",Math.min(Math.max((e[attr]-2),this.minPosition),this.maxPosition));
+			},
+			done: function() {
+				var dir = this.isHorz? "offsetWidth" : "offsetHeight";
+				var pos = this.cumulativeOffset(this.$H[0]);  //current pos
+				var offset = pos[this.isHorz?0:1] - this.orgPos[this.isHorz?"x":"y"]; //relative old pos
+				var orgSize = this.leftEl[0][dir]; 	//first width
+				var newSize = orgSize + offset;
+				var parentSize = this.rootEl[0][dir];
+				var f = newSize;
+				var s = parentSize - newSize - this.spacing;
+				f==0?this.leftEl.hide():this.leftEl.show();
+				s==0?this.rightEl.hide():this.rightEl.show();
+				var dir = this.isHorz? "width" : "hight";
+				this.calcWidth = f;
+				this.isNotCalcWidth = true;
+				if(xforms.Core.isIE){
+					this.$H[0].releaseCapture();
+				}
+				this.$H.hide();
+				$(document).unbind("mousemove",this.draging_call);
+				$(document).unbind("mouseup",this.done_call);
+				if(this.onRegionResize)
+					this.onRegionResize({source:this});
+				this.onWindowResize();
+				justep.XBLObject.resize(this.domNode.id);
+			}
+		}));
+
+_xbl_JSClassDefine_splitter.prototype.ClassName='_xbl_JSClassDefine_splitter';
+_xbl_JSClassDefine_splitter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_splitter_j_xbl_e_;
+	var ids=[{id:'86a42e5c7ecb4b29bc70e012faf080fe', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'HSplitter1', name:'/UI/system/components/splitter.xbl.xml#splitter', children:[{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'buttonBar1', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar', children:[{id:'imageSearchOrg', name:'xforms:trigger', children:[{id:'xuiLabel5', name:'xforms:label'}]}]},{id:'gridOrgTree', name:'xforms:grid'}]},{id:'tabPanel1', name:'/UI/system/components/tabs.xbl.xml#tabs', children:[{id:'borderLayout2', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'buttonBar4', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar', children:[{id:'btnInsertAuthorize', name:'xforms:trigger', children:[{id:'xuiLabel1', name:'xforms:label'}]},{id:'btnDeleteAuthorize', name:'xforms:trigger', children:[{id:'xuiLabel2', name:'xforms:label'}]},{id:'btnNextPageAuthorize', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'default6', name:'xforms:label'}]},{id:'trigger4', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'default7', name:'xforms:label'}]},{id:'buttonBar6', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar'}]},{id:'buttonBar5', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar', children:[{id:'imageSearchAuthorize', name:'xforms:trigger', children:[{id:'xuiLabel6', name:'xforms:label'}]}]},{id:'gridAuthorize', name:'xforms:grid'}]},{id:'borderLayout3', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'buttonBar2', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar', children:[{id:'btnNextPagePermission', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'default4', name:'xforms:label'}]},{id:'btnAllPagePermission', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'default5', name:'xforms:label'}]},{id:'buttonBar7', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar'}]},{id:'buttonBar3', name:'/UI/system/components/buttonBar.xbl.xml#buttonBar', children:[{id:'imageSearchPermission', name:'xforms:trigger', children:[{id:'xuiLabel7', name:'xforms:label'}]}]},{id:'gridAuthorizePermission', name:'xforms:grid'}]}]}]},{id:'wdSelectRoles', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'wdSearchOrg', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'imageSearchOrg');xf._a('imageSearchOrg','xuiLabel5');xf._a(null,'gridOrgTree');xf._a(null,'btnInsertAuthorize');xf._a('btnInsertAuthorize','xuiLabel1');xf._a(null,'btnDeleteAuthorize');xf._a('btnDeleteAuthorize','xuiLabel2');xf._a(null,'btnNextPageAuthorize');xf._a('btnNextPageAuthorize','default6');xf._a(null,'trigger4');xf._a('trigger4','default7');xf._a(null,'imageSearchAuthorize');xf._a('imageSearchAuthorize','xuiLabel6');xf._a(null,'gridAuthorize');xf._a(null,'btnNextPagePermission');xf._a('btnNextPagePermission','default4');xf._a(null,'btnAllPagePermission');xf._a('btnAllPagePermission','default5');xf._a(null,'imageSearchPermission');xf._a('imageSearchPermission','xuiLabel7');xf._a(null,'gridAuthorizePermission');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dOrgTree')/sValidState",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dOrgTree')/sLevel",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','sLevel')))));	
+xf._b("instance('dOrgTree')/version",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dOrgTree')/personNumb",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','personNumb')))));	
+xf._b("instance('dOrgTree')/personValidState",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','personValidState')))));	
+xf._b("instance('dOrgTree')/personVersion",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','personVersion')))));	
+xf._b("instance('dOrgTree')/eDUCATIONID",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','eDUCATIONID')))));	
+xf._b("instance('dOrgTree')/pOSITIONALTITLE",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','pOSITIONALTITLE')))));	
+xf._b("instance('dOrgTree')/EDUCATION_CODE",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','EDUCATION_CODE')))));	
+xf._b("instance('dOrgTree')/POSITIONAL_TITLE_CODE",xf._g(xf._f('instance',xf._i("dOrgTree")),xf._h(false, xf._k("child",xf._j('','POSITIONAL_TITLE_CODE')))));	
+xf._b("instance('dAuthorize')/sCreateTime",xf._g(xf._f('instance',xf._i("dAuthorize")),xf._h(false, xf._k("child",xf._j('','sCreateTime')))));	
+xf._b("instance('dAuthorize')/version",xf._g(xf._f('instance',xf._i("dAuthorize")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dAuthorizePermission')/sPermissionKind",xf._g(xf._f('instance',xf._i("dAuthorizePermission")),xf._h(false, xf._k("child",xf._j('','sPermissionKind')))));	
+xf._b("instance('dAuthorizePermission')/sSequence",xf._g(xf._f('instance',xf._i("dAuthorizePermission")),xf._h(false, xf._k("child",xf._j('','sSequence')))));	
+xf._b("instance('dAuthorizePermission')/sValidState",xf._g(xf._f('instance',xf._i("dAuthorizePermission")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dAuthorizePermission')/version",xf._g(xf._f('instance',xf._i("dAuthorizePermission")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xf._b("true",xf._h(false, xf._k("child",xf._j('','true'))));	
+xf._b("calcCheckBox",xf._h(false, xf._k("child",xf._j('','calcCheckBox'))));	
+xf._b("calcIndex",xf._h(false, xf._k("child",xf._j('','calcIndex'))));	
+xf._b("roleRoleKind",xf._h(false, xf._k("child",xf._j('','roleRoleKind'))));	
+xf._b("roleName",xf._h(false, xf._k("child",xf._j('','roleName'))));	
+xf._b("roleCatalog",xf._h(false, xf._k("child",xf._j('','roleCatalog'))));	
+xf._b("roleParentRolesNames",xf._h(false, xf._k("child",xf._j('','roleParentRolesNames'))));	
+xf._b("sOrgFName",xf._h(false, xf._k("child",xf._j('','sOrgFName'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("sPermissionKind",xf._h(false, xf._k("child",xf._j('','sPermissionKind'))));	
+xf._b("sActivityFName",xf._h(false, xf._k("child",xf._j('','sActivityFName'))));	
+xf._b("actionsLabel",xf._h(false, xf._k("child",xf._j('','actionsLabel'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('tree', 'null');xforms.Schema.registerPrefix('ch', 'null');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('html', 'null');var xf_model_model1 = new xforms.XFModel('model1',null);	
+new xforms.XFInstance2('dOrgTree','model1',null,null,null,null,null,null,'sNodeKind',null,null,null,'whereVersion');	
+xf._c('xf-bind-0','model1',"instance('dOrgTree')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-1','model1',"instance('dOrgTree')/sLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-2','model1',"instance('dOrgTree')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-3','model1',"instance('dOrgTree')/personNumb","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-4','model1',"instance('dOrgTree')/personValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-5','model1',"instance('dOrgTree')/personVersion","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-6','model1',"instance('dOrgTree')/eDUCATIONID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-7','model1',"instance('dOrgTree')/pOSITIONALTITLE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-8','model1',"instance('dOrgTree')/EDUCATION_CODE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-9','model1',"instance('dOrgTree')/POSITIONAL_TITLE_CODE","xsd:integer",null,null,null,null,null,null);	
+var xf_action_action6=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.model1Load(event)}));xf._p(justep('model1'),"onload",null,function(evt) { xforms.run(xf_action_action6,'model1', evt,false)});	
+var xf_trigger_imageSearchOrg=new xforms.XFTrigger('imageSearchOrg',null,null,null,false,false,false,null,null,"icon-system-search");	
+var xf_action_action5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.imageSearchOrgClick(event)}));xf._p(justep('imageSearchOrg'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action5,'imageSearchOrg', evt,false)});	
+new xforms.XFGrid({id:'gridOrgTree',instance:'dOrgTree',systemColumnsPro:'sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,ognName,dptName,posName,operatorState,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,nATION,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,eDUCATIONIDCNAME,POSITIONAL_TITLE_CODE,pOSITIONALTITLEIDCNAME',onInit:null,type:'tree',smartRender:null,delay:true,ids:'sName',headNames:'名称',widths:'*',types:'tree',hiddenColumns:'',aligns:'',serverSort:true,sorts:'na',fixColumnSize:null,nodeImgCallback:'mainActivity.gridOrgTreeShowNodeImg',multiSelection:'',checkedRef:'',filters:'\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:'func_7195271',onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:'func_253700579',onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){this.grid.bindColReadonly(null,'sName','true');}});	
+var xf_action_action3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.tabAuthorizeSelect(event)}));xf._p(justep('tabAuthorize'),"xforms-select",null,function(evt) { xforms.run(xf_action_action3,'tabAuthorize', evt,false)});	
+var xf_trigger_btnInsertAuthorize=new xforms.XFTrigger('btnInsertAuthorize',null,null,null,false,false,false,null,null,"icon-system-plus");	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.btnInsertAuthorizeClick(event)}));xf._p(justep('btnInsertAuthorize'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action1,'btnInsertAuthorize', evt,false)});	
+var xf_trigger_btnDeleteAuthorize=new xforms.XFTrigger('btnDeleteAuthorize',null,null,null,false,false,false,null,null,"icon-system-minus");	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.btnDeleteAuthorizeClick(event)}));xf._p(justep('btnDeleteAuthorize'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action2,'btnDeleteAuthorize', evt,false)});	
+var xf_trigger_btnNextPageAuthorize=new xforms.XFTrigger('btnNextPageAuthorize',null,null,null,false,false,false,"dAuthorize","loadNextPage","icon-system-angle-right");	
+var xf_trigger_trigger4=new xforms.XFTrigger('trigger4',null,null,null,false,false,false,"dAuthorize","loadAllPage","icon-system-angle-double-right");	
+var xf_trigger_imageSearchAuthorize=new xforms.XFTrigger('imageSearchAuthorize',null,null,null,false,false,false,null,null,"icon-system-search");	
+var xf_action_action7=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.imageSearchAuthorizeClick(event)}));xf._p(justep('imageSearchAuthorize'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action7,'imageSearchAuthorize', evt,false)});	
+new xforms.XFGrid({id:'gridAuthorize',instance:'dAuthorize',systemColumnsPro:'sOrgID,sOrgFID,sOrgName,sAuthorizeRoleID,sDescription,sCreatorFID,sCreatorFName,sCreateTime,version,roleDescription',onInit:null,type:'grid',smartRender:null,delay:false,ids:'calcCheckBox,calcIndex,roleRoleKind,roleName,roleCatalog,roleParentRolesNames,sOrgFName,space-column',headNames:'#master_checkbox,序号,类型,角色,角色分类,父角色,授权组织,&amp;nbsp;',widths:'30,30,30,120,80,120,350,*',types:'ch,cntr,html,ro,ro,ro,ro,ro',hiddenColumns:'',aligns:'center,center,center,,,,,',serverSort:true,sorts:'na,na,str,str,str,str,str,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:'30',hdrRowH:'30',hdrFilterH:null,moveColumn:null,rowValueChangedCallback:'mainActivity.gridAuthorizeRowValueChanged',groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){this.grid.bindColHTMLCallback(null,'roleRoleKind','mainActivity.gridAuthorizeRoleRoleKindRender');}});	
+var xf_action_action4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.tabPermissionSelect(event)}));xf._p(justep('tabPermission'),"xforms-select",null,function(evt) { xforms.run(xf_action_action4,'tabPermission', evt,false)});	
+var xf_trigger_btnNextPagePermission=new xforms.XFTrigger('btnNextPagePermission',null,null,null,false,false,false,"dAuthorizePermission","loadNextPage","icon-system-angle-right");	
+var xf_trigger_btnAllPagePermission=new xforms.XFTrigger('btnAllPagePermission',null,null,null,false,false,false,"dAuthorizePermission","loadAllPage","icon-system-angle-double-right");	
+var xf_trigger_imageSearchPermission=new xforms.XFTrigger('imageSearchPermission',null,null,null,false,false,false,null,null,"icon-system-search");	
+var xf_action_action8=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.imageSearchPermissionClick(event)}));xf._p(justep('imageSearchPermission'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action8,'imageSearchPermission', evt,false)});	
+new xforms.XFGrid({id:'gridAuthorizePermission',instance:'dAuthorizePermission',systemColumnsPro:'sPermissionRoleID,sProcess,sActivity,sActionsNames,sActions,sSemanticDP,sDescription,sSequence,sValidState,version,roleCode',onInit:null,type:'grid',smartRender:null,delay:false,ids:'calcIndex,sPermissionKind,sActivityFName,actionsLabel,roleName,space-column',headNames:'序号,类型,功能权限,动作策略/数据策略,角色,&amp;nbsp;',widths:'30,30,350,200,100,*',types:'cntr,html,ro,ro,ro,ro',hiddenColumns:'',aligns:'center,center,,,,',serverSort:true,sorts:'na,str,str,na,str,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:'30',hdrRowH:'30',hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){this.grid.bindColHTMLCallback(null,'sPermissionKind','mainActivity.gridAuthorizePermissionSPermissionKindRender');}});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dAuthorize_part_loaded = false;	
+function load_dAuthorize_part(callback){if (dAuthorize_part_loaded) return;dAuthorize_part_loaded = true;	
+new xforms.XFInstance2('dAuthorize','model1',null,null,null,null,null,null,null,null,'calcCheckBox,calcIndex',null,'whereVersion');	
+xf._c('xf-bind-10','model1',"instance('dAuthorize')/sCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-11','model1',"instance('dAuthorize')/version","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dAuthorize_part_init_loaded = false;	
+function load_dAuthorize_part_init(){if (dAuthorize_part_init_loaded) return;dAuthorize_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var dAuthorizePermission_part_loaded = false;	
+function load_dAuthorizePermission_part(callback){if (dAuthorizePermission_part_loaded) return;dAuthorizePermission_part_loaded = true;	
+new xforms.XFInstance2('dAuthorizePermission','model1',null,null,null,null,null,null,null,null,'calcIndex',null,'whereVersion');	
+xf._c('xf-bind-12','model1',"instance('dAuthorizePermission')/sPermissionKind","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-13','model1',"instance('dAuthorizePermission')/sSequence","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-14','model1',"instance('dAuthorizePermission')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-15','model1',"instance('dAuthorizePermission')/version","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dAuthorizePermission_part_init_loaded = false;	
+function load_dAuthorizePermission_part_init(){if (dAuthorizePermission_part_init_loaded) return;dAuthorizePermission_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%;position:relative;">         <div class="xui-splitter component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="25%" has-arrow-button="true" has-drag-bar="true" id="HSplitter1" mode="horz" style="height:100%;width:100%;position:absolute;">           <div class="xui-splitter-root">             <div class="xui-splitter-region xui-splitter-left">               <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:auto;height:100%;margin-right:2px;margin-left:2px;">                 <div borderSize="0" class="xui-borderlayout-root">                   <div class="xui-borderlayout-area xui-borderlayout-top" size="35px" style="">                     <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar1" separator-size="4">                       <ul>                         <li class="">                           <input class="xui-input" id="inputSearchOrg" onkeydown="mainActivity.inputSearchOrgKeydown(event)" style="width:100px;;" type="text" value=""></input>                         </li>                          <li class="space nosep" style="margin: 0 2px;">|</li>  
+                        <li class="last"> 
+                          <table cellpadding="0" cellspacing="0" class="button-yellow xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="imageSearchOrg" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:25px;width:25px;;table-layout:fixed"> 
+                            <tbody> 
+                              <tr> 
+                                <td class="xxf-value"> 
+                                  <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex=""> 
+                                    <i class="icon icon-system-search"></i> 
+                                  </button> 
+                                </td>  
+                                <td class="xxf-alert"> 
+                                  <span class="xforms-alert"> 
+                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                    <div class="xforms-alert-value" id=""></div> 
+                                  </span> 
+                                </td> 
+                              </tr> 
+                            </tbody> 
+                          </table> 
+                        </li> 
+                      </ul> 
+                    </div> 
+                  </div>  
+                  <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"></div>  
+                  <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                    <div appearance="tree" class="ui-light component_6298A7A1 grid" data="dOrgTree" delay="true" id="gridOrgTree" onRowExpand="func_253700579" onRowHasChildren="func_7195271" onShowNodeImg="mainActivity.gridOrgTreeShowNodeImg" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" space-column="false" style="border: none;height:100%;width:100%;;overflow:hidden" system-columns="sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,ognName,dptName,posName,operatorState,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,nATION,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,eDUCATIONIDCNAME,POSITIONAL_TITLE_CODE,pOSITIONALTITLEIDCNAME"></div> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-splitter-region xui-splitter-right"> 
+              <div class="xui-tabPanel xui-no-border component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="tabPanel1" style="height:100%;margin-right:2px;margin-left:2px;width:auto;"> 
+                <div class="jstabbar" id="tabPanel1_root"> 
+                  <ul class="tabItems clearfix"> 
+                    <li class="selected" id="tabAuthorize_tab"> 
+                      <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabAuthorize');this.blur();" type="button">角色分配</button> 
+                    </li>  
+                    <li id="tabPermission_tab"> 
+                      <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabPermission');this.blur();" type="button">权限查询</button> 
+                    </li> 
+                  </ul>  
+                  <div class="contents" id="tabPanel1_contents"> 
+                    <div class="content selected" id="tabAuthorize"> 
+                      <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout2" style="width:100%; height: 100%;;"> 
+                        <div borderSize="0" class="xui-borderlayout-root"> 
+                          <div class="xui-borderlayout-area xui-borderlayout-top" size="35px" style=""> 
+                            <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar4" separator-size="8" style="margin-left:5px;float:left;"> 
+                              <ul> 
+                                <li class=""> 
+                                  <table cellpadding="0" cellspacing="0" class="button-blue xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnInsertAuthorize" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                            <i class="icon icon-system-plus"></i>  
+                                            <span class="xforms-label " id="xuiLabel1">分配</span> 
+                                          </button> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 4px;">|</li>  
+                                <li class=""> 
+                                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnDeleteAuthorize" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <a class="xui-button-label" tabindex=""> 
+                                            <i class="icon icon-system-minus"></i>  
+                                            <span class="xforms-label " id="xuiLabel2">删除</span> 
+                                          </a> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 4px;">|</li>  
+                                <li class=""> 
+                                  <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="btnNextPageAuthorize" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <a class="xui-button-label" tabindex=""> 
+                                            <i class="icon icon-system-angle-right"></i>  
+                                            <span class="xforms-label " id="default6">下页</span> 
+                                          </a> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 4px;">|</li>  
+                                <li class=""> 
+                                  <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger4" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <a class="xui-button-label" tabindex=""> 
+                                            <i class="icon icon-system-angle-double-right"></i>  
+                                            <span class="xforms-label " id="default7">全部</span> 
+                                          </a> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 4px;">|</li>  
+                                <li class="last"> 
+                                  <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar6" separator-size="2" style="margin:0px 0px 0px 20px;"> 
+                                    <ul> 
+                                      <li class=""> 
+                                        <input checked="true" id="cbShowInheritedAuthorize" name="" onclick="mainActivity.cbShowInheritedAuthorizeClick(event)" type="checkbox"></input> 
+                                      </li>  
+                                      <li class="space nosep" style="margin: 0 1px;">|</li>  
+                                      <li class="last"> 
+                                        <label class="xui-label" for="cbShowInheritedAuthorize" id="label1">显示从上级继承的角色</label> 
+                                      </li> 
+                                    </ul> 
+                                  </div> 
+                                </li> 
+                              </ul> 
+                            </div>  
+                            <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar5" separator-size="4" style="float:right;margin-right:5px;"> 
+                              <ul> 
+                                <li class=""> 
+                                  <input class="xui-input" id="inputSearchAuthorize" onkeydown="mainActivity.inputSearchAuthorizeKeydown(event)" style="width:100px;;" type="text" value=""></input> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 2px;">|</li>  
+                                <li class="last"> 
+                                  <table cellpadding="0" cellspacing="0" class="button-yellow xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="imageSearchAuthorize" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:25px;width:25px;;table-layout:fixed"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex=""> 
+                                            <i class="icon icon-system-search"></i> 
+                                          </button> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li> 
+                              </ul> 
+                            </div> 
+                          </div>  
+                          <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"></div>  
+                          <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                            <div class="grid-compact component_6298A7A1 grid" data="dAuthorize" delay="false" header-row-height="30" id="gridAuthorize" onRowValueChanged="mainActivity.gridAuthorizeRowValueChanged" right-click-selected="true" row-height="30" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;;overflow:hidden" system-columns="sOrgID,sOrgFID,sOrgName,sAuthorizeRoleID,sDescription,sCreatorFID,sCreatorFName,sCreateTime,version,roleDescription"></div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div>  
+                    <div class="content" id="tabPermission"> 
+                      <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout3" style=" height: 100%;position:absolute;top:nullpx;left:nullpx;width:100%;"> 
+                        <div borderSize="0" class="xui-borderlayout-root"> 
+                          <div class="xui-borderlayout-area xui-borderlayout-top" size="35px" style=""> 
+                            <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar2" separator-size="8" style="float:left;margin-left:5px;"> 
+                              <ul> 
+                                <li class=""> 
+                                  <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="btnNextPagePermission" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <a class="xui-button-label" tabindex=""> 
+                                            <i class="icon icon-system-angle-right"></i>  
+                                            <span class="xforms-label " id="default4">下页</span> 
+                                          </a> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 4px;">|</li>  
+                                <li class=""> 
+                                  <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="btnAllPagePermission" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <a class="xui-button-label" tabindex=""> 
+                                            <i class="icon icon-system-angle-double-right"></i>  
+                                            <span class="xforms-label " id="default5">全部</span> 
+                                          </a> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 4px;">|</li>  
+                                <li class="last"> 
+                                  <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar7" separator-size="2" style="margin:0px 0px 0px 20px;"> 
+                                    <ul> 
+                                      <li class=""> 
+                                        <input checked="true" id="cbShowInheritedPermission" name="" onclick="mainActivity.cbShowInheritedPermissionClick(event)" type="checkbox" value=""></input> 
+                                      </li>  
+                                      <li class="space nosep" style="margin: 0 1px;">|</li>  
+                                      <li class="last"> 
+                                        <label class="xui-label" for="cbShowInheritedPermission" id="label2">显示从上级继承的权限</label> 
+                                      </li> 
+                                    </ul> 
+                                  </div> 
+                                </li> 
+                              </ul> 
+                            </div>  
+                            <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar3" separator-size="4" style="margin-right:5px;float:right;"> 
+                              <ul> 
+                                <li class=""> 
+                                  <input class="xui-input" id="inputSearchPermission" onkeydown="mainActivity.inputSearchPermissionKeydown(event)" style="width:100px;;" type="text" value=""></input> 
+                                </li>  
+                                <li class="space nosep" style="margin: 0 2px;">|</li>  
+                                <li class="last"> 
+                                  <table cellpadding="0" cellspacing="0" class="button-yellow xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="imageSearchPermission" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:25px;width:25px;;table-layout:fixed"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex=""> 
+                                            <i class="icon icon-system-search"></i> 
+                                          </button> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </li> 
+                              </ul> 
+                            </div> 
+                          </div>  
+                          <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"></div>  
+                          <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                            <div class="grid-compact component_6298A7A1 grid" data="dAuthorizePermission" delay="false" header-row-height="30" id="gridAuthorizePermission" right-click-selected="true" row-height="30" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;;overflow:hidden" system-columns="sPermissionRoleID,sProcess,sActivity,sActionsNames,sActions,sSemanticDP,sDescription,sSequence,sValidState,version,roleCode"></div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-splitter-handler xui-splitter-handler-h"> 
+              <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                <i class="icon-system-left-dir white-icon"></i> 
+              </div> 
+            </div> 
+          </div> 
+        </div>  
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" dialogUpdate="true" height="414px" id="wdSelectRoles" modal="true" onReceive="mainActivity.wdSelectRolesReceive" style="position:absolute;top:185px;left:191px;" title="选择角色" url="/SA/OPM/dialogs/selectMultiRoles/selectMultiRoles.w" width="646px"></div>  
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" dialogUpdate="true" height="214px" id="wdSearchOrg" modal="false" neighbor="imageSearchOrg" onReceive="mainActivity.wdSearchOrgReceive" style="position:absolute;top:185px;left:148px;" title="组织搜索" url="/SA/OPM/dialogs/searchOrg/searchOrg.w" width="596px"></div> 
+      </div> 
+    </div>  
+    <script>
+function func_253700579(data){var oData = justep.XData.$('dOrgTree');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_7195271(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

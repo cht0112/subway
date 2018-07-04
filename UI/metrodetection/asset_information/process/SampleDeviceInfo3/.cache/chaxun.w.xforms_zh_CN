@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;">  
+  <head>
+    <xhtml:script language="javascript" src="/component/data/data.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/windowReceiver/windowReceiver.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js"/>
+    <xhtml:style rel="stylesheet" type="text/css">.xui-pageNavigator{ _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator *{ vertical-align:middle; } .xui-pageNavigator-label{ white-space: nowrap; } .xui-pageNavigator span{ } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img{ _border:1px solid transparent; } .xui-pageNavigator-page a{ cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page,.xui-img-txt-tb .xui-pageNavigator-ext{ padding-bottom :18px; } .xui-pageNavigator-ext span{ border:0px solid transparent; } .xui-pageNavigator-ext input{ width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</xhtml:style>
+    <xhtml:script language="javascript" src="/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js"/>
+    <xhtml:style rel="stylesheet" type="text/css">.toolbar-style{border:solid 0px #dfe8f6;} .toolbar-style a{color: #000000;} .toolbar-item-style,.toolbar-item-style-out,.toolbar-separator-style{text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over{text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up{text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down{text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style{font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group{ display:inline; } .toolbar-manager .xforms-disabled{ display:none; } .toolbar-manager .xforms-group-content{ display:inline; }</xhtml:style>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <!-- 
+		<script type="text/javascript" src="/base/base.js"/>
+		<script type="text/javascript" src="/form/form.js"/>
+		 -->  
+    <script>
+		 <![CDATA[
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) && msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length > 0 ? msgs[0] : "";
+					var detail = msgs.length > 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length > 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null && activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		]]>
+		</script>  
+    <!--  
+		<script id="__script"/>
+		-->  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/system/config/user.css"/>
+    <xhtml:script id="htmlScript1" src="/UI/metrodetection/asset_information/process/SampleDeviceInfo3/chaxun.js"/>
+    <xhtml:script><![CDATA[new justep.XBizData('lvliData',true,false,{'queryAction':"myQuerylvli",'saveAction':"saveSAMPLE_DEVICE_MOVING_RECORDAction",'newAction':"createSAMPLE_DEVICE_MOVING_RECORDAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'SAMPLE_DEVICE_MOVING_RECORD':'SAMPLE_DEVICE_MOVING_RECORD'}",'limit':20,'idColumn':"{'name':'SAMPLE_DEVICE_MOVING_RECORD','relation':'SAMPLE_DEVICE_MOVING_RECORD','define':'SAMPLE_DEVICE_MOVING_RECORD','type':'String'}",'directDelete':false,'deleteConfirm':false,'refreshConfirm':false,'filterRelations':"oPERATEDATETIME,dEVICEID,sAMPLEDEVICENO,pROJECTNAME",'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'oPERATEDATETIME':{'type':'Date','relation':'SAMPLE_DEVICE_MOVING_RECORD.oPERATEDATETIME','define':'SAMPLE_DEVICE_MOVING_RECORD.oPERATEDATETIME','label':'操作日期时间'},'oPERATETYPE':{'type':'Integer','relation':'SAMPLE_DEVICE_MOVING_RECORD.oPERATETYPE','define':'SAMPLE_DEVICE_MOVING_RECORD.oPERATETYPE','label':'操作类型'},'oPERATORID':{'type':'String','relation':'SAMPLE_DEVICE_MOVING_RECORD.oPERATORID','define':'SAMPLE_DEVICE_MOVING_RECORD.oPERATORID','label':'操作员'},'pROJECTID':{'type':'Integer','relation':'SAMPLE_DEVICE_MOVING_RECORD.pROJECTID','define':'SAMPLE_DEVICE_MOVING_RECORD.pROJECTID','label':'项目ID'},'tESTTASKID':{'type':'String','relation':'SAMPLE_DEVICE_MOVING_RECORD.tESTTASKID','define':'SAMPLE_DEVICE_MOVING_RECORD.tESTTASKID','label':'测试任务ID'},'dEVICEID':{'type':'String','relation':'SAMPLE_DEVICE_MOVING_RECORD.dEVICEID','define':'SAMPLE_DEVICE_MOVING_RECORD.dEVICEID','label':'唯一编号'},'oPERATERESULTSTATE':{'type':'Integer','relation':'SAMPLE_DEVICE_MOVING_RECORD.oPERATERESULTSTATE','define':'SAMPLE_DEVICE_MOVING_RECORD.oPERATERESULTSTATE','label':'操作结果'},'mEMO':{'type':'String','relation':'SAMPLE_DEVICE_MOVING_RECORD.mEMO','define':'SAMPLE_DEVICE_MOVING_RECORD.mEMO','label':'备注'},'sAMPLEDEVICENO':{'type':'Integer','relation':'SAMPLE_DEVICE_MOVING_RECORD.sAMPLEDEVICENO','define':'SAMPLE_DEVICE_MOVING_RECORD.sAMPLEDEVICENO','label':'样品序号'},'oPERATETYPE1':{'type':'String','relation':'oPERATETYPE1','define':'EXPRESS','label':'null'},'oPERATERESULTSTATE1':{'type':'String','relation':'oPERATERESULTSTATE1','define':'EXPRESS','label':'null'},'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'pROJECTNAME':{'type':'String','relation':'TEST_PROJECT_INFO.pROJECTNAME','define':'TEST_PROJECT_INFO.pROJECTNAME','label':'项目名称'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('sysOperData',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'dataType':"json",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}"},'sysOperData_part');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('hrData',true,false,{'queryAction':"queryHR_BASE_INFOAction",'saveAction':"saveHR_BASE_INFOAction",'newAction':"createHR_BASE_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'HR_BASE_INFO':'HR_BASE_INFO'}",'limit':20,'idColumn':"{'name':'HR_BASE_INFO','relation':'HR_BASE_INFO','define':'HR_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'oPERATORSEX':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSEX','define':'HR_BASE_INFO.oPERATORSEX','label':'oPERATORSEX'},'oPERATORBIRTHDAY':{'type':'Date','relation':'HR_BASE_INFO.oPERATORBIRTHDAY','define':'HR_BASE_INFO.oPERATORBIRTHDAY','label':'oPERATORBIRTHDAY'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'oFFICEID':{'type':'Decimal','relation':'HR_BASE_INFO.oFFICEID','define':'HR_BASE_INFO.oFFICEID','label':'职位'},'pOSITIONID':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONID','define':'HR_BASE_INFO.pOSITIONID','label':'pOSITIONID'},'dEGREEID':{'type':'Decimal','relation':'HR_BASE_INFO.dEGREEID','define':'HR_BASE_INFO.dEGREEID','label':'dEGREEID'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'eDUCATIONID'},'pOLITICALID':{'type':'Decimal','relation':'HR_BASE_INFO.pOLITICALID','define':'HR_BASE_INFO.pOLITICALID','label':'pOLITICALID'},'pROFESSIONAL':{'type':'String','relation':'HR_BASE_INFO.pROFESSIONAL','define':'HR_BASE_INFO.pROFESSIONAL','label':'专业'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'pOSITIONALTITLE'},'eMAILADDRESS':{'type':'String','relation':'HR_BASE_INFO.eMAILADDRESS','define':'HR_BASE_INFO.eMAILADDRESS','label':'eMAILADDRESS'},'mOBILE':{'type':'String','relation':'HR_BASE_INFO.mOBILE','define':'HR_BASE_INFO.mOBILE','label':'移动电话'},'oPERATORSTATE':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSTATE','define':'HR_BASE_INFO.oPERATORSTATE','label':'oPERATORSTATE'},'Scode':{'type':'String','relation':'HR_BASE_INFO.Scode','define':'HR_BASE_INFO.Scode','label':'编码'},'mEMO':{'type':'String','relation':'HR_BASE_INFO.mEMO','define':'HR_BASE_INFO.mEMO','label':'备注'},'cARDID':{'type':'String','relation':'HR_BASE_INFO.cARDID','define':'HR_BASE_INFO.cARDID','label':'cARDID'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('zhanyong',false,false,{'queryAction':"querySAMPLE_DEVICE_OCCUPY_INFOAction",'saveAction':"saveSAMPLE_DEVICE_OCCUPY_INFOAction",'newAction':"createSAMPLE_DEVICE_OCCUPY_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'SAMPLE_DEVICE_OCCUPY_INFO':'SAMPLE_DEVICE_OCCUPY_INFO'}",'limit':20,'idColumn':"{'name':'SAMPLE_DEVICE_OCCUPY_INFO','relation':'SAMPLE_DEVICE_OCCUPY_INFO','define':'SAMPLE_DEVICE_OCCUPY_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'sAMPLEDEVICENO':{'type':'Integer','relation':'SAMPLE_DEVICE_OCCUPY_INFO.sAMPLEDEVICENO','define':'SAMPLE_DEVICE_OCCUPY_INFO.sAMPLEDEVICENO','label':'样品序号'},'pROJECTID':{'type':'Integer','relation':'SAMPLE_DEVICE_OCCUPY_INFO.pROJECTID','define':'SAMPLE_DEVICE_OCCUPY_INFO.pROJECTID','label':'项目ID'},'dEVICEID':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO.dEVICEID','define':'SAMPLE_DEVICE_OCCUPY_INFO.dEVICEID','label':'设备ID'},'tESTTASKID':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO.tESTTASKID','define':'SAMPLE_DEVICE_OCCUPY_INFO.tESTTASKID','label':'测试任务ID'},'oCCUPYSTARTDATETIME':{'type':'DateTime','relation':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYSTARTDATETIME','define':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYSTARTDATETIME','label':'计划占用起始日期时间'},'oCCUPYENDDATETIME':{'type':'DateTime','relation':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYENDDATETIME','define':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYENDDATETIME','label':'计划占用结束日期时间'},'mEMO':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO.mEMO','define':'SAMPLE_DEVICE_OCCUPY_INFO.mEMO','label':'备注'}}"},'zhanyong_part');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('bizData2',true,false,{'queryAction':"queryTEST_PROJECT_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TEST_PROJECT_INFO':'TEST_PROJECT_INFO'}",'limit':20,'idColumn':"{'name':'TEST_PROJECT_INFO','relation':'TEST_PROJECT_INFO','define':'TEST_PROJECT_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLICATIONNO':{'type':'Integer','relation':'TEST_PROJECT_INFO.aPPLICATIONNO','define':'TEST_PROJECT_INFO.aPPLICATIONNO','label':'对应申请序号'},'tESTSCHEMEID':{'type':'Integer','relation':'TEST_PROJECT_INFO.tESTSCHEMEID','define':'TEST_PROJECT_INFO.tESTSCHEMEID','label':'检测方案'},'pROJECTNAME':{'type':'String','relation':'TEST_PROJECT_INFO.pROJECTNAME','define':'TEST_PROJECT_INFO.pROJECTNAME','label':'项目名称'},'pROJECTTYPE':{'type':'Integer','relation':'TEST_PROJECT_INFO.pROJECTTYPE','define':'TEST_PROJECT_INFO.pROJECTTYPE','label':'项目类型'},'aSSIGNEDMANUFACTUREID':{'type':'Integer','relation':'TEST_PROJECT_INFO.aSSIGNEDMANUFACTUREID','define':'TEST_PROJECT_INFO.aSSIGNEDMANUFACTUREID','label':'委托单位'},'cONTACTPERSON':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTPERSON','define':'TEST_PROJECT_INFO.cONTACTPERSON','label':'联系人'},'cONTACTMOBILE':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTMOBILE','define':'TEST_PROJECT_INFO.cONTACTMOBILE','label':'联系手机'},'cONTACTTELEPHONE':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTTELEPHONE','define':'TEST_PROJECT_INFO.cONTACTTELEPHONE','label':'联系电话'},'cONTACTEMAIL':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTEMAIL','define':'TEST_PROJECT_INFO.cONTACTEMAIL','label':'联系邮件'},'nOTIFYTYPE':{'type':'Integer','relation':'TEST_PROJECT_INFO.nOTIFYTYPE','define':'TEST_PROJECT_INFO.nOTIFYTYPE','label':'通知类型'},'lINEID':{'type':'Integer','relation':'TEST_PROJECT_INFO.lINEID','define':'TEST_PROJECT_INFO.lINEID','label':'线路ID'},'bUSINESSID':{'type':'Integer','relation':'TEST_PROJECT_INFO.bUSINESSID','define':'TEST_PROJECT_INFO.bUSINESSID','label':'业务类型'},'mANUFACTUREID':{'type':'Integer','relation':'TEST_PROJECT_INFO.mANUFACTUREID','define':'TEST_PROJECT_INFO.mANUFACTUREID','label':'供应商ID'},'pROJECTDATE':{'type':'Date','relation':'TEST_PROJECT_INFO.pROJECTDATE','define':'TEST_PROJECT_INFO.pROJECTDATE','label':'立项日期'},'eNDINGDATE':{'type':'Date','relation':'TEST_PROJECT_INFO.eNDINGDATE','define':'TEST_PROJECT_INFO.eNDINGDATE','label':'项目结束日期'},'pROJECTMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.pROJECTMANAGER','define':'TEST_PROJECT_INFO.pROJECTMANAGER','label':'项目负责人'},'qAMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.qAMANAGER','define':'TEST_PROJECT_INFO.qAMANAGER','label':'质量负责人'},'tESTMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.tESTMANAGER','define':'TEST_PROJECT_INFO.tESTMANAGER','label':'检测负责人'},'tECHMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.tECHMANAGER','define':'TEST_PROJECT_INFO.tECHMANAGER','label':'技术负责人'},'mAKEDATE':{'type':'Date','relation':'TEST_PROJECT_INFO.mAKEDATE','define':'TEST_PROJECT_INFO.mAKEDATE','label':'方案制定日期'},'eXECUTESTATE':{'type':'Integer','relation':'TEST_PROJECT_INFO.eXECUTESTATE','define':'TEST_PROJECT_INFO.eXECUTESTATE','label':'执行状态'},'mEMO':{'type':'String','relation':'TEST_PROJECT_INFO.mEMO','define':'TEST_PROJECT_INFO.mEMO','label':'备注'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('bizData1',true,false,{'queryAction':"queryTEST_PROJECT_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'TEST_PROJECT_INFO':'TEST_PROJECT_INFO'}",'limit':20,'idColumn':"{'name':'TEST_PROJECT_INFO','relation':'TEST_PROJECT_INFO','define':'TEST_PROJECT_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLICATIONNO':{'type':'Integer','relation':'TEST_PROJECT_INFO.aPPLICATIONNO','define':'TEST_PROJECT_INFO.aPPLICATIONNO','label':'对应申请序号'},'tESTSCHEMEID':{'type':'Integer','relation':'TEST_PROJECT_INFO.tESTSCHEMEID','define':'TEST_PROJECT_INFO.tESTSCHEMEID','label':'检测方案'},'pROJECTNAME':{'type':'String','relation':'TEST_PROJECT_INFO.pROJECTNAME','define':'TEST_PROJECT_INFO.pROJECTNAME','label':'项目名称'},'pROJECTTYPE':{'type':'Integer','relation':'TEST_PROJECT_INFO.pROJECTTYPE','define':'TEST_PROJECT_INFO.pROJECTTYPE','label':'项目类型'},'aSSIGNEDMANUFACTUREID':{'type':'Integer','relation':'TEST_PROJECT_INFO.aSSIGNEDMANUFACTUREID','define':'TEST_PROJECT_INFO.aSSIGNEDMANUFACTUREID','label':'委托单位'},'cONTACTPERSON':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTPERSON','define':'TEST_PROJECT_INFO.cONTACTPERSON','label':'联系人'},'cONTACTMOBILE':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTMOBILE','define':'TEST_PROJECT_INFO.cONTACTMOBILE','label':'联系手机'},'cONTACTTELEPHONE':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTTELEPHONE','define':'TEST_PROJECT_INFO.cONTACTTELEPHONE','label':'联系电话'},'cONTACTEMAIL':{'type':'String','relation':'TEST_PROJECT_INFO.cONTACTEMAIL','define':'TEST_PROJECT_INFO.cONTACTEMAIL','label':'联系邮件'},'nOTIFYTYPE':{'type':'Integer','relation':'TEST_PROJECT_INFO.nOTIFYTYPE','define':'TEST_PROJECT_INFO.nOTIFYTYPE','label':'通知类型'},'lINEID':{'type':'Integer','relation':'TEST_PROJECT_INFO.lINEID','define':'TEST_PROJECT_INFO.lINEID','label':'线路ID'},'bUSINESSID':{'type':'Integer','relation':'TEST_PROJECT_INFO.bUSINESSID','define':'TEST_PROJECT_INFO.bUSINESSID','label':'业务类型'},'mANUFACTUREID':{'type':'Integer','relation':'TEST_PROJECT_INFO.mANUFACTUREID','define':'TEST_PROJECT_INFO.mANUFACTUREID','label':'供应商ID'},'pROJECTDATE':{'type':'Date','relation':'TEST_PROJECT_INFO.pROJECTDATE','define':'TEST_PROJECT_INFO.pROJECTDATE','label':'立项日期'},'eNDINGDATE':{'type':'Date','relation':'TEST_PROJECT_INFO.eNDINGDATE','define':'TEST_PROJECT_INFO.eNDINGDATE','label':'项目结束日期'},'pROJECTMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.pROJECTMANAGER','define':'TEST_PROJECT_INFO.pROJECTMANAGER','label':'项目负责人'},'qAMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.qAMANAGER','define':'TEST_PROJECT_INFO.qAMANAGER','label':'质量负责人'},'tESTMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.tESTMANAGER','define':'TEST_PROJECT_INFO.tESTMANAGER','label':'检测负责人'},'tECHMANAGER':{'type':'String','relation':'TEST_PROJECT_INFO.tECHMANAGER','define':'TEST_PROJECT_INFO.tECHMANAGER','label':'技术负责人'},'mAKEDATE':{'type':'Date','relation':'TEST_PROJECT_INFO.mAKEDATE','define':'TEST_PROJECT_INFO.mAKEDATE','label':'方案制定日期'},'eXECUTESTATE':{'type':'Integer','relation':'TEST_PROJECT_INFO.eXECUTESTATE','define':'TEST_PROJECT_INFO.eXECUTESTATE','label':'执行状态'},'mEMO':{'type':'String','relation':'TEST_PROJECT_INFO.mEMO','define':'TEST_PROJECT_INFO.mEMO','label':'备注'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('dataMaster',true,false,{'queryAction':"myQuerySampleDeviceInfo",'saveAction':"saveSAMPLE_DEVICE_INFOAction",'newAction':"createSAMPLE_DEVICE_INFOAction",'dataModel':"/metrodetection/system_code/data",'concept':"{'SAMPLE_DEVICE_INFO':'SAMPLE_DEVICE_INFO'}",'limit':20,'idColumn':"{'name':'SAMPLE_DEVICE_INFO','relation':'SAMPLE_DEVICE_INFO','define':'SAMPLE_DEVICE_INFO','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'filters':"{'filter0':''}",'defRelations':"{'aPPLICATIONNO':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.aPPLICATIONNO','define':'SAMPLE_DEVICE_INFO.aPPLICATIONNO','label':'申请序号'},'mANUFACTUREID':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.mANUFACTUREID','define':'SAMPLE_DEVICE_INFO.mANUFACTUREID','label':'供应商ID'},'dEVICETYPE':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.dEVICETYPE','define':'SAMPLE_DEVICE_INFO.dEVICETYPE','label':'检测对象'},'dEVICESTYLE':{'type':'String','relation':'SAMPLE_DEVICE_INFO.dEVICESTYLE','define':'SAMPLE_DEVICE_INFO.dEVICESTYLE','label':'对象型号'},'dECTIONTYPE':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.dECTIONTYPE','define':'SAMPLE_DEVICE_INFO.dECTIONTYPE','label':'检测类型'},'dEVICEID':{'type':'String','relation':'SAMPLE_DEVICE_INFO.dEVICEID','define':'SAMPLE_DEVICE_INFO.dEVICEID','label':'设备ID'},'sOFTWAREVERSION':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.sOFTWAREVERSION','define':'SAMPLE_DEVICE_INFO.sOFTWAREVERSION','label':'软件版本'},'hARDWAREVERSION':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.hARDWAREVERSION','define':'SAMPLE_DEVICE_INFO.hARDWAREVERSION','label':'硬件版本'},'dEADLINERECEIVEDATE':{'type':'Date','relation':'SAMPLE_DEVICE_INFO.dEADLINERECEIVEDATE','define':'SAMPLE_DEVICE_INFO.dEADLINERECEIVEDATE','label':'最晚进场日期'},'iNDEEDRECEIVEDATE':{'type':'Date','relation':'SAMPLE_DEVICE_INFO.iNDEEDRECEIVEDATE','define':'SAMPLE_DEVICE_INFO.iNDEEDRECEIVEDATE','label':'实际进场日期'},'rETURNDATE':{'type':'Date','relation':'SAMPLE_DEVICE_INFO.rETURNDATE','define':'SAMPLE_DEVICE_INFO.rETURNDATE','label':'预计归还日期'},'iNDEEDRETURNDATE':{'type':'Date','relation':'SAMPLE_DEVICE_INFO.iNDEEDRETURNDATE','define':'SAMPLE_DEVICE_INFO.iNDEEDRETURNDATE','label':'实际归还日期'},'sHAREDFLAG':{'type':'Integer','relation':'SAMPLE_DEVICE_INFO.sHAREDFLAG','define':'SAMPLE_DEVICE_INFO.sHAREDFLAG','label':'是否允许资源共用'},'mEMO1':{'type':'String','relation':'SAMPLE_DEVICE_INFO.mEMO','define':'SAMPLE_DEVICE_INFO.mEMO','label':'备注'},'typ':{'type':'String','relation':'typ','define':'EXPRESS','label':'null'},'SAMPLE_DEVICE_OCCUPY_INFO':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO','define':'EXPRESS','label':'null'},'sAMPLEDEVICENO1':{'type':'Integer','relation':'SAMPLE_DEVICE_OCCUPY_INFO.sAMPLEDEVICENO','define':'SAMPLE_DEVICE_OCCUPY_INFO.sAMPLEDEVICENO','label':'样品序号'},'dEVICEID1':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO.dEVICEID','define':'SAMPLE_DEVICE_OCCUPY_INFO.dEVICEID','label':'设备ID'},'tESTTASKID':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO.tESTTASKID','define':'SAMPLE_DEVICE_OCCUPY_INFO.tESTTASKID','label':'测试任务ID'},'oCCUPYSTARTDATETIME':{'type':'DateTime','relation':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYSTARTDATETIME','define':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYSTARTDATETIME','label':'计划占用起始日期时间'},'oCCUPYENDDATETIME':{'type':'DateTime','relation':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYENDDATETIME','define':'SAMPLE_DEVICE_OCCUPY_INFO.oCCUPYENDDATETIME','label':'计划占用结束日期时间'},'mEMO2':{'type':'String','relation':'SAMPLE_DEVICE_OCCUPY_INFO.mEMO','define':'SAMPLE_DEVICE_OCCUPY_INFO.mEMO','label':'备注'},'pROJECTID':{'type':'Integer','relation':'SAMPLE_DEVICE_OCCUPY_INFO.pROJECTID','define':'SAMPLE_DEVICE_OCCUPY_INFO.pROJECTID','label':'项目ID'},'TEST_CONTRACT_INFO':{'type':'Integer','relation':'TEST_CONTRACT_INFO','define':'EXPRESS','label':'null'},'TEST_PROJECT_INFO':{'type':'Integer','relation':'TEST_PROJECT_INFO','define':'EXPRESS','label':'null'},'pROJECTNAME':{'type':'String','relation':'TEST_PROJECT_INFO.pROJECTNAME','define':'TEST_PROJECT_INFO.pROJECTNAME','label':'项目名称'},'AFC_MANUFACTURER_INFO':{'type':'Integer','relation':'AFC_MANUFACTURER_INFO','define':'EXPRESS','label':'null'},'mANUFACTUREIDCNAME':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','define':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','label':'厂商和检测机构商中文名称'},'DETECTION_OBJECT_TYPE':{'type':'Integer','relation':'DETECTION_OBJECT_TYPE','define':'EXPRESS','label':'null'},'dETECTIONOBJECTCNAME':{'type':'String','relation':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','label':'检测对象类别'},'dEVICETYPECNAME':{'type':'String','relation':'DEVICE_TYPE_CODE.dEVICETYPECNAME','define':'DEVICE_TYPE_CODE.dEVICETYPECNAME','label':'检测对象'},'cONTRACTNAME':{'type':'String','relation':'TEST_CONTRACT_INFO_1.cONTRACTNAME','define':'TEST_CONTRACT_INFO[1].cONTRACTNAME','label':'合同名称'}}",'defCalcRelations':"{'recCB':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('cData',true,false,{'queryAction':"queryCHECK_RECORDAction",'saveAction':"saveCHECK_RECORDAction",'newAction':"createCHECK_RECORDAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'CHECK_RECORD':'CHECK_RECORD'}",'limit':20,'idColumn':"{'name':'CHECK_RECORD','relation':'CHECK_RECORD','define':'CHECK_RECORD','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLICATIONNO':{'type':'Integer','relation':'CHECK_RECORD.aPPLICATIONNO','define':'CHECK_RECORD.aPPLICATIONNO','label':'申请序号'},'aPPLICATIONTYPE':{'type':'Integer','relation':'CHECK_RECORD.aPPLICATIONTYPE','define':'CHECK_RECORD.aPPLICATIONTYPE','label':'申请类型'},'cHECKNAME':{'type':'String','relation':'CHECK_RECORD.cHECKNAME','define':'CHECK_RECORD.cHECKNAME','label':'审批级别'},'cHECKER':{'type':'String','relation':'CHECK_RECORD.cHECKER','define':'CHECK_RECORD.cHECKER','label':'审批人'},'cHECKRESULT':{'type':'Integer','relation':'CHECK_RECORD.cHECKRESULT','define':'CHECK_RECORD.cHECKRESULT','label':'审批结果'},'cHECKDESC':{'type':'String','relation':'CHECK_RECORD.cHECKDESC','define':'CHECK_RECORD.cHECKDESC','label':'审批说明'},'cHECKTIME':{'type':'Date','relation':'CHECK_RECORD.cHECKTIME','define':'CHECK_RECORD.cHECKTIME','label':'审批时间'},'mEMO':{'type':'String','relation':'CHECK_RECORD.mEMO','define':'CHECK_RECORD.mEMO','label':'备注'}}"},'');]]></xhtml:script>
+    <xforms:model id="model1" style="width:143px;height:auto;top:180px;left:526px;">
+      <xforms:instance id="lvliData" update-mode="whereAll" concept="SAMPLE_DEVICE_MOVING_RECORD" type="simple"/>
+      <xforms:bind nodeset="instance('lvliData')/oPERATEDATETIME" required="true()" validInfo="'操作日期时间不能为空!'"/>
+      <xforms:bind nodeset="instance('lvliData')/oPERATORID" required="true()" validInfo="'操作员不能为空!'"/>
+      <xforms:bind nodeset="instance('lvliData')/dEVICEID" required="true()" validInfo="'设备ID不能为空!'"/>
+      <xforms:bind nodeset="instance('lvliData')/oPERATEDATETIME" type="xsd:date"/>
+      <xforms:bind nodeset="instance('lvliData')/oPERATETYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('lvliData')/pROJECTID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('lvliData')/oPERATERESULTSTATE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('lvliData')/sAMPLEDEVICENO" type="xsd:integer"/>  
+      <xforms:part id="sysOperData_part" xforms:lazy="true">
+        <xforms:instance id="sysOperData" update-mode="whereVersion" concept="SA_OPOrg" type="simple"/>
+        <xforms:bind nodeset="instance('sysOperData')/sValidState" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('sysOperData')/sLevel" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('sysOperData')/version" type="xsd:integer"/>
+      </xforms:part>  
+      <xforms:instance id="hrData" update-mode="whereAll" concept="HR_BASE_INFO" type="grid"/>
+      <xforms:bind nodeset="instance('hrData')/oPERATORSEX" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/oPERATORBIRTHDAY" type="xsd:date"/>
+      <xforms:bind nodeset="instance('hrData')/oFFICEID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/pOSITIONID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/dEGREEID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/eDUCATIONID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/pOLITICALID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/pOSITIONALTITLE" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrData')/oPERATORSTATE" type="xsd:float"/>  
+      <xforms:part id="zhanyong_part" xforms:lazy="true">
+        <xforms:instance id="zhanyong" update-mode="whereAll" concept="SAMPLE_DEVICE_OCCUPY_INFO" type="simple"/>
+        <xforms:bind nodeset="instance('zhanyong')/sAMPLEDEVICENO" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('zhanyong')/pROJECTID" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('zhanyong')/oCCUPYSTARTDATETIME" type="xsd:dateTime"/>
+        <xforms:bind nodeset="instance('zhanyong')/oCCUPYENDDATETIME" type="xsd:dateTime"/>
+      </xforms:part>  
+      <xforms:instance id="bizData2" update-mode="whereAll" concept="TEST_PROJECT_INFO" type="simple"/>
+      <xforms:bind nodeset="instance('bizData2')/aPPLICATIONNO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/tESTSCHEMEID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/pROJECTTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/aSSIGNEDMANUFACTUREID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/nOTIFYTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/lINEID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/bUSINESSID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/mANUFACTUREID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData2')/pROJECTDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData2')/eNDINGDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData2')/mAKEDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData2')/eXECUTESTATE" type="xsd:integer"/>  
+      <xforms:instance id="bizData1" update-mode="whereAll" concept="TEST_PROJECT_INFO" type="grid"/>
+      <xforms:bind nodeset="instance('bizData1')/aPPLICATIONNO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/tESTSCHEMEID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/pROJECTTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/aSSIGNEDMANUFACTUREID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/nOTIFYTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/lINEID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/bUSINESSID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/mANUFACTUREID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/pROJECTDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData1')/eNDINGDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData1')/mAKEDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData1')/eXECUTESTATE" type="xsd:integer"/>  
+      <xforms:instance id="dataMaster" update-mode="whereAll" concept="SAMPLE_DEVICE_INFO" type="simple" cacl-relation="recCB"/>
+      <xforms:bind nodeset="instance('dataMaster')/dEVICETYPE" required="true()" validInfo="'检测对象不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/dECTIONTYPE" required="true()" validInfo="'检测类型不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/sOFTWAREVERSION" required="true()" validInfo="'软件版本不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/hARDWAREVERSION" required="true()" validInfo="'硬件版本不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/dEADLINERECEIVEDATE" required="true()" validInfo="'最晚进场日期不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/iNDEEDRECEIVEDATE" required="true()" validInfo="'实际进场日期不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/rETURNDATE" required="true()" validInfo="'预计归还日期不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/iNDEEDRETURNDATE" required="true()" validInfo="'实际归还日期不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/sHAREDFLAG" required="true()" validInfo="'是否允许资源共用不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/mANUFACTUREID" required="true()" validInfo="'供应商名称不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/dEVICEID" required="true()" validInfo="'设备ID不能为空!'"/>
+      <xforms:bind nodeset="instance('dataMaster')/aPPLICATIONNO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/mANUFACTUREID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/dEVICETYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/dECTIONTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/sOFTWAREVERSION" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/hARDWAREVERSION" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/dEADLINERECEIVEDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('dataMaster')/iNDEEDRECEIVEDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('dataMaster')/rETURNDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('dataMaster')/iNDEEDRETURNDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('dataMaster')/sHAREDFLAG" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/sAMPLEDEVICENO1" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/oCCUPYSTARTDATETIME" type="xsd:dateTime"/>
+      <xforms:bind nodeset="instance('dataMaster')/oCCUPYENDDATETIME" type="xsd:dateTime"/>
+      <xforms:bind nodeset="instance('dataMaster')/pROJECTID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/TEST_CONTRACT_INFO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/TEST_PROJECT_INFO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/AFC_MANUFACTURER_INFO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMaster')/DETECTION_OBJECT_TYPE" type="xsd:integer"/>  
+      <xforms:instance id="cData" update-mode="whereAll" concept="CHECK_RECORD" type="simple"/>
+      <xforms:bind nodeset="instance('cData')/aPPLICATIONNO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('cData')/aPPLICATIONTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('cData')/cHECKRESULT" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('cData')/cHECKTIME" type="xsd:date"/>
+    </xforms:model>
+    <xhtml:script id="xbl_script" language="javascript"><![CDATA[__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/windowReceiver.xbl.xml#windowReceiver"] = _xbl_JSClassDefine_windowReceiver;
+justep.XBLObject._classes["/UI/system/components/menu.xbl.xml#menu"] = _xbl_JSClassDefine_menu;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"] = _xbl_JSClassDefine_bizDataFilterPattern;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"] = _xbl_JSClassDefine_bizDataFilterDialog;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_windowReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval);
+
+function _xbl_JSClassDefine_menu(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_menu.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_id": null,
+				"_itemsets": null,
+				
+				
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len > i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len > i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+					
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len > i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+					
+				}
+			}));
+
+function _xbl_JSClassDefine_bizDataFilterPattern(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterPattern.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var menuEl = this.getElementByXblID("filter-pattern-menu");
+				this.menuId = $(menuEl).firstElement().getAttribute("menu-id");
+				var dialogEl = this.getElementByXblID("filter-pattern-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-pattern-dialog-iframe");
+				this.iframeId = frameEl.getAttribute("name");
+			},
+			"show": function(data, controlId, filterDlgId) {
+				if (typeof(data) == "string") {
+					data = justep.xbl(data);
+				}
+				if (data) {
+					if (typeof(data.advanceFilter) != "undefined") {
+						var frameEl = document.getElementById(this.iframeId);
+						if (frameEl) {
+							frameEl.dialogId = this.dialogId;
+							frameEl.currData = data;
+							frameEl.advanceFilter = data.advanceFilter.getFilter();
+							showFilterPatternMenu(data, this.menuId, controlId, filterDlgId);
+						}
+					}
+				}
+			}
+		}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					//todo: 相似组件以后可以集中统一触发一次 
+					//xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					this.modelRefreshcb();
+				} 
+			},
+			
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+							 
+						}
+					}
+				}
+			},
+			
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group && group.parentNode==this.__dragObject.manager) {
+						if (td && td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" && cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+function _xbl_JSClassDefine_bizDataFilterDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var dialogEl = this.getElementByXblID("filter-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-dialog-iframe");
+				this.iframeId = frameEl.id;
+			},
+			"show": function(data, callBack) {
+				var filterData = data;
+				if (typeof(filterData) == "string") {
+					filterData = justep.xbl(filterData);
+				}
+				if (filterData) {
+					if (typeof(filterData.advanceFilter) != "undefined") {
+						var dialog = xforms(this.dialogId);
+						if(dialog) {
+							var frameEl = justep(this.iframeId);
+							if (frameEl) {
+								frameEl.dialogId = this.dialogId;
+								frameEl.filterData = filterData;
+								frameEl.callBack = callBack;
+								dialog.open();
+								return true;
+							}
+						}
+					}
+				}
+				return false;
+			}
+		}));
+
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+			    
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+			
+		}));
+
+	var ids=[{id:'window', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'windowReceiver', name:'/UI/system/components/windowReceiver.xbl.xml#windowReceiver'},{id:'toolbars1', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'7dd51c3072ff4f7cb4e92a7925227479', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'}]},{id:'grid1', name:'xforms:grid'},{id:'filter-pattern-e7782dc4-644e-46a1-9a92-fde2348691c5', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'edddfceaa44b420f9f0afec77cfe6cb1', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_N241328059', name:'xforms:menu'}]},{id:'GLOBAL_ID_N192498436', name:'xforms:dialog'}]},{id:'filter-dialog-e4bdee32-0f44-4e71-9a5e-d8a96b04d68f', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_N1236241295', name:'xforms:dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+]]></xhtml:script>
+  </head>  
+  <!-- onunload="_closeActivity_();" -->  
+  <body style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <!-- 可视部分 即用户描述的界面 -->  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <xhtml:div xforms:lazy="false" id="rootView" class="" style="height:100%;width:100%"> 
+        <xhtml:div component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="windowReceiver" onReceive="chaxun.windowReceiverReceive" class="component_81F0BC01 windowReceiver" style="top:237px;left:250px;">  
+          <xhtml:script>new justep.windowReceiver('windowReceiver');</xhtml:script> 
+        </xhtml:div>  
+        <xhtml:div xforms:lazy="false" id="view1" class="xui-container" style="position:relative;;width:674px;height:42px;">  
+          <xhtml:div component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1" class="component_D66742E1 toolbars" style="position:absolute;width:400px;top:5px;height:25px;left:5px;"> 
+            <xhtml:table cellspacing="0" cellpadding="0" style="width:100%"> 
+              <xhtml:tr> 
+                <xhtml:td> 
+                  <xhtml:div width="100%" class="toolbar-manager" name="toolbarmanager"> 
+                    <xhtml:div name="toolbargroup" class="toolbar-style"> 
+                      <xhtml:table cellpadding="0" cellspacing="1px"> 
+                        <xhtml:tr> 
+                          <xhtml:td width="5" onmouseover="this.style.border='1px ridge';" onmouseout="this.style.border='1px solid #dfe8f6';" name="group_anchor" class="groupanchor"> 
+                            <xhtml:img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"/> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem4" model="model1" onclick="justep.xbl('lvliData').refreshData(); "> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/refresh.gif" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" title="刷新"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">刷新</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="customBarItem1" model="model1" onclick="justep.xbl('filter-pattern-e7782dc4-644e-46a1-9a92-fde2348691c5').show('lvliData', event.target||event.srcElement, 'filter-dialog-e4bdee32-0f44-4e71-9a5e-d8a96b04d68f');"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/search.gif" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" title="查询"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">查询</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td class="toolbar-separator-style"> 
+                            <xhtml:img class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif" align="absmiddle"/> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:div component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="lvliData" mode="IMG_TXT_LR" class="component_218FE365 pageNavigator" id="7dd51c3072ff4f7cb4e92a7925227479"> 
+                              <xhtml:table class="xui-pageNavigator" border="0" cellpadding="0" cellspacing="0px" style="_height:100%;"> 
+                                <xhtml:tr class=""> 
+                                  <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                    <table xmlns=""> 
+                                      <tr valign="middle" align="center"> 
+                                        <td valign="middle" align="center" style=""> 
+                                          <img style="border:0px" align="absmiddle" title="第一页"/> 
+                                        </td>  
+                                        <td class="xui-pageNavigator-label" style="" valign="middle" align="center">第一页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </xhtml:td>  
+                                  <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                    <table xmlns=""> 
+                                      <tr valign="middle" align="center"> 
+                                        <td valign="middle" align="center" style=""> 
+                                          <img style="border:0px" align="absmiddle" title="上一页"/> 
+                                        </td>  
+                                        <td class="xui-pageNavigator-label" style="" valign="middle" align="center">上一页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </xhtml:td>  
+                                  <xhtml:td nowrap="true" class="xui-pageNavigator-page" style=""/>  
+                                  <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                    <table xmlns=""> 
+                                      <tr valign="middle" align="center"> 
+                                        <td valign="middle" align="center" style=""> 
+                                          <img style="border:0px" align="absmiddle" title="下一页"/> 
+                                        </td>  
+                                        <td class="xui-pageNavigator-label" style="" valign="middle" align="center">下一页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </xhtml:td>  
+                                  <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                    <table xmlns=""> 
+                                      <tr valign="middle" align="center"> 
+                                        <td valign="middle" align="center" style=""> 
+                                          <img style="border:0px" align="absmiddle" title="最后页"/> 
+                                        </td>  
+                                        <td class="xui-pageNavigator-label" style="" valign="middle" align="center">最后页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </xhtml:td>  
+                                  <xhtml:td nowrap="true" valign="middle" class="xui-pageNavigator-ext" style=""/> 
+                                </xhtml:tr> 
+                              </xhtml:table>  
+                              <xhtml:span style="display:none" xblid="attribute" data="lvliData" limit="" offset="" count="" page-count="7"/> 
+                            </xhtml:div> 
+                          </xhtml:td> 
+                        </xhtml:tr> 
+                      </xhtml:table> 
+                    </xhtml:div> 
+                  </xhtml:div> 
+                </xhtml:td>  
+                <xhtml:td style="width:100%"/> 
+              </xhtml:tr> 
+            </xhtml:table> 
+          </xhtml:div> 
+        </xhtml:div>  
+        <xhtml:div xforms:lazy="false" id="view2" class="xui-container" style="position:relative;;height:479px;width:864px;">  
+          <xforms:grid id="grid1" data="lvliData" class="component_6298A7A1 grid" right-click-selected="true" system-columns="oPERATETYPE,oPERATORID,pROJECTID,tESTTASKID,oPERATERESULTSTATE,mEMO" style="width:100%;height:100%;"> 
+            <xforms:column id="gridColumn13" ref="pROJECTNAME" label="项目名称" type="ed" width="100"/>  
+            <xforms:column ref="oPERATETYPE1" label="操作类型" width="100" type="ed" id="gridColumn2"/>  
+            <xforms:column ref="dEVICEID" label="唯一编号" width="100" type="ed" id="gridColumn6"/>  
+            <xforms:column ref="oPERATERESULTSTATE1" label="操作结果" width="100" type="ed" id="gridColumn7"/>  
+            <xforms:column ref="sAMPLEDEVICENO" label="样品序号" width="100" type="ed" id="gridColumn9"/>  
+            <xforms:column id="gridColumn12" ref="oPERATORNAME" label="操作员" type="ed" width="100"/>  
+            <xforms:column ref="oPERATEDATETIME" label="操作日期时间" width="100" type="ed" id="gridColumn1"/> 
+          </xforms:grid> 
+        </xhtml:div> 
+      </xhtml:div>
+    </div>  
+    <xforms:model xforms:partial="model1"></xforms:model>
+    <xforms:model xforms:partial="model1"></xforms:model>
+    <xhtml:div component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-e7782dc4-644e-46a1-9a92-fde2348691c5" class="component_BBF817C1 bizDataFilterPattern">
+      <xhtml:div xblid="filter-pattern-menu">
+        <xhtml:div style="width: 52px;" component="/UI/system/components/menu.xbl.xml#menu" appearance="context" menu-id="GLOBAL_ID_N241328059" class="component_93319841 menu" id="edddfceaa44b420f9f0afec77cfe6cb1">
+          <xhtml:div xblid="menuitemsets" style="display:none" menuid="GLOBAL_ID_N241328059"/>
+          <xforms:menu id="GLOBAL_ID_N241328059" appearance="context" open-mode="web">
+            <xforms:action ev:event="DOMActivate">
+              <xforms:script>
+									var menuItemId = event.getData().itemId;
+									if (menuItemId == "glglms") {
+										var dialog = xforms("GLOBAL_ID_N192498436");
+										if(dialog) {
+											event.getData().menuitem.dhtmlxMenu.$needLoad=true;
+											dialog.open();											
+										}
+									} else if (menuItemId == "qkdqgl") {
+										var data = event.getData().menuitem.dhtmlxMenu.filterData;
+										if (typeof(data) == "string") {
+											data = justep.xbl(data);
+										}
+										data.advanceFilter.clear();
+										data.filters.deleteFilter(data.advanceFilter.filterName);
+										data.refreshData();
+									} else if (menuItemId == "zdycx"){
+										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;
+										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;
+										if (typeof(dataId) == "object") {
+											dataId = dataId.id;
+										}
+										if(dlgId) justep.xbl(dlgId).show(dataId);
+									} else {
+										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);
+										var data = event.getData().menuitem.dhtmlxMenu.filterData;
+										if (typeof(data) == "string") {
+											data = justep.xbl(data);
+										}
+										data.advanceFilter.setFilter(advanceFilter, true, true);
+									}
+								</xforms:script>
+            </xforms:action>
+          </xforms:menu>
+        </xhtml:div>
+      </xhtml:div>
+      <xhtml:div xblid="filter-pattern-dialog">
+        <xforms:dialog level="modal" title="过滤模式" close="true" draggable="true" appearance="full" width="550" height="440" id="GLOBAL_ID_N192498436">
+          <xforms:action ev:event="xforms-dialog-open">
+            <xforms:script>var iframe = document.getElementById('GLOBAL_ID_N1922753495');<?javax.xml.transform.disable-output-escaping ?>
+
+									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {
+										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+									}
+									 <?javax.xml.transform.enable-output-escaping ?>
+<?javax.xml.transform.disable-output-escaping ?>
+justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "<?javax.xml.transform.enable-output-escaping ?>
+GLOBAL_ID_N1922753495", "");</xforms:script>
+          </xforms:action>
+          <xforms:action ev:event="xforms-dialog-close">
+            <xforms:script>var iframe = document.getElementById('GLOBAL_ID_N1922753495');<?javax.xml.transform.disable-output-escaping ?>
+
+									if (iframe) {
+										var data = iframe.currData;
+										data.advanceFilter.setFilter(iframe.advanceFilter);
+									}
+									 <?javax.xml.transform.enable-output-escaping ?>
+</xforms:script>
+          </xforms:action>
+          <xhtml:iframe src="about:blank" frameborder="no" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe" id="GLOBAL_ID_N1922753495" name="GLOBAL_ID_N1922753495"/>
+        </xforms:dialog>
+      </xhtml:div>
+    </xhtml:div>
+    <xhtml:div component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-e4bdee32-0f44-4e71-9a5e-d8a96b04d68f" class="component_3084CC8F bizDataFilterDialog">
+      <xhtml:div xblid="filter-dialog">
+        <xforms:dialog level="modal" title="查询对话框" close="true" draggable="true" appearance="full" width="490" height="340" id="GLOBAL_ID_N1236241295">
+          <xforms:action ev:event="xforms-dialog-open">
+            <xforms:script>var frameEl = justep('GLOBAL_ID_884093814');<?javax.xml.transform.disable-output-escaping ?>
+
+									if (frameEl) {
+										if(frameEl.contentWindow.document.body){
+											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";
+										}	
+									}
+									 <?javax.xml.transform.enable-output-escaping ?>
+justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_884093814", "");</xforms:script>
+          </xforms:action>
+          <xhtml:iframe src="about:blank" frameborder="no" style="width: 100%; height: 100%" xblid="filter-dialog-iframe" id="GLOBAL_ID_884093814" name="GLOBAL_ID_884093814"/>
+        </xforms:dialog>
+      </xhtml:div>
+    </xhtml:div>
+  </body>  
+</html>

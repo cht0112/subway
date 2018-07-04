@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element  name="officeViewer" icon="div.gif" text="officeViewer" 
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/officeViewer.xbl.xml#officeViewer"
+		component-class="OfficeViewer"
+		component-type="formControl">
+		<properties>
+			<property name="id" text="编号"/>
+			<property name="autoload" text="自动加载" editor-ref="booleanList" default-value="false"/>
+			<property name="showToolbar" text="是否显示工具栏" editor-ref="booleanList" default-value="true" data-type="boolean" enabled-condition="@gridline='true'"/>
+			<property name="printAble" text="是否可以打印" editor-ref="booleanList" default-value="true"/>
+			<property name="protectType" text="保护等级(word)" default-value="-1" editor-ref="protectTypeList" enum-values="" />
+			<property name="gridline" text="是否显示表格线条" editor-ref="booleanList" default-value="false" data-type="boolean" />
+			<property name="class" text="class" />
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="高度" required="true" /> 
+				<property name="height" text="宽度" required="true" />
+			</property>
+		</properties>
+		
+		<property-editors>
+			<property-editor name="protectTypeList" type="list" >
+				<static-data value="0:只能修订,1:只能批注,2:只能填表格域,3:只读,-1:无限制"/>
+			</property-editor>
+		</property-editors>
+		
+		<property-editors>
+			<property-editor name="officeTypeList" type="list" >
+				<static-data value="0:word,1:excel,2:powerPoint,3:visio,4:project,5:none"/>
+			</property-editor>
+		</property-editors>
+		
+		
+		<events>
+			<event name="onInit" parameters="event"/>
+			<event name="onReady" parameters="event"/>
+			<event name="onBeforeDocumentOpen" parameters="event"/>
+			<event name="onAfterDocumentOpen" parameters="event"/>
+			<event name="onBeforeDocumentNew" parameters="event"/>
+			<event name="onAfterDocumentNew" parameters="event"/>
+			<event name="onDocumentOpenError" parameters="event"/>                
+			<event name="onBeforeDocumentClose" parameters="event"/>
+			<event name="onAfterDocumentClose" parameters="event"/>
+			<event name="onBeforeDocumentSave" parameters="event"/>
+			<event name="onAfterDocumentSave" parameters="event"/>
+			<event name="onDocumentSaveError" parameters="event"/>
+		</events>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		     <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" component="/UI/system/components/officeViewer.xbl.xml#officeViewer">
+		     </xhtml:div>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

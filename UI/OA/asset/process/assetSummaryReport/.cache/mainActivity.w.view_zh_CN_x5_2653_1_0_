@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v2653/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v2653/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v2653/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v2653/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v2653/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v2653/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$v2653/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v2653/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v2653/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v2653/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v2653_no_/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v2653/component/data/data.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v2653_no_/UI/system/components/./reportData/reportData.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css"/>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/x5/$v2653/component/report/report.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v2653_no_/UI/system/components/dialog/dialog.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v2653_no_/UI/system/components/windowDialog/windowDialog.js?language=zh_CN">
+</script>      <link href="/x5/$v2653/form/dhtmlx/dhtmlxWindows/dhtmlxwindows.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <link href="/x5/$v2653/form/dhtmlx/dhtmlxWindows/skins/dhtmlxwindows_dhx_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <style rel="stylesheet" type="text/css">.xui-report { }</style>  
+    <script language="javascript" src="/x5/$v2653/component/chart/chart.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.xui-chart { width:500px; height:375px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"/>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>  
+    <link href="/x5/$v2653_no_/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v2653_no_/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script id="htmlScript2" src="/x5/$v2653_1_0_/UI/appCommon/js/appCommon.js?language=zh_CN">
+</script>      <script id="htmlScript1" src="/x5/$v2653_1_0_/UI/OA/asset/process/assetSummaryReport/mainActivity.js?language=zh_CN">
+</script>      <script>
+new justep.XCommonData('dTemp',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+jQuery('head').append('&lt;span id="rData"/&gt;');jQuery('#rData')[0].xblObject = new justep.ReportData({id:'rData',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"assetSummaryMainAction",columns:""});</script>  
+    <script>
+jQuery('head').append('&lt;span id="rDataD"/&gt;');jQuery('#rDataD')[0].xblObject = new justep.ReportData({id:'rDataD',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"assetSummaryDetailAction",columns:""});</script>  
+    <script>
+jQuery('head').append('&lt;span id="rDCharZT"/&gt;');jQuery('#rDCharZT')[0].xblObject = new justep.ReportData({id:'rDCharZT',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"assetSummaryZTAction",columns:""});</script>  
+    <script>
+jQuery('head').append('&lt;span id="rDCharBT"/&gt;');jQuery('#rDCharBT')[0].xblObject = new justep.ReportData({id:'rDCharBT',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"assetSummaryBTAction",columns:""});</script>  
+    <script>
+new justep.XBizData('bizData1',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','virtualRootLabel':'组织机构','nodeKindRelation':'sNodeKind'}"},'bizData1_part',{});</script>  
+    <script type="text/javascript" src="/x5/$v2653_1_0_/UI/OA/asset/process/assetSummaryReport/.cache/mainActivity_zh_CN_x5_2653_1_0_.js?language=zh_CN&amp;$version=123f589b-7efc-41dd-905f-4992a958c76a"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"/>  
+    <span id="infoPanel" style="position:absolute;display:none"/>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" lazy="false" style="height:100%;width:100%"> 
+        <table class="xui-container component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table1" style="height:100%;width:100%;"> 
+          <tr id="tr3"> 
+            <td colspan="1" height="35px" id="td5"> 
+              <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1"> 
+                <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                  <tr> 
+                    <td> 
+                      <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                        <div class="toolbar-style" name="toolbargroup"> 
+                          <table cellpadding="0" cellspacing="1px"> 
+                            <tr> 
+                              <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$v2653_no_/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"/> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem1" model="mdMain" onclick="justep.xbl('report').pageSetup();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_page_setup_g.gif" src="/x5/$v2653_no_/UI/system/images/report/print_page_setup.gif?language=zh_CN" style="border:none" title="页面设置"/> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">页面设置</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem2" model="mdMain" onclick="justep.xbl('report').preview();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_preview_g.gif" src="/x5/$v2653_no_/UI/system/images/report/print_preview.gif?language=zh_CN" style="border:none" title="打印预览"/> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">打印预览</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem3" model="mdMain" onclick="justep.xbl('report').print();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_print_g.gif" src="/x5/$v2653_no_/UI/system/images/report/print_print.gif?language=zh_CN" style="border:none" title="打印"/> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">打印</td> 
+                                  </tr> 
+                                </table> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td> 
+                      <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                        <div class="toolbar-style" name="toolbargroup"> 
+                          <table cellpadding="0" cellspacing="1px"> 
+                            <tr> 
+                              <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$v2653_no_/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"/> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem4" model="mdMain" onclick="justep.xbl('report').exportPDF();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_pdf_g.gif" src="/x5/$v2653_no_/UI/system/images/report/export_pdf.gif?language=zh_CN" style="border:none" title="导出为PDF文件"/> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">导出为PDF文件</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem5" model="mdMain" onclick="justep.xbl('report').exportWord();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_word_g.gif" src="/x5/$v2653_no_/UI/system/images/report/export_word.gif?language=zh_CN" style="border:none" title="导出为Word文档"/> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">导出为Word文档</td> 
+                                  </tr> 
+                                </table> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <table id="barItem6" model="mdMain" onclick="justep.xbl('report').exportExcel();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                  <tr align="center" valign="middle"> 
+                                    <td align="center" valign="middle"> 
+                                      <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_excel_.gif" src="/x5/$v2653_no_/UI/system/images/report/export_excel.gif?language=zh_CN" style="border:none" title="导出为Excel工作簿"/> 
+                                    </td>  
+                                    <td align="center" class="xforms-trigger-label" valign="middle">导出为Excel工作簿</td> 
+                                  </tr> 
+                                </table> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td style="width:100%"/> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="tr1"> 
+            <td colspan="1" height="30px" id="td2"> 
+              <div class="xui-container" id="vFilter" lazy="false" style="position:relative;width:100%;height:100%;;width:100%;height:100%;"> 
+                <table border="0" cellpadding="0" cellspacing="0" class="no-editor-border" style="width:752px;height:22px;border-collapse: collapse; table-layout: fixed;"> 
+                  <tr height="0px"> 
+                    <td height="0px" width="58px"/>  
+                    <td height="0px" width="117px"/>  
+                    <td height="0px" width="29px"/>  
+                    <td height="0px" width="117px"/>  
+                    <td height="0px" width="10px"/>  
+                    <td height="0px" width="112px"/>  
+                    <td height="0px" width="48px"/>  
+                    <td height="0px" width="10px"/>  
+                    <td height="0px" width="35px"/>  
+                    <td height="0px" width="104px"/>  
+                    <td height="0px" width="10px"/>  
+                    <td height="0px" width="40px"/>  
+                    <td height="0px" width="62px"/> 
+                  </tr>  
+                  <tr height="2px"> 
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/>  
+                    <td height="2px"/> 
+                  </tr>  
+                  <tr height="20px"> 
+                    <td height="20px">统计区间</td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #000000;border-Left:1px Solid #000000;border-Right:1px Solid #000000;border-Top:1px Solid #000000;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptBeginDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"/>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"/> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                <div class="xforms-alert-value" id=""/> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"/> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">至</td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #000000;border-Left:1px Solid #000000;border-Right:1px Solid #000000;border-Top:1px Solid #000000;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptEndDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"/>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"/> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                <div class="xforms-alert-value" id=""/> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"/> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td>  
+                    <td height="20px"/>  
+                    <td height="20px">预定办理周期（天）</td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #000000;border-Left:1px Solid #000000;border-Right:1px Solid #000000;border-Top:1px Solid #000000;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptDay" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"/>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"/> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                <div class="xforms-alert-value" id=""/> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"/> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"/>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">部门</td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid black;border-Left:1px Solid black;border-Right:1px Solid black;border-Top:1px Solid black;Font-Family:宋体;Font-Size:9pt;"> 
+                      <div class="xui-select xui-autofill component_14C8CA55 orgSelect" component="/UI/system/components/orgSelect.xbl.xml#orgSelect" id="orgSelect" selectable-org-types="dpt" show-org-types="ogn,dpt" use-virtual-root="true"> 
+                        <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-no-border component_DE7FA61F treeSelect xforms-control xforms-treeselect xforms-appearance-minimal xui-select" id="treeSelect1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                          <tbody> 
+                            <tr> 
+                              <td class="focus" style="display:none;width:0px"/>  
+                              <td class="xxf-value"> 
+                                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                    <tr style="border:none"> 
+                                      <td style="width:100%;height:100%;border:none;"> 
+                                        <input accesskey="" class="xforms-ext-select-input" tabindex=""/> 
+                                      </td>  
+                                      <td style="border:none" width="20px"> 
+                                        <img align="absMiddle" src="/x5/$v2653/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"/> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </td>  
+                              <td class="xxf-alert"> 
+                                <span class="xforms-alert"> 
+                                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                  <div class="xforms-alert-value" id=""/> 
+                                </span> 
+                              </td> 
+                            </tr> 
+                          </tbody> 
+                        </table>  
+                        <span data-id="bizData1" grid-id="treeSelect1" style="display:none" xblid="attribute"/> 
+                      </div> 
+                    </td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"/>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgQuery" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="cursor:hand;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="xxf-value"> 
+                              <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex=""> 
+                                <img align="absmiddle" src="/x5/$v2653_1_0_/UI/appCommon/images/search.png?language=zh_CN" tabindex="" title="查询"/> 
+                              </button> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                <div class="xforms-alert-value" id=""/> 
+                              </span> 
+                            </td> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td>  
+                    <td height="20px"/> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="tr2"> 
+            <td id="td1114" style="width:13px;display:none"> 
+              <div class="xui-container" id="vChartZT" lazy="false" style="height:100%;width:100%;"> 
+                <div auto-load="false" chart-name="chart" class="xui-chart component_5F550B91 chart" component="/UI/system/components/chart.xbl.xml#chart" data-list="rDCharZT" id="chartZT"> 
+                  <span cacheFile="%2FUI%2FOA%2Fasset%2Fprocess%2FassetSummaryReport%2F.cache%2FmainActivity.report" dataList="rDCharZT" marginBottom="10mm" marginFootter="" marginHeader="" marginLeft="10mm" marginRight="10mm" marginTop="10mm" orientation="" pageHeight="297mm" pageWidth="210mm" paperType="A4" style="display:none" xblid="attribute"/>  
+                  <div chart-name="chart" id="chart_chartZT_content" style="width:100%;height:100%"> </div>  
+                  <iframe name="chart_chartZT_frame" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                </div> 
+              </div>  
+              <div class="xui-container" id="vChartBT" lazy="false" style="height:100%;width:100%;"> 
+                <div auto-load="false" chart-name="chart" class="xui-chart component_5F550B91 chart" component="/UI/system/components/chart.xbl.xml#chart" data-list="rDCharBT" id="chartBT"> 
+                  <span cacheFile="%2FUI%2FOA%2Fasset%2Fprocess%2FassetSummaryReport%2F.cache%2FmainActivity.report" dataList="rDCharBT" marginBottom="10mm" marginFootter="" marginHeader="" marginLeft="10mm" marginRight="10mm" marginTop="10mm" orientation="" pageHeight="297mm" pageWidth="210mm" paperType="A4" style="display:none" xblid="attribute"/>  
+                  <div chart-name="chart" id="chart_chartBT_content" style="width:100%;height:100%"> </div>  
+                  <iframe name="chart_chartBT_frame" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                </div> 
+              </div> 
+            </td>  
+            <td align="center" id="td4"> 
+              <div class="xui-container" id="vDetail" lazy="false" style="height:100%;width:100%;"> 
+                <div auto-load="false" class="xui-report component_2BF03861 report" component="/UI/system/components/report.xbl.xml#report" data-list="" id="report" report-name="report" src="/UI/OA/asset/process/assetSummaryReport/assetSummaryReport.xls" style="width:100%;height:100%;"> 
+                  <span cacheFile="%2FUI%2FOA%2Fasset%2Fprocess%2FassetSummaryReport%2F.cache%2FmainActivity.report" dataList="rData,rDataD" marginBottom="2.4mm" marginFootter="" marginHeader="" marginLeft="3.7mm" marginRight="3.7mm" marginTop="2.4mm" objectList="chartZT,chartBT" orientation="Landscape" pageHeight="210mm" pageWidth="297mm" paperType="A4" style="display:none" xblid="attribute"/>  
+                  <div id="report_report_content" report-name="report" style="width:100%;height:100%;"> </div>  
+                  <iframe name="report_report_frame" onReadyStateChange="var xbl=justep.xbl('report'); if (xbl != null) xbl._hideWaittingDialog()" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                </div> 
+              </div> 
+            </td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <script>
+function func_866701699(data){var oData = justep.XData.$('bizData1');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_259433887(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

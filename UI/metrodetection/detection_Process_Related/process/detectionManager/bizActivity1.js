@@ -1,0 +1,2 @@
+var bizActivity1 = {};
+

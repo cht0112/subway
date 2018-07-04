@@ -1,0 +1,45 @@
+/**
+	@name UI.customBar
+	@component /UI/system/components/customBar.xbl.xml#customBar
+	@class
+	@description <b>[rich]</b>自定义工具栏组件，只能放在{@link toolbars}内
+	@model UI
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<xui:bar component="/UI/system/components/customBar.xbl.xml#customBar"></xui:bar>
+	</xmp>
+*/
+
+/**
+	@name UI.customBar#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default /UI/system/components/customBar.xbl.xml#customBar
+*/
+
+/**
+	@name UI.customBar#id
+	@attribute
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.customBar#item
+	@attribute
+	@description 项，可以包含其他组件
+	@example
+	<b>xml格式：</b>
+	<xmp>
+	<item>
+		<xforms:trigger appearance="image-text"/>
+	</item>	
+	<item>
+		<input name="input"/>
+	</item>	
+	</xmp>
+*/

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript" src="/UI/system/components/windowDialog/windowDialogReceiver.js"/>
+	
+	<xbl:binding id="windowDialogReceiver">
+		<xbl:template template-type="xslt">
+		</xbl:template>
+		<xbl:implementation>
+		({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var s = node.getAttribute('onReceive');
+				if(s) justep.windowDialogReceiver.acceptParentParamsFun = s;
+			},
+			"windowEnsure" : function(data,noclose){
+				justep.windowDialogReceiver.windowEnsure(data,noclose);
+			}, 
+			"windowCancel" : function(){
+				justep.windowDialogReceiver.windowCancel();
+			}, 
+			"windowRefresh" : function(){
+				justep.windowDialogReceiver.windowRefresh();
+			}
+		})			
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

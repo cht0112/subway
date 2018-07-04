@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript"> 
+
+	<xbl:binding id="numberSelect">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">		
+				<xsl:variable name="id"><xsl:value-of select="@id"/></xsl:variable>
+				<root xbl:class="xui-select">
+					<xhtml:table id="{concat('table-',@id)}" cellpadding="0" cellspacing="0" style="width:100%;height:100%" class="xui-autofill">
+						<xhtml:tr>
+							<xhtml:td id="{concat('td-',@id)}">
+								<xhtml:input class="xforms-value" id="{concat('input-',@id)}">
+									<xsl:if test="@tabindex != ''">
+										<xsl:attribute name="tabindex"><xsl:value-of select="@tabindex"/></xsl:attribute>
+									</xsl:if>
+									<xsl:if test="@accesskey != ''">
+										<xsl:attribute name="accesskey"><xsl:value-of select="@accesskey"/></xsl:attribute>
+									</xsl:if>
+									<xsl:if test="@readonly != ''">
+										<xsl:attribute name="readonly"><xsl:value-of select="@readonly"/></xsl:attribute>
+									</xsl:if>
+									<xsl:if test="@disabled != ''">
+										<xsl:attribute name="disabled"><xsl:value-of select="@disabled"/></xsl:attribute>
+									</xsl:if>
+								</xhtml:input>
+								<xsl:if test="@ref != ''">
+									<xhtml:div style="display:none;">
+										<xforms:input id="{concat('xfinput-',@id)}">
+											<xsl:attribute name="ref"><xsl:value-of select="@ref"/></xsl:attribute>
+										</xforms:input>
+									</xhtml:div>
+								</xsl:if>
+							</xhtml:td>
+							<xhtml:td style="width:16px;">
+								<xhtml:img align="absMiddle" id="{concat('img-',@id)}" src="/UI/system/components/numberSelect/numberSelect.gif">
+									<xsl:if test="@disabled != '' or @readonly != ''">
+										<xsl:attribute name="style">display:none;</xsl:attribute>
+									</xsl:if>								
+								</xhtml:img>
+							</xhtml:td>
+						</xhtml:tr>
+					</xhtml:table>
+				</root>			
+			</xsl:template>	 
+		</xbl:template>
+		
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+				this.__input = $("#input-"+this.domNode.id).get(0);
+				this.__td = $("#td-"+this.domNode.id).get(0);
+				this.__min = parseInt(this.domNode.getAttribute("min")||0);
+				this.__max = parseInt(this.domNode.getAttribute("max")||100);
+				this.__size = parseInt(this.domNode.getAttribute("size")||7);
+				this.__speed = parseInt(this.domNode.getAttribute("speed")||1);
+				var self = this;						
+				if(this.domNode.getAttribute("ref")){
+				   var xf_ele = $("#xfinput-"+this.domNode.id).get(0);
+				   this.__xfinput = xf_ele.xformsObject;
+				   var fn = function(){var v=self.__xfinput.getValue();if(undefined!=v&&null!=v)self.__input.value=v;};
+				   new xforms.Listener(xf_ele, "xforms-value-changed", null, fn);
+				   fn();
+				 }
+				this.__onDropdown = this.domNode.getAttribute("onDropdown")?justep.Function.get(this.domNode.getAttribute("onDropdown")):null;
+				this.__onCloseup = this.domNode.getAttribute("onCloseup")?justep.Function.get(this.domNode.getAttribute("onCloseup")):null;
+				this.setParam(this.__min,this.__max,this.__speed,this.__size);
+				$("#img-"+this.domNode.id).bind("click",function(){
+					self.__numberList.show();
+					if(self.__onDropdown) self.__onDropdown({'source':self});
+				});
+				
+				$("#input-"+this.domNode.id).bind("keypress",function(e){
+					if(e.ctrlKey == true || e.shiftKey == true) return false; 
+					if((e.which >= 48 && e.which <= 57 && e.ctrlKey == false && e.shiftKey == false) || e.which == 0 || e.which == 8) 
+						return true; 
+					else if(e.ctrlKey == true && (e.which == 99 || e.which == 118)) 
+						return false; 
+					else 
+						return false; 
+				});
+				
+				$("#input-"+this.domNode.id).blur(function(){	
+					this.value = this.value > self.__max ? self.__max : this.value;
+					this.value = this.value < self.__min ? self.__min : this.value;			
+					self.setRef(this.value);
+				});		
+				
+			},
+			"setRef" : function (value){
+					if (this.__xfinput){
+						var node = this.__xfinput.element.node;
+						if (!node.nodeType){  
+							model = this.__xfinput.binding.model ? this.__xfinput.binding.model : node.store.instance.model;
+						}else{
+							model = node.ownerDocument.model;
+						}		
+						try{
+							xforms.openAction();
+							model.addChange(node);
+							xforms.setValue(node, value || "");
+						}finally{
+							xforms.closeAction();
+						}
+					}				
+			},
+			"getMin" : function(){
+				return this.__min;
+			},
+			"getMax" : function(){
+				return this.__max;
+			},
+			"getSpeed" : function(){
+				return this.__speed;
+			},
+			"getShowSize" : function(){
+				return this.__size;
+			},
+			"setParam" : function(min,max,speed,size){
+				var self = this;
+				if(!isNaN(size))this.__size = size;
+				if(!isNaN(max))this.__max = max;
+				if(!isNaN(min))this.__min = min;
+				if(!isNaN(speed))this.__speed = speed;
+				var callback = function(value){
+					self.setRef(value);
+					if(self.__onCloseup) self.__onCloseup({'source':self,'value':value});
+				};
+				if(this.__numberList) this.__numberList.setParam(this.__min, this.__max, this.__speed, this.__size, callback);
+				else this.__numberList = new justep.NumberList(this.__td, "calendarList", this.__input, this.__min, this.__max, this.__speed, this.__size, callback);
+			},
+			"setTabIndex" : function(tabIndex){
+				this.__input.tabindex = tabIndex;
+			},
+			"getTabIndex" : function(){
+				return this.__input.tabindex;
+			},			
+			"setAccessKey" : function(key){
+				this.__input.accesskey = key;
+			},			
+			"getAccessKey" : function(){
+				return this.__input.accesskey;
+			},			
+			"setReadonly" : function(readonly){
+				this.__input.readOnly = readonly;
+				$("#img-"+this.domNode.id).css({visibility: (!readonly?"visible":"hidden")});
+			},			
+			"getReadonly" : function(){
+				return this.__input.readonly;
+			},			
+			"setDisabled" : function(disabled){
+				this.__input.disabled = disabled;
+				$("#img-"+this.domNode.id).css({visibility: (!disabled?"visible":"hidden")});
+			},			
+			"getDisabled" : function(){
+				return this.__input.disabled;
+			}
+		})
+		]]>	
+		</xbl:implementation>
+		
+	</xbl:binding>
+</xbl:xbl>

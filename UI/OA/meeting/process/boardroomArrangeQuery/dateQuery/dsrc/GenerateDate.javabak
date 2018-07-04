@@ -1,0 +1,77 @@
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.Vector;
+import java.text.SimpleDateFormat;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
+import org.orbeon.oxf.pipeline.api.PipelineContext;
+import org.orbeon.oxf.processor.*;
+import org.orbeon.oxf.resources.ResourceManager;
+import org.orbeon.oxf.resources.ResourceManagerWrapper;
+import org.orbeon.oxf.xml.dom4j.LocationSAXWriter;
+import org.xml.sax.ContentHandler;
+import org.orbeon.oxf.processor.ProcessorInputOutputInfo;
+import org.orbeon.oxf.processor.SimpleProcessor;
+import org.xml.sax.SAXException;
+
+public class GenerateDate extends SimpleProcessor {
+
+	public GenerateDate() {
+		addInputInfo(new ProcessorInputOutputInfo(INPUT_DATA));
+		addOutputInfo(new ProcessorInputOutputInfo(OUTPUT_DATA));
+	}
+
+	public void generateData(PipelineContext context,
+			ContentHandler contentHandler) throws Exception {
+		Document doc = DocumentHelper.createDocument();
+		Element docRoot = DocumentHelper.createElement("result");
+		LocationSAXWriter outputWriter = new LocationSAXWriter();
+		outputWriter.setContentHandler(contentHandler);
+		
+		try {
+			Document meta = this.readInputAsDOM4J(context, "data");
+			Element metaRoot = meta.getRootElement();
+			String strDate;
+			String startdate = metaRoot.element("date-begin").getText();
+			String enddate = metaRoot.element("date-end").getText();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar calStart = Calendar.getInstance();
+			calStart.setTime(df.parse(startdate));
+			Calendar calEnd = Calendar.getInstance();
+			calEnd.setTime(df.parse(enddate));
+			Calendar calTmp = (Calendar) calStart.clone();
+
+			while (!calEnd.equals(calTmp)) {
+				strDate = df.format(calTmp.getTime());
+				Element m = DocumentHelper.createElement("date");
+				m.setText(strDate);
+				docRoot.add(m);
+				calTmp.add(Calendar.DATE, 1);
+			}
+			
+			strDate = df.format(calTmp.getTime());
+			Element m = DocumentHelper.createElement("date");
+			m.setText(strDate);
+			docRoot.add(m);
+		} catch (Exception e) {
+			e.printStackTrace();
+			docRoot.add(DocumentHelper
+					.createAttribute(docRoot, "flag", "false"));
+			docRoot.add(DocumentHelper.createAttribute(docRoot, "error", e
+					.getMessage()));
+		}
+		doc.add(docRoot);
+		outputWriter.write(doc);
+	}
+}

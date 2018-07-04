@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xforms="http://www.justep.com/xforms" script-type="text/javascript">
+	
+	<script src="/UI/system/components/dialog/dialog.js" />
+	<script src="/UI/system/components/windowDialog/windowDialog.js" />
+	
+	<script src="./reportEditor/js/report.js"/>
+	<script src="./reportEditor/js/reportEditorCommon.js"/>  
+	<script src="./reportEditor/js/reportEditorCell.js"/>  
+	<script src="./reportEditor/js/reportEditorExprAnalyse.js"/>  
+	<script src="./reportEditor/js/reportEditorCalculate.js"/>  
+	<script src="./reportEditor/js/reportEditorCheck.js"/>  
+	<script src="./reportEditor/js/reportEditorDataset.js"/>  
+	<script src="./reportEditor/js/reportEditor.js"/>  
+
+	
+	<binding id="editor" delete-bound-element="false" >
+		<resources>
+			<style src="/form/dhtmlx/dhtmlxWindows/dhtmlxwindows.css" />
+			<style src="/form/dhtmlx/dhtmlxWindows/skins/dhtmlxwindows_dhx_blue.css" />
+		</resources>		
+		<template template-type="java" src="ReportEditor" />		
+		<implementation>
+			({
+				initXBL : function() {
+					this._id = this.domNode.id;
+					if (!this._id) {
+						throw new Error("报表组件的id属性不能为空");
+					}
+					this.reportDefineID = "report_" + this._id + "_define";
+					this.reportContentID = "report_" + this._id + "_content";
+					this.reportExportFrameID = "report_" + this._id + "_frame";
+					this.reportEditorID = "report_" + this._id + "_editor";
+					var reportEditor = new justep.ReportEditor(this);
+					justep.Object.extend(reportEditor, new justep.Report(this));
+					justep.Object.extend(this, reportEditor);
+				}
+			})
+		</implementation>
+	</binding>
+	
+	
+</xbl>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="standardProcessExecuteList" tag-name="div" icon="collapsePanel.gif" text="标准处理列表组件"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/appCommon/components/standardProcessExecuteList.xbl.xml#standardProcessExecuteList"
+		display-property="id" component-class="StandardProcessExecuteList" component-type="formControl" design-view="web-designer" >
+
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="数据" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data" />		
+			<property name="config-file" text="配置文件" />
+			<property name="panel-title" text="面板标题" default-value=""/>
+			<property name="list-title" text="列表标题(xpath)" editor-ref="xpathEditor"/>
+			
+			<property name="fixed" text="允许折叠" default-value="true" editor-ref="booleanList" />
+			<property name="status" text="状态" editor-ref="defaultValueList"/>
+			<property name="min-height" text="最小高度"/>
+
+			<property name="style" text="样式" editor-ref="styleDialog" />
+		</properties>
+		
+		<property-editors>
+			<property-editor name="defaultValueList" type="list" >
+				<static-data value="expanded,collapsed" /> 	
+			</property-editor>
+		</property-editors>
+		
+		<events>  			
+			<event name="onRefresh" parameters="event"/>
+		</events>
+
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+					<xhtml:div xmlns:xforms="http://www.justep.com/xforms" xmlns:xhtml="http://www.w3.org/1999/xhtml"  
+						component="/UI/appCommon/components/standardProcessExecuteList.xbl.xml#standardProcessExecuteList"
+						panel-title="处理列表" status="collapsed" min-height="165">
+					</xhtml:div>	
+			   ]]>
+		   </template>
+		</templates>
+	</element>
+</elements>

@@ -1,0 +1,288 @@
+/**
+	@name UI.officeViewer
+	@model UI
+	@component /UI/system/components/offieViewer.xbl.xml#officeViewer
+	@class office控件
+	@description <b>[rich]</b>office控件
+*/
+
+
+/**
+	@name UI.officeViewer#component-name
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/officeViewer.xbl.xml#officeViewer"
+*/
+
+/**
+	@name UI.officeViewer#id
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>id标识
+*/
+
+/**
+	@name UI.officeViewer#autoload
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>是否自动加载文件
+	注意 如果自动加载必须在onReady事件中指定要打开的文件
+	@example
+	   onReady中
+	   event.source.officeObj.NewWord();
+	       创建一个新的word文件
+*/
+
+/**
+	@name UI.officeViewer#showToolbar
+	@property
+	@description <b>[attribute]</b><b>[required]</b>是否显示工具条
+*/
+
+/**
+	@name UI.officeViewer#printAble
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>打印控制
+*/
+
+/**
+	@name UI.officeViewer#protectType
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>保护等级
+*/
+
+/**
+	@name UI.officeViewer#gridline
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>网格线
+*/
+
+/**
+	@name UI.officeViewer#newDoc
+	@function
+	@param {String} progID  "Word.Application"|"Excel.Applicaiton"|"PowerPoint.Application"|"Visio.Application"|"Project.Application"
+	@description 新建一个Document
+*/
+
+/**
+	@name UI.officeViewer#openDoc
+	@function
+	@description post方式获取文件
+	@param {String} path
+	@param {String} progID
+	@param {String} params post的参数,json格式
+	
+*/
+
+/**
+	@name UI.officeViewer#openDocByGet
+	@function
+	@description get方式获取文件(注意：get方式打开时候url中最后必须是文件名字)
+	@example url为http://localhost:8080/x5/UI/test/a.doc  如果url不以a.doc结尾的必须采用post方式 参考openDoc
+	@param {String} path
+	@param {String} progID
+	@param {String} params post的参数,json格式
+*/
+
+
+/**
+	@name UI.officeViewer#saveFile
+	@function
+	@description 通过form格式提交当前打开的文件到指定的url
+	@param {String} path
+	@param {String} fileName
+	@param {String} params post的参数,json格式
+*/
+
+/**
+	@name UI.officeViewer#getOfficeObj
+	@function
+	@description 获取office(ocx)控件对象
+*/
+
+/**
+	@name UI.officeViewer#getApplication
+	@function
+	@description 获取office控件打开的office文件对象（参考vba中application对象）
+*/
+
+/**
+	@name UI.officeViewer#getActiveDocument
+	@function
+	@description 获取office控件打开的office文件对象的活动文档（参考vba中activeDocument对象）
+*/
+
+/**
+	@name UI.officeViewer#onInit
+	@event 
+	@description <b>[回调型事件]</b>组件js部分初始化完成后
+	<b>一般在这个事件中可以调整初始化参数，做一些动态属性的能力</b>
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.officeViewer#onReady
+	@event 
+	@description <b>[回调型事件]</b>office控件初始化完成，本事件在onInit之后执行
+	<xmp>
+		如果auto-load为true,会触发到此事件，或者手动调用refresh事件也会触发。
+		推荐在这个事件中通过api打开office文件。
+	</xmp>
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"url" : 获取数据的url
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.officeViewer#onBeforeDocumentOpen
+	@event 
+	@description <b>[回调型事件]</b>打开文档前
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"data" : {
+			"path" : 要打开文件的url,
+			"progID": 打开的文件类型ID
+		}
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.officeViewer#onAfterDocumentOpen
+	@event 
+	@description <b>[回调型事件]</b>
+	@param event <br/><b>它的结构如下：</b>打开文档后
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+/**
+	@name UI.officeViewer#onDocumentOpenError
+	@event 
+	@description <b>[回调型事件]</b>打开文档异常
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"data": 错误编码
+	}
+	</xmp>
+	<xmp>
+		异常code列表{
+			eSC_Ok = 0 (返回值为0的时候不会触发error事件),
+			eSC_GenericError (未知异常),
+			eSC_InvalidFileType (文件类型异常),
+			eSC_InvalidSite (站点未知),
+			eSC_WrongDNS (DNS异常),
+			eSC_CreateTempFileFailed (创建缓存失败),
+			eSC_OpenUploadFileFailed (打开要上传的文件失败),
+			eSC_SaveOpenedFileFailed (保存当前打开的文件失败),
+			eSC_NotHttpURL (url不是合法的http),
+			eSC_ConnectFailed (连接异常),
+			eSC_RequestFailed (构建请求异常),
+			eSC_RequestHeaderFailed (请求头异常),
+			eSC_EmptyArgument (服务器端口不接受空参数时候返回，一般用于post请求),
+			eSC_OpenFileArgumentFailed (打开文件使用参数失败),
+			eSC_SendRequestFailed (发送请求异常),
+			eSC_WriteDataFailed (写入数据失败),
+			eSC_ReadDataFailed (读取返回值失败),
+			eSC_EndRequestFailed (结束请求失败),
+			eSC_OpenFileFailed (打开文件失败),
+			eSC_InvalidReturnData (非法返回值),
+		};
+		异常异常信息不需要特别关心，一般在遇到异常的时候作为被查手册即可。
+	</xmp>
+*/
+/**
+	@name UI.officeViewer#onBeforeDocumentClose
+	@event 
+	@description <b>[回调型事件]</b>关闭文档之前
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+		"source" : 组件的js对象
+	</xmp>
+*/
+
+/**
+	@name UI.officeViewer#onAfterDocumentClose
+	@event 
+	@description <b>[回调型事件]</b>关闭文件后
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+		"source" : 组件的js对象
+	</xmp>
+*/
+/**
+	@name UI.officeViewer#onBeforeDocumentSave
+	@event 
+	@description <b>[回调型事件]</b>条形码刷新后
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+		"source" : 组件的js对象,
+		data : {
+			"path" : 保存的url,
+			"fileName" : 文件名字,
+			"params" : post请求的参数
+		},
+		"cancel" : 是否取消保存
+	</xmp>
+*/
+/**
+	@name UI.officeViewer#onAfterDocumentSave
+	@event 
+	@description <b>[回调型事件]</b>保存后
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+/**
+	@name UI.officeViewer#onDocumentSaveError
+	@event 
+	@description <b>[回调型事件]</b>条形码刷新后
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"data": 错误编码
+	}
+	</xmp>
+	<xmp>
+		异常code列表{
+			eSC_Ok = 0 (返回值为0的时候不会触发error事件),
+			eSC_GenericError (未知异常),
+			eSC_InvalidFileType (文件类型异常),
+			eSC_InvalidSite (站点未知),
+			eSC_WrongDNS (DNS异常),
+			eSC_CreateTempFileFailed (创建缓存失败),
+			eSC_OpenUploadFileFailed (打开要上传的文件失败),
+			eSC_SaveOpenedFileFailed (保存当前打开的文件失败),
+			eSC_NotHttpURL (url不是合法的http),
+			eSC_ConnectFailed (连接异常),
+			eSC_RequestFailed (构建请求异常),
+			eSC_RequestHeaderFailed (请求头异常),
+			eSC_EmptyArgument (服务器端口不接受空参数时候返回，一般用于post请求),
+			eSC_OpenFileArgumentFailed (打开文件使用参数失败),
+			eSC_SendRequestFailed (发送请求异常),
+			eSC_WriteDataFailed (写入数据失败),
+			eSC_ReadDataFailed (读取返回值失败),
+			eSC_EndRequestFailed (结束请求失败),
+			eSC_OpenFileFailed (打开文件失败),
+			eSC_InvalidReturnData (非法返回值),
+		};
+		异常异常信息不需要特别关心，一般在遇到异常的时候作为被查手册即可。
+	</xmp>
+*/

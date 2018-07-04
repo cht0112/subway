@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js">
+</script>      <script language="javascript" src="/UI/system/components/dialog/dialog.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();					}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/UI/OA/asset/process/assetInDetail/assetInDetail.js">
+</script>      <link href="/UI/appCommon/css/common.css" rel="STYLESHEET" type="text/css"></link>      <script src="/UI/appCommon/js/appCommon.js" type="text/javascript">
+</script>      <script id="htmlScript1" src="/UI/OA/asset/process/assetInDetail/assetInDetail.js">
+</script>      <script>
+new justep.XBizData('dAssetInM',false,false,{'queryAction':"queryASInMAction",'saveAction':"saveASInMAction",'newAction':"createASInMAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_InM':'OA_AS_InM'}",'limit':1,'idColumn':"{'name':'OA_AS_InM','relation':'OA_AS_InM','define':'OA_AS_InM','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_InM.version','define':'OA_AS_InM.version','label':'版本'},'fNO':{'type':'String','relation':'OA_AS_InM.fNO','define':'OA_AS_InM.fNO','label':'单据号'},'fDutyOgnID':{'type':'String','relation':'OA_AS_InM.fDutyOgnID','define':'OA_AS_InM.fDutyOgnID','label':'责任机构ID'},'fDutyOgnName':{'type':'String','relation':'OA_AS_InM.fDutyOgnName','define':'OA_AS_InM.fDutyOgnName','label':'责任机构'},'fDutyOgnFID':{'type':'String','relation':'OA_AS_InM.fDutyOgnFID','define':'OA_AS_InM.fDutyOgnFID','label':'责任机构FID'},'fDutyDeptID':{'type':'String','relation':'OA_AS_InM.fDutyDeptID','define':'OA_AS_InM.fDutyDeptID','label':'责任部门ID'},'fDutyDeptName':{'type':'String','relation':'OA_AS_InM.fDutyDeptName','define':'OA_AS_InM.fDutyDeptName','label':'责任部门'},'fDutyPosID':{'type':'String','relation':'OA_AS_InM.fDutyPosID','define':'OA_AS_InM.fDutyPosID','label':'责任岗位ID'},'fDutyPosName':{'type':'String','relation':'OA_AS_InM.fDutyPosName','define':'OA_AS_InM.fDutyPosName','label':'责任岗位'},'fDutyPsnID':{'type':'String','relation':'OA_AS_InM.fDutyPsnID','define':'OA_AS_InM.fDutyPsnID','label':'责任人ID'},'fDutyPsnName':{'type':'String','relation':'OA_AS_InM.fDutyPsnName','define':'OA_AS_InM.fDutyPsnName','label':'责任人'},'fDutyPsnFID':{'type':'String','relation':'OA_AS_InM.fDutyPsnFID','define':'OA_AS_InM.fDutyPsnFID','label':'责任人FID'},'fDutyPsnFName':{'type':'String','relation':'OA_AS_InM.fDutyPsnFName','define':'OA_AS_InM.fDutyPsnFName','label':'责任人FName'},'fDate':{'type':'Date','relation':'OA_AS_InM.fDate','define':'OA_AS_InM.fDate','label':'入库日期'},'fModeID':{'type':'String','relation':'OA_AS_InM.fModeID','define':'OA_AS_InM.fModeID','label':'入库方式ID'},'fMode':{'type':'String','relation':'OA_AS_InM.fMode','define':'OA_AS_InM.fMode','label':'入库方式'},'fAmount':{'type':'Decimal','relation':'OA_AS_InM.fAmount','define':'OA_AS_InM.fAmount','label':'总金额'},'fState':{'type':'Integer','relation':'OA_AS_InM.fState','define':'OA_AS_InM.fState','label':'入库状态'},'fStateName':{'type':'String','relation':'OA_AS_InM.fStateName','define':'OA_AS_InM.fStateName','label':'入库状态'},'fRemark':{'type':'String','relation':'OA_AS_InM.fRemark','define':'OA_AS_InM.fRemark','label':'备注'},'fCreateOgnID':{'type':'String','relation':'OA_AS_InM.fCreateOgnID','define':'OA_AS_InM.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_InM.fCreateOgnName','define':'OA_AS_InM.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_InM.fCreateDeptID','define':'OA_AS_InM.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_InM.fCreateDeptName','define':'OA_AS_InM.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_AS_InM.fCreatePosID','define':'OA_AS_InM.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_AS_InM.fCreatePosName','define':'OA_AS_InM.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_AS_InM.fCreatePsnID','define':'OA_AS_InM.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_InM.fCreatePsnName','define':'OA_AS_InM.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_InM.fCreatePsnFID','define':'OA_AS_InM.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_AS_InM.fCreatePsnFName','define':'OA_AS_InM.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_InM.fCreateTime','define':'OA_AS_InM.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_InM.fUpdatePsnID','define':'OA_AS_InM.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_InM.fUpdatePsnName','define':'OA_AS_InM.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_InM.fUpdateTime','define':'OA_AS_InM.fUpdateTime','label':'修改时间'},'fExtendStr1':{'type':'String','relation':'OA_AS_InM.fExtendStr1','define':'OA_AS_InM.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_AS_InM.fExtendStr2','define':'OA_AS_InM.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_AS_InM.fExtendStr3','define':'OA_AS_InM.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_AS_InM.fExtendStr4','define':'OA_AS_InM.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_AS_InM.fExtendStr5','define':'OA_AS_InM.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_AS_InM.fExtendStr6','define':'OA_AS_InM.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_AS_InM.fExtendStr7','define':'OA_AS_InM.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_AS_InM.fExtendStr8','define':'OA_AS_InM.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_AS_InM.fExtendStr9','define':'OA_AS_InM.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_AS_InM.fExtendDate1','define':'OA_AS_InM.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_AS_InM.fExtendDate2','define':'OA_AS_InM.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_AS_InM.fExtendDate3','define':'OA_AS_InM.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_AS_InM.fExtendDate4','define':'OA_AS_InM.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_AS_InM.fExtendDate5','define':'OA_AS_InM.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_AS_InM.fExtendNum1','define':'OA_AS_InM.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_AS_InM.fExtendNum2','define':'OA_AS_InM.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_AS_InM.fExtendNum3','define':'OA_AS_InM.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_AS_InM.fExtendNum4','define':'OA_AS_InM.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_AS_InM.fExtendNum5','define':'OA_AS_InM.fExtendNum5','label':'扩展字段'}}"},'dAssetInM_part',{}).attachEvents({'onSaveCommit':'dAssetInMSaveCommit','onValueChanged':'dAssetInValueChanged'});</script>  
+    <script>
+new justep.XBizData('dAssetInD',true,false,{'queryAction':"queryASInDAction",'saveAction':"saveASInDAction",'newAction':"createASInDAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_InD':'OA_AS_InD'}",'limit':-1,'idColumn':"{'name':'OA_AS_InD','relation':'OA_AS_InD','define':'OA_AS_InD','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fCode':1}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_InD.version','define':'OA_AS_InD.version','label':'版本'},'fMasterID':{'type':'String','relation':'OA_AS_InD.fMasterID','define':'OA_AS_InD.fMasterID','label':'主数据ID'},'fCode':{'type':'String','relation':'OA_AS_InD.fCode','define':'OA_AS_InD.fCode','label':'资产编号'},'fKindID':{'type':'String','relation':'OA_AS_InD.fKindID','define':'OA_AS_InD.fKindID','label':'资产类别ID'},'fKind':{'type':'String','relation':'OA_AS_InD.fKind','define':'OA_AS_InD.fKind','label':'资产类别'},'fName':{'type':'String','relation':'OA_AS_InD.fName','define':'OA_AS_InD.fName','label':'资产名称'},'fSpecType':{'type':'String','relation':'OA_AS_InD.fSpecType','define':'OA_AS_InD.fSpecType','label':'规格型号'},'fUnitID':{'type':'String','relation':'OA_AS_InD.fUnitID','define':'OA_AS_InD.fUnitID','label':'单位ID'},'fUnit':{'type':'String','relation':'OA_AS_InD.fUnit','define':'OA_AS_InD.fUnit','label':'单位'},'fBuyApplyID':{'type':'String','relation':'OA_AS_InD.fBuyApplyID','define':'OA_AS_InD.fBuyApplyID','label':'采购单ID'},'fBuyApplyNO':{'type':'String','relation':'OA_AS_InD.fBuyApplyNO','define':'OA_AS_InD.fBuyApplyNO','label':'请购单号'},'fBuyDetailID':{'type':'String','relation':'OA_AS_InD.fBuyDetailID','define':'OA_AS_InD.fBuyDetailID','label':'采购明细ID'},'fAmount':{'type':'Decimal','relation':'OA_AS_InD.fAmount','define':'OA_AS_InD.fAmount','label':'金额'},'fIsCheck':{'type':'Integer','relation':'OA_AS_InD.fIsCheck','define':'OA_AS_InD.fIsCheck','label':'是否验收'},'fIsCheckName':{'type':'String','relation':'OA_AS_InD.fIsCheckName','define':'OA_AS_InD.fIsCheckName','label':'是否验收'},'fCheckID':{'type':'String','relation':'OA_AS_InD.fCheckID','define':'OA_AS_InD.fCheckID','label':'验收单ID'},'fCheckNO':{'type':'String','relation':'OA_AS_InD.fCheckNO','define':'OA_AS_InD.fCheckNO','label':'验收单号'},'fIsIn':{'type':'Integer','relation':'OA_AS_InD.fIsIn','define':'OA_AS_InD.fIsIn','label':'是否入库'},'fIsInName':{'type':'String','relation':'OA_AS_InD.fIsInName','define':'OA_AS_InD.fIsInName','label':'是否入库'},'fDate':{'type':'Date','relation':'OA_AS_InD.fDate','define':'OA_AS_InD.fDate','label':'入库日期'},'fRemark':{'type':'String','relation':'OA_AS_InD.fRemark','define':'OA_AS_InD.fRemark','label':'备注'},'fChecked':{'type':'Integer','relation':'OA_AS_InD.fChecked','define':'OA_AS_InD.fChecked','label':'选中'},'fServicTag':{'type':'String','relation':'OA_AS_InD.fServicTag','define':'OA_AS_InD.fServicTag','label':'ServicTag'},'fESCode':{'type':'String','relation':'OA_AS_InD.fESCode','define':'OA_AS_InD.fESCode','label':'ExpressServiceCode'},'fSHKSSJ':{'type':'Date','relation':'OA_AS_InD.fSHKSSJ','define':'OA_AS_InD.fSHKSSJ','label':'服务开始时间'},'fSHJSSJ':{'type':'Date','relation':'OA_AS_InD.fSHJSSJ','define':'OA_AS_InD.fSHJSSJ','label':'服务结束时间'}}",'defCalcRelations':"{'recCB':{'type':'http://www.w3.org/2001/XMLSchema#string'}}",'masterData':"{'id':'dAssetInM','relation':'fMasterID','autoLoad':true}"},'',{}).attachEvents({'onValueChanged':'dBuyApplyDValueChanged'});</script>  
+    <script>
+new justep.XBizData('dMode',false,false,{'queryAction':"queryASInModeAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_InMode':'OA_AS_InMode'}",'limit':20,'idColumn':"{'name':'OA_AS_InMode','relation':'OA_AS_InMode','define':'OA_AS_InMode','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fSequence':1}",'filters':"{'fUseStatusFilter':'OA_AS_InMode.fUseStatus=\\'1\\''}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_InMode.version','define':'OA_AS_InMode.version','label':'版本'},'fCode':{'type':'String','relation':'OA_AS_InMode.fCode','define':'OA_AS_InMode.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_AS_InMode.fName','define':'OA_AS_InMode.fName','label':'名称'},'fDescription':{'type':'String','relation':'OA_AS_InMode.fDescription','define':'OA_AS_InMode.fDescription','label':'描述'},'fSequence':{'type':'String','relation':'OA_AS_InMode.fSequence','define':'OA_AS_InMode.fSequence','label':'排序'},'fUseStatus':{'type':'String','relation':'OA_AS_InMode.fUseStatus','define':'OA_AS_InMode.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_AS_InMode.fUseStatusName','define':'OA_AS_InMode.fUseStatusName','label':'启用标识'},'fParentCode':{'type':'String','relation':'OA_AS_InMode.fParentCode','define':'OA_AS_InMode.fParentCode','label':'上级编码'},'fLevel':{'type':'Integer','relation':'OA_AS_InMode.fLevel','define':'OA_AS_InMode.fLevel','label':'等级'},'fURL':{'type':'String','relation':'OA_AS_InMode.fURL','define':'OA_AS_InMode.fURL','label':'ID路径'},'fCreateOgnID':{'type':'String','relation':'OA_AS_InMode.fCreateOgnID','define':'OA_AS_InMode.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_InMode.fCreateOgnName','define':'OA_AS_InMode.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_InMode.fCreateDeptID','define':'OA_AS_InMode.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_InMode.fCreateDeptName','define':'OA_AS_InMode.fCreateDeptName','label':'提交部门'},'fCreatePsnID':{'type':'String','relation':'OA_AS_InMode.fCreatePsnID','define':'OA_AS_InMode.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_InMode.fCreatePsnName','define':'OA_AS_InMode.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_InMode.fCreatePsnFID','define':'OA_AS_InMode.fCreatePsnFID','label':'提交人员FullID'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_InMode.fCreateTime','define':'OA_AS_InMode.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_InMode.fUpdatePsnID','define':'OA_AS_InMode.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_InMode.fUpdatePsnName','define':'OA_AS_InMode.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_InMode.fUpdateTime','define':'OA_AS_InMode.fUpdateTime','label':'修改时间'}}"},'dMode_part',{});</script>  
+    <script>
+new justep.XBizData('dAssetKind',false,false,{'queryAction':"queryASKindAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_Kind':'OA_AS_Kind'}",'limit':-1,'idColumn':"{'name':'OA_AS_Kind','relation':'OA_AS_Kind','define':'OA_AS_Kind','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fSequence':1}",'filters':"{'kindUseStatusFilter':'OA_AS_Kind.fUseStatus=\\'1\\''}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_Kind.version','define':'OA_AS_Kind.version','label':'版本'},'fCode':{'type':'String','relation':'OA_AS_Kind.fCode','define':'OA_AS_Kind.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_AS_Kind.fName','define':'OA_AS_Kind.fName','label':'名称'},'fDescription':{'type':'String','relation':'OA_AS_Kind.fDescription','define':'OA_AS_Kind.fDescription','label':'描述'},'fSequence':{'type':'String','relation':'OA_AS_Kind.fSequence','define':'OA_AS_Kind.fSequence','label':'排序'},'fUseStatus':{'type':'String','relation':'OA_AS_Kind.fUseStatus','define':'OA_AS_Kind.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_AS_Kind.fUseStatusName','define':'OA_AS_Kind.fUseStatusName','label':'启用标识'},'fParentCode':{'type':'String','relation':'OA_AS_Kind.fParentCode','define':'OA_AS_Kind.fParentCode','label':'上级编码'},'fLevel':{'type':'Integer','relation':'OA_AS_Kind.fLevel','define':'OA_AS_Kind.fLevel','label':'等级'},'fURL':{'type':'String','relation':'OA_AS_Kind.fURL','define':'OA_AS_Kind.fURL','label':'ID路径'},'fCreateOgnID':{'type':'String','relation':'OA_AS_Kind.fCreateOgnID','define':'OA_AS_Kind.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_Kind.fCreateOgnName','define':'OA_AS_Kind.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_Kind.fCreateDeptID','define':'OA_AS_Kind.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_Kind.fCreateDeptName','define':'OA_AS_Kind.fCreateDeptName','label':'提交部门'},'fCreatePsnID':{'type':'String','relation':'OA_AS_Kind.fCreatePsnID','define':'OA_AS_Kind.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_Kind.fCreatePsnName','define':'OA_AS_Kind.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_Kind.fCreatePsnFID','define':'OA_AS_Kind.fCreatePsnFID','label':'提交人员FullID'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_Kind.fCreateTime','define':'OA_AS_Kind.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_Kind.fUpdatePsnID','define':'OA_AS_Kind.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_Kind.fUpdatePsnName','define':'OA_AS_Kind.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_Kind.fUpdateTime','define':'OA_AS_Kind.fUpdateTime','label':'修改时间'},'lINKCODE':{'type':'String','relation':'OA_AS_Kind.lINKCODE','define':'OA_AS_Kind.lINKCODE','label':'联动编码'}}"},'dAssetKind_part',{});</script>  
+    <script>
+new justep.XBizData('dAssetUnit',false,false,{'queryAction':"queryASUnitAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_Unit':'OA_AS_Unit'}",'limit':20,'idColumn':"{'name':'OA_AS_Unit','relation':'OA_AS_Unit','define':'OA_AS_Unit','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fSequence':1}",'filters':"{'unitdUseStatusFilter':'OA_AS_Unit.fUseStatus=\\'1\\''}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_Unit.version','define':'OA_AS_Unit.version','label':'版本'},'fCode':{'type':'String','relation':'OA_AS_Unit.fCode','define':'OA_AS_Unit.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_AS_Unit.fName','define':'OA_AS_Unit.fName','label':'名称'},'fDescription':{'type':'String','relation':'OA_AS_Unit.fDescription','define':'OA_AS_Unit.fDescription','label':'描述'},'fSequence':{'type':'String','relation':'OA_AS_Unit.fSequence','define':'OA_AS_Unit.fSequence','label':'排序'},'fUseStatus':{'type':'String','relation':'OA_AS_Unit.fUseStatus','define':'OA_AS_Unit.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_AS_Unit.fUseStatusName','define':'OA_AS_Unit.fUseStatusName','label':'启用标识'},'fParentCode':{'type':'String','relation':'OA_AS_Unit.fParentCode','define':'OA_AS_Unit.fParentCode','label':'上级编码'},'fLevel':{'type':'Integer','relation':'OA_AS_Unit.fLevel','define':'OA_AS_Unit.fLevel','label':'等级'},'fURL':{'type':'String','relation':'OA_AS_Unit.fURL','define':'OA_AS_Unit.fURL','label':'ID路径'},'fCreateOgnID':{'type':'String','relation':'OA_AS_Unit.fCreateOgnID','define':'OA_AS_Unit.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_Unit.fCreateOgnName','define':'OA_AS_Unit.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_Unit.fCreateDeptID','define':'OA_AS_Unit.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_Unit.fCreateDeptName','define':'OA_AS_Unit.fCreateDeptName','label':'提交部门'},'fCreatePsnID':{'type':'String','relation':'OA_AS_Unit.fCreatePsnID','define':'OA_AS_Unit.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_Unit.fCreatePsnName','define':'OA_AS_Unit.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_Unit.fCreatePsnFID','define':'OA_AS_Unit.fCreatePsnFID','label':'提交人员FullID'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_Unit.fCreateTime','define':'OA_AS_Unit.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_Unit.fUpdatePsnID','define':'OA_AS_Unit.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_Unit.fUpdatePsnName','define':'OA_AS_Unit.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_Unit.fUpdateTime','define':'OA_AS_Unit.fUpdateTime','label':'修改时间'}}"},'dAssetUnit_part',{});</script>  
+    <script>
+new justep.XBizData('dOrg',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','nodeKindRelation':'sNodeKind'}"},'dOrg_part',{});</script>  
+    <script>
+new justep.XBizData('dPsm',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'1=1','nodeKindRelation':'sNodeKind'}"},'dPsm_part',{});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/windowDialog.xbl.xml#windowDialog"] = _xbl_JSClassDefine_windowDialog;
+justep.XBLObject._classes["/UI/system/components/orgSelect.xbl.xml#orgSelect"] = _xbl_JSClassDefine_orgSelect;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_windowDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.WindowDialog(node.id,node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('modal')=="true",node.getAttribute('status'),
+				                  node.getAttribute('width'),node.getAttribute('height'),node.getAttribute('left'),node.getAttribute('top'),node.getAttribute("reload-on-open") =='true',
+				                  node.getAttribute('onSend') , node.getAttribute('onReceive') ,node.getAttribute('onInit') ,node.getAttribute('onOpen') ,node.getAttribute('onClose'));
+				dialog.setClosable(node.getAttribute('closable')!="false");
+				dialog.setMinmaxable(node.getAttribute('minmaxable')!="false");
+				dialog.setResizable(node.getAttribute('resizable')!="false");
+				dialog.setNeighbor(node.getAttribute('neighbor'));
+				dialog.setAutoSize(node.getAttribute('autosize')=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				dialog.setProcess(node.getAttribute("process"));
+				dialog.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+function _xbl_JSClassDefine_orgSelect(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_orgSelect.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"initXBL" : function() {
+					this.__attribute_node = this.getElementByXblID('attribute');
+					this.__data_id = this.__attribute_node?this.__attribute_node.getAttribute('data-id'):'';
+					this.__grid_id = this.__attribute_node?this.__attribute_node.getAttribute('grid-id'):'';
+					this.__data_obj = this.__data_id?justep.xbl(this.__data_id):null;
+					this.__grid_obj = this.__grid_id?xforms(this.__grid_id):null;
+					if(this.domNode.getAttribute("onDropdown")) this.__onDropdown = justep.Function.get(this.domNode.getAttribute("onDropdown")); else this.__onDropdown = null;
+					if(this.domNode.getAttribute("onRowExpand")) this.__onRowExpand = justep.Function.get(this.domNode.getAttribute("onRowExpand")); else this.__onRowExpand = null;
+					this.hasDisable = 'true'==this.domNode.getAttribute("include-disable-org");
+					this.selectableOrgTypes = this.domNode.getAttribute('selectable-org-types');
+					this.selectableOrgTypes = this.selectableOrgTypes?this.selectableOrgTypes.split(','):null;
+					this.showOrgTypes = this.domNode.getAttribute('show-org-types');
+					this.showOrgTypes = this.showOrgTypes?this.showOrgTypes.split(','):[];
+					var filter = '';
+					for(var i=0;i&lt;this.showOrgTypes.length;i++){
+						var nodeType = this.showOrgTypes[i];
+						var s = justep.String.trim(nodeType);
+						if(s) filter += (filter!=''?",":"")+"'"+s+"'";
+					}
+					this.showOrgTypeFilter = filter!=''?'SA_OPOrg.sOrgKindID in ('+filter+')':'';
+					this.manageCodes =  justep.String.trim(this.domNode.getAttribute('manage-codes'));
+					if(this.__grid_obj){
+				        if(this.__onRowExpand)
+							this.__select_obj.attachEvent("onRowExpand", this.__onRowExpand, this);
+						this.__grid_obj.attachEvent("onShowNodeImg", this._doShowNodeImg, this);
+						this.__grid_obj.attachEvent("onDropdown", this._doDropdown, this);
+						this.__grid_obj.attachEvent("onRowDisabled", this._doSelectNodeFilter, this);
+					}
+					if(this.__data_obj){
+						this.__data_obj.attachEvent("onRefreshCreateParam", this._doCreateParam, this);
+					}
+				},
+				"_doCreateParam" : function(event){
+					var queryParam = event.param;
+					var data = this.__data_obj;
+					var filter = this._getFilter();
+					var userFilter = data.buildFilter();
+					if(userFilter) filter = filter?'('+userFilter+') AND ('+filter+')':userFilter;
+					if(filter) queryParam.setString('filter', filter);
+					else queryParam.deleteParam('filter');
+
+					if(justep.XData.IS_TREE_ROOT==this.__data_obj.defTreeOption.loadTreeParent &amp;&amp; this.manageCodes){
+						queryParam.setString('manageCodes', this.manageCodes);
+					}else queryParam.deleteParam('manageCodes');
+				},
+				"_doSelectNodeFilter" : function(event){
+					if(null==this.selectableOrgTypes) return true;
+					var id = event.rowId;
+					var data = this.__data_obj;
+					var kind = data.getValue('sOrgKindID',id);
+					if(kind){
+						kind = kind.toUpperCase();
+						var len = this.selectableOrgTypes.length;
+						for(var i=0;i&lt;len;i++){
+							var s = this.selectableOrgTypes[i].toUpperCase();
+							if(kind==s) return true;
+						}
+					}
+					return false;
+				},
+				"_getFilter" : function(){
+					var orgFilter = this.showOrgTypeFilter;
+					if(orgFilter==""){
+						orgFilter += !this.hasDisable?'SA_OPOrg.sValidState=1':'';
+					}
+					else{
+						orgFilter += !this.hasDisable?' AND SA_OPOrg.sValidState=1':'';
+					}
+					return orgFilter;
+				},
+				"_doDropdown" : function(event){
+					if(this.__onDropdown) this.__onDropdown(event);
+					if(!event.source.isLoadData){
+						event.source.isLoadData = this.__data_obj.refreshData();
+					}
+				},
+				"_doShowNodeImg" : function(event){
+					var data = justep.xbl(event.instance.element.id);
+					if(!data) return;
+					var orgKind = !event.grid._isVirtualRoot(event.rowId)?data.getValue('sOrgKindID', event.rowId):'root';
+					var ValidState = !event.grid._isVirtualRoot(event.rowId)?(1==data.getValue('sValidState', event.rowId)):true;
+					return justep.Resource.getOrgImgURL(orgKind, !ValidState);
+				},
+				"getData" : function(){
+					return this.__data_obj;
+				},
+				"getTreeSelect" : function(){
+					return this.__grid_obj;
+				},
+				"getSelect" : function(){
+					return this.__grid_obj;
+				}
+			}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+	var ids=[{id:'wMain', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'tbrAssetInM', name:'/UI/system/components/toolbars.xbl.xml#toolbars'},{id:'optNO', name:'xforms:output'},{id:'orgSelect', name:'/UI/system/components/orgSelect.xbl.xml#orgSelect', children:[{id:'treeSltDept', name:'xforms:treeselect1', children:[{id:'3cb14a8c57ca4af2aa635551aa55ba23', name:'xforms:label'},{id:'99f13cac127047cea90e62d28857bd76', name:'xforms:value'}]}]},{id:'psmSelect', name:'/UI/system/components/orgSelect.xbl.xml#orgSelect', children:[{id:'treeSltPsm', name:'xforms:treeselect1', children:[{id:'56f8503cde2847f398e46a5fe308d4d9', name:'xforms:value'},{id:'6feca57604964cc890eac2235cb43b31', name:'xforms:label'}]}]},{id:'iptDate', name:'xforms:input'},{id:'grdsMode', name:'xforms:gridselect1', children:[{id:'2a4363353ce74b4a8ad35ac45bc78a3f', name:'xforms:label'},{id:'3dcf169ba96142718917698881dba9b7', name:'xforms:value'}]},{id:'optState', name:'xforms:output'},{id:'optAmount', name:'xforms:output'},{id:'taRemark', name:'xforms:textarea'},{id:'tbrAssetInD', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'trgdeleteBtn', name:'xforms:trigger', children:[{id:'0ac0f2125dfc408da2837e3a969d8f43', name:'xforms:label'}]},{id:'trgInsertBtn', name:'xforms:trigger', children:[{id:'5a55a77530264a8a98b2156c941a1df9', name:'xforms:label'}]},{id:'trgCheck', name:'xforms:trigger', children:[{id:'dc435016ab6043b08a6176fe6356efd9', name:'xforms:label'}]},{id:'trgIn', name:'xforms:trigger', children:[{id:'4aca745d73a14a0f84cee91bb081c831', name:'xforms:label'}]}]},{id:'grdAssetInD', name:'xforms:grid'},{id:'gsAssetKind', name:'xforms:gridselect1', children:[{id:'9f1e48b3a627494d9949d4c735377d89', name:'xforms:label'},{id:'1a4126284b0a44ef80e4487bd8a82190', name:'xforms:value'}]},{id:'gsAssetUnit', name:'xforms:gridselect1', children:[{id:'2b480587e20d4a4ab12dc61ef38fdb30', name:'xforms:label'},{id:'456a65dd30a746a194864a433d2166b4', name:'xforms:value'}]},{id:'dlgBuyApply', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'dlgInDate', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'dlgInCheck', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'dlgInCheckInfo', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'optNO');xf._a(null,'treeSltDept');xf._a('treeSltDept','3cb14a8c57ca4af2aa635551aa55ba23');xf._a('treeSltDept','xf-itemset-0');xf._a(null,'treeSltPsm');xf._a('treeSltPsm','6feca57604964cc890eac2235cb43b31');xf._a('treeSltPsm','xf-itemset-1');xf._a(null,'iptDate');xf._a(null,'grdsMode');xf._a('grdsMode','2a4363353ce74b4a8ad35ac45bc78a3f');xf._a('grdsMode','xf-itemset-2');xf._a(null,'optState');xf._a(null,'optAmount');xf._a(null,'taRemark');xf._a(null,'trgdeleteBtn');xf._a('trgdeleteBtn','0ac0f2125dfc408da2837e3a969d8f43');xf._a(null,'trgInsertBtn');xf._a('trgInsertBtn','5a55a77530264a8a98b2156c941a1df9');xf._a(null,'trgCheck');xf._a('trgCheck','dc435016ab6043b08a6176fe6356efd9');xf._a(null,'trgIn');xf._a('trgIn','4aca745d73a14a0f84cee91bb081c831');xf._a(null,'grdAssetInD');xf._a(null,'gsAssetKind');xf._a('gsAssetKind','9f1e48b3a627494d9949d4c735377d89');xf._a('gsAssetKind','xf-itemset-3');xf._a(null,'gsAssetUnit');xf._a('gsAssetUnit','2b480587e20d4a4ab12dc61ef38fdb30');xf._a('gsAssetUnit','xf-itemset-4');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dAssetInM')/version",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dAssetInM')/fDate",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fDate')))));	
+xf._b("instance('dAssetInM')/fAmount",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fAmount')))));	
+xf._b("instance('dAssetInM')/fState",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fState')))));	
+xf._b("instance('dAssetInM')/fCreateTime",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dAssetInM')/fUpdateTime",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dAssetInM')/fExtendDate1",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendDate1')))));	
+xf._b("instance('dAssetInM')/fExtendDate2",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendDate2')))));	
+xf._b("instance('dAssetInM')/fExtendDate3",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendDate3')))));	
+xf._b("instance('dAssetInM')/fExtendDate4",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendDate4')))));	
+xf._b("instance('dAssetInM')/fExtendDate5",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendDate5')))));	
+xf._b("instance('dAssetInM')/fExtendNum1",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendNum1')))));	
+xf._b("instance('dAssetInM')/fExtendNum2",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendNum2')))));	
+xf._b("instance('dAssetInM')/fExtendNum3",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendNum3')))));	
+xf._b("instance('dAssetInM')/fExtendNum4",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendNum4')))));	
+xf._b("instance('dAssetInM')/fExtendNum5",xf._g(xf._f('instance',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fExtendNum5')))));	
+xf._b("instance('dAssetInD')/version",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dAssetInD')/fAmount",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fAmount')))));	
+xf._b("instance('dAssetInD')/fIsCheck",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fIsCheck')))));	
+xf._b("instance('dAssetInD')/fIsIn",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fIsIn')))));	
+xf._b("instance('dAssetInD')/fDate",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fDate')))));	
+xf._b("instance('dAssetInD')/fChecked",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fChecked')))));	
+xf._b("instance('dAssetInD')/fSHKSSJ",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fSHKSSJ')))));	
+xf._b("instance('dAssetInD')/fSHJSSJ",xf._g(xf._f('instance',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fSHJSSJ')))));	
+xf._b("instance('dMode')/version",xf._g(xf._f('instance',xf._i("dMode")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dMode')/fLevel",xf._g(xf._f('instance',xf._i("dMode")),xf._h(false, xf._k("child",xf._j('','fLevel')))));	
+xf._b("instance('dMode')/fCreateTime",xf._g(xf._f('instance',xf._i("dMode")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dMode')/fUpdateTime",xf._g(xf._f('instance',xf._i("dMode")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dAssetKind')/version",xf._g(xf._f('instance',xf._i("dAssetKind")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dAssetKind')/fLevel",xf._g(xf._f('instance',xf._i("dAssetKind")),xf._h(false, xf._k("child",xf._j('','fLevel')))));	
+xf._b("instance('dAssetKind')/fCreateTime",xf._g(xf._f('instance',xf._i("dAssetKind")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dAssetKind')/fUpdateTime",xf._g(xf._f('instance',xf._i("dAssetKind")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dAssetUnit')/version",xf._g(xf._f('instance',xf._i("dAssetUnit")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dAssetUnit')/fLevel",xf._g(xf._f('instance',xf._i("dAssetUnit")),xf._h(false, xf._k("child",xf._j('','fLevel')))));	
+xf._b("instance('dAssetUnit')/fCreateTime",xf._g(xf._f('instance',xf._i("dAssetUnit")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dAssetUnit')/fUpdateTime",xf._g(xf._f('instance',xf._i("dAssetUnit")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("data('dAssetInM')/fNO",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fNO')))));	
+xf._b("instance('dOrg')/sValidState",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dOrg')/sLevel",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sLevel')))));	
+xf._b("instance('dOrg')/version",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("data('dAssetInM')/fDutyDeptID",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fDutyDeptID')))));	
+xf._b("data('dAssetInM')/fDutyDeptName",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fDutyDeptName')))));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xf._b("rowid",xf._h(false, xf._k("child",xf._j('','rowid'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))));	
+xf._b("sCode",xf._h(false, xf._k("child",xf._j('','sCode'))));	
+xf._b("sLongName",xf._h(false, xf._k("child",xf._j('','sLongName'))));	
+xf._b("sFName",xf._h(false, xf._k("child",xf._j('','sFName'))));	
+xf._b("sFCode",xf._h(false, xf._k("child",xf._j('','sFCode'))));	
+xf._b("sFID",xf._h(false, xf._k("child",xf._j('','sFID'))));	
+xf._b("sOrgKindID",xf._h(false, xf._k("child",xf._j('','sOrgKindID'))));	
+xf._b("sSequence",xf._h(false, xf._k("child",xf._j('','sSequence'))));	
+xf._b("sValidState",xf._h(false, xf._k("child",xf._j('','sValidState'))));	
+xf._b("sParent",xf._h(false, xf._k("child",xf._j('','sParent'))));	
+xf._b("sLevel",xf._h(false, xf._k("child",xf._j('','sLevel'))));	
+xf._b("sPhone",xf._h(false, xf._k("child",xf._j('','sPhone'))));	
+xf._b("sFax",xf._h(false, xf._k("child",xf._j('','sFax'))));	
+xf._b("sAddress",xf._h(false, xf._k("child",xf._j('','sAddress'))));	
+xf._b("sZip",xf._h(false, xf._k("child",xf._j('','sZip'))));	
+xf._b("sDescription",xf._h(false, xf._k("child",xf._j('','sDescription'))));	
+xf._b("sPersonID",xf._h(false, xf._k("child",xf._j('','sPersonID'))));	
+xf._b("sNodeKind",xf._h(false, xf._k("child",xf._j('','sNodeKind'))));	
+xf._b("version",xf._h(false, xf._k("child",xf._j('','version'))));	
+xf._b("instance('dPsm')/sValidState",xf._g(xf._f('instance',xf._i("dPsm")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dPsm')/sLevel",xf._g(xf._f('instance',xf._i("dPsm")),xf._h(false, xf._k("child",xf._j('','sLevel')))));	
+xf._b("instance('dPsm')/version",xf._g(xf._f('instance',xf._i("dPsm")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("data('dAssetInM')/fDutyPsnID",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fDutyPsnID')))));	
+xf._b("data('dAssetInM')/fDutyPsnName",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fDutyPsnName')))));	
+xf._b("data('dAssetInM')/fDate",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fDate')))));	
+xf._b("data('dAssetInM')/fModeID",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fModeID')))));	
+xf._b("data('dAssetInM')/fMode",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fMode')))));	
+xf._b("fName",xf._h(false, xf._k("child",xf._j('','fName'))));	
+xf._b("OA_AS_InMode",xf._h(false, xf._k("child",xf._j('','OA_AS_InMode'))));	
+xf._b("fCode",xf._h(false, xf._k("child",xf._j('','fCode'))));	
+xf._b("fDescription",xf._h(false, xf._k("child",xf._j('','fDescription'))));	
+xf._b("fSequence",xf._h(false, xf._k("child",xf._j('','fSequence'))));	
+xf._b("fUseStatus",xf._h(false, xf._k("child",xf._j('','fUseStatus'))));	
+xf._b("fUseStatusName",xf._h(false, xf._k("child",xf._j('','fUseStatusName'))));	
+xf._b("fParentCode",xf._h(false, xf._k("child",xf._j('','fParentCode'))));	
+xf._b("fLevel",xf._h(false, xf._k("child",xf._j('','fLevel'))));	
+xf._b("fURL",xf._h(false, xf._k("child",xf._j('','fURL'))));	
+xf._b("fCreateOgnID",xf._h(false, xf._k("child",xf._j('','fCreateOgnID'))));	
+xf._b("fCreateOgnName",xf._h(false, xf._k("child",xf._j('','fCreateOgnName'))));	
+xf._b("fCreateDeptID",xf._h(false, xf._k("child",xf._j('','fCreateDeptID'))));	
+xf._b("fCreateDeptName",xf._h(false, xf._k("child",xf._j('','fCreateDeptName'))));	
+xf._b("fCreatePsnID",xf._h(false, xf._k("child",xf._j('','fCreatePsnID'))));	
+xf._b("fCreatePsnName",xf._h(false, xf._k("child",xf._j('','fCreatePsnName'))));	
+xf._b("fCreatePsnFID",xf._h(false, xf._k("child",xf._j('','fCreatePsnFID'))));	
+xf._b("fCreateTime",xf._h(false, xf._k("child",xf._j('','fCreateTime'))));	
+xf._b("fUpdatePsnID",xf._h(false, xf._k("child",xf._j('','fUpdatePsnID'))));	
+xf._b("fUpdatePsnName",xf._h(false, xf._k("child",xf._j('','fUpdatePsnName'))));	
+xf._b("fUpdateTime",xf._h(false, xf._k("child",xf._j('','fUpdateTime'))));	
+xf._b("data('dAssetInM')/fStateName",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fStateName')))));	
+xf._b("data('dAssetInM')/fAmount",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fAmount')))));	
+xf._b("data('dAssetInM')/fRemark",xf._g(xf._f('data',xf._i("dAssetInM")),xf._h(false, xf._k("child",xf._j('','fRemark')))));	
+xf._b("recCB",xf._h(false, xf._k("child",xf._j('','recCB'))));	
+xf._b("序号",xf._h(false, xf._k("child",xf._j('','序号'))));	
+xf._b("fKind",xf._h(false, xf._k("child",xf._j('','fKind'))));	
+xf._b("fSpecType",xf._h(false, xf._k("child",xf._j('','fSpecType'))));	
+xf._b("fUnit",xf._h(false, xf._k("child",xf._j('','fUnit'))));	
+xf._b("fAmount",xf._h(false, xf._k("child",xf._j('','fAmount'))));	
+xf._b("fDate",xf._h(false, xf._k("child",xf._j('','fDate'))));	
+xf._b("fIsInName",xf._h(false, xf._k("child",xf._j('','fIsInName'))));	
+xf._b("fIsCheckName",xf._h(false, xf._k("child",xf._j('','fIsCheckName'))));	
+xf._b("fBuyApplyNO",xf._h(false, xf._k("child",xf._j('','fBuyApplyNO'))));	
+xf._b("fCheckNO",xf._h(false, xf._k("child",xf._j('','fCheckNO'))));	
+xf._b("fServicTag",xf._h(false, xf._k("child",xf._j('','fServicTag'))));	
+xf._b("fESCode",xf._h(false, xf._k("child",xf._j('','fESCode'))));	
+xf._b("fSHKSSJ",xf._h(false, xf._k("child",xf._j('','fSHKSSJ'))));	
+xf._b("fSHJSSJ",xf._h(false, xf._k("child",xf._j('','fSHJSSJ'))));	
+xf._b("fRemark",xf._h(false, xf._k("child",xf._j('','fRemark'))));	
+xf._b("fMasterID",xf._h(false, xf._k("child",xf._j('','fMasterID'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("data('dAssetInD')/fKindID",xf._g(xf._f('data',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fKindID')))));	
+xf._b("data('dAssetInD')/fKind",xf._g(xf._f('data',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fKind')))));	
+xf._b("OA_AS_Kind",xf._h(false, xf._k("child",xf._j('','OA_AS_Kind'))));	
+xf._b("lINKCODE",xf._h(false, xf._k("child",xf._j('','lINKCODE'))));	
+xf._b("data('dAssetInD')/fUnitID",xf._g(xf._f('data',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fUnitID')))));	
+xf._b("data('dAssetInD')/fUnit",xf._g(xf._f('data',xf._i("dAssetInD")),xf._h(false, xf._k("child",xf._j('','fUnit')))));	
+xf._b("OA_AS_Unit",xf._h(false, xf._k("child",xf._j('','OA_AS_Unit'))));	
+xf._b("not(call('justep.XData.canDo','dAssetInD','Insert'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dAssetInD"),xf._i("Insert"))));	
+xf._b("not(call('justep.XData.canDo','dAssetInM','Insert'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dAssetInM"),xf._i("Insert"))));	
+xf._b("not(call('justep.XData.canDo','dAssetInM','Save'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dAssetInM"),xf._i("Save"))));	
+xf._b("not(call('justep.XData.canDo','dAssetInM','Delete'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dAssetInM"),xf._i("Delete"))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('checkbox', 'null');xforms.Schema.registerPrefix('select', 'null');xforms.Schema.registerPrefix('ed', 'null');xforms.Schema.registerPrefix('html', 'null');var xf_model_mdMain = new xforms.XFModel('mdMain',null);	
+new xforms.XFInstance2('dAssetInD','mdMain',null,null,null,'fMasterID','dAssetInM',null,null,null,'recCB',null,'whereVersion');	
+xf._c('xf-bind-16','mdMain',"instance('dAssetInD')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-17','mdMain',"instance('dAssetInD')/fAmount","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-18','mdMain',"instance('dAssetInD')/fIsCheck","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-19','mdMain',"instance('dAssetInD')/fIsIn","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-20','mdMain',"instance('dAssetInD')/fDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-21','mdMain',"instance('dAssetInD')/fChecked","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-22','mdMain',"instance('dAssetInD')/fSHKSSJ","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-23','mdMain',"instance('dAssetInD')/fSHJSSJ","xsd:date",null,null,null,null,null,null);	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mdMainxforms_model_construct_done(event)}));xf._p(justep('mdMain'),"xforms-model-construct-done",null,function(evt) { xforms.run(xf_action_action2,'mdMain', evt,false)});	
+xforms.load_parts('rootView');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dAssetInM_part_loaded = false;	
+function load_dAssetInM_part(callback){if (dAssetInM_part_loaded) return;dAssetInM_part_loaded = true;	
+new xforms.XFInstance2('dAssetInM','mdMain',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('dAssetInM',null);	
+xf._c('xf-bind-0','mdMain',"instance('dAssetInM')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-1','mdMain',"instance('dAssetInM')/fDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-2','mdMain',"instance('dAssetInM')/fAmount","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-3','mdMain',"instance('dAssetInM')/fState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-4','mdMain',"instance('dAssetInM')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-5','mdMain',"instance('dAssetInM')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-6','mdMain',"instance('dAssetInM')/fExtendDate1","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-7','mdMain',"instance('dAssetInM')/fExtendDate2","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-8','mdMain',"instance('dAssetInM')/fExtendDate3","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-9','mdMain',"instance('dAssetInM')/fExtendDate4","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-10','mdMain',"instance('dAssetInM')/fExtendDate5","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-11','mdMain',"instance('dAssetInM')/fExtendNum1","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-12','mdMain',"instance('dAssetInM')/fExtendNum2","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-13','mdMain',"instance('dAssetInM')/fExtendNum3","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-14','mdMain',"instance('dAssetInM')/fExtendNum4","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-15','mdMain',"instance('dAssetInM')/fExtendNum5","xsd:float",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dAssetInM_part_init_loaded = false;	
+function load_dAssetInM_part_init(){if (dAssetInM_part_init_loaded) return;dAssetInM_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+var dMode_part_loaded = false;	
+function load_dMode_part(callback){if (dMode_part_loaded) return;dMode_part_loaded = true;	
+new xforms.XFInstance2('dMode','mdMain',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('dMode',null);	
+xf._c('xf-bind-24','mdMain',"instance('dMode')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-25','mdMain',"instance('dMode')/fLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-26','mdMain',"instance('dMode')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-27','mdMain',"instance('dMode')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dMode_part_init_loaded = false;	
+function load_dMode_part_init(){if (dMode_part_init_loaded) return;dMode_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+var dAssetKind_part_loaded = false;	
+function load_dAssetKind_part(callback){if (dAssetKind_part_loaded) return;dAssetKind_part_loaded = true;	
+new xforms.XFInstance2('dAssetKind','mdMain',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('dAssetKind',null);	
+xf._c('xf-bind-28','mdMain',"instance('dAssetKind')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-29','mdMain',"instance('dAssetKind')/fLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-30','mdMain',"instance('dAssetKind')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-31','mdMain',"instance('dAssetKind')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dAssetKind_part_init_loaded = false;	
+function load_dAssetKind_part_init(){if (dAssetKind_part_init_loaded) return;dAssetKind_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+var dAssetUnit_part_loaded = false;	
+function load_dAssetUnit_part(callback){if (dAssetUnit_part_loaded) return;dAssetUnit_part_loaded = true;	
+new xforms.XFInstance2('dAssetUnit','mdMain',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('dAssetUnit',null);	
+xf._c('xf-bind-32','mdMain',"instance('dAssetUnit')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-33','mdMain',"instance('dAssetUnit')/fLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-34','mdMain',"instance('dAssetUnit')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-35','mdMain',"instance('dAssetUnit')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dAssetUnit_part_init_loaded = false;	
+function load_dAssetUnit_part_init(){if (dAssetUnit_part_init_loaded) return;dAssetUnit_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+function load_rootView(){if (justep("rootView").getAttribute('loaded') &amp;&amp; justep("rootView").getAttribute('loaded') == 'true') return;justep("rootView").setAttribute('loaded', 'true');	
+if(typeof(load_rootView_html) == 'function')load_rootView_html();	
+var xf_output_optNO=new xforms.XFOutput('optNO',xf._q("data('dAssetInM')/fNO"),null,null);	
+var xf_model_mdOrg = new xforms.XFModel('mdOrg',null);	
+new xforms.XFExtSelect({id:'treeSltDept',type:'treeselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dAssetInM')/fDutyDeptID"),labelRef:xf._q("data('dAssetInM')/fDutyDeptName"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:'dOrg',columns:'sName,__c_,sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version',valueColumn:'rowid',labelColumn:'sName',extColumn:null,labels:',,,,,,,,,,,,,,,,,,,',aligns:',,,,,,,,,,,,,,,,,,,',types:'tree,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:true,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:'func_1987499437',onRowHasChildren:func_1175224623,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+var xf_model_mdPsm = new xforms.XFModel('mdPsm',null);	
+new xforms.XFExtSelect({id:'treeSltPsm',type:'treeselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dAssetInM')/fDutyPsnID"),labelRef:xf._q("data('dAssetInM')/fDutyPsnName"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:'dPsm',columns:'sName,__c_,sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version',valueColumn:'sPersonID',labelColumn:'sName',extColumn:null,labels:',,,,,,,,,,,,,,,,,,,',aligns:',,,,,,,,,,,,,,,,,,,',types:'tree,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:true,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:'func_260451865',onRowHasChildren:func_190598585,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:'treeSltPsmDropdown',onCloseup:'assetInDetail.treeSltPsmCloseup'});	
+xf._d('iptDate','text',xf._q("data('dAssetInM')/fDate"),null,null,null,"yyyy-MM-dd",false,false);	
+new xforms.XFExtSelect({id:'grdsMode',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dAssetInM')/fModeID"),labelRef:xf._q("data('dAssetInM')/fMode"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:'dMode',columns:'fName,OA_AS_InMode,__c_,version,fCode,fDescription,fSequence,fUseStatus,fUseStatusName,fParentCode,fLevel,fURL,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'OA_AS_InMode,version,fCode,fDescription,fSequence,fUseStatus,fUseStatusName,fParentCode,fLevel,fURL,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime',valueColumn:'OA_AS_InMode',labelColumn:'fName',extColumn:null,labels:',,,,,,,,,,,,,,,,,,,,,,',aligns:',,,,,,,,,,,,,,,,,,,,,,',types:'ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'200',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+var xf_output_optState=new xforms.XFOutput('optState',xf._q("data('dAssetInM')/fStateName"),null,null);	
+var xf_output_optAmount=new xforms.XFOutput('optAmount',xf._q("data('dAssetInM')/fAmount"),null,'format-number(\'0,000.00\')');	
+xf._d('taRemark','textarea',xf._q("data('dAssetInM')/fRemark"),null,null,null,null,false,false);	
+var xf_trigger_trgdeleteBtn=new xforms.XFTrigger('trgdeleteBtn',null,"/UI/appCommon/images/remove.gif","/UI/appCommon/images/un_remove.gif",false,false,false,null,null,null);	
+var xf_action_xf_action_1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){assetDelete(event)}));xf._p(justep('trgdeleteBtn'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_1,'trgdeleteBtn', evt,false)});	
+var xf_trigger_trgInsertBtn=new xforms.XFTrigger('trgInsertBtn',null,"/UI/appCommon/images/search.png","/UI/appCommon/images/un_search.png",false,false,false,null,null,null);	
+var xf_action_xf_action_2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){trgInsertBtnDOMActivate(event)}));xf._p(justep('trgInsertBtn'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_2,'trgInsertBtn', evt,false)});	
+var xf_trigger_trgCheck=new xforms.XFTrigger('trgCheck',null,null,null,false,false,false,null,null,null);	
+var xf_action_xf_action_3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){assetInCheck(event)}));xf._p(justep('trgCheck'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_3,'trgCheck', evt,false)});	
+var xf_trigger_trgIn=new xforms.XFTrigger('trgIn',null,null,null,false,false,false,null,null,null);	
+var xf_action_xf_action_4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){assetIn(event)}));xf._p(justep('trgIn'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_4,'trgIn', evt,false)});	
+new xforms.XFGrid({id:'grdAssetInD',instance:'dAssetInD',systemColumnsPro:'version,fKindID,fUnitID,fBuyApplyID,fBuyDetailID,fIsCheck,fCheckID,fIsIn,fChecked',onInit:null,type:'grid',smartRender:null,delay:false,ids:'recCB,序号,fKind,fCode,fName,fSpecType,fUnit,fAmount,fDate,fIsInName,fIsCheckName,fBuyApplyNO,fCheckNO,fServicTag,fESCode,fSHKSSJ,fSHJSSJ,fRemark,fMasterID,space-column',headNames:'#master_checkbox,序号,资产类别,资产编号,资产名称,规格型号,单位,金额(元),入库日期,入库状态,验收状态,采购单,验收单,ServicTag,ExpressServiceCode,服务开始时间,服务结束时间,备注,fMasterID,&amp;nbsp;',widths:'30,30,80,120,120,80,35,100,70,55,55,120,120,100,100,100,100,150,*,*',types:'checkbox,cntr,select,ed,ed,ed,select,ed,ro,ro,ro,html,html,ed,ed,ed,ed,ed,ro,ro',hiddenColumns:'fServicTag,fESCode,fSHKSSJ,fSHJSSJ,fMasterID',aligns:'center,center,,,,,center,right,,,,,,,,,,,,',serverSort:true,sorts:'na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){this.grid.bindColEditor(null,'fKind','gsAssetKind');this.grid.bindColEditor(null,'fUnit','gsAssetUnit');this.grid.bindColFormat(null,'fAmount','0,000.00');this.grid.bindColHTMLCallback(null,'fBuyApplyNO','grdAssetInD_fBuyApplyNORender');this.grid.bindColHTMLCallback(null,'fCheckNO','grdAssetInD_fCheckNORender');}});	
+new xforms.XFExtSelect({id:'gsAssetKind',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dAssetInD')/fKindID"),labelRef:xf._q("data('dAssetInD')/fKind"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:'dAssetKind',columns:'fName,OA_AS_Kind,__c_,version,fCode,fDescription,fSequence,fUseStatus,fUseStatusName,fParentCode,fLevel,fURL,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,lINKCODE',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'OA_AS_Kind,version,fCode,fDescription,fSequence,fUseStatus,fUseStatusName,fParentCode,fLevel,fURL,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,lINKCODE',valueColumn:'OA_AS_Kind',labelColumn:'fName',extColumn:null,labels:',,,,,,,,,,,,,,,,,,,,,,,',aligns:',,,,,,,,,,,,,,,,,,,,,,,',types:'ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'100',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:'gsAssetKindCloseup'});	
+new xforms.XFExtSelect({id:'gsAssetUnit',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dAssetInD')/fUnitID"),labelRef:xf._q("data('dAssetInD')/fUnit"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:'dAssetUnit',columns:'fName,OA_AS_Unit,__c_,version,fCode,fDescription,fSequence,fUseStatus,fUseStatusName,fParentCode,fLevel,fURL,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'OA_AS_Unit,version,fCode,fDescription,fSequence,fUseStatus,fUseStatusName,fParentCode,fLevel,fURL,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime',valueColumn:'OA_AS_Unit',labelColumn:'fName',extColumn:null,labels:',,,,,,,,,,,,,,,,,,,,,,',aligns:',,,,,,,,,,,,,,,,,,,,,,',types:'ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'100',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+}	
+function load_rootView_xblinit(){if (justep("rootView").getAttribute('xblloaded') &amp;&amp; justep("rootView").getAttribute('xblloaded') == 'true') return;justep("rootView").setAttribute('xblloaded', 'true');	
+if(xforms.ready)justep('mdOrg').xformsObject.construct_part();	
+if(xforms.ready)justep('mdPsm').xformsObject.construct_part();	
+}	
+var dOrg_part_loaded = false;	
+function load_dOrg_part(callback){if (dOrg_part_loaded) return;dOrg_part_loaded = true;	
+new xforms.XFInstance2('dOrg','mdOrg',null,null,null,null,null,null,'sNodeKind',null,null,null,'whereVersion');	
+xf._c('xf-bind-36','mdOrg',"instance('dOrg')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-37','mdOrg',"instance('dOrg')/sLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-38','mdOrg',"instance('dOrg')/version","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dOrg_part_init_loaded = false;	
+function load_dOrg_part_init(){if (dOrg_part_init_loaded) return;dOrg_part_init_loaded = true;	
+if(xforms.ready)justep('mdOrg').xformsObject.construct_part();}	
+var dPsm_part_loaded = false;	
+function load_dPsm_part(callback){if (dPsm_part_loaded) return;dPsm_part_loaded = true;	
+new xforms.XFInstance2('dPsm','mdPsm',null,null,null,null,null,null,'sNodeKind',null,null,null,'whereVersion');	
+xf._c('xf-bind-39','mdPsm',"instance('dPsm')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-40','mdPsm',"instance('dPsm')/sLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-41','mdPsm',"instance('dPsm')/version","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dPsm_part_init_loaded = false;	
+function load_dPsm_part_init(){if (dPsm_part_init_loaded) return;dPsm_part_init_loaded = true;	
+if(xforms.ready)justep('mdPsm').xformsObject.construct_part();}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" lazy="false" style="width:100%;height:100%;">         <table align="center" id="table">           <tr id="default2">             <td id="td2" style="height:35px">               <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrAssetInM">                 <table cellpadding="0" cellspacing="0" style="width:100%">                   <tr>                     <td>                       <div class="toolbar-manager" name="toolbarmanager" width="100%">                         <div class="toolbar-style" name="toolbargroup">                           <table cellpadding="0" cellspacing="1px">                             <tr>                               <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="barItem3" model="mdMain" onclick="justep.xbl('dAssetInM').newData(); " readonly="not(call('justep.XData.canDo','dAssetInM','Insert'))">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_insert.gif" src="/UI/system/images/standardToolbar/standard/insert.gif" style="border:none" title="新建"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="barItem5" model="mdMain" onclick="justep.xbl('dAssetInM').saveData(); " readonly="not(call('justep.XData.canDo','dAssetInM','Save'))">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_save.gif" src="/UI/system/images/standardToolbar/standard/save.gif" style="border:none" title="保存"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="barItem6" model="mdMain" onclick="justep.xbl('dAssetInM').deleteData(); " readonly="not(call('justep.XData.canDo','dAssetInM','Delete'))">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_remove.gif" src="/UI/system/images/standardToolbar/standard/remove.gif" style="border:none" title="删除"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="barItem7" model="mdMain" onclick="justep.xbl('dAssetInM').refreshData(); ">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img>                                 </span>                               </td>                             </tr>                           </table>                         </div>                       </div>                     </td>                      <td style="width:100%"></td>                   </tr>                 </table>               </div>             </td>           </tr>            <tr>             <td>               <div class="" id="vAssetInDetail" style="height:100%;">                 <table border="0" cellpadding="0" cellspacing="0" class="no-editor-border" style="width:788px;height:458px;border-collapse: collapse; table-layout: fixed;">                   <tr height="0px">                     <td height="0px" width="82px"></td>                      <td height="0px" width="13px"></td>                      <td height="0px" width="159px"></td>                      <td height="0px" width="13px"></td>                      <td height="0px" width="82px"></td>                      <td height="0px" width="13px"></td>                      <td height="0px" width="159px"></td>                      <td height="0px" width="13px"></td>                      <td height="0px" width="82px"></td>                      <td height="0px" width="13px"></td>                      <td height="0px" width="159px"></td>                   </tr>                    <tr height="23px">                     <td colspan="7" height="23px" style="Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">基本信息</td>  
+                    <td colspan="2" height="23px" style="Text-Align:Right;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">NO：</td>  
+                    <td height="23px" style="Text-Align:Right;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="23px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0px" cellspacing="0px" class="xui-autofill xforms-control xforms-output" id="optNO" style=""> 
+                        <tr> 
+                          <td> 
+                            <span class="xforms-value"></span>  
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon"></span> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </table> 
+                    </td> 
+                  </tr>  
+                  <tr height="6px"> 
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td> 
+                  </tr>  
+                  <tr height="20px"> 
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">责任部门</td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <div class="xui-select component_14C8CA55 orgSelect xui-autofill" component="/UI/system/components/orgSelect.xbl.xml#orgSelect" id="orgSelect" show-org-types="ogn,dpt" style="height:100%;width:100%;"> 
+                        <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-no-border component_DE7FA61F treeSelect xforms-control xforms-treeselect1 xforms-appearance-minimal xui-select" id="treeSltDept" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                          <tbody> 
+                            <tr> 
+                              <td class="focus" style="display:none;width:0px"></td>  
+                              <td class="xxf-value"> 
+                                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                    <tr style="border:none"> 
+                                      <td style="width:100%;height:100%;border:none;"> 
+                                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                      </td>  
+                                      <td style="border:none" width="20px"> 
+                                        <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </td>  
+                              <td class="xxf-alert"> 
+                                <span class="xforms-alert"> 
+                                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                  <div class="xforms-alert-value" id=""></div> 
+                                </span> 
+                              </td> 
+                            </tr> 
+                          </tbody> 
+                        </table>  
+                        <span data-id="dOrg" grid-id="treeSltDept" style="display:none" xblid="attribute"></span> 
+                      </div> 
+                    </td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">责 任 人</td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <div class="xui-select component_14C8CA55 orgSelect xui-autofill" component="/UI/system/components/orgSelect.xbl.xml#orgSelect" id="psmSelect" show-org-types="psm" style="height:100%;width:100%;"> 
+                        <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-no-border component_DE7FA61F treeSelect xforms-control xforms-treeselect1 xforms-appearance-minimal xui-select" id="treeSltPsm" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                          <tbody> 
+                            <tr> 
+                              <td class="focus" style="display:none;width:0px"></td>  
+                              <td class="xxf-value"> 
+                                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                    <tr style="border:none"> 
+                                      <td style="width:100%;height:100%;border:none;"> 
+                                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                      </td>  
+                                      <td style="border:none" width="20px"> 
+                                        <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </td>  
+                              <td class="xxf-alert"> 
+                                <span class="xforms-alert"> 
+                                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                  <div class="xforms-alert-value" id=""></div> 
+                                </span> 
+                              </td> 
+                            </tr> 
+                          </tbody> 
+                        </table>  
+                        <span data-id="dPsm" grid-id="treeSltPsm" style="display:none" xblid="attribute"></span> 
+                      </div> 
+                    </td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">登记日期</td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="20px" style="Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:100%;width:100%;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td> 
+                  </tr>  
+                  <tr height="6px"> 
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Vertical-Align:Bottom;Font-Family:宋体;Font-Size:9pt;"></td> 
+                  </tr>  
+                  <tr height="20px"> 
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">入库方式</td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xui-autofill xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="grdsMode" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:100%;width:100%;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                  <tr style="border:none"> 
+                                    <td style="width:100%;height:100%;border:none;"> 
+                                      <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                    </td>  
+                                    <td style="border:none" width="20px"> 
+                                      <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                    </td> 
+                                  </tr> 
+                                </table> 
+                              </div> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">入库状态</td>  
+                    <td height="20px"></td>  
+                    <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0px" cellspacing="0px" class="xui-autofill xforms-control xforms-output" id="optState" style="height:100%;width:100%;"> 
+                        <tr> 
+                          <td> 
+                            <span class="xforms-value"></span>  
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon"></span> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </table> 
+                    </td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">总金额(元)</td>  
+                    <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="20px" style="Text-Align:Right;Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0px" cellspacing="0px" class="xui-autofill xforms-control xforms-output" id="optAmount" style="height:100%;width:100%;"> 
+                        <tr> 
+                          <td> 
+                            <span class="xforms-value"></span>  
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon"></span> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </table> 
+                    </td> 
+                  </tr>  
+                  <tr height="6px"> 
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td> 
+                  </tr>  
+                  <tr height="51px"> 
+                    <td height="51px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">备 注</td>  
+                    <td height="51px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td colspan="9" height="51px" style="Vertical-Align:Top;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                      <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-textarea xforms-appearance-minimal xui-textarea" id="taRemark" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:100%;width:100%;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <textarea accesskey="" class="xforms-value" tabindex=""></textarea> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </td> 
+                  </tr>  
+                  <tr height="6px"> 
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                    <td height="6px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td> 
+                  </tr>  
+                  <tr height="23px"> 
+                    <td colspan="11" height="23px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">资产明细</td> 
+                  </tr>  
+                  <tr height="6px"> 
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                    <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td> 
+                  </tr>  
+                  <tr height="35px"> 
+                    <td colspan="11" height="35px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"> 
+                      <div class=" xui-autofill" id="vTbrAssetInD" style="height:100%"> 
+                        <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrAssetInD"> 
+                          <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                            <tr> 
+                              <td> 
+                                <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                  <div class="toolbar-style" name="toolbargroup"> 
+                                    <table cellpadding="0" cellspacing="1px"> 
+                                      <tr> 
+                                        <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                          <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                        </td>  
+                                        <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                          <span id="barItem1" model="mdMain" onclick="justep.xbl('dAssetInD').newData(); " readonly="not(call('justep.XData.canDo','dAssetInD','Insert'))"> 
+                                            <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_insert.gif" src="/UI/system/images/standardToolbar/standard/insert.gif" style="border:none" title="新建"></img> 
+                                          </span> 
+                                        </td>  
+                                        <td class="toolbar-separator-style"> 
+                                          <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                                        </td>  
+                                        <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgdeleteBtn" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                            <tbody> 
+                                              <tr> 
+                                                <td class="xxf-value"> 
+                                                  <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex=""> 
+                                                    <img align="absmiddle" src="/UI/appCommon/images/remove.gif" tabindex="" title="删除"></img> 
+                                                  </button> 
+                                                </td>  
+                                                <td class="xxf-alert"> 
+                                                  <span class="xforms-alert"> 
+                                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                    <div class="xforms-alert-value" id=""></div> 
+                                                  </span> 
+                                                </td> 
+                                              </tr> 
+                                            </tbody> 
+                                          </table> 
+                                        </td>  
+                                        <td class="toolbar-separator-style"> 
+                                          <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                                        </td>  
+                                        <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgInsertBtn" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:80px;table-layout:fixed"> 
+                                            <tbody> 
+                                              <tr> 
+                                                <td class="xxf-value"> 
+                                                  <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                    <span class="xforms-label " id="5a55a77530264a8a98b2156c941a1df9">选择采购信息</span> 
+                                                  </button> 
+                                                </td>  
+                                                <td class="xxf-alert"> 
+                                                  <span class="xforms-alert"> 
+                                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                    <div class="xforms-alert-value" id=""></div> 
+                                                  </span> 
+                                                </td> 
+                                              </tr> 
+                                            </tbody> 
+                                          </table> 
+                                        </td>  
+                                        <td class="toolbar-separator-style"> 
+                                          <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                                        </td>  
+                                        <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgCheck" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                            <tbody> 
+                                              <tr> 
+                                                <td class="xxf-value"> 
+                                                  <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                    <span class="xforms-label " id="dc435016ab6043b08a6176fe6356efd9">验收</span> 
+                                                  </button> 
+                                                </td>  
+                                                <td class="xxf-alert"> 
+                                                  <span class="xforms-alert"> 
+                                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                    <div class="xforms-alert-value" id=""></div> 
+                                                  </span> 
+                                                </td> 
+                                              </tr> 
+                                            </tbody> 
+                                          </table> 
+                                        </td>  
+                                        <td class="toolbar-separator-style"> 
+                                          <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                                        </td>  
+                                        <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgIn" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                            <tbody> 
+                                              <tr> 
+                                                <td class="xxf-value"> 
+                                                  <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                    <span class="xforms-label " id="4aca745d73a14a0f84cee91bb081c831">入库</span> 
+                                                  </button> 
+                                                </td>  
+                                                <td class="xxf-alert"> 
+                                                  <span class="xforms-alert"> 
+                                                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                    <div class="xforms-alert-value" id=""></div> 
+                                                  </span> 
+                                                </td> 
+                                              </tr> 
+                                            </tbody> 
+                                          </table> 
+                                        </td> 
+                                      </tr> 
+                                    </table> 
+                                  </div> 
+                                </div> 
+                              </td>  
+                              <td style="width:100%"></td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td> 
+                  </tr>  
+                  <tr height="256px"> 
+                    <td colspan="11" height="256px" style="Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"> 
+                      <div class=" xui-autofill" id="vGrdAssetInD" style="height:100%"> 
+                        <div class="component_6298A7A1 grid" data="dAssetInD" id="grdAssetInD" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="version,fKindID,fUnitID,fBuyApplyID,fBuyDetailID,fIsCheck,fCheckID,fIsIn,fChecked"></div> 
+                      </div> 
+                    </td> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr> 
+        </table>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gsAssetKind" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"></td>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gsAssetUnit" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"></td>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="440px" id="dlgBuyApply" modal="true" onReceive="dlgBuyApplyReceive" reload-on-open="true" style="top:18px;left:285px;" title="选择资产采购信息" url="/OA/asset/process/dialog/selectBuyApplyDialog/selectBuyApplyDialog.w" width="600px"></div>  
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="220px" id="dlgInDate" modal="true" onReceive="dlgInDateReceive" reload-on-open="true" style="top:19px;left:156px;" title="填写入库日期" url="/OA/asset/process/dialog/assetInDate/assetInDate.w" width="280px"></div>  
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="430px" id="dlgInCheck" modal="true" onReceive="dlgInCheckReceive" reload-on-open="true" style="top:15px;left:110px;" title="资产验收单" url="/OA/asset/process/dialog/assetInCheck/assetInCheck.w" width="560px"></div>  
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="380px" id="dlgInCheckInfo" modal="true" onSend="dlgAssetInCheckSend" reload-on-open="true" style="top:16px;left:230px;" title="资产验收单" url="/OA/asset/process/dialog/assetInCheckInfo/assetInCheckInfo.w" width="550px"></div> 
+      </div> 
+    </div>  
+    <script>
+function func_1987499437(data){var oData = justep.XData.$('dOrg');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_1175224623(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script>
+function func_260451865(data){var oData = justep.XData.$('dPsm');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_190598585(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

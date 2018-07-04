@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xforms="http://www.justep.com/xforms" script-type="text/javascript">
+	
+	<script src="/UI/system/components/dialog/dialog.js" />
+	<script src="/UI/system/components/windowDialog/windowDialog.js" />
+	<script src="/UI/appCommon/js/appCommon.js" />
+	<script src="/UI/appCommon/components/processExecuteDialog/js/processExecuteDialog.js"/>
+
+	<binding id="processExecuteDialog" delete-bound-element="false">
+		<template template-type="xslt">
+		</template>
+		<implementation>
+			({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ProcessExecuteDialog(this));
+				}
+			})			
+		</implementation>		
+	</binding>
+</xbl>

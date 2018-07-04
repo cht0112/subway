@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$vdd2e4288c17f4df792fe1ec51d3fb172/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v1e3893779c28468a8ce0f1c268159370/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vb8294437a6bd46f1b8331b135fc91c1b/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v4b4cf4f19983444f8ba2c67ed6c2c81b/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$va12db2a05f7245b681946d76a5f1596a/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vc5a890c023fb4ceeaf4296c014d8f0fa/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$v67812353992249d0a1bd9451f84f14b0/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v94518f09f4204047a962d370b6a9a5ef/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v0c5d370769ad4283acffeaa9a0537ac7/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v8d5d083132454a12816f1edea0aacacc/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$vf00caf9bebda41279b9d9f6b22de2970/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v5b5408a111a443d5ba88237efd5ba211/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <link href="/x5/$vff1db47c797f4ec4b8617f6721515a9d/UI/system/components/buttonBar/buttonBar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v1f959456649d4969a5a24a9d33bdbada/UI/system/components/menuButton/menuButton.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <style rel="stylesheet" type="text/css"/>  
+    <script language="javascript" src="/x5/$v31b38366fc094937ae12332c53134744/UI/system/components/bizDataFilterMenu/bizDataFilterMenu.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v041f2efd28be468c81eac3acda192507/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$va48faacefafc458e987c80d1a2f3228a/UI/system/components/pagination/pagination.js?language=zh_CN">
+</script>      <link href="/x5/$vcaddc5493b9e4bafbeb0134ccb1dbca3/UI/system/components/./pagination/pagination.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <script language="javascript" src="/x5/$vbbbb846c67d446d39638057696cd2c4d/UI/system/components/dialog/dialog.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"/>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>      <link href="/x5/$v757675b16b4746a1a9443d7f386c2e39/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vc23d64316beb46ddb79007275c98ddef/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script language="JavaScript" src="/x5/$v34847d204dd446e3a2f2264388653852/UI/system/service/doc/yahooUtil.js?language=zh_CN" type="text/javascript">
+</script>      <script id="htmlScript2" src="/x5/$v111c09a664be457998081f160d64c224/UI/system/components/attachmentEditor/ajaxupload.js?language=zh_CN">
+</script>      <script language="JavaScript" src="/x5/$vfc9427ab7a8f42f2aac7a0fc49038f54/UI/system/service/doc/docUtil2.js?language=zh_CN" type="text/javascript">
+</script>      <script language="JavaScript" src="/x5/$v49dd792c803e48edad0200cdaf5f3143/UI/system/components/windowOpener/windowOpener.js?language=zh_CN" type="text/javascript">
+</script>      <script language="JavaScript" src="/x5/$v0f90c87ea7f249d29f3f1fcd67a71521/UI/SA/doc/docCenter/docCenter.js?language=zh_CN" type="text/javascript">
+</script>      <script language="JavaScript" src="/x5/$v48ab07552e73481eaaf3f6963d5976e5/UI/system/components/dialog/dialog.js?language=zh_CN" type="text/javascript">
+</script>      <script language="JavaScript" src="/x5/$vabd3e46fd37b48d3be8c78168adef0ec/UI/system/components/windowDialog/windowDialog.js?language=zh_CN" type="text/javascript">
+</script>      <script language="JavaScript" src="/x5/$v6033d94512e54d10925b078afa176c10/UI/system/components/windowDialog/windowDialogReceiver.js?language=zh_CN" type="text/javascript">
+</script>      <script event="OnDownBeginRead(FileIndex, FileFullName, FileSize)" for="transport" language="JavaScript">
+onDownBeginRead(FileIndex, FileFullName, FileSize);</script>  
+    <script event="OnDownReadError(FileIndex, FileFullName, FileSize, errS)" for="transport" language="JavaScript">
+</script>      <script event="OnDownOver()" for="transport" language="JavaScript">
+onDownOver();</script>  
+    <script event="OnCreateDir(FullParentPath)" for="transport" language="JavaScript">
+onCreateDir(FullParentPath);</script>  
+    <script event="OnFilesUploaded(File)" for="transport" language="JavaScript">
+onFilesUploaded(File);</script>  
+    <script event="OnFileStatus(FileIndex,FileFullName, FileSize,TransedSize, Progress, Status)" for="transport" language="JavaScript">
+onFileStatus(FileIndex,FileFullName, FileSize,TransedSize, Progress, Status);</script>  
+    <script event="OnFilesTransed(num)" for="transport" language="JavaScript">
+onFilesTransed(num);</script>  
+    <script>
+new justep.XBizData('docNodeTree',false,false,{'queryAction':"queryDocNodeAction",'saveAction':"saveDocNodeAction",'newAction':"createDocNodeAction",'dataModel':"/system/data",'concept':"{'SA_DocNode':'SA_DocNode'}",'limit':-1,'idColumn':"{'name':'SA_DocNode','relation':'SA_DocNode','define':'SA_DocNode','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'sKindFilter':'SA_DocNode.sKind=\\'dir\\'','sFlagFilter':'SA_DocNode.sFlag=1'}",'defRelations':"{'sParentID':{'type':'String','relation':'SA_DocNode.sParentID','define':'SA_DocNode.sParentID','label':'节点父标识'},'sDocName':{'type':'String','relation':'SA_DocNode.sDocName','define':'SA_DocNode.sDocName','label':'文件名称'},'sSequence':{'type':'String','relation':'SA_DocNode.sSequence','define':'SA_DocNode.sSequence','label':'序号'},'sSize':{'type':'Float','relation':'SA_DocNode.sSize','define':'SA_DocNode.sSize','label':'文件大小'},'sKind':{'type':'String','relation':'SA_DocNode.sKind','define':'SA_DocNode.sKind','label':'任务分类'},'sDocPath':{'type':'String','relation':'SA_DocNode.sDocPath','define':'SA_DocNode.sDocPath','label':'文件id路径'},'sDocDisplayPath':{'type':'String','relation':'SA_DocNode.sDocDisplayPath','define':'SA_DocNode.sDocDisplayPath','label':'文件路径'},'sCreatorFID':{'type':'String','relation':'SA_DocNode.sCreatorFID','define':'SA_DocNode.sCreatorFID','label':'提交者FID'},'sCreatorName':{'type':'String','relation':'SA_DocNode.sCreatorName','define':'SA_DocNode.sCreatorName','label':'提交者'},'sCreatorDeptName':{'type':'String','relation':'SA_DocNode.sCreatorDeptName','define':'SA_DocNode.sCreatorDeptName','label':'提交者部门'},'sCreateTime':{'type':'DateTime','relation':'SA_DocNode.sCreateTime','define':'SA_DocNode.sCreateTime','label':'创建时间'},'sEditorFID':{'type':'String','relation':'SA_DocNode.sEditorFID','define':'SA_DocNode.sEditorFID','label':'编辑人标识'},'sEditorName':{'type':'String','relation':'SA_DocNode.sEditorName','define':'SA_DocNode.sEditorName','label':'编辑人姓名'},'sEditorDeptName':{'type':'String','relation':'SA_DocNode.sEditorDeptName','define':'SA_DocNode.sEditorDeptName','label':'编辑人部门'},'sLastWriterFID':{'type':'String','relation':'SA_DocNode.sLastWriterFID','define':'SA_DocNode.sLastWriterFID','label':'最后修改人标识'},'sLastWriterName':{'type':'String','relation':'SA_DocNode.sLastWriterName','define':'SA_DocNode.sLastWriterName','label':'最后修改人'},'sLastWriterDeptName':{'type':'String','relation':'SA_DocNode.sLastWriterDeptName','define':'SA_DocNode.sLastWriterDeptName','label':'最后修改人部门'},'sLastWriteTime':{'type':'DateTime','relation':'SA_DocNode.sLastWriteTime','define':'SA_DocNode.sLastWriteTime','label':'最后修改时间'},'sFileID':{'type':'String','relation':'SA_DocNode.sFileID','define':'SA_DocNode.sFileID','label':'文档服务器的文件引用标识'},'sDescription':{'type':'String','relation':'SA_DocNode.sDescription','define':'SA_DocNode.sDescription','label':'描述'},'sDocLiveVersionID':{'type':'Integer','relation':'SA_DocNode.sDocLiveVersionID','define':'SA_DocNode.sDocLiveVersionID','label':'文档当前版本标志'},'sDocSerialNumber':{'type':'String','relation':'SA_DocNode.sDocSerialNumber','define':'SA_DocNode.sDocSerialNumber','label':'文件编号'},'sKeywords':{'type':'String','relation':'SA_DocNode.sKeywords','define':'SA_DocNode.sKeywords','label':'关键字'},'sClassification':{'type':'String','relation':'SA_DocNode.sClassification','define':'SA_DocNode.sClassification','label':'文件类别'},'sFinishTime':{'type':'DateTime','relation':'SA_DocNode.sFinishTime','define':'SA_DocNode.sFinishTime','label':'结束时间'},'sNameSpace':{'type':'String','relation':'SA_DocNode.sNameSpace','define':'SA_DocNode.sNameSpace','label':'名空间'},'sFlag':{'type':'Integer','relation':'SA_DocNode.sFlag','define':'SA_DocNode.sFlag','label':'删除标示'},'version':{'type':'Integer','relation':'SA_DocNode.version','define':'SA_DocNode.version','label':'版本'},'sCacheName':{'type':'String','relation':'SA_DocNode.sCacheName','define':'SA_DocNode.sCacheName','label':'文档缓存文件名'},'sRevisionCacheName':{'type':'String','relation':'SA_DocNode.sRevisionCacheName','define':'SA_DocNode.sRevisionCacheName','label':'文档修订版缓存文件名'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParentID','rootFilter':'SA_DocNode.sParentID IS NULL'}"},'docNodeTree_part',{}).attachEvents({'onIndexChanged':'docNodeTreeIndexChanged'});</script>  
+    <script>
+new justep.XBizData('docNodeList',true,false,{'queryAction':"queryDocNodeAction",'saveAction':"saveDocNodeAction",'newAction':"createDocNodeAction",'dataModel':"/system/data",'concept':"{'SA_DocNode':'SA_DocNode'}",'limit':18,'idColumn':"{'name':'SA_DocNode','relation':'SA_DocNode','define':'SA_DocNode','type':'String'}",'directDelete':false,'deleteConfirm':false,'refreshConfirm':false,'filterRelations':"sDocName,sCreatorName,sCreatorDeptName,sCreateTime,sEditorName,sEditorDeptName,sLastWriterName,sLastWriterDeptName,sDocSerialNumber,sKeywords",'updateMode':"whereVersion",'orderBys':"{'sLastWriteTime':0}",'filters':"{'sKindFilter':'SA_DocNode.sKind&lt;&gt;\\'dir\\'','sFlagFilter':'SA_DocNode.sFlag=1'}",'defRelations':"{'sParentID':{'type':'String','relation':'SA_DocNode.sParentID','define':'SA_DocNode.sParentID','label':'节点父标识'},'sDocName':{'type':'String','relation':'SA_DocNode.sDocName','define':'SA_DocNode.sDocName','label':'文件名称'},'sSequence':{'type':'String','relation':'SA_DocNode.sSequence','define':'SA_DocNode.sSequence','label':'序号'},'sSize':{'type':'Float','relation':'SA_DocNode.sSize','define':'SA_DocNode.sSize','label':'文件大小'},'sKind':{'type':'String','relation':'SA_DocNode.sKind','define':'SA_DocNode.sKind','label':'任务分类'},'sDocPath':{'type':'String','relation':'SA_DocNode.sDocPath','define':'SA_DocNode.sDocPath','label':'文件id路径'},'sDocDisplayPath':{'type':'String','relation':'SA_DocNode.sDocDisplayPath','define':'SA_DocNode.sDocDisplayPath','label':'文件路径'},'sCreatorFID':{'type':'String','relation':'SA_DocNode.sCreatorFID','define':'SA_DocNode.sCreatorFID','label':'提交者FID'},'sCreatorName':{'type':'String','relation':'SA_DocNode.sCreatorName','define':'SA_DocNode.sCreatorName','label':'提交者'},'sCreatorDeptName':{'type':'String','relation':'SA_DocNode.sCreatorDeptName','define':'SA_DocNode.sCreatorDeptName','label':'提交者部门'},'sCreateTime':{'type':'DateTime','relation':'SA_DocNode.sCreateTime','define':'SA_DocNode.sCreateTime','label':'创建时间'},'sEditorFID':{'type':'String','relation':'SA_DocNode.sEditorFID','define':'SA_DocNode.sEditorFID','label':'编辑人标识'},'sEditorName':{'type':'String','relation':'SA_DocNode.sEditorName','define':'SA_DocNode.sEditorName','label':'编辑人姓名'},'sEditorDeptName':{'type':'String','relation':'SA_DocNode.sEditorDeptName','define':'SA_DocNode.sEditorDeptName','label':'编辑人部门'},'sLastWriterFID':{'type':'String','relation':'SA_DocNode.sLastWriterFID','define':'SA_DocNode.sLastWriterFID','label':'最后修改人标识'},'sLastWriterName':{'type':'String','relation':'SA_DocNode.sLastWriterName','define':'SA_DocNode.sLastWriterName','label':'最后修改人'},'sLastWriterDeptName':{'type':'String','relation':'SA_DocNode.sLastWriterDeptName','define':'SA_DocNode.sLastWriterDeptName','label':'最后修改人部门'},'sLastWriteTime':{'type':'DateTime','relation':'SA_DocNode.sLastWriteTime','define':'SA_DocNode.sLastWriteTime','label':'最后修改时间'},'sFileID':{'type':'String','relation':'SA_DocNode.sFileID','define':'SA_DocNode.sFileID','label':'文档服务器的文件引用标识'},'sDescription':{'type':'String','relation':'SA_DocNode.sDescription','define':'SA_DocNode.sDescription','label':'描述'},'sDocLiveVersionID':{'type':'Integer','relation':'SA_DocNode.sDocLiveVersionID','define':'SA_DocNode.sDocLiveVersionID','label':'文档当前版本标志'},'sDocSerialNumber':{'type':'String','relation':'SA_DocNode.sDocSerialNumber','define':'SA_DocNode.sDocSerialNumber','label':'文件编号'},'sKeywords':{'type':'String','relation':'SA_DocNode.sKeywords','define':'SA_DocNode.sKeywords','label':'关键字'},'sClassification':{'type':'String','relation':'SA_DocNode.sClassification','define':'SA_DocNode.sClassification','label':'文件类别'},'sFinishTime':{'type':'DateTime','relation':'SA_DocNode.sFinishTime','define':'SA_DocNode.sFinishTime','label':'结束时间'},'sNameSpace':{'type':'String','relation':'SA_DocNode.sNameSpace','define':'SA_DocNode.sNameSpace','label':'名空间'},'sFlag':{'type':'Integer','relation':'SA_DocNode.sFlag','define':'SA_DocNode.sFlag','label':'删除标示'},'version':{'type':'Integer','relation':'SA_DocNode.version','define':'SA_DocNode.version','label':'版本'},'sCacheName':{'type':'String','relation':'SA_DocNode.sCacheName','define':'SA_DocNode.sCacheName','label':'文档缓存文件名'},'sRevisionCacheName':{'type':'String','relation':'SA_DocNode.sRevisionCacheName','define':'SA_DocNode.sRevisionCacheName','label':'文档修订版缓存文件名'}}",'masterData':"{'id':'docNodeTree','relation':'sParentID','autoLoad':true}"},'',{}).attachEvents({'onIndexChanged':'docNodeListIndexChanged'});</script>  
+    <script>
+new justep.XCommonData('newDirMenuItems',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':false}, {});</script>  
+    <script>
+new justep.XCommonData('newDocMenuItems',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':false}, {});</script>  
+    <script>
+new justep.XCommonData('editDocMenuItems',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':false}, {});</script>  
+    <script>
+new justep.XCommonData('permissions',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':false}, {}).attachEvents({'onValueChanged':'docCenter.permissionsValueChanged'});</script>  
+    <script type="text/javascript" src="/x5/$v3c1eb5a33fdd4f47839693b99449e75e/UI/SA/doc/docCenter/.cache/docCenter_zh_CN_x5_b567df91e1794a34aa73e0ab6ab29fc3.js?language=zh_CN&amp;$version=014976d6-412f-410b-bdc3-7c4dae0b690f"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"/>  
+    <span id="infoPanel" style="position:absolute;display:none"/>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" style="width:100%;height:100%;"> 
+        <div id="ocxdiv" style="width:0;height:0"/>  
+        <div class="component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="280" fix-type="left" has-arrow-button="true" has-drag-bar="true" id="splitter" mode="horz" status="normal" style="width:100%;height:100%;"> 
+          <div class="xui-splitter-root"> 
+            <div class="xui-splitter-region xui-splitter-left"> 
+              <div class="" id="docNodeTreeView" style="width:100%; height:100%"> 
+                <div border-size="2" class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="docNodeTreePart" style="width:100%; height: 100%;"> 
+                  <div borderSize="2" class="xui-borderlayout-root"> 
+                    <div class="xui-borderlayout-area xui-borderlayout-top" size="38px" style=""> 
+                      <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="758ed501d0234eada14c2f7871902829" menu-id="newDirMenu"> 
+                        <div menuid="newDirMenu" style="display:none" xblid="menuitemsets"> 
+                          <span data="newDirMenuItems" id="GLOBAL_ID_N1511082913" init-loaded="true" parentID="" replace="true"> 
+                            <span name="label" value="sLabel"/>  
+                            <span name="program" value="sProgramID"/>  
+                            <span name="filename" value="sNewFilename"/> 
+                          </span> 
+                        </div>  
+                        <div appearance="context" id="newDirMenu" open-mode="web"/> 
+                      </div>  
+                      <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar2" style="width:100%;"> 
+                        <ul> 
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="button-blue xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger10" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                      <i class="icon icon-system-plus"/>  
+                                      <span class="xforms-label " id="default19">新建</span> 
+                                    </button> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="button-blue xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger11" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <a class="xui-button-label" tabindex=""> 
+                                      <i class="icon "/>  
+                                      <span class="xforms-label " id="default20">属性</span> 
+                                    </a> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class="last"> 
+                            <div class="component_A510E941 menuButton" component="/UI/system/components/menuButton.xbl.xml#menuButton" id="dirMoreBtns" label="更多操作" mode="auto"> 
+                              <a class="head" href="#"> 
+                                <span class="label">更多操作</span>  
+                                <span class="arr"/> 
+                              </a>  
+                              <div class="menuButton menu" id="dirMoreBtns-menu"> 
+                                <div class="list"> 
+                                  <a class="head" href="#"> 
+                                    <span class="label">更多操作</span>  
+                                    <span class="arr"/> 
+                                  </a>  
+                                  <ul> 
+                                    <li> 
+                                      <a href="#" method="docCenter.menuitem1Click" name="deleteDir" onclick="justep.xbl('dirMoreBtns').execItem('deleteDir', event);return false;"> 
+                                        <span class="icon icon-system-cancel"/>  
+                                        <span class="label">删除</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.menuitem2Click" name="manageDir" onclick="justep.xbl('dirMoreBtns').execItem('manageDir', event);return false;"> 
+                                        <span class="icon icon-system-vcard"/>  
+                                        <span class="label">权限</span> 
+                                      </a> 
+                                    </li> 
+                                  </ul> 
+                                </div>  
+                                <div class="overlay"/> 
+                              </div> 
+                            </div> 
+                          </li> 
+                        </ul> 
+                      </div> 
+                    </div>  
+                    <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"/>  
+                    <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                      <div appearance="tree" class="ui-light component_6298A7A1 grid" data="docNodeTree" delay="true" id="docNodeTreeGrid" onBeforeIndexChanged="docCenter.docNodeTreeGridBeforeIndexChanged" onInit="onTreeInit" onRowExpand="func_1324073657" onShowNodeImg="showNodeImg" right-click-selected="true" space-column="false" style="width:100%; height:100%;border:0px;;overflow:hidden" system-columns="sParentID,sSequence,sSize,sKind,sDocPath,sDocDisplayPath,sCreatorFID,sCreatorName,sCreatorDeptName,sCreateTime,sEditorFID,sEditorName,sEditorDeptName,sLastWriterFID,sLastWriterName,sLastWriterDeptName,sLastWriteTime,sFileID,sDescription,sDocLiveVersionID,sDocSerialNumber,sKeywords,sClassification,sFinishTime,sNameSpace,sFlag,version,sCacheName,sRevisionCacheName"/> 
+                    </div>  
+                    <div class="xui-borderlayout-area xui-borderlayout-bottom" size="38px" style=""> 
+                      <table border="0" cellpadding="0" cellsapcing="0" id="table1" style="height:30px;;" width="90px"> 
+                        <tr id="tr1"> 
+                          <td id="td1"> 
+                            <input id="showRootIpt" onclick="docCenter.showRootIptClick(event)" type="checkbox"/> 
+                          </td>  
+                          <td id="td2">显示根节点</td> 
+                        </tr> 
+                      </table> 
+                    </div>  
+                    <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"/> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-splitter-region xui-splitter-right"> 
+              <div class="" id="docNodeListView" style="width:100%; height:100%"> 
+                <div border-size="2px" class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="docNodeListPart" style="width:100%; height: 100%;"> 
+                  <div borderSize="2px" class="xui-borderlayout-root"> 
+                    <div class="xui-borderlayout-area xui-borderlayout-top" size="38px" style=""> 
+                      <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar1" style="width:100%;"> 
+                        <ul> 
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="button-blue xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="margin-left:5px;table-layout:fixed"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                      <i class="icon icon-system-plus"/>  
+                                      <span class="xforms-label " id="default1">新建</span> 
+                                    </button> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="editDocTrigger" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <a class="xui-button-label" tabindex=""> 
+                                      <i class="icon icon-system-edit-alt"/>  
+                                      <span class="xforms-label " id="default2">编辑</span> 
+                                    </a> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <a class="xui-button-label" tabindex=""> 
+                                      <i class="icon icon-system-download"/>  
+                                      <span class="xforms-label " id="default3">下载</span> 
+                                    </a> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger3" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <a class="xui-button-label" tabindex=""> 
+                                      <i class="icon icon-system-search"/>  
+                                      <span class="xforms-label " id="default4">查询</span> 
+                                    </a> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class=""> 
+                            <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger4" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <a class="xui-button-label" tabindex=""> 
+                                      <i class="icon "/>  
+                                      <span class="xforms-label " id="default5">刷新</span> 
+                                    </a> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                      <div class="xforms-alert-value" id=""/> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class=""> 
+                            <div class="component_A510E941 menuButton" component="/UI/system/components/menuButton.xbl.xml#menuButton" id="docMoreBtns" label="更多操作"> 
+                              <a class="head" href="#"> 
+                                <span class="label">更多操作</span>  
+                                <span class="arr"/> 
+                              </a>  
+                              <div class="menuButton menu" id="docMoreBtns-menu"> 
+                                <div class="list"> 
+                                  <a class="head" href="#"> 
+                                    <span class="label">更多操作</span>  
+                                    <span class="arr"/> 
+                                  </a>  
+                                  <ul> 
+                                    <li> 
+                                      <a href="#" method="docCenter.docDeleteClick" name="deleteDoc" onclick="justep.xbl('docMoreBtns').execItem('deleteDoc', event);return false;"> 
+                                        <span class="icon icon-system-cancel"/>  
+                                        <span class="label">删除</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.docAttrClick" name="editDoc" onclick="justep.xbl('docMoreBtns').execItem('editDoc', event);return false;"> 
+                                        <span class="icon empty-icon"/>  
+                                        <span class="label">属性</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.docPermissionClick" name="manageDoc" onclick="justep.xbl('docMoreBtns').execItem('manageDoc', event);return false;"> 
+                                        <span class="icon icon-system-vcard"/>  
+                                        <span class="label">权限</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.docLockClick" name="lockDoc" onclick="justep.xbl('docMoreBtns').execItem('lockDoc', event);return false;"> 
+                                        <span class="icon icon-system-lock"/>  
+                                        <span class="label">锁定</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.docUnlockClick" name="unlockDoc" onclick="justep.xbl('docMoreBtns').execItem('unlockDoc', event);return false;"> 
+                                        <span class="icon icon-system-lock-open"/>  
+                                        <span class="label">解锁</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.docBrowseClick" name="browseDoc" onclick="justep.xbl('docMoreBtns').execItem('browseDoc', event);return false;"> 
+                                        <span class="icon icon-system-eye"/>  
+                                        <span class="label">查看</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.menuitem11Click" name="downloadDoc" onclick="justep.xbl('docMoreBtns').execItem('downloadDoc', event);return false;"> 
+                                        <span class="icon icon-system-download"/>  
+                                        <span class="label">下载历史</span> 
+                                      </a> 
+                                    </li>  
+                                    <li> 
+                                      <a href="#" method="docCenter.menuitem12Click" name="historyDoc" onclick="justep.xbl('docMoreBtns').execItem('historyDoc', event);return false;"> 
+                                        <span class="icon empty-icon"/>  
+                                        <span class="label">历史版本</span> 
+                                      </a> 
+                                    </li> 
+                                  </ul> 
+                                </div>  
+                                <div class="overlay"/> 
+                              </div> 
+                            </div> 
+                          </li>  
+                          <li class="space nosep" style="margin: 0 8px;">|</li>  
+                          <li class="last"> 
+                            <div class="component_4379FBD bizDataFilterMenu" component="/UI/system/components/bizDataFilterMenu.xbl.xml#bizDataFilterMenu" data="docNodeList" id="bizDataFilterMenu1"/> 
+                          </li> 
+                        </ul> 
+                      </div>  
+                      <div appearance="context" class="xui-container component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="div1" menu-id="newDocMenu"> 
+                        <div menuid="newDocMenu" style="display:none" xblid="menuitemsets"> 
+                          <span data="newDocMenuItems" id="default9" init-loaded="true" parentID="" replace="true"> 
+                            <span name="label" value="sLabel"/>  
+                            <span name="program" value="sProgramID"/>  
+                            <span name="filename" value="sNewFilename"/> 
+                          </span> 
+                        </div>  
+                        <div appearance="context" id="newDocMenu" open-mode="web"/> 
+                      </div>  
+                      <div appearance="context" class="xui-container component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="div2" menu-id="editDocMenu"> 
+                        <div menuid="editDocMenu" style="display:none" xblid="menuitemsets"> 
+                          <span data="editDocMenuItems" id="default12" init-loaded="true" parentID="" replace="true"> 
+                            <span name="label" value="sLabel"/>  
+                            <span name="program" value="sProgramID"/>  
+                            <span name="filename" value="sNewFilename"/> 
+                          </span> 
+                        </div>  
+                        <div appearance="context" id="editDocMenu" open-mode="web"/> 
+                      </div> 
+                    </div>  
+                    <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"/>  
+                    <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                      <div class="grid-flat xui-grid-hide-VLine component_6298A7A1 grid" data="docNodeList" delay="false" header-row-height="30" id="docNodeListGrid" onInit="onTreeInit" onRowDblClick="browseDoc" right-click-selected="true" row-height="30" style="width:100%; height:100%;overflow:hidden" system-columns="sSequence,sKind,sDocPath,sDocDisplayPath,sCreatorFID,sEditorDeptName,sLastWriterFID,sLastWriterDeptName,sFileID,sDescription,sDocLiveVersionID,sDocSerialNumber,sKeywords,sClassification,sFinishTime,sNameSpace,sFlag,version,sCacheName,sRevisionCacheName"/>  
+                      <div id="transportDiv"/>  
+                      <div id="docExtDiv"/> 
+                    </div>  
+                    <div class="xui-borderlayout-area xui-borderlayout-bottom" size="38px" style=""> 
+                      <div align="right" class="component_7A96FEA1 pagination" component="/UI/system/components/pagination.xbl.xml#pagination" data="docNodeList" id="pagination1" items="first last pre next"/> 
+                    </div>  
+                    <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"/> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-splitter-handler xui-splitter-handler-h"> 
+              <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                <i class="icon-system-left-dir white-icon"/> 
+              </div> 
+            </div> 
+          </div> 
+        </div>  
+        <div class="" id="dialogsView" style="display:none;"> 
+          <div class="component_41508DE1 dialog" closable="false" component="/UI/system/components/dialog.xbl.xml#dialog" height="120px" id="uploadDirProgress" minmaxable="false" modal="true" resizable="false" title="正在上传..." width="330px"> 
+            <div id="uploadDirProgress-content" style="display:none;height:100%;width:100%"> 
+              <table height="100%" width="100%"> 
+                <tr height="20px"/>  
+                <tr> 
+                  <td width="10px"/>  
+                  <td> 
+                    <img src="/x5/$vea0f1e24585e40499cc717bd9cc6eedf/UI/SA/doc/docCenter/images/processing.gif?language=zh_CN"/> 
+                  </td>  
+                  <td width="10px"/>  
+                  <td width="300px"> 
+                    <div id="uploading" style="font:12px"/> 
+                  </td>  
+                  <td width="10px"/> 
+                </tr>  
+                <tr height="20px"/> 
+              </table> 
+            </div> 
+          </div>  
+          <div class="component_41508DE1 dialog" component="/UI/system/components/dialog.xbl.xml#dialog" height="120px" id="downProgess" minmaxable="false" modal="true" resizable="false" title="正在下载..." width="330px"> 
+            <div id="downProgess-content" style="display:none;height:100%;width:100%"> 
+              <table height="100%" width="100%"> 
+                <tr height="20px"/>  
+                <tr> 
+                  <td width="10px"/>  
+                  <td> 
+                    <img src="/x5/$vb56cb2b69ae34a77ab8cbd22f954cf8d/UI/SA/doc/docCenter/images/processing.gif?language=zh_CN"/> 
+                  </td>  
+                  <td width="10px"/>  
+                  <td width="300px"> 
+                    <div id="downloading" style="font:12px"/> 
+                  </td>  
+                  <td width="10px"/> 
+                </tr>  
+                <tr height="20px"/> 
+              </table> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script>
+function func_1324073657(data){var oData = justep.XData.$('docNodeTree');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-bizDataFilterMenu1"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="5d3dbb25b8eb47509f7ecb70fdc735f9" menu-id="GLOBAL_ID_N102603760" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_N102603760" style="display:none" xblid="menuitemsets"/>  
+          <div appearance="context" id="GLOBAL_ID_N102603760" open-mode="web"/> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_1724624184" style="display:none"/>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_1724624184-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_691005286" name="GLOBAL_ID_691005286" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"/> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-bizDataFilterMenu1"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_857538961" style="display:none"/>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_857538961-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_972205923" name="GLOBAL_ID_972205923" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"/> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

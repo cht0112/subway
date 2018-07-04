@@ -1,0 +1,159 @@
+<xbl:xbl xmlns:justep="http://www.justep.com/x5#" xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:saxon="http://saxon.sf.net/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns="http://www.justep.com/x5#" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+	<xbl:binding id="attachmentDialog">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<justep:root>
+					<xsl:variable name="id" select="@id" />
+					<xsl:variable name="model" select="@model"/>
+					<xsl:variable name="attachmentEditorID" select="concat(@id,'_attachmentEditor')" />
+					<xsl:variable name="ref" select="@ref"/>
+					<xsl:variable name="autoCreateVersion" select="if (@autoCreateVersion != '') then @autoCreateVersion else 'false'"/>
+					<xsl:variable name="runtime" select="@runtime" />
+					<xsl:variable name="rootPath" select="@root-path" />
+					<xsl:variable name="subPath" select="@sub-path" />
+					<xsl:variable name="limitSize" select="@limit-size" />
+					<xsl:variable name="access" select="if (@access != '') then @access else '1799'" />
+					<xsl:variable name="displayButtons" select="@display-buttons" />
+					<xsl:variable name="extensionFilter" select="@extension-filter" />
+					<xsl:variable name="dialogID" select="concat(@id,'_dialogID')" />
+					<xsl:variable name="onBrowseDocClick" select="@onBrowseDocClick" />
+					<xsl:variable name="onNewFromTemplate" select="@onNewFromTemplate" />
+					<xsl:variable name="onLoadData" select="@onLoadData" />
+					<xsl:variable name="onUploadClick" select="@onUploadClick" />
+					<xsl:variable name="onEditClick" select="@onEditClick" />
+					<xsl:variable name="onDeleteClick" select="@onDeleteClick" />
+					<xsl:variable name="onDownloadClick" select="@onDownloadClick" />
+					<xsl:variable name="onHistoryClick" select="@onDownloadClick" />
+					<xforms:model xforms:partial="{$model}">
+					</xforms:model>
+					
+					<xforms:dialog title="附件" level="modal" close="false" appearance="full" visible="false" id="{$dialogID}" width="500" height="340">
+						<xhtml:table style="width:492px;height:310px;">
+							<xhtml:tr style="height:280px;">
+								<xhtml:td>
+										<xhtml:div component="/UI/system/components/attachmentEditor.xbl.xml#attachmentEditor"
+											model="{$model}"
+											ref="{$ref}" 
+											id="{$attachmentEditorID}"
+											runtime="{$runtime}"
+											autoCreateVersion="{$autoCreateVersion}"
+											root-path="{$rootPath}" 
+											sub-path="{$subPath}"
+											display-style="list"
+											display-buttons="{$displayButtons}"
+											extension-filter="{$extensionFilter}"
+											limit-size="{$limitSize}" 
+											access="{$access}"
+											style="height:280px;overflow:auto"
+											auto-load = "false"
+											onBrowseDocClick="{$onBrowseDocClick}"
+											onNewFromTemplate="{$onNewFromTemplate}"
+											onLoadData="{$onLoadData}"
+											onUploadClick="{$onUploadClick}"
+											onEditClick="{$onEditClick}"
+											onDeleteClick="{$onDeleteClick}"
+											onDownloadClick="{$onDownloadClick}"
+											onHistoryClick="{$onHistoryClick}"
+											>
+										</xhtml:div>						
+								</xhtml:td>
+							</xhtml:tr>
+							<xhtml:tr>
+								<xhtml:td align="right" height="28px">
+									<xforms:trigger class="trigger">
+										<xforms:label>
+											关  闭
+										</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:script>
+												var xbl = justep.xbl('<xsl:value-of select="$id" />');
+												var attachmentEditor = justep.xbl('<xsl:value-of select="$attachmentEditorID" />');
+												xbl.setValue();
+												xforms('<xsl:value-of select="$dialogID" />').close();
+											</xforms:script>
+										</xforms:action>
+									</xforms:trigger>
+								</xhtml:td>
+							</xhtml:tr>
+						</xhtml:table>
+					</xforms:dialog>
+				</justep:root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+		<![CDATA[({
+				"initXBL" : function() {
+					this._id = this.domNode.id;
+					this.dialogID = this._id + '_dialogID';
+					this.attachmentEditorID = this._id + '_attachmentEditor';
+					this.relationXPath = this.domNode.getAttribute("ref");
+					this.grid = "";  
+					dhtmlxEventable(this);		                                                                                              					
+					this.addEvents();
+				},
+				
+				"showDialog" : function(gridContolID, cellIndex){
+					if (this.checkEvent("onButtonClick")){
+				 		var eventData = {
+								'cancel' : false,
+								'gridContolID' : gridContolID,
+								'cellIndex' : cellIndex
+						};
+				 		this.callEvent("onButtonClick", [eventData]);
+				 		if (eventData.cancel)
+							return;
+					}
+					var fieldName = this.grid.getColumnId(cellIndex);
+					var readonly = this.grid.instance.readonly || this.grid.fields[fieldName].readonly || (this.grid.bindColreadonlyList && this.grid.bindColreadonlyList[fieldName]=="true");
+					if(readonly)
+						return;
+					var attachmentEditor = justep.xbl(this.attachmentEditorID);
+					var id = this.dialogID;
+					xforms(id).open();
+					self.setTimeout(function(){ attachmentEditor.setAutoLoad(true);},1);
+					var browseEvent = this.__onBrowseDocClick;					
+				},
+				
+				"setValue" : function(){
+				    var xbl=justep.xbl(this.attachmentEditorID);
+					xbl.setValue(xbl.data);
+				},
+				
+				"getAttachmentEditor" : function(){
+					return justep.xbl(this.attachmentEditorID);
+				},
+				
+				"addEvents" : function(){
+					this.__onBrowseDocClick = this.domNode.getAttribute("onBrowseDocClick")? justep.Function.get(this.domNode.getAttribute("onBrowseDocClick")):null;
+					if(this.__onBrowseDocClick && typeof this.__onBrowseDocClick =="function"){
+						this.attachEvent("onBrowseDocClick", this.__onBrowseDocClick, this);
+					}					
+					this.__onButtonClick = this.domNode.getAttribute("onButtonClick")? justep.Function.get(this.domNode.getAttribute("onButtonClick")):null;
+					if(this.__onButtonClick && typeof this.__onButtonClick =="function"){
+						this.attachEvent("onButtonClick", this.__onButtonClick, this);
+					}
+					this.__onCreate = this.domNode.getAttribute("onCreate")? justep.Function.get(this.domNode.getAttribute("onCreate")):null;
+					if(this.__onCreate && typeof this.__onCreate =="function"){
+						this.attachEvent("onCreate", this.__onCreate, this);
+					}					
+					if (this.checkEvent("onCreate")){
+				 		this.callEvent("onCreate", [{'source' : this}]);
+					}
+				}
+			
+			})]]>
+		</xbl:implementation>			
+	</xbl:binding>
+	<xbl:script type="text/javascript" src="/UI/system/utilsClient/common/json.js"></xbl:script>
+    <xbl:script type="text/javascript" src="/UI/system/components/attachmentDialog/dhtmlxgrid_excell_attachment.js"></xbl:script>
+	
+</xbl:xbl>	

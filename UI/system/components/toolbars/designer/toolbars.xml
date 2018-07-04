@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="toolbars" tag-type="rich" tag-name="div" icon="toolbars.gif" text="工具栏" 
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"
+		discriminate-condition="@component=/UI/system/components/toolbars.xbl.xml#toolbars" 
+		binding-component="/UI/system/components/toolbars.xbl.xml#toolbars" display-property="id" 
+		component-class="Toolbars" 
+		component-type="formControl" validator="ToolbarsValidator" design-view="web-designer" >
+		<templates>
+		   <template name="default"><![CDATA[ 
+		     <xhtml:div component="/UI/system/components/toolbars.xbl.xml#toolbars" xmlns:xhtml="http://www.w3.org/1999/xhtml" > 
+		     </xhtml:div>
+		   ]]></template>
+		</templates>
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref=""/>
+			<property name="class" text="class" />
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+		</properties>
+	</element>
+</elements>

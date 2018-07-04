@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$va6dc19d6822e47f987b1dce138667a4f/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$ve810891208ab40d4be1eb99799feaf0a/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v47839321340e40ce9b61d5d8bb9a6b57/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v94137b31728e4418bc1602733b160ffe/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v64af7a2704b64a81a6e895f2efd3737b/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v271f52ef2939467584a8fc0a713871bb/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$vd14b73a53a504f01a192767d2de61504/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v00e14c2709da47359668461ef64d2b35/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v857374dcf1d9467ebf6b204d2c649340/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vf5b65f080e614261b4b6dc375fb6f143/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v6f328c2e45fe497a85f51b8db0ee98ab/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v0756a33992a643cb8f9f0a998c7915b5/component/data/data.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v0ed2798a29444175b4645f908d30832d/UI/system/components/windowDialog/windowDialog.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v98511f8451dc49569923329ff1687dd9/UI/system/components/dialog/dialog.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <style rel="stylesheet" type="text/css"/>  
+    <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"/>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>  
+    <link href="/x5/$vac5390b997a64860b84007503da2483c/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$ve156136730344681b2ca196b80a848ed/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script id="htmlScript1" src="/x5/$v5f44295187414a6b806685b0fa8be96b/UI/SA/OPM/organization/mainActivity.js?language=zh_CN">
+</script>      <script id="opmUtils" src="/x5/$v59ccd0dbf8514509878d3f2fa5bc0230/UI/SA/OPM/js/OpmUtils.js?language=zh_CN">
+</script>      <script>
+new justep.XBizData('dOrgTree',false,false,{'queryAction':"queryOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'filterOrgKind':'SA_OPOrg.sOrgKindID &lt;&gt; \\'psm\\''}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'Object','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','virtualRootLabel':'组织机构','rootFilter':'SA_OPOrg.sParent is null'}"},'dOrgTree_part',{}).attachEvents({'onAfterRefresh':'mainActivity.dOrgTreeAfterRefresh','onIndexChanged':'mainActivity.dOrgTreeIndexChanged'});</script>  
+    <script>
+new justep.XBizData('dOrgList',false,false,{'queryAction':"queryOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'filterRelations':"sName,sCode,ognName,dptName,nATION,eDUCATIONIDCNAME,pOSITIONALTITLEIDCNAME",'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'Object','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}",'defCalcRelations':"{'calcIndex':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dOrgList_part',{}).attachEvents({'onRefreshCreateParam':'mainActivity.dOrgListRefreshCreateParam','onAfterRefresh':'mainActivity.dOrgListAfterRefresh','onAfterRefreshPage':'mainActivity.dOrgListAfterRefreshPage','onIndexChanged':'mainActivity.dOrgListIndexChanged'});</script>  
+    <script type="text/javascript" src="/x5/$va8e05f5fbde54e85bd513b68625065b2/UI/SA/OPM/organization/.cache/mainActivity_zh_CN_x5_a39660c3b7064e8ea310f7e5f82ef4cb.js?language=zh_CN&amp;$version=70e2fadb-5a64-49a3-a89b-c59486aa41ac"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"/>  
+    <span id="infoPanel" style="position:absolute;display:none"/>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" lazy="false" style="height:100%;width:100%"> 
+        <table class="xui-container component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table4" style="height:100%;width:100%;table-layout:fixed;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;"> 
+          <tr id="tr8"> 
+            <td id="td3"> 
+              <div class="xui-splitter component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="25%" has-arrow-button="true" has-drag-bar="true" id="HSplitter1" mode="horz" status="normal" style="height:100%;width:100%;"> 
+                <div class="xui-splitter-root"> 
+                  <div class="xui-splitter-region xui-splitter-left"> 
+                    <table cellpadding="0" class="xui-container component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table2" style="height:100%;width:100%;table-layout:fixed;"> 
+                      <tr id="tr1" style="height:30px"> 
+                        <td id="td1"> 
+                          <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars2"> 
+                            <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                              <tr> 
+                                <td> 
+                                  <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                    <div class="toolbar-style" name="toolbargroup"> 
+                                      <table cellpadding="0" cellspacing="1px"> 
+                                        <tr> 
+                                          <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                            <img align="absmiddle" class="standard-btn" src="/x5/$v419010770f00482993fc30246a127107/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"/> 
+                                          </td>  
+                                          <td _processed_="true" class="toolbar-item-style" id="customBarItem13" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <input class="xui-input" id="inputSearchOrg" onkeydown="mainActivity.inputSearchOrgKeydown(event)" style="width:100px;" type="text" value=""/> 
+                                          </td>  
+                                          <td _processed_="true" class="toolbar-item-style" id="customBarItem14" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <img alt="" id="imageSearchOrg" onclick="mainActivity.imageSearchOrgClick(event)" src="/x5/$v5254b42b9c2844019176f80cb1f84575/UI/SA/OPM/images/search.gif?language=zh_CN" style="width:24px;;height:24px"/> 
+                                          </td> 
+                                        </tr> 
+                                      </table> 
+                                    </div> 
+                                  </div> 
+                                </td>  
+                                <td style="width:100%"/> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </td> 
+                      </tr>  
+                      <tr id="tr7"> 
+                        <td id="td7"> 
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="250px" id="wdSearchOrg" modal="false" neighbor="imageSearchOrg" onReceive="mainActivity.wdSearchOrgReceive" style="top:99px;left:56px;" title="组织搜索" url="/SA/OPM/dialogs/searchOrg/searchOrg.w" width="600px"/>  
+                          <div appearance="tree" class="component_6298A7A1 grid" data="dOrgTree" delay="true" id="gridOrgTree" onCellHint="mainActivity.gridOrgTreeCellHint" onRowExpand="func_409276324" onShowNodeImg="mainActivity.gridOrgTreeShowNodeImg" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="border-style:solid solid solid solid;border-width:1px 1px 1px 1px;border-color:#C0C0C0 #C0C0C0 #C0C0C0 #C0C0C0;width:100%;height:100%;;overflow:hidden" system-columns="sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,ognName,dptName,posName,operatorState,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,nATION,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,eDUCATIONIDCNAME,POSITIONAL_TITLE_CODE,pOSITIONALTITLEIDCNAME"/> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div>  
+                  <div class="xui-splitter-region xui-splitter-right"> 
+                    <table class="xui-container component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table3" style="height:100%;width:100%;table-layout:fixed;"> 
+                      <tr id="tr3" style="height:30px;"> 
+                        <td id="td2"> 
+                          <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1"> 
+                            <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                              <tr> 
+                                <td> 
+                                  <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                    <div class="toolbar-style" name="toolbargroup"> 
+                                      <table cellpadding="0" cellspacing="1px"> 
+                                        <tr> 
+                                          <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                            <img align="absmiddle" class="standard-btn" src="/x5/$v06243c89ecfb4659ac92297a7a3946de/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnInsertMore" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="xxf-value"> 
+                                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                      <img src="/x5/$v1fbd7f193993445ebc8c3e5de5026b69/UI/SA/OPM/images/insertMore.gif?language=zh_CN"/>  
+                                                      <span class="xforms-label " id="xuiLabel1">新建</span> 
+                                                    </button> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                                      <div class="xforms-alert-value" id=""/> 
+                                                    </span> 
+                                                  </td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table>  
+                                            <div appearance="context" class="xui-container component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="8d24f792b3904882ba6e85f5dc113090" menu-id="newItemsMenu" open-mode="win" style="display: none;"> 
+                                              <div menuid="newItemsMenu" style="display:none" xblid="menuitemsets"/>  
+                                              <div appearance="context" id="newItemsMenu" open-mode="win"/> 
+                                            </div> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnEdit" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="xxf-value"> 
+                                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                      <img src="/x5/$v4edb9e2727494ed58f699982e2cd33d7/UI/SA/OPM/images/edit.gif?language=zh_CN"/>  
+                                                      <span class="xforms-label " id="xuiLabel2">编辑</span> 
+                                                    </button> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                                      <div class="xforms-alert-value" id=""/> 
+                                                    </span> 
+                                                  </td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-separator-style"> 
+                                            <img align="absmiddle" class="standard-btn" src="/x5/$v36e43fce077c4a6e876a4030a14ece50/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnLogicDelete" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="xxf-value"> 
+                                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                      <img src="/x5/$v7f6712a561334b8f90a7ce7c8dd22671/UI/SA/OPM/images/logicDelete.gif?language=zh_CN"/>  
+                                                      <span class="xforms-label " id="xuiLabel5">删除</span> 
+                                                    </button> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                                      <div class="xforms-alert-value" id=""/> 
+                                                    </span> 
+                                                  </td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnSort" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="xxf-value"> 
+                                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                      <img src="/x5/$v3071d5f04376496792f61e3a9c6d54d5/UI/SA/OPM/images/sort.gif?language=zh_CN"/>  
+                                                      <span class="xforms-label " id="xuiLabel6">排序</span> 
+                                                    </button> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                                      <div class="xforms-alert-value" id=""/> 
+                                                    </span> 
+                                                  </td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnMove" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="xxf-value"> 
+                                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                      <img src="/x5/$vf04fcbde850c4d5384a503fa6610d258/UI/SA/OPM/images/moveOrg.gif?language=zh_CN"/>  
+                                                      <span class="xforms-label " id="xuiLabel7">移动</span> 
+                                                    </button> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                                      <div class="xforms-alert-value" id=""/> 
+                                                    </span> 
+                                                  </td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-separator-style"> 
+                                            <img align="absmiddle" class="standard-btn" src="/x5/$v82c01ef332f848e38276532dfb6fad71/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnResetPassword" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="xxf-value"> 
+                                                    <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                      <img src="/x5/$vc971d75c2f06493ea375981d88404de4/UI/SA/OPM/images/resetPassword.gif?language=zh_CN"/>  
+                                                      <span class="xforms-label " id="xuiLabel8">重置密码</span> 
+                                                    </button> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                                                      <div class="xforms-alert-value" id=""/> 
+                                                    </span> 
+                                                  </td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-separator-style"> 
+                                            <img align="absmiddle" class="standard-btn" src="/x5/$vb574018c73f04b0fa2d815e816106e60/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table id="barItem1" model="model1" onclick="justep.xbl('dOrgList').refreshData(); "> 
+                                              <tr align="center" valign="middle"> 
+                                                <td align="center" valign="middle"> 
+                                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/x5/$vcd1053ae1a474a48add3783632c12b21/UI/system/images/standardToolbar/standard/refresh.gif?language=zh_CN" style="border:none" title="刷新"/> 
+                                                </td>  
+                                                <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                                              </tr> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table id="barItem2" model="model1" onclick="justep.xbl('filter-dialog-1f61c68e-f673-40db-844c-4f3ff8f0320f').show('dOrgList');"> 
+                                              <tr align="center" valign="middle"> 
+                                                <td align="center" valign="middle"> 
+                                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/x5/$v012bae3ce0244e19b350156e1b699986/UI/system/images/standardToolbar/standard/search.gif?language=zh_CN" style="border:none" title="查询"/> 
+                                                </td>  
+                                                <td align="center" class="xforms-trigger-label" valign="middle">查询</td> 
+                                              </tr> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <table id="item28cc295c-e6e6-4dcd-ae6e-ba806d8ed871" model="model1" onclick="justep.xbl('dOrgList').loadNextPageData(); " readonly="not(call('justep.XData.canDo','dOrgList','NextPage'))"> 
+                                              <tr align="center" valign="middle"> 
+                                                <td align="center" valign="middle"> 
+                                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_next-page.gif" src="/x5/$v7e0ffe65dbfe4557b2bf738599852ea6/UI/system/images/standardToolbar/standard/next-page.gif?language=zh_CN" style="border:none" title="下一页"/> 
+                                                </td>  
+                                                <td align="center" class="xforms-trigger-label" valign="middle">下一页</td> 
+                                              </tr> 
+                                            </table> 
+                                          </td>  
+                                          <td class="toolbar-separator-style"> 
+                                            <img align="absmiddle" class="standard-btn" src="/x5/$vb42681a77cdd4fa296e86064759e7788/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <input class="xui-input" id="inputSearchList" onkeydown="mainActivity.inputSearchListKeydown(event)" style="width:100px;" type="text" value=""/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                            <img alt="" id="imageSearchList" onclick="mainActivity.imageSearchListClick(event)" src="/x5/$v506ea92be7424bdfbbd1cd767f33fd87/UI/SA/OPM/images/search.gif?language=zh_CN" style="width:24px;;height:24px"/> 
+                                          </td>  
+                                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"/> 
+                                        </tr> 
+                                      </table> 
+                                    </div> 
+                                  </div> 
+                                </td>  
+                                <td style="width:100%"/> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </td> 
+                      </tr>  
+                      <tr id="tr6"> 
+                        <td id="td9"> 
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="240px" id="wdOrgDetail" minmaxable="false" modal="true" onReceive="mainActivity.wdOrgDetailReceive" reload-on-open="false" resizable="false" style="top:293px;left:148px;" title="组织" url="/SA/OPM/organization/orgDetail.w" width="310px"/>  
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="498px" id="wdPersonDetail" minmaxable="false" modal="true" onClose="mainActivity.wdPersonDetailClose" onReceive="mainActivity.wdPersonDetailReceive" resizable="false" style="top:293px;left:189px;" title="人员" url="/SA/OPM/organization/personDetail.w" width="550px"/>  
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="450px" id="wdSelectMoveToOrg" modal="true" onReceive="mainActivity.wdSelectMoveToOrgReceive" style="top:294px;left:230px;" title="移动到" url="/SA/OPM/dialogs/selectSingleOrg/selectSingleOrg.w" width="400px"/>  
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="400px" id="wdSortOrgs" modal="true" onReceive="mainActivity.wdSortOrgsReceive" style="top:295px;left:270px;" title="组织排序" url="/SA/OPM/organization/sortOrgs.w" width="300px"/>  
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="450px" id="wdAssignPerson" modal="true" onReceive="mainActivity.wdAssignPersonReceive" style="top:295px;left:310px;" title="分配人员" url="/SA/OPM/dialogs/selectMultiOrgs/selectMultiOrgs.w" width="750px"/>  
+                          <div class="component_6298A7A1 grid" data="dOrgList" delay="false" id="gridOrgList" onRowDblClick="mainActivity.gridOrgListRowDblClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="sLongName,sFName,sFCode,sFID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,posName,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,POSITIONAL_TITLE_CODE"/>  
+                          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="450px" id="wdChangeMainOrg" modal="true" onReceive="mainActivity.wdChangeMainOrgReceive" style="top:295px;left:351px;" title="选择人员所属组织" url="/SA/OPM/dialogs/selectSingleOrg/selectSingleOrg.w" width="400px"/> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div>  
+                  <div class="xui-splitter-handler xui-splitter-handler-h"> 
+                    <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                      <i class="icon-system-left-dir white-icon"/> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="tr4" style="height:25px;"> 
+            <td id="td4"> 
+              <table class="xui-container" id="table1" style="height:100%;width:100%;table-layout:fixed;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;"> 
+                <tr id="tr2"> 
+                  <td id="" style="width:150px;border-right-style:solid;border-right-width:1px;border-right-color:#C0C0C0;"> 
+                    <input id="cbShowAllChildren" name="" onclick="mainActivity.cbShowAllChildrenClick(event)" type="checkbox" value=""/>  
+                    <label class="xui-label" for="cbShowAllChildren" id="label2" style="width:120px;">显示所有下级组织</label> 
+                  </td>  
+                  <td id=""> 
+                    <input checked="true" id="cbShowDpt" name="" onclick="mainActivity.cbShowDptClick(event)" type="checkbox" value=""/>  
+                    <label class="xui-label" for="cbShowDpt" id="label5" style="width:35px;">用户组</label>  
+                    <input checked="true" id="cbShowPsm" name="" onclick="mainActivity.cbShowPsmClick(event)" type="checkbox" value=""/>  
+                    <label class="xui-label" for="cbShowPsm" id="label7" style="width:35px;">人员</label> 
+                  </td> 
+                </tr> 
+              </table> 
+            </td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <script>
+function func_409276324(data){var oData = justep.XData.$('dOrgTree');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-1f61c68e-f673-40db-844c-4f3ff8f0320f"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_1620298459" style="display:none"/>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_1620298459-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N406758378" name="GLOBAL_ID_N406758378" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"/> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

@@ -1,0 +1,97 @@
+/**
+	@name UI.splitter
+	@component /UI/system/components/splitter.xbl.xml#splitter
+	@class XBL组件
+	@description <b>[rich]</b>分割条组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" 
+		style="width:100%;height:100%"
+		fix-size="50%" 
+		mode="horz" 
+		has-drag-bar="true" 
+		has-arrow-button="true">
+		<xhtml:div region="left">
+			<xhtml:div style='width:100%;height:100%'/>
+		</xhtml:div>
+		<xhtml:div region="right">
+			<xhtml:div style='width:100%;height:100%'/>
+		</xhtml:div>
+	</xhtml:div> 	   		
+</xmp>
+*/
+
+/**
+	@name UI.splitter#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/splitter.xbl.xml#splitter"
+*/
+
+/**
+	@name UI.splitter#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.splitter#fix__sub__size
+	@attribute
+	@description 初始化时，左侧（横向布局）或上侧（纵向布局）区域的大小
+*/
+
+/**
+	@name UI.splitter#fix__sub__type
+	@attribute
+	@description fix-size属性值作用区域，取值范围：left、right
+	@default left
+*/
+
+/**
+	@name UI.splitter#has__sub__drag__sub__bar
+	@attribute
+	@description 是否显示分割条
+*/
+
+/**
+	@name UI.splitter#resizable
+	@attribute
+	@description 是否允许拖拽改变两个区域大小
+*/
+
+/**
+	@name UI.splitter#status
+	@attribute
+	@description 初始化时显示得区域，取值范围：show-left(top) 只显示第一个区域、show-right(bottom) 只显示第二个区域
+*/
+
+/**
+	@name UI.splitter#moveToStart
+	@function
+	@description 移动分割条位置到最左/上边，只显示第二个区域
+	@example 
+	justep.xbl('splitter_id').moveToStart();
+*/
+
+/**
+	@name UI.splitter#moveToMiddle
+	@function
+	@description 移动分割条位置到中间，两个区域都显示
+	@example 
+	justep.xbl('splitter_id').moveToMiddle();
+*/
+
+/**
+	@name UI.splitter#moveToEnd
+	@function
+	@description 移动分割条位置到最右/下边，只显示第一个区域
+	@example 
+	justep.xbl('splitter_id').moveToEnd();
+*/
+
+

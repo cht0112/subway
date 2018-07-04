@@ -1,0 +1,468 @@
+/**
+	@name UI.windowDialog
+	@component /UI/system/components/windowDialog.xbl.xml#windowDialog
+	@class justep.WindowDialog
+	@extends justep.ObjectEvent
+	@model UI
+	@description <b>[rich]</b>window对话框组件
+	@see UI.windowRunner
+	@see UI.windowFrame
+	@see UI.windowOpener
+	@see UI.windowReceiver
+	@example 
+	<b>windowDialog等组件和windowReceiver组件数据传递说明：</b>
+<xmp>			    
+	与windowDialog、windowRunner、windowFrame、windowOpener打开的子页面通讯(注:跨域不支持数据传递)：
+	1、组件通过open或者open2方法传递数据，也可以在组件的onSend事件中对event.data赋值
+	2、子页面接受数据
+		如果要实现通讯子页面, 子页面必须引入组件 ： /UI/system/components/windowReceiver.xbl.xml#windowReceiver　
+		在onReceive事件中接收数据
+			      
+	子页面控制刷新、取消、确定：
+		确定
+			子页面调用 justep.xbl('windowReceiver').windowEnsure(obj) 既可以实现确定 。
+			参数 obj 为传回到父页面的数据。
+		刷新
+			子页面调用 justep.xbl('windowReceiver').windowRefresh() 既可以实现刷新
+		取消
+			子页面调用 justep.xbl('windowReceiver').windowCancel() 既可以实现取消关闭
+		返回数据	
+			子页面调用 justep.xbl('windowReceiver').sendData() 既可以实现数据返回调用者
+
+	接受	子页面回传数据后的处理逻辑：
+		组件上提供了mapping设置完成常规的返回数据操作：
+		接受返回数据格式：
+			[
+				{//行id使用：rowid
+					列名 : 值,
+					列名 : 值,
+					...
+				},
+				...
+			]
+			注：继承平台提供对话框模板自动返回下面格式，
+			          如果开发者独立实现页面返回如上格式也可以使用mapping机制，
+			          或者使用justep.WindowReceiver.getMappingData(...)构造返回mappingData
+		处理模式：
+			全部新增 -- 返回数据根据映射规则全部新增到data
+			根据鉴别列新增或修改 -- 通过设置的鉴别列，当存在相关数据时修改，不存在时新增
+			删除后新增 -- 删除原有数据全部新增
+			修改当前行 -- 用返回的数据修改当前行数据
+		
+		如果以上操作不能满足可以接管组件的onReceive事件进行处理		   
+</xmp>
+	<b>xml格式：</b>
+<xmp>	
+	<xhtml:div component="/UI/system/components/windowDialog.xbl.xml#windowDialog"
+		id="windowDialog1"
+		url="/system/service/common_choose/tree_list_multi_person_choose.w"
+		title="windowDialog案例"
+		modal="true"
+		status="maximize"
+		width="500"
+		height="500"
+		left="0"                  
+		top="0"
+		minmaxable="true"
+		resizable="true"
+		neighbor="testneighbor"
+		autosize="false"
+		onSend="testOnSendToFrame"
+		onReceive= "testReceiveFromFreame"
+		onInit="testonInit"
+		onOpen="onOpen"
+		onClose="testOnDialogClose"/>
+</xmp>
+	<b>JS使用说明：</b>
+<xmp>			    
+	1、使用js调用需要引入：
+		/UI/system/components/dialog/dialog.js
+		/UI/system/components/windowDialog/windowDialog.js
+			      
+	2、代码:
+		if(!windowDialog){            
+			windowDialog = new justep.WindowDialog("testW",url,"测试案例",true,null,600,500,0,0,false);
+			windowDialog.attachEvent("onInit", function(){alert('init event');} , windowDialog);
+			windowDialog.attachEvent("onOpen", function(){alert('onOpenn event');} , windowDialog);  
+			windowDialog.attachEvent("onClose", function(){alert('close event');} , windowDialog);
+			windowDialog.attachEvent("onSend", 
+				function(event){
+					event.data = '数据';
+				}, 
+				windowDialog);
+			windowDialog.attachEvent("onReceive", function(event){alert(event)} , windowDialog);
+		}
+		windowDialog.open();
+</xmp>		
+*/
+
+/**
+	@name UI.windowDialog#windowDialog
+	@function
+	@param {string} id <b>[required]</b>组件ID
+	@param {string} url <b>[required]</b>被打开页面的url，参见{@link UI.windowDialog#url}
+	@param {string} title <b>[required]</b>对话框标题
+	@param {boolean} modal 是否模态显示
+	@param {string} status 初始化状态，参见{@link UI.windowDialog#status}
+	@param {integer} width 对话框宽(单位px)
+	@param {integer} height 对话框高(单位px)
+	@param {integer} left 对话框距离页面左边框的距离(单位px)
+	@param {integer} top  对话框距离页面顶端的距离(单位px)，当left、top都没有时默认居中显示
+	@param {boolean} reloadOnOpen 打开时重新刷新
+	@param {function} onSend 发送事件，该事件函数的返回值将传递给新打开的页面，参见{@link UI.windowDialog#onSend}
+	@param {function} onReceive 接收运行页面回传数据，参见{@link UI.windowDialog#onReceive}
+	@param {function} onInit 初始化事件，参见{@link UI.windowDialog#onInit}
+	@param {function} onOpen 对话框打开事件，参见{@link UI.windowDialog#onOpen}
+	@param {function} onClose 对话框关闭事件，参见{@link UI.windowDialog#onClose}
+	@description 构造函数
+	@example
+	//动态创建
+	var dialog = new justep.WindowDialog(id, url, title);
+*/
+
+/**
+	@name UI.windowDialog#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/windowDialog.xbl.xml#windowDialog"
+*/
+
+/**
+	@name UI.windowDialog#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.windowDialog#url
+	@attribute 
+	@description 被打开页面的url，如：.w文件的url、其他第三方页面的url
+*/
+
+/**
+	@name UI.windowDialog#title
+	@attribute 
+	@description 标题
+*/
+
+/**
+	@name UI.windowDialog#show__sub__title
+	@attribute 
+	@description 是否显示标题
+*/
+
+/**
+	@name UI.windowDialog#modal
+	@attribute 
+	@description 是否是模态
+	@default "false"
+*/
+
+/**
+	@name UI.windowDialog#status
+	@attribute 
+	@type {string}
+	@description 初始化状态，取值范围：minimize（最小化）、maximize（最大化），默认按width、height显示
+*/
+
+/**
+	@name UI.windowDialog#width
+	@attribute 
+	@description 宽度(单位px)
+*/
+
+/**
+	@name UI.windowDialog#height
+	@attribute 
+	@description 高度(单位px)
+*/
+
+/**
+	@name UI.windowDialog#left
+	@attribute 
+	@description 对话框距离页面左边框的距离(单位px)
+*/
+
+/**
+	@name UI.windowDialog#top
+	@attribute 
+	@description 对话框距离页面顶端的距离(单位px)
+*/
+
+/**
+	@name UI.windowDialog#closable
+	@attribute 
+	@type {boolean}
+	@description 是否显示关闭按钮
+	@default "true"
+*/
+
+/**
+	@name UI.windowDialog#minmaxable
+	@attribute 
+	@type {boolean}
+	@description 是否显示最小最大化按钮
+	@default "true"
+*/
+
+/**
+	@name UI.windowDialog#resizable
+	@attribute 
+	@type {boolean}
+	@description 是否可以拖拽改变大小
+	@default "true"
+*/
+
+/**
+	@name UI.windowDialog#neighbor 
+	@attribute
+	@type {string} 
+	@description 邻居节点(dom)的id, 若设置，则对话框会在他的下方显示
+*/
+
+/**
+	@name UI.windowDialog#process
+	@attribute 
+	@description 打开窗口的process，默认使用当前环境中的process
+*/
+
+/**
+	@name UI.windowDialog#activity
+	@attribute 
+	@description 打开窗口的activity，默认使用当前环境中的activity
+*/
+
+/**
+	@name UI.windowDialog#mapping 
+	@attribute 
+	@description 处理返回数据方式配置
+	@example
+	<b>接受返回数据格式：</b>
+	[
+		{//行id使用：rowid
+			列名 : 值,
+			列名 : 值,
+			...
+		},
+		...
+	]
+	<b>处理模式：</b>
+	全部新增 -- 返回数据根据映射规则全部新增到data
+	根据鉴别列新增或修改 -- 通过设置的鉴别列，当存在相关数据时修改，不存在时新增
+	删除后新增 -- 删除原有数据全部新增
+	修改当前行 -- 用返回的数据修改当前行数据
+*/
+
+/**
+	@name UI.windowDialog#onInit
+	@event 
+	@description <b>[回调型事件]</b>初始化时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowDialog#onOpen
+	@event 
+	@description <b>[回调型事件]</b>打开时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowDialog#onClose
+	@event 
+	@description <b>[回调型事件]</b>关闭时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowDialog#onSend
+	@event
+	@description <b>[回调型事件]</b> 向对话框传递数据，该事件函数的返回值将传递给对话框
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传递给打开页面的数据，可修改open方法传递的数据
+	}
+	</xmp>
+	@see UI.windowDialog#open2
+*/
+
+/**
+	@name UI.windowDialog#onReceive
+	@event
+	@description <b>[回调型事件]</b> 接受对话框返回数据，参考：{@link UI.windowReceiver}
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传回的数据
+	}
+	</xmp>
+*/
+
+/**
+ @name UI.windowDialog#setURL
+ @function
+ @param {string} url <b>[required]</b>URL
+ @description 设置要打开的URL，重新设置URL需要在使用open2方法前
+*/
+
+/**
+ @name UI.windowDialog#open
+ @function
+ @param {object} data 传递给对话框页面的数据，接管onSend事件可以影响
+ @param {string} title 对话框的标题
+ @param {string} url 指定要打开的window，但给出这个参数时会刺激dialog中window重新刷新
+ @param {string} process 缺省取环境里的
+ @param {string} activity 缺省取环境里的
+ @param {string} executor 执行者，缺省取环境里的
+ @param {string} executeContext 执行环境，缺省取环境里的
+ @description <b>[兼容保留]</b>打开对话框
+ @see UI.windowDialog#onSend
+ @see UI.windowDialog#open2
+*/
+
+/**
+	@name UI.windowDialog#open2
+	@function 
+	@description <b>[推荐使用]</b>打开对话框
+	@param {object} options 打开参数
+	<br/><b>参数说明：</b>
+	<xmp>
+	{
+		data : {object} 打开传给对话框的数据，接管onSend事件可以影响,
+		title : {string} 对话框的标题,
+		url : {string} 指定要打开的功能页的地址,
+		process : {string} 缺省取环境里的,
+		activity : {string} 缺省取环境里的,
+		executor : {string} 执行者，缺省取环境里的,
+		executeContext : {string} 执行环境，缺省取环境里的
+	}
+	</xmp>
+	@example 
+	<b>代码示例：</b>
+	var options = {
+		"data" : data, 
+		"title" : title, 
+		"url" : '/UI/demo/components/process/windowRunner/subWindow.w', 
+		"process" : process, 
+		"activity" : activity, 
+		"executor" : executor, 
+		"executorContext" : executorContext
+	};
+	justep.xbl(组件ID).open2(options);
+	@see UI.windowDialog#onSend
+ */
+
+/**
+ @name UI.windowDialog#close
+ @function
+ @description 关闭窗口
+**/
+
+/**
+ @name UI.windowDialog#refresh
+ @function
+ @description 刷新窗口
+**/
+
+/**
+ @name UI.windowDialog#setClosable
+ @function
+ @param {boolean}  closable 是否显示
+ @description 是否显示关闭按钮
+*/
+
+/**
+ @name UI.windowDialog#setMinmaxable
+ @function
+ @param {boolean}  minmaxable 是否显示
+ @description 是否显示最大最小化按钮
+*/
+
+/**
+ @name UI.windowDialog#setResizable
+ @function
+ @param {boolean}  resizable 是否可以调整大小
+ @description 是否可以调整大小
+*/
+
+/**
+ @name UI.windowDialog#setNeighbor
+ @function
+ @param {string}  id 元素ID
+ @description 显示在某个元素下方
+*/
+
+/**
+ @name UI.windowDialog#setProcess
+ @function
+ @param {string} process <b>[required]</b>process
+ @description 设置windowDialog使用的process，默认使用当前环境中的process
+*/
+
+/**
+ @name UI.windowDialog#getProcess
+ @function
+ @return {string}
+ @description 获取windowDialog使用的process，没有set过时取环境中的process
+*/
+
+/**
+ @name UI.windowDialog#setActivity
+ @function
+ @param {string} <b>[required]</b>activity
+ @description 设置windowDialog使用的activity，默认使用当前环境中的activity
+*/
+
+/**
+ @name UI.windowDialog#getActivity
+ @function
+ @return {string}
+ @description 获取windowDialog使用的activity，没有set过时取环境中的activity
+*/
+
+/**
+ @name UI.windowDialog#getFrame
+ @function
+ @returns {iframe} 
+ @description 获取iframe对象
+*/
+
+/**
+ @name UI.windowDialog#getContentDocument
+ @function
+ @returns {document}
+ @description 获取对话框中内容的document对象
+*/
+
+/**
+ @name UI.windowDialog#getContentWindow
+ @function
+ @returns {window}
+ @description 获取打开功能的window对象
+*/
+

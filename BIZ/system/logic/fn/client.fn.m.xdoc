@@ -1,0 +1,36 @@
+/**
+	@name ClientFn
+	@class
+	@model BIZ
+	@description 多租户函数
+	@example
+	多租户函数定义，定义模块是“/system/logic/fn”，使用通用函数时，需要先引用（use或include）模块“/system/logic/fn”。
+*/
+
+/**
+	@name ClientFn.enabledClient
+	@fn
+	@description 是否开启多租户模式
+	@returns {Boolean}
+*/
+
+/**
+	@name ClientFn.clientName
+	@fn
+	@description 租户字段名
+	@returns {String}
+*/
+
+/**
+	@name ClientFn.clientValue
+	@fn
+	@description 租户标识
+	@returns {String}
+*/
+
+/**
+	@name ClientFn.clientCode
+	@fn
+	@description 租户编码
+	@returns {String}
+*/

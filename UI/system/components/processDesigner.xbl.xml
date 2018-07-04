@@ -1,0 +1,33 @@
+<xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:xforms="http://www.justep.com/xforms">
+    <script type="text/javascript" src="/UI/system/components/dialog/dialog.js"/>
+	<script type="text/javascript" src="/UI/system/components/windowDialog/windowDialog.js"/>
+	<script src="./processDesigner/designer.js"/>
+	<script src="./processDesigner/processDesigner.js"/>
+	<style src="./processDesigner/processDesigner.css" />
+	<binding id="processDesigner">
+		<template template-type="xslt">
+			<xsl:template match="/*"
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+				xmlns:xforms="http://www.justep.com/xforms"
+				xmlns:ev="http://www.w3.org/2001/xml-events">
+				<root>				
+
+				</root>
+			</xsl:template>	
+		</template>
+		
+		<implementation>
+			({
+				initXBL : function(){
+					justep.Object.extend(this, new justep.ProcessDesigner(this));
+				}
+			})
+		</implementation>
+		
+	</binding>
+</xbl>

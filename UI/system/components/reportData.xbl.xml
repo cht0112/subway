@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	
+	<script src="./reportData/reportData.js"/>
+	<binding id="data" >
+		<template template-type="java" src="ReportData" delete-bound-element="true"/>
+		<xbl:implementation><![CDATA[
+		({
+			initXBL : function() {
+				this._id = this.domNode.id;
+				if (!this._id) {
+					throw new Error("ReportData组件的id属性不能为空");
+				}
+				justep.Object.extend(this, new justep.ReportData(this.domNode.id,false));
+			} 
+		})]]>			
+		</xbl:implementation>
+	</binding>
+
+</xbl>

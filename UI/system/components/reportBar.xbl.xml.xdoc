@@ -1,0 +1,58 @@
+							
+/**
+	@name UI.reportBar
+	@model UI
+	@component /UI/system/components/reportBar.xbl.xml#exportBar
+	@class XBL组件
+	@description <b>[rich]</b>报表工具栏组件
+	@example 
+	<xmp>
+    <bar component="/UI/system/components/reportBar.xbl.xml#exportBar"
+   	     report="" id="exportBar" />
+    <bar component="/UI/system/components/reportBar.xbl.xml#printBar"
+	     report="" id="printBar" />
+	</xmp>
+*/
+
+/**
+	@name UI.reportBar#component
+	@property
+	@description <b>[attribute][required]</b>组件标识
+	@default "/UI/system/components/reportBar.xbl.xml#exportBar"
+*/			
+
+/**
+	@name UI.reportBar#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.reportBar#report
+	@property 
+	@description <b>[attribute]</b>对应的报表组件ID
+*/	
+
+/**
+	@name UI.reportBar#mode
+	@property
+	@description <b>[attribute]</b>显示模式,取值范围:图标,图标文字(左右),图标文字(上下)
+*/
+	
+/**
+	@name UI.reportBar#item
+	@property
+	@description <b>[child]</b>定制可以出现哪些按钮
+	@example
+	<xmp>
+		item节点的属性:
+			name: 系统预定义按钮{
+				   exportBar(report-export-pdf-item,report-export-word-item,report-export-excel-item ) 
+				   printBar(report-page-setup-item ,report-preview-item,report-print-item)
+				  }
+		    accesskey: 快捷键
+		    disabled: 禁用控制
+			readonly: 只读条件, 只对系统预定义的按钮起作用
+			relevant: 可见条件, 只对系统预定义的按钮起作用
+	</xmp>
+*/

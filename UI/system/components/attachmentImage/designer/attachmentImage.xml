@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="attachmentImage" tag-name="div" icon="picture.gif" text="图片" 
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"	
+		binding-component="/UI/system/components/attachmentImage.xbl.xml#attachmentImage"
+		 component-class="attachmentImage"
+		 component-type="formControl" tag-type="rich">
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="keyId" text="keyId名称" />
+			<property name="ref" text="引用" editor-ref="dataRef" required="true"/>
+			<property name="auto-load" text="是否自动加载数据" editor-ref="booleanList" default-value="true" data-type="boolean" />
+			<property name="runtime" text="采用何种机制初始化上传组件" editor-ref="runtimeTypeList" default-value="flash"/>
+			<property name="sub-path" text="动态子目录" />
+			<property name="limit-size" text="限制大小" enabled-condition="@runtime!='html4'" checkup-condition="@runtime!='html4'"/>
+			<property name="extension-filter" text="上传文件类型" editor-ref="extensionFilterList" enum-values="" />
+	        <property name="disabled" text="禁用" required="false" editor-ref="edit-disabled" default-value="false" data-type="boolean" />
+			<property name="stretch" text="拉伸" required="false" editor-ref="booleanList" default-value="true" data-type="boolean" />
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-attachmentImage"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="高度" required="true" /> 
+				<property name="height" text="宽度" required="true" />
+			</property>
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		     <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" component="/UI/system/components/attachmentImage.xbl.xml#attachmentImage" runtime="html4"></xhtml:div>
+		   ]]></template>
+		</templates>
+		<property-editors>
+			<property-editor name="modelList" type="list">
+				<dynamic-data xpath="//*[local-name()='model']/@id" />								
+			</property-editor>
+			<property-editor name="runtimeTypeList" type="list">
+				<static-data value="html4,flash" />
+			</property-editor>
+			<property-editor name="extensionFilterList" type="list" >  
+				<static-data value=":所有图片,JPEG(*.JPG;*.JPEG;*.JPE;*.JFIF)|*.JPG;*.JPEG;*.JPE;*.JFIF:JPEG(*.JPG;*.JPEG;*.JPE;*.JFIF),
+				                     GIF(*.GIF)|*.GIF:GIF(*.GIF),位图文件(*.BMP)|*.BMP:位图文件(*.BMP),PNG(*.PNG)|*.PNG:PNG(*.PNG),TIF(*.TIF;*.TIFF)|*.TIF;*.TIFF:TIF(*.TIF;*.TIFF)" /> 
+			</property-editor>
+		</property-editors>	
+		<events>
+			<event name="onCreate" parameters="event"/>
+			<event name="onEditClick" parameters="event"/>
+			<event name="onDeleteClick" parameters="event"/>
+			<event name="onFileSelected" parameters="event" enabled-condition="@runtime!='html4'" checkup-condition="@runtime!='html4'"/>
+			<event name="onUploadCompleted" parameters="event"/>
+		</events>
+	</element>
+</elements>

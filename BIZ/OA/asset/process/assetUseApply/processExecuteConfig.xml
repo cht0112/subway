@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root> 
+	<enabled>true</enabled>
+	<data-model>/OA/asset/data</data-model>
+	<biz-concept>OA_AS_UseApplyM</biz-concept>
+	<execute-concept>OA_AS_UseExecute</execute-concept>
+	<execute-dialog>
+		<verdict-displayed>none</verdict-displayed>
+		<opinion-required>none</opinion-required>
+		<advance-enabled>all</advance-enabled>
+		<back-enabled>deptManagerActivity,managerProcessActivity</back-enabled>
+		<transfer-enabled>deptManagerActivity,managerProcessActivity</transfer-enabled>
+		<abort-enabled>all</abort-enabled>
+	</execute-dialog>
+	<execute-list>
+		<displayed-activities></displayed-activities>
+	</execute-list>
+</root>

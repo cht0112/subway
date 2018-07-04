@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <style rel="stylesheet" type="text/css"></style>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			/*onerror = pageErrorHandler;*/
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/SA/tools/process/appLicense/encryptModelActivity.js">
+</script>      <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/trigger.xbl.xml#trigger"] = _xbl_JSClassDefine_trigger;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+function _xbl_JSClassDefine_trigger(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_trigger.prototype = justep.Object.extend(new justep.XBLObject(), eval({	
+			"initXBL" : function() {
+				this.$el = $(this.domNode);
+				justep.Utils.proxable(this, this.domNode.xformsObject, xforms.XFTrigger);
+			},
+			"initXBL2" : function() {
+				this.domNode.xformsObject.initOperation();
+			}
+		}));
+
+_xbl_JSClassDefine_trigger.prototype.ClassName='_xbl_JSClassDefine_trigger';
+_xbl_JSClassDefine_trigger.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_trigger_j_xbl_e_;
+	var ids=[{id:'window', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'trigger1', name:'/UI/system/components/trigger.xbl.xml#trigger', children:[{id:'default1', name:'xforms:label'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'trigger1');xf._a('trigger1','default1');function init() {	
+var begin = new Date().getTime();	
+var xf_model_model1 = new xforms.XFModel('model1',null);	
+xforms.load_parts('rootView');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+function load_rootView(){if (justep("rootView").getAttribute('loaded') &amp;&amp; justep("rootView").getAttribute('loaded') == 'true') return;justep("rootView").setAttribute('loaded', 'true');	
+if(typeof(load_rootView_html) == 'function')load_rootView_html();	
+var xf_trigger_trigger1=new xforms.XFTrigger('trigger1',null,null,null,false,false,false,null,null,"icon-system-ok");	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){encryptModelActivity.trigger1Click(event)}));xf._p(justep('trigger1'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action1,'trigger1', evt,false)});	
+}	
+function load_rootView_xblinit(){if (justep("rootView").getAttribute('xblloaded') &amp;&amp; justep("rootView").getAttribute('xblloaded') == 'true') return;justep("rootView").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" lazy="false" style="height:100%;width:100%;position:relative;">         <label class="xui-label" id="label1" style="position:absolute;top:72px;left:31px;">开发商数字证书：</label>  
+        <label class="xui-label" id="label3" style="position:absolute;left:31px;top:119px;">开发商数字证书口令：</label>  
+        <label class="xui-label" id="label4" style="position:absolute;position:absolute;top:169px;left:30px;">原模型路径：</label>  
+        <label class="xui-label" id="label5" style="position:absolute;position:absolute;left:30px;position:absolute;top:218px;">加密后模型存放路径：</label>  
+        <label class="xui-label" id="label6" style="position:absolute;position:absolute;left:30px;position:absolute;position:absolute;top:265px;">需要加密的应用：</label>  
+        <label class="xui-label" id="label2" style="position:absolute;position:absolute;left:611px;top:265px;">格式如：/demo;/OA，支持多个应用，多个应用用;分隔</label>  
+        <form action="/UI/system/service/common/bizAction.j" enctype="multipart/form-data" id="f" method="post" name="f" style="position:absolute;height:100%;width:100%;top:0px;left:0px;margin:0;" target="result-iframe"> 
+          <input name="process" type="hidden" value="/SA/tools/process/appLicense/appLicenseProcess"></input>  
+          <input name="activity" type="hidden" value="encryptModelActivity"></input>  
+          <input name="action" type="hidden" value="encryptAppAction"></input>  
+          <input name="isCompile" type="hidden" value="true"></input>  
+          <input class="xui-input" id="cert" name="cert" style="position:absolute;width:421px;top:70px;left:175px;" type="file" value=""></input>  
+          <input class="xui-input" id="password" name="password" style="position:absolute;top:117px;width:422px;left:175px;" type="hidden" value=""></input>  
+          <input class="xui-input" id="sourceModelPath" name="sourceModelPath" style="position:absolute;width:422px;position:absolute;top:167px;left:174px;" type="text" value=""></input>  
+          <input class="xui-input" id="targetModelPath" name="targetModelPath" style="position:absolute;width:422px;position:absolute;left:174px;position:absolute;top:216px;" type="text" value=""></input>  
+          <input class="xui-input" id="app" name="app" style="position:absolute;width:422px;position:absolute;left:174px;position:absolute;position:absolute;top:263px;" type="text" value=""></input> 
+        </form>  
+        <input class="xui-input" id="password1" style="position:absolute;top:117px;width:422px;left:175px;" type="password" value=""></input>  
+        <iframe id="result-iframe" name="result-iframe" style="display:none"></iframe>  
+        <table cellpadding="0" cellspacing="0" class="button-blue component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="trigger1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:345px;left:534px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="xxf-value"> 
+                <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                  <i class="icon icon-system-ok"></i>  
+                  <span class="xforms-label " id="default1">执行</span> 
+                </button> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <label class="xui-label" id="label8" style="position:absolute;position:absolute;left:611px;position:absolute;top:218px;">请设置在和原模型不同的目录，不要使用中文目录</label>  
+        <label class="xui-label" id="label9" style="position:absolute;top:21px;left:31px;color:#FF0000;">注意：执行过程中请不要关闭功能</label>  
+        <input checked="true" id="compile" name="" style="position:absolute;top:312px;left:173px;" type="checkbox"></input>  
+        <label class="xui-label" id="label7" style="position:absolute;position:absolute;left:30px;position:absolute;position:absolute;position:absolute;top:312px;">强制编译模型：</label> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:ns="http://www.justep.com/x5#"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">  
+  <xsl:template match="/"> 
+    <xhtml:html xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl"
+      xmlns:f="http://orbeon.org/oxf/xml/formatting" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:widget="http://orbeon.org/oxf/xml/widget" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:ajx="http://www.ajaxforms.net/2006/ajx"
+      xmlns:justep="http://www.justep.com/x5#" xmlns:xreport="http://www.justep.com/x5/xreport"
+      xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0">  
+      <xhtml:head> 
+        <xhtml:script type="text/javascript" src="/UI/OA/meeting/process/boardroomArrangeQuery/meetingApply.js"/>  
+        <xhtml:script type="text/javascript" src="/base/base.js"/>  
+        <xhtml:title>会议室安排</xhtml:title>  
+        <xforms:model id="mainmodel"/> 
+      </xhtml:head>  
+      <xsl:variable name="tableWidth" select="count(/root/data/*/root/queryBoardroom/root/data/rows/row) * number(100) + number(60)"/>  
+      <xhtml:body> 
+        <xhtml:div> 
+          <xhtml:table cellspacing="1" border="0" bgcolor="#99bbe8" style="font-size:9pt;"> 
+            <xsl:attribute name="width"> 
+              <xsl:value-of select="$tableWidth"/> 
+            </xsl:attribute>  
+            <xsl:call-template name="rowTemplate"> 
+              <xsl:with-param name="rowCount" select="1"/>  
+              <xsl:with-param name="data" select="."/> 
+            </xsl:call-template> 
+          </xhtml:table> 
+        </xhtml:div> 
+      </xhtml:body> 
+    </xhtml:html> 
+  </xsl:template>  
+  <xsl:template name="rowTemplate"> 
+    <xsl:param name="rowCount"/>  
+    <xsl:param name="data"/>  
+    <xsl:if test="number($rowCount) &lt;= 17"> 
+      <xsl:variable name="rowindex" select="number($rowCount)"/>  
+      <xhtml:tr height="25px"> 
+        <xsl:if test="number($rowCount) = 1"> 
+          <xhtml:td width="60px" bgcolor="#A4DBF6" align="center"> 
+            <xhtml:label> 
+              <xsl:value-of select="'会议室'"/> 
+            </xhtml:label> 
+          </xhtml:td> 
+        </xsl:if>  
+        <xsl:if test="number($rowCount) &gt; 1"> 
+          <xhtml:td bordercolor="#000000" bgcolor="#A4DBF6" align="center"> 
+            <xhtml:label> 
+              <xsl:value-of select="concat(string(5 + number($rowCount)),':00')"/> 
+            </xhtml:label> 
+          </xhtml:td> 
+        </xsl:if>  
+        <xsl:call-template name="colTemplate"> 
+          <xsl:with-param name="rowCount" select="$rowCount"/>  
+          <xsl:with-param name="colCount" select="1"/>  
+          <xsl:with-param name="data" select="$data"/> 
+        </xsl:call-template> 
+      </xhtml:tr>  
+      <xsl:call-template name="rowTemplate"> 
+        <xsl:with-param name="rowCount" select="number($rowCount) + 1"/>  
+        <xsl:with-param name="data" select="$data"/> 
+      </xsl:call-template> 
+    </xsl:if> 
+  </xsl:template>  
+  <xsl:template name="colTemplate"> 
+    <xsl:param name="rowCount"/>  
+    <xsl:param name="colCount"/>  
+    <xsl:param name="data"/>  
+    <xsl:if test="number($colCount) &lt;= count($data/root/data/*/root/queryBoardroom/root/data/rows/row)"> 
+      <xsl:if test="number($rowCount)=1"> 
+        <xhtml:td width="100px" bgcolor="#A4DBF6" align="center"> 
+          <xhtml:label> 
+            <xsl:value-of select="$data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/fName"/> 
+          </xhtml:label> 
+        </xhtml:td> 
+      </xsl:if>  
+      <xsl:if test="number($rowCount) &gt; 1"> 
+        <xsl:choose> 
+          <xsl:when test="not(count($data/root/data/*/root/arrangeQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)])) &lt; 1"> 
+            <xhtml:td bgcolor="#FFFF00" align="center"> 
+              <xsl:attribute name="onmouseover"> 
+                <xsl:value-of select="concat('this.title = ''',
+                                   '使用人　 : ', $data/root/data/*/root/arrangeQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fUsePsnName,
+                                   '\n会议主题 : ', $data/root/data/*/root/arrangeQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fMeetName, 
+								   '\n开始时间 : ', replace(substring-before($data/root/data/*/root/arrangeQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fBeginTime,'.000Z'),'T',' '), 
+								   '\n结束时间 : ', replace(substring-before($data/root/data/*/root/arrangeQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fEndTime,'.000Z'),'T',' '),''';')"/> 
+              </xsl:attribute> 
+              <xsl:attribute name="ondblclick"> 
+                <xsl:value-of select="concat('meetingApply( ''',$data/root/data/*/root/form/room-date,''',''',(number($rowCount) + 5),''',''',
+                					$data/root/data/*/root/arrangeQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fBoardroom,''',''',
+                					'已安排',''')')"/> 
+              </xsl:attribute>  
+              <xhtml:label> 
+                <xsl:value-of select="'已安排'"/> 
+              </xhtml:label> 
+            </xhtml:td> 
+          </xsl:when>  
+          <xsl:when test="not(count($data/root/data/*/root/applyQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)])) &lt; 1"> 
+            <xhtml:td bgcolor="#CCFFCC" align="center"> 
+              <xsl:attribute name="onmouseover"> 
+                <xsl:value-of select="concat('this.title = ''',
+									'申请人　 : ', $data/root/data/*/root/applyQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fApplyPsnName,
+									'\n会议主题 : ', $data/root/data/*/root/applyQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fMeetName, 
+								    '\n开始时间 : ', replace(substring-before($data/root/data/*/root/applyQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fBeginTime,'.000Z'),'T',' '), 
+								    '\n结束时间 : ', replace(substring-before($data/root/data/*/root/applyQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fEndTime,'.000Z'),'T',' '),''';')"/>
+              </xsl:attribute> 
+              <xsl:attribute name="ondblclick"> 
+                <xsl:value-of select="concat('meetingApply( ''',$data/root/data/*/root/form/room-date,''',''',(number($rowCount) + 5),''',''',
+                					$data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom,''',''', $data/root/data/*/root/applyQueryResult/root/data/rows/row[((substring-before(string(./fBeginTime),'T') &lt; $data/root/data/*/root/form/room-date) or (hours-from-dateTime(./fBeginTime) &lt;= (number($rowCount) + 5))) and ((substring-before(string(./fEndTime),'T') &gt; $data/root/data/*/root/form/room-date) or (number(hours-from-dateTime(./fEndTime)) + number(minutes-from-dateTime(./fEndTime)) div 60) &gt; (number($rowCount) + 5)) and (./fBoardroomID = $data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom)]/fBoardroom,''',''',
+                					'申请中',''')')"/> 
+              </xsl:attribute> 
+              <xhtml:label> 
+                <xsl:value-of select="'申请中'"/> 
+              </xhtml:label> 
+            </xhtml:td> 
+          </xsl:when>  
+          <xsl:otherwise> 
+            <xhtml:td bgcolor="#FFFFFF" bordercolor="#FFFFFF"> 
+              <xsl:attribute name="onmouseover"> 
+                <xsl:value-of select="concat('this.title = ''','请双击单元格，进行会议室申请''')"/> 
+              </xsl:attribute>  
+              <xsl:attribute name="ondblclick"> 
+                <xsl:value-of select="concat('meetingApply( ''',$data/root/data/*/root/form/room-date,''',''',(number($rowCount) + 5),''',''',$data/root/data/*/root/queryBoardroom/root/data/rows/row[$colCount]/OA_MT_Boardroom,''','''','''')')"/> 
+              </xsl:attribute>  
+              <xhtml:label> 
+                <xsl:value-of select="''"/> 
+              </xhtml:label> 
+            </xhtml:td> 
+          </xsl:otherwise> 
+        </xsl:choose> 
+      </xsl:if>  
+      <xsl:call-template name="colTemplate"> 
+        <xsl:with-param name="rowCount" select="$rowCount"/>  
+        <xsl:with-param name="colCount" select="$colCount + 1"/>  
+        <xsl:with-param name="data" select="$data"/> 
+      </xsl:call-template> 
+    </xsl:if> 
+  </xsl:template> 
+</xsl:stylesheet>

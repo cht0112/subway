@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="standardProcessBar" tag-name="bar" icon="Control_ToolBar.gif"
+		text="标准流程工具栏"
+		namespace="xui" namespace-uri="http://www.justep.com/xui"
+		binding-component="/UI/appCommon/components/standardProcessBar.xbl.xml#standardProcessBar"
+	    parent-range="toolbars"
+		display-property="id"
+		component-class="StandardProcessBar"
+		component-type="layoutContainer" design-view="web-designer">
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+			    	<bar component="/UI/appCommon/components/standardProcessBar.xbl.xml#standardProcessBar"/>
+				]]>
+			</template>
+		</templates>
+		
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="数据"  required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data" />
+			<property name="process-engine" text="流程引擎" required="true" is-id-ref="true" editor-ref="processList" />
+			<property name="execute-readonly" text="按钮只读" editor-ref="xpathEditor" default-value="(call('justep.Context.getRequestParameter', 'activity-pattern') = 'detail') or (call('appCommon.TaskUtils.isNoticeTask'))"/>
+		</properties>
+		<property-editors>
+			<property-editor name="processList" type="list" >
+				<dynamic-data xpath="//*[@component='/UI/system/components/process.xbl.xml#process']/@id" /> 
+			</property-editor>
+		</property-editors>		
+	</element>
+</elements>

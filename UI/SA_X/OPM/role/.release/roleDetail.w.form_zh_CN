@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <script language="javascript" src="/UI/system/components/windowDialog/windowDialogReceiver.js">
+</script>      <script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js">
+</script>      <script language="javascript" src="/UI/system/components/dialog/dialog.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/SA/OPM/role/roleDetail.js">
+</script>      <script id="opmUtils" src="/UI/SA/OPM/js/OpmUtils.js">
+</script>      <script>
+new justep.XBizData('dRole',true,false,{'queryAction':"queryOPRoleAction",'saveAction':"saveOPRoleAction",'newAction':"createOPRoleAction",'dataModel':"/system/data",'concept':"{'SA_OPRole':'SA_OPRole'}",'limit':20,'idColumn':"{'name':'SA_OPRole','relation':'SA_OPRole','define':'SA_OPRole','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPRole.sName','define':'SA_OPRole.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPRole.sCode','define':'SA_OPRole.sCode','label':'编码'},'sCatalog':{'type':'String','relation':'SA_OPRole.sCatalog','define':'SA_OPRole.sCatalog','label':'分类'},'sRoleKind':{'type':'String','relation':'SA_OPRole.sRoleKind','define':'SA_OPRole.sRoleKind','label':'角色类型'},'sDescription':{'type':'String','relation':'SA_OPRole.sDescription','define':'SA_OPRole.sDescription','label':'描述'},'sSequence':{'type':'Integer','relation':'SA_OPRole.sSequence','define':'SA_OPRole.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPRole.sValidState','define':'SA_OPRole.sValidState','label':'可用状态'},'sParentRolesNames':{'type':'String','relation':'SA_OPRole.sParentRolesNames','define':'SA_OPRole.sParentRolesNames','label':'父角色名称列表'},'version':{'type':'Integer','relation':'SA_OPRole.version','define':'SA_OPRole.version','label':'版本'},'fZW':{'type':'String','relation':'SA_OPRole.fZW','define':'SA_OPRole.fZW','label':'职位'},'fGW':{'type':'String','relation':'SA_OPRole.fGW','define':'SA_OPRole.fGW','label':'岗位'}}",'defCalcRelations':"{'calcRoleKind':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'',{}).attachEvents({'onSaveCreateParam':'roleDetail.dRoleSaveCreateParam'});</script>  
+    <script>
+new justep.XBizData('dParentRole',false,false,{'queryAction':"queryOPParentRoleAction",'newAction':"createOPParentRoleAction",'dataModel':"/system/data",'concept':"{'SA_OPParentRole':'SA_OPParentRole'}",'limit':20,'idColumn':"{'name':'SA_OPParentRole','relation':'SA_OPParentRole','define':'SA_OPParentRole','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'version':{'type':'Integer','relation':'SA_OPParentRole.version','define':'SA_OPParentRole.version','label':'版本'},'sRoleID':{'type':'String','relation':'SA_OPParentRole.sRoleID','define':'SA_OPParentRole.sRoleID','label':'角色'},'sParentRoleID':{'type':'String','relation':'SA_OPParentRole.sParentRoleID','define':'SA_OPParentRole.sParentRoleID','label':'父角色'},'parentName':{'type':'String','relation':'parent.sName','define':'SA_OPRole.sName','label':'名称'}}",'defCalcRelations':"{'calcCheckBox':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dParentRole_part',{});</script>  
+    <script>
+new justep.XBizData('bizData1',true,false,{'queryAction':"queryOFFICE_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'concept':"{'OFFICE_TYPE_CODE':'OFFICE_TYPE_CODE'}",'limit':20,'idColumn':"{'name':'OFFICE_TYPE_CODE','relation':'OFFICE_TYPE_CODE','define':'OFFICE_TYPE_CODE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'oFFICEIDCNAME':{'type':'String','relation':'OFFICE_TYPE_CODE.oFFICEIDCNAME','define':'OFFICE_TYPE_CODE.oFFICEIDCNAME','label':'职位中文名称'},'oFFICEIDENAME':{'type':'String','relation':'OFFICE_TYPE_CODE.oFFICEIDENAME','define':'OFFICE_TYPE_CODE.oFFICEIDENAME','label':'职位英文名称'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData2',true,false,{'queryAction':"queryPOSITION_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'concept':"{'POSITION_TYPE_CODE':'POSITION_TYPE_CODE'}",'limit':20,'idColumn':"{'name':'POSITION_TYPE_CODE','relation':'POSITION_TYPE_CODE','define':'POSITION_TYPE_CODE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'pOSITIONIDCNAME':{'type':'String','relation':'POSITION_TYPE_CODE.pOSITIONIDCNAME','define':'POSITION_TYPE_CODE.pOSITIONIDCNAME','label':'岗位中文名称'},'pOSITIONIDENAME':{'type':'String','relation':'POSITION_TYPE_CODE.pOSITIONIDENAME','define':'POSITION_TYPE_CODE.pOSITIONIDENAME','label':'岗位英文名称'}}"},'',{});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver"] = _xbl_JSClassDefine_windowDialogReceiver;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/windowDialog.xbl.xml#windowDialog"] = _xbl_JSClassDefine_windowDialog;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_windowDialogReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialogReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var s = node.getAttribute('onReceive');
+				if(s) justep.windowDialogReceiver.acceptParentParamsFun = s;
+			},
+			"windowEnsure" : function(data,noclose){
+				justep.windowDialogReceiver.windowEnsure(data,noclose);
+			}, 
+			"windowCancel" : function(){
+				justep.windowDialogReceiver.windowCancel();
+			}, 
+			"windowRefresh" : function(){
+				justep.windowDialogReceiver.windowRefresh();
+			}
+		}));
+
+_xbl_JSClassDefine_windowDialogReceiver.prototype.ClassName='_xbl_JSClassDefine_windowDialogReceiver';
+_xbl_JSClassDefine_windowDialogReceiver.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_windowDialogReceiver_j_xbl_e_;
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+function _xbl_JSClassDefine_windowDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.WindowDialog(node.id,node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('modal')=="true",node.getAttribute('status'),
+				                  node.getAttribute('width'),node.getAttribute('height'),node.getAttribute('left'),node.getAttribute('top'),node.getAttribute("reload-on-open") =='true',
+				                  node.getAttribute('onSend') , node.getAttribute('onReceive') ,node.getAttribute('onInit') ,node.getAttribute('onOpen') ,node.getAttribute('onClose'));
+				dialog.setClosable(node.getAttribute('closable')!="false");
+				dialog.setMinmaxable(node.getAttribute('minmaxable')!="false");
+				dialog.setResizable(node.getAttribute('resizable')!="false");
+				dialog.setNeighbor(node.getAttribute('neighbor'));
+				dialog.setAutoSize(node.getAttribute('autosize')=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				dialog.setProcess(node.getAttribute("process"));
+				dialog.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+_xbl_JSClassDefine_windowDialog.prototype.ClassName='_xbl_JSClassDefine_windowDialog';
+_xbl_JSClassDefine_windowDialog.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_windowDialog_j_xbl_e_;
+	var ids=[{id:'91f5b3bf61bf42a79c720d0cb11b5f99', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'inputName', name:'xforms:input'},{id:'inputCode', name:'xforms:input'},{id:'inputRoleKind', name:'xforms:input'},{id:'inputCatalog', name:'xforms:input'},{id:'receiver', name:'/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver'},{id:'inputDescription', name:'xforms:input'},{id:'wdSelectRoles', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'gridRole', name:'xforms:grid'},{id:'gridSelect1', name:'xforms:gridselect1', children:[{id:'xuiLabel1', name:'xforms:label'},{id:'default3', name:'xforms:value'}]},{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'xuiLabel2', name:'xforms:label'},{id:'default5', name:'xforms:value'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'inputName');xf._a(null,'inputCode');xf._a(null,'inputRoleKind');xf._a(null,'inputCatalog');xf._a(null,'inputDescription');xf._a(null,'gridRole');xf._a(null,'gridSelect1');xf._a('gridSelect1','xuiLabel1');xf._a('gridSelect1','default4');xf._a(null,'gridSelect2');xf._a('gridSelect2','xuiLabel2');xf._a('gridSelect2','default6');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dRole')/sCode",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sCode')))));	
+xf._b("true()",xf._f('true'));	
+xf._b("'编号不能为空！'",xf._i("编号不能为空！"));	
+xf._b("instance('dRole')/sName",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sName')))));	
+xf._b("'名称不能为空！'",xf._i("名称不能为空！"));	
+xf._b("instance('dRole')/sParentRolesNames",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sParentRolesNames')))));	
+xf._b("instance('dRole')/sRoleKind",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sRoleKind')))));	
+xf._b("instance('dRole')/calcRoleKind",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','calcRoleKind')))));	
+xf._b("call('justep.OpmUtils.getRoleKindLabel',data('dRole')/sRoleKind)",xf._f('call',xf._i("justep.OpmUtils.getRoleKindLabel"),xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sRoleKind'))))));	
+xf._b("instance('dRole')/fZW",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','fZW')))));	
+xf._b("'职位不能为空！'",xf._i("职位不能为空！"));	
+xf._b("instance('dRole')/fGW",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','fGW')))));	
+xf._b("'岗位不能为空！'",xf._i("岗位不能为空！"));	
+xf._b("instance('dRole')/sSequence",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sSequence')))));	
+xf._b("instance('dRole')/sValidState",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dRole')/version",xf._g(xf._f('instance',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dParentRole')/version",xf._g(xf._f('instance',xf._i("dParentRole")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("data('dRole')/sName",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sName')))));	
+xf._b("data('dRole')/sCode",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sCode')))));	
+xf._b("data('dRole')/calcRoleKind",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','calcRoleKind')))));	
+xf._b("data('dRole')/sCatalog",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sCatalog')))));	
+xf._b("data('dRole')/sDescription",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','sDescription')))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xf._b("data('dRole')/fZW",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','fZW')))));	
+xf._b("oFFICEIDCNAME",xf._h(false, xf._k("child",xf._j('','oFFICEIDCNAME'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))));	
+xf._b("oFFICEIDENAME",xf._h(false, xf._k("child",xf._j('','oFFICEIDENAME'))));	
+xf._b("data('dRole')/fGW",xf._g(xf._f('data',xf._i("dRole")),xf._h(false, xf._k("child",xf._j('','fGW')))));	
+xf._b("pOSITIONIDCNAME",xf._h(false, xf._k("child",xf._j('','pOSITIONIDCNAME'))));	
+xf._b("pOSITIONIDENAME",xf._h(false, xf._k("child",xf._j('','pOSITIONIDENAME'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');var xf_model_model1 = new xforms.XFModel('model1',null);	
+new xforms.XFInstance2('dRole','model1',null,null,null,null,null,null,null,null,'calcRoleKind',null,'whereVersion');new SimpleStore('dRole',null);	
+xf._c('xf-bind-0','model1',"instance('dRole')/sCode",null,null,"true()",null,null,null,"'编号不能为空！'");	
+xf._c('xf-bind-1','model1',"instance('dRole')/sName",null,null,"true()",null,null,null,"'名称不能为空！'");	
+xf._c('xf-bind-2','model1',"instance('dRole')/sParentRolesNames",null,"true()",null,null,null,null,null);	
+xf._c('xf-bind-3','model1',"instance('dRole')/sRoleKind",null,"true()","true()",null,null,null,null);	
+xf._c('xf-bind-4','model1',"instance('dRole')/calcRoleKind",null,"true()",null,null,"call('justep.OpmUtils.getRoleKindLabel',data('dRole')/sRoleKind)",null,null);	
+xf._c('xf-bind-5','model1',"instance('dRole')/fZW",null,null,"true()",null,null,null,"'职位不能为空！'");	
+xf._c('xf-bind-6','model1',"instance('dRole')/fGW",null,null,"true()",null,null,null,"'岗位不能为空！'");	
+xf._c('xf-bind-7','model1',"instance('dRole')/sSequence","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-8','model1',"instance('dRole')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-9','model1',"instance('dRole')/version","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData1','model1',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('bizData1',null);	
+new xforms.XFInstance2('bizData2','model1',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('bizData2',null);	
+xf._d('inputName','text',xf._q("data('dRole')/sName"),null,null,null,null,false,false);	
+xf._d('inputCode','text',xf._q("data('dRole')/sCode"),null,null,null,null,false,false);	
+xf._d('inputRoleKind','text',xf._q("data('dRole')/calcRoleKind"),null,null,null,null,false,false);	
+xf._d('inputCatalog','text',xf._q("data('dRole')/sCatalog"),null,null,null,null,false,false);	
+xf._d('inputDescription','text',xf._q("data('dRole')/sDescription"),null,null,null,null,false,false);	
+new xforms.XFGrid({id:'gridRole',instance:'dRole',systemColumnsPro:'sCode,sCatalog,sRoleKind,sDescription,sSequence,sValidState,sParentRolesNames,version,fZW,fGW,calcRoleKind',onInit:null,type:'grid',smartRender:null,delay:false,ids:'space-column,sName',headNames:',',widths:'*,*',types:'ro,ro',hiddenColumns:'',aligns:',',serverSort:true,sorts:'na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+new xforms.XFExtSelect({id:'gridSelect1',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dRole')/fZW"),labelRef:xf._q("data('dRole')/fZW"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:'bizData1',columns:'oFFICEIDCNAME,__c_,oFFICEIDENAME',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'oFFICEIDENAME',valueColumn:'oFFICEIDCNAME',labelColumn:'oFFICEIDCNAME',extColumn:null,labels:',,',aligns:',,',types:'ro,ro,ro',widths:{widths:"#,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+new xforms.XFExtSelect({id:'gridSelect2',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('dRole')/fGW"),labelRef:xf._q("data('dRole')/fGW"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:'bizData2',columns:'pOSITIONIDCNAME,__c_,pOSITIONIDENAME',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'pOSITIONIDENAME',valueColumn:'pOSITIONIDCNAME',labelColumn:'pOSITIONIDCNAME',extColumn:null,labels:',,',aligns:',,',types:'ro,ro,ro',widths:{widths:"#,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dParentRole_part_loaded = false;	
+function load_dParentRole_part(callback){if (dParentRole_part_loaded) return;dParentRole_part_loaded = true;	
+new xforms.XFInstance2('dParentRole','model1',null,null,null,null,null,null,null,null,'calcCheckBox',null,'whereVersion');	
+xf._c('xf-bind-10','model1',"instance('dParentRole')/version","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dParentRole_part_init_loaded = false;	
+function load_dParentRole_part_init(){if (dParentRole_part_init_loaded) return;dParentRole_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="position:relative;width:100%;height:100%;">         <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputName" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:10px;left:48px;width:215px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputCode" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:215px;top:10px;left:312px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputRoleKind" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:40px;left:48px;width:215px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputCatalog" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:215px;top:40px;left:312px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <div class="component_45CC9B41 windowDialogReceiver" component="/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver" id="receiver" onReceive="roleDetail.receiverReceive" style="position:absolute;top:153px;left:151px;"></div>          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputDescription" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:479px;left:48px;top:100px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="300px" id="wdSelectRoles" modal="true" onReceive="roleDetail.wdSelectRolesReceive" style="position:absolute;top:154px;left:192px;" title="角色继承" url="/SA/OPM/dialogs/selectMultiRoles/selectMultiRoles.w" width="480px"></div>          <div class="component_6298A7A1 grid" data="dRole" delay="false" id="gridRole" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="position:absolute;display:none;width:161px;top:-6px;height:65px;left:-6px;;overflow:hidden" system-columns="sCode,sCatalog,sRoleKind,sDescription,sSequence,sValidState,sParentRolesNames,version,fZW,fGW,calcRoleKind"></div>          <label class="xui-label" id="label7" style="position:absolute;position:absolute;position:absolute;position:absolute;position:absolute;width:35px;height:11px;left:8px;top:106px;">描述</label>  
+        <label class="xui-label" id="label8" style="position:absolute;position:absolute;position:absolute;position:absolute;position:absolute;width:35px;height:11px;left:8px;top:46px;">类型</label>  
+        <label class="xui-label" id="label10" style="position:absolute;position:absolute;position:absolute;position:absolute;position:absolute;position:absolute;width:35px;height:11px;left:273px;top:16px;">编码</label>  
+        <label class="xui-label" id="label3" style="position:absolute;position:absolute;position:absolute;position:absolute;position:absolute;position:absolute;width:35px;height:11px;left:8px;top:16px;">名称</label>  
+        <label class="xui-label" id="label1" style="position:absolute;width:35px;height:11px;left:273px;top:46px;">分类</label>  
+        <input class="xui-button" id="btnOK" onclick="roleDetail.btnOKClick(event)" style="position:absolute;width:75px;left:370px;top:140px;" type="button" value="确定"></input>  
+        <input class="xui-button" id="btnCancel" onclick="roleDetail.btnCancelClick(event)" style="position:absolute;width:75px;left:453px;top:140px;" type="button" value="取消"></input>  
+        <label style="position:absolute;left:8px;top:76px;height:11;width:35;">职位</label>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:48px;top:70px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"></td>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <label style="position:absolute;left:272px;top:76px;height:11;width:35;">岗位</label>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:70px;left:312px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"></td>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

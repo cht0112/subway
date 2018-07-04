@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="processChart" tag-name="div" icon="chartMini.gif" text="流程轨迹图和波特图" 
+		binding-component="/UI/system/components/processChart.xbl.xml#processChart" display-property="id"
+		discriminate-condition="@component=/UI/system/components/processChart.xbl.xml#processChart"
+		component-class="ProcessChart"
+		component-type="formControl" design-view="web-designer" >
+		
+		<properties>
+			<property name="id" text="编号" required="true"/>      
+			<property name="class"  text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true"/>
+			</property>
+			<property name="ext" text="扩展属性" required="false" editor-ref="extDialog"/>      
+		</properties>
+		<property-editors>
+			<property-editor name="extDialog" type="dialog">
+				<dialog-page class-name="ExtDialogPage"/>				
+			</property-editor>
+		</property-editors>
+		
+		<imitation-config js-class-name="ProcessChart" />
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/processChart.xbl.xml#processChart"/>
+		   ]]></template>
+		</templates>
+		<events>
+			<event name="onTrackItemClick" text="" parameters="event"/>
+			<event name="onPertItemClick" text="" parameters="event"/>
+		</events>
+	</element>
+	
+	<element name="processTrackChart" tag-name="div" icon="trackChartMini.gif" text="流程轨迹图" 
+		binding-component="/UI/system/components/processChart.xbl.xml#processTrackChart" display-property="id"
+		discriminate-condition="@component=/UI/system/components/processChart.xbl.xml#processTrackChart"
+		component-class="ProcessTrackChart"
+		component-type="formControl" design-view="web-designer" >
+		
+		<properties>
+			<property name="id" text="编号" required="true"/>  
+			<property name="class"  text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true"/>
+			</property>
+			<property name="ext" text="扩展属性" required="false" editor-ref="extDialog"/>      
+		</properties>
+		<property-editors>
+			<property-editor name="extDialog" type="dialog">
+				<dialog-page class-name="ExtDialogPage"/>				
+			</property-editor>
+		</property-editors>
+		<imitation-config js-class-name="ProcessTrackChart" />
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/processChart.xbl.xml#processTrackChart"/>
+		   ]]></template>
+		</templates>
+		<events>
+			<event name="onTrackItemClick" text="" parameters="event"/>
+		</events>
+	</element>
+
+	<element name="processPertChart" tag-name="div" icon="pertChartMini.gif" text="流程波特图" 
+		binding-component="/UI/system/components/processChart.xbl.xml#processPertChart" display-property="id"
+		discriminate-condition="@component=/UI/system/components/processChart.xbl.xml#processPertChart"
+		component-class="ProcessPertChart"
+		component-type="formControl" design-view="web-designer" >
+		
+		<properties>
+			<property name="id" text="编号" required="true"/>        
+			<property name="class"  text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true"/>
+			</property>
+			<property name="ext" text="扩展属性" required="false" editor-ref="extDialog"/>      
+		</properties>
+		<property-editors>
+			<property-editor name="extDialog" type="dialog">
+				<dialog-page class-name="ExtDialogPage"/>				
+			</property-editor>
+		</property-editors>
+		
+		<imitation-config js-class-name="ProcessPertChart" />
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/processChart.xbl.xml#processPertChart"/>
+		   ]]></template>
+		</templates>
+		<events>
+			<event name="onPertItemClick" text="" parameters="event"/>
+		</events>
+	</element>
+	
+</elements>

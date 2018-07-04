@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	
+	<binding id="orgTree" >
+		<template template-type="java"  src="OrgTree" />
+		<implementation>
+		<![CDATA[
+			({
+				"initXBL" : function() {
+					this.__attribute_node = this.getElementByXblID('attribute');
+					this.__data_id = this.__attribute_node?this.__attribute_node.getAttribute('data-id'):'';
+					this.__grid_id = this.__attribute_node?this.__attribute_node.getAttribute('grid-id'):'';
+					this.__autoLoad = this.__attribute_node?'true'==this.__attribute_node.getAttribute('auto-load'):false;
+					this.__data_obj = this.__data_id?justep.xbl(this.__data_id):null;
+					this.__grid_obj = this.__grid_id?xforms(this.__grid_id):null;
+					this.hasDisable = 'true'==this.domNode.getAttribute('include-disable-org');
+					this.selectableOrgTypes = this.domNode.getAttribute('selectable-org-types');
+					this.selectableOrgTypes = this.selectableOrgTypes?this.selectableOrgTypes.split(','):[];
+					this.showOrgTypes = this.domNode.getAttribute('show-org-types');
+					this.showOrgTypes = this.showOrgTypes?this.showOrgTypes.split(','):[];
+					var filter = '';
+					for(var i=0;i<this.showOrgTypes.length;i++){
+						var nodeType = this.showOrgTypes[i];
+						var s = justep.String.trim(nodeType);
+						if(s) filter += (filter!=''?",":"")+"'"+s+"'";
+					}
+					this.showOrgTypeFilter = filter!=''?'SA_OPOrg.sOrgKindID in ('+filter+')':'';
+					this.manageCodes =  justep.String.trim(this.domNode.getAttribute('manage-codes'));
+					if(this.__grid_obj){
+						this.__grid_obj.attachEvent("onShowNodeImg", this._showNodeImg, this);
+					}
+					if(this.__data_obj) {
+						this.__data_obj.attachEvent("onRefreshCreateParam", this._doCreateParam, this);
+						if(this.__autoLoad) this.__data_obj.refreshData();
+					}
+				},
+
+				"getData" : function(){
+					return this.__data_obj;
+				},
+				
+				"getTree" : function(){
+					return this.__grid_obj;
+				},
+				
+				"_showNodeImg" : function(event){
+					var data = justep.xbl(event.instance.element.id);
+					if(!data) return;
+					var orgKind = !event.grid._isVirtualRoot(event.rowId)?data.getValue('sOrgKindID', event.rowId):'root';
+					var ValidState = !event.grid._isVirtualRoot(event.rowId)?(1==data.getValue('sValidState', event.rowId)):true;
+					return justep.Resource.getOrgImgURL(orgKind, !ValidState);
+				},
+				
+				"_doCreateParam" : function(event){
+					var queryParam = event.param;
+					var data = this.__data_obj;
+					var filter = this._getFilter();
+					var userFilter = data.buildFilter();
+					if(userFilter) filter = filter?'('+userFilter+') AND ('+filter+')':userFilter;
+					if(filter) queryParam.setString('filter', filter);
+					else queryParam.deleteParam('filter');
+
+					if(justep.XData.IS_TREE_ROOT==this.__data_obj.defTreeOption.loadTreeParent && this.manageCodes){
+						queryParam.setString('manageCodes', this.manageCodes);
+					}else queryParam.deleteParam('manageCodes');
+				},
+				
+				"_getFilter" : function(){
+					var orgFilter = this.showOrgTypeFilter;
+					if(orgFilter==""){
+						orgFilter += !this.hasDisable?'SA_OPOrg.sValidState=1':'';
+					}
+					else{
+						orgFilter += !this.hasDisable?' AND SA_OPOrg.sValidState=1':'';
+					}
+					return orgFilter;
+				}
+			})
+		]]>	
+		</implementation>	
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-orgTree{
+					width:200px;
+					height:300px;
+				}				
+			]]>
+			</xbl:style>
+		</xbl:resources>			
+	</binding>
+</xbl:xbl>	

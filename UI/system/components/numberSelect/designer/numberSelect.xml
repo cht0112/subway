@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="numberSelect" tag-type="rich" tag-name="div" icon="numberSelect.gif" text="数字选择下拉框" 
+			 namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"	
+			 binding-component="/UI/system/components/numberSelect.xbl.xml#numberSelect"  component-class="NumberSelect" component-type="formControl" >
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="ref" text="引用" editor-ref="dataRef"/>
+			<property name="min" text="最小值" data-type="integer" default-value="0" />
+			<property name="max" text="最大值" data-type="integer" default-value="100"/>
+			<property name="size" text="下拉显示的数量" data-type="integer" default-value="7"/>
+<!--			<property name="speed" text="数字滚动速度" data-type="integer" default-value="1"/>-->
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-select"/>
+			<property name="class" text="class" editor-extend-data="xui-select:select"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly"  default-value="false" data-type="boolean"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+		</properties>
+		<events>		
+			<event name="onDropdown"  text=""/>
+			<event name="onCloseup"  text=""/>
+		</events>
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" component="/UI/system/components/numberSelect.xbl.xml#numberSelect" />
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

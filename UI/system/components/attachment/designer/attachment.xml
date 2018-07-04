@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="attachment" tag-name="div" icon="attachment.gif" text="附件" tag-type="rich"
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"	
+		binding-component="/UI/system/components/attachment.xbl.xml#attachment"
+		 component-class="Attachment"
+		 component-type="formControl"  >
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="keyId" text="keyId名称" />
+			<property name="auto-load" text="是否自动加载数据" editor-ref="booleanList" default-value="true" data-type="boolean"/>
+			<property name="autoCreateVersion" text="是否自动成文" editor-ref="booleanList" default-value="false" data-type="boolean"/>
+			<property name="model" text="数据模型" editor-ref="modelList" required="true"/>
+			<property name="owner-data" text="主数据" editor-ref="contextComponent"  editor-parameter="data" required="true" />
+			<property name="owner-relation" text="主关系，为空时为rowid" editor-ref="relationsDlg" editor-parameter="owner-data" />
+			<property name="runtime" text="采用何种机制初始化上传组件" editor-ref="runtimeTypeList" default-value="flash"/>
+			<property name="root-path" text="根目录" required="true"/>
+			<property name="sub-path" text="动态子目录" />
+			<property name="limit-size" text="限制大小(字节)" enabled-condition="@runtime!='html4'" checkup-condition="@runtime!='html4'"/>
+			<property name="extension-filter" text="上传文件类型" editor-ref="extensionFilterList" enum-values=""/>
+			<property name="access" text="权限"  editor-ref="accessType" enum-values=""/>
+			<group name="display-buttons" text="显示按钮">
+				<property name="newDoc" text="新建按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="editDoc" text="编辑按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="downloadDoc" text="下载按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="browseDoc" text="浏览按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="deleteDoc" text="删除按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="saveDoc" text="保存按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="docProperties" text="属性按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="docHistory" text="历史按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+				<property name="refreshDoc" text="刷新按钮" write-to="display-buttons" editor-ref="booleanList" default-value="true"/>
+			</group>
+			<property name="show-tree" text="是否显示目录树" editor-ref="booleanList" default-value="true"/>
+			<property name="tree-width" text="目录树宽度" />
+			<property name="grid-width" text="列表宽度" />
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-attachment"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="高度" required="true" /> 
+				<property name="height" text="宽度" required="true" />
+			</property>
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		     <xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" component="/UI/system/components/attachment.xbl.xml#attachment"
+		     	display-buttons="newDoc:true;editDoc:true;downloadDoc:true;browseDoc:true;deleteDoc:true;saveDoc:true;docProperties:true;docHistory:true;refreshDoc:true;" runtime="html4">
+		     </xhtml:div>
+		   ]]></template>
+		</templates>
+		<property-editors>
+			<property-editor name="modelList" type="list">
+				<dynamic-data xpath="//*[local-name()='model']/@id" />								
+			</property-editor>
+			<property-editor name="runtimeTypeList" type="list">
+				<static-data value="html4,flash" />
+			</property-editor>
+			<property-editor name="accessType" type="list" >  
+				<static-data value="l:列表,r:读取,d:下载,du:下载 上传,duu:下载 上传 修改,duud:下载 上传 修改 删除" /> 
+			</property-editor>
+			<property-editor name="extensionFilterList" type="list" >  
+				<static-data value=":所有,图片文件(*.bmp;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.PNG;*.TIF;*.TIFF)|*.bmp;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.PNG;*.TIF;*.TIFF:图片文件,文档文件(*.txt;*.xls;*.doc;*.pdf)|*.txt;*.xls;*.doc;*.pdf:文档文件" /> 
+			</property-editor>
+		</property-editors>
+		
+		<events>
+			<event name="onCreate" parameters="event"/>
+			<event name="onNewFromTemplate" parameters="event"/>
+			<event name="onUploadClick" parameters="event"/>
+			<event name="onOfficeOperate" parameters="event"/>
+			<event name="onDeleteClick" parameters="event"/>
+			<event name="onAttributeClick" parameters="event"/>
+			<event name="onSaveClick" parameters="event"/>
+			<event name="onDownloadClick" parameters="event"/>
+			<event name="onBrowseDocClick" parameters="event"/>
+			<event name="onHistoryClick" parameters="event"/>
+			<event name="onRefreshDocClick" parameters="event"/>
+			<event name="onRefreshClick" parameters="event"/>
+			<event name="onGetIsPrint" parameters="event"/>
+			<event name="onFileSelected" parameters="event" enabled-condition="@runtime!='html4'" checkup-condition="@runtime!='html4'"/>
+			<event name="onUploadCompleted" parameters="event"/>
+			
+		</events>
+		
+	</element>
+</elements>

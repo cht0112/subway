@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="action" tag-name="action" icon="VSObject_Object.png" text="事件"  visible="false"
+		namespace="xforms" namespace-uri="http://www.justep.com/xforms"
+		display-property="ev:event" validator="ActionValidator" design-view="web-designer" >
+		<properties>
+			<property name="ev:event" text="事件" required="false" 
+					  namespace="ev" namespace-uri="http://www.w3.org/2001/xml-events" editor-ref=""/>
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xforms:action> 
+		      </xforms:action> 
+		   ]]></template>
+		   
+		   <template name="default"><![CDATA[ 
+		      <xforms:action> 
+		      </xforms:action> 
+		   ]]></template>
+		</templates>
+	</element>
+	
+	<element name="xformsScript" tag-name="script" icon="VSObject_Object.png" text="事件脚本" 
+		namespace="xforms" namespace-uri="http://www.justep.com/xforms">
+		<properties>
+			<property name="content" text="事件" path="text()" />
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xforms:script> 
+		      </xforms:script> 
+		   ]]></template>
+		</templates>
+	</element>
+	
+
+</elements>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+
+	<element name="exportBar" tag-name="bar" icon="Control_ToolBar.gif"
+		text="报表工具栏"
+		namespace="xui" namespace-uri="http://www.justep.com/xui"
+		binding-component="/UI/system/components/reportBar.xbl.xml#exportBar"
+	    parent-range="toolbars"
+		display-property="id"
+		component-class="ReportExportBar"
+		component-type="layoutContainer" design-view="web-designer">
+		<templates>
+			<template name="default"><![CDATA[ 
+			    <bar component="/UI/system/components/reportBar.xbl.xml#exportBar">
+			    	<item name="report-export-pdf-item"/>
+			    	<item name="report-export-word-item"/>
+			    	<item name="report-export-excel-item"/>
+			    </bar>
+			]]></template>
+		</templates>
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref="" />
+			<property name="report" text="报表组件" required="true"
+				editor-ref="reportlist" />
+			<property name="mode" text="显示模式" editor-ref="btnDisplayModes"/>    
+		</properties>
+		<property-editors>
+			<property-editor name="reportlist" type="list">
+				<dynamic-data xpath="//*[local-name()='div' and (@component='/UI/system/components/report.xbl.xml#report' or  @component='/UI/system/components/chart.xbl.xml#chart')]/@id"/>								
+			</property-editor>
+		</property-editors>		
+		<toolbar>
+			<item text="设置项" method="setBarItem" />
+		</toolbar>						
+	</element>
+
+	<element name="printBar" tag-name="bar" icon="Control_ToolBar.gif"
+		text="打印工具栏"
+		namespace="xui" namespace-uri="http://www.justep.com/xui"
+		binding-component="/UI/system/components/reportBar.xbl.xml#printBar"
+	     parent-range="toolbars"
+		display-property="id"
+		component-class="ReportPrintBar"
+		component-type="layoutContainer">
+		<templates>
+			<template name="default"><![CDATA[ 
+			    <bar component="/UI/system/components/reportBar.xbl.xml#printBar">
+			    	<item name="report-page-setup-item"/>
+			    	<item name="report-preview-item"/>
+			    	<item name="report-print-item"/>			    
+			    </bar>
+			]]></template>
+		</templates>
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref="" />
+			<property name="report" text="报表组件" required="true"
+				editor-ref="reportlist" />
+			<property name="mode" text="显示模式" editor-ref="btnDisplayModes"/>    
+		</properties>
+		<property-editors>
+			<property-editor name="reportlist" type="list">
+				<dynamic-data xpath="//*[local-name()='div' and (@component='/UI/system/components/report.xbl.xml#report' or  @component='/UI/system/components/chart.xbl.xml#chart')]/@id"/>								
+			</property-editor>
+		</property-editors>
+		<toolbar>
+			<item text="设置项" method="setBarItem" />
+		</toolbar>						
+	</element>
+</elements>

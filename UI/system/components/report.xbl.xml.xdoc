@@ -1,0 +1,116 @@
+
+/**
+	@name UI.report
+	@component /UI/system/components/report.xbl.xml#report
+	@model UI
+	@class XBL组件
+	@description <b>[rich]</b><b>[quick]</b><b>[mobile]</b>报表组件
+	@example 
+	<xmp>
+	<xhtml:div id="" component="/UI/system/components/report.xbl.xml#report" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+		src="" report-name="" auto-load="" style="" data-list="">
+	</xhtml:div>	   		
+	</xmp>
+*/
+
+/**
+	@name UI.report#component
+	@property
+	@description <b>[attribute][required]</b>组件标识
+	@default "/UI/system/components/report.xbl.xml#report"
+*/			
+
+/**
+	@name UI.report#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/	
+
+/**
+	@name UI.report#src
+	@property 
+	@description <b>[attribute]</b>报表定义文件
+*/	
+
+/**
+	@name UI.report#report__sub__name
+	@property 
+	@description <b>[attribute]</b>报表名
+*/
+
+/**
+	@name UI.report#auto__sub__load
+	@property 
+	@description <b>[attribute]</b>自动加载
+*/
+
+/**
+	@name UI.report#style
+	@property 
+	@description <b>[attribute]</b>报表样式高度宽度设置(如：style="width:100%;height:100%;")
+*/	
+
+/**
+	@name UI.report#data__sub__list
+	@property 
+	@description <b>[child]</b>数据源列表, 逗号分隔的数据源列表
+*/			
+	
+/**
+ @name UI.report#refresh
+ @function
+ @description 报表组件刷新
+*/
+
+/**
+ @name UI.report#pageSetup
+ @function
+ @description 打印设置
+*/
+
+/**
+ @name UI.report#print
+ @function
+ @description 打印
+*/
+
+/**
+ @name UI.report#exportPDF
+ @function
+ @description 导出PDF
+*/
+
+/**
+ @name UI.report#exportWord
+ @function
+ @description 导出Word
+*/
+
+/**
+ @name UI.report#exportExcel
+ @function
+ @description 导出Excel
+*/
+
+/**
+ @name UI.report#preview
+ @function
+ @description 打印预览
+*/
+
+/**
+ @name UI.report#getReportName
+ @function
+ @returns 报表名称
+ @description 获取当前报表组件的报表名称
+*/
+
+/**
+ @name UI.report#setReportName
+ @function
+ @param {string} 报表名称
+ @description 设置报表名称，作为导出后的文件名
+*/
+
+
+	

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<elements> 
+  <element  name="operations" tag-name="operations" icon="operation.png" text="操作集" display-property="name"> 
+    <properties> 
+      <property name="name" visible="false"/> 
+    </properties>  
+  </element>  
+  <element name="operation" component-class="Operation" tag-name="operation" icon="operation.png" text="操作" display-property="name"> 
+    <properties> 
+      <property name="name" text="名称" readonly="true"/>  
+      <property name="label" text="标签" default-value=":getPropDefaultValue"/>  
+      <property name="img-src" text="图片" default-value=":getPropDefaultValue"/> 
+      <property name="dis-src" text="图片（不可用时）" default-value=":getPropDefaultValue"/> 
+      <property name="visible" text="是否可见" editor-ref="booleanList" default-value=":getPropDefaultValue"/> 
+      <property name="enable" text="是否可用" editor-ref="booleanList" default-value=":getPropDefaultValue"/> 
+   	  <property name="success-hint" text="操作成功后提示信息" default-value=":getPropDefaultValue"/>
+    </properties> 
+  </element> 
+</elements>

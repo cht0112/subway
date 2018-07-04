@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xui="http://www.justep.com/xui"
+	script-type="text/javascript" xsl:version="2.0">
+
+	<xbl:script type="text/javascript" src="/UI/system/components/bizDataFilterMenu/bizDataFilterMenu.js" />
+	
+	<xbl:binding id="bizDataFilterMenu">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:justep="http://www.justep.com/x5#">
+				<root>
+					<xui:inbody>
+						<xhtml:div id="{concat('filter-pattern-', @id)}" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"></xhtml:div>
+						<xhtml:div id="{concat('filter-dialog-', @id)}" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"></xhtml:div>
+					</xui:inbody>
+				</root>	
+			</xsl:template>
+		</xbl:template>
+		
+		<xbl:implementation>
+		({
+			"initXBL": function() {
+				justep.supportCustomOperation(this);
+				justep.Utils.proxable(this, new justep.BizDataFilterMenu(this), justep.BizDataFilterMenu);
+			}
+		})
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

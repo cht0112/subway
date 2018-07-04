@@ -1,0 +1,62 @@
+/**
+	@name UI.processBar
+	@component /UI/system/components/processBar.xbl.xml#processBar
+	@class 
+	@model UI
+	@description 流程工具栏组件
+	@example 
+		<xmp>
+		   	<xhtml:div  
+		   		id="processBar1"
+		   		component="/UI/system/components/processBar.xbl.xml#processBar"
+		   		process="processComponent"
+		   		xmlns:xui="http://www.justep.com/xui">
+				<xui:item name="back-process-item"/>
+				<xui:item name="advance-process-item"/>
+				<xui:item name="transfer-task-item"/>
+				<xui:item name="suspend-process-item"/>
+				<xui:item name="abort-process-item"/>		   		
+			</xhtml:div>	
+		</xmp>
+*/
+
+/**
+	@name UI.processBar#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/processBar.xbl.xml#processBar"
+*/
+
+/**
+	@name UI.processBar#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.processBar#process
+	@property
+	@description <b>[attribute]</b><b>[required]</b>指定一个流程组件
+*/
+
+/**
+	@name UI.processBar#mode
+	@property
+	@description <b>[attribute]</b>显示模式,取值范围:图标,图标文字(左右),图标文字(上下)
+*/
+
+/**
+	@name UI.processBar#item
+	@property
+	@description <b>[child]</b>定制可以出现哪些按钮
+	@example
+		item节点的名称空间是: http://www.justep.com/xui
+		item节点的属性:
+			name: 系统预定义按钮{back-process-item, advance-process-item, transfer-task-item, suspend-process-item, abort-process-item,customized-process-item,process-chart-item}
+			readonly: 只读条件, 只对系统预定义的按钮起作用
+			relevant: 可见条件, 只对系统预定义的按钮起作用
+		item节点的子节点:
+			任何表现组件
+			
+		若item即指定了预定义的名称，又有子节点，优先使用预定义的名称
+*/

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--参见部分来源于数据库表结构文档： AFC_DB_JCZX.xlsx -->
+<DetectionTask>
+	<!--公共部分-->
+	<Public>
+		<!--项目ID -->
+		<ProjectID>asdasd</ProjectID>
+		<!--任务ID -->
+		<TaskID>100001</TaskID>
+		<!--计划操作员ID -->
+		<PlanOperatorID/>
+		<!--计划开始日期 -->
+		<TaskPlanStartDate>2012/5/27</TaskPlanStartDate>
+		<!--计划结束日期 -->
+		<TaskPlanEndDate>2012/5/27</TaskPlanEndDate>
+		<!--任务区域:检测对象+业务类型+业务阶段 -->
+		<TaskArea/>
+		<!--迭代：第一轮/第二轮... -->
+		<TaskIterative/>
+		<!--任务报告信息，参见 test_project_task_info  -->
+		<TaskReport>
+			<!--实际操作员ID -->
+			<OperatorID/>
+			<!--任务实际开始日期 -->
+			<TaskStartDate>2012/5/28</TaskStartDate>
+			<!--任务实际结束日期 -->
+			<TaskEndDate>2012/5/28</TaskEndDate>
+			<!--任务执行状态	0：未执行；1、准备执行；2：执行中；3：完成；4、无法执行 -->
+			<TaskStatus>0</TaskStatus>
+			<!--任务执行结果 0：未知；1：成功；2：失败；3：无法完成 -->
+			<TaskCheck>0taskCheck</TaskCheck>
+		</TaskReport>
+	</Public>
+	<!--用例集 -->
+	<TestCases>
+		<!--用例 -->
+		<TestCase>
+			<!--用例信息 用例ID、用例名称、级别、描述 参见 test_case_base_info  -->
+			<TestCaseInfo CaseID="SBFWKZ" CaseName="设备访问控制" CasePrior="A|基本业务" Description="">
+				<!--检测对象类型 参见 detection_object_type  -->
+				<!--检测对象子类 参见 device_type_code  -->
+				<DetectionObject Type="3|应用系统" SubType="93chezhanjisuanjixitong" />
+				<!--检测方面类型 参见 detection_range_type  -->
+				<!--检测方面子类 参见 detection_range_code  -->
+				<DetectionRange Type="2|功能测试" SubType="设备访问控制" />
+			</TestCaseInfo>
+			<!--子用例集 -->
+			<SubTestCases>
+				<!--子用例 -->
+				<SubTestCase>
+					<!--子用例信息 参见 sub_test_case_base_info  -->
+					<SubTestCaseInfo SubCaseID="SLECZY-1" SubCaseName="操作员正常登录一台AG" SubCaseLevel="1" SubCaseSeq="1" SubCaseSpendTime="0">
+						<!--环境配置信息 -->
+						<!--系统配置 是否自动开机、是否自动同步 -->
+						<SystemConfiguration AutoPowerOn="True" AutoParameterSync="True">
+							<!--参数配置，暂时保留 -->
+							<Parameters>
+								<Parameter ParamType="" ID="" Date="" Version="" Url="" ForceDown=""/>
+							</Parameters>
+						</SystemConfiguration>
+						<PreCondition>1AGSC连接正常2操作员权限已经下发到AG</PreCondition>
+					</SubTestCaseInfo>
+					<!--子用例执行结果 参见 test_task_execute_sub_case  -->
+					<SubTestCaseReport SubCaseStatus="0|weizhixing" SubCaseCheck="0|weizhi" SubCaseStartTime="2012/5/30 17:17:17" SubCaseElapsedTime="1" SubCaseReportDate="2012/5/30">
+				 	 
+					</SubTestCaseReport>
+					<!--步骤集 -->
+					<Steps>
+						<!--步骤信息 参见 sub_test_case_step_info  -->
+						<!--其中OperatePlace为执行方，确定动作发起者；Type为仿真对象类型，确定相对应的环境配置信息 -->
+						<Step ID="" Description="sdfs" OperatePlace="检测平台" Type="31|zidongjianpiaoji" StepLevel="" StepNo="1" StepResult="fasongchenggong" >
+							<Application Type="1|Socket">
+								<TCP SocketType="2kehuduan" ProtocolType="1daozedingyi" />
+							</Application>
+							
+							<!--执行动作：发送/接收/人工 -->
+							<Execution Type="1|发送">
+								<!--规则集：生成规则、打包规则、发送规则、接收规则、解析规则（验证规则）... -->
+								<Rules>
+									<Rule Type="DetectionExecutionRuleGenerate">
+										<!--生成规则 -->
+										<Generate ActionType="1fasongshishengcheng" DataCategory="控制数据" DataItem="请求数据" DataType="C001" DataSubType="" DataRecord="1">
+											<FieldControls>
+												<FieldControl Name="请求代码" Type="PackageFieldConst" Value="5101" Desc=""/>
+												<FieldControl Name="设备ID" Type="PackageFieldEnv" Value="Application.DeviceID(ID=1)" Desc="环境变量"/>
+												<FieldControl Name="登录类型" Type="PackageFieldConst" Value="0" Desc="登录"/>
+											</FieldControls>
+										</Generate>
+									</Rule>
+									<Rule Type="DetectionExecutionRulePackaged">
+										<!--组包规则 包内记录数、包大小 -->
+										<Package Number="1" Size="3K"/>
+									</Rule>
+									<Rule Type="DetectionExecutionRuleSend">
+										<!--发送规则 发送时间（定时发送有效）、重复次数、间隔时间 -->
+										<Send SendTime="0" RepeatTimes="1" SpanTime="0" SendType="即时发送"/>
+									</Rule>
+								</Rules>
+							</Execution>
+								
+							<!--步骤执行报告 参见 test_task_execute_step  -->
+							<StepReoprt StepStatus="0weizhixing" StepCheck="0" StepStartDateTime="2012/5/30 22:12:12" StepDesc="" StepReportDate="2012/5/30"/>
+						</Step>
+						<Step Name="" Description="vxvx" OperatePlace="1" Type="31" StepLevel="" StepNo="2" StepResult="keyidenglu">
+							<Application Type="Socket">
+								<TCP SocketType="2" ProtocolType="导则定义"/>
+							</Application>
+							
+								<Execution Type="接收">
+									<Rules>
+										<Rule Type="DetectionExecutionRuleReceive">
+											<Receive ReceiveTime="30"/>
+										</Rule>
+										<Rule Type="DetectionExecutionRuleParse">
+											<Parse ActionType="" DataCategory="控制数据" DataItem="反馈数据" DataType="C003" DataSubType="" DataRecord="1">
+												<FieldControls>
+													<FieldControl Name="请求代码" Type="Equal" Value="5101" Desc=""/>
+													<FieldControl Name="登录类型" Type="Equal" Value="0" Desc="登录"/>
+													<FieldControl Name="反馈结果" Type="Equal" Value="0" Desc="允许登录">
+													</FieldControl>
+												</FieldControls>
+											</Parse>
+										</Rule>
+									</Rules>
+								</Execution>
+							
+							<StepReoprt StepStatus="0" StepCheck="0" StepStartDateTime="2012/5/30 22:12:12" StepDesc="" StepReportDate="2012/5/30"/>
+						</Step>
+						<Step Name="" Description="sc" OperatePlace="2" Type="31" StepLevel="" StepNo="3" StepResult="SC" >
+							<Application Type="">
+								<TCP SocketType="" ProtocolType=""/>
+							</Application>
+							
+								<Execution Type="3|人工"/>
+							
+							<StepReoprt StepStatus="0" StepCheck="0" StepStartDateTime="2012/5/30 22:12:12" StepDesc="" StepReportDate="2012/5/30"/>
+						</Step>
+					</Steps>
+				</SubTestCase>
+			</SubTestCases>
+		</TestCase>
+	</TestCases>
+	<Indexs>
+		<!--指标映射，与子用例对应 参见 relationship_index_and_case 、 index_system_value  -->
+		<index SubCaseID="SLECZY-1" indexValue="" indexDesc="">
+		</index>
+	</Indexs>
+</DetectionTask>

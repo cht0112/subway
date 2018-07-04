@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns:justep="http://www.justep.com/x5#" xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:saxon="http://saxon.sf.net/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns="http://www.justep.com/x5#" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+	 
+	<xbl:binding id="attachmentImage">
+		<xbl:template template-type="xslt">
+							<xsl:template match="/*">
+								<root xbl:class='xui-attachmentImage'>
+									<xsl:variable name="componentRoot" select="." />
+									<xsl:variable name="id" select="@id" />
+									<xsl:variable name="model" select="@model" />
+									<xsl:variable name="relation" select="@ref" />
+									<xsl:variable name="runtime" select="@runtime" />
+									<xsl:variable name="rootPath" select="@root-path" />
+									<xsl:variable name="subPath" select="@sub-path" />
+									<xsl:variable name="limitSize" select="@limit-size" />
+									<xsl:variable name="autoLoad" select="if (@auto-load != '') then @auto-load else 'true'" />
+									<xsl:variable name="imgID" select="concat($id,'_image')" />
+									<xsl:variable name="uploaderDiv" select="concat($id,'_uploaderDiv')" />
+									<!--新添加 -->
+									<xsl:variable name="div-ctrl" select="concat('ctrl_',$id)" />
+									<xsl:variable name="div-edit-button" select="concat('btn_edit_',$id)" />
+									<xsl:variable name="div-delete-button" select="concat('btn_del_',$id)" />
+									
+									<xhtml:div style="position:relative;border:0px solid;width:100%;height:100%;">
+										
+										<xhtml:img id="{$imgID}" attachId='{$id}' src="about:blank" 
+											style="width:100%;height:100%">
+											<xsl:attribute name="onmouseover">
+											<xsl:value-of
+													select="concat('if(justep.xbl(''',$id,''')) justep.xbl(''',$id,''').domouseover(this,event);')" />
+										</xsl:attribute>
+										</xhtml:img>		
+										<xhtml:div id="{$div-ctrl}" style="POSITION:absolute;display:block;width:50px;">
+												<xhtml:div id="{$uploaderDiv}" style="position:absolute;left:0px;width:16px;height:20px;z-index:1;"></xhtml:div>
+												<xhtml:div id="{$div-edit-button}" style="float:left;display:none;"/>
+												<xhtml:div id="{$div-delete-button}" style="display:none;"/>
+												
+										</xhtml:div>
+									</xhtml:div>
+									
+									</root>
+							</xsl:template>
+		</xbl:template>
+		
+		<xbl:implementation>
+		({
+		    "initXBL" : function() {
+				this._id = this.domNode.id;
+				justep.Object.extend(this, new justep.attachmentImage());
+				this.runtime = this.domNode.getAttribute("runtime")==null||this.domNode.getAttribute("runtime")=='' ?'flash':this.domNode.getAttribute("runtime");
+				this.imgID = this._id+"_image";
+				this.limitSize = this.domNode.getAttribute("limit-size");
+				this.stretch = "false"==this.domNode.getAttribute("stretch")? false: true;
+				this.rootPath = this.domNode.getAttribute("root-path");
+				if(!this.rootPath){
+					this.rootPath = "/defaultDocNameSpace";
+				}
+				this.subPath = this.domNode.getAttribute("sub-path")==null? '' : this.domNode.getAttribute("sub-path");
+				this.relationXPath = this.domNode.getAttribute("ref");
+				this.disabled = this.domNode.getAttribute('disabled');
+				this.ownerData = this.relationXPath.match(/data\('(\S*)\'\)/i)[1];
+				this.relation = this.relationXPath.match(/data\('\S*\'\)\/(\S*)/)[1];
+                this.ctrl= document.getElementById("ctrl_"+this._id);
+				this.editButton = document.getElementById("btn_edit_" + this._id);
+				this.deleteButton = document.getElementById("btn_del_" + this._id);	
+				this.extensionFilter = this.domNode.getAttribute("extension-filter");
+				this.process = justep.Context.getCurrentProcess();
+				this.activity = justep.Context.getCurrentActivity();
+				this.keyId = this.domNode.getAttribute("keyId");
+                dhtmlxEventable(this);
+                this.addEvents();
+                this.refreshButton();
+                this.setAutoLoad("false" == this.domNode.getAttribute("auto-load")? false: true);
+                				
+			}
+		})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-attachmentImage{
+					width:200px;
+					height:300px;		
+					background-color:#E3EBF7;		
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>
+	</xbl:binding>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/yahooUtil.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/attachmentEditor/ajaxupload.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/docUtil.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/component/attachmentImage/attachmentImage.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/dialog/dialog.js" />
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/windowDialog/windowDialog.js"></xbl:script>
+	
+</xbl:xbl>

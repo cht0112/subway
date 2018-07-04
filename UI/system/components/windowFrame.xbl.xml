@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	
+	<xbl:script type="text/javascript" src="/UI/system/components/windowFrame/windowFrame.js"/>
+	<xbl:binding id="windowFrame">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root xbl:class='xui-windowFrame' xmlns:xbl="http://www.w3.org/ns/xbl">
+<!--					<xhtml:iframe id="{concat('iframe-',@id)}" src="about:blank" frameBorder="0" style="width:100%;height:100%;" />-->
+				</root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+				var windowFrame = new justep.WindowFrame(this.domNode.id, this.domNode.getAttribute("url")||"", this.domNode.getAttribute("auto-load"), 
+														this.domNode.getAttribute('onSend'), this.domNode.getAttribute('onReceive'), this.domNode.getAttribute('onInit'), this.domNode.getAttribute('onInitFrame'),
+														{"process":this.domNode.getAttribute("process"),"activity":this.domNode.getAttribute("activity")});
+				justep.Object.extend(this, windowFrame);
+			}
+		})	
+		]]>		
+		</xbl:implementation>
+		
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-windowFrame{
+					width:200px;
+					height:100px;		
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>				
+		
+	</xbl:binding>
+</xbl:xbl>

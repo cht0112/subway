@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<standarbar xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xforms="http://www.justep.com/xforms" 
+	xmlns:ev="http://www.w3.org/2001/xml-events">
+	<template>
+		<xui:toolbar name="navigator-bar">
+			<xui:toolbar-item name="insert-item">
+				<xforms:trigger appearance="image" src="insert.gif" dis-src="un_insert.gif" > 
+					<xforms:label>i18n{insert-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').newData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item  name="save-item">
+				<xforms:trigger appearance="image" src="save.gif" dis-src="un_save.gif" > 
+					<xforms:label>i18n{save-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').saveData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item  name="delete-item">
+				<xforms:trigger appearance="image" src="remove.gif" dis-src="un_remove.gif" > 
+					<xforms:label>i18n{delete-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').deleteData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item  name="refresh-item">
+				<xforms:trigger appearance="image" src="refresh.gif" dis-src="un_refresh.gif" > 
+					<xforms:label>i18n{refresh-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').refreshData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item  name="filter-item">
+				<xforms:trigger appearance="image" src="search.gif" dis-src="un_search.gif" > 
+					<xforms:label>i18n{filter-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[
+							justep.xbl("&filter-dialog-id").show("@dataid");
+						]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<!-- 过滤模式管理 -->
+			<xui:toolbar-item name="filter-pattern-item">
+				<xforms:trigger appearance="image"  src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif">
+					<xforms:label>i18n{filter-pattern-item}</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[
+							justep.xbl("&filter-pattern-id").show("@dataid", event.srcElement);
+						]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>
+			</xui:toolbar-item>
+			<xui:toolbar-item name="first-item">
+				<xforms:trigger appearance="image" src="first.gif" dis-src="un_first.gif" > 
+					<xforms:label>i18n{first-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').first();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="pre-item">
+				<xforms:trigger appearance="image" src="pre.gif" dis-src="un_pre.gif" > 
+					<xforms:label>i18n{pre-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').pre();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="next-item">
+				<xforms:trigger appearance="image" src="next.gif" dis-src="un_next.gif" > 
+					<xforms:label>i18n{next-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').next();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="last-item">
+				<xforms:trigger appearance="image" src="last.gif" dis-src="un_last.gif" > 
+					<xforms:label>i18n{last-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').last();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="custom-page-item">
+				<xhtml:div process="true" width="100%" height="100%" 
+					data='@dataid'   
+					component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator"/>
+			</xui:toolbar-item>
+			<xui:toolbar-item name="next-page-item">
+				<xforms:trigger appearance="image" src="next-page.gif" dis-src="un_next-page.gif" > 
+					<xforms:label>i18n{next-page-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').loadNextPageData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="all-page-item">
+				<xforms:trigger appearance="image" src="last-page.gif" dis-src="un_last-page.gif" > 
+					<xforms:label>i18n{all-page-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').loadAllPageData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="create-new-child-item">
+				<xforms:trigger appearance="image" src="addchild.gif" dis-src="un_addchild.gif" > 
+					<xforms:label>i18n{create-new-child-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[var data = justep.xbl('@dataid');data.newData(0,data.getCurrentRowId());]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>									
+			<xui:toolbar-item name="create-new-brother-item">
+				<xforms:trigger appearance="image" src="addbrother.gif" dis-src="un_addbrother.gif" > 
+					<xforms:label>i18n{create-new-brother-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[var data = justep.xbl('@dataid');var pId = data.getStore().getParentId(data.getCurrentRowId());data.newData(0,pId);]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="create-new-root-item">
+				<xforms:trigger appearance="image" src="addroot.gif" dis-src="un_addroot.gif" > 
+					<xforms:label>i18n{create-new-root-item}</xforms:label> 
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[var data = justep.xbl('@dataid');data.newData();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>  
+			</xui:toolbar-item>
+			<xui:toolbar-item name="expand-this-item">
+				<xforms:trigger appearance="image" src="expandthis.gif" dis-src="un_expandthis.gif" >
+					<xforms:label>i18n{expand-this-item}</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').expandRow();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>
+			</xui:toolbar-item>
+			<xui:toolbar-item name="expand-all-item">
+				<xforms:trigger appearance="image" src="expandall.gif" dis-src="un_expandall.gif" >
+					<xforms:label>i18n{expand-all-item}</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').expandAll();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>
+			</xui:toolbar-item>										
+			<xui:toolbar-item name="collapse-this-item">
+				<xforms:trigger appearance="image" src="collapsethis.gif" dis-src="un_collapsethis.gif" >
+					<xforms:label>i18n{collapse-this-item}</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').collapseRow();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>
+			</xui:toolbar-item>										
+			<xui:toolbar-item name="collapse-all-item">
+				<xforms:trigger appearance="image" src="collapseall.gif" dis-src="un_collapseall.gif" >
+					<xforms:label>i18n{collapse-all-item}</xforms:label>
+					<xforms:action ev:event="DOMActivate">
+						<xforms:script process="true"><![CDATA[justep.xbl('@dataid').collapseAll();]]></xforms:script>
+					</xforms:action>
+				</xforms:trigger>
+			</xui:toolbar-item>
+		</xui:toolbar>
+	</template>
+	<config>
+		<img-path>/UI/system/images/standardToolbar/standard/</img-path>
+		<default>
+		</default>
+	</config>
+</standarbar>
+			

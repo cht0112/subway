@@ -1,0 +1,84 @@
+.xui-tabPanel{
+	width:200px;
+	height:100px;
+}
+
+/*================================ tabbar start ========================*/
+.tabbar {
+	margin: 0px;
+	padding:0px;
+
+}
+
+.tabbar-ul {
+	display:block;
+	clear:both;
+	HEIGHT: 24px;
+	padding:0px;
+	margin:0px;
+	padding-left:5px;
+}
+
+.tabbar-ul LI {
+	background-color:#f5faff;
+	border:1px solid #99bbe8;
+	border-bottom:none;
+	float: left;
+	MARGIN-RIGHT: 5px;
+	LIST-STYLE-TYPE: none;
+	HEIGHT: 24px;
+	cursor: pointer;
+	white-space:nowrap;
+}
+
+.tabbar-ul LI A {
+	LINE-HEIGHT: 24px;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	font-weight: normal; 
+}
+
+.tabbar-ul LI A:link {text-decoration: none;color: black; }
+.tabbar-ul LI A:visited {text-decoration: none; color: black;}
+.tabbar-ul LI A:active { text-decoration: none;color: black;}
+.tabbar-ul LI A:hover { text-decoration: underline;color: black;}
+
+.tabbar-ul LI.selectTag {
+	border-bottom:none;
+	background-color:white;
+	POSITION: relative;
+	HEIGHT: 23px	
+}
+
+.tabbar-ul LI.selectTag A {
+	COLOR: #000;
+	LINE-HEIGHT: 24px;
+	HEIGHT: 24px;
+	font-weight: bold;
+}
+
+.tab-content {
+	clear:both;
+    border:1px solid  #aecbd4; 
+    padding:0px;
+    margin:0px;
+	BACKGROUND-COLOR: #fff;
+	height:100%;
+	overflow:auto;
+	margin-top:-1px
+}
+
+.tab-content-item {
+    padding:0px;
+	DISPLAY: none; 
+	WIDTH: 100%;
+	COLOR: #474747;
+	HEIGHT: 100%;
+}
+.tab-content DIV.selectTag {
+	DISPLAY: block
+}
+/*================================ tabbar end ========================*/

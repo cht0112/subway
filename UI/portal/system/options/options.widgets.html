@@ -1,0 +1,78 @@
+<div id="options_widgets_inner" class="options_content_inner">
+<h2>组件</h2>
+<div id="options_widgets_nav" class="options_page_nav">
+	<span>分类:</span>
+</div>  
+
+<div id="options_widgets_wrapper" class="options_wrapper">
+	<ul></ul>
+</div>
+<div id="options_widgets_page" class="options_pagination">
+	<div class="pagination"></div>
+</div>
+</div>
+<script>
+	(function(){
+		var widgetCategory = null;
+		
+		var $ul = $("<ul></ul>").appendTo("#options_widgets_nav");
+		for(var i in portalConfig.widgetsToolbar){
+			var l = portalConfig.widgetsToolbar[i];
+			$("<li></li>").appendTo($ul).append($.extend($("<a href='javascript:void(0)'></a>").text(l.category).get(0),l));
+		}
+		$("a", "#options_widgets_nav").click(function(){
+			widgetCategory= this;
+			$(this).on();
+			$(this).parent().on();
+			update();
+			return false;
+		}).eq(0).click();
+		function update(){
+			count = 0;
+			widgets = [];
+			if(widgetCategory){
+				for (var i in widgetCategory.widgetIDs) {
+					widgets.push($.extend({id:widgetCategory.widgetIDs[i]},portalConfig.widgets[widgetCategory.widgetIDs[i]]));
+					count++;
+				}
+			}
+			$(".pagination", "#options_widgets_page").pagination(count, {
+				next_text: "下一页",
+				prev_text: "上一页",
+				items_per_page: 9,
+				num_display_entries: 4,
+				num_edge_entries: 2,
+				callback: function(page_index, jq) {
+					var $ul = $("ul", "#options_widgets_wrapper");
+					$ul.empty();
+					var min_index = page_index*this.items_per_page;
+					var max_index = Math.min((page_index+1)*this.items_per_page,count);
+					$(".info", "#options_widgets_info").text("所有 (" + ((max_index==0)?max_index:min_index+1) + "-" + max_index + "/" + count + ")");
+					for (var i = min_index; i < max_index; i++) {
+						html= "<li><div rev='"+widgets[i].id+"'  title='" + widgets[i].title +"'/><span title='" + widgets[i].title +"' class='title'>" + widgets[i].title +"</span></li>"
+						$ul.append($.extend($(html).get(0),widgets[i]));
+						if(widgets[i].thumbnail){
+							$ul.find("li div").each(function(){
+								if($(this).attr("rev")==widgets[i].id){
+									$(this).css('background','url('+widgets[i].thumbnail+')');   
+								}
+							}); 
+						}
+					}
+					
+					$("li", $ul).click(function(e){
+						var c = $(this).find("div").attr("rev");
+						var s = c.split(":");
+						$.jpolite.addWidget({
+							id: s[0],
+							c:	s[1] || 'a1',
+							mc: s[2] || '',  //现在没有使用
+							mt:	s[3] || ''   //现在没有使用
+						});
+					});
+				}
+			});
+		}
+		update();
+	}());
+</script>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="layout" tag-name="layout" icon="layout.gif" text="布局"  
+		  validator="LayoutValidator" >
+		<properties>
+			<property name="src" text="布局文件" required="false" editor-ref=""/>
+			<property name="style" />
+			<property name="width" display-name='width'  is-style="true" />  
+			<property name="height" display-name='height'  is-style="true" />  
+			<property name="display" display-name='display'  is-style="true" />  
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xui:layout></xui:layout> 
+		   ]]></template>
+		</templates>
+	</element>
+	
+	<element name="controlPlace" tag-name="place"  visible="false"
+			 discriminate-condition="hasAttribute('control')=true" >
+		<properties>
+			<property name="style" />
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xui:place control=""></xui:place> 
+		   ]]></template>
+		</templates>
+	</element>
+
+	<element name="controlLabel" tag-name="place"  visible="false"  icon="Control_Label.gif" text="组件标签"
+			 component-class="ControlLabel" 
+			 discriminate-condition="hasAttribute('control-label')=true" component-type="formControl">
+		<properties>	
+			<property name="control-label" display-name="control" text="引用" editor-ref="ctrlIds" is-id-ref="true"/>
+			<property name="label" text="自定义标签" />
+			<property name="class" text="class" />
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+		</properties>
+		<imitation-config js-class-name="ControlLabel" />
+		<property-editors>
+			<property-editor name="ctrlIds" type="list">
+				<dynamic-data xpath="*[local-name() != 'layout' and local-name()!='view']/@id" search-start="view"/>						
+			</property-editor>
+		</property-editors>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xui:place control-label="" ></xui:place> 
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

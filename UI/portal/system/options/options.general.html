@@ -1,0 +1,126 @@
+<div id="options_general_inner" class="options_content_inner">
+	<div id="options_general_nav" class="options_page_nav">
+		<h2>标签页设置</h2>
+		<fieldset id="options_general_change">
+			<legend>修改</legend>
+			<table style="border:0px">
+				<tr>
+					<td> 修改标签页名称:</td>
+					<td>
+						<div style="padding-left:10px">
+							<input type="text" 	name="options_general_title_text" id="options_general_title_text" style="font-family: courier, monospace;"/>
+						</div>
+					</td>
+					<td>
+						<div style="padding-left:10px">
+							<input type="button" id="options_general_title_save" value="更新" disabled="disabled" />
+							<input type="button" id="options_general_title_cancel" value="取消" disabled="disabled" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td> 修改页面刷新状态:</td>
+					<td>
+						<div style="padding-left:10px">
+							<input type="radio" name="options_general_state_radio"
+								value="true" />
+							刷新
+							<input type="radio" name="options_general_state_radio"
+								value="false" />
+							不刷新
+						</div>
+					</td>
+					<td>
+						<div style="padding-left:10px">
+							<input type="button" id="options_general_state_save" value="更新" disabled="disabled" />
+							<input type="button" id="options_general_state_cancel" value="取消" disabled="disabled" />
+						</div>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset id="options_general_control">
+			<legend>删除标签</legend>
+			<!-- 
+			 <input type="button" class="prev" id="settings_general_reset_templet"
+				value="标签页向前移动" />
+			<input type="button" class="next" id="settings_general_reset_templet"
+				value="标签页向够移动" />
+			 -->
+			 <table style="border:0px">
+			 	<tr>
+			 		<td col="2"><div style="line-height:24px">删除当前标签及内容，删除标签后内容不可恢复&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></td>
+			 		<td>
+			 			<input type="button" class="delete" id="settings_general_reset_layout"  value="删除" />
+			 		</td>
+			 	</tr>
+			 </table>
+			
+			
+		</fieldset>
+	</div>
+</div>
+<script>
+	(function() {
+		var _nav = $("#options_general_nav");
+		$(".delete", _nav).click(function(){
+			if(confirm("删除标签后内容不可恢复，是否删除?")){
+				$.jpolite.removeTab();
+				$('#options_dialog').jqmHide();
+			}
+		});
+		
+		$("#options_general_title_text").bind('keyup',function(){
+			var saveElement = $("#options_general_title_save").get(0);
+			var cancelElement = $("#options_general_title_cancel").get(0);
+			if(saveElement.disabled&&cancelElement.disabled){
+				saveElement.disabled =false;
+				cancelElement.disabled=false;
+			}
+		});	
+		$("#options_general_title_save").click(function(){
+			$.jpolite.renameTab(null, $("#options_general_title_text").val());
+			var saveElement = $("#options_general_title_save").get(0);
+			var cancelElement = $("#options_general_title_cancel").get(0);
+			if(!saveElement.disabled&&!cancelElement.disabled){
+				saveElement.disabled =true;
+				cancelElement.disabled=true;
+			}
+		});
+		$("#options_general_title_cancel").click(function(){
+			$("#options_general_title_text").val($.jpolite.getTab().tabTitle);
+			var saveElement = $("#options_general_title_save").get(0);
+			var cancelElement = $("#options_general_title_cancel").get(0);
+			if(!saveElement.disabled&&!cancelElement.disabled){
+				saveElement.disabled = true;
+				cancelElement.disabled = true;
+			}
+		});
+		$("input[name=options_general_state_radio]",_nav).change(function(){
+			var saveElement = $("#options_general_state_save").get(0);
+			var cancelElement = $("#options_general_state_cancel").get(0);
+			if(saveElement.disabled){
+				saveElement.disabled =false;
+				cancelElement.disabled=false;
+			}
+		});
+		$("#options_general_state_save",_nav).click(function(){
+			$.jpolite.changeTabRefreah(null,$("input[name=options_general_state_radio]:checked").val());
+			var saveElement = $("#options_general_state_save").get(0);
+		   	var cancelElement = $("#options_general_state_cancel").get(0);
+		   	if(!saveElement.disabled&&!cancelElement.disabled){
+				saveElement.disabled =true;
+				cancelElement.disabled=true;
+			}
+		});
+		$("#options_general_state_cancel").click(function(){
+			$("input[name=options_general_state_radio][value="+$.jpolite.getTab().tabRefresh+"]").attr("checked",true);
+			var saveElement = $("#options_general_state_save").get(0);
+			var cancelElement = $("#options_general_state_cancel").get(0);
+			if(!saveElement.disabled&&!cancelElement.disabled){
+				saveElement.disabled = true;
+				cancelElement.disabled = true;
+			}
+		});
+	}());
+</script>

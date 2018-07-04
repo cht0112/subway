@@ -1,0 +1,135 @@
+							
+/**
+	@name UI.reportData
+	@model UI
+	@component /UI/system/components/reportData.xbl.xml#data
+	@class XBL组件
+	@description <b>[rich]</b><b>[quick]</b><b>[mobile]</b>报表数据组件
+*/
+
+/**
+	@name UI.reportData#component
+	@property
+	@description <b>[attribute][required]</b>组件标识
+	@default "/UI/system/components/reportData.xbl.xml#data"
+*/		
+	
+/**
+	@name UI.reportData#id
+	@property
+	@description <b>[attribute][required]</b>id标识
+*/			
+
+/**
+ @name UI.reportData#setDataModel
+ @function
+ @param	dataModelStr  <b>[required]</b>数据模型字符串
+ @description 设置组件数据模型
+*/	
+
+
+/**
+ @name UI.reportData#getDataModel
+ @function
+ @returns {string}	 
+ @description 返回组件数据模型
+*/
+
+/**
+ @name UI.reportData#setFnModel
+ @function
+ @param	fnModelStr  <b>[required]</b>KSQL查询函数模型字符串
+ @description 设置KSQL查询模式函数模型字符串
+*/	
+
+/**
+ @name UI.reportData#getFnModel
+ @function
+ @returns {string}	 
+ @description 返回KSQL查询模式函数模型字符串
+*/
+
+
+/**
+ @name UI.reportData#clearVars
+ @function
+ @returns {string}	 
+ @description 清空查询模式中变量集合
+*/
+
+/**
+ @name UI.reportData#isEmptyByKsqlVariables
+ @function
+ @returns {boolean}	 
+ @description 判断KSQL查询模式中变量集合是否为空
+*/
+
+/**
+ @name UI.reportData#setStringVar
+ @function
+ @param	name  <b>[required]</b>查询模式中变量名称
+ @param	value  <b>[required]</b>查询模式中变量值
+ @description 设置查询模式中字符串变量
+*/
+
+/**
+ @name UI.reportData#setIntegerVar
+ @function
+ @param	name  <b>[required]</b>查询模式中变量名称
+ @param	value  <b>[required]</b>查询模式中变量值
+ @description 设置查询模式中整型变量
+*/
+
+/**
+ @name UI.reportData#setFloatVar
+ @function
+ @param	name  <b>[required]</b>查询模式中变量名称
+ @param	value  <b>[required]</b>查询模式中变量值
+ @description 设置查询模式中浮点型变量
+*/
+
+/**
+ @name UI.reportData#setDateVar
+ @function
+ @param	name  <b>[required]</b>KSQL查询模式中变量名称
+ @param	value  <b>[required]</b>KSQL查询模式中变量值
+ @description 设置KSQL查询模式中日期类型变量(格式：yyyy-MM-dd)
+*/
+
+/**
+ @name UI.reportData#setTimeVar
+ @function
+ @param	name  <b>[required]</b>查询模式中变量名称
+ @param	value  <b>[required]</b>查询模式中变量值
+ @description 设置查询模式中时间类型变量(格式：hh:mm:ss)
+*/
+
+/**
+ @name UI.reportData#setDateTimeVar
+ @function
+ @param	name  <b>[required]</b>查询模式中变量名称
+ @param	value  <b>[required]</b>查询模式中变量值
+ @description 设置查询模式中日期时间类型变量(格式：yyyy-MM-ddThh:mm:ssZ)
+*/
+
+/**
+ @name UI.reportData#getVar
+ @function
+ @param	name  <b>[required]</b>查询模式中变量名称
+ @returns {string}	 
+ @description 根据变量名称获取查询模式中变量集合中变量
+*/
+
+/**
+ @name UI.reportData#onBeforeRefresh
+ @event
+ @param event 它的结构如下:<br/>{"source":组件的js对象, "cancel":可修改，设置为true后中断当前刷新动作}
+ @description <b>[回调型事件]</b>业务数据刷新前接管，完全接管刷新动作 ，此次修改ReportData相关参数 
+*/
+
+/**
+ @name UI.reportData#onAfterRefresh
+ @event
+ @param event 它的结构如下:<br/>{"source":组件的js对象}
+ @description <b>[回调型事件]</b>业务数据刷新后接管，完全接管刷新动作
+*/

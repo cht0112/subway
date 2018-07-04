@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="tree" tag-type="rich" tag-name="div" icon="tree.gif" text="tree" 
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"
+		discriminate-condition="@component=/UI/system/components/grid.xbl.xml#grid and @appearance=tree"
+		component-class="Grid"
+		binding-component="/UI/system/components/grid.xbl.xml#grid" display-property="id"
+		component-type="formControl" validator="GridValidator" design-view="web-designer" >
+		
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="data" text="引用数据" required="true"  editor-ref="contextComponent" editor-parameter="data" is-id-ref="true"/>
+			<property name="multi-selection" text="多选" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="edit-mode" display-name="direct-edit" text="直接编辑模式" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<!-- 
+			<property name="fixed-column-size" display-name="fixed-column-count" text="固定列数" data-type="integer"/>
+			 -->
+<!--			<property name="right-click-selected" text="右键单击时是否选中行" editor-ref="booleanList" default-value="false" readonly="true"/>-->
+<!--			<property name="context-menu"/>-->
+			<!-- 
+			<property name="header-row-height" text="列头行高（px）" data-type="integer"/>
+			<property name="header-filter-row-height" text="列头过滤行高（px）" data-type="integer"/>
+			<property name="row-height" text="行高（px）" data-type="integer"/>
+			<property name="move-column" text="拖动改变列位置"  editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="appearance"  text="显示样式"  editor-ref="appearanceTreeList" readonly="true" default-value="grid" />
+			 -->
+			<property name="cascade" text="级联勾选"   editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="dragable" text="拖动改变行/节点位置" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<!-- 
+			<property name="delay"  text="延迟加载"  editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="show-header-menu" text="表头菜单"  editor-ref="gridHeaderMenuDialog" readonly="true" enum-values="hide-column,save-layout,group-column,adjust-column/m"/>
+			 -->
+			<property name="smart-render" data-type="integer" text="智能渲染"/>
+			<property name="server-sort"  text="服务端排序"  editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="space-column" text="使用空列填充空白"  editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="class"  text="class"   editor-extend-data="ui-light:light"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+		</properties>
+		
+		<property-editors>
+			<property-editor name="appearanceTreeList" type="list">
+				<static-data value=":grid,tree:tree"></static-data>
+			</property-editor>
+		</property-editors>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div style="width:200px;height:100px;" class="ui-light" component="/UI/system/components/grid.xbl.xml#grid" appearance="tree" show-header-menu="hide-column,save-layout,group-column,adjust-column" xmlns:xhtml="http://www.w3.org/1999/xhtml" smart-render="20">    
+			</xhtml:div>
+			]]></template>
+		</templates>
+		<events>  <!--组件事件-->
+			<event name="onInit" text="组件初始化"/>
+			<event name="onBeforeIndexChanged"  text="行变化前"/>
+			<event name="onAfterIndexChanged"  text="行变化后"/>
+			<event name="onCellHint"   text="单元格提示"/>
+			<event name="onRowValueChanged"  text="数据变化"/>
+			<event name="onLastEditorPressEnter" text="direct-edit=true时最后一行最后一个单元格回车后触发" enabled-condition="@edit-mode='true'"/>
+			<group name="click">
+				<event name="onRowClick"   text="单击行"/>
+				<event name="onRowDblClick" text="双击行"/>      
+				<event name="onRowRightClick" text="右键单击"/>     	
+			</group>
+			<group name="checked">
+				<event name="onRowCheck"  text="行选时，可以使用cancel取消"/>
+				<event name="onRowChecked"  text="行选后"/>
+				<event name="onRowCheckedAll"   text="行全选"/>
+			</group>
+			<group name="tree">
+			    <event name="onRowHasChildren"   text="是否有子数据，当设置data的node-kind-relation属性后事件失效"/>
+				<event name="onRowExpand"   text="展开"/>
+				<event name="onShowNodeImg" text="显示行图标"/>
+				<event name="onBeforeRowDrag" text="拖拽开始"/>
+				<event name="onAfterRowDrag" text="拖拽结束"/>
+				<event name="onRowAllowCheck" text="多选时是否允许选中行"/>
+			</group>
+		</events>
+		<imitation-config js-class-name="Grid" new-params=""/>
+		<toolbar>		
+		<!--  
+			<item text="创建列" method="createColumn">				
+			</item>		
+			-->		
+			<item text="添加列" method="appendColumn">				
+			</item>			
+
+		</toolbar>
+		<context-action>			
+			<item text="创建列" method="createColumn">				
+			</item>			
+			<item text="追加列" method="appendColumn">				
+			</item>			
+			<item text="删除列" method="deleteColumn">				
+			</item>
+		</context-action>
+	</element>
+
+	<element name="grid" tag-type="rich" tag-name="div" icon="grid.gif" text="grid" 
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"
+		discriminate-condition="@component=/UI/system/components/grid.xbl.xml#grid"
+		component-class="Grid"
+		binding-component="/UI/system/components/grid.xbl.xml#grid" display-property="id"
+		component-type="formControl" validator="GridValidator" design-view="web-designer" >
+		
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="data" text="引用数据" required="true"  editor-ref="contextComponent" editor-parameter="data" is-id-ref="true"/>
+			<property name="multi-selection" text="多选，当有列类型是tree时此属性有效" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="edit-mode" display-name="direct-edit" text="直接编辑模式" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="fixed-column-size" display-name="fixed-column-count" text="固定列数" data-type="integer"/>
+<!--			<property name="right-click-selected" text="右键单击时是否选中行" editor-ref="booleanList" default-value="false" readonly="true"/>-->
+<!--			<property name="context-menu"/>-->
+			<property name="header-row-height" text="列头行高（px）" data-type="integer"/>
+			<property name="header-filter-row-height" text="列头过滤行高（px）" data-type="integer"/>
+			<property name="row-height" text="行高（px）" data-type="integer"/>
+			<property name="move-column" text="拖动改变列位置"  editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="appearance"  text="显示样式"  editor-ref="appearanceTreeList" readonly="true" default-value="grid" />
+			<property name="cascade" text="级联勾选"   editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="dragable" text="拖动改变行/节点位置" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+<!-- 
+			<property name="delay"  text="延迟加载"  editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+ -->
+			<property name="show-header-menu" text="表头菜单"  editor-ref="gridHeaderMenuDialog" readonly="true" enum-values="hide-column,save-layout,group-column,adjust-column/m"/>
+			<property name="smart-render" data-type="integer" text="智能渲染"/>
+			<property name="server-sort"  text="服务端排序"  editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="space-column" text="使用空列填充空白"  editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="class" text="class" editor-ref="styleClassSelectionDlg"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+		</properties>
+		
+		<property-editors>
+			<property-editor name="appearanceTreeList" type="list">
+				<static-data value=":grid,tree:tree"></static-data>
+			</property-editor>
+			
+<!--			<property-editor name="gridHeaderMenuDialog" type="dialog">-->
+<!--				<dialog-page class-name="GridHeaderMenuPage"/>				-->
+<!--			</property-editor>-->
+
+  			<property-editor name="styleClassSelectionDlg" type="dialog">
+  			    <static-data>
+  			       <style-group name="grid-compact" label="紧凑">
+  			            <item name="xui-grid-hide-head" label="隐藏列头"/>
+  			            <item name="xui-grid-hide-VLine" label="隐藏竖分隔线"/>
+  			            <item name="xui-grid-hide-HLine" label="隐藏横分隔线"/>
+  			       </style-group>
+  			       
+  			       <style-group name="grid-flat" label="简约">
+  			            <item name="xui-grid-hide-head" label="隐藏列头"/>
+  			            <item name="xui-grid-hide-VLine" label="隐藏竖分隔线" is-default="true" />
+  			            <item name="xui-grid-hide-HLine" label="隐藏横分隔线" />
+  			       </style-group>
+  			    </static-data>
+				<dialog-page class-name="com.justep.studio.ui.editors.propertypage.ClassWebPage"  />				
+			</property-editor>	
+			
+			<property-editor name="gridHeaderMenuDialog" type="list" mutil-selection='true'>
+				<static-data value="hide-column:隐藏列,save-layout:保存布局,group-column:分组,adjust-column:列自适应"/> <!--直接定义的静态数据 -->				
+			</property-editor>
+			
+			<property-editor name="gridClassDialog" type="list" mutil-selection='true'>
+				<static-data value="xui-grid-hide-head:隐藏列头,xui-grid-hide-VLine:隐藏竖分隔线,xui-grid-hide-HLine:隐藏横分隔线"/> <!--直接定义的静态数据 -->				
+			</property-editor>
+		</property-editors>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div style="width:200px;height:100px;" class="grid-compact" component="/UI/system/components/grid.xbl.xml#grid" header-row-height="36" row-height="36" show-header-menu="hide-column,save-layout,group-column,adjust-column" xmlns:xhtml="http://www.w3.org/1999/xhtml" smart-render="20">    
+			</xhtml:div>
+			]]></template>
+		</templates>
+		<events>  <!--组件事件-->
+			<event name="onInit" text="组件初始化"/>
+			<event name="onBeforeIndexChanged"  text="行变化前"/>
+			<event name="onAfterIndexChanged"  text="行变化后"/>
+			<event name="onCellHint"   text="单元格提示"/>
+			<event name="onRowValueChanged"  text="数据变化"/>
+			<event name="onLastEditorPressEnter" text="direct-edit=true时最后一行最后一个单元格回车后触发" enabled-condition="@edit-mode='true'"/>
+			<group name="click">
+				<event name="onRowClick"   text="单击行"/>
+				<event name="onRowDblClick" text="双击行"/>      
+				<event name="onRowRightClick" text="右键单击"/>     	
+			</group>
+			<group name="checked">
+				<event name="onRowCheck"  text="行选时，可以使用cancel取消(当有列类型是tree并且multi-selection=true时有效)"/>
+				<event name="onRowChecked"  text="行选后(当有列类型是tree并且multi-selection=true时有效)"/>
+				<event name="onRowCheckedAll"   text="行全选(当有列类型是tree并且multi-selection=true时有效)"/>
+			</group>
+			<group name="tree">
+			    <event name="onRowHasChildren"   text="是否有子数据，当设置data的node-kind-relation属性后事件失效"/>
+				<event name="onRowExpand"   text="展开"/>
+				<event name="onShowNodeImg" text="显示行图标"/>
+				<event name="onBeforeRowDrag" text="拖拽开始"/>
+				<event name="onAfterRowDrag" text="拖拽结束"/>
+				<event name="onRowAllowCheck" text="多选时是否允许选中行"/>
+			</group>
+		</events>
+		<imitation-config js-class-name="Grid" new-params=""/>
+		<toolbar>		
+		<!--  
+			<item text="创建列" method="createColumn">				
+			</item>		
+			-->		
+			<item text="添加列" method="appendColumn">				
+			</item>			
+
+		</toolbar>
+		<context-action>			
+			<item text="创建列" method="createColumn">				
+			</item>			
+			<item text="追加列" method="appendColumn">				
+			</item>			
+			<item text="删除列" method="deleteColumn">				
+			</item>
+		</context-action>
+	</element>
+	<element name="gridColumn" tag-name="column" icon="column.gif" text="column" display-property="ref" namespace="xui" namespace-uri="http://www.justep.com/xui"
+		     discriminate-condition="parent()/@component='/UI/system/components/grid.xbl.xml#grid'"
+		     component-class="Column" design-view="web-designer" >
+		<properties>
+			<property name="ref" required="true" editor-ref=""/>
+			<property name="type" editor-ref="type" enum-values="ro,ed,ch,html,tree,txt,textarea,date,dateTime,inputbtn,outputbtn,select,attachmentEditor,attachmentEditor2,checkbox"/>
+			<property name="label" text="列标签" allow-empty="true"/>
+			<property name="width" text="列宽度" />
+			<property name="align" text="单元格内容显示的位置" editor-ref="align" default-value="left" enum-values=""/>
+			<property name="visible" text="列是否可见" editor-ref="booleanList" readonly="true" default-value="true" data-type="boolean"/>
+			<property name="readonly" text="是否只读" editor-ref="booleanList" readonly="true" default-value="false" data-type="boolean"/>
+			<property name="input-regex" enabled-condition="@type='ed'" text="正则表达式输入控制" editor-ref="regexList" />
+			<property name="format" text="格式化" editor-ref="formatList"/>
+			<property name="filter-editor" text="在表头显示数据过滤输入框的类型" editor-ref="filter" />
+			<property name="sort-datatype" text="双击表头时的排序方式" editor-ref="sort" enum-values=""/>
+			<property name="show-index" text="显示行号" editor-ref="booleanList" readonly="true" default-value="false" enabled-condition="@type='ed' or @type='ro'" data-type="boolean"/>
+			<property name="enter-selected" editor-ref="booleanList" default-value="false" data-type="boolean"/>
+<!--			<property name="is-system" editor-ref="booleanList" readonly="true" default-value="false"/>-->
+			<property name="editor" text="绑定组件的id" enabled-condition="@type='select' or @type='attachmentEditor' or @type='attachmentEditor2' " is-id-ref="true"/>
+			<property name="checked-value" text="选择值" default-value="1" enabled-condition="@type='checkbox' or @type='ch'"/>
+			<property name="unchecked-value" text="不选择值" default-value="0" enabled-condition="@type='checkbox' or @type='ch'"/>
+		</properties>
+
+		<property-editors><!--
+			<property-editor name="regexList" type="list" >
+				<static-data value=",^[0-9]*[1-9][0-9]*$,^-?\d+$,^[A-Za-z]+$,^[A-Z]+$,^[a-z]+$" />			
+			</property-editor>
+			<property-editor name="formatList" type="list" >
+				<static-data value=",0{comma}000.00,yyyy-MM-dd,yyyy-MM-dd hh{semicolon}mm" />			
+			</property-editor>
+			--><property-editor name="type" type="list" > 				
+				<static-data value="ro,ed,ch,html,tree,txt,textarea,date,dateTime,inputbtn,outputbtn,select,attachmentEditor,attachmentEditor2" />
+			</property-editor>
+			<property-editor name="align" type="list" > 				
+				<static-data value="left,center,right" />
+			</property-editor>
+			<property-editor name="sort" type="list" > 				
+				<static-data value="str,int" />
+			</property-editor>
+			<property-editor name="filter" type="list" > 				
+				<static-data value=",#text_filter,#select_filter,#numeric_filter,#master_checkbox,#text_search"/>
+			</property-editor>
+		</property-editors>
+		
+		<toolbar>
+			<item text="左移" method="moveToLeft"/>
+			<item text="右移" method="moveToRight"/>
+		</toolbar>
+		
+		<events>  <!--组件事件-->
+			<event name="onRender" text="type=html时渲染单元格事件" enabled-condition="@type='html' or @type='tree'"/>
+			<event name="onEditDone" text="type=inputbtn时输入框编辑完成事件(值改变时触发)" enabled-condition="@type='inputbtn'"/>
+			<event name="onButtonClick" text="type=inputbtn时按钮点击事件" enabled-condition="@type='inputbtn' or @type='outputbtn'"/>
+		</events>
+	</element>
+</elements>

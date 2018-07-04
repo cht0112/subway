@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xforms="http://www.justep.com/xforms" xmlns:justep="http://www.justep.com/x5#"
+	script-type="text/javascript">
+
+	<script src="/component/chart/chart.js"/>
+	<script src="/UI/system/components/dialog/dialog.js" />
+	<script src="/UI/system/components/windowDialog/windowDialog.js" />
+	<style src="/form/dhtmlx/dhtmlxWindows/dhtmlxwindows.css" />
+	<style src="/form/dhtmlx/dhtmlxWindows/skins/dhtmlxwindows_dhx_blue.css" />
+	
+	<binding id="chart" delete-bound-element="false">
+		<resources>
+			<style>
+				<![CDATA[
+					.xui-chart{
+						width:500px;
+						height:375px;	
+					}
+				]]>
+			</style>
+		</resources>	
+		<template template-type="java" src="Chart" />
+		<implementation>
+			({
+				initXBL : function() {
+					justep.Utils.extend(this, justep.Chart, null, true);
+					this.initComponent();
+				},
+				initXBL2 : function() {
+					this.initContent();
+				}
+			})
+			
+		</implementation>	
+	</binding>
+	
+</xbl>

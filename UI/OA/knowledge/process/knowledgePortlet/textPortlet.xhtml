@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:f="http://orbeon.org/oxf/xml/formatting" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:widget="http://orbeon.org/oxf/xml/widget" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:ajx="http://www.ajaxforms.net/2006/ajx"
+	xmlns:justep="http://www.justep.com/x5#" xmlns:ns="http://www.justep.com/x5#"
+	xmlns:xreport="http://www.justep.com/x5/xreport" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl"
+	xmlns:xbiz="http://www.justep.com/xbiz#"
+	xsl:version="2.0">
+	<xhtml:head id="head">
+		<script type="text/javascript" src="/base/base.js" />
+		<script type="text/javascript" src="/form/form.js" />
+		<link rel="STYLESHEET" type="text/css"
+			href="/UI/appCommon/portletResource/portlet_table.css" />
+		<xhtml:style>
+		<![CDATA[
+			body {
+				padding: 0px;
+				margin: 0px;
+			}
+		]]>
+		</xhtml:style>
+		<xsl:if test="/root/flag = 'false'">
+			<xhtml:script>
+				function isActionError(){
+	   			var message = '<xsl:value-of select="/root/message" />'; 
+	   			if (message == 'JUSTEP-ERROR-1000'){
+	   				dhtmlUtils.bizSessionInvalid();
+				}else{
+	   				alert(message);
+	   			}
+   			}
+			</xhtml:script>
+		</xsl:if>
+		<xsl:if test="/root/flag = 'true'">
+			<xhtml:script>
+	   			function isActionError(){
+	   			}
+			</xhtml:script>
+		</xsl:if>
+		<xhtml:script>
+		   	<![CDATA[
+		   	function activate() {
+  				document.location.reload();
+  			}
+		   	function openLink(title, kwid) {
+		   		 var process = "/OA/knowledge/process/knowledgePortlet/knowledgePortletProcess";
+				 var activity = "textPortletActivity";
+				 var url = "/OA/knowledge/process/viewKnowledge/viewKnowledge.w"
+					 + "?process=" + process + "&activity=" + activity
+					 + "&kwid="+ kwid;
+		   		justep.Portal.openWindow(title, url);
+		   	}
+			]]>
+		</xhtml:script>
+	</xhtml:head>
+	<xhtml:body onload="isActionError();" style="overflow: auto">
+		<xsl:variable name="marquee">
+			<xhtml:marquee width="100%" height="100%" direction="up" behavior="scroll" scrollamount="2" scrolldelay="1" loop="-1" 
+					onmouseover="this.stop()" onmouseout="this.start()" >
+				<xhtml:table class="portletTable">
+					<xsl:for-each select="/root/data/xbiz:table/rows/row">
+						<xsl:variable name="item" select="." />
+						<tr>
+							<xsl:if test="$item/cell[9] = 'new'">
+								<td style="width: 30px">
+									<img name="flagImg" src="/UI/appCommon/images/new.gif"></img>
+								</td>
+							</xsl:if>
+							<xsl:if test="$item/cell[9] = 'old'">
+								<td style="width: 30px" align="center">
+									<img name="flagImg" src="/UI/appCommon/images/dot.png"></img>
+								</td>
+							</xsl:if>
+							<td>
+								<a href="javascript:void(0)">
+									<xsl:attribute name="onmouseover">
+				      					<xsl:value-of select="concat('this.title = ''',
+				      						'标    题 : ', $item/cell[2], 
+						      				'\n发布部门 : ', $item/cell[10], 
+						      				'\n发 布 人 : ', $item/cell[4], 
+						      				'\n发布时间 : ', format-dateTime($item/cell[5], '[Y0001]-[M01]-[D01] [H01]:[m01]:[s01]'),  
+						      				'\n主 栏 目 : ', $item/cell[3], 
+						      				'\n其他栏目 : ', $item/cell[11], ''';')"/>
+				      				</xsl:attribute>
+									<xsl:attribute name="onclick">
+				      					<xsl:value-of select="concat('openLink(''', $item/cell[2], ''', ''', $item/cell[1], ''');')"/>
+				      				</xsl:attribute>
+				      				<nobr>
+										<xsl:value-of select="$item/cell[2]"/>
+									</nobr>
+								</a>
+							</td>
+							<td style="width:100px; text-align: center;">
+				      				<nobr>
+				   						<xsl:value-of select="$item/cell[4]"/>
+				   					</nobr>
+				      			</td>
+							<!--<xsl:if test="//root/params/dateDisplay != '0'">
+			      			</xsl:if>-->
+				      			<td style="width:80px; text-align: left;">
+				      				<nobr>
+				   						<xsl:value-of select="format-dateTime($item/cell[5], '[Y0001]-[M01]-[D01]')"/>
+				   					</nobr>
+				      			</td>
+						</tr>
+					</xsl:for-each> 
+				</xhtml:table>		 
+			</xhtml:marquee>
+		</xsl:variable>
+		<xsl:choose>
+			<xsl:when test="//root/params/isMarquee != '0'">
+				<xsl:copy-of select="$marquee" />
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy-of select="$marquee/*/*" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xhtml:body>
+</xhtml:html>

@@ -1,0 +1,121 @@
+/**
+	@name UI.pageNavigator
+	@component /UI/system/components/pageNavigator.xbl.xml#pageNavigator
+	@class 分页导航条组件
+	@description <b>[rich]</b>分页导航条组件
+	@model UI
+	@example 
+	感知data组件，控制data数据分页加载
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" id="pageNavigator1"/>
+</xmp>
+*/
+
+/**
+	@name UI.pageNavigator#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/pageNavigator.xbl.xml#pageNavigator"
+*/
+
+/**
+	@name UI.pageNavigator#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.pageNavigator#data
+	@attribute 
+	@description 感知的data组件，不设置时可以通过api控制
+*/
+
+/**
+	@name UI.pageNavigator#mode
+	@attribute
+	@description 显示模式，取值范围：图标、图标文字(左右)、图标文字(上下)
+*/
+
+/**
+	@name UI.pageNavigator#limit
+	@attribute 
+	@description 页大小，设置data属性后失效
+*/
+
+/**
+	@name UI.pageNavigator#offset
+	@attribute 
+	@description 偏移，设置data属性后失效
+*/
+
+/**
+	@name UI.pageNavigator#count
+	@attribute 
+	@description 总记录数，设置data属性后失效
+*/
+
+/**
+	@name UI.pageNavigator#page__sub__count
+	@attribute 
+	@description 显示页码数，设置data属性后失效
+*/
+
+/**
+	@name UI.pageNavigator#onPageChanged
+	@event 
+	@description <b>[回调型事件]</b>页码变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"offset" : 偏移,
+		"page" : 页码
+	}
+	</xmp>
+*/
+
+/**
+ @name UI.pageNavigator#setLimit
+ @function
+ @description 设置页大小，设置data属性后失效
+ @param {integer} value 页大小
+*/
+
+/**
+ @name UI.pageNavigator#setOffset
+ @function
+ @description 设置偏移，设置data属性后失效
+ @param {integer} value 偏移
+*/
+
+/**
+ @name UI.pageNavigator#setCount
+ @function
+ @description 设置总记录数，设置data属性后失效
+ @param {integer} value 总记录数
+*/
+
+/**
+ @name UI.pageNavigator#setPageCount
+ @function
+ @description 设置显示页码数，设置data属性后失效
+ @param {integer} value 显示页码数
+*/
+
+/**
+ @name UI.pageNavigator#gotoPage
+ @function
+ @description 切换到页
+ @param {integer} page 页码
+*/
+
+/**
+ @name UI.pageNavigator#refresh
+ @function
+ @description 刷新导航条状态，修改相关值后调用，如果绑定data将自动刷新
+*/

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;">  
+  <head>
+    <xhtml:script language="javascript" src="/component/data/data.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/windowDialog/windowDialogReceiver.js"/>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <!-- 
+		<script type="text/javascript" src="/base/base.js"/>
+		<script type="text/javascript" src="/form/form.js"/>
+		 -->  
+    <script>
+		 <![CDATA[
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) && msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length > 0 ? msgs[0] : "";
+					var detail = msgs.length > 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length > 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null && activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		]]>
+		</script>  
+    <!--  
+		<script id="__script"/>
+		-->  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/system/config/user.css"/>
+    <xhtml:script id="opmUtils" src="/UI/SA/OPM/js/OpmUtils.js"/>
+    <xhtml:script id="htmlScript1" src="/UI/SA/OPM/organization/orgDetail.js"/>
+    <xhtml:script><![CDATA[new justep.XBizData('dOrg',false,false,{'queryAction':"queryOPOrgAction",'saveAction':"saveOPOrgAction",'newAction':"createOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'String','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}",'defCalcRelations':"{'calcOrgKind':{'type':'http://www.w3.org/2001/XMLSchema#string'},'calcValidState':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dOrg_part');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('dParent',false,false,{'queryAction':"queryOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'String','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}"},'dParent_part');]]></xhtml:script>
+    <xforms:model id="model1" style="top:203px;height:auto;left:178px;"> 
+      <xforms:part id="dOrg_part" xforms:lazy="true">
+        <xforms:instance id="dOrg" update-mode="whereVersion" concept="SA_OPOrg" type="grid" cacl-relation="calcOrgKind,calcValidState"/>
+        <xforms:bind nodeset="instance('dOrg')/calcOrgKind" calculate="call('justep.OpmUtils.getOrgKindLabel',data('dOrg')/sOrgKindID)" readonly="true()"/>
+        <xforms:bind nodeset="instance('dOrg')/calcValidState" calculate="call('justep.OpmUtils.getValidStateLabel', data('dOrg')/sValidState)" readonly="true()"/>
+        <xforms:bind nodeset="instance('dOrg')" readonly="call('orgDetail.getReadOnly')"/>
+        <xforms:bind nodeset="instance('dOrg')/sName" required="true()" validInfo="'名称不能为空！'"/>
+        <xforms:bind nodeset="instance('dOrg')/sCode" required="true()" validInfo="'编码不能为空！'"/>
+        <xforms:bind nodeset="instance('dOrg')/sValidState" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/sLevel" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/version" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/personNumb" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/personValidState" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/personVersion" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/eDUCATIONID" type="xsd:float"/>
+        <xforms:bind nodeset="instance('dOrg')/pOSITIONALTITLE" type="xsd:float"/>
+        <xforms:bind nodeset="instance('dOrg')/EDUCATION_CODE" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dOrg')/POSITIONAL_TITLE_CODE" type="xsd:integer"/>
+      </xforms:part>  
+      <xforms:part id="dParent_part" xforms:lazy="true">
+        <xforms:instance id="dParent" update-mode="whereVersion" concept="SA_OPOrg" type="simple"/>
+        <xforms:bind nodeset="instance('dParent')/sFName" readonly="true()"/>
+        <xforms:bind nodeset="instance('dParent')/sValidState" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/sLevel" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/version" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/personNumb" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/personValidState" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/personVersion" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/eDUCATIONID" type="xsd:float"/>
+        <xforms:bind nodeset="instance('dParent')/pOSITIONALTITLE" type="xsd:float"/>
+        <xforms:bind nodeset="instance('dParent')/EDUCATION_CODE" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('dParent')/POSITIONAL_TITLE_CODE" type="xsd:integer"/>
+      </xforms:part> 
+    </xforms:model>
+    <xhtml:script id="xbl_script" language="javascript"><![CDATA[__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver"] = _xbl_JSClassDefine_windowDialogReceiver;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_windowDialogReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialogReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var s = node.getAttribute('onReceive');
+				if(s) justep.windowDialogReceiver.acceptParentParamsFun = s;
+			},
+			"windowEnsure" : function(data,noclose){
+				justep.windowDialogReceiver.windowEnsure(data,noclose);
+			}, 
+			"windowCancel" : function(){
+				justep.windowDialogReceiver.windowCancel();
+			}, 
+			"windowRefresh" : function(){
+				justep.windowDialogReceiver.windowRefresh();
+			}
+		}));
+
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+	var ids=[{id:'c54025c150c64813a02e9daffd242de0', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'inputParentFName', name:'xforms:input'},{id:'inputName', name:'xforms:input'},{id:'inputCode', name:'xforms:input'},{id:'receiver', name:'/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver'},{id:'gridOrg', name:'xforms:grid'},{id:'btnOK', name:'xforms:trigger', children:[{id:'xuiLabel1', name:'xforms:label'}]},{id:'btnCancel', name:'xforms:trigger', children:[{id:'xuiLabel2', name:'xforms:label'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+]]></xhtml:script>
+  </head>  
+  <!-- onunload="_closeActivity_();" -->  
+  <body style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <!-- 可视部分 即用户描述的界面 -->  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <xhtml:div id="rootView" class="xui-container" style="position:relative;height:200px;width:300px;"> 
+        <xhtml:div id="div1" style="position:absolute;background-color:#F8F8F8;width:279px;top:61px;height:22px;left:49px;" class="xui-container">  
+          <xforms:input id="inputParentFName" ref="data('dParent')/sFName" style="border-style:none none none none;width:82%;height:100%;"></xforms:input> 
+        </xhtml:div>  
+        <xforms:input id="inputName" ref="data('dOrg')/sName" style="position:absolute;width:147px;top:101px;left:50px;"></xforms:input>  
+        <xforms:input id="inputCode" ref="data('dOrg')/sCode" style="position:absolute;width:147px;top:148px;left:52px;"></xforms:input>  
+        <xhtml:div component="/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver" id="receiver" onReceive="orgDetail.receiverReceive" class="component_45CC9B41 windowDialogReceiver" style="position:absolute;top:210px;left:241px;"></xhtml:div>  
+        <xforms:grid show-header-menu="hide-column,save-layout,group-column,adjust-column" id="gridOrg" data="dOrg" class="component_6298A7A1 grid" right-click-selected="true" system-columns="sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,ognName,dptName,posName,operatorState,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,nATION,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,eDUCATIONIDCNAME,POSITIONAL_TITLE_CODE,pOSITIONALTITLEIDCNAME,calcOrgKind,calcValidState" style="width:200px;height:100px;position:absolute;top:384px;left:94px;display:none;">  
+          <xforms:column ref="sName"/> 
+        </xforms:grid>  
+        <xhtml:label style="position:absolute;top:65px;left:8px;">上级</xhtml:label>  
+        <xhtml:label style="position:absolute;top:106px;left:9px;">名称</xhtml:label>  
+        <xhtml:label style="position:absolute;top:153px;left:10px;">编码</xhtml:label>  
+        <xforms:trigger id="btnOK" style="position:absolute;width:75px;top:101px;left:216px;">  
+          <xforms:label id="xuiLabel1">确定</xforms:label>  
+          <xforms:action ev:event="DOMActivate" id="action1">  
+            <xforms:script id="xformsScript2">orgDetail.btnOKClick(event)</xforms:script> 
+          </xforms:action> 
+        </xforms:trigger>  
+        <xforms:trigger id="btnCancel" style="position:absolute;width:75px;top:147px;left:218px;">  
+          <xforms:label id="xuiLabel2">取消</xforms:label>  
+          <xforms:action ev:event="DOMActivate" id="action2">  
+            <xforms:script id="xformsScript1">orgDetail.btnCancelClick(event)</xforms:script> 
+          </xforms:action> 
+        </xforms:trigger> 
+      </xhtml:div>
+    </div> 
+  </body>  
+</html>

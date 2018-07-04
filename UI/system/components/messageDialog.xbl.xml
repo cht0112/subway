@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	script-type="text/javascript">
+	
+	<xbl:script type="text/javascript" src="/form/justep/showMessage.js"/>
+	<xbl:style type="text/css" href="/form/justep/showMessage.css" rel="stylesheet"/>
+	
+	<xbl:binding id="messageDialog" >
+		<template template-type="xslt">
+			<xsl:template match="/*">
+				<root xbl:class="xui-messageDialog">
+				</root>
+			</xsl:template>
+		</template>
+	
+		<implementation>
+		<![CDATA[
+			({
+				initXBL : function() {
+					var options = {};
+					if(this.domNode.getAttribute("message")) options.msg = this.domNode.getAttribute("message");
+					if(this.domNode.getAttribute("details")) options.details = this.domNode.getAttribute("details");
+					if(this.domNode.getAttribute("title")) options.title = this.domNode.getAttribute("title");
+					if(this.domNode.getAttribute("height")) options.height = this.domNode.getAttribute("height");
+					if(this.domNode.getAttribute("width")) options.width = this.domNode.getAttribute("width");
+					if(this.domNode.getAttribute("img")) options.img = this.domNode.getAttribute("img");
+					if(this.domNode.getAttribute("type")) options.type = this.domNode.getAttribute("type");
+					justep.Object.extend(this, new justep.System.showMessage(options));	
+				}
+			})	
+		]]>		
+		</implementation>
+
+		<xbl:resources>
+			<xbl:style>
+				<![CDATA[
+					.xui-messageDialog{
+						display:none;
+					}
+				]]>
+			</xbl:style>
+		</xbl:resources>
+	</xbl:binding>	
+</xbl:xbl>

@@ -1,0 +1,207 @@
+/**
+	@name UI.numberSelect
+	@component /UI/system/components/numberSelect.xbl.xml#numberSelect
+	@class 
+	@model UI
+	@description <b>[rich]</b>数字选择组件
+	@example 
+	数字选择组件，如作为：年、月、日选择
+	通过setParam()方法可以动态控制选择的范围
+	
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/numberSelect.xbl.xml#numberSelect"/>
+</xmp>
+	<b>JS案例：</b>
+<xmp>
+	//根据当前年份提供往下5年选择
+	var min = (new Data()).getFullYear();
+	var max = min + 5;
+	justep.xbl('numberSelect').setParam(min,max);
+</xmp>	
+*/
+
+/**
+	@name UI.numberSelect#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/numberSelect.xbl.xml#numberSelect"
+*/
+
+/**
+	@name UI.numberSelect#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.numberSelect#ref
+	@attribute
+	@description 引用数据，自动感知关联的data的列，选择后数据写回关联data的列
+*/
+
+/**
+	@name UI.numberSelect#min
+	@attribute 
+	@description 最小值
+*/
+
+/**
+	@name UI.numberSelect#max
+	@attribute 
+	@description 最大值
+*/
+
+/**
+	@name UI.numberSelect#size
+	@attribute 
+	@description 下拉显示的数量
+*/
+
+/**
+	@name UI.numberSelect#onDropdown
+	@event 
+	@description <b>[回调型事件]</b>下拉事件
+	@param {object} event 
+	<br/><b>结构如下:</b>
+<xmp>
+	{
+		"source" : 组件的js对象
+	}
+</xmp>
+*/
+
+/**
+	@name UI.numberSelect#onCloseup
+	@event 
+	@description <b>[回调型事件]</b>收回事件
+	@param {object}
+	<br/><b>结构如下:</b>
+<xmp>
+	{
+		"source" : 组件的js对象,
+		"value" : 选择的值
+	}
+</xmp>
+*/
+
+/**
+	@name UI.numberSelect#setParam
+	@function
+	@param {integer} min <b>[required]</b>最小值
+	@param {integer} max <b>[required]</b>最大值
+	@param {integer} speed 步长
+	@param {integer} size 显示条数
+	@description 设置属性
+*/
+
+/**
+	@name UI.numberSelect#getMin
+	@function
+	@description 返回最小值
+	@returns {integer}
+*/
+
+/**
+	@name UI.numberSelect#getMax
+	@function
+	@description 返回最大值
+	@returns {integer}
+*/
+
+/**
+	@name UI.numberSelect#getSpeed
+	@function
+	@description 返回步长
+	@returns {integer}
+*/
+
+/**
+	@name UI.numberSelect#getShowSize
+	@function
+	@description 返回显示条数
+	@returns {integer}
+*/
+
+/**
+	@name UI.numberSelect#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.numberSelect#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.numberSelect#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.numberSelect#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.numberSelect#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.numberSelect#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.numberSelect#readonly
+	@attribute 
+	@description 只读
+*/
+
+/**
+	@name UI.numberSelect#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.numberSelect#setReadonly
+	@function
+	@param {boolean} readonly <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.numberSelect#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.numberSelect#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.numberSelect#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/

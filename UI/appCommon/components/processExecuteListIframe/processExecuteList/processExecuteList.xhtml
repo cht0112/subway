@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:justep="http://www.justep.com/x5#" xmlns:xui="http://www.justep.com/xui" xmlns:xforms="http://www.justep.com/xforms" xsl:version="2.0">  
+  <xhtml:head> 
+    <xhtml:script type="text/javascript" src="/UI/system/components/printHtml/formPrint.js"/>  
+    <xhtml:script type="text/javascript" src="/UI/system/components/data/js/data.js"/>  
+    <xhtml:script type="text/javascript" src="/UI/appCommon/js/appCommon.js"/>  
+    <xhtml:script type="text/javascript" src="/UI/appCommon/components/processExecuteListIframe/processExecuteList/processExecuteList.js"/>  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/appCommon/components/processExecuteListIframe/processExecuteList/processExecuteList.css"/>  
+    <xforms:model id="mainmodel"> 
+      <xforms:instance id="dTemp" language="CONSTANT" type="simple" columnids="selectedStates,selectedStatesLabel,searchStr"> 
+        <rows xmlns="">  
+          <row> 
+            <cell>esExecuting,esFinished,esTransmited,esReturned,esAborted</cell> 
+          </row> 
+        </rows> 
+      </xforms:instance> 
+    </xforms:model> 
+  </xhtml:head>  
+  <xhtml:body class="body" onload="initListener();"> 
+    <xhtml:table style="width:100%;" border="0" cellspacing="0" cellpadding="0"> 
+      <xhtml:tr> 
+        <xhtml:td style="border-width: 1px; border-style: none none solid none; border-color: #C0C0C0"> 
+          <xhtml:div component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars"> 
+            <xui:bar component="/UI/system/components/customBar.xbl.xml#customBar" id="customBar1"> 
+              <item> 
+                <xforms:trigger id="triggerRefresh" src="/UI/appCommon/images/refresh.gif" appearance="image"> 
+                  <xforms:label>刷新</xforms:label>  
+                  <xforms:action ev:event="DOMActivate">
+                  	<xforms:script>
+                  		_refreshList();
+                  	</xforms:script>
+                  </xforms:action> 
+                </xforms:trigger> 
+              </item>  
+              <item> 
+                <xforms:trigger id="triggerPreview" appearance="image" src="/UI/appCommon/images/print-preview.gif"> 
+                  <xforms:label>预览</xforms:label>  
+                  <xforms:action ev:event="DOMActivate">
+                  	<xforms:script>
+						justep.HtmlPrint.printpreview(["processExecuteList"]);	
+                  	</xforms:script>
+                  </xforms:action> 
+                </xforms:trigger> 
+              </item>  
+              <item> 
+                <xforms:trigger id="triggerPrint" appearance="image" src="/UI/appCommon/images/print.gif"> 
+                  <xforms:label>打印</xforms:label>  
+                  <xforms:action ev:event="DOMActivate">
+                  	<xforms:script>
+						justep.HtmlPrint.printForm(["processExecuteList"]);
+                  	</xforms:script>
+                  </xforms:action> 
+                </xforms:trigger> 
+              </item> 
+            </xui:bar>  
+            <xui:bar component="/UI/system/components/customBar.xbl.xml#customBar" id="customBar2"> 
+              <item> 
+                <xhtml:div component="/UI/system/components/select.xbl.xml#gridSelect" style="width:120px" id="gsStates" ref="data('dTemp')/selectedStates" label-ref="data('dTemp')/selectedStatesLabel" multi-select="true" all-selected-label-ref="'全部'" value-separator="," label-separator="," default-label-ref="'处理中,已完成,已转发,已回退,已终止'" onDropdown="gsStatesDropdown"> 
+                  <xforms:label ref="label"/>  
+                  <xforms:value ref="code"/>  
+                  <xforms:itemset auto-load-data="true"> 
+                    <xforms:column ref="label"/>  
+                    <xforms:column ref="code" visible="false"/>  
+                    <itemset-data xmlns="">  
+                      <rows>  
+                        <row> 
+                          <cell>处理中</cell>  
+                          <cell>esExecuting</cell> 
+                        </row>  
+                        <row> 
+                          <cell>已完成</cell>  
+                          <cell>esFinished</cell> 
+                        </row>  
+                        <row> 
+                          <cell>已转发</cell>  
+                          <cell>esTransmited</cell> 
+                        </row>  
+                        <row> 
+                          <cell>已回退</cell>  
+                          <cell>esReturned</cell> 
+                        </row>  
+                        <row> 
+                          <cell>已终止</cell>  
+                          <cell>esAborted</cell> 
+                        </row>  
+                        <row> 
+                          <cell>已回收</cell>  
+                          <cell>esRecycled</cell> 
+                        </row> 
+                      </rows> 
+                    </itemset-data> 
+                  </xforms:itemset> 
+                </xhtml:div> 
+              </item>
+            </xui:bar>
+            <xui:bar component="/UI/system/components/customBar.xbl.xml#customBar" id="customBar2"> 
+              <item>
+              	<xforms:input ref="instance('dTemp')/searchStr" style="width: 160px"/>
+              </item>
+            </xui:bar> 
+          </xhtml:div> 
+        </xhtml:td> 
+      </xhtml:tr>  
+      <xhtml:tr> 
+        <xhtml:td> 
+          <xhtml:table class="processExecuteList" id="processExecuteList"> 
+            <xhtml:tr class="title" id="titleTR" style="display: none;"> 
+              <xhtml:td colspan="5" id="titleTD"/> 
+            </xhtml:tr>  
+            <xhtml:tr class="head"> 
+              <xhtml:td class="activity">环节</xhtml:td>  
+              <xhtml:td class="opinion">意见</xhtml:td>  
+              <xhtml:td class="executor">处理人</xhtml:td>  
+              <xhtml:td class="executeTime">处理时间</xhtml:td>
+              <xhtml:td class="state">状态</xhtml:td>  
+            </xhtml:tr> 
+          </xhtml:table> 
+        </xhtml:td> 
+      </xhtml:tr> 
+    </xhtml:table> 
+  </xhtml:body> 
+</xhtml:html>

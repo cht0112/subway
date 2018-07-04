@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+<class name="com.becom.test.School" auto-complete="true" >
+  <map-to xml="School" />
+  <!-- 公共部分 -->
+  <field name="name" type="string">
+    <bind-xml name="name" node="element" />
+  </field>
+  <!--用例集-->
+  <field name="dress" type="string">
+    <bind-xml name="dress" node="element" />
+  </field>
+  
+  
+</class>
+
+</mapping>

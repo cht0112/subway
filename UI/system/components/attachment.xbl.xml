@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xbl:xbl xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:justep="http://www.justep.com/x5#"
+  xmlns:xui="http://www.justep.com/xui" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
+  xmlns:saxon="http://saxon.sf.net/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="http://www.justep.com/x5#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xsl:version="2.0">  
+  <xbl:binding id="attachment"> 
+    <xbl:template template-type="xslt"> 
+      <xsl:template match="/*"> 
+        <justep:root xbl:class="xui-attachment"> 
+          <xsl:variable name="id" select="@id"/>  
+          <xsl:variable name="model" select="@model"/>  
+          <xsl:variable name="ownerData" select="@owner-Data"/>  
+          <xsl:variable name="ownerID" select="if(@owner-id != '') then @owner-id else (if(@owner-data != '') then concat('instance(apos(@owner-data)',')/rowid') else '')"/>
+          <xsl:variable name="runtime" select="@runtime" />  
+          <xsl:variable name="rootPath" select="@root-path"/>  
+          <xsl:variable name="autoLoad" select="if (@auto-load != '') then @auto-load else 'true'"/>  
+          <xsl:variable name="autoCreateVersion" select="if (@autoCreateVersion != '') then @autoCreateVersion else 'false'"/>  
+          <!--<xsl:variable name="treeWidth" select="if (@tree-width != '') then @tree-width else '260px'"/>-->  
+          <xsl:variable name="showTree" select="if (@show-tree = 'false') then '0px' else (if (@tree-width != '') then @tree-width else '150px')"/>
+        
+          <xsl:variable name="resizeable" select="if (@show-tree = 'false') then 'false' else 'true'"/>  
+          
+          <xsl:variable name="attachmentTree" select="concat(@id,'_attachmentTree')"/>  
+          <xsl:variable name="attachmentList" select="concat(@id,'_attachmentList')"/>  
+          <xsl:variable name="permissions" select="concat(@id,'_attachmentPermissions')"/>  
+          <xsl:variable name="displayButtons" select="concat(@id,'_attachmentDisplayButtons')"/>  
+          <xsl:variable name="attachmentTreeGrid" select="concat(@id,'_attachmentTreeGrid')"/>  
+          <xsl:variable name="attachmentListGrid" select="concat(@id,'_attachmentListGrid')"/>  
+          <xsl:variable name="newDocMenuXbl" select="concat($id,'_newDocMenuXbl')"/>  
+          <xsl:variable name="newDocMenu" select="concat($id,'_newDocMenu')"/>  
+          <xsl:variable name="editDocMenu" select="concat($id,'_editDocMenu')"/>  
+          <xsl:variable name="newDocMenuItems" select="concat($id,'_newDocMenuItems')"/>  
+          <xsl:variable name="uploadDocItem" select="concat($id,'_uploadDocItem')"/>  
+          <xsl:variable name="newFromTemplateItem" select="concat($id,'_newFromTemplateItem')"/>  
+          <xsl:variable name="newWordDocumentItem" select="concat($id,'_newWordDocumentItem')"/>  
+          <xsl:variable name="newExcelSheetItem" select="concat($id,'_newExcelSheetItem')"/>  
+          <xsl:variable name="newPowerPointItem" select="concat($id,'_newPowerPointItem')"/>  
+          <xsl:variable name="newMSProjectProjectItem" select="concat($id,'_newMSProjectProjectItem')"/>  
+          <xsl:variable name="editDocMenuItems" select="concat($id,'_editDocMenuItems')"/>  
+          <xsl:variable name="reuploadDocItem" select="concat($id,'_reuploadDocItem')"/>  
+          <xsl:variable name="editDocItem" select="concat($id,'_editDocItem')"/>  
+          <xsl:variable name="docExtDiv" select="concat($id,'_docExtDiv')"/>
+          <xsl:variable name="splitterID" select="concat($id,'_splitter')" />
+          <xsl:variable name="splitterLeft" select="concat($id,'_left')" />
+          <xsl:variable name="splitterRight" select="concat($id,'_right')" />
+          <xsl:variable name="leftTop" select="concat($id,'_leftTop')" />
+          <xsl:variable name="leftCenter" select="concat($id,'_leftCenter')" />
+          <xsl:variable name="rightTop" select="concat($id,'_rightTop')" />
+          <xsl:variable name="rightCenter" select="concat($id,'_rightCenter')" />
+            
+          <xforms:model xforms:partial="{$model}">
+            <xui:data id="{$attachmentTree}" store-type="grid" is-tree="true" columns="sDocName,sParentID,sDocPath,sDocDisplayPath,sKind,sProcess,sActivity"
+              component="/UI/system/components/data.xbl.xml#data"> 
+              <xui:tree-option parent-relation="sParentID"/> 
+            </xui:data>  
+            <xui:data id="{$attachmentList}" store-type="grid" component="/UI/system/components/data.xbl.xml#data"
+              columns="sEditorFID,sDocName,sSize,sCreatorName,sCreateTime,sLastWriterName,sLastWriteTime,sCreatorDeptName,sLastWriterDeptName,sEditorName,sEditorDeptName,sParentID,sKind,sDocPath,sDocDisplayPath,sFileID,        sDocSerialNumber,sKeywords,sDescription,sClassification,sFinishTime,sDocLiveVersionID,version,sProcess,sActivity"
+              confirm-delete="false"></xui:data>  
+            <xui:data id="{$permissions}" auto-load="true" store-type="simple" columns="newDir,editDir,deleteDir,manageDir,newDoc,editDoc,downloadDoc,browseDoc,deleteDoc,manageDoc,saveDoc"
+              component="/UI/system/components/data.xbl.xml#data"> 
+              <rows> 
+                <row id="permissions"></row> 
+              </rows> 
+            </xui:data>  
+            <!-- 按钮控制,默认全显示 -->  
+            <xui:data id="{$displayButtons}" auto-load="true" store-type="simple"
+              columns="refreshDir,newDir,editDir,deleteDir,newDoc,editDoc,downloadDoc,browseDoc,deleteDoc,saveDoc,docProperties,docHistory,refreshDoc"
+              component="/UI/system/components/data.xbl.xml#data"> 
+              <rows> 
+                <row id="displayButtons"> 
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell>  
+                  <cell>true</cell> 
+                </row> 
+              </rows> 
+            </xui:data>  
+            <xui:data id="{$newDocMenuItems}" auto-load="true" component="/UI/system/components/data.xbl.xml#data"
+              store-type="simple" columns="sLabel,sProgramID,sNewFilename"> 
+              <rows> 
+                <row id="{$uploadDocItem}"> 
+                  <cell>上传本地文件</cell>  
+                  <cell>uploadDoc</cell>  
+                  <cell/> 
+                </row>  
+                <row> 
+                  <cell>---------------------------------</cell>  
+                  <cell>-</cell>  
+                  <cell>-</cell> 
+                </row>  
+                <row id="{$newFromTemplateItem}"> 
+                  <cell>从模板新建 ...</cell>  
+                  <cell>Template</cell>  
+                  <cell>新建 Microsoft 文件</cell> 
+                </row>  
+                <row id="{$newWordDocumentItem}"> 
+                  <cell>新建 Word 文档</cell>  
+                  <cell>Word.Document</cell>  
+                  <cell>新建 Microsoft Word 文档</cell> 
+                </row>  
+                <row id="{$newExcelSheetItem}"> 
+                  <cell>新建 Excel 工作表</cell>  
+                  <cell>Excel.Sheet</cell>  
+                  <cell>新建 Microsoft Excel 工作表</cell> 
+                </row>  
+                <row id="{$newPowerPointItem}"> 
+                  <cell>新建 PowerPoint 演示文稿</cell>  
+                  <cell>PowerPoint.Show</cell>  
+                  <cell>新建 Microsoft PowerPoint 演示文稿</cell> 
+                </row>  
+                <row id="{$newMSProjectProjectItem}"> 
+                  <cell>新建 Project 项目</cell>  
+                  <cell>MSProject.Project</cell>  
+                  <cell>新建 Microsoft Project 项目</cell> 
+                </row> 
+              </rows> 
+            </xui:data>  
+            <xui:data id="{$editDocMenuItems}" auto-load="true" store-type="simple"
+              columns="sLabel,sProgramID,sNewFilename" component="/UI/system/components/data.xbl.xml#data"> 
+              <rows> 
+                <row id="{$editDocItem}"> 
+                  <cell>编辑</cell>  
+                  <cell>OpenOffice</cell>  
+                  <cell/> 
+                </row>  
+                <row> 
+                  <cell>--------------------------</cell>  
+                  <cell>-</cell>  
+                  <cell>-</cell> 
+                </row>  
+              </rows> 
+            </xui:data>  
+            <!-- 操作按钮控制 -->  
+            <xforms:bind nodeset="instance('{$displayButtons}')/refreshDir" relevant="instance('{$displayButtons}')/refreshDir = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/newDoc" readonly="instance('{$permissions}')/newDoc = 'false'"
+              relevant="instance('{$displayButtons}')/newDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/editDoc" readonly="instance('{$permissions}')/editDoc = 'false' or instance('{$attachmentList}')/rowid =''"
+              relevant="instance('{$displayButtons}')/editDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/deleteDoc" readonly="instance('{$permissions}')/deleteDoc = 'false' or instance('{$attachmentList}')/rowid =''"
+              relevant="instance('{$displayButtons}')/deleteDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/downloadDoc" readonly="instance('{$permissions}')/downloadDoc = 'false' or instance('{$attachmentList}')/sFileID =''"
+              relevant="instance('{$displayButtons}')/downloadDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/browseDoc" readonly="instance('{$permissions}')/browseDoc = 'false' or instance('{$attachmentList}')/sFileID =''"
+              relevant="instance('{$displayButtons}')/browseDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/saveDoc" readonly="instance('{$permissions}')/saveDoc != 'true'"
+              relevant="instance('{$displayButtons}')/saveDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/docProperties" readonly="instance('{$attachmentList}')/rowid =''"
+              relevant="instance('{$displayButtons}')/docProperties = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/docHistory" readonly="instance('{$permissions}')/browseDoc = 'false' or instance('{$attachmentList}')/sFileID =''"
+              relevant="instance('{$displayButtons}')/docHistory = 'true'"/>  
+            <xforms:bind nodeset="instance('{$displayButtons}')/refreshDoc" relevant="instance('{$displayButtons}')/refreshDoc = 'true'"/>  
+            <xforms:bind nodeset="instance('{$attachmentList}')/sFinishTime" type="xsd:dateTime"/> 
+          </xforms:model>  
+          <!-- @owner-id 此为兼容以前的写法 data('dataDEMO_SendDoc')/fAttachment-->  
+          <xsl:if test="@owner-id and @owner-id!=''"> 
+            <xhtml:div style="display:none"> 
+              <xforms:input ref="{$ownerID}"/> 
+            </xhtml:div> 
+          </xsl:if> 
+          <xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="{$showTree}" mode="horz" has-arrow-button="true" id="{$splitterID}" style="height:100%;width:100%;" has-drag-bar="{$resizeable}" resizable="{$resizeable}">
+            <xhtml:div region="left" id="{$splitterLeft}" style="width:100%;height:100%">
+            	<xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="{$leftTop}" style="width:100%;height:100%;" border-size="1px">
+					<top size="30px">
+						<xhtml:div style="width:100%;height:100%;" component="/UI/system/components/toolbars.xbl.xml#toolbars">
+                    		<xui:bar data="{$attachmentTree}" component="/UI/system/components/bar.xbl.xml#navigatorBar"> 
+                      		<xui:item name="refreshDir"> 
+                        	<xforms:trigger appearance="image" src="/UI/system/images/standardToolbar/standard/refresh.gif"
+                          		ref="instance('{$displayButtons}')/refreshDir"> 
+                          		<xforms:label>刷新</xforms:label>  
+                          			<xforms:action ev:event="DOMActivate"> 
+                            			<xforms:script>justep.xbl('<xsl:value-of select="$id"/>').refreshAllData();
+                            			</xforms:script> 
+                          			</xforms:action> 
+                        		</xforms:trigger> 
+                      		</xui:item> 
+                    		</xui:bar> 
+                  		</xhtml:div>
+					</top>
+					<center>
+						 <xhtml:div style="width:100%;height:100%;padding:2px" component="/UI/system/components/grid.xbl.xml#grid" data="{$attachmentTree}"
+		                    id="{$attachmentTreeGrid}" appearance="tree" onShowNodeImg="justep.Doc.getImage"> 
+		                    <xui:column label="名称" ref="sDocName" type="tree" width="200"/>
+		                    <xui:column ref="sParentID" visible="false" label=""/>  
+		                    <xui:column ref="sDocPath" visible="false" label=""/>  
+		                    <xui:column ref="sDocDisplayPath" visible="false"
+		                      label=""/>  
+		                    <xui:column ref="version" visible="false" label=""/>  
+		                    <xui:column ref="sProcess" visible="false" label=""/>  
+		                    <xui:column ref="sActivity" visible="false" label=""/> 
+		                  </xhtml:div>	
+					</center>
+					<bottom></bottom>
+				</xhtml:div> 
+            </xhtml:div>  
+            <xhtml:div region="right" id="{$splitterRight}" style="width:100%;height:100%"> 
+              <xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout"
+                style="width:100%;height:100%;" border-size="1px"> 
+                <top size="30px" id="{$rightTop}"> 
+                  <xhtml:div style="width:100%;height:100%;" component="/UI/system/components/toolbars.xbl.xml#toolbars"> 
+                    <xui:bar data="{$attachmentList}" component="/UI/system/components/bar.xbl.xml#navigatorBar"> 
+                      <xui:item name="newDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/newfile.gif"
+                          dis-src="/UI/system/images/doc/newfile_g.gif" ref="instance('{$displayButtons}')/newDoc"> 
+                          <xforms:label>新建文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>
+                            xforms('<xsl:value-of select="$newDocMenu"/>').show(event.srcElement || event.target);
+                            var uploadDocItemDiv = document.getElementById('<xsl:value-of select="$id"/>' + '_uploadDocItemDiv'); 
+                            if (!uploadDocItemDiv){ justep.xbl('<xsl:value-of select="$id"/>').createUploadElement(); }
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger>  
+                        <xhtml:div id="{$newDocMenuXbl}" menu-id="{$newDocMenu}"
+                          appearance="context" component="/UI/system/components/menu.xbl.xml#menu"> 
+                          <xui:menuitemset init-loaded="true" data="{$newDocMenuItems}"> 
+                            <xui:label ref="sLabel"/>  
+                            <xui:program ref="sProgramID"/>  
+                            <xui:filename ref="sNewFilename"/> 
+                          </xui:menuitemset>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>if (event.getData().menuitem.program=='uploadDoc') { alert("浏览器没有安装Flash插件，不能执行上传操作"); }else { justep.xbl('<xsl:value-of select="$id"/>').officeHandler(event); }
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xhtml:div> 
+                      </xui:item>  
+                      <xui:item name="editDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/edit_file.gif"
+                          dis-src="/UI/system/images/doc/edit_file_g.gif" ref="instance('{$displayButtons}')/editDoc"> 
+                          <xforms:label>修改文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>
+                            xforms('<xsl:value-of select="$editDocMenu"/>').show(event.srcElement || event.target);
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger>  
+                        <xhtml:div menu-id="{$editDocMenu}" appearance="context"
+                          component="/UI/system/components/menu.xbl.xml#menu"> 
+                          <xui:menuitemset init-load="true" data="{$editDocMenuItems}"> 
+                            <xui:label ref="sLabel"/>  
+                            <xui:program ref="sProgramID"/>  
+                            <xui:filename ref="sNewFilename"/> 
+                          </xui:menuitemset>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>if (event.getData().menuitem.program=='reuploadDoc') { alert("浏览器没有安装Flash插件，不能执行上传操作"); }else { justep.xbl('<xsl:value-of select="$id"/>').officeHandler(event); }
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xhtml:div> 
+                      </xui:item>  
+                      <xui:item name="deleteDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/deletefile.gif"
+                          dis-src="/UI/system/images/doc/deletefile_g.gif" ref="instance('{$displayButtons}')/deleteDoc"> 
+                          <xforms:label>删除文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').deleteDoc();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item>  
+                      <xui:item name="docProperties"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/file_pro.gif"
+                          dis-src="/UI/system/images/doc/file_pro_g.gif" ref="instance('{$displayButtons}')/docProperties"> 
+                          <xforms:label>文件属性</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').showDocAttributeDialog();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item>  
+                      <xui:item name="saveDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/save.gif"
+                          dis-src="/UI/system/images/doc/save_g.gif" ref="instance('{$displayButtons}')/saveDoc"> 
+                          <xforms:label>保存文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').save(); justep.xbl('<xsl:value-of select="$id"/>').refreshDocData();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item>  
+                      <xui:item name="downloadDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/download.gif"
+                          dis-src="/UI/system/images/doc/download_g.gif" ref="instance('{$displayButtons}')/downloadDoc"> 
+                          <xforms:label>下载文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').downloadDoc();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item>  
+                      <xui:item name="browseDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/browse.gif"
+                          dis-src="/UI/system/images/doc/browse_g.gif" ref="instance('{$displayButtons}')/browseDoc"> 
+                          <xforms:label>查看文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').browseDoc();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item>  
+                      <xui:item name="docHistory"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/doc/modify_record.gif"
+                          dis-src="/UI/system/images/doc/modify_record_g.gif" ref="instance('{$displayButtons}')/docHistory"> 
+                          <xforms:label>查看历史版本</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').showHistoryRecordDialog();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item>  
+                      <xui:item name="refreshDoc"> 
+                        <xforms:trigger appearance="image" src="/UI/system/images/standardToolbar/standard/refresh.gif"
+                          ref="instance('{$displayButtons}')/refreshDoc"> 
+                          <xforms:label>刷新文件</xforms:label>  
+                          <xforms:action ev:event="DOMActivate"> 
+                            <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').refreshDocData();
+                            </xforms:script> 
+                          </xforms:action> 
+                        </xforms:trigger> 
+                      </xui:item> 
+                    </xui:bar> 
+                  </xhtml:div> 
+                </top>  
+                <center id="{$rightCenter}"> 
+                  <xhtml:div data="{$attachmentList}" id="{$attachmentListGrid}"
+                    component="/UI/system/components/grid.xbl.xml#grid" style="width:100%;height:100%;padding:2px"> 
+                    <xui:column width="35" ref="sEditorFID" label="状态" type="html"
+                      onRender="imageCellFun" readonly="true"/>  
+                    <xui:column  ref="sDocName" label="名称"/>  
+                    <xui:column  ref="sSize" label="大小(KB)" type="html"
+                      htmlCallback="justep.Doc.transB2KB"/>  
+                    <xui:column  ref="sCreatorName" label="提交人"/>  
+                    <xui:column  type="dateTime" ref="sCreateTime" label="提交时间"/>  
+                    <xui:column  ref="sLastWriterName" label="最后修改人"/>  
+                    <xui:column  type="dateTime" ref="sLastWriteTime" label="最后修改时间"/>  
+                    <xui:column  ref="sCreatorDeptName" visible="false"
+                      label=""/>  
+                    <xui:column  ref="sLastWriterDeptName" visible="false"
+                      label=""/>  
+                    <xui:column  ref="sEditorName" visible="false" label=""/>  
+                    <xui:column  ref="sEditorDeptName" visible="false"
+                      label=""/>  
+                    <xui:column  ref="sParentID" visible="false" label=""/>  
+                    <xui:column  ref="sKind" visible="false" label=""/>  
+                    <xui:column  ref="sDocPath" visible="false" label=""/>  
+                    <xui:column  ref="sDocDisplayPath" visible="false"
+                      label=""/>  
+                    <xui:column  ref="sFileID" visible="false" label=""/>  
+                    <xui:column  ref="sDocSerialNumber" visible="false"
+                      label=""/>  
+                    <xui:column  ref="sKeywords" visible="false" label=""/>  
+                    <xui:column  ref="sDescription" visible="false" label=""/>  
+                    <xui:column  ref="sClassification" visible="false"
+                      label=""/>  
+                    <xui:column  ref="sFinishTime" visible="false" label=""/>  
+                    <xui:column  ref="sDocLiveVersionID" visible="false"
+                      label=""/>  
+                    <xui:column  ref="version" visible="false" label=""/>  
+                    <xui:column  ref="sProcess" visible="false" label=""/>  
+                    <xui:column  ref="sActivity" visible="false" label=""/> 
+                  </xhtml:div> 
+                </center>
+                <bottom></bottom> 
+              </xhtml:div> 
+            </xhtml:div> 
+          </xhtml:div>  
+          <xhtml:div id="{$docExtDiv}"/> 
+        </justep:root> 
+      </xsl:template> 
+    </xbl:template>  
+    <xbl:implementation>
+    ({ "initXBL" : function() { this._id = this.domNode.id; justep.Object.extend(this, new justep.attachment(this._id,this.domNode.getAttribute("autoCreateVersion")?true:false)); var displayButtons = this.domNode.getAttribute("display-buttons")?this.domNode.getAttribute("display-buttons"):"newDoc:true;editDoc:true;downloadDoc:true;browseDoc:true;deleteDoc:true;saveDoc:true;docProperties:true;docHistory:true;refreshDoc:true"; this.buttons = {}; if(displayButtons){ displayButtons = displayButtons.split(";"); for(var i=0; i &lt; displayButtons.length; i++){ if(displayButtons[i]!=""){ var button = displayButtons[i].split(":"); this.buttons[jQuery.trim(button[0])] = "false" == jQuery.trim(button[1])? false: true; } } } this.ownerData = this.domNode.getAttribute("owner-data"); this.ownerRelation = this.domNode.getAttribute("owner-relation"); this.ownerID = this.ownerRelation?null:this.domNode.getAttribute("owner-id")? this.domNode.getAttribute("owner-id"): null; /*兼容之前权限直接写权限的数值*/ this.access = 1799; var domAccess = this.domNode.getAttribute("access"); if(domAccess){ this.access = justep.Doc.accessEnum[domAccess]? justep.Doc.accessEnum[domAccess] : domAccess; } this.limitSize = this.domNode.getAttribute("limit-size"); this.rootPath = this.domNode.getAttribute("root-path"); 
+    this.subPath = this.domNode.getAttribute("sub-path")==null? '' : this.domNode.getAttribute("sub-path"); 
+    this.runtime = this.domNode.getAttribute("runtime")==null||this.domNode.getAttribute("runtime")=='' ?'flash':this.domNode.getAttribute("runtime");
+    this.extensionFilter = this.domNode.getAttribute("extension-filter"); this.attachmentList = this._id + "_attachmentList"; this.attachmentTree = this._id + "_attachmentTree"; this.permissions = this._id + "_attachmentPermissions"; this.displayButtons = this._id + "_attachmentDisplayButtons"; this.attachmentTreeGrid = this._id + "_attachmentTreeGrid"; this.attachmentListGrid = this._id + "_attachmentListGrid"; this.newDocMenu = this._id + '_newDocMenu'; this.editDocMenu = this._id + '_editDocMenu'; this.process = justep.Context.getCurrentProcess(); this.activity = justep.Context.getCurrentActivity(); this.keyId = this.domNode.getAttribute("keyId"); this.loadButtonElements(); xforms(this._id + "_attachmentTreeGrid").grid._noneSetSizes=true; this.treeGrid = this._id + "_attachmentTreeGrid"; this.listGrid = this._id + "_attachmentListGrid"; dhtmlxEventable(this); this.addEvents(); this.attachGridEvent(); this.setAutoLoad("false" == this.domNode.getAttribute("auto-load")? false: true); } })</xbl:implementation>  
+    <xbl:resources> 
+      <xbl:style> <![CDATA[
+				.xui-attachment{
+					width:400px;;
+					height:300px;		
+				}
+			]]> </xbl:style> 
+    </xbl:resources> 
+  </xbl:binding>  
+  <xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/yahooUtil.js"/>  
+  <xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/docUtil.js"/>  
+  <xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/attachment/attachment.js"/>  
+  <xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/dialog/dialog.js"/>  
+  <xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/windowDialog/windowDialog.js"/> 
+</xbl:xbl>

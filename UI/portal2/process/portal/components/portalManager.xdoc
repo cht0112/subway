@@ -1,0 +1,120 @@
+/**
+	@name justep.Portal.PortalManager
+	@model UI
+	@class 
+	@language js
+	@description 这个类主要负责和门户相关的操作及相关数据状态的管理
+*/
+
+/**
+	@name justep.Portal.PortalManager#add-widget
+	@event 
+	@description <b>[回调型事件]</b>当向门户添加widget时触发
+	@param {object} event 
+	<xmp>
+		{
+			dock: widget块的区域
+			position: 在区域内的位置
+			widgetId: widget的Id
+		}
+	</xmp>
+*/
+
+/**
+	@name justep.Portal.PortalManager#remove-widget
+	@event 
+	@description <b>[回调型事件]</b>当删除widget时触发
+	@param {object} id widget的Id
+*/
+
+/**
+	@name justep.Portal.PortalManager#refresh-widget
+	@event 
+	@description <b>[回调型事件]</b>当刷新widget时触发
+	@param {Boolean} all 是否全部刷新, 如果为false只由配置为刷新的widget会刷新,否则全部刷新
+*/
+
+/**
+	@name justep.Portal.PortalManager#layout-change
+	@event 
+	@description <b>[回调型事件]</b> 当修改布局结构的时候触发
+*/
+
+/**
+	@name justep.Portal.PortalManager#dock-changed
+	@event 
+	@description <b>[回调型事件]</b> 当修改widget的位置时触发
+*/
+
+/**
+	@name justep.Portal.PortalManager#addWidget
+	@function
+	@description 向门户添加widget, 加到第一个区域内
+	@param {String} id <b>[required]</b>  widget的id 
+*/
+
+/**
+	@name justep.Portal.PortalManager#removeWidgte
+	@function
+	@description 门户删除widget
+	@param {String} id <b>[required]</b>  widget的id 
+*/
+
+/**
+	@name justep.Portal.PortalManager#setLayout
+	@function
+	@description 设置布局结构
+	@param {String} id <b>[required]</b>  id为 布局的id 
+*/
+
+/**
+	@name justep.Portal.PortalManager#setWidgteDock
+	@function
+	@description 设置widget在布局结构中的位置
+	@param {String} id <b>[required]</b>  widget的id 
+	@param {Integer} dock <b>[required]</b>  区域块的编号, 0开始
+	@param {Integer} position <b>[required]</b>  在区域块内的位置
+*/
+
+/**
+	@name justep.Portal.PortalManager#setWidgetAttr
+	@function
+	@description 设置widget在布局结构中的位置
+	@param {String} id <b>[required]</b>  widget的id 
+	@param {String} name <b>[required]</b>  属性名 
+	@param {Object} value <b>[required]</b>  值
+*/
+
+/**
+	@name justep.Portal.PortalManager#getWidgetDefById
+	@function
+	@description 通过id获取widget定义
+	@param {String} id <b>[required]</b>  widget的id 
+*/
+
+/**
+	@name justep.Portal.PortalManager#eachLayout
+	@function
+	@description 遍历布局的定义
+	@param {Function} cb <b>[required]</b>  回调方法 
+*/
+
+/**
+	@name justep.Portal.PortalManager#eachWidgetDef
+	@function
+	@description 遍历widget的定义
+	@param {Function} cb <b>[required]</b>  回调方法 
+*/
+
+/**
+	@name justep.Portal.PortalManager#save
+	@function
+	@description 保存门户的状态到数据库
+*/
+
+/**
+	@name justep.Portal.PortalManager#refresh
+	@function 
+	@description 刷新widget
+	@param {Boolean} all 是否刷新全部widget
+*/

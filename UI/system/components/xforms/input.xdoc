@@ -1,0 +1,157 @@
+/**
+	@name UI.input
+	@class
+	@component input
+	@model UI
+	@description <b>[rich]</b>输入框
+	@example
+ 	当绑定的关系类型为DateTime、Date时提供时间选择框
+ 	
+	<b>xml格式：</b>
+	<xmp>
+	<xforms:input ref=""/>		   		
+	</xmp>
+*/
+ 
+/**
+	@name UI.input#id
+	@attribute
+	@required
+	@description 唯一标识
+*/
+
+/**
+	@name UI.input#ref
+	@attribute
+	@required
+	@description 绑定引用
+*/
+
+/**
+	@name UI.input#input__sub__regex
+	@attribute
+	@description 通过正则表格式控制用户输入键盘输入，用户每输入一个字符时，就会用此表达式进行验证 
+	@example
+	<xmp>
+	只能输入正负整数
+		input-regex = "/(^-?$)|(^-?[0-9]*$)/" 
+	只能输入正负浮点数
+		input-regex = "/(^-?$)|(^-?[0-9]*([.]?[0-9]*)?$)/"
+	</xmp> 
+*/
+
+/**
+	@name UI.input#format
+	@attribute
+	@description 数字日期格式化
+	@example 
+	1 数字格式化
+  		1）小数位数    (描述如 0.00 保留两位小数)
+  		2）百分数      (0.0%  一位小数的百分数)
+  		3）科学计数    (00.0E0   E0左边定义了有效数字 ，3位有效数字，小数位数为1)
+ 		4）千分位      (0,000.00)
+		如：format="0,000.00" 
+	2日期格式化
+		如：format="yyyy-MM-dd" 
+	3日期时间格式化
+		如：format="yyyy-MM-dd hh:mm" 
+*/
+
+/**
+	@name UI.input#onChange
+	@event
+	@description <b>[回调事件]</b> 值改变
+*/
+
+/**
+	@name UI.input#onFocus
+	@event
+	@description <b>[回调事件]</b> 获得焦点
+*/
+
+/**
+	@name UI.input#onBlur
+	@event
+	@description <b>[回调事件]</b> 失去焦点
+*/
+
+/**
+	@name UI.input#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.input#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.input#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.input#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.input#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.input#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.input#readonly
+	@attribute
+	@description 只读
+*/
+
+/**
+	@name UI.input#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.input#setReadonly
+	@function
+	@param readonly {boolean} <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.input#disabled
+	@attribute
+	@description 禁用
+*/
+
+/**
+	@name UI.input#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.input#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+

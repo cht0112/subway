@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="output" tag-type="rich" tag-name="output" icon="output.gif" text="文本输出框" 
+		namespace="xforms" namespace-uri="http://www.justep.com/xforms"
+		display-property="id" 
+		component-class="XformOutput" 
+		component-type="formControl" validator="OutputValidator" design-view="web-designer" >
+<!--		discriminate-condition="notHasAttribute('format')=true"-->
+		<properties>
+			<property name="id" text="编号" required="false"/>		
+			<property name="ref" text="引用" editor-ref="dataRef" />	
+			<property name="value" text="值" editor-ref="xpathEditor"/>
+			<property name="mediatype" editor-ref="mediatypeList" text="显示类型" />	
+			<property name="format" editor-ref="formatList" enabled-condition="not(@mediatype) or @mediatype!='text/html'" text="格式化" readonly="false"/>
+			<property name="class"  text="class" editor-extend-data="xui-output:output"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true"/>
+			</property>
+		</properties>
+		<property-editors>
+			<property-editor name="mediatypeList" type="list">
+				<static-data value=",text/html"></static-data>
+			</property-editor>
+		</property-editors>
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel">				
+			</item>			
+		</toolbar>
+		<templates>
+		   <template name="default"><![CDATA[ 
+				<xforms:output xmlns:xforms="http://www.justep.com/xforms"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

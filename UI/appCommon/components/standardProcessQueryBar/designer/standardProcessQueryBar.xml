@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="standardProcessQueryBar" tag-name="bar" icon="Control_ToolBar.gif"
+		text="标准流程查询工具栏"
+		namespace="xui" namespace-uri="http://www.justep.com/xui"
+		binding-component="/UI/appCommon/components/standardProcessQueryBar.xbl.xml#standardProcessQueryBar"
+	    parent-range="toolbars"
+		display-property="id"
+		component-class="StandardProcessQueryBar"
+		component-type="layoutContainer" design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="绑定数据"  required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data" />
+			
+			<property name="biz-state-relation" text="业务状态关系"  required="true" default-value="fBizState" editor-ref="relationDlg" editor-parameter="data"/>
+			
+			<property name="date-filter-mode" text="日期过滤模式" editor-ref="filterDateModeList" default-value="single" required="true"/>
+			<property name="date-relation1" text="日期关系1" required="true" default-value="fCreateTime" editor-ref="relationDlg" editor-parameter="data"/>
+			<property name="date-relation2" text="日期关系2" editor-ref="relationDlg" editor-parameter="data" />
+			
+			<property name="person-id-relation" text="人员标识关系" required="true" default-value="fCreatePsnID" editor-ref="relationDlg" editor-parameter="data"/>
+			<property name="org-url-relation" text="组织路径关系" required="true" default-value="fCreatePsnFID" editor-ref="relationDlg" editor-parameter="data"/>
+			<property name="execute-concept" text="处理表概念" required="true"/>
+			
+			<property name="smart-relations" text="模糊过滤关系，多个用逗号分隔" required="true" editor-ref="relationsDlg" editor-parameter="data" ref-type="Relation" ref-context="data/d"/>
+		</properties>
+
+		<property-editors>
+			<property-editor name="filterDateModeList" type="list" > 
+				<static-data value="single:单日期过滤,range:日期范围过滤" /> 
+			</property-editor>
+		</property-editors>
+				
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+			    	<bar component="/UI/appCommon/components/standardProcessQueryBar.xbl.xml#standardProcessQueryBar"/>
+				]]>
+			</template>
+		</templates>
+		
+	</element>
+</elements>

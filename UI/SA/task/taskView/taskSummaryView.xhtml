@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+<xhtml:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xforms="http://www.justep.com/xforms" 
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms" 
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:f="http://orbeon.org/oxf/xml/formatting" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:exf="http://www.exforms.org/exf/1-0" 
+	xmlns:ajx="http://www.ajaxforms.net/2006/ajx"
+	xmlns:xreport="http://www.justep.com/x5/xreport" 
+	xmlns:justep="http://www.justep.com/x5#"
+	xsl:version="2.0">
+	<xhtml:head id="head">
+		<xhtml:script type="text/javascript" src="/base/base.js" />
+		<xhtml:script type="text/javascript" src="/form/form.js" />
+		<xhtml:link rel="stylesheet" type="text/css"
+			href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_dhx_blue.css" />
+		<xhtml:style>
+			body {
+				padding: 0px;
+				margin: 0px;
+			}
+		
+		
+		  	div.header{
+		  		font-size:12px;
+		  		font:bold;
+		  	}
+		  	a.task{
+			font-size:12px;
+		  		color:#479cd0;
+		  	
+		  	}
+		  	
+		  	a:link {
+			 text-decoration:none;
+			color:#1f3a87;
+			 font-size:12px;
+			}
+			a:visited {
+			 text-decoration:none;
+			color:#1f3a87;
+			 font-size:12px;
+			}
+			a:hover {
+			 text-decoration:underline;
+			color:#0A73E9;
+			 font-size:12px;
+			}
+			a:active {
+			 text-decoration:none;
+			color:#1f3a87;
+			 font-size:12px;
+			}  
+			table{
+				table-layout:fixed;
+			}
+			.className{
+				font-size:12px;
+		  		word-break :
+			keep-all; 
+		  		overflow: hidden;	
+		  		text-overflow:ellipsis;
+			}
+			
+			
+		  	body{
+		  		background:#fff; 
+		  		color:#000;
+		  		font-family: "宋体";
+		  		font-size:12px;
+		  		line-height: 16px;
+		  	}
+		</xhtml:style>
+		<xhtml:script>
+		<![CDATA[
+		   	tabActive = function(){
+				//refreshThisWindow();
+		   	}
+		   	
+		  	refreshThisWindow=function(){
+		  		document.location.reload();
+		  	}
+		  	
+		  	function openWait(executor, executorName){
+		  		if ("本人" == executorName){
+		  			justep.Portal.openWindow('任务中心', '/SA/task/taskCenter/mainActivity.w?parameter=waiting', false, null, executor);
+		  		
+		  		}else{
+		  			justep.Portal.openPrincipalWindow(executor);
+		  		}
+		  	}
+		  	
+		  	function openSubmit(executor, executorName){
+		  		if ("本人" == executorName){
+		  			justep.Portal.openWindow('任务中心', '/SA/task/taskCenter/mainActivity.w?parameter=submited', false, null, executor);
+		  		
+		  		}else{
+		  			justep.Portal.openPrincipalWindow(executor);
+		  		}
+		  	
+		  	}
+		]]>
+		</xhtml:script>
+		<xsl:if test="/root/flag = 'false'">
+			<xhtml:script>
+	   			function isActionError(){
+		   			var code = document.getElementById("errorCode").innerText;
+		   			if (code == justep.Request.SESSION_TIMEOUT){
+		   				justep.Request.bizSessionOverdue();
+		   			}else{
+		   				alert(message);
+		   			}
+	   			}
+			
+			</xhtml:script>
+		</xsl:if>
+		<xsl:if test="/root/flag = 'true'">
+			<xhtml:script>
+   				function isActionError(){
+   				}
+			</xhtml:script>
+		</xsl:if>  
+	</xhtml:head>
+	<xhtml:body
+		onload="isActionError();">
+		<xhtml:div id="errorMessage" style="display:none"><xsl:value-of select="/root/message"/></xhtml:div>
+		<xhtml:div id="errorCode" style="display:none"><xsl:value-of select="/root/code"/></xhtml:div>
+		<xhtml:div id="visible-element" style="height:100%;width:100%;overflow: hidden;">
+			<xsl:if test="/root/flag = 'true'">
+				<xhtml:table style="width:100%;overflow: hidden;" id='taskListTable'>
+					<xsl:for-each select="/root/data/*/tasks/item">
+						<xsl:variable name="value1">openWait('<xsl:value-of select="executor"/>', '<xsl:value-of select="executorName"/>');</xsl:variable>
+			      		<xsl:variable name="value2">openSubmit('<xsl:value-of select="executor"/>', '<xsl:value-of select="executorName"/>');</xsl:variable>
+			      		<tr>
+			      			<td style="width:12px"><img name="flagImg" src="/UI/SA/task/taskView/images/dot.png"/></td>
+			      			<td class="className" width="65px" >
+			      				<nobr><xsl:value-of select="executorName"/>:</nobr>
+			      			</td> 
+			      			<td class="className"  width="100%"> 
+			      				<nobr>
+				      				<a class="className">
+				      					<xsl:attribute name="href">javascript:void(0)</xsl:attribute>
+				      					<xsl:attribute name="onclick">
+				      						<xsl:value-of select="$value1"></xsl:value-of>
+				      					</xsl:attribute>
+				      					待办<xsl:value-of select="waitTaskCount"/>条
+				      				</a>
+				      				,
+				      				<a class="className">
+				      					<xsl:attribute name="href">javascript:void(0)</xsl:attribute>
+				      					<xsl:attribute name="onclick">
+				      						<xsl:value-of select="$value2"></xsl:value-of>
+				      					</xsl:attribute>
+				      					提交<xsl:value-of select="submitTaskCount"/>条
+				      				</a>
+				      			</nobr>	
+			      			</td>
+			      		</tr> 
+			      	</xsl:for-each> 
+			    </xhtml:table>
+			</xsl:if>
+   		</xhtml:div>
+	</xhtml:body>  
+</xhtml:html>
+</xsl:template></xsl:stylesheet>

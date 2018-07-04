@@ -1,0 +1,16 @@
+<div id="settings_shortcuts_inner" class="settings_content_inner">
+	<h2>快捷方式</h2>
+	<div>
+		<div><div class="functree_outborder" style="width:200px;float:left;"><div class="functree_inborder" style="height:400px;"><div class="functree"></div></div></div></div>
+		<div><div class="functree_outborder" style="width:200px;float:left;margin-left:10px;"><div class="functree_inborder" style="height:400px;"><div class="shortcuts_define"></div></div></div></div>
+	</div>
+</div>
+<script>
+	$(function(){
+		$(".shortcuts_define", "#settings_shortcuts_inner").ShortcutsDefine();
+		var iconPath = "../UI/portal/x5/img/icon/";
+		$(".functree", "#settings_shortcuts_inner").FuncTree(iconPath, function(func){
+			$(".shortcuts_define", "#settings_shortcuts_inner").ShortcutsDefine_add(iconPath, func);
+		});
+	});
+</script>

@@ -1,0 +1,146 @@
+/**
+	@name UI.attachmentDialog2
+	@component /UI/system/components/attachmentDialog2.xbl.xml#attachmentDialog2
+	@class XBL组件
+	@model UI
+	@description <b>[rich]</b>附件对话框组件
+	@example 
+		<xmp>
+			<xhtml:div
+				component="/UI/system/components/attachmentDialog2.xbl.xml#attachmentDialog2"
+				id="attachmentDialog2" 
+				model="mainmodel"
+				ref="data('main')/sAttachment"
+				sub-path="'bcb'"
+				access="1799" 
+				limit-size=""
+				display-buttons="upload:true; template:true; edit:true; delete:true; history:true">
+				extension-filter="所有图片文件:*.bmp;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.PNG;*.TIF;*.TIFF,位图文件(*.BMP):*.BMP"
+			</xhtml:div>   		
+		</xmp>
+*/
+
+/**
+	@name UI.attachmentDialog2#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/attachmentDialog2.xbl.xml#attachmentDialog2"
+*/
+
+/**
+	@name UI.attachmentDialog2#id
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>id标识
+*/
+
+/**
+	@name UI.attachmentDialog2#model
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>绑定附件的主数据所在model标识
+*/
+
+/**
+	@name UI.attachmentDialog2#ref
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>数据引用
+*/
+
+/**
+	@name UI.attachmentDialog2#sub__sub__path
+	@property 
+	@description <b>[attribute]</b>上传文件到指定的知识中心目录下的动态子目录
+*/
+
+/**
+	@name UI.attachmentDialog2#access
+	@property 
+	@description <b>[attribute]</b>操作权限，7:下载,263:下载 上传,775:下载 上传 修改,1799:下载 上传 修改 删除
+*/
+
+/**
+	@name UI.attachmentDialog2#limit__sub__size
+	@property 
+	@description <b>[attribute]</b>限制上传文件的大小
+*/
+
+/**
+	@name UI.attachmentDialog2#display__sub__buttons
+	@property 
+	@description <b>[attribute]</b>设置显示的操作按钮
+*/
+
+/**
+	@name UI.attachmentDialog2#extension__sub__filter
+	@property 
+	@description <b>[attribute]</b>上传文件类型
+*/
+
+/**
+	@name UI.attachmentDialog2#attachmentDialog2
+	@function
+	@description 获取附件编辑器组件：justep.xbl('attachmentDialog2_id').getAttachmentEditor();
+	@returns attachmentEditor
+*/
+
+/**
+	@name UI.attachmentDialog2#onCreate
+	@event
+	@description <b>[回调型事件]</b>组件创建时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+
+/**
+	@name UI.attachmentDialog2#onNewFromTemplate
+	@event
+	@description <b>[回调型事件]</b>组件创建新建模板前
+	@param event 它的结构如下:<br/>{"source":组件的js对象,"data":新建模板的数据对象}
+*/
+
+/**
+	@name UI.attachmentDialog2#onBrowseDocClick
+	@event
+	@description <b>[回调型事件]</b>组件点击数据记录链接时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "fileID" : 当前记录对应文档服务器的ID, "host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentDialog2#onLoadData
+	@event
+	@description <b>[回调型事件]</b>组件加载数据时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"date":逐行加载记录的数据对象}
+*/
+
+/**
+	@name UI.attachmentDialog2#onUploadClick
+	@event
+	@description <b>[回调型事件]</b>组件点击上传按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+
+/**
+	@name UI.attachmentDialog2#onEditClick
+	@event
+	@description <b>[回调型事件]</b>组件点击编辑按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "fileID" : 当前记录对应文档服务器的ID, "docName" : 当前记录名称,"docPath" : 当前记录所在目录的路径,"host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentDialog2#onDeleteClick
+	@event
+	@description <b>[回调型事件]</b>组件点击删除按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "docName" : 当前记录名称, "host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentDialog2#onDownloadClick
+	@event
+	@description <b>[回调型事件]</b>组件点击下载按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "docName" : 当前记录名称, "host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentDialog2#onHistoryClick
+	@event
+	@description <b>[回调型事件]</b>组件点击查看历史按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "docName" : 当前记录名称, "host" : 所在文档服务器的host}
+*/

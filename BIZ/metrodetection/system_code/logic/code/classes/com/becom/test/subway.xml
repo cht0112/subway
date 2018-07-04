@@ -1,0 +1,805 @@
+<mapping>
+	<!-- 测试任务 -->
+	<class name="com.becom.test.DetectionTask" auto-complete="true">
+		<map-to xml="DetectionTask" />
+		<!-- 公共部分 -->
+		<field name="publicContent" type="com.becom.test.PublicContent">
+			<bind-xml name="Public" node="element"></bind-xml>
+		</field>
+		<!--用例集-->
+		<field name="testCases" type="com.becom.test.TestCases">
+			<bind-xml name="TestCases" node="element"></bind-xml>
+		</field>
+		<!-- 指标映射 -->
+		<field name="indexsContent" type="com.becom.test.IndexsContent">
+			<bind-xml name="Indexs" node="element"></bind-xml>
+		</field>
+		
+		<!-- 2013.11.04日 新增MD5验证节点 -->
+		<!-- <field name="md5" type="string">
+			<bind-xml name="md5" node="element"></bind-xml>
+		</field> -->
+	</class>
+	
+	<!-- 公共部分 -->
+	<class name="com.becom.test.PublicContent" auto-complete="true">
+		<map-to xml="Public" />
+		<field name="projectId" type="string">
+			<bind-xml name="ProjectID" node="element"></bind-xml>
+		</field>
+		<field name="projectName" type="string">
+			<bind-xml name="ProjectName" node="element"></bind-xml>
+		</field>
+		<field name="productName" type="string">
+			<bind-xml name="ProductName" node="element"></bind-xml>
+		</field>
+		<field name="assigned" type="string">
+			<bind-xml name="Assigned" node="element"></bind-xml>
+		</field>
+		<field name="develop" type="string">
+			<bind-xml name="Develop" node="element"></bind-xml>
+		</field>
+		<field name="detectionObjType" type="string">
+			<bind-xml name="DetectionObjType" node="element"></bind-xml>
+		</field>
+		<field name="detectionObj" type="string">
+			<bind-xml name="DetectionObj" node="element"></bind-xml>
+		</field>
+		<field name="bussinessType" type="string">
+			<bind-xml name="BussinessType" node="element"></bind-xml>
+		</field>
+		<field name="bussinessStage" type="string">
+			<bind-xml name="BussinessStage" node="element"></bind-xml>
+		</field>
+		
+		<field name="taskId" type="string">
+			<bind-xml name="TaskID" node="element"></bind-xml>
+		</field>
+		<field name="taskName" type="string">
+			<bind-xml name="TaskName" node="element"></bind-xml>
+		</field>
+		<field name="planOperatorID" type="string">
+			<bind-xml name="PlanOperatorID" node="element"></bind-xml>
+		</field>
+		<field name="taskPlanStartDate" type="string">
+			<bind-xml name="TaskPlanStartDate" node="element"></bind-xml>
+		</field>
+		<field name="taskPlanEndDate" type="string">
+			<bind-xml name="TaskPlanEndDate" node="element"></bind-xml>
+		</field>
+		<field name="taskArea" type="string">
+			<bind-xml name="TaskArea" node="element"></bind-xml>
+		</field>
+		<field name="taskIterative" type="string">
+			<bind-xml name="TaskIterative" node="element"></bind-xml>
+		</field>
+		<field name="taskReport" type="com.becom.test.TaskReport">
+			<bind-xml name="TaskReport" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 任务报告信息 -->
+	<class name="com.becom.test.TaskReport" auto-complete="true">
+		<map-to xml="TaskReport" />
+		<field name="operatorID" type="string">
+			<bind-xml name="OperatorID" node="element"></bind-xml>
+		</field>
+		<field name="taskStartDate" type="string">
+			<bind-xml name="TaskStartDate" node="element"></bind-xml>
+		</field>
+		<field name="taskEndDate" type="string">
+			<bind-xml name="TaskEndDate" node="element"></bind-xml>
+		</field>
+		<field name="taskStatus" type="string">
+			<bind-xml name="TaskStatus" node="element"></bind-xml>
+		</field>
+		<field name="taskCheck" type="string">
+			<bind-xml name="TaskCheck" node="element"></bind-xml>
+		</field>
+	</class>
+	
+	
+	
+	<!--用例集-->
+	<class name="com.becom.test.TestCases" auto-complete="true">
+		<map-to xml="TestCases" />
+		<field name="testCaseList" type="com.becom.test.TestCase" collection="arraylist">
+			<bind-xml name="TestCase" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 用例 -->
+	<class name="com.becom.test.TestCase" auto-complete="true">
+		<map-to xml="TestCase" />
+		<!-- 用例信息 -->
+		<field name="testCaseInfo" type="com.becom.test.TestCaseInfo">
+			<bind-xml name="TestCaseInfo" node="element"></bind-xml>
+		</field>
+		<!-- 子用例集 -->
+		<field name="subTestCases" type="com.becom.test.SubTestCases">
+			<bind-xml name="SubTestCases" node="element"></bind-xml>
+		</field>
+		<!-- 任务回退记录2013.12.2日新增 -->
+		<field name="testCaseRollbackRecords" type="com.becom.test.TestCaseRollbackRecords">
+			<bind-xml name="TestCaseRollbackRecords" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 2013.12.2日新增节点 -->
+	<class name="com.becom.test.TestCaseRollbackRecords" auto-complete="true">
+		<map-to xml="TestCaseRollbackRecords"></map-to>
+		<field name="testCaseRollbackRecordList" type="com.becom.test.TestCaseRollbackRecord" collection="arraylist"></field>
+	</class>
+	<class name="com.becom.test.TestCaseRollbackRecord" auto-complete="true">
+		<map-to xml="TestCaseRollbackRecord"></map-to>
+		<field name="authorizerID" type="string" >
+			<bind-xml name="AuthorizerID" node="attribute"></bind-xml>
+		</field>
+		<field name="operatorID" type="string" >
+			<bind-xml name="OperatorID" node="attribute"></bind-xml>
+		</field>
+		<field name="rollbackDesc" type="string" >
+			<bind-xml name="RollbackDesc" node="attribute"></bind-xml>
+		</field>
+		<field name="projectID" type="string" >
+			<bind-xml name="ProjectID" node="attribute"></bind-xml>
+		</field>
+		<field name="taskID" type="string" >
+			<bind-xml name="TaskID" node="attribute"></bind-xml>
+		</field>
+		<field name="caseID" type="string" >
+			<bind-xml name="CaseID" node="attribute"></bind-xml>
+		</field>
+		<field name="rollbackTime" type="string" >
+			<bind-xml name="RollbackTime" node="attribute"></bind-xml>
+		</field>
+		<field name="times" type="string" >
+			<bind-xml name="Times" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!-- 用例信息 -->
+	<class name="com.becom.test.TestCaseInfo" auto-complete="true">
+		<map-to xml="TestCaseInfo" />
+		<field name="caseId" type="string">
+			<bind-xml name="CaseID" node="attribute"></bind-xml>
+		</field>
+		<field name="caseName" type="string">
+			<bind-xml name="CaseName" node="attribute"></bind-xml>
+		</field>
+		<field name="casePrior" type="string">
+			<bind-xml name="CasePrior" node="attribute"></bind-xml>
+		</field>
+		<field name="description" type="string">
+			<bind-xml name="Description" node="attribute"></bind-xml>
+		</field>
+		<field name="detectionObject" type="com.becom.test.DetectionObject">
+			<bind-xml name="DetectionObject" node="element"></bind-xml>
+		</field>
+		<field name="detectionRange" type="com.becom.test.DetectionRange">
+			<bind-xml name="DetectionRange" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 检测对象 -->
+	<class name="com.becom.test.DetectionObject" auto-complete="true">
+		<map-to xml="DetectionObject" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="subType" type="string">
+			<bind-xml name="SubType" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!-- 检测方面 -->
+	<class name="com.becom.test.DetectionRange" auto-complete="true">
+		<map-to xml="DetectionRange" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="subType" type="string">
+			<bind-xml name="SubType" node="attribute"></bind-xml>
+		</field>
+	</class>
+	
+	<!-- 子用例集 -->
+	<class name="com.becom.test.SubTestCases" auto-complete="true">
+		<map-to xml="SubTestCases" />
+		<field name="subTestCaseList" type="com.becom.test.SubTestCase" collection="arraylist">
+			<bind-xml name="SubTestCase" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 子用例 -->
+	<class name="com.becom.test.SubTestCase" auto-complete="true">
+		<map-to xml="SubTestCase" />
+		<!--子用例信息  -->
+		<field name="subTestCaseInfo" type="com.becom.test.SubTestCaseInfo">
+			<bind-xml name="SubTestCaseInfo" node="element"></bind-xml>
+		</field>
+		<!-- 子用例执行结果 -->
+		<field name="subTestCaseReport" type="com.becom.test.SubTestCaseReport">
+			<bind-xml name="SubTestCaseReport" node="element"></bind-xml>
+		</field>
+		<!-- 步骤集 -->
+		<field name="steps" type="com.becom.test.Steps">
+			<bind-xml name="Steps" node="element"></bind-xml>
+		</field>
+	</class>
+	
+	<!--子用例信息  -->
+	<class name="com.becom.test.SubTestCaseInfo" auto-complete="true">
+		<map-to xml="SubTestCaseInfo" />
+		<field name="subCaseID" type="string">
+			<bind-xml name="SubCaseID" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseName" type="string">
+			<bind-xml name="SubCaseName" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseLevel" type="string">
+			<bind-xml name="SubCaseLevel" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseSeq" type="string">
+			<bind-xml name="SubCaseSeq" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseSpendTime" type="string">
+			<bind-xml name="SubCaseSpendTime" node="attribute"></bind-xml>
+		</field>
+		<field name="indexName" type="string">
+			<bind-xml name="IndexName" node="attribute"></bind-xml>
+		</field>
+		<!--<field name="subCaseToolsType" type="string">
+			<bind-xml name="SubCaseToolsType" node="element"></bind-xml>
+		</field>
+		<field name="subCaseToolsCount" type="string">
+			<bind-xml name="SubCaseToolsCount" node="element"></bind-xml>
+		</field>-->
+		<field name="preCondition" type="string">
+			<bind-xml name="PreCondition" node="element"></bind-xml>
+		</field>
+		
+		<!--环境配置信息-->
+		<!--<field name="environmentConfig" type="com.becom.test.EnvironmentConfig">
+			<bind-xml name="EnvironmentConfig" node="element"></bind-xml>
+		</field>-->
+		<field name="systemConfiguration" type="com.becom.test.SystemConfiguration">
+			<bind-xml name="SystemConfiguration" node="element"></bind-xml>
+		</field>
+	</class>
+	<!--环境配置信息-->
+	<!--<class name="com.becom.test.EnvironmentConfig" auto-complete="true">
+		<map-to xml="EnvironmentConfig" />-->
+		<!--应用配置-->
+		<!--<field name="applications" type="com.becom.test.Applications">
+			<bind-xml name="Applications" node="element"></bind-xml>
+		</field>-->
+		<!--系统配置-->
+		<!--<field name="systemConfiguration" type="com.becom.test.SystemConfiguration">
+			<bind-xml name="SystemConfiguration" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<!--应用配置-->
+	<!--<class name="com.becom.test.Applications" auto-complete="true">
+		<map-to xml="Applications" />
+		<field name="application" type="com.becom.test.Application">
+			<bind-xml name="Application" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.Application" auto-complete="true">
+		<map-to xml="Application" />
+		<field name="id" type="integer">
+			<bind-xml name="ID" node="attribute"></bind-xml>
+		</field>
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<!-- <field name="tcp" type="com.becom.test.TCP">
+			<bind-xml name="TCP" node="element"></bind-xml>
+		</field> -->
+		<field name="protocolType" type="string">
+			<bind-xml name="ProtocolType" node="attribute"></bind-xml>
+		</field>
+		<field name="connectType" type="string">
+			<bind-xml name="ConnectType" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!-- <class name="com.becom.test.TCP" auto-complete="true">
+		<map-to xml="TCP" />
+		<field name="socketType" type="string">
+			<bind-xml name="SocketType" node="attribute"></bind-xml>
+		</field>
+		<field name="protocolType" type="string">
+			<bind-xml name="ProtocolType" node="attribute"></bind-xml>
+		</field>
+	</class> -->
+	<!--系统配置-->
+	<class name="com.becom.test.SystemConfiguration" auto-complete="true">
+		<map-to xml="SystemConfiguration" />
+		<field name="autoPowerOn" type="string">
+			<bind-xml name="AutoPowerOn" node="attribute"></bind-xml>
+		</field>
+		<field name="autoParameterSync" type="string">
+			<bind-xml name="AutoParameterSync" node="attribute"></bind-xml>
+		</field>
+		<!-- <field name="parameters" type="com.becom.test.Parameters">
+			<bind-xml name="Parameters" node="element"></bind-xml>
+		</field> -->
+	</class>
+	<!-- <class name="com.becom.test.Parameters" auto-complete="true">
+		<map-to xml="Parameters" />
+		<field name="parameteList" type="com.becom.test.Parameter" collection="arraylist">
+			<bind-xml name="Parameter" node="element"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Parameter" auto-complete="true">
+		<map-to xml="Parameter" />
+		<field name="paramType" type="string">
+			<bind-xml name="ParamType" node="attribute"></bind-xml>
+		</field>
+		<field name="id" type="string">
+			<bind-xml name="ID" node="attribute"></bind-xml>
+		</field>
+		<field name="date" type="string">
+			<bind-xml name="Date" node="attribute"></bind-xml>
+		</field>
+		<field name="version" type="string">
+			<bind-xml name="Version" node="attribute"></bind-xml>
+		</field>
+		<field name="url" type="string">
+			<bind-xml name="Url" node="attribute"></bind-xml>
+		</field>
+		<field name="forceDown" type="string">
+			<bind-xml name="ForceDown" node="attribute"></bind-xml>
+		</field>
+	</class> -->
+	
+	<!-- 子用例执行结果 -->
+	<class name="com.becom.test.SubTestCaseReport" auto-complete="true">
+		<map-to xml="SubTestCaseReport" />
+		<field name="subCaseStatus" type="string">
+			<bind-xml name="SubCaseStatus" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseCheck" type="string">
+			<bind-xml name="SubCaseCheck" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseStartTime" type="string">
+			<bind-xml name="SubCaseStartTime" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseElapsedTime" type="string">
+			<bind-xml name="SubCaseElapsedTime" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseReportDate" type="string">
+			<bind-xml name="SubCaseReportDate" node="attribute"></bind-xml>
+		</field>
+		<field name="subCaseDesc" type="string">
+			<bind-xml name="SubCaseDesc" node="attribute"></bind-xml>
+		</field>
+	</class>
+	
+	<!--步骤集-->
+	<class name="com.becom.test.Steps" auto-complete="true">
+		<map-to xml="Steps" />
+		<field name="stepList" type="com.becom.test.Step" collection="arraylist">
+			<bind-xml name="Step" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 步骤 -->
+	<class name="com.becom.test.Step" auto-complete="true">
+		<map-to xml="Step" />
+		<!-- <field name="id" type="integer">
+			<bind-xml name="ID" node="attribute"></bind-xml>
+		</field>
+		<field name="name" type="string">
+			<bind-xml name="Name" node="attribute"></bind-xml>
+		</field> -->
+		<field name="description" type="string">
+			<bind-xml name="Description" node="attribute"></bind-xml>
+		</field>
+		<field name="operatePlace" type="string">
+			<bind-xml name="OperatePlace" node="attribute"></bind-xml>
+		</field>
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="stepNo" type="string">
+			<bind-xml name="StepNo" node="attribute"></bind-xml>
+		</field>
+		<field name="stepResult" type="string">
+			<bind-xml name="StepResult" node="attribute"></bind-xml>
+		</field>
+		<!--步骤级别-->
+		<field name="stepLevel" type="string">
+			<bind-xml name="StepLevel" node="attribute"></bind-xml>
+		</field>
+		<!-- 动作集 -->
+		<field name="application" type="com.becom.test.Application">
+			<bind-xml name="Application" node="element"></bind-xml>
+		</field>
+		<!-- 动作集 -->
+		<field name="execution" type="com.becom.test.Execution">
+			<bind-xml name="Execution" node="element"></bind-xml>
+		</field>
+		<!--步骤执行报告 -->
+		<field name="stepReoprt" type="com.becom.test.StepReoprt">
+			<bind-xml name="StepReoprt" node="element"></bind-xml>
+		</field>
+	</class>
+	<!--步骤级别-->
+	<!--<class name="com.becom.test.StepLevel" auto-complete="true">
+		<map-to xml="StepLevel" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>-->
+	<!--步骤执行报告 -->
+	<class name="com.becom.test.StepReoprt" auto-complete="true">
+		<map-to xml="StepReoprt" />
+		<field name="stepStatus" type="string">
+			<bind-xml name="StepStatus" node="attribute"></bind-xml>
+		</field>
+		<field name="stepCheck" type="string">
+			<bind-xml name="StepCheck" node="attribute"></bind-xml>
+		</field>
+		<field name="stepStartDateTime" type="string">
+			<bind-xml name="StepStartDateTime" node="attribute"></bind-xml>
+		</field>
+		<field name="stepDesc" type="string">
+			<bind-xml name="StepDesc" node="attribute"></bind-xml>
+		</field>
+		<field name="stepReportDate" type="string">
+			<bind-xml name="StepReportDate" node="attribute"></bind-xml>
+		</field>
+		<field name="stepUpLoad" type="string">
+			<bind-xml name="StepUpLoad" node="attribute"></bind-xml>
+		</field>
+		<field name="stepFile" type="string">
+			<bind-xml name="StepFile" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!-- 动作集 -->
+	<!--<class name="com.becom.test.Executions" auto-complete="true">
+		<map-to xml="Executions" />
+		<field name="execution" type="com.becom.test.Execution">
+			<bind-xml name="Execution" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<!-- 动作 -->
+	<class name="com.becom.test.Execution" auto-complete="true">
+		<map-to xml="Execution" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<!--<field name="applicationId" type="integer">
+			<bind-xml name="ApplicationId" node="attribute"></bind-xml>
+		</field>-->
+		<!-- 规则集 -->
+		<field name="rules" type="com.becom.test.Rules">
+			<bind-xml name="Rules" node="element"></bind-xml>
+		</field>
+		<!-- 2013.8.15日新增部分 -->
+		<field name="pars" type="com.becom.test.Pars">
+			<bind-xml name="Pars" node="element"></bind-xml>	
+		</field>
+	</class>
+	
+	<!-- 2013.8.15日新增部分 -->
+	<class name="com.becom.test.Pars" auto-complete="true">
+		<map-to xml="Pars"></map-to>
+		<field name="par1" type="com.becom.test.Par1">
+			<bind-xml name="Par1" node="element"></bind-xml>
+		</field>
+		<field name="par2" type="com.becom.test.Par2">
+			<bind-xml name="Par2" node="element"></bind-xml>
+		</field>
+		<field name="par3" type="com.becom.test.Par3">
+			<bind-xml name="Par3" node="element"></bind-xml>
+		</field>
+		<field name="par4" type="com.becom.test.Par4">
+			<bind-xml name="Par4" node="element"></bind-xml>
+		</field>
+		<field name="par5" type="com.becom.test.Par5">
+			<bind-xml name="Par5" node="element"></bind-xml>
+		</field>
+		<field name="par6" type="com.becom.test.Par6">
+			<bind-xml name="Par6" node="element"></bind-xml>
+		</field>
+	</class>
+	
+	<class name="com.becom.test.Par1" auto-complete="true">
+		<map-to xml="Par1"></map-to>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Par2" auto-complete="true">
+		<map-to xml="Par2"></map-to>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Par3" auto-complete="true">
+		<map-to xml="Par3"></map-to>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Par4" auto-complete="true">
+		<map-to xml="Par4"></map-to>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Par5" auto-complete="true">
+		<map-to xml="Par5"></map-to>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Par6" auto-complete="true">
+		<map-to xml="Par6"></map-to>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+	</class>
+	
+	<!-- 规则集 -->
+	<class name="com.becom.test.Rules" auto-complete="true">
+		<map-to xml="Rules" />
+		<!-- 生成规则 -->
+		<!-- <field name="ruleGenerate" type="com.becom.test.RuleGenerate">
+			<bind-xml name="Rule" node="element"></bind-xml>
+		</field> -->
+		<!-- 打包规则 -->
+		<!-- <field name="rulePackaged" type="com.becom.test.RulePackaged">
+			<bind-xml name="Rule" node="element"></bind-xml>
+		</field> -->
+		<!-- 接收规则 -->
+		<!-- <field name="ruleReceive" type="com.becom.test.RuleReceive">
+			<bind-xml name="Rule" node="element"></bind-xml>
+		</field> -->
+		<!-- 发送规则 -->
+		<!-- <field name="ruleSend" type="com.becom.test.RuleSend">
+			<bind-xml name="Rule" node="element"></bind-xml>
+		</field> -->
+		<!-- 解析规则 -->
+		<!-- <field name="ruleParse" type="com.becom.test.RuleParse">
+			<bind-xml name="Rule" node="element"></bind-xml>
+		</field> -->
+		<field name="ruleList" type="com.becom.test.Rule" collection="arraylist">
+			<bind-xml name="Rule" node="element"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.Rule" auto-complete="true">
+		<map-to xml="Rule" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="parse" type="com.becom.test.Parse">
+			<bind-xml name="Parse" node="element"></bind-xml>
+		</field>
+		<field name="receive" type="com.becom.test.Receive">
+			<bind-xml name="Receive" node="element"></bind-xml>
+		</field>
+		<field name="send" type="com.becom.test.Send">
+			<bind-xml name="Send" node="element"></bind-xml>
+		</field>
+		<field name="package1" type="com.becom.test.Package">
+			<bind-xml name="Package" node="element"></bind-xml>
+		</field>
+		<field name="generate" type="com.becom.test.Generate">
+			<bind-xml name="Generate" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 生成规则 -->
+	<!-- <class name="com.becom.test.RuleGenerate" auto-complete="true">
+		<map-to xml="RuleGenerate" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="generate" type="com.becom.test.Generate">
+			<bind-xml name="Generate" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.Generate" auto-complete="true">
+		<map-to xml="Generate" />
+		<field name="dataRecord" type="string">
+			<bind-xml name="DataRecord" node="attribute"></bind-xml>
+		</field>
+		<field name="actionType" type="string">
+			<bind-xml name="ActionType" node="attribute"></bind-xml>
+		</field>
+		<field name="dataCategory" type="string">
+			<bind-xml name="DataCategory" node="attribute"></bind-xml>
+		</field>
+		<field name="dataItem" type="string">
+			<bind-xml name="DataItem" node="attribute"></bind-xml>
+		</field>
+		<field name="dataType" type="string">
+			<bind-xml name="DataType" node="attribute"></bind-xml>
+		</field>
+		<field name="dataSubType" type="string">
+			<bind-xml name="DataSubType" node="attribute"></bind-xml>
+		</field>
+		<field name="fieldControls" type="com.becom.test.FieldControls">
+			<bind-xml name="FieldControls" node="element"></bind-xml>
+		</field>
+	</class>
+	<!--<class name="com.becom.test.ActionType" auto-complete="true">
+		<map-to xml="ActionType" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.DataCategory" auto-complete="true">
+		<map-to xml="DataCategory" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.DataItem" auto-complete="true">
+		<map-to xml="DataItem" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.DataType" auto-complete="true">
+		<map-to xml="DataType" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.DataSubType" auto-complete="true">
+		<map-to xml="DataSubType" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.FieldControls" auto-complete="true">
+		<map-to xml="FieldControls" />
+		<field name="fieldControlList" type="com.becom.test.FieldControl" collection="arraylist">
+			<bind-xml name="FieldControl" node="element"></bind-xml>
+		</field>
+	</class>
+	<class name="com.becom.test.FieldControl" auto-complete="true">
+		<map-to xml="FieldControl" />
+		<field name="name" type="string">
+			<bind-xml name="Name" node="attribute"></bind-xml>
+		</field>
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="value" type="string">
+			<bind-xml name="Value" node="attribute"></bind-xml>
+		</field>
+		<field name="desc" type="string">
+			<bind-xml name="Desc" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!--<class name="com.becom.test.Const" auto-complete="true">
+		<map-to xml="Const" />
+		<field name="value" type="integer">
+			<bind-xml name="Value" node="element"></bind-xml>
+		</field>
+		<field name="desc" type="string">
+			<bind-xml name="Desc" node="element"></bind-xml>
+		</field>
+	</class>-->
+	
+	<!-- 打包规则 -->
+	<!-- <class name="com.becom.test.RulePackaged" auto-complete="true">
+		<map-to xml="RulePackaged" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="package1" type="com.becom.test.Package">
+			<bind-xml name="Package" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.Package" auto-complete="true">
+		<map-to xml="Package" />
+		<field name="number" type="integer">
+			<bind-xml name="Number" node="attribute"></bind-xml>
+		</field>
+		<field name="size" type="string">
+			<bind-xml name="Size" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!-- 发送规则 -->
+	<!-- <class name="com.becom.test.RuleSend" auto-complete="true">
+		<map-to xml="RuleSend" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="send" type="com.becom.test.Send">
+			<bind-xml name="Send" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.Send" auto-complete="true">
+		<map-to xml="Send" />
+		<field name="sendTime" type="integer">
+			<bind-xml name="SendTime" node="attribute"></bind-xml>
+		</field>
+		<field name="repeatTimes" type="integer">
+			<bind-xml name="RepeatTimes" node="attribute"></bind-xml>
+		</field>
+		<field name="spanTime" type="integer">
+			<bind-xml name="SpanTime" node="attribute"></bind-xml>
+		</field>
+		<field name="sendType" type="string">
+			<bind-xml name="SendType" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!--<class name="com.becom.test.SendType" auto-complete="true">
+		<map-to xml="SendType" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+	</class>-->
+	<!-- 接收规则 -->
+	<!-- <class name="com.becom.test.RuleReceive" auto-complete="true">
+		<map-to xml="RuleReceive" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="receive" type="com.becom.test.Receive">
+			<bind-xml name="Receive" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.Receive" auto-complete="true">
+		<map-to xml="Receive" />
+		<field name="receiveTime" type="integer">
+			<bind-xml name="ReceiveTime" node="attribute"></bind-xml>
+		</field>
+	</class>
+	<!-- 解析规则 -->
+	<!-- <class name="com.becom.test.RuleParse" auto-complete="true">
+		<map-to xml="RuleParse" />
+		<field name="type" type="string">
+			<bind-xml name="Type" node="attribute"></bind-xml>
+		</field>
+		<field name="parse" type="com.becom.test.Parse">
+			<bind-xml name="Parse" node="element"></bind-xml>
+		</field>
+	</class>-->
+	<class name="com.becom.test.Parse" auto-complete="true">
+		<map-to xml="Parse" />
+		<field name="dataRecord" type="string">
+			<bind-xml name="DataRecord" node="attribute"></bind-xml>
+		</field>
+		<field name="actionType" type="string">
+			<bind-xml name="ActionType" node="attribute"></bind-xml>
+		</field>
+		<field name="dataCategory" type="string">
+			<bind-xml name="DataCategory" node="attribute"></bind-xml>
+		</field>
+		<field name="dataItem" type="string">
+			<bind-xml name="DataItem" node="attribute"></bind-xml>
+		</field>
+		<field name="dataType" type="string">
+			<bind-xml name="DataType" node="attribute"></bind-xml>
+		</field>
+		<field name="dataSubType" type="string">
+			<bind-xml name="DataSubType" node="attribute"></bind-xml>
+		</field>
+		<field name="fieldControls" type="com.becom.test.FieldControls">
+			<bind-xml name="FieldControls" node="element"></bind-xml>
+		</field>
+	</class>
+	
+	
+	<!-- 指标映射 -->
+	<class name="com.becom.test.IndexsContent" auto-complete="true">
+		<map-to xml="Indexs" />
+		<field name="indexes" type="com.becom.test.IndexEntity" collection="arraylist">
+			<bind-xml name="index" node="element"></bind-xml>
+		</field>
+	</class>
+	<!-- 指标映射实体 -->
+	<class name="com.becom.test.IndexEntity" auto-complete="true">
+		<map-to xml="index" />
+		<field name="subCaseID" type="string">
+			<bind-xml name="SubCaseID" node="attribute"></bind-xml>
+		</field>
+		<field name="indexValue" type="string">
+			<bind-xml name="indexValue" node="attribute"></bind-xml>
+		</field>
+		<field name="indexDesc" type="string">
+			<bind-xml name="indexDesc" node="attribute"></bind-xml>
+		</field>
+	</class>
+	
+</mapping>

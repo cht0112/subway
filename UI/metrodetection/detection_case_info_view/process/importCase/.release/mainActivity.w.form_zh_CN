@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/metrodetection/detection_case_info_view/process/importCase/mainActivity.js">
+</script>      <script>
+new justep.XBizData('dectionBaseInfoData',true,false,{'queryAction':"queryDECTION_BASED_ON_INFOAction",'saveAction':"saveDECTION_BASED_ON_INFOAction",'newAction':"createDECTION_BASED_ON_INFOAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"xml",'concept':"{'DECTION_BASED_ON_INFO':'DECTION_BASED_ON_INFO'}",'limit':20,'idColumn':"{'name':'DECTION_BASED_ON_INFO','relation':'DECTION_BASED_ON_INFO','define':'DECTION_BASED_ON_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dECTIONBASEDONNAME':{'type':'String','relation':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','define':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','label':'检测依据文件名称'},'vALIDDATETIME':{'type':'DateTime','relation':'DECTION_BASED_ON_INFO.vALIDDATETIME','define':'DECTION_BASED_ON_INFO.vALIDDATETIME','label':'依据生效时间'},'vALIDSTATE':{'type':'Integer','relation':'DECTION_BASED_ON_INFO.vALIDSTATE','define':'DECTION_BASED_ON_INFO.vALIDSTATE','label':'依据有效状态'},'version':{'type':'Integer','relation':'DECTION_BASED_ON_INFO.version','define':'DECTION_BASED_ON_INFO.version','label':'版本'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('tempData',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'dataType':"xml"}, {});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+	var ids=[{id:'7fd79fd69a0e43e6bc2558d511046c69', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'default7', name:'xforms:label'},{id:'default8', name:'xforms:value'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'gridSelect2');xf._a('gridSelect2','default7');xf._a('gridSelect2','default9');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dectionBaseInfoData')/vALIDDATETIME",xf._g(xf._f('instance',xf._i("dectionBaseInfoData")),xf._h(false, xf._k("child",xf._j('','vALIDDATETIME')))));	
+xf._b("instance('dectionBaseInfoData')/vALIDSTATE",xf._g(xf._f('instance',xf._i("dectionBaseInfoData")),xf._h(false, xf._k("child",xf._j('','vALIDSTATE')))));	
+xf._b("instance('dectionBaseInfoData')/version",xf._g(xf._f('instance',xf._i("dectionBaseInfoData")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("data('tempData')/name",xf._g(xf._f('data',xf._i("tempData")),xf._h(false, xf._k("child",xf._j('','name')))),'','http://www.justep.com/xui');	
+xf._b("'请选择检测依据'",xf._i("请选择检测依据"));	
+xf._b("dECTIONBASEDONNAME",xf._h(false, xf._k("child",xf._j('','dECTIONBASEDONNAME'))),'','http://www.justep.com/xui');	
+xf._b("DECTION_BASED_ON_INFO",xf._h(false, xf._k("child",xf._j('','DECTION_BASED_ON_INFO'))),'','http://www.justep.com/xui');	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))),'','http://www.justep.com/xui');	
+xf._b("vALIDDATETIME",xf._h(false, xf._k("child",xf._j('','vALIDDATETIME'))),'','http://www.justep.com/xui');	
+xf._b("vALIDSTATE",xf._h(false, xf._k("child",xf._j('','vALIDSTATE'))),'','http://www.justep.com/xui');	
+xf._b("version",xf._h(false, xf._k("child",xf._j('','version'))),'','http://www.justep.com/xui');	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');var xf_model_model1 = new xforms.XFModel('model1',null);	
+new xforms.XFInstance2('dectionBaseInfoData','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('dectionBaseInfoData',null);	
+xf._c('xf-bind-0','model1',"instance('dectionBaseInfoData')/vALIDDATETIME","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-1','model1',"instance('dectionBaseInfoData')/vALIDSTATE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-2','model1',"instance('dectionBaseInfoData')/version","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('tempData','model1',null,'&lt;rows id="default4"&gt;&lt;row id="default5"&gt;&lt;cell id="default6"&gt;&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('tempData','name');	
+xforms.load_parts('view1');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+function load_view1(){if (justep("view1").getAttribute('loaded') &amp;&amp; justep("view1").getAttribute('loaded') == 'true') return;justep("view1").setAttribute('loaded', 'true');	
+if(typeof(load_view1_html) == 'function')load_view1_html();	
+new xforms.XFExtSelect({id:'gridSelect2',type:'gridselect1',defaultLabelRef:xf._q("'请选择检测依据'"),allSelectedLabelRef:null,ref:xf._q("data('tempData')/name"),labelRef:null,extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:'dectionBaseInfoData',columns:'DECTION_BASED_ON_INFO,dECTIONBASEDONNAME,__c_,vALIDDATETIME,vALIDSTATE,version',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'DECTION_BASED_ON_INFO,vALIDDATETIME,vALIDSTATE,version',valueColumn:'DECTION_BASED_ON_INFO',labelColumn:'dECTIONBASEDONNAME',extColumn:null,labels:',,,,,',aligns:',,,,,',types:'ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+}	
+function load_view1_xblinit(){if (justep("view1").getAttribute('xblloaded') &amp;&amp; justep("view1").getAttribute('xblloaded') == 'true') return;justep("view1").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <div class="xui-container" id="view1" lazy="false" style="position:relative;;width:814px;height:518px;">           <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:64px;width:213px;left:266px;;table-layout:fixed">             <tbody>               <tr>                 <td class="focus" style="display:none;width:0px"></td>                  <td class="xxf-value">                   <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)">                     <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;">                       <tr style="border:none">                         <td style="width:100%;height:100%;border:none;">                           <input accesskey="" class="xforms-ext-select-input" tabindex=""></input>                         </td>                          <td style="border:none" width="20px">                           <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img>                         </td>                       </tr>                     </table>                   </div>                 </td>                  <td class="xxf-alert">                   <span class="xforms-alert">                     <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                      <div class="xforms-alert-value" id=""></div>                   </span>                 </td>               </tr>             </tbody>           </table>            <label class="xui-label" id="label1" style="position:absolute;top:68px;left:170px;">请选择检测依据</label>  
+          <input class="xui-input" id="caseVersion" style="position:absolute;top:115px;left:266px;width:213px;" type="text" value=""></input>  
+          <label class="xui-label" id="label3" style="position:absolute;top:115px;left:170px;">请输入用例版本</label>  
+          <form xmlns="http://www.justep.com/xui" action="" enctype="multipart/form-data" id="fileupload" method="post" name="fileupload" target="bbb">  
+            <hidden id="caseVersion" name="caseVersion"></hidden>  
+            <hidden id="jianceyiju" name="jianceyiju"></hidden>  
+            <span style="position:absolute;height:24px;left:170px;top:180px;">请选择用例文件</span>  
+            <input id="file" name="file" style="position:absolute;height:24px;left:266px;top:180px;" type="file"></input>  
+            <input id="importModel" name="importModel" style="position:absolute;left:260px;height:24px;top:220px;" type="checkbox"></input>  
+            <span style="position:absolute;left:280px;height:24px;top:228px;">覆盖已存在用例</span>  
+            <input class="xui-button" id="sub" name="sub" onclick="uploadCase();" style="position:absolute;left:260px;height:24px;top:280px;" type="button" value="上传"></input> 
+          </form>  
+          <iframe id="bbb" name="bbb" onload="mainActivity.afterImportCase(this);" src="about:blank" style="display:none;"></iframe> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

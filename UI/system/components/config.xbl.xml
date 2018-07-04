@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<binding id="config">
+		<template template-type="xslt">
+			<xsl:template match="/*"
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xbl="http://www.w3.org/ns/xbl" 
+				xmlns:ev="http://www.w3.org/2001/xml-events">
+				
+				<root xbl:class="xui-config">
+					<xsl:copy-of select="*"/>
+				</root>
+			</xsl:template>
+		</template>
+	
+		<implementation>
+		<![CDATA[
+			({
+				initXBL : function() {
+				
+				},
+				getValue : function(name) {
+					return $(this.domNode).children("ITEM[name='"+name+"']").attr("value") || "";				
+				},
+				setValue : function(name,value,label){
+					var $p = $(this.domNode).children("ITEM[name='"+name+"']");
+					if($p.length > 0){
+						if(value)$p.attr("value",value);
+						if(label)$p.attr("label",label);
+					}else{			
+						$(this.domNode).append("<ITEM name='"+name+"' value='"+value+"'"+(label?(" label='"+label+"'"):"")+"/>");
+					}
+				}
+			})	
+		]]>		
+		</implementation>
+
+		<xbl:resources>
+			<xbl:style>
+				<![CDATA[
+					.xui-config{
+						display:none;
+					}
+				]]>
+			</xbl:style>
+		</xbl:resources>
+				
+	</binding>	
+
+	<binding id="param">
+		<template template-type="xslt">
+			<xsl:template match="/*"
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xbl="http://www.w3.org/ns/xbl" 
+				xmlns:ev="http://www.w3.org/2001/xml-events">
+				
+				<root>
+					<xsl:copy-of select="*"/>
+				</root>
+			</xsl:template>
+		</template>
+	
+		<implementation>
+		<![CDATA[
+			({
+				initXBL : function() {
+				
+				},
+				getValue : function(id) {
+					return $(this.domNode).attr("value") + "";				
+				},
+				setValue : function(value,label){
+					var $p = $(this.domNode);
+					if(value)$p.attr("value",value);
+					if(label)$p.attr("label",label);
+				}
+			})	
+		]]>		
+		</implementation>
+	</binding>	
+</xbl:xbl>	

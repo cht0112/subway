@@ -1,0 +1,738 @@
+/**
+	@name UI.gridFilter
+	@component /UI/system/components/filter.xbl.xml#gridFilter
+	@class
+	@description <b>[rich]</b>下拉过滤组件
+	@model UI
+	@example
+	<b>xml描述：</b> 
+<xmp>
+	<!--绑定 data-->
+	<xhtml:div component="/UI/system/components/filter.xbl.xml#gridFilter" all-selected-label="'全部'"
+    	id="gridFilter1" filter-data="bizData1" filter-relation="fXXX"> 
+		<xforms:label ref="col_0" />
+		<xforms:value ref="col_1" />
+		<xforms:itemset data="dataId" independence="false/true"> 
+			<!--与data一对一/多个select对应一个data-->
+			<xforms:column ref="col_0" />
+			<xforms:column ref="col_1" />
+			<xforms:column ref="col_2" />
+		</xforms:itemset>
+	</xhtml:div>
+</xmp>	
+*/
+
+/**
+	@name UI.gridFilter#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default /UI/system/components/filter.xbl.xml#gridFilter
+*/
+
+/**
+	@name UI.gridFilter#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.gridFilter#filter__sub__data
+	@attribute
+	@required
+	@description 过滤数据集
+*/
+
+/**
+	@name UI.gridFilter#filter__sub__relation
+	@attribute
+	@required
+	@description 过滤关系
+*/
+
+/**
+	@name UI.gridFilter#default__sub__value
+	@attribute
+	@description 当下拉列表选中数据为空时的过滤数据(xpath)
+*/
+
+/**
+	@name UI.gridFilter#default__sub__label
+	@attribute
+	@description 当下拉列表选中数据为空时的显示文本(xpath)
+*/
+
+/**
+	@name UI.gridFilter#all__sub__selected__sub__label__sub__ref
+	@attribute
+	@description 全选引用，全选时，用此ref显示在输入框
+*/
+
+/**
+	@name UI.gridFilter#multi__sub__select
+	@attribute
+	@default false
+	@type boolean
+	@description 是否多选
+*/
+
+/**
+	@name UI.gridFilter#dropdown__sub__height
+	@attribute
+	@type integer
+	@description 下拉框最大高度，超过这个高度将会出现滚动条
+*/
+
+/**
+	@name UI.gridFilter#smart__sub__render
+	@attribute
+	@type integer
+	@description 智能渲染
+*/
+
+/**
+	@name UI.gridFilter#value__sub__separator
+	@attribute
+	@description 多选时，值分隔字符
+*/
+
+/**
+	@name UI.gridFilter#label__sub__separator
+	@attribute
+	@description 多选时，文本标签分隔字符
+*/
+
+/**
+	@name UI.gridFilter#input__sub__changeable
+	@attribute
+	@type boolean
+	@description 通过在文本框输入改变ref值，必须为单选，并且value和label指向同一column
+*/
+
+/**
+	@name UI.gridFilter#itemset
+	@attribute
+	@description <b>[child]</b>
+	@example
+	<b>属性：</b>
+		data-ref: 绑定data的ID
+		auto-load-data：{boolean} 自动触发data加载数据，默认false
+		independence：{boolean} 默认false
+			false：每个select只能绑定一个data
+			true：多个select可以使用一个data，只从data读取一次数据到下拉表格，如果数据更改，
+			不会自动刷新下拉表格，用户需要通过justep.xbl('select_id').refreshData()刷新数据
+	
+	<b>静态数据格式：</b>
+	<xmp>  
+		<xforms:itemset>
+			<itemset-data xmlns="">
+				<rows>
+					<row>
+						<cell>a1</cell>
+						<cell>a2</cell>
+						<cell>a3</cell>
+					</row>
+					<row>
+						<cell>b1</cell>
+						<cell>b2</cell>
+						<cell>b3</cell>
+					</row>
+				</rows>
+		</itemset-data>
+		</xforms:itemset>
+	</xmp>
+*/
+			
+
+/**
+	@name UI.gridFilter#value
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为ref对应的列
+	@example
+	<xmp>
+	   <xforms:value ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.gridFilter#label
+	@attribute
+	@description <b>[child]</b> 指定grid中某一列作为显示在文本框中的值；也是label-ref对应的列
+	@example
+	<xmp>
+	   <xforms:label ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.gridFilter#getMultiSelect
+	@function
+	@description 获取多选属性值
+*/
+
+/**
+	@name UI.gridFilter#getValueSeparator
+	@function
+	@description 获取value分隔符
+*/
+
+/**
+	@name UI.gridFilter#getFilterName
+	@function
+	@description 获取filter name
+*/
+
+/**
+	@name UI.gridFilter#getFilter
+	@function
+	@description 获取过滤条件
+*/
+
+/**
+	@name UI.gridFilter#getFilterData
+	@function
+	@description 获取过滤数据集对象
+*/
+
+/**
+	@name UI.gridFilter#getInnerSelect
+	@function
+	@description 获取内部select组件对象
+*/
+
+/**
+	@name UI.gridFilter#getInnerData
+	@function
+	@description 获取内部数据集对象
+*/
+
+/**
+	@name UI.gridFilter#getValue
+	@function
+	@description 获取选择值
+*/
+
+/**
+	@name UI.gridFilter#getDefaultValue
+	@function
+	@description 获取默认值
+*/
+
+/**
+	@name UI.gridFilter#setAutoRefresh
+	@function
+	@param autoRefresh {boolean} <b>[required]</b>是否自动刷新
+	@description 是否自动刷新，true时焦点离开即刷新数据，false时需要使用data.refreshData()方法刷新数据
+*/
+
+/**
+	@name UI.gridFilter#clearFilter
+	@function
+	@description 清空过滤条件
+*/
+
+
+/**
+	@name UI.gridFilter#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.gridFilter#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.gridFilter#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.gridFilter#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.gridFilter#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.gridFilter#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.gridFilter#readonly
+	@attribute 
+	@description 只读
+*/
+
+/**
+	@name UI.gridFilter#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.gridFilter#setReadonly
+	@function
+	@param readonly {boolean} <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.gridFilter#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.gridFilter#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.gridFilter#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.gridFilter#onGetCondition
+	@event 
+	@description <b>[回调型事件]</b>构造过滤条件
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"filterData" : 过滤数据集
+		"filterRelation" : 过滤关系
+		"value" : 下拉选择值
+		"defaultValue" : 默认值
+		"multiSelect" : 多选
+		"valueSeparator" : 值分隔符
+		"defaultCondition" : 默认条件
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.gridFilter#onAfterRowFill
+	@event
+	@description <b>[回调事件]</b> 下拉表格行渲染完成后 
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+*/
+
+
+/**
+	@name UI.treeFilter
+	@component /UI/system/components/filter.xbl.xml#treeFilter
+	@class XBL组件
+	@description <b>[rich]</b>树形下拉过滤组件
+	@model UI
+	@example 
+	<b>xml描述：</b> 
+<xmp>
+	<!--绑定 data-->
+	<xhtml:div component="/UI/system/components/filter.xbl.xml#treeFilter" all-selected-label="'全部'"
+    	id="treeFilter1" filter-data="bizData1" filter-relation="fXXX"> 
+		<xforms:label ref="col_0" />
+		<xforms:value ref="col_1" />
+		<xforms:itemset data="dataId" independence="false/true"> 
+		<!--与data一对一/多个select对应一个data-->
+			<xforms:column ref="col_0" />
+			<xforms:column ref="col_1" />
+			<xforms:column ref="col_2" />
+		</xforms:itemset>
+	</xhtml:div>
+</xmp>	
+*/
+
+/**
+	@name UI.treeFilter#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default /UI/system/components/filter.xbl.xml#treeFilter
+*/
+
+/**
+	@name UI.treeFilter#id
+	@attribute
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.treeFilter#filter__sub__data
+	@attribute
+	@required
+	@description 过滤数据集
+*/
+
+/**
+	@name UI.treeFilter#filter__sub__relation
+	@attribute
+	@required
+	@description 过滤关系
+*/
+
+/**
+	@name UI.treeFilter#default__sub__value
+	@attribute
+	@description 当下拉列表选中数据为空时的过滤数据(xpath)
+*/
+
+/**
+	@name UI.treeFilter#default__sub__label
+	@attribute
+	@description 当下拉列表选中数据为空时的显示文本(xpath)
+*/
+
+/**
+	@name UI.treeFilter#all__sub__selected__sub__label__sub__ref
+	@attribute
+	@description 全选引用。全选时，用此ref显示在输入框。
+*/
+
+/**
+	@name UI.treeFilter#multi__sub__select
+	@attribute
+	@default false
+	@type boolean
+	@description 是否多选
+*/
+
+/**
+	@name UI.treeFilter#dropdown__sub__height
+	@attribute
+	@type integer
+	@description 下拉框最大高度，超过这个高度将会出现滚动条
+*/
+
+/**
+	@name UI.treeFilter#smart__sub__render
+	@attribute
+	@type integer
+	@description 智能渲染
+*/
+
+/**
+	@name UI.treeFilter#value__sub__separator
+	@attribute
+	@description 多选时，值分隔字符
+*/
+
+/**
+	@name UI.treeFilter#label__sub__separator
+	@attribute
+	@description 多选时，文本标签分隔字符
+*/
+
+/**
+	@name UI.treeFilter#input__sub__changeable
+	@attribute
+	@type boolean
+	@description 通过在文本框输入改变ref值，必须为单选，并且value和label指向同一column
+*/
+
+/**
+	@name UI.treeFilter#itemset
+	@attribute 
+	@description <b>[child]</b>
+	@example
+	<b>属性：</b>
+		data-ref: 绑定data的ID
+		auto-load-data：{boolean} 自动触发data加载数据，默认false
+		independence：{boolean} 默认false
+			false：每个select只能绑定一个data
+			true：多个select可以使用一个data，只从data读取一次数据到下拉表格，如果数据更改，
+					不会自动刷新下拉表格，用户需要通过justep.xbl('select_id').refreshData()刷新数据
+	
+	<b>静态数据格式：</b>
+	<xmp>
+		<xforms:itemset>
+			<itemset-data xmlns="">
+				<rows>
+					<row>
+						<cell>a1</cell>
+						<cell>a2</cell>
+						<cell>a3</cell>
+					</row>
+					<row>
+						<cell>b1</cell>
+						<cell>b2</cell>
+						<cell>b3</cell>
+					</row>
+				</rows>
+		</itemset-data>
+		</xforms:itemset>
+	</xmp>
+*/
+			
+
+/**
+	@name UI.treeFilter#value
+	@attribute 
+	@description <b>[child]</b> 指定grid中某一列作为ref对应的列
+	@example
+	<xmp>
+	   <xforms:value ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.treeFilter#label
+	@attribute 
+	@description <b>[child]</b> 指定grid中某一列作为显示在文本框中的值；也是label-ref对应的列
+	@example
+	<xmp>
+	   <xforms:label ref="colID"/>
+	</xmp>
+*/
+
+/**
+	@name UI.treeFilter#getMultiSelect
+	@function
+	@description 获取多选属性值
+*/
+
+/**
+	@name UI.treeFilter#getValueSeparator
+	@function
+	@description 获取value分隔符
+*/
+
+/**
+	@name UI.treeFilter#getFilterName
+	@function
+	@description 获取filter name
+*/
+
+/**
+	@name UI.treeFilter#getFilter
+	@function
+	@description 获取过滤条件
+*/
+
+/**
+	@name UI.treeFilter#setAutoRefresh
+	@function
+	@param autoRefresh {boolean} <b>[required]</b>是否自动刷新
+	@description 是否自动刷新，true时焦点离开即刷新数据，false时需要使用data.refreshData()方法刷新数据。
+*/
+
+/**
+	@name UI.treeFilter#clearFilter
+	@function
+	@description 清空过滤条件
+*/
+
+/**
+	@name UI.treeFilter#getFilterData
+	@function
+	@description 获取过滤数据集对象
+*/
+
+/**
+	@name UI.treeFilter#getInnerSelect
+	@function
+	@description 获取内部select组件对象
+*/
+
+/**
+	@name UI.treeFilter#getInnerData
+	@function
+	@description 获取内部数据集对象
+*/
+
+/**
+	@name UI.treeFilter#getValue
+	@function
+	@description 获取选择值
+*/
+
+/**
+	@name UI.treeFilter#getDefaultValue
+	@function
+	@description 获取默认值
+*/
+
+/**
+	@name UI.treeFilter#tabindex
+	@attribute 
+	@description <b>[attribute]</b>Tab键顺序
+*/
+
+/**
+	@name UI.treeFilter#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.treeFilter#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.treeFilter#accesskey
+	@attribute 
+	@description <b>[attribute]</b>快捷键
+*/
+
+/**
+	@name UI.treeFilter#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.treeFilter#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.treeFilter#readonly
+	@attribute 
+	@description <b>[attribute]</b>只读
+*/
+
+/**
+	@name UI.treeFilter#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.treeFilter#setReadonly
+	@function
+	@param readonly {boolean} <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.treeFilter#disabled
+	@attribute 
+	@description <b>[attribute]</b>禁用
+*/
+
+/**
+	@name UI.treeFilter#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.treeFilter#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.treeFilter#onGetCondition
+	@event 
+	@description <b>[回调型事件]</b>构造过滤条件
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"filterData" : 过滤数据集
+		"filterRelation" : 过滤关系
+		"value" :下拉选择值
+		"defaultValue" : 默认值
+		"multiSelect" : 多选
+		"valueSeparator" : 值分隔符
+		"defaultCondition" : 默认条件
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeFilter#onAfterRowFill
+	@event
+	@description <b>[回调事件]</b> 下拉表格行渲染完成后 
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 展开行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.treeFilter#onShowNodeImg
+	@event
+	@description <b>[回调事件]</b> 树节点图标回调
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象
+	}
+	</xmp>
+	@return {string} 返回图片路径
+*/
+
+
+/**
+	@name UI.treeFilter#onRowExpand
+	@event
+	@description <b>[回调事件]</b> 树节点展开事件 
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFExtSelect对象,
+		"rowID" : 行ID,
+		"grid" : 下拉表格对象,
+		"instance" : 下拉instance对象,
+		"delay" : 是否未被展开过
+	}
+	</xmp>
+*/
+

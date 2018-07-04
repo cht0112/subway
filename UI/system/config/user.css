@@ -1,0 +1,150 @@
+/*用户扩展样式*/
+
+/** input **/
+/**
+input.xforms-value{
+	border:2px solid blue; 
+}
+**/
+
+/**input鼠标滑过**/
+/**
+input.mouse-over{
+	border:2px solid red; 
+}
+**/
+
+/** textarea **/
+/**
+textarea.xforms-value{
+	border:2px solid blue; 
+}
+**/
+
+
+/** textarea鼠标滑过  **/
+/**
+textarea.mouse-over{
+	border:2px solid red; 
+}
+**/
+
+
+/** output **/
+/**
+.xforms-output .xforms-value{
+ 	
+ }
+ **/
+ 
+/** 下拉组件**/
+/**
+div.xxforms-ext-select {
+	border: 2px solid blue;
+	width: 100%;
+}
+**/
+
+/** 下拉组件 鼠标滑过**/
+/**
+div.ext-select-mouse-over {
+	border: 2px solid red;
+	width: 100%;
+}
+**/
+ 
+ /** 输入框报错样式，默认为红色波浪线**/
+/**
+.xforms-invalid  input.xforms-value,
+.xforms-invalid  textarea.xforms-value,
+.xforms-invalid  .xforms-ext-select input
+{
+	background-image: url(../form/xsltforms/invalid_line.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+**/
+
+/** 表格行高  自动撑开**/
+/**
+div.gridbox table.row20px tr  td{
+	height:auto;
+	word-break: break-all; 
+    white-space:normal;
+    padding:2,0,2,0;
+}
+div.gridbox_justep table.row20px tr  td{
+	height:auto;
+	word-break: break-all; 
+    white-space:normal;
+    padding:2,0,2,0;
+}
+**/
+
+/**表格选中行颜色**/
+/**
+div.gridbox_justep table.obj tr.rowselected td{
+ background-color:#FFFFCC;
+ color:black;
+ }
+ div.gridbox_justep table.obj tr.rowselected td.cellselected, div.gridbox table.obj td.cellselected {
+	background-color:#FFFFCC;
+	}
+**/
+
+/** 只读样式**/
+/**
+.xforms-readonly, 
+.xforms-readonly .xxf-value input, 
+.xforms-readonly .xxf-value textarea, 
+.xforms-readonly .xxf-value span{
+	background-color	: #f8f8f8 !important; 
+	color				: #6D6D6D !important; 
+}
+
+**/
+
+/**
+   背景图片  grid tabPanel透明
+body {
+	font-family: "宋体", Arial Helvetica, sans-serif;
+	font-size: 63%;
+	color: #333333;
+	background: #E7EEF8 url(../images/main_bottom_bg.jpg) bottom right
+		no-repeat;
+}
+
+div.gridbox_justep .objbox {
+	background: transparent;
+}
+
+.body_bg {
+	background: #F0F7FB url(../images/body_bottom_bg.jpg) no-repeat bottom
+		right;
+}
+
+.tabs {
+	background: transparent;
+}
+
+.jstabbar .contents {
+	background-color: transparent;
+}
+
+.jstabbar .tabItems LI {
+	background-color: transparent;
+}
+
+.jstabbar .tabItems LI.selected {
+	background-color: white;
+}
+
+**/
+
+.noneborder {
+	border: none;
+}
+
+input, textarea, select{
+ font-size: inherit;
+}

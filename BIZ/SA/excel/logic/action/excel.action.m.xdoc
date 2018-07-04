@@ -1,0 +1,108 @@
+/**
+	@name ExcelActions
+	@class
+	@model BIZ
+	@description Excel导入导出操作action
+	@example
+	<b>excel数据导入过程说明：</b>
+	<xmp>
+	1、使用ExcelActions.uploadImportExcel上传excel和配置文件，返回相关文件标示
+	2、使用ExcelActions.importExcel进行数据导入（使用ExcelActions.uploadImportExcel返回文件标示生成导入配置参数）
+	3、如果导入数据到UI，加载ExcelActions.importExcel返回数据到Data组件
+	</xmp>
+	<b>excel数据导出过程说明：</b>
+	<xmp>
+	1、如果从UI导出数据，将data组件的数据作为data参数，否则把data的QueryAction的参数作为queryActionParam参数
+	2、使用ExcelActions.exportExcel导出excel文件，返回excel文件标示
+	3、根据返回excel文件标示使用ExcelActions.downloadExportExcel下载excel文件
+	</xmp>
+	<b>特别说明：</b>
+	<xmp>
+	ExcelActions.exportExcel提供了exportExcelBeforeAction、exportExcelAfterAction接口，可以通过接管这两个action实现特殊导出逻辑
+	ExcelActions.importExcel提供了importExcelBeforeAction、importExcelAfterAction接口，可以通过接管这两个action实现特殊导出逻辑
+	关于action事件和定义请参考相关文档
+	</xmp>
+*/
+
+/**
+	@name ExcelActions.exportExcel
+	@action
+	@description 根据数据导出excel文件，返回生成excel文件的名称
+	@param {String} from 数据来源，取值范围：DB、UI
+	@param {Xml} config 导出配置
+	@param {Table} data 当数据来源为UI时，给入需要导出的数据
+	@param {Map} queryActionParam 当数据来源为DB时，指定查询数据的queryAction的参数
+	@returns {String} 生成的excel文件名
+	@see ExcelActions.exportExcelBeforeAction
+	@see ExcelActions.exportExcelAfterAction
+	@example
+	exportExcelBeforeAction、exportExcelAfterAction接口，可以通过接管这两个action实现特殊逻辑
+*/
+
+/**
+	@name ExcelActions.exportExcelBeforeAction
+	@action
+	@description 导出excel前的action接口
+	@param {Table} data 需要导出的数据
+	@param {HSSFWorkbook} excel excel对象
+	@see ExcelActions.exportExcel
+*/
+
+/**
+	@name ExcelActions.exportExcelAfterAction
+	@action
+	@description 导出excel后的action接口
+	@param {Table} data 需要导出的数据
+	@param {HSSFWorkbook} excel excel对象
+	@see ExcelActions.exportExcel
+*/
+
+/**
+	@name ExcelActions.downloadExportExcel
+	@action
+	@description 下载导出的excel文件
+	@param {String} fileName {@link ExcelActions.exportExcel} Action返回的文件名
+	@returns {InputStream} excel文件流
+*/
+
+/**
+	@name ExcelActions.uploadImportExcel
+	@action
+	@description excel导入文件上传，包括excel文件和导入配置文件
+	@param {InputStream} excel excel文件流
+	@param {InputStream} mapping 导入配置文件流
+	@returns {Map} excel：上传的excel文件名，mapping：上传的导入配置文件名
+*/
+
+/**
+	@name ExcelActions.importExcel
+	@action
+	@description 根据excel文件导入数据
+	@param {Xml} config 导入配置，参见{@link UI.excelImport#mapping__sub__src}
+	@param {Map} createActionParam 导入数据时使用的新增数据Action的参数
+	@param {Map} saveActionParam 当config中指定导入DB时，指定保存数据的saveAction的参数
+	@returns {Table} 当指定导入UI时返回数据的Table，否则没有返回
+	@see ExcelActions.importExcelBeforeAction
+	@see ExcelActions.importExcelAfterAction
+	@example
+	给importExcelBeforeAction、importExcelAfterAction接口，可以通过接管这两个action实现特殊逻辑
+*/
+
+/**
+	@name ExcelActions.importExcelBeforeAction
+	@action
+	@description 导入excel前的action接口
+	@param {HSSFWorkbook} excel excel对象
+	@param {ImportConfig} config 导入参数对象
+	@see ExcelActions.importExcel
+*/
+
+/**
+	@name ExcelActions.importExcelAfterAction
+	@action
+	@description 导出excel后的action接口
+	@param {Table} data 根据excel生成的Table
+	@param {HSSFWorkbook} excel excel对象
+	@param {ImportConfig} config 导入参数对象
+	@see ExcelActions.importExcel
+*/

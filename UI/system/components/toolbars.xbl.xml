@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<xbl:binding id="toolbars" order="inner">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:xui="http://www.justep.com/xui">
+				<root>
+					<xsl:for-each select="*">
+						<xsl:if test="name()!='xui:toolbar'">
+					    	<xsl:copy-of select="."/>
+					    </xsl:if>
+				    </xsl:for-each>
+				    <!-- 
+					<xhtml:div width="100%" class="toolbar-manager" name="toolbarmanager">
+						<xsl:apply-templates select="xui:toolbar"/>
+					</xhtml:div>
+				     -->
+				    <xhtml:table cellspacing="0" cellpadding="0" style="width:100%">
+				    	<xhtml:tr>
+						<xsl:for-each select="*">
+							<xsl:if test="name()='xui:toolbar'">
+							<xhtml:td>
+								<xhtml:div width="100%" class="toolbar-manager" name="toolbarmanager">
+									<xsl:apply-templates select="."/>
+								</xhtml:div>
+							</xhtml:td>
+						    </xsl:if>
+					    </xsl:for-each>
+			    			<xhtml:td style="width:100%"></xhtml:td>
+				    	</xhtml:tr>
+				    </xhtml:table>
+				</root>	
+			</xsl:template>
+			<xsl:template match="xui:toolbar" xmlns:xui="http://www.justep.com/xui">
+<!-- 
+				<xforms:group>
+					<xsl:if test="@ref">
+						<xsl:attribute name="ref" select="@ref"/>	
+					</xsl:if>
+				</xforms:group>
+ -->
+					<xhtml:div  name="toolbargroup" class="toolbar-style">
+						<xhtml:table cellpadding="0" cellspacing="1px">
+							<xhtml:tr>
+								<!-- onmousedown="justep.XBLObject.getXBLObject(this).mousedownAction();" -->
+								<xhtml:td width="5" onmouseover="this.style.border='1px ridge';" onmouseout="this.style.border='1px solid #dfe8f6';" name="group_anchor" class="groupanchor" ><xhtml:img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"/></xhtml:td>
+								<xsl:for-each select="./*">
+									<xsl:if test="name(.)='xui:toolbar-item'">
+										<xsl:apply-templates select="."/>
+									</xsl:if>
+									<xsl:if test="name(.)='xui:toolbar-separator'">
+										<xsl:apply-templates select="."/>
+									</xsl:if>
+								</xsl:for-each>
+							</xhtml:tr>
+						</xhtml:table>
+					</xhtml:div>
+			</xsl:template>
+			<xsl:template match="xui:toolbar-item" xmlns:xui="http://www.justep.com/xui">
+				<xsl:param name="target" select="''"/>
+				<xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style">
+					<xsl:apply-templates select="@*"/>
+					<xsl:copy-of select="./*"/>
+				</xhtml:td>
+			</xsl:template>
+			<xsl:template match="xui:toolbar-separator" xmlns:xui="http://www.justep.com/xui">
+				<xhtml:td class="toolbar-separator-style">
+					<xhtml:img class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif" align="absmiddle"/>
+				</xhtml:td>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+		({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+							 
+						}
+					}
+				}
+			},
+			
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.toolbar-style{border:solid 0px #dfe8f6;}
+				.toolbar-style a{color: #000000;}				
+				.toolbar-item-style,.toolbar-item-style-out,.toolbar-separator-style{text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;}
+				.toolbar-item-style-over{text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;}
+				.toolbar-item-style-up{text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;}
+				.toolbar-item-style-down{text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;}
+				.toolbar-item-font-style{font-size:12px;text-align:center;}
+				
+				td.groupanchor {
+					width:5px;
+					border:1px solid #dfe8f6;
+				}
+
+				.toolbar-manager .xforms-group{
+					display:inline; 
+				}
+
+				.toolbar-manager .xforms-disabled{
+					display:none;
+				}
+
+				.toolbar-manager .xforms-group-content{
+					display:inline;  
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>
+	</xbl:binding>
+	
+</xbl:xbl>
+

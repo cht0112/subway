@@ -1,0 +1,137 @@
+/**
+	@name UI.checkbox
+	@class 
+	@component checkbox
+	@model UI
+	@description <b>[rich]</b>checkbox组件
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<xforms:select ref="" id="checkbox1">
+		<xforms:item>
+			<xforms:label>item1</xforms:label>
+			<xforms:value>item1</xforms:value>
+		</xforms:item>
+	
+		<xforms:item>
+			<xforms:label>item2</xforms:label>
+			<xforms:value>item2</xforms:value>
+		</xforms:item>
+	</xforms:select>	   		
+	</xmp>
+*/
+ 
+/**
+	@name UI.checkbox#id
+	@attribute
+	@required
+	@description 唯一标识
+*/
+
+/**
+	@name UI.checkbox#ref
+	@attribute
+	@required
+	@description 绑定引用
+*/
+
+/**
+	@name UI.checkbox#class
+	@attribute
+	@description <b>[attribute]</b>预定义了两个class, 控制横向和纵向布局 horizontal/vertical
+*/
+
+/**
+	@name UI.checkbox#item
+	@attribute
+	@description <b>[child]</b>子项
+	@example
+	<b>属性：</b>
+	label : 显示名称
+	value : 值
+	<b>事件：</b>
+	onSelect ： 选中子项
+	onDeSelect : 子项脱离选中状态
+	<b>xnl格式：</b>
+	<xmp>
+	<xforms:select ref="" id="checkbox1">
+		<xforms:item> <!-- 子项 -->
+			<xforms:label>item1</xforms:label> <!--显示标签-->
+			<xforms:value>item1</xforms:value> <!--值-->
+			<xforms:action ev:event="xforms-select">
+			  <!--当前子项被选中-->
+			</xforms:action>
+			<xforms:action ev:event="xforms-deselect">
+			  <!--子项脱离选中状态-->
+			</xforms:action>
+		</xforms:item>
+		
+		<xforms:item>
+			<xforms:label>item2</xforms:label>
+			<xforms:value>item2</xforms:value>
+		</xforms:item>
+	</xforms:select>	   
+	</xmp>
+*/
+
+
+/**
+	@name UI.checkbox#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.checkbox#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.checkbox#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.checkbox#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.checkbox#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.checkbox#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.checkbox#disabled
+	@attribute
+	@description 禁用
+*/
+
+/**
+	@name UI.checkbox#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.checkbox#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+

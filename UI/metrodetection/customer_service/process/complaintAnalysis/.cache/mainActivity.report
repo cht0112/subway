@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<report xmlns:xreport="http://www.justep.com/x5/xreport" xmlns:rdl="http://www.justep.com/RDL">  
+  <report-model/>  
+  <report-view> 
+    <request id="Report1"> 
+      <xreport:params> 
+        <report-name/>  
+        <uiserver-url/>  
+        <current-process/>  
+        <current-activity/> 
+      </xreport:params>  
+      <xreport:model/>  
+      <xreport:view output-type=""> 
+        <rdl:report> 
+          <rdl:model> 
+            <rdl:mapping> 
+              <data id="ds1" path="record"> 
+                <TYPE1 path="TYPE1"/>  
+                <COUNT1 path="COUNT1"/> 
+              </data> 
+            </rdl:mapping>  
+            <rdl:dataset id="ds1"> 
+              <root> 
+                <record ref="ds1"> 
+                  <COUNT1/>  
+                  <TYPE1/> 
+                </record> 
+              </root> 
+            </rdl:dataset> 
+          </rdl:model>  
+          <rdl:layout-set master-name="A4"> 
+            <rdl:layout master-name="A4" orientation="" margin-top="2.4mm" margin-bottom="2.4mm" margin-left="3.7mm" margin-right="3.7mm" page-width="210mm" page-height="297mm"/> 
+          </rdl:layout-set>  
+          <rdl:content-set> 
+            <rdl:styles> 
+              <rdl:style id="s68" text-align="Center" vertical-align="middle" font-family="宋体" font-size="14pt" bold="true" overflow="hidden"/>  
+              <rdl:style id="s67" vertical-align="Top" font-family="宋体" font-size="12pt" overflow="hidden"/>  
+              <rdl:style id="s66" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="s65" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="s63" vertical-align="Top" font-family="宋体" font-size="12pt" bold="true" overflow="hidden"/>  
+              <rdl:style id="s62" vertical-align="Top" overflow="hidden"/>  
+              <rdl:style id="Default" vertical-align="Top" font-family="宋体" font-size="12pt" overflow="hidden"/>  
+              <rdl:style id="786267003" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000" overflow="hidden"/>  
+              <rdl:style id="2135814023" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="-706686257" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" overflow="hidden"/>  
+              <rdl:style id="-60994927" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="-374663804" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="-339511568" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" overflow="hidden"/>  
+              <rdl:style id="-2068463614" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="-1939834364" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>  
+              <rdl:style id="-1594997014" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000" overflow="hidden"/>  
+              <rdl:style id="-1193702790" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/> 
+            </rdl:styles>  
+            <rdl:content> 
+              <rdl:table autoWidth="false" autoHeight="false" vertical-align="Top" font-family="宋体" font-size="12pt" width="635" height="620"> 
+                <rdl:table-columns> 
+                  <rdl:table-column id="C1" width="128.0"/>  
+                  <rdl:table-column id="C2" width="176.0"/>  
+                  <rdl:table-column id="C3" width="182.0"/>  
+                  <rdl:table-column id="C4" width="148.0"/>  
+                  <rdl:table-column id="C5" width="1.0"/> 
+                </rdl:table-columns>  
+                <rdl:table-rows> 
+                  <rdl:table-row id="R1" height="28.0"> 
+                    <rdl:table-cell id="R1C1" column="C1" styleID="s63"> 
+                      <rdl:report-data/> 
+                    </rdl:table-cell>  
+                    <rdl:table-cell id="R1C2" column="C2" type="String" colspan="2" styleID="s68"> 
+                      <rdl:report-data>按投诉类型统计图表</rdl:report-data> 
+                    </rdl:table-cell>  
+                    <rdl:table-cell id="R1C4" column="C4"/>  
+                    <rdl:table-cell id="R1C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R2" height="19.0"> 
+                    <rdl:table-cell id="R2C1" column="C1"/>  
+                    <rdl:table-cell id="R2C2" column="C2" type="String" styleID="-2068463614"> 
+                      <rdl:report-data>投诉类型</rdl:report-data> 
+                    </rdl:table-cell>  
+                    <rdl:table-cell id="R2C3" column="C3" type="String" styleID="-374663804"> 
+                      <rdl:report-data>投诉记录数</rdl:report-data> 
+                    </rdl:table-cell>  
+                    <rdl:table-cell id="R2C4" column="C4" styleID="-1594997014"/>  
+                    <rdl:table-cell id="R2C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:repeat id="PR3C2" nodeset="dataset('ds1')//record" start="1" end="6"> 
+                    <rdl:variable id="VR3C2" type="String" ref="TYPE1"/>  
+                    <rdl:table-row id="R3" height="23.0"> 
+                      <rdl:table-cell id="R3C1" column="C1"/>  
+                      <rdl:table-cell id="R3C2" column="C2" type="String" ref="TYPE1" index="2" styleID="2135814023"> 
+                        <rdl:report-data/> 
+                      </rdl:table-cell>  
+                      <rdl:table-cell id="R3C3" column="C3" type="String" v-group="$PR3C2" h-group="$ALL" ref="COUNT1" index="3" styleID="-1939834364"> 
+                        <rdl:report-data/> 
+                      </rdl:table-cell>  
+                      <rdl:table-cell id="R3C4" column="C4" styleID="786267003"/>  
+                      <rdl:table-cell id="R3C5" column="C5"/> 
+                    </rdl:table-row> 
+                  </rdl:repeat>  
+                  <rdl:table-row id="R4" height="19.0"> 
+                    <rdl:table-cell id="R4C1" column="C1"/>  
+                    <rdl:table-cell id="R4C2" column="C2" styleID="-706686257"/>  
+                    <rdl:table-cell id="R4C3" column="C3" styleID="-339511568"/>  
+                    <rdl:table-cell id="R4C4" column="C4"/>  
+                    <rdl:table-cell id="R4C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R5" height="245.0"> 
+                    <rdl:table-cell id="R5C1" column="C1" colspan="4" styleID="s62"> 
+                      <rdl:report-object path="chart3" width="128.0" height="245.0" type="chart" get-object-define="getchart_chart3_define()"/> 
+                    </rdl:table-cell>  
+                    <rdl:table-cell id="R5C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R6" height="19.0"> 
+                    <rdl:table-cell id="R6C1" column="C1"/>  
+                    <rdl:table-cell id="R6C2" column="C2"/>  
+                    <rdl:table-cell id="R6C3" column="C3"/>  
+                    <rdl:table-cell id="R6C4" column="C4"/>  
+                    <rdl:table-cell id="R6C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R7" height="19.0"> 
+                    <rdl:table-cell id="R7C1" column="C1" styleID="s67"> 
+                      <rdl:report-data/> 
+                    </rdl:table-cell>  
+                    <rdl:table-cell id="R7C2" column="C2"/>  
+                    <rdl:table-cell id="R7C3" column="C3"/>  
+                    <rdl:table-cell id="R7C4" column="C4"/>  
+                    <rdl:table-cell id="R7C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R8" height="19.0"> 
+                    <rdl:table-cell id="R8C1" column="C1"/>  
+                    <rdl:table-cell id="R8C2" column="C2"/>  
+                    <rdl:table-cell id="R8C3" column="C3"/>  
+                    <rdl:table-cell id="R8C4" column="C4"/>  
+                    <rdl:table-cell id="R8C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R9" height="19.0"> 
+                    <rdl:table-cell id="R9C1" column="C1"/>  
+                    <rdl:table-cell id="R9C2" column="C2"/>  
+                    <rdl:table-cell id="R9C3" column="C3"/>  
+                    <rdl:table-cell id="R9C4" column="C4"/>  
+                    <rdl:table-cell id="R9C5" column="C5"/> 
+                  </rdl:table-row>  
+                  <rdl:table-row id="R10" height="19.0"/>  
+                  <rdl:table-row id="R11" height="19.0"/>  
+                  <rdl:table-row id="R12" height="19.0"/>  
+                  <rdl:table-row id="R13" height="19.0"/>  
+                  <rdl:table-row id="R14" height="19.0"/>  
+                  <rdl:table-row id="R15" height="19.0"/>  
+                  <rdl:table-row id="R16" height="19.0"/>  
+                  <rdl:table-row id="R17" height="19.0"/>  
+                  <rdl:table-row id="R18" height="19.0"/>  
+                  <rdl:table-row id="R19" height="19.0"/>  
+                  <rdl:table-row id="R20" height="19.0"/>  
+                  <rdl:table-row id="R21" height="1.0"/> 
+                </rdl:table-rows> 
+              </rdl:table> 
+            </rdl:content> 
+          </rdl:content-set> 
+        </rdl:report> 
+      </xreport:view> 
+    </request>  
+    <request id="chart3"> 
+      <xreport:params> 
+        <report-name/>  
+        <uiserver-url/>  
+        <current-process/>  
+        <current-activity/> 
+      </xreport:params>  
+      <xreport:model/>  
+      <xreport:view output-type=""> 
+        <rdl:report> 
+          <rdl:layout-set master-name="A4"> 
+            <rdl:layout master-name="A4" width="210mm" height="297mm" Orientation="" margin-top="10mm" margin-bottom="10mm" margin-left="10mm" margin-right="10mm" page-width="210mm" page-height="297mm" margin-header="" margin-footter=""/> 
+          </rdl:layout-set>  
+          <rdl:content-set> 
+            <rdl:styles> 
+              <rdl:style id="s24" vertical-align="Top"/>  
+              <rdl:style id="s23" vertical-align="Bottom"/>  
+              <rdl:style id="Default" vertical-align="Bottom" font-family="宋体" font-size="12px"/> 
+            </rdl:styles>  
+            <rdl:content> 
+              <rdl:table autoWidth="true" vertical-align="Bottom" font-family="宋体" font-size="12px"> 
+                <rdl:table-columns> 
+                  <rdl:table-column id="C1"/> 
+                </rdl:table-columns>  
+                <rdl:table-rows> 
+                  <rdl:table-row id="R1"> 
+                    <rdl:table-cell id="R1C1" column="C1"> 
+                      <rdl:report-chart id="chart3"> 
+                        <rdl:report> 
+                          <rdl:model> 
+                            <rdl:mapping> 
+                              <data id="ds2" path="record"> 
+                                <TYPE1 path="TYPE1"/>  
+                                <COUNT1 path="COUNT1"/> 
+                              </data> 
+                            </rdl:mapping>  
+                            <rdl:dataset id="ds2"> 
+                              <root> 
+                                <record ref="ds2"> 
+                                  <TYPE1 path="TYPE1"/>  
+                                  <COUNT1 path="COUNT1"/> 
+                                </record> 
+                              </root> 
+                            </rdl:dataset> 
+                          </rdl:model>  
+                          <rdl:layout-set master-name="A4"> 
+                            <rdl:layout master-name="A4" width="210mm" height="297mm" Orientation="" margin-top="10mm" margin-bottom="10mm" margin-left="10mm" margin-right="10mm" page-width="210mm" page-height="297mm" margin-header="" margin-footter=""/> 
+                          </rdl:layout-set>  
+                          <rdl:content-set> 
+                            <rdl:content> 
+                              <rdl:chart> 
+                                <config id="default5"> 
+                                  <title id="default7" visible="false" position="TOP"/> 
+                                </config>  
+                                <series-set id="series-set2"> 
+                                  <series id="chartSeries1" chart-type="vertical-bar" name="verticalbarchart"> 
+                                    <config id="config1"> 
+                                      <category-title id="default6">投诉类型</category-title>  
+                                      <serie-title id="default21">投诉记录数</serie-title>  
+                                      <map-tool-tip-format id="default22" type="number">######</map-tool-tip-format>  
+                                      <map-tool-tip-label-style id="default23">({0}) = {2}</map-tool-tip-label-style>  
+                                      <category-item-margin id="default19">0.1</category-item-margin>  
+                                      <category-item-max-width id="default29">0.2</category-item-max-width>  
+                                      <category-item-label-angle id="default24">20</category-item-label-angle>  
+                                      <serie-number-format id="default30">####.0</serie-number-format>  
+                                      <category-item-label-visible id="default34">true</category-item-label-visible>  
+                                      <category-item-label-number-format id="default35">######</category-item-label-number-format> 
+                                    </config>  
+                                    <data title="TYPE1" categoryAxis="TYPE1" numberAxis="COUNT1" ref="ds2" autoData="true" id="data4"/> 
+                                  </series> 
+                                </series-set> 
+                              </rdl:chart> 
+                            </rdl:content> 
+                          </rdl:content-set> 
+                        </rdl:report> 
+                      </rdl:report-chart> 
+                    </rdl:table-cell> 
+                  </rdl:table-row> 
+                </rdl:table-rows> 
+              </rdl:table> 
+            </rdl:content> 
+          </rdl:content-set>  
+          <rdl:model> 
+            <rdl:mapping> 
+              <data id="ds2" path="record"> 
+                <TYPE1 path="TYPE1"/>  
+                <COUNT1 path="COUNT1"/> 
+              </data> 
+            </rdl:mapping>  
+            <rdl:dataset id="ds2"> 
+              <root> 
+                <record ref="ds2"> 
+                  <TYPE1 path="TYPE1"/>  
+                  <COUNT1 path="COUNT1"/> 
+                </record> 
+              </root> 
+            </rdl:dataset> 
+          </rdl:model> 
+        </rdl:report> 
+      </xreport:view> 
+    </request>  
+    <request id="chart1"> 
+      <xreport:params> 
+        <report-name/>  
+        <uiserver-url/>  
+        <current-process/>  
+        <current-activity/> 
+      </xreport:params>  
+      <xreport:model/>  
+      <xreport:view output-type=""> 
+        <rdl:report> 
+          <rdl:layout-set master-name="A4"> 
+            <rdl:layout master-name="A4" width="210mm" height="297mm" Orientation="" margin-top="10mm" margin-bottom="10mm" margin-left="10mm" margin-right="10mm" page-width="210mm" page-height="297mm" margin-header="" margin-footter=""/> 
+          </rdl:layout-set>  
+          <rdl:content-set> 
+            <rdl:styles> 
+              <rdl:style id="s24" vertical-align="Top"/>  
+              <rdl:style id="s23" vertical-align="Bottom"/>  
+              <rdl:style id="Default" vertical-align="Bottom" font-family="宋体" font-size="12px"/> 
+            </rdl:styles>  
+            <rdl:content> 
+              <rdl:table autoWidth="true" vertical-align="Bottom" font-family="宋体" font-size="12px"> 
+                <rdl:table-columns> 
+                  <rdl:table-column id="C1"/> 
+                </rdl:table-columns>  
+                <rdl:table-rows> 
+                  <rdl:table-row id="R1"> 
+                    <rdl:table-cell id="R1C1" column="C1"> 
+                      <rdl:report-chart id="chart1"> 
+                        <rdl:report> 
+                          <rdl:model> 
+                            <rdl:mapping> 
+                              <data id="reportData2" path="record"> 
+                                <SEVERITY1 path="SEVERITY1"/>  
+                                <COUNT1 path="COUNT1"/> 
+                              </data> 
+                            </rdl:mapping>  
+                            <rdl:dataset id="reportData2"> 
+                              <root> 
+                                <record ref="reportData2"> 
+                                  <SEVERITY1 path="SEVERITY1"/>  
+                                  <COUNT1 path="COUNT1"/> 
+                                </record> 
+                              </root> 
+                            </rdl:dataset> 
+                          </rdl:model>  
+                          <rdl:layout-set master-name="A4"> 
+                            <rdl:layout master-name="A4" width="210mm" height="297mm" Orientation="" margin-top="10mm" margin-bottom="10mm" margin-left="10mm" margin-right="10mm" page-width="210mm" page-height="297mm" margin-header="" margin-footter=""/> 
+                          </rdl:layout-set>  
+                          <rdl:content-set> 
+                            <rdl:content> 
+                              <rdl:chart> 
+                                <config id="default9"> 
+                                  <title id="default17" visible="false" position="TOP">Justep图表</title> 
+                                </config>  
+                                <series-set id="series-set1"> 
+                                  <series id="chartSeries2" chart-type="vertical-bar" name="verticalbarchart"> 
+                                    <config id="config2"> 
+                                      <category-title id="default18">严重程度</category-title>  
+                                      <serie-title id="default20">投诉记录数</serie-title>  
+                                      <category-item-label-angle id="default25">30</category-item-label-angle>  
+                                      <serie-number-format id="default32">####.0</serie-number-format>  
+                                      <category-item-label-visible id="default36">true</category-item-label-visible>  
+                                      <category-item-label-number-format id="default37">######</category-item-label-number-format>  
+                                      <category-item-margin id="default33">0.1</category-item-margin>  
+                                      <category-item-max-width id="default38">0.2</category-item-max-width> 
+                                    </config>  
+                                    <data title="SEVERITY1" categoryAxis="SEVERITY1" numberAxis="COUNT1" ref="reportData2" autoData="true" id="data2"/> 
+                                  </series> 
+                                </series-set> 
+                              </rdl:chart> 
+                            </rdl:content> 
+                          </rdl:content-set> 
+                        </rdl:report> 
+                      </rdl:report-chart> 
+                    </rdl:table-cell> 
+                  </rdl:table-row> 
+                </rdl:table-rows> 
+              </rdl:table> 
+            </rdl:content> 
+          </rdl:content-set>  
+          <rdl:model> 
+            <rdl:mapping> 
+              <data id="reportData2" path="record"> 
+                <SEVERITY1 path="SEVERITY1"/>  
+                <COUNT1 path="COUNT1"/> 
+              </data> 
+            </rdl:mapping>  
+            <rdl:dataset id="reportData2"> 
+              <root> 
+                <record ref="reportData2"> 
+                  <SEVERITY1 path="SEVERITY1"/>  
+                  <COUNT1 path="COUNT1"/> 
+                </record> 
+              </root> 
+            </rdl:dataset> 
+          </rdl:model> 
+        </rdl:report> 
+      </xreport:view> 
+    </request>  
+    <request id="report2">
+      <xreport:params>
+        <report-name/>
+        <uiserver-url/>
+        <current-process/>
+        <current-activity/>
+      </xreport:params>
+      <xreport:model/>
+      <xreport:view output-type="">
+        <rdl:report>
+          <rdl:model>
+            <rdl:mapping>
+              <data id="reportData1" path="record">
+                <SEVERITY1 path="SEVERITY1"/>
+                <COUNT1 path="COUNT1"/>
+              </data>
+            </rdl:mapping>
+            <rdl:dataset id="reportData1">
+              <root>
+                <record ref="reportData1">
+                  <COUNT1/>
+                  <SEVERITY1/>
+                </record>
+              </root>
+            </rdl:dataset>
+          </rdl:model>
+          <rdl:layout-set master-name="A4">
+            <rdl:layout master-name="A4" orientation="" margin-top="2.4mm" margin-bottom="2.4mm" margin-left="3.7mm" margin-right="3.7mm" page-width="210mm" page-height="297mm"/>
+          </rdl:layout-set>
+          <rdl:content-set>
+            <rdl:styles>
+              <rdl:style id="s69" text-align="Center" vertical-align="middle" font-family="宋体" font-size="14pt" bold="true" overflow="hidden"/>
+              <rdl:style id="s68" vertical-align="Top" overflow="hidden"/>
+              <rdl:style id="s66" overflow="hidden"/>
+              <rdl:style id="s64" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="s63" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="Default" vertical-align="Top" font-family="宋体" font-size="12pt" overflow="hidden"/>
+              <rdl:style id="568372818" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" overflow="hidden"/>
+              <rdl:style id="2018598168" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="1976714733" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" overflow="hidden"/>
+              <rdl:style id="1588392011" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="1529137391" text-align="Center" vertical-align="middle" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="-451305881" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000" overflow="hidden"/>
+              <rdl:style id="-1840415734" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="-1483945093" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000" overflow="hidden"/>
+              <rdl:style id="-1284703694" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+              <rdl:style id="-1267329818" text-align="Center" vertical-align="middle" font-family="宋体" font-size="10pt" background-color="#8DB4E3" background-pattern="Solid" overflow="hidden" border-top-width="1px" border-top-style="Continuous" border-top-color="#000000" border-left-width="1px" border-left-style="Continuous" border-left-color="#000000"/>
+            </rdl:styles>
+            <rdl:content>
+              <rdl:table autoWidth="false" autoHeight="false" vertical-align="Top" font-family="宋体" font-size="12pt" width="627" height="392">
+                <rdl:table-columns>
+                  <rdl:table-column id="C1" width="132.0"/>
+                  <rdl:table-column id="C2" width="176.0"/>
+                  <rdl:table-column id="C3" width="182.0"/>
+                  <rdl:table-column id="C4" width="136.0"/>
+                  <rdl:table-column id="C5" width="1.0"/>
+                </rdl:table-columns>
+                <rdl:table-rows>
+                  <rdl:table-row id="R1" height="28.0">
+                    <rdl:table-cell id="R1C1" column="C1"/>
+                    <rdl:table-cell id="R1C2" column="C2" type="String" colspan="2" styleID="s69">
+                      <rdl:report-data>按投诉严重程度统计图表</rdl:report-data>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R1C4" column="C4"/>
+                    <rdl:table-cell id="R1C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:table-row id="R2" height="19.0">
+                    <rdl:table-cell id="R2C1" column="C1"/>
+                    <rdl:table-cell id="R2C2" column="C2" type="String" styleID="-1840415734">
+                      <rdl:report-data>投诉严重程度</rdl:report-data>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R2C3" column="C3" type="String" styleID="-1267329818">
+                      <rdl:report-data>投诉记录数</rdl:report-data>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R2C4" column="C4" styleID="-1483945093"/>
+                    <rdl:table-cell id="R2C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:repeat id="PR3C2" nodeset="dataset('reportData1')//record" start="1" end="6">
+                    <rdl:variable id="VR3C2" type="String" ref="SEVERITY1"/>
+                    <rdl:table-row id="R3" height="23.0">
+                      <rdl:table-cell id="R3C1" column="C1"/>
+                      <rdl:table-cell id="R3C2" column="C2" type="String" ref="SEVERITY1" index="2" styleID="1588392011">
+                        <rdl:report-data/>
+                      </rdl:table-cell>
+                      <rdl:table-cell id="R3C3" column="C3" type="String" v-group="$PR3C2" h-group="$ALL" ref="COUNT1" index="3" styleID="2018598168">
+                        <rdl:report-data/>
+                      </rdl:table-cell>
+                      <rdl:table-cell id="R3C4" column="C4" styleID="-451305881"/>
+                      <rdl:table-cell id="R3C5" column="C5"/>
+                    </rdl:table-row>
+                  </rdl:repeat>
+                  <rdl:table-row id="R4" height="19.0">
+                    <rdl:table-cell id="R4C1" column="C1"/>
+                    <rdl:table-cell id="R4C2" column="C2" styleID="1976714733"/>
+                    <rdl:table-cell id="R4C3" column="C3" styleID="568372818"/>
+                    <rdl:table-cell id="R4C4" column="C4"/>
+                    <rdl:table-cell id="R4C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:table-row id="R5" height="245.0">
+                    <rdl:table-cell id="R5C1" column="C1" colspan="4" styleID="s68">
+                      <rdl:report-object path="chart1" width="132.0" height="245.0" type="chart" get-object-define="getchart_chart1_define()"/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R5C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:table-row id="R6" height="19.0">
+                    <rdl:table-cell id="R6C1" column="C1" styleID="s66">
+                      <rdl:report-data/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R6C2" column="C2" styleID="s66">
+                      <rdl:report-data/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R6C3" column="C3"/>
+                    <rdl:table-cell id="R6C4" column="C4"/>
+                    <rdl:table-cell id="R6C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:table-row id="R7" height="19.0">
+                    <rdl:table-cell id="R7C1" column="C1" styleID="s66">
+                      <rdl:report-data/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R7C2" column="C2" styleID="s66">
+                      <rdl:report-data/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R7C3" column="C3"/>
+                    <rdl:table-cell id="R7C4" column="C4"/>
+                    <rdl:table-cell id="R7C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:table-row id="R8" height="19.0">
+                    <rdl:table-cell id="R8C1" column="C1" styleID="s66">
+                      <rdl:report-data/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R8C2" column="C2" styleID="s66">
+                      <rdl:report-data/>
+                    </rdl:table-cell>
+                    <rdl:table-cell id="R8C3" column="C3"/>
+                    <rdl:table-cell id="R8C4" column="C4"/>
+                    <rdl:table-cell id="R8C5" column="C5"/>
+                  </rdl:table-row>
+                  <rdl:table-row id="R9" height="1.0">
+                    <rdl:table-cell id="R9C1" column="C1"/>
+                    <rdl:table-cell id="R9C2" column="C2"/>
+                    <rdl:table-cell id="R9C3" column="C3"/>
+                    <rdl:table-cell id="R9C4" column="C4"/>
+                    <rdl:table-cell id="R9C5" column="C5"/>
+                  </rdl:table-row>
+                </rdl:table-rows>
+              </rdl:table>
+            </rdl:content>
+          </rdl:content-set>
+        </rdl:report>
+      </xreport:view>
+    </request>
+  </report-view> 
+</report>

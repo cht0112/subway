@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;" timeout-window="/UI/portal2/process/portal/login.w">  
+  <head xmlns=""> 
+    <script language="javascript" src="/x5/$v2315f07f32f34105a6049d1e006f8c95/base/base.js?language=zh_CN"/>  
+    <script language="javascript" src="/x5/$va8947cbd7de94d6f991a263991ef52d7/UI/system/resources/system.res.js?language=zh_CN"/>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v18cdca145c6a4601b24a22120c85c8e9/UI/system/icons/system.icon.css?language=zh_CN"/>  
+    <script>
+		 
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					
+					
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+										
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		
+		</script>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v48c7a732c8f64af3b9300869e18ccb20/UI/system/config/user.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v7c615e97b321405685a0c88f7df8165b/UI/portal2/process/portal/components/sliddingpanel/sliddingpanel.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$vfbce18cf13c64aeba40f3d8695eeed39/UI/portal2/process/portal/components/tab/tab.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v6448a292e2f94f838eb5ef849b173df1/UI/portal2/process/portal/components/setpwd/setpwd.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v978546d38c174dbe943c6f15cbf4df44/UI/portal2/process/portal/components/advancedset/advancedset.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$vcf517eca54b6443e93238c7981855882/UI/portal2/process/portal/components/portalset/portalset.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$vf182265dc1ea4625a61705414871b16f/UI/portal2/process/portal/components/flagbar/flagbar.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v93608b7a514147e6a2c7aa864518b182/UI/portal2/process/portal/components/functreeview/funcTreeView.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$vbfeaf59498ea4c2281d07b54970d715d/form/justep/showMessage.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v03b2ab027b7c48b39c13918fc8acc568/UI/portal2/process/portal/components/sortablebar/sortablebar.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$vaddff73955f7457faa45a6d4db057fbb/UI/portal2/process/portal/components/quicklist/quicklist.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v7883cc4e2c4646b1a77359c7232edad4/UI/portal2/process/portal/components/portalview/portalView.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v6869e220c64f46658b3ad8a1821d4b70/UI/portal2/process/portal/components/portalview/widgetlayout.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v05c3ad07d0944ca5a65ff4216cef4520/UI/portal2/process/portal/components/accordion/accordion.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v3b616c54b9964fff80952a233f7b864e/UI/portal2/process/portal/components/funcframe/funcFrame.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v0b2aa18337b547ac8379c29ad79d4d7a/UI/portal2/process/portal/components/agentlist/agentlist.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v080d915ef92743e0a6cfb369fa669989/UI/portal2/process/portal/components/dialog/dialog.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v9472b91b7640495da432c72e596ff609/UI/portal2/process/portal/components/reminder/reminder.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v77801c88ad964e5bbf82363381abcd55/UI/portal2/process/portal/index.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v975ad289d87a4c67a857a4b7fa0d0a0e/UI/portal2/process/portal/lib/jscrollpane/jquery.jscrollpane.css?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v49f5a84449bd48d0957e03afa58d8ec4/UI/portal2/process/portal/lib/md5.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$ve0cd8ea00a9e4a59a7b09da79b382524/form/justep/showMessage.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$vf29fa932f7a5419d9ffa867902688236/UI/portal2/process/portal/lib/api.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v0e70c5b8030d47698c8ac7058f0bab5c/UI/portal2/process/portal/lib/jquery-ui-1.8.18.custom.min.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v19f401a921c5489a93c4610f0b927283/UI/portal2/process/portal/lib/jquery.iframe.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v638bdfe6f9fe4870b37a2785b3cd0fa7/UI/portal2/process/portal/lib/jscrollpane/jquery.mousewheel.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v9ba1f3f643d749efb3d1ad9fecc99639/UI/portal2/process/portal/lib/jscrollpane/jquery.jscrollpane.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$vb2d78f68f7a046569d4dc9a68b3c25f0/UI/portal2/process/portal/lib/jquery.isloading.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v31ad780cfe4b42ea95710b69af3832af/UI/portal2/process/portal/lib/util.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v0a9bf050ef9a4946af78b0604b586fb9/UI/portal2/process/portal/lib/eventable.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v6138a3e13f1d446a976037bffdeef0a0/UI/portal2/process/portal/components/all.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v8e6733029ff74798a228cd2cc9d0693e/UI/portal2/process/portal/index.js?language=zh_CN"/>  
+    <script type="text/javascript">
+		var _config = ${config};
+	</script>  
+    <title>X5协同管理系统</title>  
+    <meta id="viewport" name="viewport" content="initial-scale=1.0,user-scalable=yes,width=1024"/>  
+    <script type="text/javascript" src="/x5/$veba0e7d6882e4006acb962a6981bc1ac/UI/portal2/process/portal/.cache/index_zh_CN_x5_1f3975015831416a98fdf3aa50660262.js?language=zh_CN&amp;$version=40943c20-b491-47fa-8b7e-e67251c32d23"/>
+  </head>  
+  <body xmlns="" style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div xforms:lazy="false" id="rootView" class="" style="height:100%;width:100%;overflow:auto;"> 
+        <div id="main"> 
+          <div id="topPanel"> 
+            <div id="setting"> 
+              <div id="page1" style="height:100%;"> 
+                <div style="width: 40%; height:100%;float:right;border-left: 1px solid #999;"> 
+                  <div id="reset_pwd"/> 
+                </div>  
+                <div style="width: 30%; height:100%;float:right;border-left: 1px solid #999;"> 
+                  <div id="advanced_set"/> 
+                </div> 
+              </div>  
+              <div id="page2" style="height:100%;"> 
+                <div style="height:100%;"> 
+                  <div id="portal_set"/> 
+                </div> 
+              </div>  
+              <div id="page3"> 
+                <span style="font-size: 64px;color: white;"/> 
+              </div> 
+            </div> 
+          </div>  
+          <div class="head"> 
+            <div class="inner"> 
+              <div class="debug-mode">警告：当前运行在调试模式下， 调试模式下系统运行速度会慢！</div>  
+              <div class="logo"/>  
+              <div class="main"> 
+                <div class="bar"> 
+                  <div> 
+                    <span id="reminder"/>  
+                    <span id="agents"/>  
+                    <span class="user"> 
+                      <span class="name"/>  
+                      <span class="loginTime"/> 
+                    </span>  
+                    <span class="tools"> 
+                      <a id="setting-btn">设置</a> | 
+                      <a id="logout">注销</a> 
+                    </span> 
+                  </div> 
+                </div>  
+                <div class="menu"> 
+                  <div> 
+                    <div id="bar1"/>  
+                    <ul class="bar2"> 
+                      <li id="fun-map-show-btn"> 
+                        <a>功能列表</a> 
+                      </li>  
+                      <li id="fun-map-close-btn"> 
+                        <a>功能列表</a> 
+                      </li> 
+                    </ul> 
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+          </div>  
+          <div class="content" style="position:relative"> 
+            <div class="inner" style="position:relative"> 
+              <div id="b1"/>  
+              <div id="b2"/>  
+              <div class="fun-map" id="cv1"/>  
+              <div id="portal"/> 
+            </div> 
+          </div> 
+        </div>  
+        <div id="funcFrame"/> 
+      </div> 
+    </div> 
+  </body> 
+</html>

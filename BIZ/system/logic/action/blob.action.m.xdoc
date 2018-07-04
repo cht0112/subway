@@ -1,0 +1,43 @@
+/**
+	@name BlobActions
+	@class
+	@model BIZ
+	@description blob数据操作action
+	@see com.justep.system.data.BlobUtils
+*/
+
+/**
+	@name BlobActions.blobDownloadAction
+	@action
+	@description blob数据下载
+	@param {String} dataModel 数据模块
+	@param {String} concept blob所在概念
+	@param {String} relation blob对应的关系
+	@param {String} id  概念的唯一标示
+	@returns {java.io.InputStream}
+	@see com.justep.system.data.BlobUtils.query
+*/
+
+/**
+	@name BlobActions.blobUpdateAction
+	@action
+	@description blob数据更新
+	@param {String} dataModel 数据模块
+	@param {String} concept blob所在概念
+	@param {String} relation blob对应的关系
+	@param {String} id  概念的唯一标示
+	@param {String} size blob大小限制，支持格式：1024,25B,100KB,390M,34G，单位支持：B、KB、M、G，默认单位是B
+	@param {java.io.InputStream} blobData blob数据流
+	@see com.justep.system.data.BlobUtils.update
+*/
+
+/**
+	@name BlobActions.blobDeleteAction
+	@action
+	@description blob数据清除
+	@param {String} dataModel 数据模块
+	@param {String} concept blob所在概念
+	@param {String} relation blob对应的关系
+	@param {String} id  概念的唯一标示
+	@see com.justep.system.data.BlobUtils.delete
+*/

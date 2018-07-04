@@ -1,0 +1,594 @@
+/**
+	@name findActivityCreator
+	@function
+	@description 获取指定环节的创建者
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityCreator('START')
+			findActivityCreator('ALL')
+			findActivityCreator('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorFID
+	@function
+	@description 获取指定环节的第一个创建者的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者    
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorFID('START')
+			findActivityFirstCreatorFID('ALL')
+			findActivityFirstCreatorFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorFName
+	@function
+	@description 获取指定环节的第一个创建者的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorFName('START')
+			findActivityFirstCreatorFName('ALL')
+			findActivityFirstCreatorFName('环节标识')
+*/
+
+/**
+	@name findActivityCreatorOrg
+	@function
+	@description 获取指定环节的创建者所在的组织
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityCreatorOrg('START')
+			findActivityCreatorOrg('ALL')
+			findActivityCreatorOrg('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorOrgFID
+	@function
+	@description 获取指定环节的第一个创建者所在的组织的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorOrgFID('START')
+			findActivityFirstCreatorOrgFID('ALL')
+			findActivityFirstCreatorOrgFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorOrgFName
+	@function
+	@description 获取指定环节的第一个创建者所在的组织的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorOrgFName('START')
+			findActivityFirstCreatorOrgFName('ALL')
+			findActivityFirstCreatorOrgFName('环节标识')
+*/
+
+/**
+	@name findActivityCreatorDept
+	@function
+	@description 获取指定环节的创建者所在的部门
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityCreatorDept('START')
+			findActivityCreatorDept('ALL')
+			findActivityCreatorDept('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorDeptFID
+	@function
+	@description 获取指定环节的第一个创建者所在的部门的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorDeptFID('START')
+			findActivityFirstCreatorDeptFID('ALL')
+			findActivityFirstCreatorDeptFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorDeptFName
+	@function
+	@description 获取指定环节的第一个创建者所在的部门的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorDeptFName('START')
+			findActivityFirstCreatorDeptFName('ALL')
+			findActivityFirstCreatorDeptFName('环节标识')
+*/
+
+/**
+	@name findActivityCreatorOgn
+	@function
+	@description 获取指定环节的创建者所在的机构
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityCreatorOgn('START')
+			findActivityCreatorOgn('ALL')
+			findActivityCreatorOgn('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorOgnFID
+	@function
+	@description 获取指定环节的第一个创建者所在的机构的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorOgnFID('START')
+			findActivityFirstCreatorOgnFID('ALL')
+			findActivityFirstCreatorOgnFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstCreatorOgnFName
+	@function
+	@description 获取指定环节的第一个创建者所在的机构的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstCreatorOgnFName('START')
+			findActivityFirstCreatorOgnFName('ALL')
+			findActivityFirstCreatorOgnFName('环节标识')
+*/
+
+/**
+	@name findActivityExecutor
+	@function
+	@description 获取指定环节的执行者
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityExecutor('START')
+			findActivityExecutor('ALL')
+			findActivityExecutor('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorFID
+	@function
+	@description 获取指定环节的第一个执行者的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorFID('START')
+			findActivityFirstExecutorFID('ALL')
+			findActivityFirstExecutorFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorFName
+	@function
+	@description 获取指定环节的第一个执行者的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorFName('START')
+			findActivityFirstExecutorFName('ALL')
+			findActivityFirstExecutorFName('环节标识')
+*/
+
+/**
+	@name findActivityExecutorOrg
+	@function
+	@description 获取指定环节的执行者所在的组织
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityExecutorOrg('START')
+			findActivityExecutorOrg('ALL')
+			findActivityExecutorOrg('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorOrgFID
+	@function
+	@description 获取指定环节的第一个执行者所在的组织的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorOrgFID('START')
+			findActivityFirstExecutorOrgFID('ALL')
+			findActivityFirstExecutorOrgFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorOrgFName
+	@function
+	@description 获取指定环节的第一个执行者所在的组织的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者  
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorOrgFName('START')
+			findActivityFirstExecutorOrgFName('ALL')
+			findActivityFirstExecutorOrgFName('环节标识')
+*/
+
+/**
+	@name findActivityExecutorDept
+	@function
+	@description 获取指定环节的执行者所在的部门
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者 
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityExecutorDept('START')
+			findActivityExecutorDept('ALL')
+			findActivityExecutorDept('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorDeptFID
+	@function
+	@description 获取指定环节的第一个执行者所在的部门的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorDeptFID('START')
+			findActivityFirstExecutorDeptFID('ALL')
+			findActivityFirstExecutorDeptFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorDeptFName
+	@function
+	@description 获取指定环节的第一个执行者所在的部门的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者 
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorDeptFName('START')
+			findActivityFirstExecutorDeptFName('ALL')
+			findActivityFirstExecutorDeptFName('环节标识')
+*/
+
+/**
+	@name findActivityExecutorOgn
+	@function
+	@description 获取指定环节的执行者所在的机构
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者 
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findActivityExecutorOgn('START')
+			findActivityExecutorOgn('ALL')
+			findActivityExecutorOgn('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorOgnFID
+	@function
+	@description 获取指定环节的第一个执行者所在的机构的FID
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者 
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorOgnFID('START')
+			findActivityFirstExecutorOgnFID('ALL')
+			findActivityFirstExecutorOgnFID('环节标识')
+*/
+
+/**
+	@name findActivityFirstExecutorOgnFName
+	@function
+	@description 获取指定环节的第一个执行者所在的机构的FName
+	@param {String} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者 
+	@returns {String} 
+	@example 
+			findActivityFirstExecutorOgnFName('START')
+			findActivityFirstExecutorOgnFName('ALL')
+			findActivityFirstExecutorOgnFName('环节标识')
+*/
+
+/**
+	@name findOrgUnitsHasActivity
+	@function
+	@description 获取拥有指定环节权限的组织单元
+	@param {String} activity 环节标识
+	@param {Object} inOrg 返回的组织单元必须在这个范围内;
+		允许三种情况: 
+			空值, 表示不限制范围;
+			单个组织单元ID或FID(String类型); 
+			多个组织单元ID或FID(String类型)形成的List;
+	@param {Boolean} isPersonMember 是否取到人员成员
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findOrgUnitsHasActivity('环节标识', '', true);
+			findOrgUnitsHasActivity('环节标识', '组织单元ID', false);
+			findOrgUnitsHasActivity('环节标识', '组织单元FID', true);
+			findOrgUnitsHasActivity('环节标识', list('组织单元ID', '组织单元FID'), true);
+*/
+
+/**
+	@name findOrgUnitsHasCActivity
+	@function
+	@description 获取拥有当前环节权限的组织单元
+	@param {Object} inOrg 返回的组织单元必须在这个范围内;
+		允许三种情况: 
+			空值, 表示不限制范围;
+			单个组组织单元ID或FID(String类型); 
+			多个组织单元ID或FID(String类型)形成的List;
+	@param {Boolean} isPersonMember 是否取到人员成员
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findOrgUnitsHasCActivity('', true);
+			findOrgUnitsHasCActivity('组织单元ID', false);
+			findOrgUnitsHasCActivity('组织单元FID', true);
+			findOrgUnitsHasCActivity(list('组织单元ID', '组织单元FID'), true);
+*/
+
+/**
+	@name findOrgUnitsHasCActivityInACDept
+	@function
+	@description 获取和指定环节创建者在同一部门下, 拥有当前环节权限的组织单元
+	@param {Object} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者
+	@param {Boolean} isPersonMember 是否取到人员成员
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findOrgUnitsHasCActivityInACDept('START', true);
+			findOrgUnitsHasCActivityInACDept('ALL', false);
+			findOrgUnitsHasCActivityInACDept('环节标识', true);
+*/
+
+/**
+	@name findOrgUnitsHasCActivityInACOgn
+	@function
+	@description 获取和指定环节创建者在同一机构下, 拥有当前环节权限的组织单元
+	@param {Object} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者
+	@param {Boolean} isPersonMember 是否取到人员成员
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findOrgUnitsHasCActivityInACOgn('START', true);
+			findOrgUnitsHasCActivityInACOgn('ALL', false);
+			findOrgUnitsHasCActivityInACOgn('环节标识', true);
+*/
+
+/**
+	@name findOrgUnitsHasCActivityInAEDept
+	@function
+	@description 获取和指定环节处理者在同一部门下, 拥有当前环节权限的组织单元
+	@param {Object} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者
+	@param {Boolean} isPersonMember 是否取到人员成员
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findOrgUnitsHasCActivityInAEDept('START', true);
+			findOrgUnitsHasCActivityInAEDept('ALL', false);
+			findOrgUnitsHasCActivityInAEDept('环节标识', true);
+*/
+	
+/**
+	@name findOrgUnitsHasCActivityInAEOgn
+	@function
+	@description 获取和指定环节处理者在同一机构下, 拥有当前环节权限的组织单元
+	@param {Object} activity 环节标识或'START'或'ALL'; 
+		START: 表示获取入口环节的创建者,
+		ALL: 表示获取所有环节的创建者
+	@param {Boolean} isPersonMember 是否取到人员成员
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+	@example 
+			findOrgUnitsHasCActivityInAEOgn('START', true);
+			findOrgUnitsHasCActivityInAEOgn('ALL', false);
+			findOrgUnitsHasCActivityInAEOgn('环节标识', true);
+*/
+	
+/**
+	@name getProcessData1
+	@function
+	@description 获取当前流程实例关联的业务数据1
+	@returns {String} 
+*/
+	
+/**
+	@name getProcessData2
+	@function
+	@description 获取当前流程实例关联的业务数据2
+	@returns {String} 
+*/
+
+/**
+	@name getProcessData3
+	@function
+	@description 获取当前流程实例关联的业务数据3
+	@returns {String} 
+*/
+
+/**
+	@name getProcessData4
+	@function
+	@description 获取当前流程实例关联的业务数据4
+	@returns {String} 
+*/
+
+/**
+	@name isExecutingAction
+	@function
+	@description 判断是否正在执行指定的动作
+	@param {String} action 动作标识
+	@returns {Boolean} 
+*/
+
+/**
+	@name isProcessFinished
+	@function
+	@description 判断当前流程实例是否已经结束
+	@returns {Boolean} 
+*/
+
+/**
+	@name isStartingProcess
+	@function
+	@description 判断是否正在启动流程
+	@returns {Boolean} 
+*/
+
+
+/**
+	@name processFinishable
+	@function
+	@description 判断当前流程实例是否可以结束
+	@returns {Boolean} 
+*/
+	
+/**
+	@name isFlowTo
+	@function
+	@description 判断是否流转到指定的环节
+	@param {String} activity 环节标识
+	@returns {Boolean} 
+	@example isFlowTo('环节标识')
+*/
+
+/**
+	@name isFlowToEnd
+	@function
+	@description 判断是否流转到结束
+	@returns {Boolean} 
+*/
+
+/**
+	@name currentPIName
+	@function
+	@description 获取当前流程实例的标题
+	@returns {String} 
+*/
+
+/**
+	@name currentProcess
+	@function
+	@description 获取当前Process的全路径
+	@returns {String} 
+*/
+
+/**
+	@name currentActivity
+	@function
+	@description  获取当前Activity的全路径
+	@returns {String} 
+*/
+	
+/**
+	@name currentProcessOfProcessContext
+	@function
+	@description 获取流程上下文中的当前Process的全路径
+	@returns {String} 
+*/
+
+/**
+	@name currentActivityOfProcessContext
+	@function
+	@description  获取流程上下文中的当前Activity的全路径
+	@returns {String} 
+*/
+
+/**
+	@name currentProcessLabel
+	@function
+	@description 获取当前Process的label
+	@returns {String} 
+*/
+
+/**
+	@name currentActivityLabel
+	@function
+	@description  获取当前Activity的label
+	@returns {String} 
+*/
+	
+/**
+	@name currentProcessLabelOfProcessContext
+	@function
+	@description 获取流程上下文中的当前Process的label
+	@returns {String} 
+*/
+
+/**
+	@name currentActivityLabelOfProcessContext
+	@function
+	@description  获取流程上下文中的当前Activity的label
+	@returns {String} 
+*/
+	
+	
+/**
+	@name inputFromActivity
+	@function
+	@description 判断当前环节的入口是否包括指定的环节
+	@param {String} activity 环节标识
+	@returns {Boolean} 
+*/
+
+/**
+	@name findActivityProjectUser
+	@function
+	@description 获取项目成员信息
+	@param {String} activity 环节标识
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+*/
+
+/**
+	@name findActivityProjectTECH
+	@function
+	@description 获取项目技术负责人信息
+	@param {String} activity 环节标识
+	@returns {List<com.justep.system.opm.OrgUnit>} 
+*/

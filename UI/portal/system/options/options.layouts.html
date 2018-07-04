@@ -1,0 +1,71 @@
+<div id="options_layout_inner" class="options_content_inner">
+<div id="options_layout_title">当前布局   ：
+	<div id="option_layout_current"></div>
+</div>
+<div id="options_layouts_nav" class="options_page_nav">
+	<span>分类:</span>
+</div>  
+ 
+   
+<div id="options_layout_wrapper" class="options_wrapper">
+	<ul></ul>
+</div>
+  
+<div id="options_layout_page" class="options_pagination">
+	<div class="pagination"></div>
+</div>
+</div>
+<script>
+	(function(){
+		var layoutCategory = null;
+		var $ul = $("<ul></ul>").appendTo("#options_layouts_nav");
+		for(var i in portalConfig.layoutsToolbar){
+			var layoutItem = portalConfig.layoutsToolbar[i];
+			$("<li></li>").appendTo($ul).append($.extend($("<a href='javascript:void(0)'></a>").text(layoutItem.category).get(0),layoutItem));
+		}
+		$("a", "#options_layouts_nav").click(function(){
+			layoutCategory= this;
+			$(this).on();
+			$(this).parent().on();
+			update();
+			return false;
+		}).eq(2).click();
+		
+		function update(){
+			count = 0;  
+			layouts = [];
+			if(layoutCategory){
+				for (var i in layoutCategory.layoutIDs) {
+					layouts.push($.extend({id:layoutCategory.layoutIDs[i]},portalConfig.widgets[layoutCategory.layoutIDs[i]]));
+					count++;
+				}
+			}
+			$(".pagination", "#options_layout_page").pagination(count, {
+				next_text: "下一页",
+				prev_text: "上一页",
+				items_per_page: 9,
+				num_display_entries: 4,
+				num_edge_entries: 2,
+				callback: function(page_index, jq) {
+					var $ul = $("ul", "#options_layout_wrapper");
+					$ul.empty();
+					var min_index = page_index*this.items_per_page;
+					var max_index = Math.min((page_index+1)*this.items_per_page,count);
+					$(".info", "#options_layout_info").text("所有 (" + ((max_index==0)?max_index:min_index+1) + "-" + max_index + "/" + count + ")");
+					for (var i = min_index; i < max_index; i++) {
+						html= "<li><div rev='"+layouts[i].id+"' title='" + layouts[i].id +"'/><span title='" + layouts[i].id +"' class='title'>" + layouts[i].id +"</span></li>"
+						$ul.append($.extend($(html).get(0),layouts[i]));
+					}
+					
+					$("li", $ul).click(function(e){
+						var c = $(this).find("div").attr("rev");
+						$.jpolite.setLayout(c);
+						$.triggerEvent("optionLayoutActivateEvent");
+					});
+				}
+			});
+		}
+		update();
+		
+	}());
+</script>

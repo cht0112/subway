@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grid-menu 
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events">
+	<template>
+		<tree>
+			<xforms:menu name="tree-menu" appearance="context">
+				<xforms:menuitem name="expand-this" label="i18n{expand-this}"
+					img="expandthis.gif"
+					dis-img="un_expandthis.gif"
+					hotkey="Ctrl+E">
+					<xforms:action ev:event="DOMActivate">
+						<xui-expand-this-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="expand-all" label="i18n{expand-all}"
+					img="expandall.gif"
+					dis-img="un_expandall.gif"
+					hotkey="Ctrl+e">
+					<xforms:action ev:event="DOMActivate">
+						<xui-expand-all-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="collapse-this" label="i18n{collapse-this}"
+					img="collapsethis.gif"
+					dis-img="un_collapsethis.gif"
+					hotkey="Ctrl+C">
+					<xforms:action ev:event="DOMActivate">
+						<xui-collapse-this-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="collapse-all" label="i18n{collapse-all}"
+					img="collapseall.gif"
+					dis-img="un_collapseall.gif"
+					hotkey="Ctrl+c">
+					<xforms:action ev:event="DOMActivate">
+						<xui-collapse-all-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="separator1" type="separator" />
+				<xforms:menuitem name="add-child" label="i18n{add-child}"
+					img="addchild.gif"
+					dis-img="un_addchild.gif"
+					hotkey="Ctrl+A">
+					<xforms:action ev:event="DOMActivate">
+						<xui-create-new-child-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="add-brother" label="i18n{add-brother}"
+					img="addbrother.gif"
+					dis-img="un_addbrother.gif"
+					hotkey="Ctrl+B">
+					<xforms:action ev:event="DOMActivate">
+						<xui-create-new-brother-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="add-root" label="i18n{add-root}"
+					img="addroot.gif"
+					dis-img="un_addroot.gif"
+					hotkey="Ctrl+R">
+					<xforms:action ev:event="DOMActivate">
+						<xui-create-new-root-node />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="delete" label="i18n{delete}"
+					img="remove.gif"
+					dis-img="un_remove.gif"
+					hotkey="Ctrl+R">
+					<xforms:action ev:event="DOMActivate">
+						<xui-delete />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="separator2" type="separator" />
+				<xforms:menuitem name="up" label="i18n{up}" img="up.gif"
+					dis-img="down.gif">
+					<xforms:action ev:event="DOMActivate">
+						<xui-data-up />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="down" label="i18n{down}" img="down.gif"
+					dis-img="down.gif">
+					<xforms:action ev:event="DOMActivate">
+						<xui-data-down />
+					</xforms:action>
+				</xforms:menuitem>
+			</xforms:menu>
+			<config>
+				<img-path>/UI/system/images/standardToolbar/standard/</img-path>
+			</config>
+		</tree>
+		<list>
+			<xforms:menu name="list-menu" appearance="context">
+				<xforms:menuitem name="insert" label="i18n{insert}"
+					img="insert.gif"
+					dis-img="un_insert.gif"
+					hotkey="Ctrl+I">
+					<xforms:action ev:event="DOMActivate">
+						<xui-insert />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="delete" label="i18n{delete}"
+					img="remove.gif"
+					dis-img="un_remove.gif"
+					hotkey="Ctrl+D">
+					<xforms:action ev:event="DOMActivate">
+						<xui-delete />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="separator1" type="separator" />
+				<xforms:menuitem name="up" label="i18n{up}" img="up.gif"
+					dis-img="down.gif">
+					<xforms:action ev:event="DOMActivate">
+						<xui-data-up />
+					</xforms:action>
+				</xforms:menuitem>
+				<xforms:menuitem name="down" label="i18n{down}" img="down.gif"
+					dis-img="down.gif">
+					<xforms:action ev:event="DOMActivate">
+						<xui-data-down />
+					</xforms:action>
+				</xforms:menuitem>
+			</xforms:menu>
+			<config>
+				<img-path>/UI/system/images/standardToolbar/standard/</img-path>
+			</config>
+		</list>
+	</template>
+</grid-menu>

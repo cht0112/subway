@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xforms="http://www.justep.com/xforms" xmlns:justep="http://www.justep.com/x5#"
+	script-type="text/javascript">
+
+	<script src="./decisionGrid/decisionGrid.js"/>
+
+	<binding id="grid" delete-bound-element="false">
+		<template template-type="java" src="DecisionGrid" />
+	
+		<implementation>
+			({
+				initXBL : function() {
+					this._id = this.domNode.id;
+					if (!this._id) {
+						throw new Error("决策网格组件的id属性不能为空");
+					}
+					this.decisionGridDefineID = "decisionGrid_" + this._id + "_define";
+					this.decisionGridFrameID = "decisionGrid_" + this._id + "_frame";
+					justep.Object.extend(this, new justep.DecisionGrid(this));
+				}
+
+			})
+			
+		</implementation>
+		<resources>
+			<style>
+				<![CDATA[
+					.xui-decisionGrid{
+						width:636px;
+						height:128px;	
+					}
+				]]>
+			</style>
+		</resources>	
+	</binding>
+	
+</xbl>

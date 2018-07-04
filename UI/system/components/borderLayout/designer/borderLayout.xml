@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<elements> 
+  <element name="borderLayout" tag-name="div" icon="img.png" text="border布局"
+    display-property="id" component-type="layout-container" binding-component="/UI/system/components/borderLayout.xbl.xml#borderLayout"
+    component-class="BorderLayout" design-view="web-designer" child-Range="borderLayout-center,borderLayout-top,borderLayout-left,borderLayout-right,borderLayout-bottom"> 
+    <properties> 
+      <property name="id" text="编号" required="false"/>
+      <property name="border-size" text="外边框宽度"/>   
+      <property name="style" text="样式" editor-ref="styleDialog" use-default="true"/> 
+    </properties>
+    <property-editors/>  
+    <events/>  
+    <templates> 
+      <template name="default"><![CDATA[ 
+		       <xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout" style="width:100%; height: 100%;"> 
+        			<top size="30px"></top>
+        			<center></center>
+      			</xhtml:div>
+		   ]]></template>
+    </templates>
+    <toolbar>
+      <item text="添加Top" method="addTop"/>  
+      <item text="添加Left" method="addLeft"/>  
+      <item text="添加Right" method="addRight"/>  
+      <item text="添加Bottom" method="addBottom"/> 
+    </toolbar> 
+  </element>  
+  <element name="borderLayout-center" tag-name="center" text="center" icon="img.png" component-class="BorderLayoutArea"
+    component-type="layout-container" design-view="web-designer"> 
+    <properties> 
+      <property name="id" text="编号" required="false"/>
+      <property name="style" text="样式" editor-ref="styleDialog" use-default="false"/> 
+    </properties>  
+    <templates> 
+      <template name="default"><![CDATA[ 
+		      <center></center> 
+		   ]]></template> 
+    </templates>  
+    <toolbar> 
+      <item text="添加Top" method="addTop"/>  
+      <item text="添加Left" method="addLeft"/>  
+      <item text="添加Right" method="addRight"/>  
+      <item text="添加Bottom" method="addBottom"/> 
+    </toolbar>  
+    <imitation-config js-class-name="BorderLayoutArea"/> 
+  </element>  
+  <element name="borderLayout-top" tag-name="top" text="top"  icon="img.png" component-class="BorderLayoutArea"
+    component-type="layout-container"> 
+    <properties> 
+      <property name="id" text="编号" required="false"/>  
+      <property name="size" text="高度" use-default="true"/>
+      <property name="border-size" text="外边框宽度"/> 
+      <property name="style" text="样式" editor-ref="styleDialog" use-default="false"/> 
+    </properties>  
+    <templates> 
+      <template name="default"><![CDATA[ 
+		      <top size="30px"></top> 
+		   ]]></template> 
+    </templates>  
+    <toolbar> 
+      <item text="添加Top" method="addTop"/>  
+      <item text="添加Left" method="addLeft"/>  
+      <item text="添加Right" method="addRight"/>  
+      <item text="添加Bottom" method="addBottom"/> 
+    </toolbar>  
+    <imitation-config js-class-name="BorderLayoutArea"/> 
+  </element>  
+  <element name="borderLayout-left" tag-name="left" text="left"  icon="img.png" component-class="BorderLayoutArea"
+    component-type="layout-container"> 
+    <properties> 
+      <property name="id" text="编号" required="false"/>  
+      <property name="size" text="宽度" use-default="true"/> 
+      <property name="border-size" text="外边框宽度"/> 
+      <property name="style" text="样式" editor-ref="styleDialog" use-default="false"/> 
+    </properties>  
+    <templates> 
+      <template name="default"><![CDATA[ 
+		      <left size="50px"></left> 
+		   ]]></template> 
+    </templates>  
+    <toolbar> 
+      <item text="添加Top" method="addTop"/>  
+      <item text="添加Left" method="addLeft"/>  
+      <item text="添加Right" method="addRight"/>  
+      <item text="添加Bottom" method="addBottom"/> 
+    </toolbar> 
+  </element>  
+  <element name="borderLayout-right" tag-name="right" text="right"  icon="img.png" component-class="BorderLayoutArea"
+    component-type="layout-container"> 
+    <properties> 
+      <property name="id" text="编号" required="false"/>  
+      <property name="size" text="宽度" use-default="true"/>
+      <property name="border-size" text="外边框宽度"/> 
+      <property name="style" text="样式" editor-ref="styleDialog" use-default="false"/> 
+    </properties>  
+    <templates> 
+      <template name="default"><![CDATA[ 
+		      <right size="50px"></right> 
+		   ]]></template> 
+    </templates>  
+    <toolbar> 
+      <item text="添加Top" method="addTop"/>  
+      <item text="添加Left" method="addLeft"/>  
+      <item text="添加Right" method="addRight"/>  
+      <item text="添加Bottom" method="addBottom"/> 
+    </toolbar> 
+  </element>  
+  <element name="borderLayout-bottom" tag-name="bottom" text="bottom"  icon="img.png" component-class="BorderLayoutArea"
+    component-type="layout-container"> 
+    <properties> 
+      <property name="id" text="编号" required="false"/>  
+      <property name="size" text="高度" use-default="true"/> 
+      <property name="border-size" text="外边框宽度"/> 
+      <property name="style" text="样式" editor-ref="styleDialog" use-default="false"/> 
+    </properties>  
+    <templates> 
+      <template name="default"><![CDATA[ 
+		      <bottom size="50px"></bottom> 
+		   ]]></template> 
+    </templates>  
+    <toolbar> 
+      <item text="添加Top" method="addTop"/>  
+      <item text="添加Left" method="addLeft"/>  
+      <item text="添加Right" method="addRight"/> 
+    </toolbar> 
+  </element> 
+</elements>

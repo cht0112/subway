@@ -1,0 +1,57 @@
+/**
+	@name UI.tip
+	@component /UI/system/components/tip.xbl.xml#tip
+	@class
+	@model UI
+	@description <b>[rich]</b>提示组件
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/tip.xbl.xml#tip" id="tip1"/>
+</xmp>
+*/
+
+/**
+	@name UI.tip#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/tip.xbl.xml#tip"
+*/
+
+/**
+	@name UI.tip#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.tip#display
+	@attribute
+	@description 显示位置，取值范围：center、top、bottom、left、right、topleft、topright、bottomleft、bottomright
+*/
+
+/**
+	@name UI.tip#display__sub__style
+	@attribute
+	@description 显示样式，格式等同style
+	@default width:200px;height:20px;background-color:yellow
+*/
+
+/**
+	@name UI.tip#time
+	@attribute 
+	@description 显示时间(秒)，指定时间后自动关闭
+	@default 2
+*/
+
+/**
+	@name UI.tip#show
+	@function
+ 	@param {string} message <b>[required]</b>显示信息
+	@description 显示
+	@example
+	justep.xbl("tip1").show({message:"内容", display:"bottom"});
+*/
+

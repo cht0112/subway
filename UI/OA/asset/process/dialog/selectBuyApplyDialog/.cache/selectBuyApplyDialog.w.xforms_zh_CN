@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:f="http://orbeon.org/oxf/xml/formatting" xmlns:data="http://www.justep.com/x5/xui/data#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;">  
+  <head>
+    <xhtml:script language="javascript" src="/component/data/data.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js"/>
+    <xhtml:style rel="stylesheet" type="text/css">.xui-pageNavigator{ _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator *{ vertical-align:middle; } .xui-pageNavigator-label{ white-space: nowrap; } .xui-pageNavigator span{ } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img{ _border:1px solid transparent; } .xui-pageNavigator-page a{ cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page,.xui-img-txt-tb .xui-pageNavigator-ext{ padding-bottom :18px; } .xui-pageNavigator-ext span{ border:0px solid transparent; } .xui-pageNavigator-ext input{ width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</xhtml:style>
+    <xhtml:style rel="stylesheet" type="text/css">.toolbar-style{border:solid 0px #dfe8f6;} .toolbar-style a{color: #000000;} .toolbar-item-style,.toolbar-item-style-out,.toolbar-separator-style{text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over{text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up{text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down{text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style{font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group{ display:inline; } .toolbar-manager .xforms-disabled{ display:none; } .toolbar-manager .xforms-group-content{ display:inline; }</xhtml:style>
+    <xhtml:script language="javascript" src="/UI/system/components/windowDialog/windowDialogReceiver.js"/>
+    <xhtml:style rel="stylesheet" type="text/css"></xhtml:style>
+    <xhtml:style rel="stylesheet" type="text/css">.splitter{ width: 100%; height: 100%; } .xui-splitter-root{ position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region{ position: absolute; overflow: auto; background-color: white; } .xui-splitter-left{ top: 0; left: 0; height: 100%; } .xui-splitter-right{ top: 0; right: 0; height: 100%; } .xui-splitter-top{ top: 0; left: 0; width: 100%; } .xui-splitter-bottom{ bottom: 0; left: 0; width: 100%; } .xui-splitter-handler{ position: absolute; overflow: hidden; background: #DFE8F6; } .xui-splitter-handler-h{ top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v{ left: 0; height: 5px; width: 100%; } .xui-splitter-btn{ position: absolute; } .xui-splitter-btn-h{ left:0; top:50%; margin-top: -35px; width: 5px; } .xui-splitter-btn-v{ top: -5px; height: 10px; left:50%; margin-left: -35px; height: 5px; }</xhtml:style>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <!-- 
+		<script type="text/javascript" src="/base/base.js"/>
+		<script type="text/javascript" src="/form/form.js"/>
+		 -->  
+    <script>
+		 <![CDATA[
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) && msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length > 0 ? msgs[0] : "";
+					var detail = msgs.length > 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length > 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null && activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		]]>
+		</script>  
+    <!--  
+		<script id="__script"/>
+		-->  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/system/config/user.css"/>
+    <xhtml:script type="text/javascript" src="/UI/system/service/commonChoose/js/listMultiTemplete.js"/>
+    <xhtml:script type="text/javascript" src="/UI/system/service/commonChoose/js/commonChoosePara.js"/>
+    <xhtml:script> 
+			justep.windowDialogReceiver.acceptParentParamsFun = acceptData;
+			function quickSearch(){
+				if(!justep("quickSearch")) {
+					alert("未继承quickSearch标签,快速搜索不能使用");
+					return;
+				}			
+				var searchValue = justep("quickSearch").value;
+				if(!searchValue || searchValue == ''){
+					alert("未指定快速搜索查询语句，需重写quickSearch的value属性");
+					return;
+				}
+				var key  = justep('quickSearchInput').value;
+				if(key == '快速搜索……') key = '';
+				if(key == '') searchValue = "";
+				else searchValue = searchValue.replace(/\[QUICKTEXT]/g,key.toUpperCase());
+				var data = justep.xbl('main');
+				if(data){
+					data.filters.setFilter('quickSearch' , searchValue);
+				}
+				data.refreshData();
+				chooseData.checkGrid();
+			}
+			 </xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('main',true,false,{'queryAction':"queryASSelectBuyApplyAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_BuyApplyD':'OA_AS_BuyApplyD'}",'limit':10,'idColumn':"{'name':'OA_AS_BuyApplyD','relation':'OA_AS_BuyApplyD','define':'OA_AS_BuyApplyD','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fNO':0}",'defRelations':"{'fName':{'type':'String','relation':'OA_AS_BuyApplyD.fName','define':'OA_AS_BuyApplyD.fName','label':'资产名称'},'fSpecType':{'type':'String','relation':'OA_AS_BuyApplyD.fSpecType','define':'OA_AS_BuyApplyD.fSpecType','label':'规格型号'},'fKindID':{'type':'String','relation':'OA_AS_BuyApplyD.fKindID','define':'OA_AS_BuyApplyD.fKindID','label':'资产类别ID'},'fKindCode':{'type':'String','relation':'k.fCode','define':'OA_AS_Kind.fCode','label':'编码'},'fUnitID':{'type':'String','relation':'OA_AS_BuyApplyD.fUnitID','define':'OA_AS_BuyApplyD.fUnitID','label':'单位ID'},'fKind':{'type':'String','relation':'OA_AS_BuyApplyD.fKind','define':'OA_AS_BuyApplyD.fKind','label':'资产类别'},'fUnit':{'type':'String','relation':'OA_AS_BuyApplyD.fUnit','define':'OA_AS_BuyApplyD.fUnit','label':'单位'},'fBuyNum':{'type':'Integer','relation':'OA_AS_BuyApplyD.fBuyNum','define':'OA_AS_BuyApplyD.fBuyNum','label':'采购数量'},'fInNum':{'type':'Integer','relation':'OA_AS_BuyApplyD.fInNum','define':'OA_AS_BuyApplyD.fInNum','label':'入库数量'},'fPrice':{'type':'Decimal','relation':'OA_AS_BuyApplyD.fPrice','define':'OA_AS_BuyApplyD.fPrice','label':'单价'},'fAmount':{'type':'Decimal','relation':'OA_AS_BuyApplyD.fAmount','define':'OA_AS_BuyApplyD.fAmount','label':'金额'},'fMasterID':{'type':'String','relation':'OA_AS_BuyApplyD.fMasterID','define':'OA_AS_BuyApplyD.fMasterID','label':'主数据ID'},'fNO':{'type':'String','relation':'m.fNO','define':'OA_AS_BuyApplyM.fNO','label':'单据号'},'fApplyDeptName':{'type':'String','relation':'m.fApplyDeptName','define':'OA_AS_BuyApplyM.fApplyDeptName','label':'申请部门'},'fApplyPsnName':{'type':'String','relation':'m.fApplyPsnName','define':'OA_AS_BuyApplyM.fApplyPsnName','label':'申请人员'},'fApplyDate':{'type':'Date','relation':'m.fApplyDate','define':'OA_AS_BuyApplyM.fApplyDate','label':'申请日期'}}",'defCalcRelations':"{'ch':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'');]]></xhtml:script>
+    <xforms:model id="listMultiChooseModel" style="top:97px;height:auto;left:123px;"> 
+      <xforms:instance id="main" update-mode="whereVersion" concept="OA_AS_BuyApplyD" type="grid" cacl-relation="ch"/>
+      <xforms:bind nodeset="instance('main')/fBuyNum" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('main')/fInNum" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('main')/fPrice" type="xsd:float"/>
+      <xforms:bind nodeset="instance('main')/fAmount" type="xsd:float"/>
+      <xforms:bind nodeset="instance('main')/fApplyDate" type="xsd:date"/> 
+    </xforms:model>
+    <xhtml:script id="xbl_script" language="javascript"><![CDATA[__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver"] = _xbl_JSClassDefine_windowDialogReceiver;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/tableLayout.xbl.xml#tableLayout"] = _xbl_JSClassDefine_tableLayout;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/splitter.xbl.xml#splitter"] = _xbl_JSClassDefine_splitter;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_windowDialogReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialogReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var s = node.getAttribute('onReceive');
+				if(s) justep.windowDialogReceiver.acceptParentParamsFun = s;
+			},
+			"windowEnsure" : function(data,noclose){
+				justep.windowDialogReceiver.windowEnsure(data,noclose);
+			}, 
+			"windowCancel" : function(){
+				justep.windowDialogReceiver.windowCancel();
+			}, 
+			"windowRefresh" : function(){
+				justep.windowDialogReceiver.windowRefresh();
+			}
+		}));
+
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_tableLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tableLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+ 
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.trs = $(">tbody tr", this.el);
+			   	this.spacing = this._getSpace();
+			   	
+			   	/*为了兼容ie789, cellpadding都强设为0*/
+			   	this.el.attr("cellpadding", "0");
+			   	$(">tbody>tr>td", this.el).css("padding", "0");
+			   	this.padding = this._getPadding();
+			   	
+		   		this.onWindowResize();
+			},
+			_getSpace : function(){
+				/*默认2是为了解决ie下无法获得默认值的问题*/
+				var spacing = this.el.attr("cellspacing") || (!justep.Browser.IE?this.el.css("border-spacing"):null) || "2px";
+			   	spacing = spacing.split(" ");
+			   	return parseInt(spacing[1] || spacing[0]) || 0;  
+			},
+			_getPadding : function(){
+				/*默认是为了解决ie下无法获得默认值的问题，ie7默认是2px,ie89默认是1px*/
+				var ret = parseInt(this.el.attr("cellpadding"));
+				return ret || (ret===0 ? 0 : (justep.Browser.IE7 ? "2" : "1")); 
+			},
+			onWindowResize : function(){
+				if(!justep.Browser.IE){
+					$(">tbody >tr", this.el).each(function(index, tr){
+						var td = $(tr.children[0]);
+						tr = $(tr);
+						var h = tr.attr('height') || tr.get(0).style["height"],
+							hd = td.attr('height') || td.get(0).style["height"];
+						if((h == null || h == '') && (hd == null || hd == '')){
+							td.get(0).height = '100%';
+							td.get(0).style["height"] = '100%';
+						}
+					});
+					return;
+				}	
+				var el = this.el;
+				if(el.parent().get(0).tagName.toLowerCase()=="td"){
+					el = el.parent();
+				}
+				var h = el.height(),that = this,
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).height || tr.get(0).style["height"],
+						hd = td.get(0).height || td.get(0).style["height"];
+						
+					/*为了兼容已有应用*/ 
+					if(h=='100%') {
+						h=null;
+						tr.get(0).height = null;
+						tr.get(0).style["height"] = null;
+					}
+					if(hd=='100%') {
+						hd=null;
+						td.get(0).height = null;
+						td.get(0).style["height"] = null;
+					}
+						
+					if(!tr.attr("noheight") && ((h!=null && h!=''&& h!='auto') || (hd!=null && hd!=''&& hd!='auto'))){
+						var mh = Math.max(
+							parseInt(tr.get(0).height)||0,
+							parseInt(tr.get(0).style["height"])||0,
+							(parseInt(td.get(0).height) + that.padding*2)||0,
+							(parseInt(td.get(0).style["height"]) + that.padding*2)||0
+						);
+						b += mh;
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));/*这是防止td被内容撑开*/
+							td.attr("wraped", true);
+						}else{
+							$(">div", td).height(mh);
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					if(a[0].get(0).children[0]){
+						/*第一个td*/
+						var mh = h-b-this.padding*2; 
+						a[0].get(0).children[0].setAttribute("height", (h-b-this.padding*2)+"px");
+						var td = $(a[0].get(0).children[0]);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$(">div", td).height(mh);
+						}
+					}	
+				} 
+			},   	
+			resize2 : function(){
+				var h = this.el.parent().height(),that = this,
+					w = this.el.parent().width(),
+					a = [], b = this.spacing*(this.trs.length + 1);
+				
+				this.el.width(w);
+				
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).style["height"] || tr.attr('height'),
+						hd = td.get(0).style["height"] || tr.attr('height');
+						
+					/*为了兼容已有应用*/ 
+					if(h=='100%') h=null;
+					if(hd=='100%') hd=null;
+						
+					if(!tr.attr("noheight") && ((h!=null && h!=''&& h!='auto') || (hd!=null && hd!=''&& hd!='auto'))){
+						b += tr.outerHeight();
+						/*这是防止td被内容撑开*/
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(td.height()));
+							td.attr("wraped", true);
+						}else{
+							$(">div", td).height(td.height());
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					/*第一个td*/
+					var td;
+					if(td = a[0].get(0).children[0]){
+						var mh = h-b-this.padding*2; 
+						td.setAttribute("height", mh+"px");
+						td = $(td);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$(">div", td).height(mh);
+						}
+					}	
+				} 
+			}   	
+		}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					//todo: 相似组件以后可以集中统一触发一次 
+					//xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					this.modelRefreshcb();
+				} 
+			},
+			
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+							 
+						}
+					}
+				}
+			},
+			
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group && group.parentNode==this.__dragObject.manager) {
+						if (td && td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" && cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+function _xbl_JSClassDefine_splitter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_splitter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-splitter-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+				this.status = this.el.attr("status") || "normal";
+				this.state = 1;
+				if(this.status=='show-first' || this.status=='show-left' || this.status=='show-top'){
+				   	this.state = 0;
+				}else if(this.status=="show-second" || this.status=='show-top' || this.status=='show-bottom'){
+				   	this.state = 2;
+				}
+				this.spacing = 5;
+				this.resizable = this.domNode.getAttribute('resizable')?this.domNode.getAttribute('resizable')=="true": true;
+			   	this.isHorz = this.el.attr("mode") === 'horz';
+			   	this.hasHandler = this.el.attr("has-drag-bar") === 'true';
+			   	this.hasArrowBtn = this.el.attr("has-arrow-button") === 'true';
+			   	this.fixSize = this.el.attr("fix-size") || '50%';
+			   	this.isAnchor = this.fixSize.indexOf('%') != -1;/*是百分比的*/
+
+			   	this.rootEl = $(">div" + baseCls + "root", this.el);
+			   	var s = ">div" + baseCls + "root >div";
+			   	this.leftEl = this.isHorz ? $(s + baseCls + "left", this.el) : $(s + baseCls + "top", this.el);
+			   	this.rightEl = this.isHorz ? $(s + baseCls + "right", this.el) : $(s + baseCls + "bottom", this.el);
+			   	this.handlerEl = $(s + baseCls + "handler", this.el);
+			   	
+			   	var that = this;
+			   	if(this.hasHandler && this.hasArrowBtn){
+				   	$("#" + id+" > "+baseCls + "root > "+baseCls + "handler >"+baseCls + "btn "+baseCls + "resize-btn").css('cursor', 'pointer').bind('mousedown', function(evt){
+				   		that.splitBtnClick = true;
+				   		setTimeout(function(){
+				   			that.splitBtnClick = false;
+				   		}, 50);
+				   		that._onResizeBtnClick($(evt.srcElement).attr("role"));
+				   		if(event.stopPropagation)
+				   			event.stopPropagation();
+				   	});
+			   	}
+			},
+			_onResizeBtnClick: function(role){
+				if(!this.isHorz){
+					role = role==='up'?'left':'right';
+				}
+				if((this.state === 0 && role==='right')||(this.state === 2 && role==='left')){
+					return;
+				}
+				var oldState = this.state;
+				if(this.state === 1){
+					if(role==='left'){
+						this.state = 2;
+					}else{
+						this.state = 0;
+					}
+				}else{
+					if(this.state === 0){
+						if(role==='left'){
+							this.state = 1;
+						}
+					}else{
+						if(role==='right'){
+							this.state = 1;
+						}	
+					}
+				}
+				if(this.state!=oldState){
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			_getBorderWidth: function(el, s){
+				if(s == 'tb'){
+					return (parseInt(el.css("padding-top"))||0) 
+						+ (parseInt(el.css("padding-bottom"))||0) 
+						+ (parseInt(el.css("border-top"))||0) 
+						+ (parseInt(el.css("border-bottom"))||0);  
+				}else{
+					return (parseInt(el.css("padding-left"))||0)
+						+ (parseInt(el.css("padding-right"))||0) 
+						+ (parseInt(el.css("border-left"))||0)
+						+ (parseInt(el.css("border-right"))||0);  
+				}
+			},
+			moveToStart: function(){
+				if(this.state != 2){
+					this.state = 2;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			moveToMiddle: function(){
+				if(this.state != 1){
+					this.state = 1;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			moveToEnd: function(){
+				if(this.state != 0){
+					this.state = 0;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			onWindowResize: function(){
+				var el = this.rootEl;
+
+				//为了解决 当前套在tab次页下时，初次有不显示的缺陷
+				if(justep.Browser.IE7){
+					el.width(this.el.width());
+					el.height(this.el.height());
+				}
+				
+				
+				var l = this.isHorz ? el.width() : el.height();
+				if(this.hasHandler){
+					l -= this.isHorz ? this.handlerEl.width() : this.handlerEl.height();
+				}
+				var lw = rw = 0;
+				if(!this.isNotCalcWidth){
+					var	f = parseFloat(this.fixSize);
+					if(this.isAnchor){
+						lw = Math.round(l*f*0.01);
+					}else{
+						lw = Math.round(f);
+					}
+					this.calcWidth = lw;
+				}
+				if(this.state === 1){
+					lw = this.calcWidth;
+					rw = l - lw;
+				}else if(this.state === 0){
+					lw = l;
+					rw = 0;
+				}else if(this.state === 2){
+					lw = 0;
+					rw = l;
+				}
+				
+				this.leftEl.css("overflow", "hidden");
+				this.rightEl.css("overflow", "hidden");
+				
+				if(this.isHorz){
+					this.leftEl.width(lw);
+					this.rightEl.width(rw);
+				}else{
+					this.leftEl.height(lw);
+					this.rightEl.height(rw);
+				}
+
+				if(this.hasHandler){
+					if(this.isHorz){
+						this.handlerEl.css("left", lw+"px");
+					}else{
+						this.handlerEl.css("top", lw+"px");
+					}
+				}
+				var that = this;
+				setTimeout(function(){
+					that.leftEl.css("overflow", "auto");
+					that.rightEl.css("overflow", "auto");
+				}, 1);
+				
+			   	if(this.hasHandler && this.resizable && !this.mousedowned){
+			   		this.mousedowned = true;
+					this.handlerEl.bind("mousedown",function(){
+						if(that.status=="normal"){
+							if(!that.splitBtnClick) 
+								that.buildDrag();
+						}	
+					});		
+			   	}
+			},
+			buildDrag: function() {
+				var me = this;
+				if(!this.$H)
+					this.$H = $("<div />").appendTo("body");
+				if(xforms.Core.isIE){
+					this.$H[0].setCapture();
+				}
+				
+				var splitter = this.handlerEl[0];
+				var pos = this.cumulativeOffset(splitter);
+			
+				this.$H.css({position:"absolute",backgroundColor:"#999999",zIndex:"99999",fontSize:"1px"
+						,top:pos[1],left:pos[0],height:splitter.offsetHeight,width:splitter.offsetWidth});
+				
+				this.$H.show();		
+			
+				this.minPosition = this.rootEl.offset()[this.isHorz?"left":"top"];
+				this.maxPosition = this.minPosition + (this.isHorz?this.rootEl.outerWidth():this.rootEl.outerHeight()) - this.spacing;
+				
+				me.orgPos = {
+					x : pos[0],
+					y : pos[1]
+				};
+				me.draging_call = function(e) {
+					me.draging(e);
+				};
+				me.done_call = function(e) {
+					me.done(e);
+				};
+				$(document).bind("mousemove",me.draging_call);
+				$(document).bind("mouseup",me.done_call);
+			},
+			cumulativeOffset: function(element) {
+				var valueT = 0, valueL = 0;
+				do {
+					valueT += element.offsetTop  || 0;
+					valueL += element.offsetLeft || 0;
+					element = element.offsetParent;
+			    }while(element);
+			    return [valueL, valueT];
+			},
+			draging: function(e) {
+				var attr = this.isHorz? "pageX" : "pageY";
+				this.$H.css(this.isHorz?"left":"top",Math.min(Math.max((e[attr]-2),this.minPosition),this.maxPosition));
+			},
+			done: function() {
+				var dir = this.isHorz? "offsetWidth" : "offsetHeight";
+				var pos = this.cumulativeOffset(this.$H[0]);  //current pos
+				var offset = pos[this.isHorz?0:1] - this.orgPos[this.isHorz?"x":"y"]; //relative old pos
+				var orgSize = this.leftEl[0][dir]; 	//first width
+				var newSize = orgSize + offset;
+				var parentSize = this.rootEl[0][dir];
+				
+				var f = newSize;
+				var s = parentSize - newSize - this.spacing;
+				f==0?this.leftEl.hide():this.leftEl.show();
+				s==0?this.rightEl.hide():this.rightEl.show();
+				var dir = this.isHorz? "width" : "hight";
+				
+				this.calcWidth = f;
+				this.isNotCalcWidth = true;
+				
+				if(xforms.Core.isIE){
+					this.$H[0].releaseCapture();
+				}
+				
+				this.$H.hide();
+				
+				$(document).unbind("mousemove",this.draging_call);
+				$(document).unbind("mouseup",this.done_call);
+				
+				if(this.onRegionResize)
+					this.onRegionResize({source:this});
+					
+				this.onWindowResize();
+				justep.XBLObject.resize(this.domNode.id);
+			}
+		}));
+
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+			    
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+			
+		}));
+
+	var ids=[{id:'wSelectBuyApplyDialog', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'c853594d80774e7f8da68dec75a145a9', name:'/UI/system/components/tableLayout.xbl.xml#tableLayout', children:[{id:'b1eb0bd21f5d475a90c2760f0eafa3e9', name:'/UI/system/components/splitter.xbl.xml#splitter', children:[{id:'94102b596af241ad9570aae3e4789a95', name:'/UI/system/components/tableLayout.xbl.xml#tableLayout', children:[{id:'toolbarView-pageBar', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'d95a4b5397ee448bb0143f84bb2b1ed2', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'}]},{id:'wr', name:'/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver'},{id:'listGrid', name:'xforms:grid'}]},{id:'2bb0dbf0024541ea96fafec682433df5', name:'xforms:trigger', children:[{id:'e0eb3483b8ac4051a5b01f5ce659cc17', name:'xforms:label'}]},{id:'e1b4db41944c49bb8e2620de6696ac85', name:'xforms:trigger', children:[{id:'8839b0d7df6f4ba7b46e11d963263944', name:'xforms:label'}]}]}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+]]></xhtml:script>
+  </head>  
+  <!-- onunload="_closeActivity_();" -->  
+  <body style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <!-- 可视部分 即用户描述的界面 -->  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <xhtml:div id="topView" class="" style="height:100%;width:100%;"> 
+        <xhtml:table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" class="component_42908985 tableLayout" id="c853594d80774e7f8da68dec75a145a9">  
+          <xhtml:tr> 
+            <xhtml:td colspan="2" valign="top" align="left"> 
+              <xhtml:div style="width:100%;height:100%" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="70%" has-drag-bar="true" has-arrow-button="true" adjust-by-arrow="true" mode="vert" class="component_81628EC1 splitter" id="b1eb0bd21f5d475a90c2760f0eafa3e9"> 
+                <xhtml:div class="xui-splitter-root"> 
+                  <xhtml:div class="xui-splitter-region xui-splitter-top"> 
+                    <xhtml:table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" style="table-layout:fixed" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" class="component_42908985 tableLayout" id="94102b596af241ad9570aae3e4789a95"> 
+                      <xhtml:tr height="30px"> 
+                        <xhtml:td align="left" valign="top"> 
+                          <xhtml:div id="toolbarView" class="" style="width:100%;height:100%"> 
+                            <xhtml:div width="100%" height="40px" id="toolbarView-pageBar" component="/UI/system/components/toolbars.xbl.xml#toolbars" class="component_D66742E1 toolbars"> 
+                              <xhtml:table cellspacing="0" cellpadding="0" style="width:100%"> 
+                                <xhtml:tr> 
+                                  <xhtml:td> 
+                                    <xhtml:div width="100%" class="toolbar-manager" name="toolbarmanager"> 
+                                      <xhtml:div name="toolbargroup" class="toolbar-style"> 
+                                        <xhtml:table cellpadding="0" cellspacing="1px"> 
+                                          <xhtml:tr> 
+                                            <xhtml:td width="5" onmouseover="this.style.border='1px ridge';" onmouseout="this.style.border='1px solid #dfe8f6';" name="group_anchor" class="groupanchor"> 
+                                              <xhtml:img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"/> 
+                                            </xhtml:td>  
+                                            <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                                              <xhtml:div component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="main" mode="IMG" class="component_218FE365 pageNavigator" id="d95a4b5397ee448bb0143f84bb2b1ed2"> 
+                                                <xhtml:table class="xui-pageNavigator" border="0" cellpadding="0" cellspacing="0px" style="_height:100%;"> 
+                                                  <xhtml:tr class=""> 
+                                                    <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                                      <xhtml:img style="border:0px" _disabled="true" onclick="if(!this.getAttribute('_disabled')) justep.XBLObject.getXBLObject(this).gotoPage(1)" title="第一页"/> 
+                                                    </xhtml:td>  
+                                                    <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                                      <xhtml:img style="border:0px" _disabled="true" title="上一页"/> 
+                                                    </xhtml:td>  
+                                                    <xhtml:td nowrap="true" class="xui-pageNavigator-page" style=""/>  
+                                                    <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                                      <xhtml:img style="border:0px" title="下一页"/> 
+                                                    </xhtml:td>  
+                                                    <xhtml:td class="xui-pageNavigator-button" style=""> 
+                                                      <xhtml:img style="border:0px" title="最后页"/> 
+                                                    </xhtml:td>  
+                                                    <xhtml:td nowrap="true" valign="middle" class="xui-pageNavigator-ext" style=""/> 
+                                                  </xhtml:tr> 
+                                                </xhtml:table>  
+                                                <xhtml:span style="display:none" xblid="attribute" data="main" limit="" offset="" count="" page-count="7"/> 
+                                              </xhtml:div> 
+                                            </xhtml:td>  
+                                            <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                                              <xhtml:input type="text" value="快速搜索……" id="quickSearchInput" style="border:1px solid #99BBE8;color:#C0C0C0;width:100px;" onfocus="if(this.value!='快速搜索……') return;this.style.color='black';this.value = ''" onkeyup="if (event.keyCode == 13) quickSearch();" onblur="if(this.value!='')return;this.style.color='#C0C0C0';this.value='快速搜索……'"/> 
+                                            </xhtml:td>  
+                                            <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                                              <xhtml:span alt="查询" style="height:20px; border:1px solid #ffffff;" onclick="quickSearch();"> 
+                                                <xhtml:img src="/UI/system/images/search.gif" alt="查询"/> 
+                                              </xhtml:span> 
+                                            </xhtml:td> 
+                                          </xhtml:tr> 
+                                        </xhtml:table> 
+                                      </xhtml:div> 
+                                    </xhtml:div> 
+                                  </xhtml:td>  
+                                  <xhtml:td style="width:100%"/> 
+                                </xhtml:tr> 
+                              </xhtml:table> 
+                            </xhtml:div>  
+                            <xhtml:div component="/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver" id="wr" class="component_45CC9B41 windowDialogReceiver" style="top:106px;left:38px;"/> 
+                          </xhtml:div> 
+                        </xhtml:td> 
+                      </xhtml:tr>  
+                      <xhtml:tr> 
+                        <xhtml:td align="left" valign="top"> 
+                          <xforms:grid data="main" id="listGrid" style="height:100%;width:570px;width:100%;height:100%" multi-selection="true" onRowChecked="chooseData.checkSelectRow" onRowCheckedAll="chooseData.checkSelectRows" xui:update-mode="merge-and-append" class="component_6298A7A1 grid" right-click-selected="true" system-columns="fKindID,fKindCode,fUnitID,fMasterID">  
+                            <xforms:column label="#master_checkbox" width="30" align="center" ref="ch" type="checkbox" select-ref="ch"/>  
+                            <xforms:column ref="fKind" label="资产类别" type="ro" width="80"/>  
+                            <xforms:column ref="fName" label="资产名称" type="ro" width="120"/>  
+                            <xforms:column ref="fBuyNum" label="数量" type="ro" width="40" align="right"/>  
+                            <xforms:column label="单价" width="80" ref="fPrice" type="ro" align="right" format="0,000.00"/>  
+                            <xforms:column label="金额(元)" width="100" ref="fAmount" type="ro" align="right" format="0,000.00"/>  
+                            <xforms:column ref="fNO" label="申请单号" type="ro" width="120"/>  
+                            <xforms:column ref="fSpecType" label="规格型号" type="ro" width="100"/>  
+                            <xforms:column ref="fUnit" label="单位" type="ro" width="40"/>  
+                            <xforms:column ref="fApplyDeptName" label="申请部门" type="ro" width="100"/>  
+                            <xforms:column ref="fApplyPsnName" label="申请人" type="ro" width="70"/>  
+                            <xforms:column ref="fApplyDate" label="申请时间" type="date" width="70"/>  
+                            <xforms:column ref="fInNum" label="入库数量" type="ro" width="50" align="right"/> 
+                          </xforms:grid> 
+                        </xhtml:td> 
+                      </xhtml:tr> 
+                    </xhtml:table> 
+                  </xhtml:div>  
+                  <xhtml:div class="xui-splitter-region xui-splitter-bottom"> 
+                    <xhtml:table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+                      <xhtml:tr> 
+                        <xhtml:td align="left" valign="top"> 
+                          <xhtml:div id="selectBar" class=""> 
+                            <xhtml:div id="selectBarViewDiv" style="height:26px;filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#98B2E6', endColorStr='#FFFFFF', gradientType='1');"> 
+                              <xhtml:table style="font-size:12px;"> 
+                                <xhtml:tr> 
+                                  <xhtml:td> 选中列表</xhtml:td>  
+                                  <xhtml:td> 
+                                    <xhtml:span style="width:18;MARGIN-RIGHT:auto; MARGIN-LEFT:auto;border:solid 0px #dfe8f6;display:inline;" onmouseover="this.style.border='1px ridge #dfe8f6';" onmouseout="this.style.border='1px solid #dfe8f6'" onmousedown="this.style.border='1px groove'" onmouseup="this.style.border='1px ridge'"> 
+                                      <xforms:trigger appearance="minimal" id="2bb0dbf0024541ea96fafec682433df5">  
+                                        <xforms:label id="e0eb3483b8ac4051a5b01f5ce659cc17"> 
+                                          <xhtml:img style="border:none" alt="删除" src="/UI/system/images/templete/reset.gif"/> 
+                                        </xforms:label>  
+                                        <xforms:action ev:event="DOMActivate">  
+                                          <xforms:script>chooseData.clearSelected();</xforms:script> 
+                                        </xforms:action> 
+                                      </xforms:trigger> 
+                                    </xhtml:span> 
+                                  </xhtml:td>  
+                                  <xhtml:td> 
+                                    <xhtml:span style="width:18;MARGIN-RIGHT:auto; MARGIN-LEFT:auto;border:solid 0px #dfe8f6;display:inline;" onmouseover="this.style.border='1px ridge #dfe8f6';" onmouseout="this.style.border='1px solid #dfe8f6'" onmousedown="this.style.border='1px groove'" onmouseup="this.style.border='1px ridge'"> 
+                                      <xforms:trigger appearance="minimal" id="e1b4db41944c49bb8e2620de6696ac85">  
+                                        <xforms:label id="8839b0d7df6f4ba7b46e11d963263944"> 
+                                          <xhtml:img style="border:none" alt="全部删除" src="/UI/system/images/templete/reset_all.gif"/> 
+                                        </xforms:label>  
+                                        <xforms:action ev:event="DOMActivate">  
+                                          <xforms:script>chooseData.clearAllSelected();</xforms:script> 
+                                        </xforms:action> 
+                                      </xforms:trigger> 
+                                    </xhtml:span> 
+                                  </xhtml:td>  
+                                  <xhtml:td id="select-count" style="color:#FF0000">共
+                                    <xhtml:font color="black" id="select-count-value">0</xhtml:font>项
+                                  </xhtml:td> 
+                                </xhtml:tr> 
+                              </xhtml:table> 
+                            </xhtml:div> 
+                          </xhtml:div> 
+                        </xhtml:td> 
+                      </xhtml:tr>  
+                      <xhtml:tr> 
+                        <xhtml:td align="left" valign="top"> 
+                          <xhtml:div id="selectView" class=""> 
+                            <xhtml:div id="choose-parent"/> 
+                          </xhtml:div> 
+                        </xhtml:td> 
+                      </xhtml:tr> 
+                    </xhtml:table> 
+                  </xhtml:div>  
+                  <xhtml:div class="xui-splitter-handler xui-splitter-handler-v"> 
+                    <xhtml:div class="xui-splitter-btn xui-splitter-btn-v"> 
+                      <img src="/UI/system/components/splitter/little_up.gif" class="xui-splitter-resize-btn" role="up"></img>  
+                      <img src="/UI/system/components/splitter/little_down.gif" class="xui-splitter-resize-btn" role="down"></img> 
+                    </xhtml:div> 
+                  </xhtml:div> 
+                </xhtml:div> 
+              </xhtml:div> 
+            </xhtml:td> 
+          </xhtml:tr>  
+          <xhtml:tr heigth="24px"> 
+            <xhtml:td valign="top" align="left"> 
+              <xhtml:input style="vertical-align:middle;padding-left:6px;padding-right:6px;" type="button" value="刷新" onclick="justep.windowReceiver.windowRefresh()" id="refresh-btn"/> 
+            </xhtml:td>  
+            <xhtml:td valign="top" align="right"> 
+              <xhtml:input style="vertical-align:middle;padding-left:6px;padding-right:6px;" type="button" value="确定" onclick="justep.windowReceiver.windowEnsure(windowSend())" id="ensure-btn"/>  
+              <xhtml:input style="vertical-align:middle;padding-left:6px;padding-right:6px;" type="button" value="取消" onclick="justep.windowReceiver.windowCancel()" id="cancel-btn"/> 
+            </xhtml:td> 
+          </xhtml:tr> 
+        </xhtml:table>  
+        <xhtml:div id="configView" class="">  
+          <xhtml:div style="display:none" id="configViewDiv"> 
+            <xhtml:input id="displayAlias" xui:update-mode="replace" value="fName"></xhtml:input>  
+            <xhtml:input id="returnAliasList" xui:update-mode="replace" value="rowId,fName,fSpecType,fKindID,fUnitID,fKind,fUnit,fBuyNum,fInNum,fPrice,fAmount,fMasterID,fNO,fKindCode"></xhtml:input>  
+            <xhtml:input id="quickSearch" xui:update-mode="replace" value="UPPER(OA_AS_BuyApplyD.fName) LIKE '%[QUICKTEXT]%' OR UPPER(OA_AS_BuyApplyD.fSpecType) LIKE '%[QUICKTEXT]%'OR UPPER(OA_AS_BuyApplyD.fKind) LIKE '%[QUICKTEXT]%'OR UPPER(OA_AS_BuyApplyD.fUnit) LIKE '%[QUICKTEXT]%'OR UPPER(m.fNO) LIKE '%[QUICKTEXT]%'"></xhtml:input> 
+          </xhtml:div> 
+        </xhtml:div> 
+      </xhtml:div>
+    </div>  
+    <xforms:model xforms:partial="listMultiChooseModel"></xforms:model>
+    <xforms:model xforms:partial="listMultiChooseModel"></xforms:model>
+  </body>  
+</html>

@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>demo for 3th part login</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+		<script type="text/javascript" src="system/js/jquery/jquery.js"></script>
+		<script type="text/javascript" src="system/js/portal.js"></script>
+		<script type="text/javascript">
+			function login(){
+				var username = $("#username").val(); 
+				var pw = hex_md5($("#pw").val()); 
+				var data = {username:username, password:pw};
+				$.post("/x5/portal/controller/system/User/login", data, onLogin);
+			}
+			function onLogin(data){
+				data = window["eval"]("(" + data + ")");
+				if($.isArray(data)){
+					var result = data[0];
+					if(result.status === "SUCCESS"){
+						data = window["eval"]("(" + result.data + ")")
+						$("#bid").val(data.bsessionID);
+					}
+				}
+			}
+			function work(){
+				var bsessionid = $("#bid").val();
+				var url = $("#url").val();
+				if(url.indexOf("?") != -1){
+					url = url + "&bsessionid=" + bsessionid; 
+				}else{
+					url = url + "?bsessionid=" + bsessionid; 
+				}
+				window.open(url, "content");
+			}
+			function logout(){
+				$.post("/x5/portal/controller/system/User/logout", null, onLogout);
+			}
+			function onLogout(data){
+				data = window["eval"]("(" + data + ")");
+				if($.isArray(data)){
+					var result = data[0];
+					if(result.status === "SUCCESS"){
+						alert("注销成功");
+						$("#content").attr("src", "about:blank");
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		username : 
+		<input id="username" value="system"/>
+		password :
+		<input type="password" id="pw" value="123456"/>
+		<br/>
+		<input type="button" value="login x5" onclick="login();"/>
+		<br/>
+		bsessionid : <input id="bid" style="width:600"/>
+		<br/>
+		x5 func url : <input id="url" style="width:600" value="http://localhost:8080/x5/SA/task/workRecord/mainActivity.w?language=zh_CN&process=/SA/task/workRecord/workRecordProcess&activity=mainActivity"/>(process activity 和 language 参数可选)
+		<br/>
+		<input type="button" value="open x5 function" onclick="work();"/>
+		<br/>
+		<input type="button" value="logout x5" onclick="logout();"/>
+		<br/>
+		<iframe id="content" src="about:blank" style="width:100%;height:300">
+	</body>
+</html>

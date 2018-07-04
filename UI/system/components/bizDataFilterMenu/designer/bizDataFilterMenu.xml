@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="bizDataFilterMenu" tag-type="rich" tag-name="bizDataFilterMenu" icon="dialog_icon_min.gif" text="过滤模式"  
+		binding-component="/UI/system/components/bizDataFilterMenu.xbl.xml#bizDataFilterMenu" display-property="id"
+		component-class="com.justep.studio.ui.editors.xui.OperationComponent" js-class="justep.design.BizDataFilterMenu"
+		component-type="formControl" validator="ToolbarsValidator" design-view="web-designer" parent-range="view">
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="data" text="引用数据" required="true"  editor-ref="contextComponent" editor-parameter="data" is-id-ref="true"/>
+		</properties>
+		<operations>
+			<operation name="show" label="查询" img-src="" dis-src=""  enable="true" visible="true"/>
+		</operations>
+		<toolbar>			
+			<item text="编辑操作"  method="editOperatoions"/>
+		</toolbar>
+		<templates>
+			<template name="default">
+			<![CDATA[
+				<xhtml:div component="/UI/system/components/bizDataFilterMenu.xbl.xml#bizDataFilterMenu" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+			]]>
+			</template>
+		</templates>
+	</element>
+</elements>

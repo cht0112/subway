@@ -1,0 +1,115 @@
+/**
+	@name UI.windowReceiver
+	@component /UI/system/components/windowReceiver.xbl.xml#windowReceiver
+	@class justep.WindowReceiver
+	@model UI
+	@description <b>[rich]</b>window数据接收组件，和windowDialog,windowFrame,windowRunner,windowOpener等组件配合使用
+	@see UI.windowRunner
+	@see UI.windowFrame
+	@see UI.windowOpener
+	@see UI.windowDialog
+	@example
+	windowReceiver组件放在被调用的.w页面接收调用者传入的数据同时也可以将数据返回调用者，
+	调用者可以是windowDialog、windowFrame、windowRunner、windowOpener等组件。
+	windowReceiver组件通过onReceive事件接收传入数据，通过sendData()、windowEnsure()方法发回数据，
+	调用者组件同样通过onReceive事件接收windowReceiver组件返回的数据
+	注意：sendData()方法只是返回数据不关闭当前页面， windowEnsure()返回数据同时可以控制当前页面是
+	否关闭（windowFrame组件关闭能力）
+	
+	同时可以使用getMappingData()方法返回调用者需要的mapping配置需要的数据，mapping相关参考：{@link windowDialog}
+	
+	平台中提供的对话框模板默认包含了windowReceiver组件，当提供模板不能满足操作逻辑时可以自定义.w放入windowReceiver组件
+	完成数据传递
+	
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver"
+		id="windowReceiver1"
+		onReceive="testReceiveFromFreame"/>
+</xmp>
+*/
+
+/**
+	@name UI.windowReceiver#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/windowReceiver.xbl.xml#windowReceiver"
+*/
+
+/**
+	@name UI.windowReceiver#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.windowReceiver#onReceive
+	@event 
+	@description <b>[回调型事件]</b> window接收调用者传入的数据
+	@param event 
+	<br/><b>格式说明：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"data" : 传入的数据
+	}
+	</xmp>
+	@example
+	//接受传入的rowid，组成filter刷新data
+	1、data组件上定义filter1 = DEMO_TABLE1 = :rowid
+	2、接管onReceive
+	windowReceiverReceive = function(event){
+		if(event.data && event.data.rowid){
+			var data = justep.xbl('mainData');
+			//给变参:rowid赋值
+			data.filters.setStringVar('rowid', event.data.rowid);
+			data.refreshData();
+		}
+	}
+*/
+
+/**
+ @name UI.windowReceiver#sendData
+ @function
+ @param {object} data 数据
+ @description 向调用者返回数据
+*/
+
+/**
+ @name UI.windowReceiver#getMappingData
+ @function
+ @param {string} dataID data组件的ID
+ @param {array} IDs data的ID数组
+ @param {array} cols 返回数据data的列数组，缺省返回data全部列数据
+ @results {object} 
+ @description 构造符合mapping使用的data
+ @see UI.windowReceiver#windowEnsure
+*/
+
+/**
+ @name UI.windowReceiver#windowEnsure
+ @function
+ @param {object} data 返回的数据
+ @param {boolean} isClose 是否关闭窗口,默认值:true
+ @description OK确认返回data
+ @example
+	<b>对话框中确定按钮代码：</b>
+	var windowReceiver = justep.xbl('windowReceiver');
+	var returnData = windowReceiver.getMappingData("main", selectIds);
+	windowReceiver.windowEnsure(returnData);
+ @see UI.windowReceiver#getMappingData 	
+*/
+
+/**
+ @name UI.windowReceiver#windowCancel
+ @function
+ @description 取消关闭对话框
+*/
+
+/**
+ @name UI.windowReceiver#windowRefresh
+ @function
+ @description 刷新当前的window
+*/

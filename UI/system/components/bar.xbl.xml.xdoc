@@ -1,0 +1,112 @@
+/**
+	@name UI.navigatorBar
+	@component /UI/system/components/bar.xbl.xml#navigatorBar
+	@class
+	@description <b>[rich]</b>导航工具栏组件
+	@model UI
+	@example
+	<b>xml格式：</b> 
+<xmp>
+	<xhtml:div component="/UI/system/components/bar.xbl.xml#navigatorBar" xmlns:xui="http://www.justep.com/xui"
+		data="main">
+		<item name="insert-item"/>
+		<item name="save-item"/>
+		<item name="delete-item" />
+		<item name="refresh-item"/>
+		<item name="filter-item"/>
+		<item name="filter-pattern-item"/>
+		<item name="separator" />
+		<item name="first-item"/>
+		<item name="pre-item"/>
+		<item name="next-item"/>
+		<item name="last-item"/>
+		<item name="separator" />
+		<item name="custom-page-item"/>
+	</xhtml:div>	
+</xmp>
+*/
+
+/**
+	@name UI.navigatorBar#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/bar.xbl.xml#navigatorBar"
+*/
+
+/**
+	@name UI.navigatorBar#id
+	@attribute 
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.navigatorBar#data
+	@attribute
+	@required
+	@description 数据
+*/
+
+/**
+	@name UI.navigatorBar#mode
+	@attribute
+	@description 显示模式，取值范围：图标、图标文字(左右)、图标文字(上下)
+*/
+
+/**
+	@name UI.navigatorBar#item_name
+	@attribute
+	@description 定制按钮
+	@example 	
+	系统预定义支持按钮：
+		insert-item：新增
+		save-item：保存
+		delete-item：删除
+		refresh-item：刷新
+		filter-item：过滤
+		filter-pattern-item：过滤模式
+		first-item：第一行
+		pre-item：上一行
+		next-item：下一行
+		last-item：最后一行
+		custom-page-item：分页组件
+		next-page-item：增加一页数据
+		all-page-item：所有数据
+		create-new-child-item：创建子节点
+		create-new-brother-item：创建同级节点
+		create-new-root-item：创建跟节点
+		expand-this-item：展开当前节点
+		expand-all-item：展开所有节点
+		collapse-this-item：收起当前节点
+		collapse-all-item：收起所有节点
+			
+	注：	item节点的子节点:可以添加任何表现组件
+		若item指定了预定义的系统按钮，又有子节点，则优先使用预定义的名称。
+*/
+
+/**
+	@name UI.navigatorBar#item_accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.navigatorBar#item_disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.navigatorBar#item_readonly
+	@attribute 
+	@description 只读条件, 只对系统预定义的按钮起作用
+*/
+
+/**
+	@name UI.navigatorBar#item_relevant
+	@attribute 
+	@description 可见条件, 只对系统预定义的按钮起作用
+*/
+
+

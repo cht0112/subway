@@ -1,0 +1,65 @@
+/**
+	@name UI.output
+	@class
+	@component output
+	@model UI
+	@description <b>[rich]</b>output组件
+	@example
+	感知显示绑定的ref的数据，也可以使用value绑定xpath表达式实现动态显示
+	 
+	<b>xml格式：</b>
+	<xmp>
+	<xforms:output ref="data('maindata').fName"/>		   		
+	</xmp>
+	
+	<b>实现动态显示：</b>
+	<xmp>
+	字符串相加显示
+	<xforms:output value="concat('名称：',data('maindata').fName)"/>		   		
+	
+	mediatype='text/html'时可以使用value显示html
+	<xforms:output value="concat('<span style=color:red>',data('maindata').fName,'</span>')"/>
+	</xmp>
+*/
+ 
+/**
+	@name UI.output#id
+	@attribute
+	@required
+	@description 唯一标识
+*/
+
+/**
+	@name UI.output#ref
+	@attribute
+	@description 绑定引用，优先级高于value属性
+*/
+
+/**
+	@name UI.output#value
+	@attribute
+	@description 绑定值，可用常量，可以使用xpath表达式
+*/
+
+/**
+	@name UI.output#mediatype
+	@attribute
+	@description 值为 text/html时，可显示超文本
+*/
+
+/**
+	@name UI.output#format
+	@attribute
+	@description 数字日期格式化
+	@example 
+	1 数字格式化
+  		1）小数位数    (描述如 0.00 保留两位小数)
+  		2）百分数      (0.0%  一位小数的百分数)
+  		3）科学计数    (00.0E0   E0左边定义了有效数字，3位有效数字，小数位数为1)
+ 		4）千分位      (0,000.00)
+		如：format="0,000.00" 
+	2日期格式化
+		如：format="yyyy-MM-dd" 
+	3日期时间格式化
+		如：format="yyyy-MM-dd hh:mm" 
+*/

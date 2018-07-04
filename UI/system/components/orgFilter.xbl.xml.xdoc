@@ -1,0 +1,271 @@
+/**
+	@name UI.orgFilter
+	@component /UI/system/components/orgFilter.xbl.xml#orgFilter
+	@class 
+	@model UI
+	@description <b>[rich]</b>组织过滤组件
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/orgFilter.xbl.xml#orgFilter" id="orgFilter"/>
+</xmp>
+*/
+
+/**
+	@name UI.orgFilter#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/orgFilter.xbl.xml#orgFilter"
+*/
+
+/**
+	@name UI.orgFilter#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.orgFilter#filter__sub__data
+	@attribute 
+	@description 过滤dataID
+*/
+
+/**
+	@name UI.orgFilter#person__sub__id__sub__relation
+	@attribute 
+	@description 人员标识关系，可选，当设置了此属性并且过滤选择节点为PSN、PSM时使用person-id-relation指定关系生成过滤条件
+*/
+
+/**
+	@name UI.orgFilter#org__sub__url__sub__relation
+	@attribute
+	@required 
+	@description 组织路径关系，使用org的全ID进行过滤
+*/
+
+/**
+	@name UI.orgFilter#auto__sub__refresh
+	@attribute 
+	@description 当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）
+*/
+
+/**
+	@name UI.orgFilter#dropdown__sub__height
+	@attribute 
+	@description 下拉框高度，单位为px
+*/
+
+/**
+	@name UI.orgFilter#has__sub__current__sub__person
+	@attribute 
+	@description 是否包含本人
+*/
+
+/**
+	@name UI.orgFilter#show__sub__org__sub__types
+	@attribute 
+	@description 显示的机构类型，如：ogn,dpt,pos,psm，多个用','分隔
+*/
+
+/**
+	@name UI.orgFilter#manage__sub__codes
+	@attribute 
+	@description 使用管理权限过滤的类型Code，多个用','分隔
+*/
+
+/**
+	@name UI.orgFilter#default__sub__value
+	@attribute 
+	@description 默认值(''/'本人')
+*/
+
+/**
+	@name UI.orgFilter#onChanged
+	@event 
+	@description <b>[回调型事件]</b>值变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.orgFilter#onInit
+	@event 
+	@description <b>[回调型事件]</b>初始化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.orgFilter#onGetCondition
+	@event 
+	@description <b>[回调型事件]</b>构造过滤条件
+	@results {string} 接管后返回新的过滤表达式
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"filterData" : 过滤数据集,
+		"personIDRelation" : 人员标识关系,
+		"orgURLRelation" : 组织路径关系,
+		"value" : 选择的值,
+		"defaultCondition" : 默认条件
+		"handled" : 是否影响原过滤表达式，当设置为true时，会使用事件返回值作为过滤表达式
+	}
+	</xmp>
+*/
+
+/**
+ @name UI.orgFilter#getData
+ @function
+ @type {justep.XData}
+ @description 返回相关的data组件
+*/
+
+/**
+ @name UI.orgFilter#getSelect
+ @function
+ @type {treeSelect}
+ @description 返回相关的select组件
+*/
+
+/**
+ @name UI.orgFilter#getSelecteds
+ @function
+ @returns {object} 返回选中数组
+ <br/><b>返回格式说明：</b>
+ <xmp>
+	[
+		{//返回SA_OPOrg概念的如下关系
+			"sName" : ,
+			'sOrgKindID',
+			'sCode',
+			'sLongName',
+			'sFName',
+			'sFCode',
+			'sFID',
+			'sParent',
+			'sNodeKind',
+			'sValidState',
+			'sPersonID'
+		},
+		...
+	]
+ </xmp>
+ @description 返回选中的结果 
+*/
+
+/**
+	@name UI.orgFilter#setAutoRefresh
+	@function
+	@param {boolean} autoRefresh <b>[required]</b>是否自动刷新
+	@description 是否自动刷新，true时焦点离开即刷新数据，false时需要使用data.refreshData()方法刷新数据。
+*/
+
+/**
+ @name UI.orgFilter#getFilter
+ @function
+ @returns {string}
+ @description 返回根据选中结果组成的KSQL过滤表达式
+ @param orgFIdRelation {string} 需要做条件的机构的FId关系名
+*/
+
+/**
+	@name UI.orgFilter#clearFilter
+	@function
+	@description 清空过滤条件
+*/
+
+/**
+	@name UI.orgFilter#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.orgFilter#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.orgFilter#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.orgFilter#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.orgFilter#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.orgFilter#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.orgFilter#readonly
+	@attribute 
+	@description 只读
+*/
+
+/**
+	@name UI.orgFilter#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.orgFilter#setReadonly
+	@function
+	@param {boolean} readonly <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.orgFilter#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.orgFilter#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.orgFilter#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+

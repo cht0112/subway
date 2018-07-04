@@ -1,0 +1,78 @@
+/**
+	@name UI.orgSelect
+	@component /UI/system/components/orgSelect.xbl.xml#orgSelect
+	@class 组织选择组件
+	@description <b>[rich]</b>组织选择组件
+	@model UI
+	@see UI.treeSelect
+	@example 
+	组织树组件是复合组件，内部包含查询组织机构的data和展现数据的treeSelect，可以通过getData()和getTreeSelect()获取
+	
+	组件支持禁用组织过滤，管理权限过滤和机构类型过滤 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/orgSelect.xbl.xml#orgSelect" id="orgSelect"/>
+</xmp>
+*/
+
+/**
+	@name UI.orgSelect#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default /UI/system/components/orgSelect.xbl.xml#orgSelect
+*/
+
+/**
+	@name UI.orgSelect#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.orgSelect#include__sub__disable__sub__org
+	@attribute
+	@description 显示已经禁用的组织
+	@default false
+*/
+
+/**
+	@name UI.orgSelect#manage__sub__codes
+	@attribute 
+	@description 使用管理权限过滤的类型代码，多个用','分隔，关于组织机构相关知识请参考<<开发者高级手册>>
+*/
+
+/**
+	@name UI.orgSelect#use__sub__virtual__sub__root
+	@attribute 
+	@description 显示组织tree虚根，当data上没有指定虚根时默认‘组织机构’
+*/
+
+/**
+	@name UI.orgSelect#show__sub__org__sub__types
+	@attribute 
+	@description 显示的机构类型，如：ogn,dpt,pos,psm，多个用','分隔
+*/
+
+/**
+	@name UI.orgSelect#selectable__sub__org__sub__types
+	@attribute 
+	@description 可以选择返回的机构类型，如：ogn,dpt,pos,psm，多个用','分隔
+*/
+
+/**
+ @name UI.orgSelect#getData
+ @function
+ @returns {justep.XData}
+ @description 返回相关的data组件
+*/
+
+/**
+ @name UI.orgSelect#getTreeSelect
+ @function
+ @returns {treeSelect}
+ @description 返回相关的select组件
+*/
+

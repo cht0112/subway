@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v2229_d568e0ecc524c449587a5be827880045a/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_dde12325f99e34035b57ac099655d9589/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d13c72ad34b574c8fa284bddc247b59f1/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d65aee7132a3e450aa9203e4a530dcec3/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d02a1293f63354c578078b79e6a1a67cd/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_df5456d332ff14aea938f7953e6d3a5e8/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2229_d9cb64774a55444eaa9e2351cb90dc951/base/base.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script src="/x5/$v2229_d69729f3bd68d4c0f88d10098c87a01d8/form/form.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d7dc39a03eb4743359d4b1f3c4b836c7b/component/data/data.js?language=zh_CN">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d10265e8ae6af486199d84c9807f942a7/UI/system/components/windowReceiver/windowReceiver.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; overflow: hidden; } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <script language="javascript" src="/x5/$v2229_de46714d544e84dfbaf499c8ec05f15a0/UI/system/components/blob/blob.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css"></style>  
+    <style rel="stylesheet" type="text/css">.xui-blob { width:200px; height:300px; background-color:#E3EBF7; }</style>  
+    <script language="javascript" src="/x5/$v2229_d168ff48a9e7341ddb2eb7ea23155c222/UI/system/components/dialog/dialog.js?language=zh_CN">
+		</script>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length &gt; 0 ? msgs[0] : "";
+					var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}		</script>  
+    <link href="/x5/$v2229_d1e8f391280c34839a39d72f3c83420dd/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$v2229_df221245001c64acfb22b7b060265d220/UI/metrodetection/system_resource/process/siteRoomInfo/mainActivity6.js?language=zh_CN">
+		</script>  
+    <script>
+new justep.XBizData('bizData1',false,false,{'queryAction':"queryROOM_APPLY_INFOAction",'saveAction':"saveROOM_APPLY_INFOAction",'newAction':"createROOM_APPLY_INFOAction",'dataModel':"/metrodetection/system_resource/data",'concept':"{'ROOM_APPLY_INFO':'ROOM_APPLY_INFO'}",'limit':20,'idColumn':"{'name':'ROOM_APPLY_INFO','relation':'ROOM_APPLY_INFO','define':'ROOM_APPLY_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'rOOMID':{'type':'Integer','relation':'ROOM_APPLY_INFO.rOOMID','define':'ROOM_APPLY_INFO.rOOMID','label':'房间编号'},'rOOMAREA':{'type':'String','relation':'ROOM_APPLY_INFO.rOOMAREA','define':'ROOM_APPLY_INFO.rOOMAREA','label':'区域'},'aPPLYFOROBJECT':{'type':'Decimal','relation':'ROOM_APPLY_INFO.aPPLYFOROBJECT','define':'ROOM_APPLY_INFO.aPPLYFOROBJECT','label':'应用检测对象类型'},'aPPLYFORDEVICETYPE':{'type':'Decimal','relation':'ROOM_APPLY_INFO.aPPLYFORDEVICETYPE','define':'ROOM_APPLY_INFO.aPPLYFORDEVICETYPE','label':'应用检测对象'},'aPPLYFORRANGE':{'type':'Decimal','relation':'ROOM_APPLY_INFO.aPPLYFORRANGE','define':'ROOM_APPLY_INFO.aPPLYFORRANGE','label':'应用检测方面类型'},'iMAGE':{'type':'Blob','relation':'ROOM_APPLY_INFO.iMAGE','define':'ROOM_APPLY_INFO.iMAGE','label':'区域位置图'}}"},'bizData1_part').attachEvents({'onIndexChanged':'mainActivity6.bizData1IndexChanged'});		</script>  
+    <script type="text/javascript" src="/x5/$v2229_d98bdc04e96324f98b8279f0b2a0974da/UI/metrodetection/system_resource/process/siteRoomInfo/.cache/mainActivity6.js?$version=92937285-7a4b-49b1-93e2-a0d41c7a0b6d"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" lazy="false" style="height:100%;width:100%"> 
+        <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="windowReceiver" onReceive="mainActivity6.windowReceiverReceive" style="top:506px;left:420px;"> 
+          <script>
+new justep.windowReceiver('windowReceiver');					</script> 
+        </div>  
+        <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%;height:101%;"> 
+          <div borderSize="0" class="xui-borderlayout-root"> 
+            <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+              <div class="xui-container" id="view1" lazy="false" style="position:relative;width:100%;height:106%;;width:100%;height:106%;"> 
+                <div class="xui-blob component_CB75D877 image" component="/UI/system/components/blob.xbl.xml#image" concept="ROOM_APPLY_INFO" data="bizData1" id="blobImage1" relation="iMAGE" stretch="true" style="position:absolute;top:5px;left:5px;width:98%;height:75%;"> 
+                  <script>
+function funcGLOBAL_ID_2020821854(event){justep.xbl("blobImage1").doRefresh(event);} function funcGLOBAL_ID_N2133592011(event){return justep.xbl("blobImage1").doSubmit(event);}									</script>  
+                  <div class="xui-blob component_DD42AD01 blob" component="/UI/system/components/blob.xbl.xml#blob" concept="ROOM_APPLY_INFO" data="bizData1" id="blob-blobImage1" onRefresh="funcGLOBAL_ID_2020821854" onSubmit="funcGLOBAL_ID_N2133592011" relation="iMAGE" style="width:100%;height:100%;background-color:transparent" xblid="blob"> 
+                    <div class="component_41508DE1 dialog" closable="true" component="/UI/system/components/dialog.xbl.xml#dialog" height="92" id="dlg-blob-blobImage1" minmaxable="false" modal="true" resizable="false" title="文件上传" width="300"> 
+                      <div id="dlg-blob-blobImage1-content" style="display:none;height:100%;width:100%"> 
+                        <table border="0" cellpadding="0" cellspacing="8" style="width:100%;height:100%;table-layout:fixed"> 
+                          <tr> 
+                            <td> 
+                              <form action="/x5/UI/system/service/common/bizAction.j" enctype="multipart/form-data" id="form-blob-blobImage1" method="post" name="f" style="margin:0 auto;" target="iframe-blob-blobImage1"> 
+                                <input name="dataModel" type="hidden"></input>  
+                                <input name="concept" type="hidden"></input>  
+                                <input name="relation" type="hidden"></input>  
+                                <input name="id" type="hidden"></input>  
+                                <input name="size" type="hidden"></input>  
+                                <input name="process" type="hidden"></input>  
+                                <input name="activity" type="hidden"></input>  
+                                <input name="action" type="hidden" value="blobUpdateAction"></input>  
+                                <input name="blobData" style="width:100%;height:22px;vertical-align:middle;line-height:18px;" type="file"></input> 
+                              </form> 
+                            </td> 
+                          </tr>  
+                          <tr height="22px"> 
+                            <td> 
+                              <input class="xui-button" onclick="justep.xbl('blob-blobImage1').dialogCancel();" style="float:right;width:75px;" type="button" value="取消"></input>  
+                              <input class="xui-button" onclick="justep.xbl('blob-blobImage1').dialogOk();" style="float:right;margin-right:8px;width:75px;" type="button" value="确定"></input> 
+                            </td> 
+                          </tr> 
+                        </table>  
+                        <iframe id="iframe-blob-blobImage1" name="iframe-blob-blobImage1" onload="var o=justep.xbl('blob-blobImage1');if(o)o.checkResult(this);" style="display:none"></iframe> 
+                      </div> 
+                    </div>  
+                    <span ctrl-id="ctrl-blob-blobImage1" delete-button="btn-del-blob-blobImage1" dialog-id="dlg-blob-blobImage1" edit-button="btn-edit-blob-blobImage1" form-delete-id="form-delete-blob-blobImage1" form-id="form-blob-blobImage1" style="display:none" xbl-obj-id="blob-blobImage1" xblid="attribute"></span>  
+                    <table cellpadding="0" cellspacing="0" onmouseout="var o=justep.xbl('blob-blobImage1');if(o) o.domouseout(this);" onmouseover="var o=justep.xbl('blob-blobImage1');if(o) o.domouseover(this);" style="position:relative;table-layout:fixed;border:0px solid;width:100%;height:100%;"> 
+                      <tr style="height:100%;" valign="middle"> 
+                        <td align="center" style="height:100%;"> 
+                          <div style="height:100%;"> 
+                            <img id="img-blobImage1" onerror="this.src=justep.Request.convertURL('/UI/system/images/doc/empty.gif', true)" src="/x5/UI/system/components/none" style="vertical-align:middle;width:100%;height:100%"></img> 
+                          </div>  
+                          <div id="ctrl-blob-blobImage1" style="POSITION:absolute;display:none"> 
+                            <table> 
+                              <tr> 
+                                <td> 
+                                  <div id="btn-edit-blob-blobImage1"></div> 
+                                </td>  
+                                <td> 
+                                  <div id="btn-del-blob-blobImage1"></div> 
+                                </td> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-area xui-borderlayout-bottom" size="30px" style=""> 
+              <input class="xui-button" id="input(button)2" onclick="justep.xbl('windowReceiver').windowCancel()" style="float:right;margin-left:8px;margin-right:20px;width:75px;" type="button" value="取消"></input>  
+              <input class="xui-button" id="input(button)1" onclick="mainActivity6.inputbutton1Click(event)" style="width:75px;float:right" type="button" value="确定"></input> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"></div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }		</script> 
+  </body> 
+</html>

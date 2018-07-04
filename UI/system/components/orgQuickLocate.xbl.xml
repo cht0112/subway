@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml" xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript"
+	xmlns:xui="http://www.justep.com/xui">
+	<xbl:script type="text/javascript" src="/UI/system/components/quickLocate/js/quickLocate.js"/>
+	<xbl:script type="text/javascript" src="/UI/system/components/quickLocate/js/dbQuickLocate.js"/>
+	<!--
+     	案例：
+			<xhtml:div component="/UI/system/components/orgQuickLocate.xbl.xml#org" data-id="main" offset-x="200"/>
+  		属性：
+  				@data			要定位的data的id	，必选
+  				@offset-x			下拉内容与查询输入框之间的横坐标偏移量，可选
+  				@include-disable	是否包含禁用的组织，可选，当给制不存在或者不为true的时候，默认为false
+  				@use-management		使用管理权限，可选，当该值不存在或者不为true的时候，默认为false
+  				@onGetLocateFullID	获取定位时所需的FullID，可选，该函数声明如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return realFullID; //真正的全路径ID
+  										}
+  				@onLocated			定位成功后执行的函数，可选，该函数声明如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return realFullID; //真正的全路径ID
+  										}
+  				@onFilterLocate		对定位的数据进行过滤，可选，该函数什么如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return true; //明确返回true才表示该数据有效
+  										}
+	-->
+	<xbl:binding id="org">
+		<xbl:implementation>
+			<![CDATA[
+			({
+				initXBL: function(){
+					var obj = this.domNode;
+					if(!obj) return;
+					var dataId = obj.getAttribute("data");
+					if(!(typeof(dataId) == "string" && dataId != "")){
+						alert("must has a 'data-id' attribute!");
+						return;
+					}
+					var offsetX = obj.getAttribute("offset-x");
+					if(!(typeof(offsetX) == "string" && offsetX != "")) offsetX = 0
+					else offsetX = justep.String.toInt(offsetX);
+					var realDataId = dataId;
+					var fun = null;
+					try{
+						eval("if(typeof(" + dataId + ") == 'function') fun = " + dataId + ";");
+						if(fun) realDataId = fun();
+					}catch(e){}
+					var onGetLocateFullIDEvent = null;
+					var tm = obj.getAttribute("onGetLocateFullID");
+					if(typeof(tm) == "function") onGetLocateFullIDEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') onGetLocateFullIDEvent=" + tm + ";");
+					var useManagement = obj.getAttribute("use-management");
+					useManagement = typeof(useManagement) == "string" && useManagement.toUpperCase() == "TRUE"?true:false;
+					var includeDisable = obj.getAttribute("include-disable");
+					includeDisable = typeof(includeDisable) == "string" && includeDisable.toUpperCase() == "TRUE"?true:false;
+					var quickLocate = new justep.DbQuickLocate(realDataId, "/system/data/opm", "", "sFName=名称,sCode=编码", "SORGKINDID=sOrgKindID,SVALIDSTATE=sValidState", "sFID", function(source, node, idPath){
+						var path = idPath.replace(/\.[^\/]+/g, "");
+						if(onGetLocateFullIDEvent) path = onGetLocateFullIDEvent(node, path);
+						return path;
+					}, offsetX);
+					obj.quickLocate = quickLocate;
+					var orgFixCondition = includeDisable == true?"(SVALIDSTATE=1 OR SVALIDSTATE=0) AND ":"SVALIDSTATE=1 AND ";
+					if(useManagement == true){
+						var isOK = false;
+						var param = "<parameter><cmd><jscheme:xml xmlns:jscheme=\"http://www.justep.com/Scheme#\"><root with-person='false'/></jscheme:xml></cmd></parameter>";
+						var r = justep.Request.sendBizRequest("/SA/OPM/system/systemProcess", "mainActivity", 'getManagementAction', param, null, null, true);
+						var root = null;
+						var s = "";
+						if(justep.Request.isBizSuccess(r)){
+							var node = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root/@success", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							if(node && node.value == "true"){
+								root = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							}
+							node = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root/@message", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							if(node) s = node.nodeValue;
+						}else s = justep.Request.getServerError(r.responseXML, "失败！");
+						if(root){
+							var orgCs = new Array();
+							var lst = justep.XML.eval(root, "./org");
+							for(var i = 0; i < lst.length; i++){
+								var tmNode = lst[i];
+								var kindNode = justep.XML.eval(tmNode, "./@sOrgKindID", "single");
+								if(!kindNode) continue;
+								var kind = kindNode.nodeValue;
+								var s = "SFID LIKE '" + justep.XML.eval(tmNode, "./@sFId", "single").nodeValue + "%'";
+								orgCs.push(s);
+							}
+							if(orgCs.length > 0){
+								isOK = true;
+								orgFixCondition += " (" + orgCs.join(" OR ") + ") AND ";
+							}
+							if(isOK != true){
+								orgFixCondition = " 1=0 AND ";
+							}
+						}
+					}
+					var sqls = "SELECT {if(dbType='oracle') else TOP 10} SFNAME," +
+						"SCODE,SFID,SORGKINDID,SVALIDSTATE FROM SA_OPORG WHERE " + orgFixCondition + "(UPPER(SNAME) LIKE " +
+						"'%[QUICKTEXT.toUpperCase()]%' OR UPPER(SCODE) LIKE '%[QUICKTEXT.toUpperCase()]%'){if(dbType='oracle') AND ROWNUM " +
+						"<= 10}";
+					quickLocate.setSQL(sqls);
+					quickLocate.setDebug(false);
+					var onFilterLocateEvent = null;
+					var tm = obj.getAttribute("onFilterLocate");
+					if(typeof(tm) == "function") onFilterLocateEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') onFilterLocateEvent=" + tm + ";");
+					if(onFilterLocateEvent) quickLocate.setFilterLocateEvent(function(source, node, idPath){
+						var rt = true;
+						if(onFilterLocateEvent) rt = onFilterLocateEvent(node, idPath);
+						return rt;
+					});
+					quickLocate.setCustomCellEvent(function(source, node, field, text){
+						if(field == "sFName"){
+							var kind = "";
+							var kindNode = justep.XML.eval(node, "./sOrgKindID/text()", "single");
+							if(kindNode) kind = kindNode.nodeValue;
+							var state = false;
+							var stateNode = justep.XML.eval(node, "./sValidState/text()", "single");
+							if(stateNode) state = !(stateNode.nodeValue == "1");
+							return "<img src='" + window.location.protocol + "//" + window.location.host + justep.Request.BASE_URL + justep.Resource.getOrgImgURL(kind, state) + "'/>" + text;
+						}
+						return text;
+					});
+					var locatedEvent = null;
+					var tm = obj.getAttribute("onLocated");
+					if(typeof(tm) == "function") locatedEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') locatedEvent=" + tm + ";");
+					quickLocate.setLocatedEvent(function(source, grid, rowId, node, idPath){
+						if(locatedEvent) locatedEvent(node, idPath);
+					});
+					obj.appendChild(quickLocate.getMain());
+				}
+			})
+			]]>
+		</xbl:implementation>
+	</xbl:binding>
+	<!--
+     	案例：
+			<xhtml:div component="/UI/system/components/orgQuickLocate.xbl.xml#orgPersonMember" data-id="main" offset-x="200"/>
+  		属性：
+  				@data				要定位的data的id	，必选
+  				@offset-x				下拉内容与查询输入框之间的横坐标偏移量，可选
+  				@include-disable		是否包含禁用的组织或者人员，可选，当给制不存在或者不为true的时候，默认为false
+  				@use-management			使用管理权限，可选，当该值不存在或者不为true的时候，默认为false
+  				@list-managed-person	是否列出管理的人员，可选，当该值不存在或者不为true的时候，默认为false
+  				@onGetLocateFullID		获取定位时所需的FullID，可选，该函数声明如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return realFullID; //真正的全路径ID
+  										}  
+ 				@onLocated				定位成功后执行的函数，可选，该函数声明如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return realFullID; //真正的全路径ID
+  										}
+  				@onFilterLocate			对定位的数据进行过滤，可选，该函数什么如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return true; //明确返回true才表示该数据有效
+  										}
+  
+  
+	-->
+	<xbl:binding id="orgPersonMember">
+		<xbl:implementation>
+			<![CDATA[
+			({
+				initXBL: function(){
+					var obj = this.domNode;
+					if(!obj) return;
+					var dataId = obj.getAttribute("data");
+					if(!(typeof(dataId) == "string" && dataId != "")){
+						alert("must has a 'data-id' attribute!");
+						return;
+					}
+					var offsetX = obj.getAttribute("offset-x");
+					if(!(typeof(offsetX) == "string" && offsetX != "")) offsetX = 0
+					else offsetX = justep.String.toInt(offsetX);
+					var realDataId = dataId;
+					var fun = null;
+					try{
+						eval("if(typeof(" + dataId + ") == 'function') fun = " + dataId + ";");
+						if(fun) realDataId = fun();
+					}catch(e){}
+					var onGetLocateFullIDEvent = null;
+					var tm = obj.getAttribute("onGetLocateFullID");
+					if(typeof(tm) == "function") onGetLocateFullIDEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') onGetLocateFullIDEvent=" + tm + ";");
+					var useManagement = obj.getAttribute("use-management");
+					useManagement = typeof(useManagement) == "string" && useManagement.toUpperCase() == "TRUE"?true:false;
+					var includeDisable = obj.getAttribute("include-disable");
+					includeDisable = typeof(includeDisable) == "string" && includeDisable.toUpperCase() == "TRUE"?true:false;
+					var quickLocate = new justep.DbQuickLocate(realDataId, "/system/data/opm", "", "deptFName=部门,deptCode=部门编码,psnName=人员,psnCode=人员编码", "ORGKIND=orgKind,ISPERSON=isPerson,ORGFID=orgFID,PSNID=psnID,PSMID=psmID," +
+						" DEPTVALIDSTATE=deptValidState,PSNVALIDSTATE=psnValidState", "fullId", function(source, node, idPath){
+						var path = idPath.replace(/\.[^\/]+/g, "");
+						if(onGetLocateFullIDEvent) path = onGetLocateFullIDEvent(node, path);
+						return path;
+					}, offsetX);
+					obj.quickLocate = quickLocate;
+					var singleOrgFixCondition = includeDisable == true?"(ORG.SVALIDSTATE=1 OR ORG.SVALIDSTATE=0) AND ":"ORG.SVALIDSTATE=1 AND ";
+					var orgFixCondition = singleOrgFixCondition;
+					var psnFixCondition = includeDisable == true?"(PSN.SVALIDSTATE=1 OR PSN.SVALIDSTATE=0) AND ":"PSN.SVALIDSTATE=1 AND ";
+					if(useManagement == true){
+						var listManagedPerson = obj.getAttribute("list-managed-person");
+						listManagedPerson = typeof(listManagedPerson) == "string" && listManagedPerson.toUpperCase() == "TRUE"?"true":"false";
+						var isOK = false;
+						var param = "<parameter><cmd><jscheme:xml xmlns:jscheme=\"http://www.justep.com/Scheme#\"><root with-person='" + listManagedPerson + "'/></jscheme:xml></cmd></parameter>";
+						var r = justep.Request.sendBizRequest("/SA/OPM/system/systemProcess", "mainActivity", 'getManagementAction', param, null, null, true);
+						var root = null;
+						var s = "";
+						if(justep.Request.isBizSuccess(r)){
+							var node = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root/@success", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							if(node && node.value == "true"){
+								root = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							}
+							node = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root/@message", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							if(node) s = node.nodeValue;
+						}else s = justep.Request.getServerError(r.responseXML, "失败！");
+						if(root){
+							var orgCs = new Array();
+							var singleOrgCs = new Array();
+							var lst = justep.XML.eval(root, "./org");
+							for(var i = 0; i < lst.length; i++){
+								var tmNode = lst[i];
+								var kindNode = justep.XML.eval(tmNode, "./@sOrgKindID", "single");
+								if(!kindNode) continue;
+								var kind = kindNode.nodeValue;
+								if(kind == "person") orgCs.push("PSN.SID='" + justep.XML.eval(tmNode, "./@sId", "single").nodeValue + "'");
+								else{
+									var s = "ORG.SFID LIKE '" + justep.XML.eval(tmNode, "./@sFId", "single").nodeValue + "%'";
+									orgCs.push(s);
+									singleOrgCs.push(s);
+								}
+							}
+							if(singleOrgCs.length > 0){
+								isOK = true;
+								singleOrgFixCondition += " (" + singleOrgCs.join(" OR ") + ") AND ";
+								orgFixCondition += " (" + orgCs.join(" OR ") + ") AND ";
+							}
+							if(isOK != true){
+								singleOrgFixCondition = " 1=0 AND ";
+								orgFixCondition = " 1=0 AND ";
+							}
+						}
+					}
+					var sqls = "SELECT {if(dbType='oracle') else TOP 5} T.DEPTFNAME," +
+						" T.DEPTCODE,T.PSNNAME,T.PSNCODE,T.FULLID,T.ORGKIND,T.ISPERSON,T.DEPTVALIDSTATE,T.PSNVALIDSTATE,T.ORGFID,T.PSNID,T.PSMID FROM (SELECT ORG.SFNAME AS " +
+						" DEPTFNAME,ORG.SCODE AS DEPTCODE,PSN.SNAME AS PSNNAME,PSN.SCODE AS PSNCODE,{if(dbType='oracle')ORG.SFID || '/' || PSM.SID " +
+						" || '.psn' AS FULLID else ORG.SFID + '/' + PSM.SID + '.psn' AS FULLID}, ORG.SORGKINDID AS ORGKIND,'true' AS ISPERSON," +
+						" ORG.SVALIDSTATE AS DEPTVALIDSTATE,PSN.SVALIDSTATE AS PSNVALIDSTATE,ORG.SFID AS ORGFID,PSN.SID AS PSNID,PSM.SID AS PSMID FROM SA_OPPERSONMEMBER PSM JOIN SA_OPPERSON PSN ON " + psnFixCondition +
+						" PSN.SID=PSM.SPERSONID AND (UPPER(PSN.SNAME) LIKE '%[QUICKTEXT.toUpperCase()]%' OR UPPER(PSN.SCODE) LIKE '%[QUICKTEXT." +
+						" toUpperCase()]%') JOIN SA_OPORG ORG ON " + orgFixCondition + "ORG.SID=PSM.SORGID) T {if(dbType='oracle') WHERE ROWNUM <= 5};SELECT {if(dbType='oracle') else TOP " +
+						" 5} ORG.SFNAME AS DEPTFNAME,ORG.SCODE AS DEPTCODE,'' AS PSNNAME,'' AS PSNCODE,ORG.SFID AS FULLID,ORG.sOrgKindID AS ORGKIND,'false' AS " +
+						" ISPERSON,ORG.SVALIDSTATE AS DEPTVALIDSTATE,'-1' AS PSNVALIDSTATE,ORG.SFID AS ORGFID,'' AS PSNID,'' AS PSMID FROM SA_OPORG ORG WHERE " + singleOrgFixCondition +
+						" (UPPER(ORG.SNAME) LIKE '%[QUICKTEXT.toUpperCase()]%' OR UPPER(ORG.SCODE) LIKE '%[QUICKTEXT.toUpperCase()]%'){if(dbType='oracle') " +
+						" AND ROWNUM <= 5}";
+					quickLocate.setSQL(sqls);
+					quickLocate.setDebug(false);
+					var onFilterLocateEvent = null;
+					var tm = obj.getAttribute("onFilterLocate");
+					if(typeof(tm) == "function") onFilterLocateEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') onFilterLocateEvent=" + tm + ";");
+					if(onFilterLocateEvent) quickLocate.setFilterLocateEvent(function(source, node, idPath){
+						var rt = true;
+						if(onFilterLocateEvent) rt = onFilterLocateEvent(node, idPath);
+						return rt;
+					});
+					quickLocate.setCustomCellEvent(function(source, node, field, text){
+						if(field == "deptFName"){
+							var kind = "";
+							var kindNode = justep.XML.eval(node, "./orgKind/text()", "single");
+							if(kindNode) kind = kindNode.nodeValue;
+							var state = false;
+							var stateNode = justep.XML.eval(node, "./deptValidState/text()", "single");
+							if(stateNode) state = !(stateNode.nodeValue == "1");
+							return "<img src='" + window.location.protocol + "//" + window.location.host + justep.Request.BASE_URL + justep.Resource.getOrgImgURL(kind, state) + "'/>" + text;
+						}
+						if(field == "psnName"){
+							var isPerson = "";
+							var isPersonNode = justep.XML.eval(node, "./isPerson/text()", "single");
+							if(isPersonNode) isPerson = isPersonNode.nodeValue;
+							if(isPerson == "true"){
+								var state = false;
+								var stateNode = justep.XML.eval(node, "./psnValidState/text()", "single");
+								if(stateNode) state = !(stateNode.nodeValue == "1");
+								return "<img src='" + window.location.protocol + "//" + window.location.host + justep.Request.BASE_URL + justep.Resource.getOrgImgURL("person", state) + "'/>" + text;
+							}
+						}
+						return text;
+					});
+					var locatedEvent = null;
+					var tm = obj.getAttribute("onLocated");
+					if(typeof(tm) == "function") locatedEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') locatedEvent=" + tm + ";");
+					quickLocate.setLocatedEvent(function(source, grid, rowId, node, idPath){
+						if(locatedEvent) locatedEvent(node, idPath);
+					});
+					obj.appendChild(quickLocate.getMain());
+				}
+			})
+			]]>
+		</xbl:implementation>
+	</xbl:binding>
+	<!--
+     	案例：
+			<xhtml:div component="/UI/system/components/orgQuickLocate.xbl.xml#orgPerson" data-id="main" offset-x="200"/>
+  		属性：
+  				@data				要定位的data的id	，必选
+  				@offset-x				下拉内容与查询输入框之间的横坐标偏移量，可选
+  				@include-disable		是否包含禁用的组织或者人员，可选，当给制不存在或者不为true的时候，默认为false
+  				@use-management			使用管理权限，可选，当该值不存在或者不为true的时候，默认为false
+  				@list-managed-person	是否列出管理的人员，可选，当该值不存在或者不为true的时候，默认为false
+  				@onGetLocateFullID		获取定位时所需的FullID，可选，该函数声明如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return realFullID; //真正的全路径ID
+  										}  
+ 				@onLocated				定位成功后执行的函数，可选，该函数声明如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return realFullID; //真正的全路径ID
+  										}
+  				@onFilterLocate			对定位的数据进行过滤，可选，该函数什么如下：
+  										function XXX(node, fullID){
+  											//node		当前的数据节点
+  											//fullID	当前带有全路径ID的值
+  											return true; //明确返回true才表示该数据有效
+  										}
+  
+	-->
+	<xbl:binding id="orgPerson">
+		<xbl:implementation>
+			<![CDATA[
+			({
+				initXBL: function(){
+					var obj = this.domNode;
+					if(!obj) return;
+					var dataId = obj.getAttribute("data");
+					if(!(typeof(dataId) == "string" && dataId != "")){
+						alert("must has a 'data-id' attribute!");
+						return;
+					}
+					var offsetX = obj.getAttribute("offset-x");
+					if(!(typeof(offsetX) == "string" && offsetX != "")) offsetX = 0
+					else offsetX = justep.String.toInt(offsetX);
+					var realDataId = dataId;
+					var fun = null;
+					try{
+						eval("if(typeof(" + dataId + ") == 'function') fun = " + dataId + ";");
+						if(fun) realDataId = fun();
+					}catch(e){}
+					var onGetLocateFullIDEvent = null;
+					var tm = obj.getAttribute("onGetLocateFullID");
+					if(typeof(tm) == "function") onGetLocateFullIDEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') onGetLocateFullIDEvent=" + tm + ";");
+					var useManagement = obj.getAttribute("use-management");
+					useManagement = typeof(useManagement) == "string" && useManagement.toUpperCase() == "TRUE"?true:false;
+					var includeDisable = obj.getAttribute("include-disable");
+					includeDisable = typeof(includeDisable) == "string" && includeDisable.toUpperCase() == "TRUE"?true:false;
+					var quickLocate = new justep.DbQuickLocate(realDataId, "/system/data/opm", "", "deptFName=部门,deptCode=部门编码,psnName=人员,psnCode=人员编码", "ORGKIND=orgKind,ISPERSON=isPerson,ORGFID=orgFID,PSNID=psnID," +
+						" DEPTVALIDSTATE=deptValidState,PSNVALIDSTATE=psnValidState", "fullId", function(source, node, idPath){
+						var path = idPath.replace(/\.[^\/]+/g, "");
+						if(onGetLocateFullIDEvent) path = onGetLocateFullIDEvent(node, path);
+						return path;
+					}, offsetX);
+					obj.quickLocate = quickLocate;
+					var singleOrgFixCondition = includeDisable == true?"(ORG.SVALIDSTATE=1 OR ORG.SVALIDSTATE=0) AND ":"ORG.SVALIDSTATE=1 AND ";
+					var orgFixCondition = singleOrgFixCondition;
+					var psnFixCondition = includeDisable == true?"(PSN.SVALIDSTATE=1 OR PSN.SVALIDSTATE=0) AND ":"PSN.SVALIDSTATE=1 AND ";
+					if(useManagement == true){
+						var listManagedPerson = obj.getAttribute("list-managed-person");
+						listManagedPerson = typeof(listManagedPerson) == "string" && listManagedPerson.toUpperCase() == "TRUE"?"true":"false";
+						var isOK = false;
+						var param = "<parameter><cmd><jscheme:xml xmlns:jscheme=\"http://www.justep.com/Scheme#\"><root with-person='" + listManagedPerson + "'/></jscheme:xml></cmd></parameter>";
+						var r = justep.Request.sendBizRequest("/SA/OPM/system/systemProcess", "mainActivity", 'getManagementAction', param, null, null, true);
+						var root = null;
+						var s = "";
+						if(justep.Request.isBizSuccess(r)){
+							var node = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root/@success", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							if(node && node.value == "true"){
+								root = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							}
+							node = justep.XML.eval(r.responseXML, "/root/data/jscheme:xml/root/@message", "single", "xmlns:jscheme=\"http://www.justep.com/Scheme#\"");
+							if(node) s = node.nodeValue;
+						}else s = justep.Request.getServerError(r.responseXML, "失败！");
+						if(root){
+							var orgCs = new Array();
+							var singleOrgCs = new Array();
+							var lst = justep.XML.eval(root, "./org");
+							for(var i = 0; i < lst.length; i++){
+								var tmNode = lst[i];
+								var kindNode = justep.XML.eval(tmNode, "./@sOrgKindID", "single");
+								if(!kindNode) continue;
+								var kind = kindNode.nodeValue;
+								if(kind == "person") orgCs.push("PSN.SID='" + justep.XML.eval(tmNode, "./@sId", "single").nodeValue + "'");
+								else{
+									var s = "ORG.SFID LIKE '" + justep.XML.eval(tmNode, "./@sFId", "single").nodeValue + "%'";
+									orgCs.push(s);
+									singleOrgCs.push(s);
+								}
+							}
+							if(singleOrgCs.length > 0){
+								isOK = true;
+								singleOrgFixCondition += " (" + singleOrgCs.join(" OR ") + ") AND ";
+								orgFixCondition += " (" + orgCs.join(" OR ") + ") AND ";
+							}
+							if(isOK != true){
+								singleOrgFixCondition = " 1=0 AND ";
+								orgFixCondition = " 1=0 AND ";
+							}
+						}
+					}
+					var qx = psnFixCondition == ""?orgFixCondition:(orgFixCondition == ""?psnFixCondition:(orgFixCondition + psnFixCondition));
+					var sqls = "SELECT {if(dbType='oracle') else TOP 5} T.DEPTFNAME," +
+						" T.DEPTCODE,T.PSNNAME,T.PSNCODE,T.FULLID,T.ORGKIND,T.ISPERSON,T.DEPTVALIDSTATE,T.PSNVALIDSTATE,T.ORGFID,T.PSNID FROM (SELECT ORG.SFNAME AS " +
+						" DEPTFNAME,ORG.SCODE AS DEPTCODE,PSN.SNAME AS PSNNAME,PSN.SCODE AS PSNCODE,{if(dbType='oracle')ORG.SFID || '/' || PSN.SID " +
+						" || '.psn' AS FULLID else ORG.SFID + '/' + PSN.SID + '.psn' AS FULLID}, ORG.SORGKINDID AS ORGKIND,'true' AS ISPERSON," +
+						" ORG.SVALIDSTATE AS DEPTVALIDSTATE,PSN.SVALIDSTATE AS PSNVALIDSTATE,ORG.SFID AS ORGFID,PSN.SID AS PSNID FROM SA_OPPERSON PSN JOIN SA_OPORG ORG ON " + qx +
+						" (UPPER(PSN.SNAME) LIKE '%[QUICKTEXT.toUpperCase()]%' OR UPPER(PSN.SCODE) LIKE '%[QUICKTEXT." +
+						" toUpperCase()]%') AND ORG.SID=PSN.SMAINORGID) T {if(dbType='oracle') WHERE ROWNUM <= 5};SELECT {if(dbType='oracle') else TOP " +
+						" 5} ORG.SFNAME AS DEPTFNAME,ORG.SCODE AS DEPTCODE,'' AS PSNNAME,'' AS PSNCODE,ORG.SFID AS FULLID,ORG.sOrgKindID AS ORGKIND,'false' AS " +
+						" ISPERSON,ORG.SVALIDSTATE AS DEPTVALIDSTATE,'-1' AS PSNVALIDSTATE,ORG.SFID AS ORGFID,'' AS PSNID FROM SA_OPORG ORG WHERE " + singleOrgFixCondition +
+						" (UPPER(ORG.SNAME) LIKE '%[QUICKTEXT.toUpperCase()]%' OR UPPER(ORG.SCODE) LIKE '%[QUICKTEXT.toUpperCase()]%'){if(dbType='oracle') " +
+						" AND ROWNUM <= 5}";
+					quickLocate.setSQL(sqls);
+					quickLocate.setDebug(false);
+					var onFilterLocateEvent = null;
+					var tm = obj.getAttribute("onFilterLocate");
+					if(typeof(tm) == "function") onFilterLocateEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') onFilterLocateEvent=" + tm + ";");
+					if(onFilterLocateEvent) quickLocate.setFilterLocateEvent(function(source, node, idPath){
+						var rt = true;
+						if(onFilterLocateEvent) rt = onFilterLocateEvent(node, idPath);
+						return rt;
+					});
+					quickLocate.setCustomCellEvent(function(source, node, field, text){
+						if(field == "deptFName"){
+							var kind = "";
+							var kindNode = justep.XML.eval(node, "./orgKind/text()", "single");
+							if(kindNode) kind = kindNode.nodeValue;
+							var state = false;
+							var stateNode = justep.XML.eval(node, "./deptValidState/text()", "single");
+							if(stateNode) state = !(stateNode.nodeValue == "1");
+							return "<img src='" + window.location.protocol + "//" + window.location.host + justep.Request.BASE_URL + justep.Resource.getOrgImgURL(kind, state) + "'/>" + text;
+						}
+						if(field == "psnName"){
+							var isPerson = "";
+							var isPersonNode = justep.XML.eval(node, "./isPerson/text()", "single");
+							if(isPersonNode) isPerson = isPersonNode.nodeValue;
+							if(isPerson == "true"){
+								var state = false;
+								var stateNode = justep.XML.eval(node, "./psnValidState/text()", "single");
+								if(stateNode) state = !(stateNode.nodeValue == "1");
+								return "<img src='" + window.location.protocol + "//" + window.location.host + justep.Request.BASE_URL + justep.Resource.getOrgImgURL("person", state) + "'/>" + text;
+							}
+						}
+						return text;
+					});
+					var locatedEvent = null;
+					var tm = obj.getAttribute("onLocated");
+					if(typeof(tm) == "function") locatedEvent = tm;
+					else if(typeof(tm) == "string" && tm != "") eval("if(typeof(" + tm + ")=='function') locatedEvent=" + tm + ";");
+					quickLocate.setLocatedEvent(function(source, grid, rowId, node, idPath){
+						if(locatedEvent) locatedEvent(node, idPath);
+					});
+					obj.appendChild(quickLocate.getMain());
+				}
+			})
+			]]>
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

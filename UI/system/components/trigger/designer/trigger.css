@@ -1,0 +1,151 @@
+.xui-button{
+	width: 65px;
+	height: 24px;
+	font-size: 0;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+.xui-button button{
+	font-size: 13px;
+	height: 100%;
+	width: 100%;
+	
+	margin: 0;
+	padding: 0;
+	border: 0;
+	
+	cursor: pointer;
+	
+	white-space: nowrap;
+	overflow: hidden;
+
+	font-family: "Microsoft Yahei";
+	color: #333;
+	font-weight: 700;
+	
+	background-color: #F0F0F0;
+}
+
+.xui-button a {
+	display:block;
+	height: 100%;
+	width: 100%;
+	color: #535353;
+	font-size: 13px;
+	white-space: nowrap;
+	text-decoration: none;
+	font-family: "Microsoft Yahei";
+	text-align : center;
+}
+.xui-button img,
+.xui-button span {
+	vertical-align: middle;
+}
+
+.xui-button a:hover {
+	text-decoration: underline;
+}
+
+.xui-button.button-blue button{
+	color: white;
+	background:  #54B3F3;
+	border-bottom: 1px solid #6BA7CF;
+	*border-bottom: none;
+}
+
+.xui-button.button-blue button:hover {
+	background: #6ABCF4;
+}
+
+.xui-button.button-purple button{
+	color: white;
+	background:  #9303A7;
+	border-bottom: 1px solid #72217D;
+	*border-bottom: none;
+}
+
+.xui-button.button-purple button:hover {
+	background: #C038D3;
+}
+
+.xui-button.button-hotpink button{
+	color: white;
+	background:  #DC0055;
+	border-bottom: 1px solid #A52959;
+	*border-bottom: none;
+}
+
+.xui-button.button-hotpink button:hover {
+	background: #EE3B80;
+}
+
+.xui-button.button-darkcyan button{
+	color: white;
+	background:  #01939A;
+	border-bottom: 1px solid #1D7074;
+	*border-bottom: none;
+}
+
+.xui-button.button-darkcyan button:hover {
+	background: #34C6CD;
+}
+
+
+.xui-button.button-yellow button{
+	color: white;
+	background:  #FFCE40;
+	border-bottom: 1px solid #FFBE00;
+	*border-bottom: none;
+}
+
+.xui-button.button-yellow button:hover {
+	background: #FFDB73;
+}
+
+.xui-button.button-green button{
+	color: white;
+	background:  #6CC03F;
+	border-bottom: 1px solid #5AB42A;
+	*border-bottom: none;
+}
+
+.xui-button.button-green button:hover {
+	background: #7DD74D;
+}
+
+.xui-button.button-orange button{
+	color: white;
+	background:  #D94E1B;
+	border-bottom: 1px solid #CE3C06;
+	*border-bottom: none;
+}
+
+.xui-button.button-orange button:hover {
+	background: #F95F27;
+}
+
+.xui-button button[disabled],
+.xui-button button[disabled]:hover {
+	color: #DDD;
+	background: #F3F3F3;
+	border-bottom: 1px solid #EDEDED;
+	*border-bottom: none;
+	cursor: default;
+}
+
+.xui-button i+span {
+	margin-left: 5px;
+}
+
+.xui-button .image {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+
+.xui-button .xui-button-image-top{
+	text-align: center;
+}
+ 

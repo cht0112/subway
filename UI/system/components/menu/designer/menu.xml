@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="menu" tag-type="rich" tag-name="div" icon="Control_menu.gif" text="菜单"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/menu.xbl.xml#menu"
+		display-property="id" component-class="Menu" component-type="formControl" >
+
+		<properties>
+			<property name="menu-id" text="编号" required="true" />
+			<property name="appearance" text="表现形式" editor-ref="menuAppearanceList" default-value="general"/>  
+			<property name="target-id" text="目标容器编号(ID)"/>
+			<property name="open-mode" text="打开方式" default-value="win" editor-ref="menuOpenModeList"/>
+			
+			<group name="menuitem">
+			
+				<property name="id" path="menuitem/@id" text="编号" />
+				<property name="label" path="menuitem/@label" text="标签" />
+				<property name="disabled" path="menuitem/@disabled" text="是否 无效" default-value="false" editor-ref="booleanList"/>
+				<property name="img" path="menuitem/@img" text="可用时图片" editor-ref="fileDialog" editor-parameter="*.gif;*.jpg"/>
+				<property name="dis-img" path="menuitem/@dis-img" text="不可用时图片" editor-ref="fileDialog" editor-parameter="*.gif;*.jpg"/>
+				
+				<group name="menuitemset">
+					<property name="init-loaded" path="menuitem/menuitemset/@init-loaded" text="初始化时加载" editor-ref="booleanList" default-value="true"/>
+					<property name="replace" path="menuitem/menuitemset/@replace" text="是否替换" editor-ref="booleanList"/>
+					<property name="data" path="menuitem/menuitemset/@data" text="数据" required="true"  editor-ref="contextComponent" editor-parameter="data" is-id-ref="true"/>
+					<property name="label-ref" path="menuitem/menuitemset/label/@ref" text="标签数据"/>
+				</group>
+			</group>
+
+			<group name="style" is-style="true">
+				<property name="width" text="宽度" />
+			</group>
+			
+		</properties>	
+
+		<property-editors>
+			<property-editor name="menuAppearanceList" type="list">
+				<static-data value="general,context"></static-data>
+			</property-editor>	
+					
+			<property-editor name="menuOpenModeList" type="list">
+				<static-data value="win,web"></static-data>
+			</property-editor>	
+					
+		</property-editors>
+
+		<events>
+			<event name="DOMActivate" type="event" text="" parameters="event" is-script="true"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" component="/UI/system/components/menu.xbl.xml#menu" xmlns:xui="http://www.justep.com/xui" appearance="general" open-mode="win">
+			        <xui:menuitem label="" disabled="false"> 
+			          <xui:menuitemset init-loaded="true" data=""> 
+			            <xui:label ref=""/>  
+			          </xui:menuitemset> 
+			        </xui:menuitem>  
+				</xhtml:div>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

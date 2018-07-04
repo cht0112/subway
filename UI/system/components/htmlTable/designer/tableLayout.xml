@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="table" tag-name="table" icon="table.gif" text="表格"  
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"	
+		component-class="TableLayout" component-type="layout-container"
+		validator="ViewValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="" editor-discriptor-ref=""/>    
+			<property name="align" text="对齐方式" editor-ref="edit-table-align"/>			
+			<property name="bgcolor" text="背景颜色"/>
+			<property name="border" text="边框宽度"/>
+			<property name="cellpadding" text="单元边沿与其内容之间的空白"/> 
+			<property name="cellspacing" text="单元格之间的空白"/> 
+			<property name="class" text="class" />
+			<property name="dir" editor-ref="edit-dir" text="文本方向" />
+			<property name="frame" text="外侧边框的哪个部分是可见的" editor-ref="edit-table-frame"/>
+			<property name="lang" text="语言代码" />
+			<property name="rules" text="内侧边框的哪个部分是可见的" editor-ref="edit-table-rules"/>
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+			<property name="summary" text="摘要" />
+			<property name="title" text="额外信息(可在工具提示中显示)"/>
+			<property name="width" text="宽度" />
+			<property name="xml:lang" text="XHTML语言代码" />			
+		</properties>
+		<property-editors>
+			<property-editor name="edit-table-align" type="list">
+				<static-data value="center,left,right" />
+			</property-editor>
+			<property-editor name="edit-table-frame" type="list">
+				<static-data value=",void,above,below,hsides,lhs,rhs,vsides,box,border" />
+			</property-editor>
+			<property-editor name="edit-table-rules" type="list">
+				<static-data value=",none,groups,rows,cols,all"/>
+			</property-editor>
+		</property-editors>
+
+		<events>
+			<event name="onclick" type="html" />
+			<event name="ondblclick" type="html" />
+			<event name="onmousedown" type="html" />
+			<event name="onmouseup" type="html" />
+			<event name="onmouseover" type="html" />
+			<event name="onmousemove" type="html" />
+			<event name="onmouseout" type="html" />
+			<event name="onkeypress" type="html" />
+			<event name="onkeydown" type="html" />
+			<event name="onkeyup" type="html" />
+		</events>
+			
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xhtml:table border="1" xmlns:xhtml="http://www.w3.org/1999/xhtml"><xhtml:tr><xhtml:td></xhtml:td><xhtml:td></xhtml:td></xhtml:tr><xhtml:tr><xhtml:td></xhtml:td><xhtml:td></xhtml:td></xhtml:tr></xhtml:table>
+		   ]]></template>
+		</templates>
+		 
+		<imitation-config js-class-name="TableLayout"/>
+	</element>
+	<element name="tableLayout" tag-name="table" icon="table.gif" text="表格"  
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"	
+		component-class="TableLayout" component-type="layout-container"
+		binding-component="/UI/system/components/tableLayout.xbl.xml#tableLayout"
+		design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="" editor-discriptor-ref=""/>    
+			<property name="align" text="对齐方式" editor-ref="edit-table-align"/>			
+			<property name="bgcolor" text="背景颜色"/>
+			<property name="border" text="边框宽度"/>
+			<property name="cellpadding" text="单元边沿与其内容之间的空白"/> 
+			<property name="cellspacing" text="单元格之间的空白"/> 
+			<property name="class" text="class" />
+			<property name="dir" editor-ref="edit-dir" text="文本方向" />
+			<property name="frame" text="外侧边框的哪个部分是可见的" editor-ref="edit-table-frame"/>
+			<property name="lang" text="语言代码" />
+			<property name="rules" text="内侧边框的哪个部分是可见的" editor-ref="edit-table-rules"/>
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+			<property name="summary" text="摘要" />
+			<property name="title" text="额外信息(可在工具提示中显示)"/>
+			<property name="width" text="宽度" />
+			<property name="xml:lang" text="XHTML语言代码" />			
+		</properties>
+		<property-editors>
+			<property-editor name="edit-table-align" type="list">
+				<static-data value="center,left,right" />
+			</property-editor>
+			<property-editor name="edit-table-frame" type="list">
+				<static-data value=",void,above,below,hsides,lhs,rhs,vsides,box,border" />
+			</property-editor>
+			<property-editor name="edit-table-rules" type="list">
+				<static-data value=",none,groups,rows,cols,all"/>
+			</property-editor>
+		</property-editors>
+
+		<events>
+			<event name="onclick" type="html" />
+			<event name="ondblclick" type="html" />
+			<event name="onmousedown" type="html" />
+			<event name="onmouseup" type="html" />
+			<event name="onmouseover" type="html" />
+			<event name="onmousemove" type="html" />
+			<event name="onmouseout" type="html" />
+			<event name="onkeypress" type="html" />
+			<event name="onkeydown" type="html" />
+			<event name="onkeyup" type="html" />
+		</events>
+			
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <xhtml:table border="1" cellpadding="0" cellspacing="0" style="width:100%;height:100%;table-layout:fixed" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" xmlns:xhtml="http://www.w3.org/1999/xhtml"><xhtml:tr><xhtml:td style="height:30px;"></xhtml:td></xhtml:tr><xhtml:tr><xhtml:td></xhtml:td></xhtml:tr></xhtml:table>
+		   ]]></template>
+		</templates>
+		 
+		<imitation-config js-class-name="TableLayout"/>
+	</element>
+     <element name="tr" tag-name="tr" icon="table.png" text="表格"    component-class="Tr"
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml" >
+		<properties>
+		  <property name="id" text="编号" required="" editor-discriptor-ref=""/>    
+		</properties>
+	</element>
+	
+    <element name="tr1" tag-name="tr" icon="table.png" text="表格"    component-class="Tr"
+       discriminate-condition="parent()/@component=/UI/system/components/tableLayout.xbl.xml#tableLayout"
+    		 namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml">
+		<properties>
+		  <property name="id" text="编号" required="" editor-discriptor-ref=""/>    
+		</properties>
+	</element>
+	
+	<element name="td" tag-name="td" icon="table.png" text="表格"   
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"
+		component-class="Td"  component-type="layout-container" >
+		<properties>
+			<property name="abbr" text="内容缩写" /> 		
+			<property name="align" text="对齐方式" editor-ref="edit-td-align"/>			
+			<property name="axis" text="单元分类" /> 		
+			<property name="bgcolor" text="背景颜色"/>
+			<property name="char" text="根据哪个字符来进行内容的对齐"/>
+			<property name="charoff" text="对齐字符的偏移量" data-type="integer"/>
+			<property name="class" text="类名" />
+			<property name="colspan" text="横跨列数" data-type="integer"/>
+			<property name="dir" editor-ref="edit-dir" text="文本方向" />
+			<property name="headers" text="表头" /> 
+			<property name="height" text="高度" />
+			<property name="lang" text="语言代码" />
+			<property name="nowrap" text="换行" editor-ref="edit-td-nowrap"/>
+			<property name="rowspan" text="横跨行数" data-type="integer"/>
+			<property name="scope" text="表头数据与单元数据相关联的方法" editor-ref="edit-td-scope"/>
+
+			<property name="tag-name" text="标签" readonly="true" /> 
+			<property name="text" text="文本"  path="text()" /> 
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+			<property name="title" text="额外信息(可在工具提示中显示)"/>
+			<property name="valign" text="垂直对齐" editor-ref="edit-td-valign"/> 
+			<property name="width" text="宽度" />
+			<property name="xml:lang" text="XHTML语言代码" />
+		</properties>
+
+		<property-editors>
+			<property-editor name="edit-td-nowrap" type="list">
+				<static-data value=",nowrap" />
+			</property-editor>
+			<property-editor name="edit-td-align" type="list">
+				<static-data value="left,right,center,justify,char" />
+			</property-editor>
+			<property-editor name="edit-td-scope" type="list">
+				<static-data value="col,colgroup,row,rowgroup" />
+			</property-editor>
+			<property-editor name="edit-td-valign" type="list">
+				<static-data value="top,middle,bottom,baseline"/>
+			</property-editor>
+		</property-editors>
+
+		<events>
+			<event name="onclick" type="html" />
+			<event name="ondblclick" type="html" />
+			<event name="onmousedown" type="html" />
+			<event name="onmouseup" type="html" />
+			<event name="onmouseover" type="html" />
+			<event name="onmousemove" type="html" />
+			<event name="onmouseout" type="html" />
+			<event name="onkeypress" type="html" />
+			<event name="onkeydown" type="html" />
+			<event name="onkeyup" type="html" />
+		</events>
+
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <td></td> 
+		   ]]></template>
+		</templates>
+ 
+		<toolbar>
+			 <item text="单元格"  type="DROP_DOWN">
+			 	<item text="在左侧插入单元格"  method="insertCellBefore" />
+			    <item text="在右侧插入单元格"  method="insertCellAfter" />
+			 	<item text="删除单元格"  method="deleteCell" />
+			    <item text="向右合并单元格"  method="mergeRightCell" />
+			    <item text="向下合并单元格"  method="mergeDownCell" />
+			 	<item text="水平拆分单元格"  method="horizontalSplitCell" />
+			 	<item text="垂直拆分单元格"  method="verticalSplitCell" />
+			 </item>
+			 <item text="行"  type="DROP_DOWN">
+			    <item text="在上方插入行"  method="insertRowBefore" />
+			    <item text="在下方插入行"  method="insertRowAfter" />	
+			    <item text="删除行"  method="deleteRow" />		 
+			 </item>
+			 <item text="列"  type="DROP_DOWN">
+			 	<item text="在左侧插入列"  method="insertColumnBefore" />
+			 	<item text="在右侧插入列"  method="insertColumnAfter" />
+			 	<item text="删除列"  method="deleteColumn" />
+			 </item>
+		</toolbar>
+	</element>
+
+
+	<element name="layoutRow" tag-name="td" icon="table.png" text="布局行"   
+		namespace="xhtml" namespace-uri="http://www.w3.org/1999/xhtml"
+		 discriminate-condition="parent()/parent()/@component=/UI/system/components/tableLayout.xbl.xml#tableLayout"
+		component-class="Td"  component-type="layout-container" >
+		<properties>
+			<property name="abbr" text="内容缩写" /> 		
+			<property name="align" text="对齐方式" editor-ref="edit-td-align"/>			
+			<property name="axis" text="单元分类" /> 		
+			<property name="bgcolor" text="背景颜色"/>
+			<property name="char" text="根据哪个字符来进行内容的对齐"/>
+			<property name="charoff" text="对齐字符的偏移量" data-type="integer"/>
+			<property name="class" text="类名" />
+			<!--<property name="colspan" text="横跨列数" data-type="integer"/>-->
+			<property name="dir" editor-ref="edit-dir" text="文本方向" />
+			<property name="headers" text="表头" /> 
+			<property name="height" text="高度" />
+			<property name="lang" text="语言代码" />
+			<property name="nowrap" text="换行" editor-ref="edit-td-nowrap"/>
+			<!--<property name="rowspan" text="横跨行数" data-type="integer"/>
+			<property name="scope" text="表头数据与单元数据相关联的方法" editor-ref="edit-td-scope"/>-->
+
+			<!--<property name="tag-name" text="标签" readonly="true" />--> 
+			<property name="text" text="文本"  path="text()" /> 
+			<property name="style" text="样式" editor-ref="styleDialog"/>
+			<property name="title" text="额外信息(可在工具提示中显示)"/>
+			<property name="valign" text="垂直对齐" editor-ref="edit-td-valign"/> 
+			<property name="width" text="宽度" />
+			<property name="xml:lang" text="XHTML语言代码" />
+		</properties>
+
+		<property-editors>
+			<property-editor name="edit-td-nowrap" type="list">
+				<static-data value=",nowrap" />
+			</property-editor>
+			<property-editor name="edit-td-align" type="list">
+				<static-data value="left,right,center,justify,char" />
+			</property-editor>
+			<property-editor name="edit-td-scope" type="list">
+				<static-data value="col,colgroup,row,rowgroup" />
+			</property-editor>
+			<property-editor name="edit-td-valign" type="list">
+				<static-data value="top,middle,bottom,baseline"/>
+			</property-editor>
+		</property-editors>
+
+		<events>
+			<event name="onclick" type="html" />
+			<event name="ondblclick" type="html" />
+			<event name="onmousedown" type="html" />
+			<event name="onmouseup" type="html" />
+			<event name="onmouseover" type="html" />
+			<event name="onmousemove" type="html" />
+			<event name="onmouseout" type="html" />
+			<event name="onkeypress" type="html" />
+			<event name="onkeydown" type="html" />
+			<event name="onkeyup" type="html" />
+		</events>
+
+		<templates>
+		   <template name="default"><![CDATA[ 
+		      <td></td> 
+		   ]]></template>
+		</templates>
+ 
+		<toolbar>
+			<item text="在上方插入行"  method="insertRowBefore" />
+			<item text="在下方插入行"  method="insertRowAfter" />	
+			<item text="删除行"  method="deleteRow" />	
+			<!-- <item text="单元格"  type="DROP_DOWN">
+			 	<item text="在左侧插入单元格"  method="insertCellBefore" />
+			    <item text="在右侧插入单元格"  method="insertCellAfter" />
+			 	<item text="删除单元格"  method="deleteCell" />
+			    <item text="向右合并单元格"  method="mergeRightCell" />
+			    <item text="向下合并单元格"  method="mergeDownCell" />
+			 	<item text="水平拆分单元格"  method="horizontalSplitCell" />
+			 	<item text="垂直拆分单元格"  method="verticalSplitCell" />
+			 </item>
+			 <item text="行"  type="DROP_DOWN">
+			    <item text="在上方插入行"  method="insertRowBefore" />
+			    <item text="在下方插入行"  method="insertRowAfter" />	
+			    <item text="删除行"  method="deleteRow" />		 
+			 </item>
+			 <item text="列"  type="DROP_DOWN">
+			 	<item text="在左侧插入列"  method="insertColumnBefore" />
+			 	<item text="在右侧插入列"  method="insertColumnAfter" />
+			 	<item text="删除列"  method="deleteColumn" />
+			 </item>-->
+		</toolbar>
+	</element>
+	
+</elements>

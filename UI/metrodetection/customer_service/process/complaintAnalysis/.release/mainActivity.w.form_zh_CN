@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/UI/system/components/./reportData/reportData.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <script language="javascript" src="/UI/system/components/tabs/tabs.js">
+</script>      <link href="/UI/system/components/./tabs/tabs.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css"></style>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/component/report/report.js">
+</script>      <script language="javascript" src="/UI/system/components/dialog/dialog.js">
+</script>      <script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js">
+</script>      <link href="/form/dhtmlx/dhtmlxWindows/dhtmlxwindows.css" rel="stylesheet" type="text/css"></link>      <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlxwindows_dhx_blue.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css">.xui-report { }</style>  
+    <script language="javascript" src="/component/chart/chart.js">
+</script>      <style rel="stylesheet" type="text/css">.xui-chart { width:500px; height:375px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/metrodetection/customer_service/process/complaintAnalysis/mainActivity.js">
+</script>      <script>
+jQuery('head').append('&lt;span id="ds1"/&gt;');jQuery('#ds1')[0].xblObject = new justep.ReportData({id:'ds1',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"complaintAnalysisByType",columns:"TYPE1,COUNT1"});</script>  
+    <script>
+new justep.XBizData('bizData1',true,false,{'queryAction':"queryCUSTOMER_COMPLAINT_INFOAction",'dataModel':"/metrodetection/customer_service/data",'dataType':"json",'concept':"{'CUSTOMER_COMPLAINT_INFO':'CUSTOMER_COMPLAINT_INFO'}",'limit':20,'idColumn':"{'name':'CUSTOMER_COMPLAINT_INFO','relation':'CUSTOMER_COMPLAINT_INFO','define':'CUSTOMER_COMPLAINT_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'COMPLAINT_DOC_CODE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_CODE','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_CODE','label':'客户投诉文档编码'},'COMPLAINT_DOC_NO':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_NO','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_NO','label':'客户投诉文档单据号'},'COMPLAINT_UNIT':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_UNIT','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_UNIT','label':'客户名称'},'COMPLAINT_SOURCE':{'type':'Integer','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_SOURCE','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_SOURCE','label':'意见来源'},'COMPLAINT_DATE':{'type':'Date','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DATE','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DATE','label':'意见来源时间'},'TITLE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.TITLE','define':'CUSTOMER_COMPLAINT_INFO.TITLE','label':'投诉主题'},'COMPLAINT_CONTENT':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_CONTENT','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_CONTENT','label':'意见综述'},'CONTACTOR':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.CONTACTOR','define':'CUSTOMER_COMPLAINT_INFO.CONTACTOR','label':'联系人'},'MAILING_ADDRESS':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.MAILING_ADDRESS','define':'CUSTOMER_COMPLAINT_INFO.MAILING_ADDRESS','label':'通信地址'},'POSTCODE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.POSTCODE','define':'CUSTOMER_COMPLAINT_INFO.POSTCODE','label':'邮编'},'TYPE':{'type':'Integer','relation':'CUSTOMER_COMPLAINT_INFO.TYPE','define':'CUSTOMER_COMPLAINT_INFO.TYPE','label':'投诉类型'},'SEVERITY':{'type':'Integer','relation':'CUSTOMER_COMPLAINT_INFO.SEVERITY','define':'CUSTOMER_COMPLAINT_INFO.SEVERITY','label':'严重级'},'CONTACTOR_TELEPHONE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.CONTACTOR_TELEPHONE','define':'CUSTOMER_COMPLAINT_INFO.CONTACTOR_TELEPHONE','label':'联系电话'},'CONTACT_EMAIL':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.CONTACT_EMAIL','define':'CUSTOMER_COMPLAINT_INFO.CONTACT_EMAIL','label':'电子邮箱'},'REGION':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.REGION','define':'CUSTOMER_COMPLAINT_INFO.REGION','label':'所属地区'},'RECEIPT':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.RECEIPT','define':'CUSTOMER_COMPLAINT_INFO.RECEIPT','label':'受理人'},'RECEIPT_DATE':{'type':'Date','relation':'CUSTOMER_COMPLAINT_INFO.RECEIPT_DATE','define':'CUSTOMER_COMPLAINT_INFO.RECEIPT_DATE','label':'受理日期'},'MEMO':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.MEMO','define':'CUSTOMER_COMPLAINT_INFO.MEMO','label':'备注'}}"},'',{});</script>  
+    <script>
+jQuery('head').append('&lt;span id="reportData1"/&gt;');jQuery('#reportData1')[0].xblObject = new justep.ReportData({id:'reportData1',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"complaintAnalysisSeverity",columns:"SEVERITY1,COUNT1"});</script>  
+    <script>
+jQuery('head').append('&lt;span id="ds2"/&gt;');jQuery('#ds2')[0].xblObject = new justep.ReportData({id:'ds2',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"complaintAnalysisByTypeChart",columns:"TYPE1,COUNT1"});</script>  
+    <script>
+jQuery('head').append('&lt;span id="reportData2"/&gt;');jQuery('#reportData2')[0].xblObject = new justep.ReportData({id:'reportData2',autoLoad:false,src:'',type:'action',onBeforeRefresh:'',onAfterRefresh:'',dataModel:'',fnModel:'',sql:{oracle:"",mssql:"",db2:"",sybase:"",defaultSql:""},ksql:"",action:"complaintAnalysisSeverityChart",columns:"SEVERITY1,COUNT1"});</script>  
+    <script>
+new justep.XBizData('bizData2',true,false,{'queryAction':"queryCUSTOMER_COMPLAINT_INFOAction",'dataModel':"/metrodetection/customer_service/data",'dataType':"json",'concept':"{'CUSTOMER_COMPLAINT_INFO':'CUSTOMER_COMPLAINT_INFO'}",'limit':20,'idColumn':"{'name':'CUSTOMER_COMPLAINT_INFO','relation':'CUSTOMER_COMPLAINT_INFO','define':'CUSTOMER_COMPLAINT_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'COMPLAINT_DOC_CODE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_CODE','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_CODE','label':'客户投诉文档编码'},'COMPLAINT_DOC_NO':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_NO','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DOC_NO','label':'客户投诉文档单据号'},'COMPLAINT_UNIT':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_UNIT','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_UNIT','label':'客户名称'},'COMPLAINT_SOURCE':{'type':'Integer','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_SOURCE','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_SOURCE','label':'意见来源'},'COMPLAINT_DATE':{'type':'Date','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DATE','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_DATE','label':'意见来源时间'},'TITLE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.TITLE','define':'CUSTOMER_COMPLAINT_INFO.TITLE','label':'投诉主题'},'COMPLAINT_CONTENT':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_CONTENT','define':'CUSTOMER_COMPLAINT_INFO.COMPLAINT_CONTENT','label':'意见综述'},'CONTACTOR':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.CONTACTOR','define':'CUSTOMER_COMPLAINT_INFO.CONTACTOR','label':'联系人'},'MAILING_ADDRESS':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.MAILING_ADDRESS','define':'CUSTOMER_COMPLAINT_INFO.MAILING_ADDRESS','label':'通信地址'},'POSTCODE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.POSTCODE','define':'CUSTOMER_COMPLAINT_INFO.POSTCODE','label':'邮编'},'TYPE':{'type':'Integer','relation':'CUSTOMER_COMPLAINT_INFO.TYPE','define':'CUSTOMER_COMPLAINT_INFO.TYPE','label':'投诉类型'},'SEVERITY':{'type':'Integer','relation':'CUSTOMER_COMPLAINT_INFO.SEVERITY','define':'CUSTOMER_COMPLAINT_INFO.SEVERITY','label':'严重级'},'CONTACTOR_TELEPHONE':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.CONTACTOR_TELEPHONE','define':'CUSTOMER_COMPLAINT_INFO.CONTACTOR_TELEPHONE','label':'联系电话'},'CONTACT_EMAIL':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.CONTACT_EMAIL','define':'CUSTOMER_COMPLAINT_INFO.CONTACT_EMAIL','label':'电子邮箱'},'REGION':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.REGION','define':'CUSTOMER_COMPLAINT_INFO.REGION','label':'所属地区'},'RECEIPT':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.RECEIPT','define':'CUSTOMER_COMPLAINT_INFO.RECEIPT','label':'受理人'},'RECEIPT_DATE':{'type':'Date','relation':'CUSTOMER_COMPLAINT_INFO.RECEIPT_DATE','define':'CUSTOMER_COMPLAINT_INFO.RECEIPT_DATE','label':'受理日期'},'MEMO':{'type':'String','relation':'CUSTOMER_COMPLAINT_INFO.MEMO','define':'CUSTOMER_COMPLAINT_INFO.MEMO','label':'备注'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('data1',false,true,null,'','',{'deleteConfirm':false,'refreshConfirm':false,'refreshConfirmText':"xml"}, {});</script>  
+    <script>
+new justep.XCommonData('data3',false,true,null,'','',{'deleteConfirm':false,'refreshConfirm':false,'refreshConfirmText':"json"}, {});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/tabs.xbl.xml#tabs"] = _xbl_JSClassDefine_tabs;
+justep.XBLObject._classes["/UI/system/components/report.xbl.xml#report"] = _xbl_JSClassDefine_report;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/system/components/chart.xbl.xml#chart"] = _xbl_JSClassDefine_chart;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/reportData.xbl.xml#data"] = _xbl_JSClassDefine_data;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_tabs(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tabs.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.tabbar = new justep.JSTabbar(this.domNode.id);
+				justep.Utils.proxable(this, this.tabbar, justep.JSTabbar);
+			}
+		}));
+
+function _xbl_JSClassDefine_report(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_report.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Utils.extend(this, justep.Report, null, true);
+					this.initComponent();
+				},
+				initXBL2 : function() {
+					this.initContent();
+				}
+			}));
+
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+function _xbl_JSClassDefine_chart(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_chart.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Utils.extend(this, justep.Chart, null, true);
+					this.initComponent();
+				},
+				initXBL2 : function() {
+					this.initContent();
+				}
+			}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+function _xbl_JSClassDefine_data(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_data.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			initXBL : function() {
+				this._id = this.domNode.id;
+				if (!this._id) {
+					throw new Error("ReportData组件的id属性不能为空");
+				}
+				justep.Object.extend(this, new justep.ReportData(this.domNode.id,false));
+			} 
+		}));
+
+	var ids=[{id:'window_1', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'borderLayout_1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'tabPanel1', name:'/UI/system/components/tabs.xbl.xml#tabs', children:[{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'toolbars1', name:'/UI/system/components/toolbars.xbl.xml#toolbars'},{id:'startDate', name:'xforms:input'},{id:'endDate', name:'xforms:input'},{id:'trigger1', name:'xforms:trigger', children:[{id:'default8', name:'xforms:label'}]},{id:'Report1', name:'/UI/system/components/report.xbl.xml#report'},{id:'chart3', name:'/UI/system/components/chart.xbl.xml#chart'}]},{id:'borderLayout2', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'toolbars2', name:'/UI/system/components/toolbars.xbl.xml#toolbars'},{id:'startDate1', name:'xforms:input'},{id:'endDate1', name:'xforms:input'},{id:'trigger2', name:'xforms:trigger', children:[{id:'default1', name:'xforms:label'}]},{id:'chart1', name:'/UI/system/components/chart.xbl.xml#chart'},{id:'report2', name:'/UI/system/components/report.xbl.xml#report'}]}]}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'startDate');xf._a(null,'endDate');xf._a(null,'trigger1');xf._a('trigger1','default8');xf._a(null,'startDate1');xf._a(null,'endDate1');xf._a(null,'trigger2');xf._a('trigger2','default1');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('bizData1')/COMPLAINT_SOURCE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','COMPLAINT_SOURCE')))),'','');	
+xf._b("instance('bizData1')/COMPLAINT_DATE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','COMPLAINT_DATE')))),'','');	
+xf._b("instance('bizData1')/TYPE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','TYPE')))),'','');	
+xf._b("instance('bizData1')/SEVERITY",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','SEVERITY')))),'','');	
+xf._b("instance('bizData1')/RECEIPT_DATE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','RECEIPT_DATE')))),'','');	
+xf._b("instance('bizData2')/COMPLAINT_SOURCE",xf._g(xf._f('instance',xf._i("bizData2")),xf._h(false, xf._k("child",xf._j('','COMPLAINT_SOURCE')))),'','');	
+xf._b("instance('bizData2')/COMPLAINT_DATE",xf._g(xf._f('instance',xf._i("bizData2")),xf._h(false, xf._k("child",xf._j('','COMPLAINT_DATE')))),'','');	
+xf._b("instance('bizData2')/TYPE",xf._g(xf._f('instance',xf._i("bizData2")),xf._h(false, xf._k("child",xf._j('','TYPE')))),'','');	
+xf._b("instance('bizData2')/SEVERITY",xf._g(xf._f('instance',xf._i("bizData2")),xf._h(false, xf._k("child",xf._j('','SEVERITY')))),'','');	
+xf._b("instance('bizData2')/RECEIPT_DATE",xf._g(xf._f('instance',xf._i("bizData2")),xf._h(false, xf._k("child",xf._j('','RECEIPT_DATE')))),'','');	
+xf._b("instance('data1')/startDate",xf._g(xf._f('instance',xf._i("data1")),xf._h(false, xf._k("child",xf._j('','startDate')))),'','');	
+xf._b("instance('data1')/endDate",xf._g(xf._f('instance',xf._i("data1")),xf._h(false, xf._k("child",xf._j('','endDate')))),'','');	
+xf._b("instance('data3')/startDate1",xf._g(xf._f('instance',xf._i("data3")),xf._h(false, xf._k("child",xf._j('','startDate1')))),'','');	
+xf._b("instance('data3')/endDate1",xf._g(xf._f('instance',xf._i("data3")),xf._h(false, xf._k("child",xf._j('','endDate1')))),'','');	
+xf._b("data('data1')/startDate",xf._g(xf._f('data',xf._i("data1")),xf._h(false, xf._k("child",xf._j('','startDate')))));	
+xf._b("true",xf._h(false, xf._k("child",xf._j('','true'))));	
+xf._b("data('data1')/endDate",xf._g(xf._f('data',xf._i("data1")),xf._h(false, xf._k("child",xf._j('','endDate')))));	
+xf._b("data('data3')/startDate1",xf._g(xf._f('data',xf._i("data3")),xf._h(false, xf._k("child",xf._j('','startDate1')))));	
+xf._b("data('data3')/endDate1",xf._g(xf._f('data',xf._i("data3")),xf._h(false, xf._k("child",xf._j('','endDate1')))));	
+xf._b("call('justep.Context.isReadonlyMode')",xf._f('call',xf._i("justep.Context.isReadonlyMode")));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');var xf_model_dataModel = new xforms.XFModel('dataModel',null);	
+new xforms.XFInstance2('bizData1','dataModel',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('bizData1',null);	
+xf._c('xf-bind-0','dataModel',"instance('bizData1')/COMPLAINT_SOURCE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-1','dataModel',"instance('bizData1')/COMPLAINT_DATE","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-2','dataModel',"instance('bizData1')/TYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-3','dataModel',"instance('bizData1')/SEVERITY","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-4','dataModel',"instance('bizData1')/RECEIPT_DATE","xsd:date",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData2','dataModel',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('bizData2',null);	
+xf._c('xf-bind-5','dataModel',"instance('bizData2')/COMPLAINT_SOURCE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-6','dataModel',"instance('bizData2')/COMPLAINT_DATE","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-7','dataModel',"instance('bizData2')/TYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-8','dataModel',"instance('bizData2')/SEVERITY","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-9','dataModel',"instance('bizData2')/RECEIPT_DATE","xsd:date",null,null,null,null,null,null);	
+new xforms.XFInstance2('data1','dataModel',null,null,null,null,null,null,null,null,null,null,null);new SimpleStore('data1','startDate,endDate');	
+xf._c('xf-bind-10','dataModel',"instance('data1')/startDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-11','dataModel',"instance('data1')/endDate","xsd:date",null,null,null,null,null,null);	
+var xf_action_action4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.dataModelXBLLoaded(event)}));xf._p(justep('dataModel'),"xbl-loaded",null,function(evt) { xforms.run(xf_action_action4,'dataModel', evt,false)});	
+new xforms.XFInstance2('data3','dataModel',null,null,null,null,null,null,null,null,null,null,null);new SimpleStore('data3','startDate1,endDate1');	
+xf._c('xf-bind-12','dataModel',"instance('data3')/startDate1","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-13','dataModel',"instance('data3')/endDate1","xsd:date",null,null,null,null,null,null);	
+xforms.load_parts('view_1');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+function load_view_1(){if (justep("view_1").getAttribute('loaded') &amp;&amp; justep("view_1").getAttribute('loaded') == 'true') return;justep("view_1").setAttribute('loaded', 'true');	
+if(typeof(load_view_1_html) == 'function')load_view_1_html();	
+xforms.load_parts('view2');	
+xforms.load_parts('view3');	
+}	
+function load_view_1_xblinit(){if (justep("view_1").getAttribute('xblloaded') &amp;&amp; justep("view_1").getAttribute('xblloaded') == 'true') return;justep("view_1").setAttribute('xblloaded', 'true');	
+}	
+function load_view2(){if (justep("view2").getAttribute('loaded') &amp;&amp; justep("view2").getAttribute('loaded') == 'true') return;justep("view2").setAttribute('loaded', 'true');	
+if(typeof(load_view2_html) == 'function')load_view2_html();	
+xforms.load_parts('view5');	
+xforms.load_parts('view4');	
+}	
+function load_view2_xblinit(){if (justep("view2").getAttribute('xblloaded') &amp;&amp; justep("view2").getAttribute('xblloaded') == 'true') return;justep("view2").setAttribute('xblloaded', 'true');	
+}	
+function load_view5(){if (justep("view5").getAttribute('loaded') &amp;&amp; justep("view5").getAttribute('loaded') == 'true') return;justep("view5").setAttribute('loaded', 'true');	
+if(typeof(load_view5_html) == 'function')load_view5_html();	
+xf._d('startDate','text',xf._q("data('data1')/startDate"),null,null,null,"yyyy-MM-dd",false,true);	
+xf._d('endDate','text',xf._q("data('data1')/endDate"),null,null,null,null,false,true);	
+var xf_trigger_trigger1=new xforms.XFTrigger('trigger1',null,null,null,false,false,false,null,null,null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.trigger1Click(event)}));xf._p(justep('trigger1'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action1,'trigger1', evt,false)});	
+}	
+function load_view5_xblinit(){if (justep("view5").getAttribute('xblloaded') &amp;&amp; justep("view5").getAttribute('xblloaded') == 'true') return;justep("view5").setAttribute('xblloaded', 'true');	
+}	
+function load_view4(){if (justep("view4").getAttribute('loaded') &amp;&amp; justep("view4").getAttribute('loaded') == 'true') return;justep("view4").setAttribute('loaded', 'true');	
+if(typeof(load_view4_html) == 'function')load_view4_html();	
+xforms.load_parts('view6');	
+}	
+function load_view4_xblinit(){if (justep("view4").getAttribute('xblloaded') &amp;&amp; justep("view4").getAttribute('xblloaded') == 'true') return;justep("view4").setAttribute('xblloaded', 'true');	
+}	
+function load_view6(){if (justep("view6").getAttribute('loaded') &amp;&amp; justep("view6").getAttribute('loaded') == 'true') return;justep("view6").setAttribute('loaded', 'true');	
+if(typeof(load_view6_html) == 'function')load_view6_html();	
+}	
+function load_view6_xblinit(){if (justep("view6").getAttribute('xblloaded') &amp;&amp; justep("view6").getAttribute('xblloaded') == 'true') return;justep("view6").setAttribute('xblloaded', 'true');	
+}	
+function load_view3(){if (justep("view3").getAttribute('loaded') &amp;&amp; justep("view3").getAttribute('loaded') == 'true') return;justep("view3").setAttribute('loaded', 'true');	
+if(typeof(load_view3_html) == 'function')load_view3_html();	
+xforms.load_parts('view7');	
+xforms.load_parts('view8');	
+}	
+function load_view3_xblinit(){if (justep("view3").getAttribute('xblloaded') &amp;&amp; justep("view3").getAttribute('xblloaded') == 'true') return;justep("view3").setAttribute('xblloaded', 'true');	
+}	
+function load_view7(){if (justep("view7").getAttribute('loaded') &amp;&amp; justep("view7").getAttribute('loaded') == 'true') return;justep("view7").setAttribute('loaded', 'true');	
+if(typeof(load_view7_html) == 'function')load_view7_html();	
+xf._d('startDate1','text',xf._q("data('data3')/startDate1"),null,null,null,null,false,true);	
+xf._d('endDate1','text',xf._q("data('data3')/endDate1"),null,null,null,"yyyy-MM-dd",false,true);	
+var xf_trigger_trigger2=new xforms.XFTrigger('trigger2',null,null,null,false,false,false,null,null,null);	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.trigger2Click(event)}));xf._p(justep('trigger2'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action2,'trigger2', evt,false)});	
+}	
+function load_view7_xblinit(){if (justep("view7").getAttribute('xblloaded') &amp;&amp; justep("view7").getAttribute('xblloaded') == 'true') return;justep("view7").setAttribute('xblloaded', 'true');	
+}	
+function load_view8(){if (justep("view8").getAttribute('loaded') &amp;&amp; justep("view8").getAttribute('loaded') == 'true') return;justep("view8").setAttribute('loaded', 'true');	
+if(typeof(load_view8_html) == 'function')load_view8_html();	
+xforms.load_parts('view9');	
+}	
+function load_view8_xblinit(){if (justep("view8").getAttribute('xblloaded') &amp;&amp; justep("view8").getAttribute('xblloaded') == 'true') return;justep("view8").setAttribute('xblloaded', 'true');	
+}	
+function load_view9(){if (justep("view9").getAttribute('loaded') &amp;&amp; justep("view9").getAttribute('loaded') == 'true') return;justep("view9").setAttribute('loaded', 'true');	
+if(typeof(load_view9_html) == 'function')load_view9_html();	
+}	
+function load_view9_xblinit(){if (justep("view9").getAttribute('xblloaded') &amp;&amp; justep("view9").getAttribute('xblloaded') == 'true') return;justep("view9").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="view_1" lazy="false" style="height:100%;wight:100%;">         <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout_1" style="height:130%;">           <div borderSize="0" class="xui-borderlayout-root">             <div class="xui-borderlayout-area xui-borderlayout-center" style="">               <div class="xui-tabPanel component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="tabPanel1" style="width:100%;height:136%;">                 <div class="jstabbar" id="tabPanel1_root">                   <ul class="tabItems clearfix">                     <li class="selected" id="tabPage1_tab">                       <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabPage1');this.blur();" type="button">按投诉类型统计</button> 
+                    </li>  
+                    <li id="tabPage3_tab"> 
+                      <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabPage3');this.blur();" type="button">按严重程度统计</button> 
+                    </li> 
+                  </ul>  
+                  <div class="contents" id="tabPanel1_contents"> 
+                    <div class="content selected" id="tabPage1"> 
+                      <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%;height:99%;"> 
+                        <div borderSize="0" class="xui-borderlayout-root"> 
+                          <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                            <div class="xui-container" id="view2" lazy="false" style="position:relative;;width:100%;height:100%;"> 
+                              <div class="xui-container" id="view5" lazy="false" style="position:relative;;position:absolute;top:5px;height:89px;width:590px;left:2px;"> 
+                                <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1" style="position:absolute;height:39px;width:535px;left:5px;top:43px;"> 
+                                  <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                                    <tr> 
+                                      <td> 
+                                        <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                          <div class="toolbar-style" name="toolbargroup"> 
+                                            <table cellpadding="0" cellspacing="1px"> 
+                                              <tr> 
+                                                <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                                  <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem1" model="dataModel" onclick="justep.xbl('Report1').pageSetup();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_page_setup_g.gif" src="/UI/system/images/report/print_page_setup.gif" style="border:none" title="页面设置"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">页面设置</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem2" model="dataModel" onclick="justep.xbl('Report1').preview();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_preview_g.gif" src="/UI/system/images/report/print_preview.gif" style="border:none" title="打印预览"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">打印预览</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem3" model="dataModel" onclick="justep.xbl('Report1').print();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_print_g.gif" src="/UI/system/images/report/print_print.gif" style="border:none" title="打印"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">打印</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </div> 
+                                      </td>  
+                                      <td> 
+                                        <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                          <div class="toolbar-style" name="toolbargroup"> 
+                                            <table cellpadding="0" cellspacing="1px"> 
+                                              <tr> 
+                                                <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                                  <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem4" model="dataModel" onclick="justep.xbl('Report1').exportPDF();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_pdf_g.gif" src="/UI/system/images/report/export_pdf.gif" style="border:none" title="导出为PDF文件"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">导出为PDF文件</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem5" model="dataModel" onclick="justep.xbl('Report1').exportWord();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_word_g.gif" src="/UI/system/images/report/export_word.gif" style="border:none" title="导出为Word文档"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">导出为Word文档</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem6" model="dataModel" onclick="justep.xbl('Report1').exportExcel();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_excel_.gif" src="/UI/system/images/report/export_excel.gif" style="border:none" title="导出为Excel工作簿"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">导出为Excel工作簿</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </div> 
+                                      </td>  
+                                      <td style="width:100%"></td> 
+                                    </tr> 
+                                  </table> 
+                                </div>  
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="startDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:63px;top:10px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="focus" style="display:none;width:0px"></td>  
+                                      <td class="xxf-value"> 
+                                        <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td>  
+                                      <td class="xui-ie-input-bug"></td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="endDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:10px;left:266px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="focus" style="display:none;width:0px"></td>  
+                                      <td class="xxf-value"> 
+                                        <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td>  
+                                      <td class="xui-ie-input-bug"></td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:8px;left:431px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="xxf-value"> 
+                                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                          <span class="xforms-label " id="default8">查询</span> 
+                                        </button> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <label class="xui-label" id="label3" style="position:absolute;left:5px;top:13px;">投诉时间</label>  
+                                <label class="xui-label" id="label5" style="position:absolute;top:13px;left:239px;">至</label> 
+                              </div>  
+                              <div class="xui-container" id="view4" lazy="false" style="position:relative;;position:absolute;left:12px;top:98px;height:100%;width:100%;"> 
+                                <div auto-load="true" class="xui-report component_2BF03861 report" component="/UI/system/components/report.xbl.xml#report" data-list="ds1" id="Report1" src="/UI/metrodetection/customer_service/process/complaintAnalysis/new_xls111.xls" style="position:absolute;width:100%;height:100%;top:8px;left:12px;"> 
+                                  <span cacheFile="%2FUI%2Fmetrodetection%2Fcustomer_service%2Fprocess%2FcomplaintAnalysis%2F.cache%2FmainActivity.report" dataList="ds1" marginBottom="2.4mm" marginFootter="" marginHeader="" marginLeft="3.7mm" marginRight="3.7mm" marginTop="2.4mm" objectList="chart3" orientation="" pageHeight="297mm" pageWidth="210mm" paperType="A4" style="display:none" xblid="attribute"></span>  
+                                  <div xmlns="" id="report_Report1_content" style="width:100%;height:100%;"> </div>  
+                                  <iframe xmlns="" name="report_Report1_frame" onReadyStateChange="var xbl=justep.xbl('Report1'); if (xbl != null) xbl._hideWaittingDialog()" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                                </div>  
+                                <div class="xui-container" id="view6" lazy="false" style="position:relative;;position:absolute;top:8px;width:5px;height:5px;left:12px;"> 
+                                  <div auto-load="false" chart-name="chart" class="xui-chart component_5F550B91 chart" component="/UI/system/components/chart.xbl.xml#chart" data-list="ds2" id="chart3" style="position:absolute;top:5px;left:5px;width:5px;height:5px;"> 
+                                    <span cacheFile="%2FUI%2Fmetrodetection%2Fcustomer_service%2Fprocess%2FcomplaintAnalysis%2F.cache%2FmainActivity.report" dataList="ds2" marginBottom="10mm" marginFootter="" marginHeader="" marginLeft="10mm" marginRight="10mm" marginTop="10mm" orientation="" pageHeight="297mm" pageWidth="210mm" paperType="A4" style="display:none" xblid="attribute"></span>  
+                                    <div xmlns="" chart-name="chart" id="chart_chart3_content" style="width:100%;height:100%"> </div>  
+                                    <iframe xmlns="" name="chart_chart3_frame" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                                  </div> 
+                                </div> 
+                              </div> 
+                            </div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div>  
+                    <div class="content" id="tabPage3"> 
+                      <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout2" style="width:100%;height:99%;"> 
+                        <div borderSize="0" class="xui-borderlayout-root"> 
+                          <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                            <div class="xui-container" id="view3" lazy="false" style="position:relative;;height:100%;width:100%;"> 
+                              <div class="xui-container" id="view7" lazy="false" style="position:relative;;position:absolute;top:5px;height:89px;width:590px;left:2px;"> 
+                                <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars2" style="position:absolute;height:39px;width:535px;left:5px;top:43px;"> 
+                                  <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                                    <tr> 
+                                      <td> 
+                                        <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                          <div class="toolbar-style" name="toolbargroup"> 
+                                            <table cellpadding="0" cellspacing="1px"> 
+                                              <tr> 
+                                                <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                                  <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem7" model="dataModel" onclick="justep.xbl('report2').pageSetup();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_page_setup_g.gif" src="/UI/system/images/report/print_page_setup.gif" style="border:none" title="页面设置"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">页面设置</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem8" model="dataModel" onclick="justep.xbl('report2').preview();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_preview_g.gif" src="/UI/system/images/report/print_preview.gif" style="border:none" title="打印预览"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">打印预览</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem9" model="dataModel" onclick="justep.xbl('report2').print();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/print_print_g.gif" src="/UI/system/images/report/print_print.gif" style="border:none" title="打印"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">打印</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </div> 
+                                      </td>  
+                                      <td> 
+                                        <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                          <div class="toolbar-style" name="toolbargroup"> 
+                                            <table cellpadding="0" cellspacing="1px"> 
+                                              <tr> 
+                                                <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                                  <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem10" model="dataModel" onclick="justep.xbl('report2').exportPDF();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_pdf_g.gif" src="/UI/system/images/report/export_pdf.gif" style="border:none" title="导出为PDF文件"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">导出为PDF文件</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem11" model="dataModel" onclick="justep.xbl('report2').exportWord();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_word_g.gif" src="/UI/system/images/report/export_word.gif" style="border:none" title="导出为Word文档"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">导出为Word文档</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <table id="barItem12" model="dataModel" onclick="justep.xbl('report2').exportExcel();" readonly="call('justep.Context.isReadonlyMode')"> 
+                                                    <tr align="center" valign="middle"> 
+                                                      <td align="center" valign="middle"> 
+                                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/report/export_excel_.gif" src="/UI/system/images/report/export_excel.gif" style="border:none" title="导出为Excel工作簿"></img> 
+                                                      </td>  
+                                                      <td align="center" class="xforms-trigger-label" valign="middle">导出为Excel工作簿</td> 
+                                                    </tr> 
+                                                  </table> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </div> 
+                                      </td>  
+                                      <td style="width:100%"></td> 
+                                    </tr> 
+                                  </table> 
+                                </div>  
+                                <label class="xui-label" id="label4" style="position:absolute;left:5px;top:13px;">投诉时间</label>  
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="startDate1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:63px;top:10px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="focus" style="display:none;width:0px"></td>  
+                                      <td class="xxf-value"> 
+                                        <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td>  
+                                      <td class="xui-ie-input-bug"></td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <label class="xui-label" id="label6" style="position:absolute;top:13px;left:239px;">至</label>  
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="endDate1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:10px;left:266px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="focus" style="display:none;width:0px"></td>  
+                                      <td class="xxf-value"> 
+                                        <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td>  
+                                      <td class="xui-ie-input-bug"></td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:8px;left:431px;;table-layout:fixed"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="xxf-value"> 
+                                        <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                          <span class="xforms-label " id="default1">查询</span> 
+                                        </button> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table> 
+                              </div>  
+                              <div class="xui-container" id="view8" lazy="false" style="position:relative;;position:absolute;left:12px;top:98px;height:100%;width:100%;"> 
+                                <div class="xui-container" id="view9" lazy="false" style="position:relative;;position:absolute;top:11px;left:13px;width:29px;height:22px;"> 
+                                  <div auto-load="false" chart-name="chart" class="xui-chart component_5F550B91 chart" component="/UI/system/components/chart.xbl.xml#chart" data-list="reportData2" id="chart1" style="position:absolute;left:5px;top:5px;height:5px;width:5px;"> 
+                                    <span cacheFile="%2FUI%2Fmetrodetection%2Fcustomer_service%2Fprocess%2FcomplaintAnalysis%2F.cache%2FmainActivity.report" dataList="reportData2" marginBottom="10mm" marginFootter="" marginHeader="" marginLeft="10mm" marginRight="10mm" marginTop="10mm" orientation="" pageHeight="297mm" pageWidth="210mm" paperType="A4" style="display:none" xblid="attribute"></span>  
+                                    <div xmlns="" chart-name="chart" id="chart_chart1_content" style="width:100%;height:100%"> </div>  
+                                    <iframe xmlns="" name="chart_chart1_frame" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                                  </div> 
+                                </div>  
+                                <div auto-load="true" class="xui-report component_2BF03861 report" component="/UI/system/components/report.xbl.xml#report" data-list="reportData1" id="report2" src="/UI/metrodetection/customer_service/process/complaintAnalysis/new_xls_severity.xls" style="position:absolute;top:11px;left:13px;width:100%;height:100%;"> 
+                                  <span cacheFile="%2FUI%2Fmetrodetection%2Fcustomer_service%2Fprocess%2FcomplaintAnalysis%2F.cache%2FmainActivity.report" dataList="reportData1" marginBottom="2.4mm" marginFootter="" marginHeader="" marginLeft="3.7mm" marginRight="3.7mm" marginTop="2.4mm" objectList="chart1" orientation="" pageHeight="297mm" pageWidth="210mm" paperType="A4" style="display:none" xblid="attribute"></span>  
+                                  <div xmlns="" id="report_report2_content" style="width:100%;height:100%;"> </div>  
+                                  <iframe xmlns="" name="report_report2_frame" onReadyStateChange="var xbl=justep.xbl('report2'); if (xbl != null) xbl._hideWaittingDialog()" style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;"> </iframe> 
+                                </div> 
+                              </div> 
+                            </div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="orgFilter" tag-type="rich" tag-name="div" icon="orgFilter.gif" text="组织机构过滤"
+		binding-component="/UI/system/components/orgFilter.xbl.xml#orgFilter"
+        namespace="xhtml" is-complex-component="true"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		display-property="id" component-class="OrgFilter" component-type="formControl">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="filter-data" text="过滤数据集" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="person-id-relation" text="人员标识关系" editor-ref="relationDlg" editor-parameter="filter-data" />
+			<!-- 
+			 <property name="personMember-id-relation" text="人员成员标识关系" editor-ref="relationDlg" editor-parameter="filter-data" />
+			 -->
+			<property name="org-url-relation" required="true" checkup-condition="@filter-data!=''" text="组织路径关系" editor-ref="relationDlg" editor-parameter="filter-data" />
+			<property name="auto-refresh" text="当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）" editor-ref="booleanList" readonly="true" default-value="false"/>
+			
+			<property name="has-current-person" text="包含本人" default-value="true" editor-ref="booleanList"/>
+			<property name="manage-codes" text="管理权限类型编码,支持多个用','分隔" default-value="businessManagement"/>
+			<property name="show-org-types" text="显示的机构类型，包括ogn,dpt,pos,psm，多个用','分隔" editor-ref="orgKindsList"/>
+			
+			<property name="dropdown-height" text="下拉框高度" />
+			<property name="default-value" text="默认值" editor-ref="defaultValueList" readonly="true"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-select"/>
+			<property name="class" text="class" editor-extend-data="xui-select:select"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly" default-value="false" data-type="boolean"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+		</properties>
+		
+		<inner-component-config>
+		     <item name="treeSelect" exclude-properties="ref,label-ref,multi-select">
+				<properties>
+					<property name="delay" readonly="true" editor-ref="" default-value="true"/> 
+					<property name="independence" readonly="true" editor-ref="" default-value="false"/> 
+				</properties>
+		     </item>
+		</inner-component-config>
+		
+		<property-editors>
+			<property-editor name="defaultValueList" type="list" >
+				<static-data value=",本人" /> <!--直接定义的静态数据 -->				
+			</property-editor>
+		</property-editors>
+		
+		<events>  <!--组件事件-->			
+			<event name="onInit"  text=""/>
+			<event name="onChanged"  text=""/>
+			<event name="onGetCondition" text="构造过滤条件"/>
+		</events>
+
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" onInit="" onChanged="" 
+				default-value="本人" 
+				component="/UI/system/components/orgFilter.xbl.xml#orgFilter">
+			</xhtml:div>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>
+

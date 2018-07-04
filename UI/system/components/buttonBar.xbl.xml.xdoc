@@ -1,0 +1,78 @@
+/**
+	@name UI.buttonBar
+	@component /UI/system/components/buttonBar.xbl.xml#buttonBar
+	@class
+	@description <b>[rich]</b>按钮栏, 可以横向展开
+	@model UI
+*/
+
+/**
+	@name UI.buttonBar#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/buttonBar.xbl.xml#buttonBar"
+*/
+
+/**
+	@name UI.buttonBar#id
+	@attribute
+	@required 
+	@description id标识
+*/
+
+/**
+	@name UI.buttonBar#separator
+	@attribute
+	@description 是否显示分隔线, 默认为false
+	
+*/
+
+/**
+	@name UI.buttonBar#separator-size
+	@attribute
+	@description 分隔间距尺寸, 默认为16
+*/
+
+/**
+	@name UI.buttonBar#expandable
+	@attribute
+	@description 是否可展开, 默认为false
+*/
+
+/**
+	@name UI.buttonBar#expanded
+	@attribute
+	@description 当expandable为true时, 这个属性决定初始时是否是展开的状态, 默认为false
+*/
+
+/**
+	@name UI.buttonBar#expanded-width
+	@attribute
+	@description 展开按钮的宽度
+*/
+
+/**
+	@name UI.buttonBar#expanded-position
+	@attribute
+	@description 展开按钮所在位置, 比如3就表示第三个元素后边放展开按钮, 这样从第四个元素开始可以隐藏或显示。
+*/
+
+/**
+	@name UI.buttonBar#expanded-label
+	@attribute
+	@description 展开按钮显示的文字
+*/
+
+/**
+	@name UI.buttonBar#icon-expanded
+	@attribute
+	@description 展开时图标
+*/
+
+/**
+	@name UI.buttonBar#icon-collapsed
+	@attribute
+	@description 收缩时图标
+*/
+

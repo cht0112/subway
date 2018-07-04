@@ -1,0 +1,90 @@
+.color-yellow {background:#f2bc00;}  
+.color-red    {background:#dd0000;}  
+.color-blue   {background:#148ea4;}  
+.color-white  {background:#dfdfdf;}  
+.color-orange {background:#f66e00;}  
+.color-green  {background:#8dc100;}
+
+*{
+	font-size: 12px;
+	font-family: arial, sans-serif;
+}
+html, body{
+	margin: 0;
+	padding: 0;
+}
+#main{
+	margin: 0 auto;
+	width: 396px;
+	background: #F4F5F3;
+	position: relative;
+}
+
+#main .head{
+	height: 60px;
+	background: url(login/images/bg-head.png);
+}
+
+/*
+#main .head p{
+	display: block;
+	height: 60px;
+	float: right;
+	width: 150px;
+	padding: 0;
+	margin: 0;
+	background: url(login/images/title.png) left 38px no-repeat;
+}
+*/
+#downApp span{
+	font-size:26px;
+	color:#888;
+	display:inline-block;
+	margin:10px 10px 0px 0px;
+	vertical-align: baseline;
+}
+
+#downApp span:hover{
+	cursor:pointer;
+	color:#444;
+}
+
+#setting{
+	margin: 20px;
+	position: relative;
+}
+#setting .inner {
+	/* display: none; */
+	margin-left: 100px;
+}
+
+#setting p{
+	margin: 5px 0;
+}
+#setting label{
+	color: #666;
+}
+
+#setting .on{
+	background: url(login/images/up.png);
+}
+
+.justep-info{
+	margin: 100px  auto 0 auto;
+	width: 280px;
+}
+.justep-info a{
+	color: #666;
+	text-decoration: none;
+}
+
+.tail {
+	height: 5px;
+	width: 100%;
+	bottom: 0;
+}
+.tail div{
+	height: 5px;
+	width: 66px;
+	float: left;
+}

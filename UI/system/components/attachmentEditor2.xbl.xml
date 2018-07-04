@@ -1,0 +1,46 @@
+<xbl:xbl xmlns:justep="http://www.justep.com/x5#" xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:saxon="http://saxon.sf.net/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns="http://www.justep.com/x5#" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	
+	<xbl:binding id="attachmentEditor2">
+		<xbl:implementation>
+			({
+				initXBL : function() {
+					justep.Utils.extend(this, justep.AttachmentEditor2, null, true);
+					this.initComponent();
+				},
+				initXBL2 : function() {
+					this.initContent();
+				}
+			})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style src="./attachmentEditor2/attachmentEditor2.css"></xbl:style>
+			<xbl:style>
+			<![CDATA[
+				.xui-attachmentEditor2{
+					width:400px;
+					height:100px;
+					overflow:auto;
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>
+	</xbl:binding>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/yahooUtil.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/attachmentEditor2/ajaxupload.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/docUtil2.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/attachmentEditor2/attachmentEditor2.js"></xbl:script>
+	<!--<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/Modal.js"/>
+	-->
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/windowOpener/windowOpener.js"/>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/dialog/dialog.js" />
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/windowDialog/windowDialog.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/windowRunner/windowRunner.js"/>
+</xbl:xbl>	

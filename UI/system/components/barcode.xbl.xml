@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript"> 
+				
+	<xbl:binding id="barcodeImage">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root xbl:class='xui-barcodeImage' xmlns:xbl="http://www.w3.org/ns/xbl">
+					<xhtml:img src="about:blank" id="{concat('img-',@id)}" onerror="this.src=justep.Request.convertURL('/UI/system/images/doc/empty.gif', true)" style="vertical-align:middle;">
+					</xhtml:img>
+				</root>									
+			</xsl:template>	 
+		</xbl:template>
+		
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+				this.stretch = "false"==this.domNode.getAttribute("stretch")? false: true;
+				this.type = this.domNode.getAttribute("type");
+				if(!this.type) this.type = "code39";
+				var ref = this.domNode.getAttribute('ref');
+				var idx = ref?ref.indexOf("("):-1;
+				var idx1 = ref?ref.indexOf("/"):-1;
+				if(idx!=-1){
+					this.data = ref.substring(idx+2, idx1 - idx + 2);		
+				}
+				if(idx1!=-1){
+					this.relation = ref.substring(idx1+1, ref.length);		
+				}			
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			"attachStoreEvent" : function(){
+				var d = justep.xbl(this.data);
+				if(d){
+					callback = function(event) {
+						var self = this;
+						window.setTimeout(function() {
+							self.refresh();
+						}, 200);
+					};
+					d.attachEvent(justep.XData.EVENT_REFRESHPAGEDATA_AFTER, callback, this);
+					d.attachEvent(justep.XData.EVENT_REFRESHDATA_AFTER, callback, this);
+					d.attachEvent(justep.XData.EVENT_INDEX_CHANGED, callback, this);
+					d.attachEvent(justep.XData.EVENT_DATA_CHANGED, callback, this);
+				}
+			},
+			"refresh" : function(){
+				var type = "&type="+this.type;
+				this.msg = justep.xbl(this.data).getValue(this.relation);
+				if(!this.msg || this.msg=="") {
+					if(this.msg != this._oldmsg) this.clear();
+					return;
+				}
+				this._oldmsg = this.msg;
+				this.msg = "&code="+this.msg;
+				var process = "&process=/SA/barcode/barcode/barcodeProcess";
+				var activity = "&activity=barcodeActivity";
+				var action = "&action=barcodeGenAction";
+				var config = "&config="+(this.domNode.getAttribute("config")?this.domNode.getAttribute("config"):"{}");
+				var url = justep.Request.setBizParams(justep.Request.convertURL("/UI/system/service/common/bizAction.j")
+						  + type
+						  + this.msg
+						  + process
+						  + activity
+						  + action
+						  + config);
+				
+				this.setImgSrc(url);
+				var func = this.domNode.getAttribute('onRefresh');
+				if(func){
+					func = justep.Function.get(func);
+					if(func) func({'source':this,'url':url});
+				}
+			},
+			"getImg" : function(){
+				return $('#img-'+this.domNode.id)[0];
+			},
+			"setStretch" : function(stretch){
+				return this.stretch = stretch;
+			},
+			"setImgSrc" : function(src){
+				var img = $('#img-'+this.domNode.id);
+				if (!this.stretch) {
+					img.attr('src',src);
+				}else {
+					img.css({height:'100%',width:'100%'});
+					img.attr('src',src);
+				}
+				img.show();
+			},
+			"clear" : function(){
+				var img = $('#img-'+this.domNode.id);
+				img.attr('src','about:blank');
+				img.hide();
+			}
+		})
+		]]>	
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-barcodeImage{
+
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>						
+	</xbl:binding>
+</xbl:xbl>

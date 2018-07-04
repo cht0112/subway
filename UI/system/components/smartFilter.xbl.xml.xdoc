@@ -1,0 +1,210 @@
+/**
+	@name UI.smartFilter
+	@component /UI/system/components/smartFilter.xbl.xml#smartFilter
+	@class justep.SmartFilter
+	@model UI
+	@description <b>[rich]</b>智能过滤组件
+	@example 
+	根据filter-relations指定的relation生成“relation1 like %值% or relation1 like %值% or ...”的过滤filter
+	当auto-refresh=true时回车将触发data自动刷新
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/smartFilter.xbl.xml#smartFilter" 
+		id="smartFilter1" 
+		filter-data="bizData1" 
+		filter-relations="fString" 
+		auto-refresh="false"/>
+</xmp>
+*/
+
+/**
+	@name UI.smartFilter#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/smartFilter.xbl.xml#smartFilter"
+*/
+
+/**
+	@name UI.smartFilter#id
+	@attribute
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.smartFilter#filter__sub__data
+	@attribute
+	@description 过滤dataID
+*/
+
+/**
+	@name UI.smartFilter#filter__sub__relations
+	@attribute
+	@description 过滤关系，多个用逗号分隔
+*/
+
+/**
+	@name UI.smartFilter#auto__sub__refresh
+	@attribute
+	@description 当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）
+*/
+
+/**
+	@name UI.smartFilter#getFilterName
+	@function
+	@description 获取filter name
+*/
+
+
+/**
+	@name UI.smartFilter#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.smartFilter#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.smartFilter#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.smartFilter#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.smartFilter#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.smartFilter#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.smartFilter#readonly
+	@attribute 
+	@description 只读
+*/
+
+/**
+	@name UI.smartFilter#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.smartFilter#setReadonly
+	@function
+	@param readonly {boolean} <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.smartFilter#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.smartFilter#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.smartFilter#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.smartFilter#getFilter
+	@function
+	@description 获取生成的过滤表达式
+*/
+
+/**
+	@name UI.smartFilter#getFilterData
+	@function
+	@description 获取过滤Data对象
+*/
+
+/**
+	@name UI.smartFilter#getInnerInput
+	@function
+	@description 获取内部input组件对象
+*/
+
+/**
+	@name UI.smartFilter#getInnerData
+	@function
+	@description 获取内部存放数据的Data对象
+*/
+
+/**
+	@name UI.smartFilter#getValue
+	@function
+	@description 获取过滤值
+*/
+
+/**
+	@name UI.smartFilter#setAutoRefresh
+	@function
+	@param autoRefresh {boolean} <b>[required]</b>是否自动刷新
+	@description 是否自动刷新，true时焦点离开即刷新数据，false时需要使用data.refreshData()方法刷新数据
+*/
+
+/**
+	@name UI.smartFilter#clearFilter
+	@function
+	@description 清空过滤条件
+*/
+
+/**
+	@name UI.smartFilter#onGetCondition
+	@event 
+	@description <b>[回调型事件]</b>构造过滤条件
+	@results {string} 接管后返回新的过滤表达式
+	@param event 
+	<br/><b>结构如下:</b>
+<xmp>
+	{
+		"source" : 组件对象
+		"filterData" : 过滤数据集
+		"filterRelations" : 过滤的关系
+		"value" : 当前过滤值
+		"defaultCondition" : 当前过滤语句
+		"handled" : 是否影响原过滤表达式，当设置为true时，会使用事件返回值作为过滤表达式
+	}
+</xmp>	
+	@example
+	//接管生成新过滤表达式
+	filterGetCondition = function(event){
+		//产生新过滤表达式:1=2，永远不会成立的条件
+		var filter = '1=2';
+		event.handled = true;
+		return filter;
+	}
+*/

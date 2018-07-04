@@ -1,0 +1,216 @@
+/**
+	@name UI.attachmentEditor2
+	@model UI
+	@component /UI/system/components/attachmentEditor2.xbl.xml#attachmentEditor2
+	@class XBL组件
+	@description <b>[rich]</b>附件编辑器组件
+	@example 
+		<xmp>
+			<xhtml:div
+				component="/UI/system/components/attachmentEditor2.xbl.xml#attachmentEditor2"
+				id="attachmentEditor2"
+				ref="data('main')/sAttachment"
+				auto-load="false"
+				runtime="html4"
+				autoCreateVersion="true"
+				sub-path="'bcb'"
+				access="1799"
+				limit-size=""
+				limit=""
+				extension-filter="所有图片文件:*.bmp;*.JPG;*.JPEG;*.JPE;*.JFIF;*.GIF;*.PNG;*.TIF;*.TIFF,位图文件(*.BMP):*.BMP"
+				display-buttons="upload:true; template:true; edit:true; delete:true; history:true; download:true">
+			</xhtml:div>   		
+		</xmp>
+*/
+
+/**
+	@name UI.attachmentEditor2#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/attachmentEditor2.xbl.xml#attachmentEditor2"
+*/
+
+/**
+	@name UI.attachmentEditor2#id
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>id标识
+*/
+
+/**
+	@name UI.attachmentEditor2#model
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>绑定附件的主数据所在model标识
+*/
+
+/**
+	@name UI.attachmentEditor2#ref
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>数据引用
+*/
+/**
+	@name UI.attachmentEditor2#runtime
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>附件采用html4原生方案上传还是采用flash上传
+*/
+/**
+	@name UI.attachmentEditor2#autoCreateVersion
+	@property 
+	@description <b>[attribute]</b>保存业务数据的时候自动成文
+*/
+/**
+	@name UI.attachmentEditor2#auto__sub__load
+	@property 
+	@description <b>[attribute]</b>附件数据是否自动加载
+	@default "false"
+*/
+
+/**
+	@name UI.attachmentEditor2#sub__sub__path
+	@property 
+	@description <b>[attribute]</b>上传文件到指定的知识中心目录下的动态子目录
+*/
+
+/**
+	@name UI.attachmentEditor2#access
+	@property 
+	@description <b>[attribute]</b>操作权限，7:下载,263:下载 上传,775:下载 上传 修改,1799:下载 上传 修改 删除
+*/
+
+/**
+	@name UI.attachmentEditor2#limit__sub__size
+	@property 
+	@description <b>[attribute]</b>限制上传文件的大小
+*/
+
+/**
+	@name UI.attachmentEditor2#display__sub__buttons
+	@property 
+	@description <b>[attribute]</b>设置显示的操作按钮
+*/
+
+/**
+	@name UI.attachmentEditor2#extension__sub__filter
+	@property 
+	@description <b>[attribute]</b>上传文件类型
+*/
+
+/**
+	@name UI.attachmentEditor2#refresh
+	@function
+	@description 设置附件初始化并加载数据：justep.xbl('attachmentEditor2_id').refresh();
+	@returns void
+*/
+
+/**
+	@name UI.attachmentEditor2#getValue
+	@function
+	@description 获取附件数据：justep.xbl('attachmentEditor2_id').getValue();
+	@returns Array
+*/
+
+/**
+	@name UI.attachmentEditor2#setPermission
+	@function
+	@description 设置附件操作权限：justep.xbl('attachmentEditor2_id').setPermission(access);
+	@returns void
+*/
+
+
+/**
+	@name UI.attachmentEditor2#deleteDoc
+	@function
+	@description 删除下载记录: justep.xbl('attachmentEditor2_id').deleteDoc(docID,docName);
+	@returns void
+*/
+
+/**
+	@name UI.attachmentEditor2#newFormTemplate
+	@function
+	@description 打开从模板新建对话框: justep.xbl('attachmentEditor2_id').newFormTemplate();
+	@returns void
+*/
+
+/**
+	@name UI.attachmentEditor2#onCreate
+	@event
+	@description <b>[回调型事件]</b>组件创建时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+
+/**
+	@name UI.attachmentEditor2#onRender
+	@event
+	@description <b>[回调型事件]</b>组件渲染前
+	@param event 它的结构如下:<br/>
+	{
+		"element": 要渲染部分的Element(jQuery对象),	
+		"type":'renderConatiner'/'renderRow'  渲染容器时候，还是渲染行时候.
+		"source" : 当前组件js对象
+	};
+	@example 
+	<xmp>
+	下面例子是渲染行的时候，
+	把span上class为att_name_btn的元素显示成baidu的logo.
+	if(event.type == "renderRow"){
+	  var rowEle = event.element;
+	  rowEle.css('height','100px').find("span.att_name_btn").text('').
+	  			append('<img width="100%" height="100%" src="http://www.baidu.com/img/bdlogo.gif"></img>');
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.attachmentEditor2#onNewFromTemplate
+	@event
+	@description <b>[回调型事件]</b>组件创建新建模板前
+	@param event 它的结构如下:<br/>{"source":组件的js对象,"data":新建模板的数据对象}
+*/
+
+/**
+	@name UI.attachmentEditor2#onBrowseDocClick
+	@event
+	@description <b>[回调型事件]</b>组件点击数据记录链接时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "fileID" : 当前记录对应文档服务器的ID, "host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentEditor2#onLoadData
+	@event
+	@description <b>[回调型事件]</b>组件加载数据时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"date":逐行加载记录的数据对象}
+*/
+
+/**
+	@name UI.attachmentEditor2#onUploadClick
+	@event
+	@description <b>[回调型事件]</b>组件点击上传按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+
+/**
+	@name UI.attachmentEditor2#onEditClick
+	@event
+	@description <b>[回调型事件]</b>组件点击编辑按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "fileID" : 当前记录对应文档服务器的ID, "docName" : 当前记录名称,"docPath" : 当前记录所在目录的路径,"host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentEditor2#onDeleteClick
+	@event
+	@description <b>[回调型事件]</b>组件点击删除按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "docName" : 当前记录名称, "host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentEditor2#onDownloadClick
+	@event
+	@description <b>[回调型事件]</b>组件点击下载按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "docName" : 当前记录名称, "host" : 所在文档服务器的host}
+*/
+
+/**
+	@name UI.attachmentEditor2#onHistoryClick
+	@event
+	@description <b>[回调型事件]</b>组件点击查看历史按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象;"docID" : 当前记录的id, "docName" : 当前记录名称, "host" : 所在文档服务器的host}
+*/

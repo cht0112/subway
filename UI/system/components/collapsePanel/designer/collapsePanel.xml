@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="collapsePanel" tag-name="div" icon="collapsePanel.gif" text="信息提示"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/collapsePanel.xbl.xml#collapsePanel"
+		display-property="id" component-class="CollapsePanel" component-type="layout-container">
+
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="title" text="标题"/>
+			<property name="fixed" text="允许折叠" default-value="true" editor-ref="booleanList"  data-type="boolean" allow-empty="true"/>
+			<property name="status" text="初始化状态" editor-ref="collapseValueList" default-value="expanded" allow-empty="true" enum-values=""/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog" use-default="true"/>	
+		</properties>
+		
+		<property-editors>
+			<!--下拉列表类型的编辑器-->
+			<property-editor name="collapseValueList" type="list" >
+				<static-data value="expanded,collapsed" /> <!--直接定义的静态数据 -->				
+			</property-editor>
+		</property-editors>
+		
+		<events>  <!--组件事件-->			
+			<event name="onExpand"  text=""/>
+			<event name="onCollapse"  text=""/>
+		</events>
+
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xforms="http://www.justep.com/xforms" xmlns:xhtml="http://www.w3.org/1999/xhtml"  
+					fixed="true" status="expanded"     
+					component="/UI/system/components/collapsePanel.xbl.xml#collapsePanel">
+					<group name="panelarea"/>
+				</xhtml:div>	
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="treeLocate" tag-name="div" icon="treeLocate.gif" text="树定位" 
+		binding-component="/UI/system/components/quickLocate.xbl.xml#treeLocate" display-property="id" 
+        component-class="TreeLocate" component-type="formControl" design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="data" text="过滤数据集" required="true"/>
+			<property name="relations" text="过滤关系，多个用逗号分隔" required="true"/>
+			<property name="path-relation" text="路径关系" required="true"/>
+			<property name="tree" text="grid编号" required="true"/>		
+			<property name="class" text="class" editor-extend-data="ui-light:light"/>
+			<property name="style" text="样式" editor-ref="styleDialog" />
+			<property name="tabindex" text="Tab键顺序" data-type="integer" allow-empty="true"/>
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly"  default-value="false" data-type="boolean" allow-empty="true"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean" allow-empty="true"/>			
+		</properties>
+
+		<events>
+			<event name="onGetCondition" text="构造过滤条件"/>
+		</events>
+		
+		<property-editors>
+		</property-editors>
+		
+		<templates>
+		   	<template name="default">
+		   		<![CDATA[ 
+				<xhtml:div class="ui-light" component="/UI/system/components/quickLocate.xbl.xml#treeLocate"/>
+		   		]]>
+		   	</template>
+		</templates>
+	</element>
+</elements>

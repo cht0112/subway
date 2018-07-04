@@ -1,0 +1,672 @@
+/**
+	@name UI.grid
+	@component /UI/system/components/grid.xbl.xml#grid
+	@class grid组件
+	@model UI
+	@description <b>[rich]</b>grid组件
+	@example 
+	<b>说明：</b>
+<xmp>
+	1、grid组件基于dhtmlx grid组件扩展，相关能力和api可以参考dhtmlx grid相关文档
+	2、justep.xbl('..').grid是dhtmlx grid组件对象
+	3、属性appearance=tree时按tree样式展现
+	4、当使用tree或者treeGrid形式展现时需要有一列且只有一列是tree类型，同时设置关联data的is-tree和tree-option属性
+</xmp>	
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/grid.xbl.xml#grid" style="height:100%;width:100%;">
+		<xforms:column ref="col1" label="列1" >
+		<xforms:column ref="col2" label="列2" type="ed">
+		<xforms:column ref="col3" label="列3" type="ed">
+	</xhtml:div>		   		
+</xmp>
+*/
+
+/**
+	@name UI.grid#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/grid.xbl.xml#grid"
+*/
+
+/**
+	@name UI.grid#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.grid#data
+	@attribute
+	@required
+	@description 数据
+*/
+
+/**
+	@name UI.grid#smart__sub__render
+	@attribute
+	@type integer
+	@description  智能渲染, 优化速度，grid只渲染指定记录数或当前显示得记录数
+*/
+
+/**
+	@name UI.grid#server__sub__sort
+	@attribute
+	@type boolean
+	@description  服务端排序，和关联的data实现排序有关，bizData使用ksql order by实现
+*/
+
+/**
+	@name UI.grid#multi__sub__selection
+	@attribute
+	@type boolean
+	@description 是否多选，第一列column type="tree"的情况下使用
+*/
+
+/**
+	@name UI.grid#direct__sub__edit
+	@attribute
+	@type boolean
+	@description 是否为直接编辑模式，当设置为true时，点击单元格后直接进入编辑状态，否则双击进入编辑状态<br/>
+	<b>注意：</b>
+	<xmp>
+	direct-edit=true时需要关注和事件onRowClick的冲突
+	direct-edit=false时需要关注和事件onRowDblclick的冲突
+	</xmp>
+	@default false
+*/
+
+/**
+	@name UI.grid#fixed__sub__column__sub__count
+	@attribute
+	@type integer
+	@description 固定列数，表格从左至右一共有几列为固定列
+*/
+
+/**
+	@name UI.grid#row__sub__height
+	@attribute
+	@type integer
+	@description 行高，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.grid#header__sub__row__sub__height
+	@attribute
+	@type integer
+	@description 列头的高度，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.grid#header__sub__filter__sub__row__sub__height
+	@attribute
+	@type integer
+	@description 列头中过滤行的高度，为空是使用grid的class中的定义
+*/
+
+/**
+	@name UI.grid#appearence
+	@attribute
+	@type string
+	@description 是否显示网格，取值范围：grid、tree
+*/
+
+/**
+	@name UI.grid#move__sub__column
+	@attribute
+	@type boolean
+	@description 是否允许拖动列头改变列位置
+*/
+
+/**
+	@name UI.grid#cascade
+	@attribute
+	@type string
+	@description 是否级联勾选（grid为tree即appearence=tree且多选时有效）
+*/
+
+/**
+	@name UI.grid#dragable
+	@attribute
+	@type boolean
+	@description 是否允许拖动改变位置（grid为tree即appearence=tree时有效）
+*/
+
+/**
+	@name UI.grid#show__sub__header__sub__menu
+	@attribute
+	@type string
+	@description 表头右键菜单，可选项如下，多项用逗号分割<br />
+	<b>选项：</b>
+	<xmp> 
+		hide-column：显示隐藏列
+		save-layout：保存列布局
+		group-column：按照列分组
+		adjust-column：自适应宽度
+	</xmp>	
+*/
+
+
+/**
+	@name UI.grid#onInit
+	@event
+	@description 表格初始化时
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象,
+		"grid" : dhtmlxGrid对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onBeforeIndexChanged
+	@event
+	@description 当前行改变之前触发，通过return判断是否可以改变行
+	@param event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象,
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 准备选中行的ID
+	}
+	</xmp>
+	@return {boolean} true: 允许行改变；false：禁止行改变；
+*/
+
+/**
+	@name UI.grid#onAfterIndexChanged
+	@event
+	@description 当前行改变结束后触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 选中行的ID,
+		"oldRowID" : 行改变前的rowID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onCellHint
+	@event
+	@description 鼠标移动到单元格上后，显示hint回调
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 单元格所在行ID, 
+		"columnID" : 单元格所在列ID, 
+		"value" : 单元格值
+	}
+	</xmp>
+	@return {string} hint文本内容
+*/
+
+/**
+	@name UI.grid#onRowValueChanged
+	@event
+	@description 行级值改变后触发，加载数据时，每渲染完一行后触发，非加载数据时，单元格值改变后触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onLastEditorPressEnter
+	@event
+	@description 编辑模式(direct-edit=true)时，在最后一行的最后一个单元格回车触发，通常用来添加新行
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowClick
+	@event
+	@description 行单击事件
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowDblclick
+	@event
+	@description 行双击事件
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowRightClick
+	@event
+	@description 鼠标右键单击行时触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowCheck
+	@event
+	@description 当有column的类型为checkbox时候，选择触发，可以通过event.cancel忽略当前操作
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID,
+		"checked" : 是否选中,
+		"cancel" : 是否取消当前动作
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowChecked
+	@event
+	@description 当有column的类型为checkbox时候，选择完成后触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID,
+		"checked" : 是否选中
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowCheckedAll
+	@event
+	@description 点击表头全选触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"checked" : 是否选中
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowExpand
+	@event
+	@description 树节点展开时触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"delay" : 是否处于延迟状态
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowHasChildren
+	@event
+	@description 返回值确定是否有子数据，返回true将在树上显示'+'，当设置data的node-kind-relation属性后事件失效
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"cell" : 当前的tree列,
+		"value" : 当前的tree列的值，其他列的值可以通过cell.getValueByColId(列名)获取
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onShowNodeImg
+	@event
+	@description 树节点图标回调
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 行ID
+	}
+	</xmp>
+	@return {string} 图片路径
+*/
+
+/**
+	@name UI.grid#onBeforeRowDrag
+	@event
+	@description 鼠标拖动树节点前触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"srcRowID" : 被拖动节点ID,
+		"srcParentRowID" : 原始父节点ID,
+		"targetRowID" : 目标父节点ID
+	}
+	</xmp>
+	@return {boolean} true:允许拖动到该节点下；false:不允许拖动到该节点下
+*/
+
+/**
+	@name UI.grid#onAfterRowDrag
+	@event
+	@description 鼠标拖动树节点完成后触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"srcRowID" : 被拖动节点ID,
+		"srcParentRowID" : 原始父节点ID,
+		"targetRowID" : 目标父节点ID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid#onRowAllowCheck
+	@event
+	@description 多选时，某一行是否可选触发
+	@param {object} event <br/>
+	<b>参数结构：</b>
+	<xmp>
+	{
+		"source" : XFGrid对象, 
+		"instance" : instance,
+		"grid" : dhtmlxGrid对象,
+		"rowID" : 节点ID
+	}
+	</xmp>
+	@return {boolean} true:可选；false:不可选
+*/
+
+
+/**
+	@name UI.grid#getDhtmlxGrid
+	@function
+	@return {object} dhtmlxgrid对象
+	@description 返回dhtmlxgrid对象（对象用法请参考dhtmlxgrid文档）
+*/
+
+
+/**
+	@name UI.grid_column
+	@component /UI/system/components/grid.xbl.xml#grid
+	@description grid列
+	@class 
+	@model UI 
+	@example
+	<b>xml格式：</b> 
+<xmp>
+	<xhtml:div component="/UI/system/components/grid.xbl.xml#grid" style="height:100%;width:100%;">
+		<xforms:column ref="col1" label="列1" >
+		<xforms:column ref="col2" label="列2" type="ed">
+		<xforms:column ref="col3" label="列3" type="ed">
+	</xhtml:div>		   		
+</xmp>
+*/
+
+/**
+	@name UI.grid_column#ref 
+	@attribute
+	@required
+	@description 引用
+*/
+
+/**
+	@name UI.grid_column#label 
+	@attribute
+	@description 表头名称
+*/
+  
+/**
+	@name UI.grid_column#type 
+	@attribute
+	@description 编辑器类型，默认ro<br/>
+	<b>取值范围：</b>
+	<xmp>
+	ro：只读
+	ed：单行编辑，自动感知relation类型，当是date、datetime类型时提供时间选择框编辑器
+	tree：树型节点列，当grid为tree时必须有一列且一列tree类型
+	html：以html渲染单元格，通过接管事件onRender完成单元格渲染
+	textarea：嵌入grid行中的多行文本编辑器，
+	txt：弹出形式的多行文本编辑器
+	select：下拉选择，需给定editor属性为gridSelect/treeSelect的id
+	date：日期型编辑器，推荐使用ed实现
+	dateTime：日期时间型编辑器，推荐使用ed实现
+	ch：多选编辑器，(通常绑定计算列使用)
+	inputbtn：带按钮的ed编辑器
+	outputbtn：带按钮的ro编辑器
+	attachment: 附件编辑器
+	</xmp>
+*/
+
+/**
+	@name UI.grid_column#width 
+	@attribute
+	@description 列宽，单位:px，支持#和*写法，#：根据列内容自动调整列宽度，*：使用grid其他列剩余宽度，当有多个*列时进行平分 
+*/
+
+/**
+	@name UI.grid_column#align 
+	@attribute
+	@description 单元格内容显示的位置，取值范围：left、center、right
+
+*/
+
+/**
+	@name UI.grid_column#sort__sub__datatype 
+	@attribute
+	@description 排序类型，通过点击列头对表格进行排序，取值范围：str、int，默认为空即不支持点击列头排序
+	
+*/
+
+/**
+	@name UI.grid_column#filter__sub__editor 
+	@attribute
+	@description 在表头显示数据过滤输入框的类型<br/>
+	<b>取值范围：</b>
+	<xmp>
+	#text_filter	: 文本输入过滤框
+	#select_filter 	：下拉选择过滤框
+	#numeric_filter	： 数字过滤框
+	#master_checkbox	：checkbox全选框
+	#text_search	：文本输入定位框
+	</xmp>	
+	
+*/
+
+/**
+	@name UI.grid_column#editor
+	@attribute
+	@description 绑定编辑器的id，目前支持当列类型为select时绑定gridSelect和treeSelect 
+*/
+
+/**
+	@name UI.grid_column#readonly
+	@attribute
+	@type boolean
+	@description 是否只读，支持的编辑器类型有tree、dateTime、date、inputbtn 
+*/
+
+/**
+	@name UI.grid_column#visible
+	@attribute
+	@type boolean
+	@description 列是否可见
+*/
+
+/**
+	@name UI.grid_column#format
+	@attribute
+	@description 数字和日期格式化，支持的编辑器类型包括ro、ed、date、dateTime
+	@example 
+	<b>数字格式化：</b>
+	1> 小数位数：描述如 0.00 保留两位小数
+	2> 百分数：0.0%  一位小数的百分数
+	3> 科学计数：00.0E0   E0左边定义了有效数字 ，3位有效数字，小数位数为1
+	4> 千分位：0,000.00      如:保留两位小数 format="0.00"
+	<b>日期格式化：</b>
+	format="yyyy-MM-dd" 
+	format="yyyy-MM-dd hh:mm:ss" 
+*/
+
+/**
+	@name UI.grid_column#show__sub__index
+	@attribute
+	@boolean
+	@description 表格将会显示行号1,2,3,4... 树将会显示节点层次结构1.1, 1.1.1, 1.1.1.2, 1.2 
+*/
+
+/**
+	@name UI.grid_column#enter__sub__selected
+	@attribute
+	@type boolean
+	@description 只应用于ed类型编辑器，为true时，用户点击进入单元格编辑器后，文本直接会被选中 
+*/
+
+/**
+	@name UI.grid_column#input__sub__regex
+	@attribute
+	@description 只应用于ed类型编辑器， 通过正则表格式控制用户输入键盘输入，用户每输入一个字符时，就会用此表达式进行验证 
+	@example 
+	<xmp>
+		只能输入正负整数
+			input-regex = "/(^-?$)|(^-?[0-9]*$)/" 
+		只能输入正负浮点数
+			input-regex = "/(^-?$)|(^-?[0-9]*([.]?[0-9]*)?$)/"
+	</xmp>
+*/
+
+/**
+	@name UI.grid_column#checked__sub__value
+	@attribute
+	@description 只应用于ch类型编辑器，开发者指定选中后的值，默认为1 
+*/
+
+/**
+	@name UI.grid_column#unchecked__sub__value
+	@attribute
+	@description 只应用于ch类型编辑器，开发者指定非选中后的值，默认为0 
+*/
+
+/**
+	@name UI.grid_column#onRender
+	@event
+	@description 单元格渲染时触发，只应用于html和 tree类型。
+	@param {object} event <br/>
+	<b>结构如下：</b>
+	<xmp>
+	{
+		"source" : dhtmlGrid对象,
+		"value" : 当前单元格值;
+		"cell" : 当前单元格对象,
+		"rowID" : 当前单元格所在行ID
+	}
+	</xmp>
+	@return {string} 返回标准html片段，将会作为单元格显示的内容，注：不能通过getValue获取列数据，html列可以通过event.cell.getValueByColId(列名)获取
+	@example 
+	<xmp>
+	//通过列值1:0显示男女
+	cellRender = function(event){
+		return event.value=='1'?'男':'女'	
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid_column#onEditDone
+	@event
+	@description 只应用于inputbtn编辑器，在输入框回车后触发
+	@param {object} event <br/>
+	<b>结构如下：</b>
+	<xmp>
+	{
+		"source" : dhtmlGrid对象,
+		"value" : 输入框的值;
+		"cell" : 当前单元格对象,
+		"rowID" : 当前单元格所在行ID
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.grid_column#onButtonClick
+	@event
+	@description 只应用于inputbtn、outputbtn编辑器，点击button按钮时触发
+	@param {object} event 事件属性:<br/>
+	<b>结构如下：</b>
+	<xmp>
+	{
+		"source" : dhtmlGrid对象,
+		"value" : 输入框的值,
+		"cell" : 当前单元格对象,
+		"rowID" : 当前单元格所在行ID
+	}
+	</xmp>
+*/

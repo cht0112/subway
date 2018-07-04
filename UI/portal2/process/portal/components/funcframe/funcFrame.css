@@ -1,0 +1,143 @@
+.funcFrame{
+	background: white;
+}
+.funcFrame .fun-head {
+	top: 0;
+	height: 34px;
+	background: url(./images/bg-head.png);
+}
+
+.funcFrame .fixed-head {
+	width: 100%;
+	height: 34px;
+	margin-bottom: 5px;
+}
+
+.funcFrame .fun-head-inner {
+	margin: 0 4px;
+	height: 34px;
+	color: white;
+	/*
+	background: url(./images/logo2.jpg) no-repeat;
+	*/
+}
+.funcFrame .fun-head-inner .fun-head-bar {
+	height: 34px;
+	/*
+	margin-left: 132px;
+	*/
+}
+.funcFrame .fun-head-left {
+	float: left;
+}
+
+.funcFrame .title {
+	font-size: 20px;
+}
+
+.funcFrame .fun-head-left a {
+	float: left;
+}
+
+.funcFrame .fun-head-left .title {
+	float: left;
+	line-height: 32px;
+	height: 32px;
+	margin: 1px 20px;
+	font-weight: bold;
+	max-width: 800px; 
+}
+
+.funcFrame .fun-head-right .user {
+	height: 34px;
+	margin-right: 12px;
+}
+.funcFrame .fun-head-right .user .imag-wrap {
+	margin-top: 7px;
+	height:20px;
+	width: 20px;
+	display: inline-block;
+	border-radius: 2px;
+	background: url(./images/man.jpg) no-repeat;
+}
+.funcFrame .fun-head-right .user img {
+	width: 20px;
+	height:20px;
+	border-radius: 2px;
+}
+.funcFrame .fun-head-right .user .name,
+.funcFrame .fun-head-right .user .loginTime {
+	margin: 7px 10px 0 5px;
+	line-height:20px;
+	height: 20px;
+	vertical-align: top;
+	display: inline-block;
+}
+.funcFrame .fun-head-right .tools {
+	margin-top: 7px;
+	line-height:20px;
+	height: 20px;
+	vertical-align: top;
+	display: inline-block;
+}
+.funcFrame .fun-head-right .close {
+	vertical-align: top;
+	margin-top: 6px;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 7px;
+	background: url(./images/close.gif) 62px center no-repeat;
+	color: white;
+	padding: 4px 28px 4px 8px;
+	font-size: 12px;
+	cursor: pointer;
+}
+.funcFrame .fun-head-right .tools a {
+	text-decoration: none;
+	color: white;
+}
+.funcFrame .fun-head-right {
+	position: absolute;
+	right: 20px;
+	top: 0px;
+}
+
+.funcFrame iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.funcFrame .home-btn{
+	text-decoration: none;
+	margin-top: 6px;
+	display: inline-block;
+	border-radius: 7px;
+	background: url(./images/home.gif) 8px center no-repeat;
+	color: white;
+	padding: 4px 8px 4px 28px;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.funcFrame .home-btn:hover, 
+.funcFrame .fun-head-right .close:hover {
+	text-decoration:underline;
+}
+
+.funcFrame .logout{
+	margin: 6px 20px 0 10px;
+	vertical-align: top;
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 7px;
+	color: white;
+	padding: 4px 28px 4px 8px;
+	font-size: 12px;
+	
+}
+.funcFrame .logout a{
+	color: white;
+	text-decoration: none;
+	margin-right: 20px;
+	line-height: 20px;
+}

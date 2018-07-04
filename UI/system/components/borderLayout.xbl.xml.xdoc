@@ -1,0 +1,67 @@
+/**
+	@name UI.borderLayout
+	@component /UI/system/components/borderLayout.xbl.xml#borderLayout
+	@model UI
+	@class border布局组件
+	@description <b>[rich]</b><b>[quick]</b>布局组件
+	@example 
+<xmp>
+      <xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout" 
+      	style="width:100%; height: 100%;"
+        id="border1">
+        <top size="150px">
+           	<xhtml:div style="height:100%;background-color:#5F9EA0;font-size:20px;color:white;">
+           		TOP 区域
+           	</xhtml:div> 
+        </top>
+        <left size="200px">
+           	<xhtml:div style="height:100%;width:100%;background-color:#CDAA7D;font-size:20px;color:white;">
+           		LEFT 区域
+           	</xhtml:div> 
+        </left>
+        <center>
+          <xhtml:div style="width:100%;height:100%;background-color:white;overflow:hidden;font-size:20px;">
+          	CENTER 区域
+          </xhtml:div>
+        </center>
+        <right size="200px">
+           	<xhtml:div style="height:100%;width:100%;background-color:#CDAA7D;font-size:20px;color:white;">
+           		RIGHT 区域
+           	</xhtml:div> 
+        </right>
+        <bottom size="150px">
+           	<xhtml:div style="height:100%;background-color:#5F9EA0;font-size:20px;color:white;">
+           		BOTTOM 区域
+           	</xhtml:div> 
+        </bottom>
+      </xhtml:div> 
+</xmp>
+*/
+
+/**
+	@name UI.borderLayout#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/borderLayout.xbl.xml#borderLayout"
+*/
+
+/**
+	@name UI.borderLayout#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.borderLayout#size
+	@property 
+	@description <b>[attribute]</b>设置top bottom区域的高度或left right区域宽度，该属性是放在区域标签上的
+*/
+
+/**
+	@name UI.borderLayout#borderSize
+	@property 
+	@description <b>[attribute]</b>设置边的宽度，该属性是放在区域标签上的
+*/
+
+
+

@@ -1,0 +1,61 @@
+
+<html>
+<head>
+  <title>Complex Layout</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<script type="text/javascript"  src="../dojo/dojo/dojo.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/_base.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/matrix.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/path.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/shape.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/silverlight.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/svg.js"></script>
+		<script type="text/javascript"  src="../dojo/dojox/gfx/vml.js"></script>
+
+		<script type="text/javascript" src="testData.js"></script>
+		
+ 		<script type="text/javascript" src="json.js"></script>
+		<script type="text/javascript" src="base.js"></script>
+		<script type="text/javascript" src="Observable.js"></script>
+		<script type="text/javascript" src="Route.js"></script>
+		<script type="text/javascript" src="graphics.js"></script>
+		<script type="text/javascript" src="Canvas.js"></script>
+		<script type="text/javascript" src="Diagram.js"></script>
+		<script type="text/javascript" src="ProcessTrajectoryView.js"></script>
+
+	 	<style>
+			 
+		</style>
+	</head>
+
+	<body unselectable="on" onselectstart="return false;" style="-moz-user-select:none;">
+	<div id="center"  >
+	   
+	   <div id="canvas1" style="border:1px solid;width: 100%; height: 600px;overflow:auto"  onselectstart="return false"/>
+	   
+	   
+	   
+	</div> 
+	<span id="p1" style="font-size:9pt"></span>
+	   <script type="text/javascript">
+
+	      
+ 
+    	function initDesigner(){   
+    	    var t1 = (new Date()).getTime();
+            canvas = new Justep.graphics.Canvas({id:'canvas1'});
+			var diagram = new Baud();
+			diagram.setCanvas(canvas);
+			diagram.loadData(botData);
+      	 
+			var t2 = (new Date()).getTime();
+			alert(t2-t1);
+
+        }
+         dojo.addOnLoad(initDesigner);
+ 
+        
+	   </script>
+	</body>
+</html>

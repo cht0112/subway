@@ -1,0 +1,29 @@
+/**
+	@name justep.Portal.Customizer
+	@model UI
+	@class 
+	@language js
+	@description 这个类负责门户状态的持久化，如布局，常用功能，还可定制存储。 数据是保存在服务端的。
+	@example 
+		<xmp>
+		var customizer = new Customizer();
+		customizer.save('my', {name: 'zhang hui'});
+		customizer.get('my').name;//zhang hui
+		</xmp>
+*/
+
+/**
+	@name justep.Portal.Customizer#save
+	@function
+	@description 保存数据， 可以用来保存任意数据 
+	@param {string} key <b>[required]</b> 需要保存的数据标示名， 在get方法中需要使用这个名字来获取数据
+	@param {string} data <b>[required]</b> 需要保存的数据 
+*/
+
+/**
+	@name justep.Portal.Customizer#get
+	@function
+	@description  
+	@param {string} key <b>[required]</b> 保存时使用的标示名
+	@returns void
+*/

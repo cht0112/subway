@@ -1,0 +1,49 @@
+.tab{
+	height: 100%;
+	position: relative;
+}
+.tab .tab-content{
+	height: 100%;
+	margin-right: 120px;
+}
+.tab >ul {
+	display: block;
+	color: white;
+	float: right;
+	width: 120px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.tab >ul li {
+	position: relative;
+	border-bottom: 1px solid #999;
+}
+
+.tab >ul li span {
+	display: none;
+	position: absolute;
+	height: 36px;
+	width: 16px;
+	left: -16px;
+	background: url(./images/tab-left.png) no-repeat;
+}
+
+.tab >ul li a {
+	display: inline-block;
+	width: 88px;
+	text-decoration: none;
+	color: white;
+	padding: 10px 16px;
+}
+
+.tab >ul .on a{
+	background-color: #999;
+}
+
+.tab >ul .on span{
+	display: block;
+}
+
+

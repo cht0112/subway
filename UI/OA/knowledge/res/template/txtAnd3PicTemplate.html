@@ -1,0 +1,100 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Language" content="zh-cn" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>${Title}</title>
+		<style type="text/css"> 
+			#zj {
+	/*height: 544px;*/
+	overflow:hidden;
+	width="100%";
+	margin-top: 13px;
+	margin-right: 40px;
+	margin-left: 40px;
+	align:center;
+}
+#zj #zjyou h1 samp {
+	color: #F00;
+	font-weight: bold;
+}
+#zj #zjzhuo #zjzhuolm #guanlixia ul li a {
+	color: #3064ad;
+	text-decoration: none;
+}
+#zj #zjzhuo #zjzhuolm #guanlixia li a:hover,
+#zj #zjzhuo #zjzhuolm #guanlixia li a:active{
+	color: #1e72b0;
+	text-decoration: none;
+	background-color: #ffffff;
+	display: block;
+}
+#zj #zjzhuo #zjzhuolm #guanlixia ul li li a:link,
+#zj #zjzhuo #zjzhuolm #guanlixia ul li li a:visited{ color:#152f55;}
+#zj #zjzhuo #zjzhuolm #guanlixia ul li li a:hover,
+#zj #zjzhuo #zjzhuolm #guanlixia ul li li a:active{ color:#3064AD;}
+
+#fangjiatongzhi {
+	height: 23px;
+	font-size: 20px;
+	font-weight: bolder;
+	color: #3278b4;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #585858;
+	border-top-width: 1px;
+	border-top-style: dashed;
+	border-top-color: #bcbcbc;
+	padding-top:10px;
+	margin-top:10px;
+}
+
+#zhongjianxiaoxi {
+	FONT-SIZE: 14px; LINE-HEIGHT: 1.5; LETTER-SPACING: 2px; TEXT-ALIGN: =
+left
+}
+#zhongjianxiaoxi,p.laiyuan{color:#000;font-size:12px;}
+
+
+		</style>
+		<!--<script>
+		<![CDATA[
+			function InitFun() {
+				var releaseInfo = "";
+				var params = window.location.search.substring(1).split("&");	
+				for(var i=0; i<params.length; i++) {
+					var param = params[i];
+					if(param.indexOf("releasePsnName") > -1) {
+						releaseInfo += param.substring(param.indexOf("=") + 1) + "   ";
+                    } else if(param.indexOf("releaseTime") > -1) {
+						releaseInfo += param.substring(param.indexOf("=") + 1) ;
+ 					}
+				}
+				if(releaseInfo != "") {
+					releaseInfoID.innerHTML = releaseInfo;
+				}				
+			}	
+		]]>
+		</script>
+		<body onload="InitFun();">
+		--></head>
+<body>
+		<div id="zj">
+	    <div style="padding:0px 5px;">
+		    <h2 id="fangjiatongzhi" style=" text-align:center; padding-bottom:10px;padding-right: 0px; padding-left: 0px;">${fTitle}</h2>
+	  		<p class="laiyuan" style=" text-align:center;padding-right: 0px; padding-left: 0px;" id="releaseInfoID">发布人：${fCreatePsnName}  发布日期：${fCreateTime}</p>
+	  		<div style="text-align:center;padding-right: 0px; padding-left: 0px;">
+	  			<img src="${pic}" width="380" height="230" />
+	  		</div>
+	  		<div style="text-align:center; padding:5px 0px;">
+	  			<img src="${pic}" width="380" height="230" />
+	  		</div>
+	  		<div style="text-align:center; padding:5px 0px;">
+	  			<img src="${pic}" width="380" height="230" />
+	  		</div>
+	  		<div id="zhongjianxiaoxi" style="font-size:14px; line-height:25px; padding:0px 0px;">
+		       ${fContent}
+		    </div>
+  		</div> 
+		</div> 
+	</body>
+</html>

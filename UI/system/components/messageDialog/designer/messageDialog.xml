@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="messageDialog" tag-name="div" icon="messageDialog.gif" text="信息提示"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/messageDialog.xbl.xml#messageDialog"
+		display-property="id" component-class="MessageDialog" component-type="formControl" parent-range="view" design-view="web-designer">
+
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="title" text="标题" />
+			<property name="message" text="提示信息" />
+			<property name="details" text="详细信息" />
+			<!-- 
+			<property name="img" text="图片" editor-ref="fileDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp"/>
+			 -->
+			<property name="img" text="图片" editor-ref="imgType"/>
+			<property name="type" text="类型" editor-ref="messgeDialogType" readonly="true" default-value="OK"/>
+			<property name="width" default-value="420"/>
+			<property name="height" default-value="150"/>
+		</properties>
+
+		<property-editors>
+			<property-editor name="messgeDialogType" type="list">
+				<static-data value="0:OK,1:OKCancel,2:YesNo,3:YesNoCancel"></static-data>
+			</property-editor>
+			<property-editor name="imgType" type="list">
+				<static-data value="info,error,question,right"></static-data>
+			</property-editor>
+		</property-editors>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml"           
+					component="/UI/system/components/messageDialog.xbl.xml#messageDialog"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root> 
+  <item display="solid" label="检测流程管理" icon="liucheng.png"> 
+    <item label="检测申请" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="mainActivityNew" url="/metrodetection/detection_Process_Related/process/detectionManager/mainActivityNew.w"/>  
+    <item label="检测申请" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivityNew1" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivityNew1.w"/>  
+    <item label="技术审核" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity2" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity2.w"/>  
+    <item label="行政审核" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity3" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity3.w"/>  
+    <item label="制定计划" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity4" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity4.w"/>  
+    <item label="合约意向" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity5" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity5.w"/>  
+    <item label="接收样品" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity6" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity6.w"/>  
+    <item label="执行检测" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity7" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity7.w"/>  
+    <item label="检测结果分析" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity8" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity8.w"/>  
+    <item label="回归方案编制" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity10" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity10.w"/>  
+    <item label="回归计划" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bizActivity9" url="/metrodetection/detection_Process_Related/process/detectionManager/bizActivity9.w"/>  
+    <item label="签署合同" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="qianshuhetong" url="/metrodetection/detection_Process_Related/process/detectionManager/qianshuhetong.w"/>  
+    <item label="合同管理" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="hetongguanli" url="/metrodetection/detection_Process_Related/process/detectionManager/hetongguanli.w"/>  
+    <item label="检测环境确认" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="jiancehuanjingqueren" url="/metrodetection/detection_Process_Related/process/detectionManager/jiancehuanjingqueren.w"/>  
+    <item label="调整计划" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="tiaozhengjihua" url="/metrodetection/detection_Process_Related/process/detectionManager/tiaozhengjihua.w"/>  
+    <item label="变更申请" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bgsq" url="/metrodetection/detection_Process_Related/process/detectionManager/bgsq.w"/>  
+    <item label="变更审核" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="bgsh" url="/metrodetection/detection_Process_Related/process/detectionManager/bgsh.w"/>  
+    <item label="回归方案审核" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="hgfash" url="/metrodetection/detection_Process_Related/process/detectionManager/hgfash.w"/>  
+    <item label="变更流程发起" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="hdfz" url="/metrodetection/detection_Process_Related/process/detectionManager/hdfz.w"/>  
+    <item label="检测结果分析" process="/metrodetection/report_data/process/testResultAnasysProcess/testResultAnasysProcessProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/testResultAnasysProcess/testResultAnalysis.w"/>  
+    <item label="检测过程监测" process="/metrodetection/report_data/process/testProcessMonitor/testProcessMonitorProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/testProcessMonitor/testProcessMonitor.w"/>  
+    <item label="检测申请查询" process="/metrodetection/detection_Process_Related/process/detectionProcessQuery/detectionProcessQueryProcess"
+      activity="mainActivity" url="/metrodetection/detection_Process_Related/process/detectionProcessQuery/mainActivity.w"/>  
+    <item label="申请项目方案信息" process="/metrodetection/detection_Process_Related/process/projectApplycationSchemeProcess/projectApplycationSchemeProcessProcess"
+      activity="mainActivity" url="/metrodetection/detection_Process_Related/process/projectApplycationSchemeProcess/projectActivity.w"/>
+      
+      <item label="流程结束通知" display="hide" process="/metrodetection/detection_Process_Related/process/detectionManager/detectionManagerProcess"
+      activity="detectionProcessQueryDetail" url="/metrodetection/detection_Process_Related/process/detectionManager/detectionProcessQueryDetail.w"/> 
+  </item>  
+  <item display="solid" label="检测规范管理" icon="jiance.png"> 
+    <item label="检测标准管理" process="/metrodetection/testing_standard/process/dection_based_on_info/dection_based_on_infoProcess"
+      activity="dectionStandard" url="/metrodetection/testing_standard/process/dection_based_on_info/dectionStandard.w"/>  
+    <item label="检测依据管理" process="/metrodetection/testing_standard/process/dection_based_on_info/dection_based_on_infoProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/dection_based_on_info/mainActivity.w"/>  
+    <item label="指标库管理" process="/metrodetection/testing_standard/process/zhibiaokuProcess/zhibiaokuProcessProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/zhibiaokuProcess/mainActivity.w"/>  
+    <item label="指标应用信息" process="/metrodetection/testing_standard/process/zhibiaokuguanliprocess/zhibiaokuguanliprocessProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/zhibiaokuguanliprocess/indexActivity.w"/>  
+    <item label="指标库数值" process="/metrodetection/testing_standard/process/zhibiaokuvalueProcess/zhibiaokuvalueProcessProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/zhibiaokuvalueProcess/zhibiaoDialog.w"/>  
+    <item label="指标用例映射" process="/metrodetection/testing_standard/process/yongliProcess/yongliProcessProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/yongliProcess/relationIndex.w"/>  
+    <!--<item label="检测方案基本信息" process="/metrodetection/testing_standard/process/testscheme_baseinfo/testscheme_baseinfoProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/testscheme_baseinfo/mainActivity.w"/>  
+    -->  
+    <item label="检测方案编制" process="/metrodetection/testing_standard/process/testscheme_baseinfo/testscheme_baseinfoProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/testscheme_baseinfo/mainActivityNew.w"/>  
+    <item label="检测方案编制" process="/metrodetection/testing_standard/process/testscheme_baseinfo/testscheme_baseinfoProcess"
+      activity="compilation" url="/metrodetection/testing_standard/process/testscheme_baseinfo/compilation.w"
+      display="hide"/>  
+    <item label="检测方案审核" display="hide" process="/metrodetection/testing_standard/process/testscheme_baseinfo/testscheme_baseinfoProcess"
+      activity="examineVerify" url="/metrodetection/testing_standard/process/testscheme_baseinfo/examineVerify.w"/>  
+    <item label="检测方案批准" display="hide" process="/metrodetection/testing_standard/process/testscheme_baseinfo/testscheme_baseinfoProcess"
+      activity="approve" url="/metrodetection/testing_standard/process/testscheme_baseinfo/approve.w"/>
+     
+     <item label="通知环节" display="hide" process="/metrodetection/testing_standard/process/testscheme_baseinfo/testscheme_baseinfoProcess"
+     activity="schemeProcessQueryDetail" url="/metrodetection/testing_standard/process/testscheme_baseinfo/schemeProcessQueryDetail.w"/>    
+   
+    <item label="检测方案查询" process="/metrodetection/testing_standard/process/testSchemeProcessQuery/testSchemeProcessQueryProcess"
+      activity="mainActivity" url="/metrodetection/testing_standard/process/testSchemeProcessQuery/mainActivity.w"/> 
+      
+  </item>  
+  <item display="solid" label="检测用例管理" icon="yongli.png"> 
+    <item label="检测用例信息" process="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/detectionCaseInfoViewProcess"
+      activity="mainActivity" url="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/mainActivity.w"/>  
+    <item label="用例模板管理" process="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/detectionCaseInfoViewProcess"
+      activity="mainActivity" url="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/mainActivity.w"/>  
+    <item label="用例维护管理" process="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/detectionCaseInfoViewProcess"
+      activity="mainActivity" url="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/mainActivity.w"/>  
+    <item label="用例分类管理" process="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/detectionCaseInfoViewProcess"
+      activity="mainActivity" url="/metrodetection/detection_case_info_view/process/detectionCaseInfoView/mainActivity.w"/>  
+    <item label="检测用例导入" process="/metrodetection/detection_case_info_view/process/importCase/importCaseProcess"
+      activity="mainActivity" url="/metrodetection/detection_case_info_view/process/importCase/mainActivity.w"/> 
+  </item>  
+  <item display="solid" label="回归功能管理" icon="yongli.png"> 
+  <item label="功能模型管理" process="/metrodetection/recurrence_test_manager/process/functionModeManagerl/functionModeManagerlProcess" activity="mainActivity" url="/metrodetection/recurrence_test_manager/process/functionModeManagerl/mainActivity.w"></item><item label="执行结果管理" process="/metrodetection/recurrence_test_manager/process/executeResultManager/executeResultManagerProcess" activity="mainActivity" url="/metrodetection/recurrence_test_manager/process/executeResultManager/mainActivity.w"></item><item label="质量评估模型管理" process="/metrodetection/recurrence_test_manager/process/qualityAssessModelManager/qualityAssessModelManagerProcess" activity="mainActivity" url="/metrodetection/recurrence_test_manager/process/qualityAssessModelManager/mainActivity.w"></item><item label="回归检测方案管理" process="/metrodetection/recurrence_test_manager/process/recurrenceTestSchemeManager/recurrenceTestSchemeManagerProcess" activity="mainActivity" url="/metrodetection/recurrence_test_manager/process/recurrenceTestSchemeManager/mainActivity.w"></item><item label="回归测试用例管理" process="/metrodetection/recurrence_test_manager/process/recurrenctTestCaseManager/recurrenctTestCaseManagerProcess" activity="mainActivity" url="/metrodetection/recurrence_test_manager/process/recurrenctTestCaseManager/mainActivity.w"></item></item>
+  <item display="solid" label="知识资源管理" icon="zhishi.png"> 
+    <item display="solid" label="故障信息管理"> 
+      <item display="solid" label="受测系统"> 
+        <item label="受测系统问题库" process="/metrodetection/defect_information/process/PROBLEM_RESOURCE_INFO/pROBLEM_RESOURCE_INFOProcess"
+          activity="mainActivity" url="/metrodetection/defect_information/process/PROBLEM_RESOURCE_INFO/mainActivity.w"/>  
+        <item label="受测系统问题分类" process="/metrodetection/defect_information/process/test_task_execute_problem/test_task_execute_problemProcess"
+          activity="mainActivity" url="/metrodetection/defect_information/process/test_task_execute_problem/mainActivity.w"/> 
+      </item>  
+      <item display="solid" label="检测系统"> 
+        <item label="检测系统问题库" process="/metrodetection/defect_information/process/SYSTEM_RESOURCE_INFO/sYSTEM_RESOURCE_INFOProcess"
+          activity="mainActivity" url="/metrodetection/defect_information/process/SYSTEM_RESOURCE_INFO/mainActivity.w"/>  
+        <item label="检测系统问题分类" process="/metrodetection/defect_information/process/system_problem_record/system_problem_recordProcess"
+          activity="mainActivity" url="/metrodetection/defect_information/process/system_problem_record/mainActivity.w"/> 
+      </item> 
+    </item>  
+    <item display="solid" label="软件缺陷管理"> 
+      <item display="solid" label="缺陷提交流程"/>  
+      <item label="新建缺陷" process="/metrodetection/defect_information/process/newDefectBug/newDefectBugProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/newDefectBug/newDefectBug.w"/>  
+      <item label="分配缺陷" process="/metrodetection/defect_information/process/assignDefectBug/assignDefectBugProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/assignDefectBug/assignDefectBug.w"/>  
+      <item label="缺陷处理" process="/metrodetection/defect_information/process/solutionDefectBug/solutionDefectBugProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/solutionDefectBug/solutionDefectBug.w"/>  
+      <item label="缺陷回归" process="/metrodetection/defect_information/process/returnDefectBug/returnDefectBugProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/returnDefectBug/returnDefectBug.w"/>  
+      <item label="缺陷审核" process="/metrodetection/defect_information/process/reviewDefectBug/reviewDefectBugProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/reviewDefectBug/reviewDefectBug.w"/>  
+      <item label="项目产品信息" process="/metrodetection/defect_information/process/defectprojectinfomation/defectprojectinfomationProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/defectprojectinfomation/defectInfo.w"/>  
+      <item label="模块功能信息" process="/metrodetection/defect_information/process/defectModuleInfo/defectModuleInfoProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/defectModuleInfo/mainActivity.w"/>  
+      <item label="产品版本信息" process="/metrodetection/defect_information/process/defectProductVersion/defectProductVersionProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/defectProductVersion/defectProductVersion.w"/>  
+      <item label="缺陷统计分析" process="/metrodetection/defect_information/process/defectBugAnalysis/defectBugAnalysisProcess"
+        activity="mainActivity" url="/metrodetection/defect_information/process/defectBugAnalysis/defectBugAnalysis.w"/> 
+    </item> 
+  </item>  
+  <item display="solid" label="文档库管理" icon="wendang.png"> 
+    <item label="电子文档管理" process="/SA/doc/docCenter/docCenterProcess" activity="mainActivity"
+      url="/SA/doc/docCenter/docCenter.w" icon="/UI/SA/doc/docCenter/images/icon16.png"
+      icon32="/UI/SA/doc/docCenter/images/icon32.png" icon64="/UI/SA/doc/docCenter/images/icon64.png"/>  
+    <item label="文档服务器配置" process="/SA/doc/docSetting/docSettingProcess" activity="mainActivity"
+      url="/SA/doc/docSetting/docSetting.w" icon="/UI/SA/doc/docSetting/images/icon16.png"
+      icon32="/UI/SA/doc/docSetting/images/icon32.png" icon64="/UI/SA/doc/docSetting/images/icon64.png"/>  
+    <item label="文档关联配置" process="/SA/doc/docPermission/docPermissionProcess"
+      activity="mainActivity" url="/SA/doc/docPermission/docPermission.w" icon="/UI/SA/doc/docPermission/images/icon16.png"
+      icon32="/UI/SA/doc/docPermission/images/icon32.png" icon64="/UI/SA/doc/docPermission/images/icon64.png"/>  
+    <item label="文档检索" process="/SA/doc/docSearch/docSearchProcess" activity="mainActivity"
+      url="/SA/doc/docSearch/docSearch.w" icon="/UI/SA/doc/docSearch/images/icon16.png"
+      icon32="/UI/SA/doc/docSearch/images/icon32.png" icon64="/UI/SA/doc/docSearch/images/icon64.png"/>  
+    <item label="纸质文档管理" process="/metrodetection/zhip_documents_archive/process/p_documents_archive/p_documents_archiveProcess"
+      activity="mainActivity" url="/metrodetection/zhip_documents_archive/process/p_documents_archive/mainActivity.w"/>  
+    <item label="文档借阅申请" process="/metrodetection/zhip_documents_archive/process/wendangliucheng/wendangliuchengProcess"
+      activity="mainActivity" url="/metrodetection/zhip_documents_archive/process/wendangliucheng/mainActivity.w"/>  
+    <item display="hide" label="文档借阅" process="/metrodetection/zhip_documents_archive/process/wendangliucheng/wendangliuchengProcess"
+      activity="businessActivity1" url="/metrodetection/zhip_documents_archive/process/wendangliucheng/businessActivity1.w"/>  
+    <item display="hide" label="文档借阅部门意见" process="/metrodetection/zhip_documents_archive/process/wendangliucheng/wendangliuchengProcess"
+      activity="businessActivity2" url="/metrodetection/zhip_documents_archive/process/wendangliucheng/businessActivity2.w"/>  
+    <item display="hide" label="文档借阅保障部意见" process="/metrodetection/zhip_documents_archive/process/wendangliucheng/wendangliuchengProcess"
+      activity="businessActivity3" url="/metrodetection/zhip_documents_archive/process/wendangliucheng/businessActivity3.w"/>  
+    <item display="hide" label="文档借阅中心领导意见" process="/metrodetection/zhip_documents_archive/process/wendangliucheng/wendangliuchengProcess"
+      activity="businessActivity4" url="/metrodetection/zhip_documents_archive/process/wendangliucheng/businessActivity4.w"/>  
+    <item display="hide" label="文档借阅执行" process="/metrodetection/zhip_documents_archive/process/wendangliucheng/wendangliuchengProcess"
+      activity="businessActivity5" url="/metrodetection/zhip_documents_archive/process/wendangliucheng/businessActivity5.w"/>  
+    <item label="文档归还" process="/metrodetection/zhip_documents_archive/process/DocumentReturn/documentReturnProcess"
+      activity="mainActivity" url="/metrodetection/zhip_documents_archive/process/DocumentReturn/mainActivity.w"/>  
+    <item label="文档销毁申请" process="/metrodetection/zhip_documents_archive/process/wendangxiaohui/wendangxiaohuiProcess"
+      activity="mainActivity" url="/metrodetection/zhip_documents_archive/process/wendangxiaohui/mainActivity.w"/>  
+    <item display="hide" label="文档销毁" process="/metrodetection/zhip_documents_archive/process/wendangxiaohui/wendangxiaohuiProcess"
+      activity="businessActivity1" url="/metrodetection/zhip_documents_archive/process/wendangxiaohui/businessActivity1.w"/>  
+    <item display="hide" label="文档销毁部门意见" process="/metrodetection/zhip_documents_archive/process/wendangxiaohui/wendangxiaohuiProcess"
+      activity="businessActivity2" url="/metrodetection/zhip_documents_archive/process/wendangxiaohui/businessActivity2.w"/>  
+    <item display="hide" label="文档销毁保障部意见" process="/metrodetection/zhip_documents_archive/process/wendangxiaohui/wendangxiaohuiProcess"
+      activity="businessActivity3" url="/metrodetection/zhip_documents_archive/process/wendangxiaohui/businessActivity3.w"/>  
+    <item display="hide" label="文档销毁中心领导意见" process="/metrodetection/zhip_documents_archive/process/wendangxiaohui/wendangxiaohuiProcess"
+      activity="businessActivity4" url="/metrodetection/zhip_documents_archive/process/wendangxiaohui/businessActivity4.w"/>  
+    <item display="hide" label="文档销毁执行" process="/metrodetection/zhip_documents_archive/process/wendangxiaohui/wendangxiaohuiProcess"
+      activity="businessActivity5" url="/metrodetection/zhip_documents_archive/process/wendangxiaohui/businessActivity5.w"/> 
+  </item>  
+  <item display="solid" label="资产管理" icon="zichan.png"> 
+    <item label="检测工具管理" process="/metrodetection/asset_information/process/detectionToolInfo/detectionToolInfoProcess"
+      activity="mainActivity" url="/metrodetection/asset_information/process/detectionToolInfo/mainActivity1.w"/>  
+    <item label="受检样品管理" process="/metrodetection/asset_information/process/SampleDeviceInfo3/sampleDeviceInfo3Process"
+      activity="mainActivity" url="/metrodetection/asset_information/process/SampleDeviceInfo3/mainActivity.w"/>  
+    <item label="固定资产管理" icon="gudind.png"> 
+      <item label="基础设置"> 
+        <item label="资产类别设置" process="/OA/asset/process/baseSet/assetKindSet/assetKindSetProcess"
+          activity="assetKindSetActivity" url="/OA/asset/process/baseSet/assetKindSet/assetKindSetActivity.w"/>  
+        <item label="计量单位设置" process="/OA/asset/process/baseSet/assetUnitSet/assetUnitSetProcess"
+          activity="assetUnitSetActivity" url="/OA/asset/process/baseSet/assetUnitSet/assetUnitSetActivity.w"/>  
+        <item label="入库方式设置" process="/OA/asset/process/baseSet/assetInModeSet/assetInModeSetProcess"
+          activity="assetInModeSetActivity" url="/OA/asset/process/baseSet/assetInModeSet/assetInModeSetActivity.w"/>  
+        <item label="处置方式设置" process="/OA/asset/process/baseSet/assetDealModeSet/assetDealModeSetProcess"
+          activity="assetDealModeSetActivity" url="/OA/asset/process/baseSet/assetDealModeSet/assetDealModeSetActivity.w"/>  
+        <item label="维修类型设置" process="/OA/asset/process/baseSet/assetRepairTypeSet/assetRepairTypeSetProcess"
+          activity="assetRepairTypeSetActivity" url="/OA/asset/process/baseSet/assetRepairTypeSet/assetRepairTypeSetActivity.w"/> 
+      </item>  
+      <item label="资产采购"> 
+        <item label="资产采购申请" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="startActivity" url="/OA/asset/process/assetBuyApply/startActivity.w"/>  
+        <item label="资产采购申请" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="applyActivity" url="/OA/asset/process/assetBuyApply/applyActivity.w"/>  
+        <item label="部门领导审批" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="deptAuditActivity" url="/OA/asset/process/assetBuyApply/deptAuditActivity.w"/>  
+        <item label="主管部门审批" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="mainDeptDirectorActivity" url="/OA/asset/process/assetBuyApply/mainDeptDirectorActivity.w"/>  
+        <item label="办公室审批" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="departManagerDirectorActivity" url="/OA/asset/process/assetBuyApply/departManagerDirectorActivity.w"/>  
+        <item label="财务部门审批" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="financeDirectorActivity" url="/OA/asset/process/assetBuyApply/financeDirectorActivity.w"/>  
+        <item label="总经理审批" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="managerDirectorActivity" url="/OA/asset/process/assetBuyApply/managerDirectorActivity.w"/>  
+        <item label="资产采购通知" display="hide" process="/OA/asset/process/assetBuyApply/assetBuyApplyProcess"
+          activity="noticeActivity" url="/OA/asset/process/assetBuyApply/noticeActivity.w"/>  
+        <item label="资产采购申请查询" process="/OA/asset/process/assetBuyApplyQuery/assetBuyApplyQueryProcess"
+          activity="startActivity" url="/OA/asset/process/assetBuyApplyQuery/assetBuyApplyQuery.w"/>  
+        <item label="资产采购明细查询" process="/OA/asset/process/assetBuyApplyDetailQuery/assetBuyApplyDetailQueryProcess"
+          activity="startActivity" url="/OA/asset/process/assetBuyApplyDetailQuery/assetBuyApplyDetailQuery.w"/> 
+      </item>  
+      <item label="资产使用"> 
+        <item label="资产使用申请" process="/OA/asset/process/assetUseApply/assetUseApplyProcess"
+          activity="startActivity" url="/OA/asset/process/assetUseApply/startActivity.w"/>  
+        <item label="资产申请" display="hide" process="/OA/asset/process/assetUseApply/assetUseApplyProcess"
+          activity="useApplyActivity" url="/OA/asset/process/assetUseApply/useApplyActivity.w"/>  
+        <item label="部门领导审批" display="hide" process="/OA/asset/process/assetUseApply/assetUseApplyProcess"
+          activity="deptManagerActivity" url="/OA/asset/process/assetUseApply/deptManagerActivity.w"/>  
+        <item label="主管人员办理" display="hide" process="/OA/asset/process/assetUseApply/assetUseApplyProcess"
+          activity="managerProcessActivity" url="/OA/asset/process/assetUseApply/managerProcessActivity.w"/>  
+        <item label="资产使用通知" display="hide" process="/OA/asset/process/assetUseApply/assetUseApplyProcess"
+          activity="noticeActivity" url="/OA/asset/process/assetUseApply/noticeActivity.w"/>  
+        <item label="资产使用申请查询" process="/OA/asset/process/assetUseApplyQuery/assetUseApplyQueryProcess"
+          activity="assetUseApplyQueryActivity" url="/OA/asset/process/assetUseApplyQuery/assetUseApplyQueryActivity.w"/> 
+      </item>  
+      <item label="资产维修"> 
+        <item label="资产维修申请" process="/OA/asset/process/assetRepairApply/assetRepairApplyProcess"
+          activity="startActivity" url="/OA/asset/process/assetRepairApply/startActivity.w"/>  
+        <item label="维修申请" display="hide" process="/OA/asset/process/assetRepairApply/assetRepairApplyProcess"
+          activity="repairApplyActivity" url="/OA/asset/process/assetRepairApply/repairApplyActivity.w"/>  
+        <item label="主管部门审核" display="hide" process="/OA/asset/process/assetRepairApply/assetRepairApplyProcess"
+          activity="mainDeptDirectorActivity" url="/OA/asset/process/assetRepairApply/mainDeptDirectorActivity.w"/>  
+        <item label="部门领导审批" display="hide" process="/OA/asset/process/assetRepairApply/assetRepairApplyProcess"
+          activity="deptDirectorActivity" url="/OA/asset/process/assetRepairApply/deptDirectorActivity.w"/>  
+        <item label="经办人办理" display="hide" process="/OA/asset/process/assetRepairApply/assetRepairApplyProcess"
+          activity="handlerDirectorActivity" url="/OA/asset/process/assetRepairApply/handlerDirectorActivity.w"/>  
+        <item label="资产维修通知" display="hide" process="/OA/asset/process/assetRepairApply/assetRepairApplyProcess"
+          activity="noticeActivity" url="/OA/asset/process/assetRepairApply/noticeActivity.w"/>  
+        <item label="资产维修申请查询" process="/OA/asset/process/assetRepairApplyQuery/assetRepairApplyQueryProcess"
+          activity="assetRepairApplyQueryActivity" url="/OA/asset/process/assetRepairApplyQuery/assetRepairApplyQueryActivity.w"/> 
+      </item>  
+      <item label="资产处置"> 
+        <item label="资产处置申请" process="/OA/asset/process/assetDealApply/assetDealApplyProcess"
+          activity="startActivity" url="/OA/asset/process/assetDealApply/startActivity.w"/>  
+        <item label="处置申请" display="hide" process="/OA/asset/process/assetDealApply/assetDealApplyProcess"
+          activity="dealApplyActivity" url="/OA/asset/process/assetDealApply/dealApplyActivity.w"/>  
+        <item label="部门领导审批" display="hide" process="/OA/asset/process/assetDealApply/assetDealApplyProcess"
+          activity="deptDirectorActivity" url="/OA/asset/process/assetDealApply/deptDirectorActivity.w"/>  
+        <item label="主管部门审批" display="hide" process="/OA/asset/process/assetDealApply/assetDealApplyProcess"
+          activity="mainDeptDirectorActivity" url="/OA/asset/process/assetDealApply/mainDeptDirectorActivity.w"/>  
+        <item label="资产处置通知" display="hide" process="/OA/asset/process/assetDealApply/assetDealApplyProcess"
+          activity="noticeActivity" url="/OA/asset/process/assetDealApply/noticeActivity.w"/>  
+        <item label="资产处置申请查询" process="/OA/asset/process/assetDealApplyQuery/assetDealApplyQueryProcess"
+          activity="assetDealApplyQueryActivity" url="/OA/asset/process/assetDealApplyQuery/assetDealApplyQueryActivity.w"/> 
+      </item>  
+      <item label="资产报废"> 
+        <item label="资产报废申请" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="startActivity" url="/OA/asset/process/assetDiscardApply/startActivity.w"/>  
+        <item label="报废申请" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="discardApplyActivity" url="/OA/asset/process/assetDiscardApply/discardApplyActivity.w"/>  
+        <item label="部门领导审批" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="deptManagerActivity" url="/OA/asset/process/assetDiscardApply/deptManagerActivity.w"/>  
+        <item label="主管部门审核" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="managerProcessActivity" url="/OA/asset/process/assetDiscardApply/managerProcessActivity.w"/>  
+        <item label="办公室意见" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="officeActivity" url="/OA/asset/process/assetDiscardApply/officeActivity.w"/>  
+        <item label="财务部意见" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="financeActivity" url="/OA/asset/process/assetDiscardApply/financeActivity.w"/>  
+        <item label="主管领导审批" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="managerActivity" url="/OA/asset/process/assetDiscardApply/managerActivity.w"/>  
+        <!-- sucg add   end  -->  
+        <item label="资产报废通知" display="hide" process="/OA/asset/process/assetDiscardApply/assetDiscardApplyProcess"
+          activity="noticeActivity" url="/OA/asset/process/assetDiscardApply/noticeActivity.w"/>  
+        <item label="资产报废申请查询" process="/OA/asset/process/assetDiscardApplyQuery/assetDiscardApplyQueryProcess"
+          activity="assetDiscardApplyQueryActivity" url="/OA/asset/process/assetDiscardApplyQuery/assetDiscardApplyQueryActivity.w"/> 
+      </item>  
+      <item label="资产入库"> 
+        <item label="资产入库管理" process="/OA/asset/process/assetIn/assetInProcess"
+          activity="startActivity" url="/OA/asset/process/assetIn/assetIn.w"/>  
+        <item label="资产入库查询" process="/OA/asset/process/assetInQuery/assetInQueryProcess"
+          activity="startActivity" url="/OA/asset/process/assetInQuery/assetInQuery.w"/>  
+        <item label="资产入库明细查询" process="/OA/asset/process/assetInDetailQuery/assetInDetailQueryProcess"
+          activity="startActivity" url="/OA/asset/process/assetInDetailQuery/assetInDetailQuery.w"/> 
+      </item>  
+      <item label="资产卡片" process="/OA/asset/process/assetCard/assetCardProcess"
+        activity="assetCardActivity" url="/OA/asset/process/assetCard/assetCardActivity.w"/>  
+      <item label="资产安排/归还"> 
+        <item label="资产安排" process="/OA/asset/process/assetArrange/assetArrangeProcess"
+          activity="assetArrangeActivity" url="/OA/asset/process/assetArrange/assetArrangeActivity.w"/>  
+        <item label="资产归还" process="/OA/asset/process/assetReturn/assetReturnProcess"
+          activity="assetReturnActivity" url="/OA/asset/process/assetReturn/assetReturnActivity.w"/> 
+      </item>  
+      <item label="资产清查"> 
+        <item label="资产清查" process="/OA/asset/process/assetInventory/assetInventoryProcess"
+          activity="assetInventoryActivity" url="/OA/asset/process/assetInventory/assetInventoryActivity.w"/>  
+        <item label="清查记录查询" process="/OA/asset/process/assetInventoryQuery/assetInventoryQueryProcess"
+          activity="assetInventoryQueryActivity" url="/OA/asset/process/assetInventoryQuery/assetInventoryQueryActivity.w"/> 
+      </item>  
+      <item label="资产折旧" process="/OA/asset/process/assetDepreciation/assetDepreciationProcess"
+        activity="assetDepreciationActivity" url="/OA/asset/process/assetDepreciation/assetDepreciationActivity.w"/>  
+      <item label="类别统计报表" process="/OA/asset/process/assetKindSummary/assetKindSummaryProcess"
+        activity="assetKindSummaryActivity" url="/OA/asset/process/assetKindSummary/assetKindSummaryActivity.w"/>  
+      <item label="固定资产申购统计" process="/OA/asset/process/assetSummaryReport/assetSummaryReportProcess"
+        activity="mainActivity" url="/OA/asset/process/assetSummaryReport/mainActivity.w"/>  
+      <item label="我的资产" process="/OA/asset/process/myAsset/myAssetProcess"
+        activity="myAssetActivity" url="/OA/asset/process/myAsset/myAssetActivity.w"/>  
+      <item label="资产台帐" process="/OA/asset/process/assetAccount/assetAccountProcess"
+        activity="assetAccountActivity" url="/OA/asset/process/assetAccount/assetAccountActivity.w"/> 
+    </item> 
+  </item>  
+  <!--  
+  <item display="solid" label="变更管理" icon="biangeng.png"> 
+    <item label="检测计划变更申请单" process="/metrodetection/system_resource/process/change_apply_info/change_apply_infoProcess"
+      activity="mainActivity" url="/metrodetection/system_resource/process/change_apply_info/mainActivity2.w"/>  
+    <item label="检测计划变更审核单" process="/metrodetection/system_resource/process/change_check_info/change_check_infoProcess"
+      activity="mainActivity" url="/metrodetection/system_resource/process/change_check_info/mainActivity1.w"/> 
+  </item>  
+  -->  
+  <item display="solid" label="变更管理" icon="bgjh.png"> 
+    <item label="检测计划变更申请单" process="/metrodetection/system_resource/process/jiancebiangeng/jiancebiangengProcess"
+      activity="mainActivity" url="/metrodetection/system_resource/process/jiancebiangeng/mainActivity.w"/>  
+    <item label="检测计划变更申请单" display="hide" process="/metrodetection/system_resource/process/jiancebiangeng/jiancebiangengProcess"
+      activity="businessActivity1" url="/metrodetection/system_resource/process/jiancebiangeng/businessActivity1.w"/>  
+    <item label="检测计划变更审核单" display="hide" process="/metrodetection/system_resource/process/jiancebiangeng/jiancebiangengProcess"
+      activity="businessActivity2" url="/metrodetection/system_resource/process/jiancebiangeng/businessActivity2.w"/>  
+    <item label="检测计划变更查询" process="/metrodetection/system_resource/process/newchangeQuery/newchangeQueryProcess"
+      activity="mainActivity" url="/metrodetection/system_resource/process/newchangeQuery/mainActivity.w"/> 
+  </item>  
+  <item display="solid" label="质量监督管理" icon="jiandu.png"> 
+    <item display="solid" label="质量监督计划"> 
+      <item label="填写计划单" process="/metrodetection/quality_supervision/process/QA_SUPERVISION_PLAN/qA_SUPERVISION_PLANProcess"
+        activity="mainActivity" url="/metrodetection/quality_supervision/process/QA_SUPERVISION_PLAN/mainActivity.w"/>  
+      <item label="填写计划意见" process="/metrodetection/quality_supervision/process/zhiliangjiandu/zhiliangjianduProcess"
+        activity="mainActivity" url="/metrodetection/quality_supervision/process/zhiliangjiandu/mainActivity.w"/> 
+    </item>  
+    <item display="solid" label="日常监督记录"> 
+      <item label="填写监督记录单" process="/metrodetection/quality_supervision/process/daily_supervision_record/daily_supervision_recordProcess"
+        activity="mainActivity" url="/metrodetection/quality_supervision/process/daily_supervision_record/mainActivity.w"/>  
+      <item label="填写监督意见" process="/metrodetection/quality_supervision/process/richangjiandu/richangjianduProcess"
+        activity="mainActivity" url="/metrodetection/quality_supervision/process/richangjiandu/mainActivity.w"/> 
+    </item> 
+  </item>  
+  <item display="solid" label="委派管理" icon="weipai.png"> 
+    <item label="单位信息管理" process="/metrodetection/detection_Process_Related/process/delegateAdministration/delegateAdministrationProcess"
+      activity="mainActivity" url="/metrodetection/detection_Process_Related/process/delegateAdministration/mainActivity.w"/> 
+  </item>  
+  <item display="solid" label="培训管理" icon="peixun.png"> 
+    <item label="培训内容管理" process="/metrodetection/training_management/process/trainingContentManagement/trainingContentManagementProcess"
+      activity="mainActivity" url="/metrodetection/training_management/process/trainingContentManagement/mainActivity.w"/>  
+    <item label="培训课程管理" process="/metrodetection/training_management/process/trainingCourseManagement/trainingCourseManagementProcess"
+      activity="mainActivity" url="/metrodetection/training_management/process/trainingCourseManagement/mainActivity.w"/>  
+    <item label="培训计划管理" process="/metrodetection/training_management/process/trainingPlanManagement/trainingPlanManagementProcess"
+      activity="mainActivity" url="/metrodetection/training_management/process/trainingPlanManagement/mainActivity.w"/>  
+    <item label="培训考核管理" process="/metrodetection/training_management/process/trainingEvaluationManagement/trainingEvaluationManagementProcess"
+      activity="mainActivity" url="/metrodetection/training_management/process/trainingEvaluationManagement/mainActivity.w"/> 
+  </item>  
+  <item display="solid" label="客户服务管理" icon="kehu.png"> 
+    <item display="solid" label="客户投诉管理"> 
+      <item label="客户投诉登记" process="/metrodetection/customer_service/process/infomationComplaint/infomationComplaintProcess"
+        activity="mainActivity" url="/metrodetection/customer_service/process/infomationComplaint/mainActivity.w"/>  
+      <item label="客户投诉登记" display="hide" process="/metrodetection/customer_service/process/infomationComplaint/infomationComplaintProcess"
+        activity="businessActivity1" url="/metrodetection/customer_service/process/infomationComplaint/businessActivity1.w"/>  
+      <item label="投诉意见分析" display="hide" process="/metrodetection/customer_service/process/infomationComplaint/infomationComplaintProcess"
+        activity="businessActivity2" url="/metrodetection/customer_service/process/infomationComplaint/businessActivity2.w"/>  
+      <item label="投诉处置审核" display="hide" process="/metrodetection/customer_service/process/infomationComplaint/infomationComplaintProcess"
+        activity="businessActivity3" url="/metrodetection/customer_service/process/infomationComplaint/businessActivity3.w"/>  
+      <item label="处理效果验证" display="hide" process="/metrodetection/customer_service/process/infomationComplaint/infomationComplaintProcess"
+        activity="businessActivity4" url="/metrodetection/customer_service/process/infomationComplaint/businessActivity4.w"/>  
+      <item label="客户投诉查询" process="/metrodetection/customer_service/process/complaintProcessQuery/complaintProcessQueryProcess"
+        activity="mainActivity" url="/metrodetection/customer_service/process/complaintProcessQuery/mainActivity.w"/>  
+      <item label="客户投诉统计" process="/metrodetection/customer_service/process/complaintAnalysis/complaintAnalysisProcess"
+        activity="mainActivity" url="/metrodetection/customer_service/process/complaintAnalysis/mainActivity.w"/> 
+    </item> 
+  </item>  
+  <item display="solid" label="日常事务管理" icon="richang.png"> 
+    <item label="房间资源管理" process="/metrodetection/system_resource/process/siteRoomInfo/siteRoomInfoProcess"
+      activity="mainActivity" url="/metrodetection/system_resource/process/siteRoomInfo/mainActivity4.w"/>  
+    <item label="接待安排管理" process="/metrodetection/receptionA_info/process/receptionA/receptionAProcess"
+      activity="mainActivity" url="/metrodetection/receptionA_info/process/receptionA/mainActivity.w"/> 
+  </item>  
+  <item label="会议室管理" icon="huiyishi.png"> 
+    <item label="基础数据"> 
+      <item label="会议室类型" process="/OA/meeting/process/boardroomType/boardroomTypeProcess"
+        activity="startActivity" url="/OA/meeting/process/boardroomType/boardroomType.w"/> 
+    </item>  
+    <item label="会议室信息管理" process="/OA/meeting/process/boardroomSet/boardroomSetProcess"
+      activity="startActivity" url="/OA/meeting/process/boardroomSet/boardroomSet.w"/>  
+    <item label="会议室管理" process="/OA/meeting/process/boardroomArrange/boardroomArrangeProcess"
+      activity="boardroomArrange" url="/OA/meeting/process/boardroomArrange/boardroomArrange.w"/>  
+    <item label="会议室使用申请流程" process="/OA/meeting/process/boardroomUseApply/boardroomUseApplyProcess"
+      activity="useApply" url="/OA/meeting/process/boardroomUseApply/useApply.w"/>  
+    <item label="会议室使用安排" display="hide" process="/OA/meeting/process/boardroomUseApply/boardroomUseApplyProcess"
+      activity="useArrangeActivity" url="/OA/meeting/process/boardroomUseApply/useArrangeActivity.w"/>  
+    <item label="会议室使用审批" display="hide" process="/OA/meeting/process/boardroomUseApply/boardroomUseApplyProcess"
+      activity="useApproveActivity" url="/OA/meeting/process/boardroomUseApply/useApproveActivity.w"/>  
+    <item label="会议室使用申请" display="hide" process="/OA/meeting/process/boardroomUseApply/boardroomUseApplyProcess"
+      activity="useApplyActivity" url="/OA/meeting/process/boardroomUseApply/useApplyActivity.w"/>  
+    <item label="会议室使用申请查询" process="/OA/meeting/process/boardroomUseApplyQuery/boardroomUseApplyQueryProcess"
+      activity="startActivity" url="/OA/meeting/process/boardroomUseApplyQuery/boardroomUseApplyQuery.w"/>  
+    <item label="会议室安排查询" process="/OA/meeting/process/boardroomArrangeQuery/boardroomArrangeQueryProcess"
+      activity="startActivity" url="/OA/meeting/process/boardroomArrangeQuery/boardroomArrangeQuery.w"/>  
+    <item label="会议纪要" process="/OA/meeting/process/boardroomSummary/boardroomSummaryProcess"
+      activity="startActivity" url="/OA/meeting/process/boardroomSummary/boardroomSummary.w"/> 
+  </item>  
+  <item display="solid" label="发布信息管理" icon="xinxi.png"> 
+    <item label="终端信息管理" process="/metrodetection/receptionA_info/process/screenlocationinfo/screenlocationinfoProcess"
+      activity="mainActivity" url="/metrodetection/receptionA_info/process/screenlocationinfo/mainActivity.w"/>  
+    <item label="线路检测进度" process="/metrodetection/line_message/process/linemessage/linemessageProcess"
+      activity="mainActivity" url="/metrodetection/line_message/process/linemessage/mainActivity.w"/>  
+    <item label="实验室检测进度" process="/metrodetection/test_progress_info/process/LaboratoryTestProgressInfo/laboratoryTestProgressInfoProcess"
+      activity="mainActivity" url="/metrodetection/test_progress_info/process/LaboratoryTestProgressInfo/mainActivity.w"/>  
+    <item label="工具检测进度" process="/metrodetection/toolProtect/process/toolProtect/toolProtectProcess"
+      activity="mainActivity" url="/metrodetection/toolProtect/process/toolProtect/mainActivity3.w"/>  
+    <item label="任务检测进度" process="/metrodetection/test_progress_info/process/TaskProgressInfo/process/taskProgressInfoPublic/taskProgressInfoPublicProcess"
+      activity="mainActivity" url="/metrodetection/test_progress_info/process/TaskProgressInfo/process/taskProgressInfoPublic/mainActivity.w"/> 
+  </item>  
+  <item display="solid" label="报表数据" icon="baobiao.png"> 
+    <item label="测试项目统计流程" process="/metrodetection/report_data/process/testProjectStatProcess/testProjectStatProcessProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/testProjectStatProcess/mainActivity.w"/>  
+    <item label="单项测试任务统计" process="/metrodetection/report_data/process/testTaskStatProcess/testTaskStatProcessProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/testTaskStatProcess/mainActivity.w"/>  
+    <item label="单项测试任务执行进度日统计" process="/metrodetection/report_data/process/testExeIndividualProcess/testExeIndividualProcessProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/testExeIndividualProcess/mainActivity.w"/>  
+    <item label="测试任务统计综合汇总" process="/metrodetection/report_data/process/testTaskStatisticsSummary/testTaskStatisticsSummaryProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/testTaskStatisticsSummary/test.w"/>  
+    <item label="测试任务执行问题汇总" process="/metrodetection/report_data/process/taskExeProblemprocess/taskExeProblemprocessProcess"
+      activity="mainActivity" url="/metrodetection/report_data/process/taskExeProblemprocess/mainActivity.w"/> 
+  </item>  
+  <item display="solid" label="认证信息管理" icon="zaixian.png"> 
+    <item label="认证信息导出" process="/metrodetection/authentication/process/authentication/authenticationProcess"
+      activity="mainActivity" url="/metrodetection/authentication/process/authentication/mainActivity.w"/> 
+  <item label="测试" process="/metrodetection/mytest/process/test/testProcess" activity="mainActivity" url="/metrodetection/mytest/process/test/mainActivity.w"></item></item>  
+  <item display="solid" label="AFC"/> 
+</root>

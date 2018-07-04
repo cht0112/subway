@@ -1,0 +1,14 @@
+<xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:justep="http://www.justep.com/x5#" 
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xui="http://www.justep.com/xui">
+
+	<!-- 工具类 -->
+	<binding id="common" delete-bound-element="true">
+		<template template-type="java"  src="com.justep.components.Utils" /> 
+	</binding>
+</xbl>

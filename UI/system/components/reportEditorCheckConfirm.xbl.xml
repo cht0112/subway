@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	
+	<xbl:binding id="reportEditorCheckConfirm" _delete-bound-element="true">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:justep="http://www.justep.com/x5#"
+				 xmlns:ev="http://www.w3.org/2001/xml-events"
+				 xmlns:ns="http://www.justep.com/x5#">
+				<justep:template>
+					<xsl:variable name="xblid">
+						<xsl:choose>
+							<xsl:when test="@id">
+								<xsl:value-of select="@id"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="generate-global-id()"/>
+							</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+
+					<xsl:variable name="id">
+						<xsl:value-of select="concat($xblid,'-dialog')"/>
+					</xsl:variable>
+					
+					<xsl:variable name="close">
+						<xsl:choose>
+							<xsl:when test="@is-close">
+								<xsl:value-of select="@is-close"/>
+							</xsl:when>
+							<xsl:otherwise>true</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<xsl:variable name="label">
+						<xsl:choose>
+							<xsl:when test="@label">
+								<xsl:value-of select="@label"/>
+							</xsl:when>
+							<xsl:otherwise>信息确认</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<xsl:variable name="resizable">
+						<xsl:choose>
+							<xsl:when test="@resizable">
+								<xsl:value-of select="@resizable"/>
+							</xsl:when>
+							<xsl:otherwise>false</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<xsl:variable name="minmaxable">
+						<xsl:choose>
+							<xsl:when test="@minmaxable">
+								<xsl:value-of select="@minmaxable"/>
+							</xsl:when>
+							<xsl:otherwise>false</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<xsl:variable name="level">
+						<xsl:choose>
+							<xsl:when test="@level">
+								<xsl:value-of select="@level"/>
+							</xsl:when>
+							<xsl:otherwise>model</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<xsl:variable name="text">
+						<xsl:choose>
+							<xsl:when test="@ref-text">
+								<xsl:value-of select="@ref-text"/>
+							</xsl:when>
+							<xsl:when test="@text">
+								<xsl:value-of select="concat('''',@text,'''')"/>
+							</xsl:when>
+							<xsl:otherwise>'数据已修改,是否保存?'</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>					
+					
+					<xsl:variable name="img">
+						<xsl:choose>
+							<xsl:when test="@img">
+								<xsl:value-of select="@img"/>
+							</xsl:when>
+							<xsl:otherwise>/UI/system/images/confirm/ask.gif</xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<xsl:variable name="exclude">
+						<xsl:choose>
+							<xsl:when test="@exclude">
+								<xsl:value-of select="@exclude"/>
+							</xsl:when>
+							<xsl:otherwise></xsl:otherwise>
+						</xsl:choose>					
+					</xsl:variable>
+					
+					<root>
+						<xforms:dialog>       
+							<xsl:attribute name="id" select="$id"/>
+							<xsl:attribute name="title" select="$label"/>
+							<xsl:attribute name="closable"><xsl:value-of select="$close"/></xsl:attribute>
+							<xsl:attribute name="resizable"><xsl:value-of select="$resizable"/></xsl:attribute>
+							<xsl:attribute name="minmaxable"><xsl:value-of select="$minmaxable"/></xsl:attribute>		
+							<xsl:attribute name="level"><xsl:value-of select="$level"/></xsl:attribute>														
+							<xsl:if test="@width!=''">
+								<xsl:attribute name="width"><xsl:value-of select="@width"/></xsl:attribute>
+							</xsl:if>
+							<xsl:if test="@height!=''">
+								<xsl:attribute name="height"><xsl:value-of select="@height"/></xsl:attribute>
+							</xsl:if>
+							<xforms:group>
+		
+								<xhtml:table width="100%" height="100%"  cellpadding="0" cellspacing="0" style="table-layout:fixed">
+									<xhtml:tr>
+										<xhtml:td>
+											<xhtml:table dialog-id="{$id}" xblid="info-table" style="width:100%">
+												<xhtml:tr>
+													<xhtml:td height="40">  
+														<xhtml:img border="0" xblid="info-img">
+															<xsl:attribute name="src"><xsl:value-of select="$img"/></xsl:attribute>
+														</xhtml:img>
+													</xhtml:td>
+													<xhtml:td>
+														<xhtml:span xblid="info-text" style="white-space:nowrap"><xsl:value-of select="$text"/></xhtml:span>
+													</xhtml:td>
+												</xhtml:tr>
+												<xhtml:tr>
+													<xhtml:td colspan="2">
+														<xhtml:div xblid="info-html" style="overflow:auto;width:100%;height:100%"/>
+													</xhtml:td>
+												</xhtml:tr>
+											</xhtml:table>  											                                                                         										
+										</xhtml:td>
+									</xhtml:tr>
+									<xhtml:tr>
+										<xhtml:td>
+										
+											<xhtml:table border="0" cellspacing="1">                     
+												<xhtml:tr>
+													<xhtml:td width="100%"/>                     													
+													<xsl:choose>
+														<xsl:when test="$exclude and contains($exclude ,'yes')"> 
+															<!-- 排除 yes --> 			                       			
+														</xsl:when>
+														<xsl:otherwise>	
+															
+															<xhtml:td  xblid="yes-trigger">                   
+																<xforms:trigger >
+																	<xsl:attribute name="id">yes-trigger-<xsl:value-of select="$id"/></xsl:attribute>
+																	<xforms:label>&#160;&#160;是&#160;&#160;</xforms:label>
+																	<xforms:action ev:event="DOMActivate">	
+																		<xsl:copy-of select="xforms:action[@ev:event='xforms-confirm-yes-click']/*"/>							            							              
+																		<xforms:script>
+																			var xblobj = document.getElementById('<xsl:value-of select="$xblid"/>');
+																			if(!xblobj){ 
+																				return; 
+																			}
+																			xblobj = xblobj.xblObject; 
+																			if(!xblobj){ return;}
+																			if(xblobj.yesCallback){ 
+																				xblobj.yesCallback();
+																			}	
+																			xblobj.close();																	
+																		</xforms:script>								              
+																	</xforms:action>
+																</xforms:trigger>
+															</xhtml:td>                       			
+														</xsl:otherwise>
+													</xsl:choose>
+			
+							                       	<xsl:choose>
+														<xsl:when test="$exclude and contains($exclude ,'no')"> 
+															<!-- 排除 no --> 			                       			
+														</xsl:when>
+														<xsl:otherwise>	
+															<xhtml:td  xblid="no-trigger">
+															<xforms:trigger >
+																<xsl:attribute name="id">no-trigger-<xsl:value-of select="$id"/>
+																</xsl:attribute>
+																<xforms:label>&#160;&#160;否&#160;&#160;</xforms:label>
+																<xforms:action ev:event="DOMActivate">
+																	<xsl:copy-of select="xforms:action[@ev:event='xforms-confirm-no-click']/*"/>													            							              								              
+																	<xforms:script>
+																		var xblobj = document.getElementById('<xsl:value-of select="$xblid"/>');
+																		if(!xblobj) return;
+																		xblobj = xblobj.xblObject;
+																		if(!xblobj) return;
+																		if(xblobj.noCallback) xblobj.noCallback();
+																		xblobj.close();			
+																	</xforms:script>								              
+																</xforms:action>
+															</xforms:trigger>
+															</xhtml:td>                       			
+														</xsl:otherwise>
+													</xsl:choose>	
+			
+										         	<xsl:choose>
+														<xsl:when test="$exclude and contains($exclude ,'ok')"> 
+															<!-- 排除 ok --> 			                       			
+														</xsl:when>
+														<xsl:otherwise>
+															<xhtml:td xblid="ok-trigger">	
+																<xforms:trigger >
+																	<xsl:attribute name="id">ok-trigger-<xsl:value-of select="$id"/>
+																	</xsl:attribute>
+																	<xforms:label>确定</xforms:label>
+																	<xforms:action ev:event="DOMActivate">
+																		<xsl:copy-of select="xforms:action[@ev:event='xforms-confirm-ok-click']/*"/>													            							              
+																		<xforms:script>
+																			var xblobj = document.getElementById('<xsl:value-of select="$xblid"/>');
+																			if(!xblobj){ 
+																				return; 
+																			}
+																			xblobj = xblobj.xblObject; 
+																			if(!xblobj){ return;}
+																			if(xblobj.yesCallback){ 
+																				xblobj.yesCallback();
+																			}	
+																			xblobj.close();				
+																		</xforms:script>										              
+																	</xforms:action>
+																</xforms:trigger>
+															</xhtml:td>                       			
+														</xsl:otherwise>
+													</xsl:choose>	
+			
+								         			<xsl:choose>
+														<xsl:when test="$exclude and contains($exclude ,'cancel')"> 
+																<!-- 排除 cancel --> 			                       			
+															</xsl:when>
+															<xsl:otherwise>	
+																<xhtml:td xblid="cancel-trigger">
+																<xforms:trigger >
+																	<xsl:attribute name="id">cancel-trigger-<xsl:value-of select="$id"/>
+																	</xsl:attribute>
+																	<xforms:label>取消</xforms:label>
+																	<xforms:action ev:event="DOMActivate">
+																		<xsl:copy-of select="xforms:action[@ev:event='xforms-confirm-cancel-click']/*"/>													            							              									              
+																		<xforms:script>
+																			var xblobj = document.getElementById('<xsl:value-of select="$xblid"/>');
+																			if(!xblobj) return;
+																			xblobj = xblobj.xblObject;
+																			if(!xblobj) return;
+																			if(xblobj.cancelCallback) xblobj.cancelCallback();
+																			xblobj.close();				
+																		</xforms:script>								              
+																	</xforms:action>
+																</xforms:trigger>
+																</xhtml:td>                       			
+															</xsl:otherwise>
+														</xsl:choose>				
+													<xhtml:td width="10%"/>                     
+												</xhtml:tr>
+											</xhtml:table>
+											
+										</xhtml:td>
+									</xhtml:tr>
+								</xhtml:table>
+					
+							</xforms:group>
+						</xforms:dialog>	
+					</root>
+					
+				</justep:template>            
+			</xsl:template>		
+		</xbl:template>
+		
+		<xbl:implementation>
+		({	
+			"__info_table" : null,
+			"__dialog_id" : "",
+			"__dialog_xfobj" : null,
+			"__info_img" : null,
+			"__info_text" : null,
+			"__info_html" : null,
+			"__btn_yes" : null,
+			"__btn_no" : null,
+			"__btn_ok" : null,
+			"__btn_cancel" : null,
+			"initXBL" : function() {
+				this.__info_table = this.getElementByXblID("info-table");
+				if(this.__info_table) this.__dialog_id = this.__info_table.getAttribute("dialog-id");
+				if(this.__dialog_id) this.__dialog_xfobj = document.getElementById(this.__dialog_id).xformsObject;
+				this.__info_img = this.getElementByXblID("info-img");
+				this.__info_text = this.getElementByXblID("info-text");
+				this.__info_html = this.getElementByXblID("info-html");
+				this.__btn_yes = this.getElementByXblID('yes-trigger');
+				this.__btn_no = this.getElementByXblID('no-trigger');
+				this.__btn_ok = this.getElementByXblID('ok-trigger');
+				this.__btn_cancel = this.getElementByXblID('cancel-trigger');
+			},
+			"setMsg" : function(msg){
+			  	if(this.__info_text &amp;&amp; msg) this.__info_text.innerHTML = "&#160;&#160;&#160;&#160;"+msg;
+			},
+			"setTitle" : function(title){
+			  	if(this.__dialog_xfobj &amp;&amp; title) this.__dialog_xfobj.title = title;
+			},
+			"setHtml" : function(html){
+			  	if(this.__dialog_xfobj &amp;&amp; html) this.__info_html.innerHTML = html;
+			},
+			"setImg" : function(img){
+			},
+			"setClass" : function(element, className, value) {
+				if (value) {
+					if (!this.hasClass(element, className)) {
+						element.className += " " + className;
+					}
+				} else if (element.className) {
+					element.className = element.className.replace(className, "");
+				}
+			},
+			"hasClass" : function(element, className) {
+				var cn = element.className;		
+				return this.inArray(className, (cn &amp;&amp; cn.split(" ")) || []);
+			},
+			"inArray" : function(value, array) {
+				for (var i = 0; i &lt; array.length; i++) {
+					if (value == array[i]) {
+						return true;
+					}
+				}
+				return false;
+			},			
+			"setBtns" : function(btns){
+				if(btns){
+					if(this.__btn_yes){	
+									
+				    	this.setClass(this.__btn_yes, "xforms-disabled", true);
+				    	this.setClass(this.__btn_yes, "xforms-enabled", false);
+				    }
+				    if(this.__btn_no){
+				    	this.setClass(this.__btn_no, "xforms-disabled", true);
+				    	this.setClass(this.__btn_no, "xforms-enabled", false);
+				    }
+				    if(this.__btn_ok){
+				    	this.setClass(this.__btn_ok, "xforms-disabled", true);
+				    	this.setClass(this.__btn_ok, "xforms-enabled", false);
+				    }
+				    if(this.__btn_cancel){
+				    	this.setClass(this.__btn_cancel, "xforms-disabled", true);
+				    	this.setClass(this.__btn_cancel, "xforms-enabled", false);
+				    }
+					for(var i=0; i&lt;btns.length; i++){
+						if(btns[i]){
+							if(btns[i]=='yes'){
+								if(this.__btn_yes){				
+							    	this.setClass(this.__btn_yes, "xforms-disabled", false);
+							    	this.setClass(this.__btn_yes, "xforms-enabled", true);
+							    }
+							}else if(btns[i]=='no'){
+								if(this.__btn_yes){				
+							    	this.setClass(this.__btn_no, "xforms-disabled", false);
+							    	this.setClass(this.__btn_no, "xforms-enabled", true);
+							    }
+							}else if(btns[i]=='ok'){
+								if(this.__btn_yes){				
+							    	this.setClass(this.__btn_ok, "xforms-disabled", false);
+							    	this.setClass(this.__btn_ok, "xforms-enabled", true);
+							    }
+							}else if(btns[i]=='cancel'){
+								if(this.__btn_yes){				
+							    	this.setClass(this.__btn_cancel, "xforms-disabled", false);
+							    	this.setClass(this.__btn_cancel, "xforms-enabled", true);
+							    }
+							} 
+						}
+					}
+				}
+			},
+			"setSize" : function(autosize, width, height){
+				autosize = autosize!=false &amp;&amp; !(width || height);
+
+				if(this.__dialog_xfobj) {
+					if(!autosize){
+					    if(typeof height == "number"){
+					    	if(height &lt; 120) height = 120;
+							this.__dialog_xfobj.height = height;
+							if(this.__info_table) this.__info_table.height = height-50;
+					    }
+					    if(typeof width == "number"){
+						    if(width &lt; 150) width = 150;
+							this.__dialog_xfobj.width = width;
+						}
+					}else{
+						if(this.__info_text){
+							this.__dialog_xfobj.width = this.__info_text.scrollWidth+this.__info_img.scrollWidth+25;
+							this.__dialog_xfobj.height = (this.__info_text.scrollHeight &lt; this.__info_img.scrollHeight?this.__info_img.scrollHeight:this.__info_text.scrollHeight) + 60;
+						}
+					}
+				}                     
+			},
+			"setCallBacks" : function(callbacks){
+				if(!callbacks) return;
+				this.yesCallback = callbacks[0];
+				this.noCallback = callbacks[1];
+				this.okCallback = callbacks[2];
+				this.cancelCallback = callbacks[3];
+			},
+			"showModel" : function(params, callbacks){
+				if(this.__dialog_xfobj) {
+				    if(params){
+					    this.setMsg(params.msg);
+					    this.setTitle(params.title);
+					    this.setHtml(params.html);
+					    this.setImg(params.img);
+					    this.setBtns(params.btns);
+					    this.setSize(params.autosize, params.width, params.height);
+				    }
+				    this.setCallBacks(callbacks);
+					this.__dialog_xfobj.open();
+				}
+			},
+			"close" : function(){
+				this.__dialog_xfobj.close();
+			}
+		})
+		</xbl:implementation>
+		
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.btn_class BUTTON{
+					width:200px;
+					background:red;	 		
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>		
+			
+	</xbl:binding>
+	
+</xbl:xbl>

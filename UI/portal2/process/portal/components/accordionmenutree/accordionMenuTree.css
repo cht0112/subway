@@ -1,0 +1,45 @@
+.accordionMenuTree {
+}
+
+.accordionMenuTree ul,
+.accordionMenuTree li {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.accordionMenuTree li>label:hover {
+	background-color: #EEEFF0;
+}	
+
+.accordionMenuTree li > ul{
+	display: none;
+	margin-left: 16px;
+}
+
+.accordionMenuTree li.opened > ul{
+	display: block;
+}
+
+.accordionMenuTree li{
+	display: block;
+}
+
+.accordionMenuTree li label {
+	display: block;
+	padding: 4px 2px;
+	margin-top: 1px;
+	color: #444;
+	cursor: pointer;
+}
+
+.accordionMenuTree li.opened>label {
+	background: #dFeEFF;
+	-webkit-border-radius: 3px;
+}
+.accordionMenuTree li.ran>label {
+	background: #dFeEFF;
+}
+
+.accordionMenuTree li label i {
+	vertical-align: text-bottom;
+}

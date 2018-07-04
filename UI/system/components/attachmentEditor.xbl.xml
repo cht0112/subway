@@ -1,0 +1,117 @@
+<xbl:xbl xmlns:justep="http://www.justep.com/x5#" xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:saxon="http://saxon.sf.net/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns="http://www.justep.com/x5#" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	
+	<xbl:binding id="attachmentEditor">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<justep:root>
+					<xsl:variable name="id" select="@id" />
+					<xsl:variable name="model" select="@model"/>
+					<xsl:variable name="relation" select="@ref"/>
+					<xsl:variable name="rootPath" select="@root-path" />
+					<xsl:variable name="runtime" select="@runtime" />
+					<xsl:variable name="subPath" select="@sub-path" />
+					<xsl:variable name="limitSize" select="@limit-size" />
+					<xsl:variable name="access" select="@access" />
+					<xsl:variable name="autoLoad" select="if (@auto-load != '') then @auto-load else 'true'" />
+					<xsl:variable name="autoCreatVersion" select="if (@autoCreatVersion != '') then @autoCreatVersion else 'false'" />
+					<xsl:variable name="progressDlg" select="concat($id,'_progressDlg')" />
+					<xsl:variable name="uploadProgressIframe" select="concat($id,'_uploadProgressIframe')" />
+					<xsl:variable name="contentPanel" select="concat($id,'_attachmentContentPanel')" />
+					<xsl:variable name="docExtDiv" select="concat($id,'_docExtDiv')" />
+					<xhtml:div id="{$contentPanel}" style="font:13px;overflow:auto;height:100%;width:100%;">
+					</xhtml:div>
+					<xhtml:div id="{$docExtDiv}"/>
+					</justep:root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+			({
+				"initXBL" : function() {
+					var autoCreateVersion = ("true" == this.domNode.getAttribute("autoCreateVersion")? true: false);
+					var attachmentEditor=new justep.attachmentEditor(autoCreateVersion);
+					justep.Object.extend(this, attachmentEditor);
+					this._id = this.domNode.id;
+					this.contentPanel = this._id + "_attachmentContentPanel";
+					this.contentTable =  this._id + "_attachmentContentTable";
+					this.displayStyle = this.domNode.getAttribute("display-style")? this.domNode.getAttribute("display-style"):"list";
+					var displayButtonsStr = this.domNode.getAttribute("display-buttons")? this.domNode.getAttribute("display-buttons"):"upload:true;template:true;download:true;edit:true;delete:true;history:true;";
+					var displayButtons = displayButtonsStr.split(";");
+					this.buttons = {};
+					for(var i=0; i &lt; displayButtons.length; i++){
+						var button = displayButtons[i].split(":");
+						this.buttons[jQuery.trim(button[0])] = "false" == jQuery.trim(button[1])? false: true;
+					}
+					this.relationXPath = this.domNode.getAttribute("ref");
+					
+					/*兼容之前权限直接写权限的数值*/
+					this.access = 1799;
+					var domAccess = this.domNode.getAttribute("access");
+					if(domAccess){
+						this.access = justep.Doc.accessEnum[domAccess]? justep.Doc.accessEnum[domAccess] : domAccess;
+					}
+					this.limitSize = this.domNode.getAttribute("limit-size");
+					this.rootPath = this.domNode.getAttribute("root-path");
+					if(!this.rootPath){
+						this.rootPath = "/defaultDocNameSpace";
+					}
+					this.runtime = (this.domNode.getAttribute("runtime") == null || this.domNode.getAttribute("runtime") == '')?'flash':this.domNode.getAttribute("runtime");
+					this.subPath = this.domNode.getAttribute("sub-path")==null? '' : this.domNode.getAttribute("sub-path");
+					this.process = justep.Context.getCurrentProcess();
+					this.activity = justep.Context.getCurrentActivity();
+					this.extensionFilter = this.domNode.getAttribute("extension-filter");
+					this.uploaderButton = this._id + "_uploaderButton";
+					this.uploaderDiv = this._id + "_uploaderDiv";
+					this.progressDlg = this._id + "_progressDlg";
+					this.uploadProgressIframe = this._id + "_uploadProgressIframe";
+					this.ownerData = this.relationXPath.match(/data\('(\S*)\'\)/i)[1];
+					this.ownerDataXbl = justep.xbl(this.ownerData);
+					this.relation = this.relationXPath.match(/data\('\S*\'\)\/(\S*)/)[1];
+					this.docOcxDiv = this._id + "_docOcxDiv";
+					this.downloadOcx = this._id + "_downloadOcx";
+					this.keyId = this.domNode.getAttribute("keyId");
+					dhtmlxEventable(this);				
+				    this.addEvents();
+				    var self = this;
+				    if(justep.Browser.IE6){
+				    	setTimeout(function(){
+					    	self.setAutoLoad("false" == self.domNode.getAttribute("auto-load")? false: true);
+					    },2000);
+				    }else{
+				    	self.setAutoLoad("false" == self.domNode.getAttribute("auto-load")? false: true);
+				    }
+				    
+					
+				}
+			})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-attachmentEditor{
+					width:400px;
+					height:100px;
+					overflow:auto;
+				}
+				.xui-attachmentEditor *{
+					font-size:13px;
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>
+	</xbl:binding>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/yahooUtil.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/attachmentEditor/ajaxupload.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/service/doc/docUtil.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/component/attachmentEditor/attachmentEditor.js"></xbl:script>
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/dialog/dialog.js" />
+	<xbl:script language="JavaScript" type="text/javascript" src="/UI/system/components/windowDialog/windowDialog.js"></xbl:script>
+	<xbl:script type="text/javascript" src="/UI/system/components/windowRunner/windowRunner.js"/>
+</xbl:xbl>	

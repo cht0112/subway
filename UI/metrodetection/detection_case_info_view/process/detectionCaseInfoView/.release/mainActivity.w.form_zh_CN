@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <script language="javascript" src="/UI/system/components/tabs/tabs.js">
+</script>      <link href="/UI/system/components/./tabs/tabs.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css">ul.tabItems button:disabled { background-color:#EEEEEE; }</style>  
+    <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px;width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/metrodetection/detection_case_info_view/process/detectionCaseInfoView/mainActivity.js">
+</script>      <script>
+new justep.XBizData('dataMain',true,false,{'queryAction':"queryPLANVIEWTestAction",'saveAction':"savePLAN_VIEWAction",'newAction':"createPLAN_VIEWAction",'dataModel':"/metrodetection/system_code/data",'concept':"{'PLAN_VIEW':'PLAN_VIEW'}",'limit':20,'idColumn':"{'name':'PLAN_VIEW','relation':'PLAN_VIEW','define':'PLAN_VIEW','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'fID':{'type':'String','relation':'PLAN_VIEW.fID','define':'PLAN_VIEW.fID','label':'fid'},'fPARENTID':{'type':'String','relation':'PLAN_VIEW.fPARENTID','define':'PLAN_VIEW.fPARENTID','label':'父关系'},'tESTCASENAME':{'type':'String','relation':'PLAN_VIEW.tESTCASENAME','define':'PLAN_VIEW.tESTCASENAME','label':'测试用例名称'},'sHIJIAN':{'type':'Decimal','relation':'PLAN_VIEW.sHIJIAN','define':'PLAN_VIEW.sHIJIAN','label':'耗时'},'sTARTTIME':{'type':'String','relation':'PLAN_VIEW.sTARTTIME','define':'PLAN_VIEW.sTARTTIME','label':'开始时间'},'eNDTIME':{'type':'String','relation':'PLAN_VIEW.eNDTIME','define':'PLAN_VIEW.eNDTIME','label':'结束时间'},'qZRW':{'type':'String','relation':'PLAN_VIEW.qZRW','define':'PLAN_VIEW.qZRW','label':'前置任务'},'oPERATORNAME':{'type':'String','relation':'PLAN_VIEW.oPERATORNAME','define':'PLAN_VIEW.oPERATORNAME','label':'姓名'},'rOOMNAME':{'type':'String','relation':'PLAN_VIEW.rOOMNAME','define':'PLAN_VIEW.rOOMNAME','label':'房间'},'tOOLNAME':{'type':'String','relation':'PLAN_VIEW.tOOLNAME','define':'PLAN_VIEW.tOOLNAME','label':'工具'},'cASEID':{'type':'String','relation':'PLAN_VIEW.cASEID','define':'PLAN_VIEW.cASEID','label':'用例id'},'cASEVERSION':{'type':'Integer','relation':'PLAN_VIEW.cASEVERSION','define':'PLAN_VIEW.cASEVERSION','label':'用例版本'},'rANGENAME':{'type':'String','relation':'PLAN_VIEW.rANGENAME','define':'PLAN_VIEW.rANGENAME','label':'检测方面'},'tASKID':{'type':'Integer','relation':'PLAN_VIEW.tASKID','define':'PLAN_VIEW.tASKID','label':'检测任务'},'dETOBJNAME':{'type':'String','relation':'PLAN_VIEW.dETOBJNAME','define':'PLAN_VIEW.dETOBJNAME','label':'检测对象'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'fPARENTID'}"},'',{});</script>  
+    <script>
+new justep.XBizData('caseData',false,false,{'queryAction':"queryCaseBaseInfo",'saveAction':"saveTEST_CASE_BASE_INFOAction",'newAction':"createTEST_CASE_BASE_INFOAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"json",'concept':"{'TEST_CASE_BASE_INFO':'tcbi'}",'limit':20,'idColumn':"{'name':'tcbi','relation':'tcbi','define':'TEST_CASE_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tESTCASEVER':{'type':'Decimal','relation':'tcbi.tESTCASEVER','define':'TEST_CASE_BASE_INFO.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'tcbi.tESTCASEID','define':'TEST_CASE_BASE_INFO.tESTCASEID','label':'测试用例ID'},'tESTCASENAME':{'type':'String','relation':'tcbi.tESTCASENAME','define':'TEST_CASE_BASE_INFO.tESTCASENAME','label':'测试用例名称'},'tESTCASEPRIOR':{'type':'String','relation':'tcbi.tESTCASEPRIOR','define':'TEST_CASE_BASE_INFO.tESTCASEPRIOR','label':'测试用例级别'},'tESTCASEDESC':{'type':'String','relation':'tcbi.tESTCASEDESC','define':'TEST_CASE_BASE_INFO.tESTCASEDESC','label':'测试用例描述'},'tESTCASEFILE':{'type':'String','relation':'tcbi.tESTCASEFILE','define':'TEST_CASE_BASE_INFO.tESTCASEFILE','label':'测试用例XML文件'},'mAKEDATETIME':{'type':'DateTime','relation':'tcbi.mAKEDATETIME','define':'TEST_CASE_BASE_INFO.mAKEDATETIME','label':'作成时间'},'dECTIONBASEDONID':{'type':'Decimal','relation':'tcbi.dECTIONBASEDONID','define':'TEST_CASE_BASE_INFO.dECTIONBASEDONID','label':'检测依据'},'dboi':{'type':'Integer','relation':'dboi','define':'EXPRESS','label':'null'},'dECTIONBASEDONNAME':{'type':'String','relation':'dboi.dECTIONBASEDONNAME','define':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','label':'检测依据文件名称'},'vALIDDATETIME':{'type':'DateTime','relation':'dboi.vALIDDATETIME','define':'DECTION_BASED_ON_INFO.vALIDDATETIME','label':'依据生效时间'},'vALIDSTATE':{'type':'Integer','relation':'dboi.vALIDSTATE','define':'DECTION_BASED_ON_INFO.vALIDSTATE','label':'依据有效状态'},'version':{'type':'Integer','relation':'dboi.version','define':'DECTION_BASED_ON_INFO.version','label':'版本'}}"},'caseData_part',{});</script>  
+    <script>
+new justep.XBizData('caseDetectionInfo',false,false,{'queryAction':"queryDetectionCaseInfo",'saveAction':"saveTEST_CASE_DECTION_INFOAction",'newAction':"createTEST_CASE_DECTION_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'TEST_CASE_DECTION_INFO':'tcdi'}",'limit':20,'idColumn':"{'name':'tcdi','relation':'tcdi','define':'TEST_CASE_DECTION_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tESTCASEVER':{'type':'Decimal','relation':'tcdi.tESTCASEVER','define':'TEST_CASE_DECTION_INFO.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'tcdi.tESTCASEID','define':'TEST_CASE_DECTION_INFO.tESTCASEID','label':'测试用例ID'},'aPPLYFOROBJECT':{'type':'Decimal','relation':'tcdi.aPPLYFOROBJECT','define':'TEST_CASE_DECTION_INFO.aPPLYFOROBJECT','label':'应用检测对象类型'},'aPPLYFORDEVICETYPE':{'type':'Decimal','relation':'tcdi.aPPLYFORDEVICETYPE','define':'TEST_CASE_DECTION_INFO.aPPLYFORDEVICETYPE','label':'应用检测对象'},'aPPLYFORRANGE':{'type':'Decimal','relation':'tcdi.aPPLYFORRANGE','define':'TEST_CASE_DECTION_INFO.aPPLYFORRANGE','label':'应用检测方面类型'},'aPPLYFORSUBRANGE':{'type':'Decimal','relation':'tcdi.aPPLYFORSUBRANGE','define':'TEST_CASE_DECTION_INFO.aPPLYFORSUBRANGE','label':'应用检测方面'},'dtc':{'type':'String','relation':'dtc','define':'EXPRESS','label':'null'},'dETECTIONOBJECTTYPE':{'type':'Integer','relation':'dtc.dETECTIONOBJECTTYPE','define':'DEVICE_TYPE_CODE.dETECTIONOBJECTTYPE','label':'检测对象类别'},'dEVICETYPE':{'type':'Integer','relation':'dtc.dEVICETYPE','define':'DEVICE_TYPE_CODE.dEVICETYPE','label':'检测对象'},'dEVICETYPECNAME':{'type':'String','relation':'dtc.dEVICETYPECNAME','define':'DEVICE_TYPE_CODE.dEVICETYPECNAME','label':'检测对象'},'dEVICETYPEENAME':{'type':'String','relation':'dtc.dEVICETYPEENAME','define':'DEVICE_TYPE_CODE.dEVICETYPEENAME','label':'检测对象'},'dot':{'type':'Integer','relation':'dot','define':'EXPRESS','label':'null'},'dETECTIONOBJECTCNAME':{'type':'String','relation':'dot.dETECTIONOBJECTCNAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','label':'检测对象类别'},'dETECTIONOBJECTENAME':{'type':'String','relation':'dot.dETECTIONOBJECTENAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTENAME','label':'检测对象类别'},'drc':{'type':'String','relation':'drc','define':'EXPRESS','label':'null'},'dETECTIONRANGETYPE':{'type':'Integer','relation':'drc.dETECTIONRANGETYPE','define':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','label':'检测方面类别'},'dETECTIONRANGEID':{'type':'Decimal','relation':'drc.dETECTIONRANGEID','define':'DETECTION_RANGE_CODE.dETECTIONRANGEID','label':'检测方面'},'rANGEIDCNAME':{'type':'String','relation':'drc.rANGEIDCNAME','define':'DETECTION_RANGE_CODE.rANGEIDCNAME','label':'检测方面'},'rANGEIDENAME':{'type':'String','relation':'drc.rANGEIDENAME','define':'DETECTION_RANGE_CODE.rANGEIDENAME','label':'检测方面'},'drt':{'type':'Integer','relation':'drt','define':'EXPRESS','label':'null'},'dETECTIONRANGECNAME':{'type':'String','relation':'drt.dETECTIONRANGECNAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','label':'检测方面类别'},'dETECTIONRANGEENAME':{'type':'String','relation':'drt.dETECTIONRANGEENAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGEENAME','label':'检测方面类别'}}"},'caseDetectionInfo_part',{});</script>  
+    <script>
+new justep.XBizData('subCaseData',false,false,{'queryAction':"querySubCaseBaseInfo",'saveAction':"saveSUB_TEST_CASE_BASE_INFOAction",'newAction':"createSUB_TEST_CASE_BASE_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'SUB_TEST_CASE_BASE_INFO':'stcbi'}",'limit':20,'idColumn':"{'name':'stcbi','relation':'stcbi','define':'SUB_TEST_CASE_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tESTCASEVER':{'type':'Decimal','relation':'stcbi.tESTCASEVER','define':'SUB_TEST_CASE_BASE_INFO.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'stcbi.tESTCASEID','define':'SUB_TEST_CASE_BASE_INFO.tESTCASEID','label':'测试用例ID'},'sUBTESTCASEID':{'type':'String','relation':'stcbi.sUBTESTCASEID','define':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASEID','label':'测试子用例ID'},'sUBTESTCASENAME':{'type':'String','relation':'stcbi.sUBTESTCASENAME','define':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASENAME','label':'测试子用例名称'},'sUBTESTCASEPRIOR':{'type':'Decimal','relation':'stcbi.sUBTESTCASEPRIOR','define':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASEPRIOR','label':'测试子用例执行级别'},'sUBTESTCASEORDER':{'type':'Decimal','relation':'stcbi.sUBTESTCASEORDER','define':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASEORDER','label':'测试子用例执行顺序'},'sUBTESTCASETIME':{'type':'Decimal','relation':'stcbi.sUBTESTCASETIME','define':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASETIME','label':'测试子用例执行耗时'},'tIMEUNITID':{'type':'Decimal','relation':'stcbi.tIMEUNITID','define':'SUB_TEST_CASE_BASE_INFO.tIMEUNITID','label':'执行时间单位.默认单位小时'},'iNDEXNAME':{'type':'String','relation':'stcbi.iNDEXNAME','define':'SUB_TEST_CASE_BASE_INFO.iNDEXNAME','label':'指标名称'},'tuc':{'type':'Integer','relation':'tuc','define':'EXPRESS','label':'null'},'tIMEUNITCNAME':{'type':'String','relation':'tuc.tIMEUNITCNAME','define':'TIME_UNIT_CODE.tIMEUNITCNAME','label':'中文名称'},'tIMEUNITENAME':{'type':'String','relation':'tuc.tIMEUNITENAME','define':'TIME_UNIT_CODE.tIMEUNITENAME','label':'英文名称'}}"},'subCaseData_part',{});</script>  
+    <script>
+new justep.XBizData('subCaseStepData',false,false,{'queryAction':"querySUB_TEST_CASE_STEP_INFOAction",'saveAction':"saveSUB_TEST_CASE_STEP_INFOAction",'newAction':"createSUB_TEST_CASE_STEP_INFOAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"json",'concept':"{'SUB_TEST_CASE_STEP_INFO':'SUB_TEST_CASE_STEP_INFO'}",'limit':20,'idColumn':"{'name':'SUB_TEST_CASE_STEP_INFO','relation':'SUB_TEST_CASE_STEP_INFO','define':'SUB_TEST_CASE_STEP_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tESTCASEVER':{'type':'Integer','relation':'SUB_TEST_CASE_STEP_INFO.tESTCASEVER','define':'SUB_TEST_CASE_STEP_INFO.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'SUB_TEST_CASE_STEP_INFO.tESTCASEID','define':'SUB_TEST_CASE_STEP_INFO.tESTCASEID','label':'测试用例ID'},'sUBTESTCASEID':{'type':'String','relation':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASEID','define':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASEID','label':'测试子用例ID'},'sUBTESTCASESTEPID':{'type':'Decimal','relation':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASESTEPID','define':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASESTEPID','label':'测试子用例步骤ID'},'sUBTESTCASESTEPDESC':{'type':'String','relation':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASESTEPDESC','define':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASESTEPDESC','label':'测试子用例步骤描述'},'sUBTESTCASESTEPPRIOR':{'type':'Decimal','relation':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASESTEPPRIOR','define':'SUB_TEST_CASE_STEP_INFO.sUBTESTCASESTEPPRIOR','label':'测试子用例步骤级别'}}"},'subCaseStepData_part',{});</script>  
+    <script>
+new justep.XBizData('stepPrepareData',false,false,{'queryAction':"querySUB_TEST_CASE_DATA_INFOAction",'saveAction':"saveSUB_TEST_CASE_DATA_INFOAction",'newAction':"createSUB_TEST_CASE_DATA_INFOAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"json",'concept':"{'SUB_TEST_CASE_DATA_INFO':'SUB_TEST_CASE_DATA_INFO'}",'limit':20,'idColumn':"{'name':'SUB_TEST_CASE_DATA_INFO','relation':'SUB_TEST_CASE_DATA_INFO','define':'SUB_TEST_CASE_DATA_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tESTCASEVER':{'type':'Decimal','relation':'SUB_TEST_CASE_DATA_INFO.tESTCASEVER','define':'SUB_TEST_CASE_DATA_INFO.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'SUB_TEST_CASE_DATA_INFO.tESTCASEID','define':'SUB_TEST_CASE_DATA_INFO.tESTCASEID','label':'测试用例ID'},'sUBTESTCASEID':{'type':'String','relation':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASEID','define':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASEID','label':'测试子用例ID'},'sUBTESTCASESTEPID':{'type':'Decimal','relation':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASESTEPID','define':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASESTEPID','label':'测试子用例步骤ID'},'sUBTESTCASESTEPSENDFLAG':{'type':'Decimal','relation':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASESTEPSENDFLAG','define':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASESTEPSENDFLAG','label':'测试子用例数据发送方式，1、执行产生；2、提前产生'},'sUBTESTCASESTEPDATANUMBER':{'type':'Decimal','relation':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASESTEPDATANUMBER','define':'SUB_TEST_CASE_DATA_INFO.sUBTESTCASESTEPDATANUMBER','label':'测试子用例数据数量'}}"},'stepPrepareData_part',{});</script>  
+    <script>
+new justep.XBizData('caseTree',true,false,{'queryAction':"queryCASE_TREE_NEW1Action",'saveAction':"saveCASE_TREE_NEW1Action",'newAction':"createCASE_TREE_NEW1Action",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'CASE_TREE_NEW':'tv'}",'limit':-1,'idColumn':"{'name':'tv','relation':'tv','define':'CASE_TREE_NEW','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'fID':{'type':'String','relation':'tv.fID','define':'CASE_TREE_NEW.fID','label':'fid'},'fPARENTID':{'type':'String','relation':'tv.fPARENTID','define':'CASE_TREE_NEW.fPARENTID','label':'父关系'},'tESTCASENAME':{'type':'String','relation':'tv.tESTCASENAME','define':'CASE_TREE_NEW.tESTCASENAME','label':'测试用例名称'},'sHIJIAN':{'type':'Integer','relation':'tv.sHIJIAN','define':'CASE_TREE_NEW.sHIJIAN','label':''},'sTARTTIME':{'type':'String','relation':'tv.sTARTTIME','define':'CASE_TREE_NEW.sTARTTIME','label':''},'eNDTIME':{'type':'String','relation':'tv.eNDTIME','define':'CASE_TREE_NEW.eNDTIME','label':''},'qZRW':{'type':'String','relation':'tv.qZRW','define':'CASE_TREE_NEW.qZRW','label':''},'oPERATORNAME':{'type':'String','relation':'tv.oPERATORNAME','define':'CASE_TREE_NEW.oPERATORNAME','label':'姓名'},'rOOMNAME':{'type':'String','relation':'tv.rOOMNAME','define':'CASE_TREE_NEW.rOOMNAME','label':''},'tOOLNAME':{'type':'String','relation':'tv.tOOLNAME','define':'CASE_TREE_NEW.tOOLNAME','label':''},'cASEID':{'type':'String','relation':'tv.cASEID','define':'CASE_TREE_NEW.cASEID','label':'cASEID'},'cASEVERSION':{'type':'Integer','relation':'tv.cASEVERSION','define':'CASE_TREE_NEW.cASEVERSION','label':'cASEVERSION'},'tREESN':{'type':'Integer','relation':'tv.tREESN','define':'CASE_TREE_NEW.tREESN','label':'tREESN'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'fPARENTID'}"},'',{});</script>  
+    <script>
+new justep.XCommonData('tempData',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'dataType':"xml"}, {});</script>  
+    <script>
+new justep.XBizData('caseTreeV',true,false,{'queryAction':"queryCASE_TREE_NEW_VAction",'saveAction':"saveCASE_TREE_NEW_VAction",'newAction':"createCASE_TREE_NEW_VAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'CASE_TREE_NEW_V':'tv'}",'limit':-1,'idColumn':"{'name':'tv','relation':'tv','define':'CASE_TREE_NEW_V','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'fID':{'type':'String','relation':'tv.fID','define':'CASE_TREE_NEW_V.fID','label':'fid'},'fPARENTID':{'type':'String','relation':'tv.fPARENTID','define':'CASE_TREE_NEW_V.fPARENTID','label':'父关系'},'tESTCASENAME':{'type':'String','relation':'tv.tESTCASENAME','define':'CASE_TREE_NEW_V.tESTCASENAME','label':'测试用例名称'},'sHIJIAN':{'type':'Integer','relation':'tv.sHIJIAN','define':'CASE_TREE_NEW_V.sHIJIAN','label':''},'sTARTTIME':{'type':'String','relation':'tv.sTARTTIME','define':'CASE_TREE_NEW_V.sTARTTIME','label':''},'eNDTIME':{'type':'String','relation':'tv.eNDTIME','define':'CASE_TREE_NEW_V.eNDTIME','label':''},'qZRW':{'type':'String','relation':'tv.qZRW','define':'CASE_TREE_NEW_V.qZRW','label':''},'oPERATORNAME':{'type':'String','relation':'tv.oPERATORNAME','define':'CASE_TREE_NEW_V.oPERATORNAME','label':'姓名'},'rOOMNAME':{'type':'String','relation':'tv.rOOMNAME','define':'CASE_TREE_NEW_V.rOOMNAME','label':''},'tOOLNAME':{'type':'String','relation':'tv.tOOLNAME','define':'CASE_TREE_NEW_V.tOOLNAME','label':''},'cASEID':{'type':'String','relation':'tv.cASEID','define':'CASE_TREE_NEW_V.cASEID','label':'cASEID'},'cASEVERSION':{'type':'Integer','relation':'tv.cASEVERSION','define':'CASE_TREE_NEW_V.cASEVERSION','label':'cASEVERSION'},'tREESN':{'type':'Integer','relation':'tv.tREESN','define':'CASE_TREE_NEW_V.tREESN','label':'tREESN'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'fPARENTID'}"},'',{});</script>  
+    <script>
+new justep.XBizData('caseTreeObj',true,false,{'queryAction':"queryCASE_TREE_NEW_OBJAction",'saveAction':"saveCASE_TREE_NEW_OBJAction",'newAction':"createCASE_TREE_NEW_OBJAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'CASE_TREE_NEW_OBJ':'CASE_TREE_NEW_OBJ'}",'limit':-1,'idColumn':"{'name':'CASE_TREE_NEW_OBJ','relation':'CASE_TREE_NEW_OBJ','define':'CASE_TREE_NEW_OBJ','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'fID':{'type':'String','relation':'CASE_TREE_NEW_OBJ.fID','define':'CASE_TREE_NEW_OBJ.fID','label':'fid'},'fPARENTID':{'type':'String','relation':'CASE_TREE_NEW_OBJ.fPARENTID','define':'CASE_TREE_NEW_OBJ.fPARENTID','label':'父关系'},'tESTCASENAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ.tESTCASENAME','define':'CASE_TREE_NEW_OBJ.tESTCASENAME','label':'测试用例名称'},'sHIJIAN':{'type':'Integer','relation':'CASE_TREE_NEW_OBJ.sHIJIAN','define':'CASE_TREE_NEW_OBJ.sHIJIAN','label':''},'sTARTTIME':{'type':'String','relation':'CASE_TREE_NEW_OBJ.sTARTTIME','define':'CASE_TREE_NEW_OBJ.sTARTTIME','label':''},'eNDTIME':{'type':'String','relation':'CASE_TREE_NEW_OBJ.eNDTIME','define':'CASE_TREE_NEW_OBJ.eNDTIME','label':''},'qZRW':{'type':'String','relation':'CASE_TREE_NEW_OBJ.qZRW','define':'CASE_TREE_NEW_OBJ.qZRW','label':''},'oPERATORNAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ.oPERATORNAME','define':'CASE_TREE_NEW_OBJ.oPERATORNAME','label':'姓名'},'rOOMNAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ.rOOMNAME','define':'CASE_TREE_NEW_OBJ.rOOMNAME','label':''},'tOOLNAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ.tOOLNAME','define':'CASE_TREE_NEW_OBJ.tOOLNAME','label':''},'cASEID':{'type':'String','relation':'CASE_TREE_NEW_OBJ.cASEID','define':'CASE_TREE_NEW_OBJ.cASEID','label':'cASEID'},'cASEVERSION':{'type':'Integer','relation':'CASE_TREE_NEW_OBJ.cASEVERSION','define':'CASE_TREE_NEW_OBJ.cASEVERSION','label':'cASEVERSION'},'tREESN':{'type':'Integer','relation':'CASE_TREE_NEW_OBJ.tREESN','define':'CASE_TREE_NEW_OBJ.tREESN','label':'tREESN'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'fPARENTID'}"},'',{});</script>  
+    <script>
+new justep.XBizData('caseTreeObjV',true,false,{'queryAction':"queryCASE_TREE_NEW_OBJ_VAction",'saveAction':"saveCASE_TREE_NEW_OBJ_VAction",'newAction':"createCASE_TREE_NEW_OBJ_VAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'CASE_TREE_NEW_OBJ_V':'CASE_TREE_NEW_OBJ_V'}",'limit':-1,'idColumn':"{'name':'CASE_TREE_NEW_OBJ_V','relation':'CASE_TREE_NEW_OBJ_V','define':'CASE_TREE_NEW_OBJ_V','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'fID':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.fID','define':'CASE_TREE_NEW_OBJ_V.fID','label':'fid'},'fPARENTID':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.fPARENTID','define':'CASE_TREE_NEW_OBJ_V.fPARENTID','label':'父关系'},'tESTCASENAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.tESTCASENAME','define':'CASE_TREE_NEW_OBJ_V.tESTCASENAME','label':'测试用例名称'},'sHIJIAN':{'type':'Integer','relation':'CASE_TREE_NEW_OBJ_V.sHIJIAN','define':'CASE_TREE_NEW_OBJ_V.sHIJIAN','label':''},'sTARTTIME':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.sTARTTIME','define':'CASE_TREE_NEW_OBJ_V.sTARTTIME','label':''},'eNDTIME':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.eNDTIME','define':'CASE_TREE_NEW_OBJ_V.eNDTIME','label':''},'qZRW':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.qZRW','define':'CASE_TREE_NEW_OBJ_V.qZRW','label':''},'oPERATORNAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.oPERATORNAME','define':'CASE_TREE_NEW_OBJ_V.oPERATORNAME','label':'姓名'},'rOOMNAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.rOOMNAME','define':'CASE_TREE_NEW_OBJ_V.rOOMNAME','label':''},'tOOLNAME':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.tOOLNAME','define':'CASE_TREE_NEW_OBJ_V.tOOLNAME','label':''},'cASEID':{'type':'String','relation':'CASE_TREE_NEW_OBJ_V.cASEID','define':'CASE_TREE_NEW_OBJ_V.cASEID','label':'cASEID'},'cASEVERSION':{'type':'Integer','relation':'CASE_TREE_NEW_OBJ_V.cASEVERSION','define':'CASE_TREE_NEW_OBJ_V.cASEVERSION','label':'cASEVERSION'},'tREESN':{'type':'Integer','relation':'CASE_TREE_NEW_OBJ_V.tREESN','define':'CASE_TREE_NEW_OBJ_V.tREESN','label':'tREESN'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'fPARENTID'}"},'',{});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/tabs.xbl.xml#tabs"] = _xbl_JSClassDefine_tabs;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/system/components/splitter.xbl.xml#splitter"] = _xbl_JSClassDefine_splitter;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+_xbl_JSClassDefine_window.prototype.ClassName='_xbl_JSClassDefine_window';
+_xbl_JSClassDefine_window.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_window_j_xbl_e_;
+function _xbl_JSClassDefine_tabs(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tabs.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.tabbar = new justep.JSTabbar(this.domNode.id);
+				justep.Utils.proxable(this, this.tabbar, justep.JSTabbar);
+			}
+		}));
+
+_xbl_JSClassDefine_tabs.prototype.ClassName='_xbl_JSClassDefine_tabs';
+_xbl_JSClassDefine_tabs.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_tabs_j_xbl_e_;
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+_xbl_JSClassDefine_borderLayout.prototype.ClassName='_xbl_JSClassDefine_borderLayout';
+_xbl_JSClassDefine_borderLayout.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_borderLayout_j_xbl_e_;
+function _xbl_JSClassDefine_splitter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_splitter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-splitter-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+				this.status = this.el.attr("status") || "normal";
+				this.fixType = this.el.attr("fix-type");
+				this.state = 1;
+				if(this.status=='show-first' || this.status=='show-left' || this.status=='show-top'){
+				   	this.state = 0;
+				}else if(this.status=="show-second" || this.status=='show-right' || this.status=='show-bottom'){
+				   	this.state = 2;
+				}
+				this.spacing = 5;
+				this.resizable = this.domNode.getAttribute('resizable')?this.domNode.getAttribute('resizable')=="true": true;
+			   	this.isHorz = this.el.attr("mode") === 'horz';
+			   	this.hasHandler = this.el.attr("has-drag-bar") === 'true';
+			   	this.hasArrowBtn = this.el.attr("has-arrow-button") === 'true';
+			   	this.fixSize = this.el.attr("fix-size") || '50%';
+			   	this.isAnchor = this.fixSize.indexOf('%') != -1;/*是百分比的*/
+
+
+				this.onRegionResize = justep.Function.get($(this.domNode).attr("onRegionResize"));
+
+			   	this.rootEl = $("&gt;div" + baseCls + "root", this.el);
+			   	var s = "&gt;div" + baseCls + "root &gt;div";
+			   	this.leftEl = this.isHorz ? $(s + baseCls + "left", this.el) : $(s + baseCls + "top", this.el);
+			   	this.rightEl = this.isHorz ? $(s + baseCls + "right", this.el) : $(s + baseCls + "bottom", this.el);
+			   	this.handlerEl = $(s + baseCls + "handler", this.el);
+			   	var that = this;
+			   	if(this.hasHandler &amp;&amp; this.hasArrowBtn){
+			   		this.arrowBtn = $("#" + id+" &gt; "+baseCls + "root &gt; "+baseCls + "handler &gt;"+baseCls + "btn");
+			   		if(this.state != 1){
+				   		var dir = this.arrowBtn.attr("role");
+				   		$('i', this.arrowBtn).removeClass('icon-system-' + dir + '-dir');
+				   		switch(dir){
+				   			case 'up': dir = 'down'; break;
+				   			case 'down': dir = 'up'; break;
+				   			case 'left': dir = 'right'; break;
+				   			case 'right': dir = 'left'; break;
+				   		}
+				   		$('i', this.arrowBtn).addClass('icon-system-' + dir + '-dir');
+				   		this.arrowBtn.attr('role', dir);
+			   		}
+				   	this.arrowBtn.css('cursor', 'pointer');
+				   	this.arrowBtn.bind('mousedown', function(event){
+				   		that.splitBtnClick = true;
+				   		setTimeout(function(){
+				   			that.splitBtnClick = false;
+				   		}, 50);
+				   		var dir = $(this).attr("role");
+				   		that._onResizeBtnClick(dir);
+				   		$('i', this).removeClass('icon-system-' + dir + '-dir');
+				   		switch(dir){
+				   			case 'up': dir = 'down'; break;
+				   			case 'down': dir = 'up'; break;
+				   			case 'left': dir = 'right'; break;
+				   			case 'right': dir = 'left'; break;
+				   		}
+				   		$('i', this).addClass('icon-system-' + dir + '-dir');
+				   		$(this).attr('role', dir);
+				   		if(event.stopPropagation)
+				   			event.stopPropagation();
+				   	});
+			   	}
+			},
+			_onResizeBtnClick: function(role){
+				if(!this.isHorz){
+					role = role==='up'?'left':'right';
+				}
+				if((this.state === 0 &amp;&amp; role==='right')||(this.state === 2 &amp;&amp; role==='left')){
+					return;
+				}
+				var oldState = this.state;
+				if(this.state === 1){
+					if(role==='left'){
+						this.state = 2;
+					}else{
+						this.state = 0;
+					}
+				}else{
+					if(this.state === 0){
+						if(role==='left'){
+							this.state = 1;
+						}
+					}else{
+						if(role==='right'){
+							this.state = 1;
+						}	
+					}
+				}
+				if(this.state!=oldState){
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			_getBorderWidth: function(el, s){
+				if(s == 'tb'){
+					return (parseInt(el.css("padding-top"))||0) 
+						+ (parseInt(el.css("padding-bottom"))||0) 
+						+ (parseInt(el.css("border-top"))||0) 
+						+ (parseInt(el.css("border-bottom"))||0);  
+				}else{
+					return (parseInt(el.css("padding-left"))||0)
+						+ (parseInt(el.css("padding-right"))||0) 
+						+ (parseInt(el.css("border-left"))||0)
+						+ (parseInt(el.css("border-right"))||0);  
+				}
+			},
+			moveToStart: function(){
+				if(this.state != 2){
+					this.state = 2;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			moveToMiddle: function(){
+				if(this.state != 1){
+					this.state = 1;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			moveToEnd: function(){
+				if(this.state != 0){
+					this.state = 0;
+					this.onWindowResize();
+					justep.XBLObject.resize(this.domNode.id);
+				}
+			},
+			onWindowResize: function(){
+				var el = this.rootEl;
+
+				/*为了解决 当前套在tab次页下时，初次有不显示的缺陷*/
+				if(justep.Browser.IE7){
+					el.width(this.el.width());
+					el.height(this.el.height());
+				}
+				var l = this.isHorz ? el.width() : el.height();
+				if(this.hasHandler){
+					l -= this.isHorz ? this.handlerEl.width() : this.handlerEl.height();
+				}
+				var lw = rw = 0;
+				if(!this.isNotCalcWidth){
+					var	f = parseFloat(this.fixSize);
+					if(this.isAnchor){
+						lw = Math.round(l*f*0.01);
+					}else{
+						lw = Math.round(f);
+					}
+					this.calcWidth = lw;
+				}
+				if(this.state === 1){
+					if(this.fixType == 'right' || this.fixType == 'bottom'){
+						rw = this.calcWidth;
+						lw = l - rw;
+					}else{
+						lw = this.calcWidth;
+						rw = l - lw;
+					}
+				}else if(this.state === 0){
+					lw = l;
+					rw = 0;
+				}else if(this.state === 2){
+					lw = 0;
+					rw = l;
+				}
+				this.leftEl.css("overflow", "hidden");
+				this.rightEl.css("overflow", "hidden");
+				if(this.isHorz){
+					this.leftEl.width(lw);
+					this.rightEl.width(rw);
+				}else{
+					this.leftEl.height(lw);
+					this.rightEl.height(rw);
+				}
+
+				if(this.hasHandler){
+					if(this.isHorz){
+						this.handlerEl.css("left", lw+"px");
+					}else{
+						this.handlerEl.css("top", lw+"px");
+					}
+				}
+				var that = this;
+				setTimeout(function(){
+					that.leftEl.css("overflow", "auto");
+					that.rightEl.css("overflow", "auto");
+				}, 1);
+			   	if(this.hasHandler &amp;&amp; this.resizable &amp;&amp; !this.mousedowned){
+			   		this.mousedowned = true;
+					this.handlerEl.bind("mousedown",function(){
+						if(that.status=="normal"){
+							if(!that.splitBtnClick) 
+								that.buildDrag();
+						}	
+					});		
+			   	}
+			},
+			buildDrag: function() {
+				var me = this;
+				if(!this.$H)
+					this.$H = $("&lt;div /&gt;").appendTo("body");
+				if(xforms.Core.isIE){
+					this.$H[0].setCapture();
+				}
+				var splitter = this.handlerEl[0];
+				var pos = this.cumulativeOffset(splitter);
+				this.$H.css({position:"absolute",backgroundColor:"#999999",zIndex:"99999",fontSize:"1px"
+						,top:pos[1],left:pos[0],height:splitter.offsetHeight,width:splitter.offsetWidth});
+				this.$H.show();		
+				this.minPosition = this.rootEl.offset()[this.isHorz?"left":"top"];
+				this.maxPosition = this.minPosition + (this.isHorz?this.rootEl.outerWidth():this.rootEl.outerHeight()) - this.spacing;
+				me.orgPos = {
+					x : pos[0],
+					y : pos[1]
+				};
+				me.draging_call = function(e) {
+					me.draging(e);
+				};
+				me.done_call = function(e) {
+					me.done(e);
+				};
+				$(document).bind("mousemove",me.draging_call);
+				$(document).bind("mouseup",me.done_call);
+			},
+			cumulativeOffset: function(element) {
+				var valueT = 0, valueL = 0;
+				do {
+					valueT += element.offsetTop  || 0;
+					valueL += element.offsetLeft || 0;
+					element = element.offsetParent;
+			    }while(element);
+			    return [valueL, valueT];
+			},
+			draging: function(e) {
+				var attr = this.isHorz? "pageX" : "pageY";
+				this.$H.css(this.isHorz?"left":"top",Math.min(Math.max((e[attr]-2),this.minPosition),this.maxPosition));
+			},
+			done: function() {
+				var dir = this.isHorz? "offsetWidth" : "offsetHeight";
+				var pos = this.cumulativeOffset(this.$H[0]);  //current pos
+				var offset = pos[this.isHorz?0:1] - this.orgPos[this.isHorz?"x":"y"]; //relative old pos
+				var orgSize = this.leftEl[0][dir]; 	//first width
+				var newSize = orgSize + offset;
+				var parentSize = this.rootEl[0][dir];
+				var f = newSize;
+				var s = parentSize - newSize - this.spacing;
+				f==0?this.leftEl.hide():this.leftEl.show();
+				s==0?this.rightEl.hide():this.rightEl.show();
+				var dir = this.isHorz? "width" : "hight";
+				this.calcWidth = f;
+				this.isNotCalcWidth = true;
+				if(xforms.Core.isIE){
+					this.$H[0].releaseCapture();
+				}
+				this.$H.hide();
+				$(document).unbind("mousemove",this.draging_call);
+				$(document).unbind("mouseup",this.done_call);
+				if(this.onRegionResize)
+					this.onRegionResize({source:this});
+				this.onWindowResize();
+				justep.XBLObject.resize(this.domNode.id);
+			}
+		}));
+
+_xbl_JSClassDefine_splitter.prototype.ClassName='_xbl_JSClassDefine_splitter';
+_xbl_JSClassDefine_splitter.prototype.__code__=_j_xbl_b__xbl_JSClassDefine_splitter_j_xbl_e_;
+	var ids=[{id:'4e7df909b5274a3c806a9f64ffd40d1b', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'HSplitter1', name:'/UI/system/components/splitter.xbl.xml#splitter', children:[{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'gridObjV', name:'xforms:grid'},{id:'gridObj', name:'xforms:grid'},{id:'grid4', name:'xforms:grid'},{id:'grdMain', name:'xforms:grid'}]},{id:'tESTCASEVER', name:'xforms:input'},{id:'tESTCASEID', name:'xforms:input'},{id:'tESTCASENAME', name:'xforms:input'},{id:'tESTCASEPRIOR', name:'xforms:input'},{id:'tESTCASEDESC', name:'xforms:input'},{id:'grid1', name:'xforms:grid'},{id:'input1', name:'xforms:input'},{id:'tabPanel1', name:'/UI/system/components/tabs.xbl.xml#tabs', children:[{id:'grid2', name:'xforms:grid'},{id:'grid3', name:'xforms:grid'}]},{id:'sUBTESTCASETIME', name:'xforms:input'},{id:'sUBTESTCASEPRIOR', name:'xforms:input'},{id:'sUBTESTCASEID', name:'xforms:input'},{id:'sUBTESTCASENAME', name:'xforms:input'},{id:'sUBTESTCASEORDER', name:'xforms:input'},{id:'tIMEUNITID', name:'xforms:input'}]},{id:'radio1', name:'xforms:select1', children:[{id:'selectItem1', name:'xforms:item', children:[{id:'default24', name:'xforms:label'},{id:'default25', name:'xforms:value'}]},{id:'selectItem2', name:'xforms:item', children:[{id:'default26', name:'xforms:label'},{id:'default27', name:'xforms:value'}]},{id:'selectItem3', name:'xforms:item', children:[{id:'default35', name:'xforms:label'},{id:'default36', name:'xforms:value'}]},{id:'selectItem4', name:'xforms:item', children:[{id:'default37', name:'xforms:label'},{id:'default38', name:'xforms:value'}]}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+justep.XBLObject.code='_xbl_code_';</script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'gridObjV');xf._a(null,'gridObj');xf._a(null,'grid4');xf._a(null,'grdMain');xf._a(null,'tESTCASEVER');xf._a(null,'tESTCASEID');xf._a(null,'tESTCASENAME');xf._a(null,'tESTCASEPRIOR');xf._a(null,'tESTCASEDESC');xf._a(null,'grid1');xf._a(null,'input1');xf._a(null,'grid2');xf._a(null,'grid3');xf._a(null,'sUBTESTCASETIME');xf._a(null,'sUBTESTCASEPRIOR');xf._a(null,'sUBTESTCASEID');xf._a(null,'sUBTESTCASENAME');xf._a(null,'sUBTESTCASEORDER');xf._a(null,'tIMEUNITID');xf._a(null,'radio1');xf._a('radio1','selectItem1');xf._a('selectItem1','default24');xf._a('radio1','selectItem2');xf._a('selectItem2','default26');xf._a('radio1','selectItem3');xf._a('selectItem3','default35');xf._a('radio1','selectItem4');xf._a('selectItem4','default37');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dataMain')/sHIJIAN",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','sHIJIAN')))));	
+xf._b("instance('dataMain')/cASEVERSION",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','cASEVERSION')))));	
+xf._b("instance('dataMain')/tASKID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','tASKID')))));	
+xf._b("instance('caseData')/tESTCASEVER",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','tESTCASEVER')))));	
+xf._b("instance('caseData')/mAKEDATETIME",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','mAKEDATETIME')))));	
+xf._b("instance('caseData')/dECTIONBASEDONID",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','dECTIONBASEDONID')))));	
+xf._b("instance('caseData')/dboi",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','dboi')))));	
+xf._b("instance('caseData')/vALIDDATETIME",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','vALIDDATETIME')))));	
+xf._b("instance('caseData')/vALIDSTATE",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','vALIDSTATE')))));	
+xf._b("instance('caseData')/version",xf._g(xf._f('instance',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('caseDetectionInfo')/tESTCASEVER",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','tESTCASEVER')))));	
+xf._b("instance('caseDetectionInfo')/aPPLYFOROBJECT",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','aPPLYFOROBJECT')))));	
+xf._b("instance('caseDetectionInfo')/aPPLYFORDEVICETYPE",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','aPPLYFORDEVICETYPE')))));	
+xf._b("instance('caseDetectionInfo')/aPPLYFORRANGE",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','aPPLYFORRANGE')))));	
+xf._b("instance('caseDetectionInfo')/aPPLYFORSUBRANGE",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','aPPLYFORSUBRANGE')))));	
+xf._b("instance('caseDetectionInfo')/dETECTIONOBJECTTYPE",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','dETECTIONOBJECTTYPE')))));	
+xf._b("instance('caseDetectionInfo')/dEVICETYPE",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','dEVICETYPE')))));	
+xf._b("instance('caseDetectionInfo')/dot",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','dot')))));	
+xf._b("instance('caseDetectionInfo')/dETECTIONRANGETYPE",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','dETECTIONRANGETYPE')))));	
+xf._b("instance('caseDetectionInfo')/dETECTIONRANGEID",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','dETECTIONRANGEID')))));	
+xf._b("instance('caseDetectionInfo')/drt",xf._g(xf._f('instance',xf._i("caseDetectionInfo")),xf._h(false, xf._k("child",xf._j('','drt')))));	
+xf._b("instance('subCaseData')/tESTCASEVER",xf._g(xf._f('instance',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','tESTCASEVER')))));	
+xf._b("instance('subCaseData')/sUBTESTCASEPRIOR",xf._g(xf._f('instance',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEPRIOR')))));	
+xf._b("instance('subCaseData')/sUBTESTCASEORDER",xf._g(xf._f('instance',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEORDER')))));	
+xf._b("instance('subCaseData')/sUBTESTCASETIME",xf._g(xf._f('instance',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASETIME')))));	
+xf._b("instance('subCaseData')/tIMEUNITID",xf._g(xf._f('instance',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','tIMEUNITID')))));	
+xf._b("instance('subCaseData')/tuc",xf._g(xf._f('instance',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','tuc')))));	
+xf._b("instance('subCaseStepData')/tESTCASEVER",xf._g(xf._f('instance',xf._i("subCaseStepData")),xf._h(false, xf._k("child",xf._j('','tESTCASEVER')))));	
+xf._b("instance('subCaseStepData')/sUBTESTCASESTEPID",xf._g(xf._f('instance',xf._i("subCaseStepData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPID')))));	
+xf._b("instance('subCaseStepData')/sUBTESTCASESTEPPRIOR",xf._g(xf._f('instance',xf._i("subCaseStepData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPPRIOR')))));	
+xf._b("instance('stepPrepareData')/tESTCASEVER",xf._g(xf._f('instance',xf._i("stepPrepareData")),xf._h(false, xf._k("child",xf._j('','tESTCASEVER')))));	
+xf._b("instance('stepPrepareData')/sUBTESTCASESTEPID",xf._g(xf._f('instance',xf._i("stepPrepareData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPID')))));	
+xf._b("instance('stepPrepareData')/sUBTESTCASESTEPSENDFLAG",xf._g(xf._f('instance',xf._i("stepPrepareData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPSENDFLAG')))));	
+xf._b("instance('stepPrepareData')/sUBTESTCASESTEPDATANUMBER",xf._g(xf._f('instance',xf._i("stepPrepareData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPDATANUMBER')))));	
+xf._b("instance('caseTree')/sHIJIAN",xf._g(xf._f('instance',xf._i("caseTree")),xf._h(false, xf._k("child",xf._j('','sHIJIAN')))));	
+xf._b("instance('caseTree')/cASEVERSION",xf._g(xf._f('instance',xf._i("caseTree")),xf._h(false, xf._k("child",xf._j('','cASEVERSION')))));	
+xf._b("instance('caseTree')/tREESN",xf._g(xf._f('instance',xf._i("caseTree")),xf._h(false, xf._k("child",xf._j('','tREESN')))));	
+xf._b("instance('caseTreeV')/sHIJIAN",xf._g(xf._f('instance',xf._i("caseTreeV")),xf._h(false, xf._k("child",xf._j('','sHIJIAN')))));	
+xf._b("instance('caseTreeV')/cASEVERSION",xf._g(xf._f('instance',xf._i("caseTreeV")),xf._h(false, xf._k("child",xf._j('','cASEVERSION')))));	
+xf._b("instance('caseTreeV')/tREESN",xf._g(xf._f('instance',xf._i("caseTreeV")),xf._h(false, xf._k("child",xf._j('','tREESN')))));	
+xf._b("instance('caseTreeObj')/sHIJIAN",xf._g(xf._f('instance',xf._i("caseTreeObj")),xf._h(false, xf._k("child",xf._j('','sHIJIAN')))));	
+xf._b("instance('caseTreeObj')/cASEVERSION",xf._g(xf._f('instance',xf._i("caseTreeObj")),xf._h(false, xf._k("child",xf._j('','cASEVERSION')))));	
+xf._b("instance('caseTreeObj')/tREESN",xf._g(xf._f('instance',xf._i("caseTreeObj")),xf._h(false, xf._k("child",xf._j('','tREESN')))));	
+xf._b("instance('caseTreeObjV')/sHIJIAN",xf._g(xf._f('instance',xf._i("caseTreeObjV")),xf._h(false, xf._k("child",xf._j('','sHIJIAN')))));	
+xf._b("instance('caseTreeObjV')/cASEVERSION",xf._g(xf._f('instance',xf._i("caseTreeObjV")),xf._h(false, xf._k("child",xf._j('','cASEVERSION')))));	
+xf._b("instance('caseTreeObjV')/tREESN",xf._g(xf._f('instance',xf._i("caseTreeObjV")),xf._h(false, xf._k("child",xf._j('','tREESN')))));	
+xf._b("tESTCASENAME",xf._h(false, xf._k("child",xf._j('','tESTCASENAME'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("data('caseData')/tESTCASEVER",xf._g(xf._f('data',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','tESTCASEVER')))));	
+xf._b("true",xf._h(false, xf._k("child",xf._j('','true'))));	
+xf._b("data('caseData')/tESTCASEID",xf._g(xf._f('data',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','tESTCASEID')))));	
+xf._b("data('caseData')/tESTCASENAME",xf._g(xf._f('data',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','tESTCASENAME')))));	
+xf._b("data('caseData')/tESTCASEPRIOR",xf._g(xf._f('data',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','tESTCASEPRIOR')))));	
+xf._b("data('caseData')/tESTCASEDESC",xf._g(xf._f('data',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','tESTCASEDESC')))));	
+xf._b("dETECTIONOBJECTCNAME",xf._h(false, xf._k("child",xf._j('','dETECTIONOBJECTCNAME'))));	
+xf._b("dEVICETYPECNAME",xf._h(false, xf._k("child",xf._j('','dEVICETYPECNAME'))));	
+xf._b("dETECTIONRANGECNAME",xf._h(false, xf._k("child",xf._j('','dETECTIONRANGECNAME'))));	
+xf._b("rANGEIDCNAME",xf._h(false, xf._k("child",xf._j('','rANGEIDCNAME'))));	
+xf._b("data('caseData')/dECTIONBASEDONNAME",xf._g(xf._f('data',xf._i("caseData")),xf._h(false, xf._k("child",xf._j('','dECTIONBASEDONNAME')))));	
+xf._b("sUBTESTCASEID",xf._h(false, xf._k("child",xf._j('','sUBTESTCASEID'))));	
+xf._b("sUBTESTCASESTEPID",xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPID'))));	
+xf._b("sUBTESTCASESTEPDESC",xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPDESC'))));	
+xf._b("sUBTESTCASESTEPPRIOR",xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPPRIOR'))));	
+xf._b("sUBTESTCASESTEPSENDFLAG",xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPSENDFLAG'))));	
+xf._b("sUBTESTCASESTEPDATANUMBER",xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPDATANUMBER'))));	
+xf._b("data('subCaseData')/sUBTESTCASETIME",xf._g(xf._f('data',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASETIME')))));	
+xf._b("data('subCaseData')/sUBTESTCASEPRIOR",xf._g(xf._f('data',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEPRIOR')))));	
+xf._b("data('subCaseData')/sUBTESTCASEID",xf._g(xf._f('data',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEID')))));	
+xf._b("data('subCaseData')/sUBTESTCASENAME",xf._g(xf._f('data',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASENAME')))));	
+xf._b("data('subCaseData')/sUBTESTCASEORDER",xf._g(xf._f('data',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEORDER')))));	
+xf._b("data('subCaseData')/tIMEUNITCNAME",xf._g(xf._f('data',xf._i("subCaseData")),xf._h(false, xf._k("child",xf._j('','tIMEUNITCNAME')))));	
+xf._b("data('tempData')/name",xf._g(xf._f('data',xf._i("tempData")),xf._h(false, xf._k("child",xf._j('','name')))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('tree', 'null');xforms.Schema.registerPrefix('ed', 'null');var xf_model_model1 = new xforms.XFModel('model1',null);	
+new xforms.XFInstance2('dataMain','model1',null,null,null,null,null,null,null,null,null,null,'whereVersion');	
+xf._c('xf-bind-0','model1',"instance('dataMain')/sHIJIAN","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-1','model1',"instance('dataMain')/cASEVERSION","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-2','model1',"instance('dataMain')/tASKID","xsd:integer",null,null,null,null,null,null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.model1Load(event)}));xf._p(justep('model1'),"onload",null,function(evt) { xforms.run(xf_action_action1,'model1', evt,false)});	
+new xforms.XFInstance2('caseTree','model1',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('caseTree',null);	
+xf._c('xf-bind-34','model1',"instance('caseTree')/sHIJIAN","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-35','model1',"instance('caseTree')/cASEVERSION","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-36','model1',"instance('caseTree')/tREESN","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('tempData','model1',null,'&lt;rows id="default31"&gt;&lt;row id="default32"&gt;&lt;cell id="default33"&gt;&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('tempData','name');	
+new xforms.XFInstance2('caseTreeV','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('caseTreeV',null);	
+xf._c('xf-bind-37','model1',"instance('caseTreeV')/sHIJIAN","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-38','model1',"instance('caseTreeV')/cASEVERSION","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-39','model1',"instance('caseTreeV')/tREESN","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('caseTreeObj','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('caseTreeObj',null);	
+xf._c('xf-bind-40','model1',"instance('caseTreeObj')/sHIJIAN","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-41','model1',"instance('caseTreeObj')/cASEVERSION","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-42','model1',"instance('caseTreeObj')/tREESN","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('caseTreeObjV','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('caseTreeObjV',null);	
+xf._c('xf-bind-43','model1',"instance('caseTreeObjV')/sHIJIAN","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-44','model1',"instance('caseTreeObjV')/cASEVERSION","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-45','model1',"instance('caseTreeObjV')/tREESN","xsd:integer",null,null,null,null,null,null);	
+xforms.load_parts('rootView');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var caseData_part_loaded = false;	
+function load_caseData_part(callback){if (caseData_part_loaded) return;caseData_part_loaded = true;	
+new xforms.XFInstance2('caseData','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('caseData',null);	
+xf._c('xf-bind-3','model1',"instance('caseData')/tESTCASEVER","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-4','model1',"instance('caseData')/mAKEDATETIME","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-5','model1',"instance('caseData')/dECTIONBASEDONID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-6','model1',"instance('caseData')/dboi","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-7','model1',"instance('caseData')/vALIDDATETIME","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-8','model1',"instance('caseData')/vALIDSTATE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-9','model1',"instance('caseData')/version","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var caseData_part_init_loaded = false;	
+function load_caseData_part_init(){if (caseData_part_init_loaded) return;caseData_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var caseDetectionInfo_part_loaded = false;	
+function load_caseDetectionInfo_part(callback){if (caseDetectionInfo_part_loaded) return;caseDetectionInfo_part_loaded = true;	
+new xforms.XFInstance2('caseDetectionInfo','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('caseDetectionInfo',null);	
+xf._c('xf-bind-10','model1',"instance('caseDetectionInfo')/tESTCASEVER","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-11','model1',"instance('caseDetectionInfo')/aPPLYFOROBJECT","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-12','model1',"instance('caseDetectionInfo')/aPPLYFORDEVICETYPE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-13','model1',"instance('caseDetectionInfo')/aPPLYFORRANGE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-14','model1',"instance('caseDetectionInfo')/aPPLYFORSUBRANGE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-15','model1',"instance('caseDetectionInfo')/dETECTIONOBJECTTYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-16','model1',"instance('caseDetectionInfo')/dEVICETYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-17','model1',"instance('caseDetectionInfo')/dot","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-18','model1',"instance('caseDetectionInfo')/dETECTIONRANGETYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-19','model1',"instance('caseDetectionInfo')/dETECTIONRANGEID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-20','model1',"instance('caseDetectionInfo')/drt","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var caseDetectionInfo_part_init_loaded = false;	
+function load_caseDetectionInfo_part_init(){if (caseDetectionInfo_part_init_loaded) return;caseDetectionInfo_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var subCaseData_part_loaded = false;	
+function load_subCaseData_part(callback){if (subCaseData_part_loaded) return;subCaseData_part_loaded = true;	
+new xforms.XFInstance2('subCaseData','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('subCaseData',null);	
+xf._c('xf-bind-21','model1',"instance('subCaseData')/tESTCASEVER","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-22','model1',"instance('subCaseData')/sUBTESTCASEPRIOR","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-23','model1',"instance('subCaseData')/sUBTESTCASEORDER","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-24','model1',"instance('subCaseData')/sUBTESTCASETIME","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-25','model1',"instance('subCaseData')/tIMEUNITID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-26','model1',"instance('subCaseData')/tuc","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var subCaseData_part_init_loaded = false;	
+function load_subCaseData_part_init(){if (subCaseData_part_init_loaded) return;subCaseData_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var subCaseStepData_part_loaded = false;	
+function load_subCaseStepData_part(callback){if (subCaseStepData_part_loaded) return;subCaseStepData_part_loaded = true;	
+new xforms.XFInstance2('subCaseStepData','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('subCaseStepData',null);	
+xf._c('xf-bind-27','model1',"instance('subCaseStepData')/tESTCASEVER","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-28','model1',"instance('subCaseStepData')/sUBTESTCASESTEPID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-29','model1',"instance('subCaseStepData')/sUBTESTCASESTEPPRIOR","xsd:float",null,null,null,null,null,null);	
+if(callback)callback();}	
+var subCaseStepData_part_init_loaded = false;	
+function load_subCaseStepData_part_init(){if (subCaseStepData_part_init_loaded) return;subCaseStepData_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var stepPrepareData_part_loaded = false;	
+function load_stepPrepareData_part(callback){if (stepPrepareData_part_loaded) return;stepPrepareData_part_loaded = true;	
+new xforms.XFInstance2('stepPrepareData','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('stepPrepareData',null);	
+xf._c('xf-bind-30','model1',"instance('stepPrepareData')/tESTCASEVER","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-31','model1',"instance('stepPrepareData')/sUBTESTCASESTEPID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-32','model1',"instance('stepPrepareData')/sUBTESTCASESTEPSENDFLAG","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-33','model1',"instance('stepPrepareData')/sUBTESTCASESTEPDATANUMBER","xsd:float",null,null,null,null,null,null);	
+if(callback)callback();}	
+var stepPrepareData_part_init_loaded = false;	
+function load_stepPrepareData_part_init(){if (stepPrepareData_part_init_loaded) return;stepPrepareData_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+function load_rootView(){if (justep("rootView").getAttribute('loaded') &amp;&amp; justep("rootView").getAttribute('loaded') == 'true') return;justep("rootView").setAttribute('loaded', 'true');	
+if(typeof(load_rootView_html) == 'function')load_rootView_html();	
+new xforms.XFGrid({id:'gridObjV',instance:'caseTreeObjV',systemColumnsPro:'fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN',onInit:null,type:'tree',smartRender:20,delay:false,ids:'tESTCASENAME,space-column',headNames:'用例信息,&amp;nbsp;',widths:'178,*',types:'tree,ro',hiddenColumns:'',aligns:',',serverSort:true,sorts:'na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:false,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:'mainActivity.grdMainRowClick',onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+new xforms.XFGrid({id:'gridObj',instance:'caseTreeObj',systemColumnsPro:'fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN',onInit:null,type:'tree',smartRender:20,delay:false,ids:'tESTCASENAME,space-column',headNames:'用例信息,&amp;nbsp;',widths:'178,*',types:'tree,ro',hiddenColumns:'',aligns:',',serverSort:true,sorts:'na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:false,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:'mainActivity.grdMainRowClick',onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+new xforms.XFGrid({id:'grid4',instance:'caseTreeV',systemColumnsPro:'fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN',onInit:null,type:'tree',smartRender:null,delay:false,ids:'tESTCASENAME,space-column',headNames:'测试用例名称,&amp;nbsp;',widths:'178,*',types:'tree,ro',hiddenColumns:'',aligns:',',serverSort:true,sorts:'na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:false,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:'mainActivity.grdMainRowClick',onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+new xforms.XFGrid({id:'grdMain',instance:'caseTree',systemColumnsPro:'fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN',onInit:null,type:'tree',smartRender:null,delay:false,ids:'tESTCASENAME,space-column',headNames:'测试用例名称,&amp;nbsp;',widths:'178,*',types:'tree,ro',hiddenColumns:'',aligns:',',serverSort:true,sorts:'na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:false,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:'mainActivity.grdMainRowClick',onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+xforms.load_parts('vDetail');	
+xforms.load_parts('view2');	
+}	
+function load_rootView_xblinit(){if (justep("rootView").getAttribute('xblloaded') &amp;&amp; justep("rootView").getAttribute('xblloaded') == 'true') return;justep("rootView").setAttribute('xblloaded', 'true');	
+}	
+function load_vDetail(){if (justep("vDetail").getAttribute('loaded') &amp;&amp; justep("vDetail").getAttribute('loaded') == 'true') return;justep("vDetail").setAttribute('loaded', 'true');	
+if(typeof(load_vDetail_html) == 'function')load_vDetail_html();	
+xf._d('tESTCASEVER','text',xf._q("data('caseData')/tESTCASEVER"),null,null,null,null,false,true);	
+xf._d('tESTCASEID','text',xf._q("data('caseData')/tESTCASEID"),null,null,null,null,false,true);	
+xf._d('tESTCASENAME','text',xf._q("data('caseData')/tESTCASENAME"),null,null,null,null,false,true);	
+xf._d('tESTCASEPRIOR','text',xf._q("data('caseData')/tESTCASEPRIOR"),null,null,null,null,false,true);	
+xf._d('tESTCASEDESC','text',xf._q("data('caseData')/tESTCASEDESC"),null,null,null,null,false,true);	
+new xforms.XFGrid({id:'grid1',instance:'caseDetectionInfo',systemColumnsPro:'tESTCASEVER,tESTCASEID,aPPLYFOROBJECT,aPPLYFORDEVICETYPE,aPPLYFORRANGE,aPPLYFORSUBRANGE,dtc,dETECTIONOBJECTTYPE,dEVICETYPE,dEVICETYPEENAME,dot,dETECTIONOBJECTENAME,drc,dETECTIONRANGETYPE,dETECTIONRANGEID,rANGEIDENAME,drt,dETECTIONRANGEENAME',onInit:null,type:'grid',smartRender:20,delay:false,ids:'dETECTIONOBJECTCNAME,dEVICETYPECNAME,dETECTIONRANGECNAME,rANGEIDCNAME,space-column',headNames:'应用检测对象类型,应用检测对象,应用检测方面类型,应用检测方面,&amp;nbsp;',widths:'124,125,129,114,*',types:'ed,ed,ed,ed,ro',hiddenColumns:'',aligns:',,,,',serverSort:true,sorts:'na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+xf._d('input1','text',xf._q("data('caseData')/dECTIONBASEDONNAME"),null,null,null,null,false,false);	
+xforms.load_parts('subcaseView');	
+}	
+function load_vDetail_xblinit(){if (justep("vDetail").getAttribute('xblloaded') &amp;&amp; justep("vDetail").getAttribute('xblloaded') == 'true') return;justep("vDetail").setAttribute('xblloaded', 'true');	
+}	
+function load_subcaseView(){if (justep("subcaseView").getAttribute('loaded') &amp;&amp; justep("subcaseView").getAttribute('loaded') == 'true') return;justep("subcaseView").setAttribute('loaded', 'true');	
+if(typeof(load_subcaseView_html) == 'function')load_subcaseView_html();	
+new xforms.XFGrid({id:'grid2',instance:'subCaseStepData',systemColumnsPro:'tESTCASEVER,tESTCASEID',onInit:null,type:'grid',smartRender:20,delay:false,ids:'sUBTESTCASEID,sUBTESTCASESTEPID,sUBTESTCASESTEPDESC,sUBTESTCASESTEPPRIOR,space-column',headNames:'测试子用例ID,测试子用例步骤ID,测试子用例步骤描述,测试子用例步骤级别,&amp;nbsp;',widths:'126,152,134,177,*',types:'ed,ed,ed,ed,ro',hiddenColumns:'',aligns:',,,,',serverSort:true,sorts:'na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+new xforms.XFGrid({id:'grid3',instance:'stepPrepareData',systemColumnsPro:'tESTCASEVER,tESTCASEID,sUBTESTCASEID,sUBTESTCASESTEPID',onInit:null,type:'grid',smartRender:20,delay:false,ids:'sUBTESTCASESTEPSENDFLAG,sUBTESTCASESTEPDATANUMBER,space-column',headNames:'测试子用例数据发送方式,测试子用例数据数量,&amp;nbsp;',widths:'181,203,*',types:'ed,ed,ro',hiddenColumns:'',aligns:',,',serverSort:true,sorts:'na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+xforms.load_parts('view1');	
+}	
+function load_subcaseView_xblinit(){if (justep("subcaseView").getAttribute('xblloaded') &amp;&amp; justep("subcaseView").getAttribute('xblloaded') == 'true') return;justep("subcaseView").setAttribute('xblloaded', 'true');	
+}	
+function load_view1(){if (justep("view1").getAttribute('loaded') &amp;&amp; justep("view1").getAttribute('loaded') == 'true') return;justep("view1").setAttribute('loaded', 'true');	
+if(typeof(load_view1_html) == 'function')load_view1_html();	
+xf._d('sUBTESTCASETIME','text',xf._q("data('subCaseData')/sUBTESTCASETIME"),null,null,null,null,false,false);	
+xf._d('sUBTESTCASEPRIOR','text',xf._q("data('subCaseData')/sUBTESTCASEPRIOR"),null,null,null,null,false,false);	
+xf._d('sUBTESTCASEID','text',xf._q("data('subCaseData')/sUBTESTCASEID"),null,null,null,null,false,false);	
+xf._d('sUBTESTCASENAME','text',xf._q("data('subCaseData')/sUBTESTCASENAME"),null,null,null,null,false,false);	
+xf._d('sUBTESTCASEORDER','text',xf._q("data('subCaseData')/sUBTESTCASEORDER"),null,null,null,null,false,false);	
+xf._d('tIMEUNITID','text',xf._q("data('subCaseData')/tIMEUNITCNAME"),null,null,null,null,false,false);	
+}	
+function load_view1_xblinit(){if (justep("view1").getAttribute('xblloaded') &amp;&amp; justep("view1").getAttribute('xblloaded') == 'true') return;justep("view1").setAttribute('xblloaded', 'true');	
+}	
+function load_view2(){if (justep("view2").getAttribute('loaded') &amp;&amp; justep("view2").getAttribute('loaded') == 'true') return;justep("view2").setAttribute('loaded', 'true');	
+if(typeof(load_view2_html) == 'function')load_view2_html();	
+var xf_select1_radio1=new xforms.XFSelect('radio1',false,true,xf._q("data('tempData')/name"),true,false,false,'',0);	
+var xf_item_selectItem1=new xforms.XFItem('selectItem1',null,null);	
+var xf_action_action3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.selectItem1Select(event)}));xf._p(justep('selectItem1'),"xforms-select",null,function(evt) { xforms.run(xf_action_action3,'selectItem1', evt,false)});	
+var xf_item_selectItem2=new xforms.XFItem('selectItem2',null,null);	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.selectItem2Select(event)}));xf._p(justep('selectItem2'),"xforms-select",null,function(evt) { xforms.run(xf_action_action2,'selectItem2', evt,false)});	
+var xf_item_selectItem3=new xforms.XFItem('selectItem3',null,null);	
+var xf_action_action4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.selectItem3Select(event)}));xf._p(justep('selectItem3'),"xforms-select",null,function(evt) { xforms.run(xf_action_action4,'selectItem3', evt,false)});	
+var xf_item_selectItem4=new xforms.XFItem('selectItem4',null,null);	
+var xf_action_action5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.selectItem4Select(event)}));xf._p(justep('selectItem4'),"xforms-select",null,function(evt) { xforms.run(xf_action_action5,'selectItem4', evt,false)});	
+}	
+function load_view2_xblinit(){if (justep("view2").getAttribute('xblloaded') &amp;&amp; justep("view2").getAttribute('xblloaded') == 'true') return;justep("view2").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="xui-container" id="rootView" lazy="false" style="height:100%;width:100%;position:relative;">         <div class="xui-splitter component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="20%" has-arrow-button="true" has-drag-bar="true" id="HSplitter1" mode="horz" style="width:100%;height:100%;position:absolute;left:5px;top:38px;">           <div class="xui-splitter-root">             <div class="xui-splitter-region xui-splitter-left">               <div class="xui-container" id="div2" style="height:100%;width:100%;">                 <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style=" height: 100%;width:98%;">                   <div borderSize="0" class="xui-borderlayout-root">                     <div class="xui-borderlayout-area xui-borderlayout-center" style="padding-right:2px;">                       <div appearance="tree" class="component_6298A7A1 grid" data="caseTreeObjV" delay="false" id="gridObjV" onRowClick="mainActivity.grdMainRowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;width:100%;;overflow:hidden" system-columns="fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN"></div>                        <div appearance="tree" class="component_6298A7A1 grid" data="caseTreeObj" delay="false" id="gridObj" onRowClick="mainActivity.grdMainRowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;width:100%;;overflow:hidden" system-columns="fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN"></div>                        <div appearance="tree" class="component_6298A7A1 grid" data="caseTreeV" delay="false" id="grid4" onRowClick="mainActivity.grdMainRowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;;overflow:hidden" system-columns="fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN"></div>                        <div appearance="tree" class="component_6298A7A1 grid" data="caseTree" delay="false" id="grdMain" onRowClick="mainActivity.grdMainRowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;;overflow:hidden" system-columns="fID,fPARENTID,sHIJIAN,sTARTTIME,eNDTIME,qZRW,oPERATORNAME,rOOMNAME,tOOLNAME,cASEID,cASEVERSION,tREESN"></div>                     </div>                   </div>                 </div>               </div>             </div>              <div class="xui-splitter-region xui-splitter-right">               <div class="xui-container" id="div4" style="width:100%;height:100%;padding-left:3px">                 <div class="xui-container" id="vDetail" lazy="false" style="height:100%;;position:relative;">                   <label style="font-size:10pt;position: absolute;left:10px;top:41px;">测试用例版本</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="tESTCASEVER" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;width: 153px;top:33px;left:106px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;top:41px;width:108px;height:26px;left:336px;">测试用例ID</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="tESTCASEID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;top:33px;left:452px;width:169px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;left:10px;top:71px;">测试用例名称</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="tESTCASENAME" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;width: 153px;top:63px;left:106px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;top:71px;width:128px;height:26px;left:337px;">测试用例级别</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="tESTCASEPRIOR" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;top:63px;left:452px;width:170px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;left:10px;top:101px;">测试用例描述</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="tESTCASEDESC" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;width: 153px;top:93px;left:106px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <div class="component_6298A7A1 grid" data="caseDetectionInfo" delay="false" id="grid1" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="position:absolute;left:12px;height:162px;top:140px;width:613px;;overflow:hidden" system-columns="tESTCASEVER,tESTCASEID,aPPLYFOROBJECT,aPPLYFORDEVICETYPE,aPPLYFORRANGE,aPPLYFORSUBRANGE,dtc,dETECTIONOBJECTTYPE,dEVICETYPE,dEVICETYPEENAME,dot,dETECTIONOBJECTENAME,drc,dETECTIONRANGETYPE,dETECTIONRANGEID,rANGEIDENAME,drt,dETECTIONRANGEENAME"></div>  
+                  <label class="xui-label" id="label4" style="position:absolute;top:9px;background-color:#f3fffd;left:12px;width:170%;text-align:center;font-weight:bold;">用例信息</label>  
+                  <label class="xui-label" id="label5" style="position:absolute;top:320px;background-color:#f3fffd;left:12px;width:170%;text-align:center;font-weight:bold;">子用例信息</label>  
+                  <label style="position:absolute;top:96px;height:24px;width:93px;left:338px;">检测依据</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:452px;width:170px;top:96px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <div class="xui-container" id="subcaseView" lazy="false" style="position:relative;;position:absolute;top:355px;left:12px;width:506px;"> 
+                    <div class="xui-tabPanel component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="tabPanel1" style="position:absolute;top:89px;left:3px;width:610px;"> 
+                      <div class="jstabbar" id="tabPanel1_root"> 
+                        <ul class="tabItems clearfix"> 
+                          <li class="selected" id="tabPage1_tab"> 
+                            <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabPage1');this.blur();" type="button">子用例步骤</button> 
+                          </li>  
+                          <li id="tabPage2_tab"> 
+                            <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabPage2');this.blur();" type="button">步骤数据准备</button> 
+                          </li> 
+                        </ul>  
+                        <div class="contents" id="tabPanel1_contents"> 
+                          <div class="content selected" id="tabPage1"> 
+                            <div class="component_6298A7A1 grid" data="subCaseStepData" delay="false" id="grid2" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100px;width:593px;;overflow:hidden" system-columns="tESTCASEVER,tESTCASEID"></div> 
+                          </div>  
+                          <div class="content" id="tabPage2" xforms-select="mainActivity.tabPage2Select"> 
+                            <div class="component_6298A7A1 grid" data="stepPrepareData" delay="false" id="grid3" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100px;width:590px;;overflow:hidden" system-columns="tESTCASEVER,tESTCASEID,sUBTESTCASEID,sUBTESTCASESTEPID"></div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div>  
+                    <div class="xui-container" id="view1" lazy="false" style="position:relative;;position:absolute;top:7px;left:18px;width:579px;"> 
+                      <label style="font-size:10pt;width:152px;position:absolute;top:28px;left:-13px;">测试子用例执行级别</label>  
+                      <label style="font-size:10pt;width:143px;position:absolute;top:58px;left:-13px;">测试子用例执行耗时</label>  
+                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="sUBTESTCASETIME" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width: 153px;top:49px;position:absolute;left:108px;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table>  
+                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="sUBTESTCASEPRIOR" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width: 153px;top:19px;position:absolute;left:108px;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table>  
+                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="sUBTESTCASEID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width: 153px;top:-11px;position:absolute;left:108px;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table>  
+                      <label style="font-size:10pt;width:129px;position:absolute;top:-2px;left:-13px;">测试子用例ID</label>  
+                      <label style="font-size:10pt;top:-3px;left:298px;position:absolute;">测试子用例名称</label>  
+                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="sUBTESTCASENAME" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width: 153px;top:-11px;left:440px;position:absolute;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table>  
+                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="sUBTESTCASEORDER" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width: 153px;top:19px;left:440px;position:absolute;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table>  
+                      <label style="font-size:10pt;top:27px;left:298px;position:absolute;">测试子用例执行顺序</label>  
+                      <label style="font-size:10pt;top:57px;left:298px;position:absolute;">执行时间单位</label>  
+                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="tIMEUNITID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width: 153px;top:49px;left:440px;position:absolute;;table-layout:fixed"> 
+                        <tbody> 
+                          <tr> 
+                            <td class="focus" style="display:none;width:0px"></td>  
+                            <td class="xxf-value"> 
+                              <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                            </td>  
+                            <td class="xxf-alert"> 
+                              <span class="xforms-alert"> 
+                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                <div class="xforms-alert-value" id=""></div> 
+                              </span> 
+                            </td>  
+                            <td class="xui-ie-input-bug"></td> 
+                          </tr> 
+                        </tbody> 
+                      </table> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>  
+            <div class="xui-splitter-handler xui-splitter-handler-h"> 
+              <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                <i class="icon-system-left-dir white-icon"></i> 
+              </div> 
+            </div> 
+          </div> 
+        </div>  
+        <div class="xui-container" id="view2" lazy="false" style="position:relative;;position:absolute;top:8px;left:5px;height:31px;width:871px;"> 
+          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-select1 xforms-appearance-minimal" id="radio1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:6px;left:9px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <span class="xforms-value"> 
+                    <div class="xforms-item xforms-item-radio" id="selectItem1"> 
+                      <input type="radio" value="version"></input>  
+                      <span class="xforms-item-label" id="default24">按版本显示</span> 
+                    </div>  
+                    <div class="xforms-item xforms-item-radio" id="selectItem2"> 
+                      <input type="radio" value="case"></input>  
+                      <span class="xforms-item-label" id="default26">按用例显示</span> 
+                    </div>  
+                    <div class="xforms-item xforms-item-radio" id="selectItem3"> 
+                      <input type="radio" value="detObj"></input>  
+                      <span class="xforms-item-label" id="default35">按检测对象和版本</span> 
+                    </div>  
+                    <div class="xforms-item xforms-item-radio" id="selectItem4"> 
+                      <input type="radio" value="detObjCase"></input>  
+                      <span class="xforms-item-label" id="default37">按检测对象和用例</span> 
+                    </div> 
+                  </span> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

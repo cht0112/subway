@@ -1,0 +1,105 @@
+/**
+	@name UI.collapsePanel
+	@component /UI/system/components/collapsePanel.xbl.xml#collapsePanel
+	@class 折叠组件
+	@description <b>[rich]</b>折叠组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/collapsePanel.xbl.xml#collapsePanel" 
+		onExpand="" onCollapse="" id="test2" title="expanded panel" style="width:100%"
+		fixed="true">
+    	<group name="panelarea">
+        	<table border="0" width="100%">
+            	<tr>
+                	<td>
+                    	<xforms:input ref="instance('dataset')/integer"/>
+                	</td>
+            	</tr>
+            	<tr>
+                	<td>This is test2.</td>
+            	</tr>
+        	</table>
+    	</group>
+	</div>
+</xmp>
+*/
+
+/**
+	@name UI.collapsePanel#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default /UI/system/components/collapsePanel.xbl.xml#collapsePanel
+*/
+
+/**
+	@name UI.collapsePanel#id
+	@attribute
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.collapsePanel#title
+	@attribute
+	@type {string}
+	@description 标题
+*/
+
+/**
+	@name UI.collapsePanel#fixed
+	@attribute
+	@type {boolean}
+	@description 允许折叠
+*/
+
+/**
+	@name UI.collapsePanel#status
+	@attribute
+	@description 初始化状态，取值范围：expanded、collapsed，默认：expanded
+*/
+
+/**
+	@name UI.collapsePanel#onExpand
+	@event
+	@description <b>[回调型事件]</b>展开时
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.collapsePanel#onCollapse
+	@event
+	@description <b>[回调型事件]</b>折叠时
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.collapsePanel#collapse
+	@function
+	@description 折叠，触发onCollapse事件
+	@see UI.collapsePanel#onCollapse
+*/
+
+/**
+	@name UI.collapsePanel#expand
+	@function
+	@description 展开，触发onCollapse事件
+	@see UI.collapsePanel#onExpand
+*/
+

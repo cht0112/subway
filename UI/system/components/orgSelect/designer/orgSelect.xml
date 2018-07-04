@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="orgSelect" tag-type="rich" tag-name="div" icon="orgSelect.gif" text="组织结构选择"
+		is-complex-component="true" base-class="select"
+		binding-component="/UI/system/components/orgSelect.xbl.xml#orgSelect"
+		display-property="id" component-class="OrgSelect" component-type="formControl">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="include-disable-org" text="包含禁用" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="manage-codes" text="管理权限类型编码,支持多个用','分隔"/>
+			<property name="show-org-types" readonly="true" text="显示的机构类型" editor-ref="orgKindsList"/>
+			<property name="selectable-org-types" readonly="true" text="可以选择返回的机构类型" editor-ref="orgKindsList"/>
+			<property name="use-virtual-root" text="显示组织tree虚根，当data上没有指定虚根时默认‘组织机构’" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-select"/>
+			<property name="class" text="class" editor-extend-data="xui-select:select"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+		</properties>
+
+		<property-editors>
+			<property-editor name="orgcols" type="list" mutil-selection='false'>
+				<static-data value="rowID:ID,sName:名称,sCode:编码,sLongName:长名称,sFName:全路径名,sFCode:全路径编码,sFID:全路径ID,sOrgKindID:组织类型,sPersonID:人员ID"/> <!--直接定义的静态数据 -->				
+			</property-editor>
+		</property-editors>
+				
+		<inner-component-config>
+			<item name="bizData" exclude-properties="writer,creator,relations,update-mode,direct-delete,confirm-delete,relation,data,confirm-delete-text,confirm-refresh,confirm-refresh-text,auto-new,store-type,node-level-relation">
+				<properties>
+					<property name="reader" editor-ref="" readonly="true" default-value="/system/logic/action/queryOrgAction"/>
+					
+					<property name="concept" readonly="true" editor-ref="" default-value="SA_OPOrg"/>
+					<property name="offset" readonly="true" editor-ref="" default-value="0"/>
+					<property name="limit" readonly="true" editor-ref="" default-value="-1"/>
+					<property name="is-tree" readonly="true" editor-ref="" default-value="true"/>			        
+		
+					<property name="parent-relation" readonly="true" editor-ref="" default-value="sParent"/>
+					<property name="node-kind-relation" readonly="true" editor-ref="" default-value="sNodeKind"/>
+					<property name="virtual-root" readonly="false"/>
+					<property name="root-filter" readonly="false"/>      
+				</properties>
+			</item>
+			<item name="treeSelect" exclude-properties="style,class,default-class">
+				<properties>
+					<property name="delay" readonly="true" editor-ref="" default-value="true"/> 
+					<property name="independence" readonly="true" editor-ref="" default-value="false"/> 
+					<property name="data-ref" path="itemset/@data" text="引用data" readonly="true" editor-ref="" />
+					<property name="auto-load-data" path="itemset/@auto-load-data" text="第一次下拉时触发data动态加载" editor-ref="" readonly="true" default-value="false"/>
+					<property name="independence" default-value="false" text="为true时，多个select可以绑定同一个data，但只在下拉时刷新一次数据，数据改变后，需要用户主动触发刷新。" path="itemset/@independence"  editor-ref="" readonly="true"/>
+					
+					<property name="value" path="xforms:value/@ref" text="与ref对应的列1111" editor-ref="orgcols" required="true" checkup-condition="not(itemset/@data='')"/>
+					<property name="label" path="xforms:label/@ref" text="选择后再输入框显示的列/与label-ref对应的列" editor-ref="orgcols" required="true" checkup-condition="not(itemset/@data='')"/>
+				    <property name="ext" path="xforms:ext-value/@ref" text="与ext-ref对应的列" editor-ref="orgcols"/>
+				</properties>
+			</item>	
+		</inner-component-config>
+
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel"/>				
+		</toolbar>
+
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div 
+				xmlns:xui="http://www.justep.com/xui"
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				xmlns:xforms="http://www.justep.com/xforms"
+				component="/UI/system/components/orgSelect.xbl.xml#orgSelect">
+				<xforms:model>
+					<xui:data component="/UI/system/components/data.xbl.xml#bizData"/>
+				</xforms:model>
+				<xhtml:div class="xui-autofill" component="/UI/system/components/select.xbl.xml#treeSelect">
+					<xforms:itemset/>
+				</xhtml:div>
+			</xhtml:div>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>
+

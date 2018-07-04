@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v2229_dd9ca276feeca45ec9c708debf0697082/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d4c645d99167148d6897616d062b7ff6d/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d62649a59036d43e59a8833c9e360d419/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d9d50c8f218a140afa78d135a7354c8ef/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d8c8be2bff1ce4577935b19d0a6eb59b2/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d4ba898f95bf34cfea6c8b9f44f57bc7e/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2229_db8fe450f4fec48fca1b122af564d853c/base/base.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script src="/x5/$v2229_df90e3442846342f9a567b465d462ab26/form/form.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_dd77a29bffac44a1ebc5704e268e69bdb/component/data/data.js?language=zh_CN">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d2ad8ec1f5a57453abd1fbc33c8ff92b6/UI/system/components/pageNavigator/pageNavigator.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/x5/$v2229_d7adfb594a6864425aa03ef5c85ba3d57/UI/system/components/windowDialog/windowDialogReceiver.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css"></style>  
+    <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; overflow: hidden; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; top:50%; margin-top: -35px; width: 5px; } .xui-splitter-btn-v { top: -5px; height: 10px; left:50%; margin-left: -35px; height: 5px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length &gt; 0 ? msgs[0] : "";
+					var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}		</script>  
+    <link href="/x5/$v2229_d0765813c5a3445eebdd686f242b8f6b8/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2229_dd754586db1744fa5b17648fa8b324e07/UI/system/service/commonChoose/js/listMultiTemplete.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script src="/x5/$v2229_daf6945afc920411da7cb165adb4c8190/UI/system/service/commonChoose/js/commonChoosePara.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script>
+
+			justep.windowDialogReceiver.acceptParentParamsFun = acceptData;
+			function quickSearch(){
+				if(!justep("quickSearch")) {
+					alert("未继承quickSearch标签,快速搜索不能使用");
+					return;
+				}			
+				var searchValue = justep("quickSearch").value;
+				if(!searchValue || searchValue == ''){
+					alert("未指定快速搜索查询语句，需重写quickSearch的value属性");
+					return;
+				}
+				var key  = justep('quickSearchInput').value;
+				if(key == '快速搜索……') key = '';
+				if(key == '') searchValue = "";
+				else searchValue = searchValue.replace(/\[QUICKTEXT]/g,key.toUpperCase());
+				var data = justep.xbl('main');
+				if(data){
+					data.filters.setFilter('quickSearch' , searchValue);
+				}
+				data.refreshData();
+				chooseData.checkGrid();
+			}		</script>  
+    <script>
+new justep.XBizData('main',true,false,{'queryAction':"queryASSelectBuyApplyAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_BuyApplyD':'OA_AS_BuyApplyD'}",'limit':10,'idColumn':"{'name':'OA_AS_BuyApplyD','relation':'OA_AS_BuyApplyD','define':'OA_AS_BuyApplyD','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fNO':0}",'defRelations':"{'fName':{'type':'String','relation':'OA_AS_BuyApplyD.fName','define':'OA_AS_BuyApplyD.fName','label':'资产名称'},'fSpecType':{'type':'String','relation':'OA_AS_BuyApplyD.fSpecType','define':'OA_AS_BuyApplyD.fSpecType','label':'规格型号'},'fKindID':{'type':'String','relation':'OA_AS_BuyApplyD.fKindID','define':'OA_AS_BuyApplyD.fKindID','label':'资产类别ID'},'fKindCode':{'type':'String','relation':'k.fCode','define':'OA_AS_Kind.fCode','label':'编码'},'fUnitID':{'type':'String','relation':'OA_AS_BuyApplyD.fUnitID','define':'OA_AS_BuyApplyD.fUnitID','label':'单位ID'},'fKind':{'type':'String','relation':'OA_AS_BuyApplyD.fKind','define':'OA_AS_BuyApplyD.fKind','label':'资产类别'},'fUnit':{'type':'String','relation':'OA_AS_BuyApplyD.fUnit','define':'OA_AS_BuyApplyD.fUnit','label':'单位'},'fBuyNum':{'type':'Integer','relation':'OA_AS_BuyApplyD.fBuyNum','define':'OA_AS_BuyApplyD.fBuyNum','label':'采购数量'},'fInNum':{'type':'Integer','relation':'OA_AS_BuyApplyD.fInNum','define':'OA_AS_BuyApplyD.fInNum','label':'入库数量'},'fPrice':{'type':'Decimal','relation':'OA_AS_BuyApplyD.fPrice','define':'OA_AS_BuyApplyD.fPrice','label':'单价'},'fAmount':{'type':'Decimal','relation':'OA_AS_BuyApplyD.fAmount','define':'OA_AS_BuyApplyD.fAmount','label':'金额'},'fMasterID':{'type':'String','relation':'OA_AS_BuyApplyD.fMasterID','define':'OA_AS_BuyApplyD.fMasterID','label':'主数据ID'},'fNO':{'type':'String','relation':'m.fNO','define':'OA_AS_BuyApplyM.fNO','label':'单据号'},'fApplyDeptName':{'type':'String','relation':'m.fApplyDeptName','define':'OA_AS_BuyApplyM.fApplyDeptName','label':'申请部门'},'fApplyPsnName':{'type':'String','relation':'m.fApplyPsnName','define':'OA_AS_BuyApplyM.fApplyPsnName','label':'申请人员'},'fApplyDate':{'type':'Date','relation':'m.fApplyDate','define':'OA_AS_BuyApplyM.fApplyDate','label':'申请日期'}}",'defCalcRelations':"{'ch':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'');		</script>  
+    <script type="text/javascript" src="/x5/$v1.0973a89fa6a3b43368a52546d35b2d3d9/UI/OA/asset/process/dialog/selectBuyApplyDialog/.cache/selectBuyApplyDialog.js?$version=f8fa63e6-41db-4ec5-8006-d34ac22b6b7e"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="topView" style="height:100%;width:100%;"> 
+        <table border="0" cellpadding="0" cellspacing="0" class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" height="100%" id="c853594d80774e7f8da68dec75a145a9" width="100%"> 
+          <tr> 
+            <td align="left" colspan="2" valign="top"> 
+              <div adjust-by-arrow="true" class="component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="70%" has-arrow-button="true" has-drag-bar="true" id="b1eb0bd21f5d475a90c2760f0eafa3e9" mode="vert" style="width:100%;height:100%"> 
+                <div class="xui-splitter-root"> 
+                  <div class="xui-splitter-region xui-splitter-top"> 
+                    <table border="0" cellpadding="0" cellspacing="0" class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" height="100%" id="94102b596af241ad9570aae3e4789a95" style="table-layout:fixed" width="100%"> 
+                      <tr height="30px"> 
+                        <td align="left" valign="top"> 
+                          <div class="" id="toolbarView" style="width:100%;height:100%"> 
+                            <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" height="40px" id="toolbarView-pageBar" width="100%"> 
+                              <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                                <tr> 
+                                  <td> 
+                                    <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                      <div class="toolbar-style" name="toolbargroup"> 
+                                        <table cellpadding="0" cellspacing="1px"> 
+                                          <tr> 
+                                            <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                              <img align="absmiddle" class="standard-btn" src="/x5/$v2229_de247902392d544c0b5a14c14739410ba/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                                            </td>  
+                                            <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                              <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="main" id="d95a4b5397ee448bb0143f84bb2b1ed2" mode="IMG"> 
+                                                <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;"> 
+                                                  <tr class=""> 
+                                                    <td class="xui-pageNavigator-button" style=""> 
+                                                      <img _disabled="true" onclick="if(!this.getAttribute('_disabled')) justep.XBLObject.getXBLObject(this).gotoPage(1)" style="border:0px" title="第一页"></img> 
+                                                    </td>  
+                                                    <td class="xui-pageNavigator-button" style=""> 
+                                                      <img _disabled="true" style="border:0px" title="上一页"></img> 
+                                                    </td>  
+                                                    <td class="xui-pageNavigator-page" nowrap="true" style=""></td>  
+                                                    <td class="xui-pageNavigator-button" style=""> 
+                                                      <img style="border:0px" title="下一页"></img> 
+                                                    </td>  
+                                                    <td class="xui-pageNavigator-button" style=""> 
+                                                      <img style="border:0px" title="最后页"></img> 
+                                                    </td>  
+                                                    <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td> 
+                                                  </tr> 
+                                                </table>  
+                                                <span count="" data="main" limit="" offset="" page-count="7" style="display:none" xblid="attribute"></span> 
+                                              </div> 
+                                            </td>  
+                                            <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                              <input id="quickSearchInput" onblur="if(this.value!='')return;this.style.color='#C0C0C0';this.value='快速搜索……'" onfocus="if(this.value!='快速搜索……') return;this.style.color='black';this.value = ''" onkeyup="if (event.keyCode == 13) quickSearch();" style="border:1px solid #99BBE8;color:#C0C0C0;width:100px;" type="text" value="快速搜索……"></input> 
+                                            </td>  
+                                            <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                              <span alt="查询" onclick="quickSearch();" style="height:20px; border:1px solid #ffffff;"> 
+                                                <img alt="查询" src="/x5/$v2229_d6962b3b327ca4e3bbd010fb2ae76dd84/UI/system/images/search.gif?language=zh_CN"></img> 
+                                              </span> 
+                                            </td> 
+                                          </tr> 
+                                        </table> 
+                                      </div> 
+                                    </div> 
+                                  </td>  
+                                  <td style="width:100%"></td> 
+                                </tr> 
+                              </table> 
+                            </div>  
+                            <div class="component_45CC9B41 windowDialogReceiver" component="/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver" id="wr" style="top:106px;left:38px;"></div> 
+                          </div> 
+                        </td> 
+                      </tr>  
+                      <tr> 
+                        <td align="left" valign="top"> 
+                          <div class="component_6298A7A1 grid" data="main" id="listGrid" multi-selection="true" onRowChecked="chooseData.checkSelectRow" onRowCheckedAll="chooseData.checkSelectRows" right-click-selected="true" style="height:100%;width:570px;width:100%;height:100%;overflow:hidden" system-columns="fKindID,fKindCode,fUnitID,fMasterID" update-mode="merge-and-append"></div> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div>  
+                  <div class="xui-splitter-region xui-splitter-bottom"> 
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+                      <tr> 
+                        <td align="left" valign="top"> 
+                          <div class="" id="selectBar"> 
+                            <div id="selectBarViewDiv" style="height:26px;filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#98B2E6', endColorStr='#FFFFFF', gradientType='1');"> 
+                              <table style="font-size:12px;"> 
+                                <tr> 
+                                  <td> 选中列表</td>  
+                                  <td> 
+                                    <span onmousedown="this.style.border='1px groove'" onmouseout="this.style.border='1px solid #dfe8f6'" onmouseover="this.style.border='1px ridge #dfe8f6';" onmouseup="this.style.border='1px ridge'" style="width:18;MARGIN-RIGHT:auto; MARGIN-LEFT:auto;border:solid 0px #dfe8f6;display:inline;"> 
+                                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xforms-triger-minimal" id="2bb0dbf0024541ea96fafec682433df5" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                        <tbody> 
+                                          <tr> 
+                                            <td class="xxf-value"> 
+                                              <a class="xforms-trigger-label" href="#" tabindex=""> 
+                                                <span class="xforms-label " id="e0eb3483b8ac4051a5b01f5ce659cc17"> 
+                                                  <img alt="删除" src="/x5/$v2229_d24060b07b37f42f999a30cf3c1e5ccb6/UI/system/images/templete/reset.gif?language=zh_CN" style="border:none"></img> 
+                                                </span> 
+                                              </a> 
+                                            </td>  
+                                            <td class="xxf-alert"> 
+                                              <span class="xforms-alert"> 
+                                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                <div class="xforms-alert-value" id=""></div> 
+                                              </span> 
+                                            </td> 
+                                          </tr> 
+                                        </tbody> 
+                                      </table> 
+                                    </span> 
+                                  </td>  
+                                  <td> 
+                                    <span onmousedown="this.style.border='1px groove'" onmouseout="this.style.border='1px solid #dfe8f6'" onmouseover="this.style.border='1px ridge #dfe8f6';" onmouseup="this.style.border='1px ridge'" style="width:18;MARGIN-RIGHT:auto; MARGIN-LEFT:auto;border:solid 0px #dfe8f6;display:inline;"> 
+                                      <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xforms-triger-minimal" id="e1b4db41944c49bb8e2620de6696ac85" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                        <tbody> 
+                                          <tr> 
+                                            <td class="xxf-value"> 
+                                              <a class="xforms-trigger-label" href="#" tabindex=""> 
+                                                <span class="xforms-label " id="8839b0d7df6f4ba7b46e11d963263944"> 
+                                                  <img alt="全部删除" src="/x5/$v2229_de397b2b09de64dfcbe032ca0b39e3042/UI/system/images/templete/reset_all.gif?language=zh_CN" style="border:none"></img> 
+                                                </span> 
+                                              </a> 
+                                            </td>  
+                                            <td class="xxf-alert"> 
+                                              <span class="xforms-alert"> 
+                                                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                <div class="xforms-alert-value" id=""></div> 
+                                              </span> 
+                                            </td> 
+                                          </tr> 
+                                        </tbody> 
+                                      </table> 
+                                    </span> 
+                                  </td>  
+                                  <td id="select-count" style="color:#FF0000">共 
+                                    <font color="black" id="select-count-value">0</font> 项
+                                  </td> 
+                                </tr> 
+                              </table> 
+                            </div> 
+                          </div> 
+                        </td> 
+                      </tr>  
+                      <tr> 
+                        <td align="left" valign="top"> 
+                          <div class="" id="selectView"> 
+                            <div id="choose-parent"></div> 
+                          </div> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div>  
+                  <div class="xui-splitter-handler xui-splitter-handler-v"> 
+                    <div class="xui-splitter-btn xui-splitter-btn-v"> 
+                      <img class="xui-splitter-resize-btn" role="up" src="/x5/$v2229_dfa4fe675510f4be6a785acfc9fc78c38/UI/system/components/splitter/little_up.gif?language=zh_CN"></img>  
+                      <img class="xui-splitter-resize-btn" role="down" src="/x5/$v2229_d84b6bab8f816486497bc7b486de9c972/UI/system/components/splitter/little_down.gif?language=zh_CN"></img> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr heigth="24px"> 
+            <td align="left" valign="top"> 
+              <input id="refresh-btn" onclick="justep.windowReceiver.windowRefresh()" style="vertical-align:middle;padding-left:6px;padding-right:6px;" type="button" value="刷新"></input> 
+            </td>  
+            <td align="right" valign="top"> 
+              <input id="ensure-btn" onclick="justep.windowReceiver.windowEnsure(windowSend())" style="vertical-align:middle;padding-left:6px;padding-right:6px;" type="button" value="确定"></input>  
+              <input id="cancel-btn" onclick="justep.windowReceiver.windowCancel()" style="vertical-align:middle;padding-left:6px;padding-right:6px;" type="button" value="取消"></input> 
+            </td> 
+          </tr> 
+        </table>  
+        <div class="" id="configView"> 
+          <div id="configViewDiv" style="display:none"> 
+            <input id="displayAlias" update-mode="replace" value="fName"></input>  
+            <input id="returnAliasList" update-mode="replace" value="rowId,fName,fSpecType,fKindID,fUnitID,fKind,fUnit,fBuyNum,fInNum,fPrice,fAmount,fMasterID,fNO,fKindCode"></input>  
+            <input id="quickSearch" update-mode="replace" value="UPPER(OA_AS_BuyApplyD.fName) LIKE '%[QUICKTEXT]%' OR UPPER(OA_AS_BuyApplyD.fSpecType) LIKE '%[QUICKTEXT]%'OR UPPER(OA_AS_BuyApplyD.fKind) LIKE '%[QUICKTEXT]%'OR UPPER(OA_AS_BuyApplyD.fUnit) LIKE '%[QUICKTEXT]%'OR UPPER(m.fNO) LIKE '%[QUICKTEXT]%'"></input> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }		</script> 
+  </body> 
+</html>

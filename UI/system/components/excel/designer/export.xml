@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="excelExport" tag-type="rich" tag-name="div" icon="iconExport.gif" text="data数据excel导出"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/excel.xbl.xml#export"
+		display-property="id" component-class="ExcelExport" component-type="formControl">
+
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="导出data" required="true" is-id-ref="true" editor-ref="bizDatalist"/>
+			<property name="from" text="导出的数据来源方式" readonly="true" default-value="DB" editor-ref="fromList" enum-values=""/>
+			<property name="relations" text="导出列，格式(列:宽)，如:sName:300,sLock:400" readonly="true" default-value="全部" editor-ref="widthByRelationDlg"/>
+			<property name="download-filename" text="导出的文件名，默认为download.xls"/>
+			<property name="export-key-relation" text="导出主键" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="export-calc-relation" enabled-condition="@from='UI'" text="导出前端计算列" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="use-config-dlg" text="使用导出参数配置" default-value="true" editor-ref="booleanList" data-type="boolean"/>
+			<property name="action" text="指定导出excel的action" editor-ref="actionDlg"/>
+			<property name="label" text="提示标签内容" default-value="导出"/>
+			<property name="appearance" text="表现"  editor-ref="triggerAppearanceList" default-value="image"/>
+			<property name="icon-class"  text="icon-class" editor-ref="iconSelectionDlg" />
+			<property name="image-text-mode" text="image-text模式下显示方式"  enabled-condition="@appearance='image-text'" editor-ref="imageTextModes" enum-values="LR"/>
+			<property name="image" text="可用时的图片" editor-ref="triggerImgDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp" enabled-condition="@appearance='image' or @appearance='image-text' or @appearance='image-minimal'" default-value="/UI/system/components/excel/images/export.gif" allow-empty="false"/>  
+			<property name="dis-image" text="不可用时的图片" editor-ref="triggerImgDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp" enabled-condition="@appearance='image' or @appearance='image-text' or @appearance='image-minimal'" default-value="/UI/system/components/excel/images/unexport.gif"/>    
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+		</properties>
+
+		<property-editors>
+  			<property-editor name="triggerImgDialog" type="dialog" class-name="EditSrcPage"/>		
+			<property-editor name="triggerAppearanceList" type="list">
+				<static-data value="button,image,image-text,minimal,image-minimal"></static-data>
+			</property-editor>
+			<property-editor name="imageTextModes" type="list">
+				<static-data value="LR:左右,TB:上下"></static-data>
+			</property-editor>
+			<property-editor name="widthByRelationDlg" type="dialog">
+				<dialog-page class-name="com.justep.studio.ui.editors.propertypage.BizDataRelationWidthPage"/>				
+			</property-editor>
+
+			<property-editor name="bizDatalist" type="list">
+						<dynamic-data xpath="//*[@component='/UI/system/components/data.xbl.xml#bizData']/@id"/>								
+			</property-editor>
+			
+			<property-editor name="fromList" type="list" > 
+				<static-data value="UI,DB" /> 
+			</property-editor>		
+		</property-editors>		
+	
+		<events>  <!--组件事件-->			
+			<event name="onBeforeExport"  text="导出前"/>
+			<event name="onAfterExport"  text="导出成功"/>
+			<event name="onError"  text="导出失败"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml"  appearance="image-minimal" icon-class="icon-system-export" component="/UI/system/components/excel.xbl.xml#export"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

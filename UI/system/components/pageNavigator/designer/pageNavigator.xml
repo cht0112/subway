@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="pageNavigator" tag-type="rich" tag-name="div" icon="pageNavigator.png" text="分页导航"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator"
+		display-property="id" component-class="PageNavigator" component-type="formControl">
+		
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="数据" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="mode" text="显示模式" editor-ref="btnDisplayModes"/>
+			<property name="items" text="显示项" editor-ref="pageNavDisplayItems" default-value="first,pre,page,next,last,ext"/>    
+			<group name="default"  text="默认值">
+				<property name="limit" data-type="integer" text="页大小"/>
+				<property name="offset" data-type="integer" text="记录位置"/>
+				<property name="count" data-type="integer" text="记录数"/>
+				<property name="page-count" default-value="5" data-type="integer" text="显示页码数"/>
+			</group>
+		</properties>
+		
+		<events>  <!--组件事件-->			
+			<event name="onPageChanged"  text=""/>
+		</events>
+
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" data=""            
+					component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

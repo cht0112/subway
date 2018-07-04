@@ -1,0 +1,440 @@
+/**
+	@name justep.ProcessControl
+	@class 流转信息
+	@model UI
+	@language js
+	@description 流转信息，兼容之前的XML格式，后续版本以JSON格式为主
+	@example
+<xmp>
+	<process-control>
+  		<status/>
+  		<message/>
+  		<dialog-enabled/>
+  		<save-history/>
+  		<task-join/>
+  		<customized-enabled/>
+  		<jump-enabled/>
+ 		<runnable-activities>
+ 			<xor id="22B69942C2734B7BBEDF3A39E28EB43E">
+ 				<bizActivity2 selectable="true" optional="false" 
+ 					label="活动环节2" id="B468870E061144A9BB54D87D57C1404B"/>
+ 				<bizActivity4 selectable="true" optional="false" 
+ 					label="活动环节4" id="1D573590917D4B25A02E8C5A0E9A577B"/>
+ 			</xor>
+ 		</runnable-activities>
+  		
+  		<notices>
+  		</notices>
+  		<to>
+  			<process-control-item selected="" readonly="" is-end="">
+  				<process/>
+  				<unit/>
+  				<task-assign-mode/>
+  				<executor-range/>
+  				<executor-kinds>
+  					<item/>
+  					<item/>
+  				</executor-kinds>
+  				<executors>
+  					<org-unit>
+  						<fid/>
+  						<fname/>
+  						<responsible/>
+  					</org-unit>
+  				</executors>
+  				<task-relation-value>
+  					<名称>值</名称>
+  				</task-relation-value>
+  			</process-control-item>
+  		</to>
+  	</process-control>
+</xmp>
+*/
+
+/**
+	@name justep.ProcessControl.xmlToJson
+	@function
+	@description 将xml格式的ProcessControl转换成json格式
+	@param {String} xml
+	@returns {String}
+*/
+
+/**
+	@name justep.ProcessControl.jsonToXml
+	@function
+	@description 将json格式的ProcessControl转换成xml格式
+	@param {String} json
+	@returns {String}
+*/
+
+/**
+	@name justep.ProcessControl#getXMLString
+	@function
+	@description [兼容保留]获取xml格式的processControl
+	@returns {String}
+*/
+
+/**
+	@name justep.ProcessControl#getJsonString
+	@function
+	@description 获取json格式的processControl
+	@returns {String}
+*/
+
+/**
+	@name justep.ProcessControl#getDataType
+	@function
+	@description 获取ProcessControl的格式，值域是{json, xml}
+	@returns {String}
+*/
+
+/**
+	@name justep.ProcessControl#getData
+	@function
+	@description 获取ProcessControl的内容
+	@returns {Object}
+*/
+
+
+/**
+	@name justep.ProcessControl#enableDialog
+	@function
+	@description 判断是否需要弹出对话框
+	@returns {boolean}
+*/
+
+/**
+	@name justep.ProcessControl#hasProcessData
+	@function
+	@description [兼容保留]判断是否有process data
+	@returns {boolean}
+*/
+
+/**
+	@name justep.ProcessControl#getMessage
+	@function
+	@description 获取提示信息
+	@returns {boolean}
+*/
+
+/**
+	@name justep.ProcessControl#loadFromXml
+	@function
+	@description 加载xml格式的数据
+	@param {String} xml
+	@returns {void}
+*/
+
+/**
+	@name justep.ProcessControl#loadFromJson
+	@function
+	@description 加载json格式的数据
+	@param {String} json
+	@returns {void}
+*/
+
+/**
+	@name justep.ProcessControl#getActivities
+	@function
+	@description 获取环节列表，
+	@returns {Array} 返回的是justep.ProcessControl.Activity形成的Array
+*/
+
+/**
+	@name justep.ProcessControl#getToItems
+	@function
+	@description 获取环节相应的流转信息
+	@returns {Array} 返回的是justep.ProcessControl.Item形成的Array
+*/
+
+/**
+	@name justep.ProcessControl#getToItemByID
+	@function
+	@description 根据ID获取环节相应的流转信息
+	@returns {justep.ProcessControl.Item} 
+*/
+
+/**
+	@name justep.ProcessControl#setSelectedToItems
+	@function
+	@description 设置选中的环节相应的流转信息
+	@param {Array} ids 由id形成的数组 
+	@returns {void} 
+*/
+
+/**
+	@name justep.ProcessControl#getNoticeItems
+	@function
+	@description 获取通知相应的流转信息
+	@returns {Array} 返回的是justep.ProcessControl.Item形成的Array
+*/
+
+/**
+	@name justep.ProcessControl#getNoticeItemByID
+	@function
+	@description 根据ID获取通知相应的流转信息
+	@returns {justep.ProcessControl.Item} 
+*/
+
+/**
+	@name justep.ProcessControl#setSelectedNoticeItems
+	@function
+	@description 设置选中的通知
+	@param {Array} ids 由id形成的数组 
+	@returns {void} 
+*/
+
+/**
+	@name justep.ProcessControl#getExts
+	@function
+	@description 获取扩展数据
+	@returns {Object} json
+*/
+
+/**
+	@name justep.ProcessControl#clearExts
+	@function
+	@description 清除扩展数据
+	@returns {void} 
+*/
+
+/**
+	@name justep.ProcessControl#getExt
+	@function
+	@description 获取扩展数据的值
+	@param {String} name 扩展数据的名称 
+	@returns {Object} 
+*/
+
+/**
+	@name justep.ProcessControl#setExt
+	@function
+	@description 设置扩展数据的值
+	@param {String} name 扩展数据的名称 
+	@param {Object} value 扩展数据的值 
+	@returns {void} 
+*/
+
+
+/**
+	@name justep.ProcessControl.Activity
+	@class 环节
+	@model UI
+	@language js
+	@description 环节
+	@param {Object} activityData 环节数据
+	@param {Array} children 子环节列表
+	@param {justep.ProcessControl.Item} toItem 相应的流程信息
+*/	
+
+
+/**
+	@name justep.ProcessControl.Activity#getID
+	@function
+	@description 获取环节的ID
+	@returns {String} 
+*/
+	
+/**
+	@name justep.ProcessControl.Activity#getName
+	@function
+	@description 获取环节的名称
+	@returns {String} 
+*/
+
+/**
+	@name justep.ProcessControl.Activity#getChildren
+	@function
+	@description 获取子环节列表
+	@returns {Array} justep.ProcessControl.Activity形成的列表 
+*/
+
+/**
+	@name justep.ProcessControl.Activity#getLable
+	@function
+	@description 获取环节的显示名称
+	@returns {String}  
+*/
+
+/**
+	@name justep.ProcessControl.Activity#isSelectable
+	@function
+	@description 是否允许被选中
+	@returns {Boolean}  
+*/
+
+/**
+	@name justep.ProcessControl.Activity#isOptional
+	@function
+	@description 是否可选
+	@returns {Boolean}  
+*/
+
+/**
+	@name justep.ProcessControl.Item
+	@class 流转信息或通知信息
+	@model UI
+	@language js
+	@description 流转信息或通知信息
+	@param {Object} itemData json格式的内容
+*/	
+
+/**
+	@name justep.ProcessControl.Item#getID
+	@function
+	@description 获取ID
+	@returns {String}  
+*/
+
+
+/**
+	@name justep.ProcessControl.Item#getActivityID
+	@function
+	@description 获取相应的环节ID
+	@returns {String}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#isEnd
+	@function
+	@description 是否是结束环节
+	@returns {Boolean}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#isReadonly
+	@function
+	@description 是否只读
+	@returns {Boolean}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#isSelected
+	@function
+	@description 是否被选中
+	@returns {Boolean}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#setSelected
+	@function
+	@description 设置选中状态
+	@param {Boolean}
+	@returns {void}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getProcess
+	@function
+	@description 获取Process
+	@returns {String}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getUnit
+	@function
+	@description 获取环节
+	@returns {String}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getTaskAssignMode
+	@function
+	@description 获取任务合并模式
+	@returns {String}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getExecutorKinds
+	@function
+	@description 获取执行者类型
+	@returns {String}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getExecutorRange
+	@function
+	@description 获取执行者范围
+	@returns {Object} json格式  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getExecutors
+	@function
+	@description 获取默认执行者
+	@returns {Object} json格式  
+*/
+
+/**
+	@name justep.ProcessControl.Item#clearExecutors
+	@function
+	@description 清空默认执行者
+	@returns {void}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#addExecutor
+	@function
+	@description 添加执行者
+	@param {String} fid 执行者的FID
+	@param {String} fname 执行者的FName
+	@param {Boolean} responsible 是否是管理者
+	@returns {void}  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getTaskRelationValues
+	@function
+	@description 获取所有的任务关系
+	@returns {Object} json格式的数据  
+*/
+
+/**
+	@name justep.ProcessControl.Item#getTaskRelationValue
+	@function
+	@description 获取任务关系的值
+	@param {String} name 关系名称
+	@returns {Object}   
+*/
+
+/**
+	@name justep.ProcessControl.Item#setTaskRelationValue
+	@function
+	@description 设置任务关系的值
+	@param {String} name 关系名称
+	@param {Object} value 值
+	@returns {void}   
+*/
+
+/**
+	@name justep.ProcessControl.Item#getExts
+	@function
+	@description 获取扩展数据
+	@returns {Object} json
+*/
+
+/**
+	@name justep.ProcessControl.Item#clearExts
+	@function
+	@description 清除扩展数据
+	@returns {void} 
+*/
+
+/**
+	@name justep.ProcessControl.Item#getExt
+	@function
+	@description 获取扩展数据的值
+	@param {String} name 扩展数据的名称 
+	@returns {Object} 
+*/
+
+/**
+	@name justep.ProcessControl.Item#setExt
+	@function
+	@description 设置扩展数据的值
+	@param {String} name 扩展数据的名称 
+	@param {Object} value 扩展数据的值 
+	@returns {void} 
+*/
+
+

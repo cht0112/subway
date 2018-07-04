@@ -1,0 +1,110 @@
+/**
+	@name UI.barcodeImage
+	@component /UI/system/components/barcode.xbl.xml#barcodeImage
+	@class
+	@description <b>[rich]</b>条形码组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<div component="/UI/system/components/barcode.xbl.xml#barcodeImage" id="barcode1"/>
+	</xmp>
+*/
+
+/**
+	@name UI.barcodeImage#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/barcode.xbl.xml#barcodeImage"
+*/
+
+/**
+	@name UI.barcodeImage#id
+	@attribute
+	@required 
+	@description id标识
+*/
+
+/**
+	@name UI.barcodeImage#type
+	@attribute
+	@type {string} 
+	@description 编码类型，详细请参考条形码相关知识
+	@example
+	取值范围：
+		code39,code93,code128,codabar,intl2of5,
+		itf14,upc-a,upc-e,ean-13,ean-8,ean-128,
+		postnet,royal-mail-cbc,usps4cb,pdf417,
+		datamatrix
+*/
+
+/**
+	@name UI.barcodeImage#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.barcodeImage#stretch
+	@attribute 
+	@description 拉伸
+	@see UI.barcodeImage#setStretch
+*/
+
+/**
+	@name UI.barcodeImage#config
+	@attribute 
+	@description 参数
+	@example
+	<xmp>
+	参数单位：默认为mm,其它支持单位有厘米cm,像素pt,英尺in
+	config参数格式：{height:15mm,qz:enable,mw:0.9mm,wf:2.5mm,dpi:300,hrp:bottom,hrsize:12pt,hrfont:Helvetica}
+	height：高度(不等于最后图像大小)，图像像素=输入参数(mm)/25.4*dpi，(in=mm/25.4)
+	qz：条形码左右两边空白,(qz:disable,没有空白;qz:2,2mm宽空白)
+	mw：最窄的条码宽度,(mw:0.9mm)
+	wf：the factor by which wide bars are broader than narrow bars.
+	hrp：可读代码位置(top,bottom,none)
+	hrfont：可读代码字体
+	hrsize：可读代码字号
+	注意：code93不支持数字带单位的格式如15mm，默认单位为像素
+	</xmp>
+*/
+
+/**
+	@name UI.barcodeImage#onRefresh
+	@event 
+	@description <b>[回调型事件]</b>条形码刷新后
+	@param event <br/><b>它的结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"url" : 获取数据的url
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.barcodeImage#refresh
+	@function 
+	@description 条形码刷新，会触发onRefresh事件
+	@see UI.barcodeImage#onRefresh
+	@see UI.barcodeImage#clear
+*/
+
+/**
+	@name UI.barcodeImage#clear
+	@function 
+	@description 清除条形码
+	@see UI.barcodeImage#refresh
+*/
+
+/**
+	@name UI.barcodeImage#setStretch
+	@function 
+	@description 设置拉伸，需要重新刷新有效
+	@see UI.barcodeImage#stretch
+	@param  {boolean} stretch
+*/
+
+

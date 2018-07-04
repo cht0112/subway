@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root> 
+  <item icon="schedule.png" label="工作事务">
+       <item label="工作任务" url="/SA/task/workTask/mainActivity.w" process="/SA/task/workTask/workTaskProcess"
+        icon="/UI/SA/task/workTask/images/icon16.png" icon32="/UI/SA/task/workTask/images/icon32.png"
+        icon64="/UI/SA/task/workTask/images/icon64.png" activity="mainActivity"/>  
+      <item label="工作任务处理" display="hide" url="/SA/task/workTask/useActivity"
+        process="/SA/task/workTask/workTaskProcess" activity="useActivity"/>  
+      <item label="工作记录" url="/SA/task/workRecord/mainActivity.w" process="/SA/task/workRecord/workRecordProcess"
+        icon="/UI/SA/task/workRecord/images/icon16.png" icon32="/UI/SA/task/workRecord/images/icon32.png"
+        icon64="/UI/SA/task/workRecord/images/icon64.png" activity="mainActivity"/>  
+      <item label="工作记录处理" display="hide" url="/SA/task/workRecord/useActivity"
+        process="/SA/task/workRecord/workRecordProcess" activity="useActivity"/>
+  </item>
+  <item icon="xitong.png" label="系统管理"> 
+    <item icon="/UI/system/images/menu/tasks.gif" label="任务管理"> 
+      <item label="任务中心" url="/SA/task/taskCenter/mainActivity.w" process="/SA/task/taskCenter/taskCenterProcess"
+        icon="/UI/SA/task/taskCenter/images/icon16.png" icon32="/UI/SA/task/taskCenter/images/icon32.png"
+        icon64="/UI/SA/task/taskCenter/images/icon64.png" activity="mainActivity"/>  
+      <item label="待办和提交" url="/SA/task/taskView/submitTask.j" process="/SA/task/taskView/taskViewProcess"
+        activity="mainActivity" display="hide"/>  
+      <!--  
+      <item label="任务汇总"  url="/SA/task/taskView/taskSummary.j"
+        process="/SA/task/taskView/taskViewProcess" activity="mainActivity" display="hide"/> 
+      -->  
+      <item label="流程监控" process="/SA/process/monitor/monitorProcess" url="/SA/process/monitor/mainActivity.w"
+        icon="/UI/SA/process/monitor/images/icon16.png" icon32="/UI/SA/process/monitor/images/icon32.png"
+        icon64="/UI/SA/process/monitor/images/icon64.png" activity="mainActivity"/>  
+      <item label="定制流程模板" process="/SA/process/template/templateProcess" url="/SA/process/template/mainActivity.w"
+        icon="/UI/SA/process/template/images/icon16.png" icon32="/UI/SA/process/template/images/icon32.png"
+        icon64="/UI/SA/process/template/images/icon64.png" activity="mainActivity"/> 
+    </item>  
+    <item icon="org.png" label="组织权限"> 
+      <item label="组织管理" url="/SA/OPM/organization/mainActivity.w" process="/SA/OPM/organization/organizationProcess"
+        activity="mainActivity" icon="/UI/SA/OPM/organization/images/icon16.png" icon32="/UI/SA/OPM/organization/images/icon32.png"
+        icon64="/UI/SA/OPM/organization/images/icon64.png"/>  
+      <item label="角色管理" url="/SA/OPM/role/mainActivity.w" process="/SA/OPM/role/roleProcess"
+        activity="mainActivity" icon="/UI/SA/OPM/role/images/icon16.png" icon32="/UI/SA/OPM/role/images/icon32.png"
+        icon64="/UI/SA/OPM/role/images/icon64.png"/>  
+      <item label="授权管理" url="/SA/OPM/authorization/mainActivity.w" process="/SA/OPM/authorization/authorizationProcess"
+        activity="mainActivity" icon="/UI/SA/OPM/authorization/images/icon16.png"
+        icon32="/UI/SA/OPM/authorization/images/icon32.png" icon64="/UI/SA/OPM/authorization/images/icon64.png"/>  
+      <item label="功能管理" url="/metrodetection/func/process/func/mainActivity.w"
+        process="/metrodetection/func/process/func/funcProcess" activity="mainActivity"
+        icon="/UI/SA/OPM/authorization/images/icon16.png" icon32="/UI/SA/OPM/authorization/images/icon32.png"
+        icon64="/UI/SA/OPM/authorization/images/icon64.png"/>  
+      <item label="回收站" url="/SA/OPM/recycled/mainActivity.w" process="/SA/OPM/recycled/recycledProcess"
+        activity="mainActivity" icon="/UI/SA/OPM/recycled/images/icon16.png" icon32="/UI/SA/OPM/recycled/images/icon32.png"
+        icon64="/UI/SA/OPM/recycled/images/icon64.png"/> 
+    </item>  
+    <item label="门户管理"> 
+      <item label="门户默认布局管理" url="/SA/theme/themeDefine/mainActivity2.w" process="/SA/theme/themeDefine/themeDefineProcess"
+        activity="mainActivity"/>  
+      <item label="门户默认布局分配" url="/SA/theme/themeManager/mainActivity2.w" process="/SA/theme/themeManager/themeManagerProcess"
+        activity="mainActivity"/> 
+    </item>  
+    <item label="系统工具"> 
+      <item label="操作日志" process="/SA/log/logProcess" activity="mainActivity"
+        url="/SA/log/mainActivity.w" icon="/UI/SA/log/images/icon16.png" icon32="/UI/SA/log/images/icon32.png"
+        icon64="/UI/SA/log/images/icon64.png"/>  
+      <item label="在线用户" process="/SA/online/onlineProcess" activity="mainActivity"
+        url="/SA/online/mainActivity.w" icon="/UI/SA/online/images/icon16.png" icon32="/UI/SA/online/images/icon32.png"
+        icon64="/UI/SA/online/images/icon64.png"/> 
+       <item label="license手工激活" process="/SA/license/licenseProcess" activity="mainActivity" url="/SA/license/mainActivity.w"></item><item label="软件更新" display="solid" url="/SA/update/update.j" process="/SA/update/updateProcess"
+        activity="mainActivity"/> 
+    </item>
+    <item label="数据字典管理"> 
+	        <item label="工具类型名称设置" process="/metrodetection/toolProtect/process/tool_type_name/tool_type_nameProcess" activity="mainActivity" 
+	        url="/metrodetection/toolProtect/process/tool_type_name/mainActivity.w"/>  
+	        <item label="工具分类编码设置" process="/metrodetection/toolProtect/process/tool_sort_coding/tool_sort_codingProcess" activity="mainActivity" 
+	        url="/metrodetection/toolProtect/process/tool_sort_coding/mainActivity.w"/>  
+	        <item label="工具类型编码设置" process="/metrodetection/toolProtect/process/tool_type_coding/tool_type_codingProcess" activity="mainActivity" 
+	        url="/metrodetection/toolProtect/process/tool_type_coding/mainActivity.w"/> 
+	        <item label="工具模块变更履历" process="/metrodetection/toolProtect/process/tools_changes_records/tools_changes_recordsProcess" activity="mainActivity" 
+	        url="/metrodetection/toolProtect/process/tools_changes_records/mainActivity.w"/> 
+	        <item label="职位编码设置" process="/metrodetection/toolProtect/process/position_coding/position_codingProcess" activity="mainActivity" 
+	        url="/metrodetection/toolProtect/process/position_coding/mainActivity.w"/>
+	         <item label="岗位编码设置" process="/metrodetection/toolProtect/process/position_coding_true/position_coding_trueProcess" activity="mainActivity" 
+	        url="/metrodetection/toolProtect/process/position_coding_true/positionCodeActivity.w"/> 
+	  </item>  
+  </item> 
+</root>

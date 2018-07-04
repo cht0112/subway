@@ -1,0 +1,170 @@
+﻿/**
+	@name justep.Portal.FuncTree
+	@class
+	@model UI
+	@language js
+	@description 功能树
+*/
+
+
+/**
+	@name justep.Portal.FuncTree.hide
+	@function
+	@description 隐藏功能树
+*/
+
+/**
+	@name justep.Portal.FuncTree.show
+	@function
+	@description 显示隐藏的功能树
+*/
+
+/**
+	@name justep.Portal.FuncTree.toggle
+	@function
+	@description 切换功能树的显示状态
+*/
+
+/**
+	@name justep.Portal.FuncTree.openItem
+	@function
+	@description 打开功能树的节点
+	@param {Number} index 树的节点索引, 默认为0
+*/
+
+/**
+	@name justep.Portal.Tab
+	@class
+	@model UI
+	@language js
+	@description Tab页
+*/
+
+
+/**
+	@name justep.Portal.Tab.open
+	@function
+	@description 在portal中打开指定页面
+        @param {String} title tab的title
+        @param {String} url 打开功能的完整连接  
+        @param {Boolean} hidetreeable 是否隐藏功能树
+        @param {Function} callback 打开后的回调方法  
+        @param {String} executor 功能的执行者  
+     	@returns 返回所打开tab页的id
+*/
+
+/**
+	@name justep.Portal.Tab.getCurrentId
+	@function
+	@description 获取当前的Tab页的id
+	@returns {String} 返回id
+*/
+
+/**
+	@name justep.Portal.Tab.hide
+	@function
+	@description 隐藏指定的tab页
+        @param {String} id tab页的id
+	
+*/
+/**
+	@name justep.Portal.Tab.show
+	@function
+	@description 显示指定的tab页
+        @param {String} id tab页的id
+
+*/
+/**
+	@name justep.Portal.Tab.toggle
+	@function
+	@description tab的显示状态切换
+        @param {String} id tab页的id	
+*/
+/**
+	@name justep.Portal.Tab.controlAuthority
+	@function
+	@description 控制tab的行为
+	@param {String} id tab的id 
+    @param {Boolean} tabremoveable tab是否能关闭
+    @param {Boolean} widgetaddable widget是否添加
+    @param {Boolean} widgetremoveable widget是否能删除	
+    @param {Boolean} widgetsortable widget是否能拖动	
+*/
+
+/**
+	@name justep.Portal.Tab.getWindowById
+	@function
+	@description 返回功能型tab内的window对象 
+    @param {String} id tab页的id	
+    @returns window对象
+*/
+
+/**
+	@name justep.Portal.passwordValidator
+	@function
+	@description 密码修改时的验证规则
+        @param {String} desc 密码规则的描述
+        @param {Object} minSize hint为新密码不满足最小长度的提示、size最小长度，格式：{hint:"",size:数字} 
+        @param {Object} maxSize hint为新密码不满足最大长度的提示、size最大长度，格式：{hint:"",size:数字} 
+        @param {Array}  regs 存储{hint："",reg:""}的数组 hint新密码不遵守正则的提示、reg正则表达式
+*/
+
+/**
+	@name justep.Portal.getUserInfo
+	@function
+	@description 获取用户信息
+        @returns{Object} 返回用户信息 格式：{personName:'登记人名',personCode:'用户code',uiserverremoteurl:'远程链接头',orgName:'
+部门名'，locale:'页面编码',orgPath:'部门路径',orgID:'部门id',username:'用户code',businessid:'business的sessionID',personID:'用户ID',agentPersonCode:'系统保留',agentPersonID:'系统保留',agentOrgID:'系统保留',agentPersonName:'系统保留',agentOrgName:'系统保留',agentOrgPath:'系统保留'}
+*/
+/**
+	@name justep.PortalＸ.getPrincipalInfo
+	@function
+	@description 获取被代理用户信息
+        @returns {Obejct}  返回用户信息 格式：{personName:'登记人名',personCode:'用户code',uiserverremoteurl:'远程链接头',orgName:'
+部门名'，locale:'页面编码',orgPath:'部门路径',orgID:'部门id',username:'用户code',businessid:'business的sessionID',personID:'用户ID',agentPersonCode:'系统保留',agentPersonID:'系统保留',agentOrgID:'系统保留',agentPersonName:'系统保留',agentOrgName:'系统保留',agentOrgPath:'系统保留'}
+*/
+/**
+	@name justep.Portal.setWelcomeMsg 
+	@function
+	@description 设置欢迎消息
+        @param {String} msg 欢迎消息
+*/	
+/**
+	@name justep.PortalＸ.openPrincipalPage
+	@function
+	@description：打开代理页面
+	@param {String} principalID 被代理者ID
+*/
+
+/**
+	@name justep.Portal.widgetLoadedEvent
+	@event
+	@description 当widget加载后触发，widget在加载后如果不刷新就不会再触发
+	@param {Event} e
+	@param {Element} target
+*/
+
+/**
+	@name justep.Portal.widgetActivateEvent
+	@event
+	@description 当选择widget的时候触发
+	@param {Event} e
+	@param {Element} target
+*/
+
+/**
+	@name justep.Portal.tabActionEvent
+	@event
+	@description 当tab被加载的时候触发，加载后就不会触发，不会因切换tab触发
+	@param {Event} 
+	@param {Element} target
+*/
+
+/**
+	@name justep.Portal.tabActivateEvent
+	@event
+	@description 当tab页切换时候触发
+	@param {Event} e
+	@param {Element} target，是包含要显示tab的标签
+*/
+

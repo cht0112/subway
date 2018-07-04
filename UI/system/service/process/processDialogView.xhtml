@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" 
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xforms="http://www.justep.com/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:f="http://orbeon.org/oxf/xml/formatting"  xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xxi="http://orbeon.org/oxf/xml/xinclude" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:widget="http://orbeon.org/oxf/xml/widget" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:justep="http://www.justep.com/x5#" xmlns:ns="http://www.justep.com/x5#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xdt="http://www.w3.org/2005/xpath-datatypes" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pre1="http://www.justep.com/x5#"
+	>
+	<xsl:param name="instance"/> 
+	<xsl:template match="/">
+<xhtml:html xmlns="http://www.w3.org/1999/xhtml" style="height:100%;width:100%;"
+	>  
+	<xhtml:head>
+		<xhtml:title>ProcessDialog</xhtml:title>
+		
+		<xhtml:meta http-equiv="Media-Type" content="ajaxforms"/>  
+		<link type="text/css" href="/form/xforms/xforms.css" rel="stylesheet"/>
+		<link type="text/css" href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet"/>
+		<link type="text/css" href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet"/>
+		
+		<xhtml:script type="text/javascript" src="/UI/system/service/process/processDialog.js"/>
+
+		<xhtml:style>
+		.hand_cursor * {cursor: hand;}
+		.select_button {width: 30px;height: 22px;border: 1px solid #baceeb;background: white;margin: 0;padding: 0;}
+		.move_button {width: 54px;height: 22px;border: 1px solid #baceeb;background: white; margin: 0;padding: 0;}
+		.dialog_button {width: 75px;}
+		.dialog_button button {height: 23px; _height: 24px;}
+		table td {font-size: 12px}
+		.xui-autofill {width: 100%; height: auto; border: 0;}
+		.xforms-group {height: 100%;}
+		.xforms-group-content {height: 100%;}
+		</xhtml:style>
+		
+   		<xforms:model id="mainmodel">
+   			<xforms:instance id="other_data" language="CONSTANT" type="dom">
+				<form >
+					<data>
+						<xsl:copy-of select="/form/*[local-name()!='process-control']"/>
+					</data>
+				</form>
+			</xforms:instance>
+			
+			<xforms:instance id="process_control_info" language="CONSTANT" type="dom">
+				<form >
+					<data>
+						<xsl:copy-of select="/form/process-control/*[local-name()!='original-to' and local-name()!='original-notice' and local-name()!='runnable-activities' and local-name()!='notice' and local-name()!='to' and local-name()!='notice-executor-range' and local-name()!='to-executor-range' and local-name()!='notice-executors' and local-name()!='to-executors' and local-name()!='notice-org-person' and local-name()!='to-org-person']"/>
+					</data>
+				</form>
+			</xforms:instance>
+   		
+			<xsl:if test="count($instance/process-control/to/*) > 0">
+				<xforms:instance id="activity_children" language="CONSTANT" type="grid" columnids="name,activity,operator,selected,optional,is_activity,activity_id">
+	   				<rows >
+	   					<xsl:copy-of select="/form/process-control/runnable-activities/children/*"/>
+	   				</rows>
+	   			</xforms:instance>
+				
+	   			<xforms:instance id="activity_root" language="CONSTANT" type="simple" columnids="name,activity,operator,selected,optional,is_activity,activity_id">
+	   				<rows >
+	   					<xsl:copy-of select="/form/process-control/runnable-activities/root/*"/>
+	   				</rows>
+	   			</xforms:instance>
+	   			
+				<xforms:instance id="to" language="CONSTANT" type="grid" columnids="activity,process,template,passed_activities,task_assign_mode,executor_kinds,eurl,lock,warning_time,execute_mode,execute_mode2,emergency_name,catalog_id,content,preempt_mode,activity2,create_time,limit_time,emergency_id,curl,process2,name,last_modify_time,readonly,is_end,selected,data_id,activity_id">
+					<rows >
+						<xsl:copy-of select="/form/process-control/to/*"/>
+					</rows>
+				</xforms:instance>
+
+				<xforms:instance id="original_to" language="CONSTANT" type="dom">
+					<form >
+						<data>
+							<xsl:copy-of select="/form/process-control/original-to/*"/>
+						</data>
+					</form>
+				</xforms:instance>
+
+	   			<xforms:bind nodeset="instance('to')/limit_time" type="xsd:dateTime"/>
+				<xforms:bind nodeset="instance('to')/create_time" type="xsd:dateTime"/>
+				<xforms:bind nodeset="instance('to')/warning_time" type="xsd:dateTime"/>
+				<xforms:bind nodeset="instance('to')/preempt_mode" readonly="instance('to')/execute_mode != 'temPreempt'"/>
+
+				<xforms:instance id="to_executor_range" language="CONSTANT" type="simple" columnids="fid,fname,kind,name,responsible,data_id">
+					<rows >
+						<xsl:copy-of select="/form/process-control/to-executor-range/*"/>
+					</rows>
+				</xforms:instance>
+				
+	    		<xforms:action ev:event="xforms-ready">
+					<xforms:script>
+					<![CDATA[
+						onReady();
+					]]>
+					</xforms:script>
+	    		</xforms:action>
+	    		
+				<xforms:instance id="to_executors" language="CONSTANT" type="grid" columnids="fid,fname,name,kind,responsible,data_id">
+					<rows >
+						<xsl:copy-of select="/form/process-control/to-executors/*"/>
+					</rows>
+				</xforms:instance>
+ 				
+				<xforms:instance id="to_org_person" language="CONSTANT" type="grid" columnids="name,fid,fname,id,kind,loaded,selectable,data_id">
+					<rows >
+				        <row id="00000000-0000-0000-0000-000000000000">
+							<cell>组织机构</cell>				        	
+				          	<cell>00000000-0000-0000-0000-000000000000</cell>
+				          	<cell>组织机构</cell>
+				          	<cell>00000000-0000-0000-0000-000000000000</cell>
+				          	<cell>-1</cell>
+				          	<cell>true</cell>
+				          	<cell>false</cell>
+				          	<cell>00000000-0000-0000-0000-000000000000</cell>
+						
+							<xsl:copy-of select="/form/process-control/to-org-person/*"/>
+				        </row>
+					</rows>
+				</xforms:instance>	 
+			</xsl:if>
+   			
+			<xsl:if test="count($instance/process-control/notice/*) > 0">
+				<xforms:part id="notice_lazy">
+					<xsl:attribute name="xforms:lazy">
+						<xsl:choose>
+							<xsl:when test="count($instance/process-control/to/*) > 0">
+								<xsl:text>true</xsl:text>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:text>false</xsl:text>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:attribute>
+					
+					<xforms:instance id="notice" language="CONSTANT" type="grid" columnids="activity,process,template,passed_activities,task_assign_mode,executor_kinds,eurl,lock,warning_time,execute_mode,execute_mode2,emergency_name,catalog_id,content,preempt_mode,activity2,create_time,limit_time,emergency_id,curl,process2,name,last_modify_time,readonly,is_end,selected,data_id,activity_id">
+						<rows >
+							<xsl:copy-of select="/form/process-control/notice/*"/>
+						</rows>
+					</xforms:instance>
+
+					<xforms:instance id="original_notice" language="CONSTANT" type="dom">
+						<form >
+							<data>
+								<xsl:copy-of select="/form/process-control/original-notice/*"/>
+							</data>
+						</form>
+					</xforms:instance>
+
+		   			<xforms:bind nodeset="instance('notice')/limit_time" type="xsd:dateTime"/>
+					<xforms:bind nodeset="instance('notice')/create_time" type="xsd:dateTime"/>
+					<xforms:bind nodeset="instance('notice')/warning_time" type="xsd:dateTime"/>
+   			
+					<xforms:instance id="notice_org_person" language="CONSTANT" type="grid" columnids="name,fid,fname,id,kind,loaded,selectable,data_id">
+						<rows >
+					        <row id="00000000-0000-0000-0000-000000000000">
+					        	<cell>组织机构</cell>
+					          	<cell>00000000-0000-0000-0000-000000000000</cell>
+					          	<cell>组织机构</cell>
+					          	<cell>00000000-0000-0000-0000-000000000000</cell>
+					          	<cell>-1</cell>
+					          	<cell>true</cell>
+					          	<cell>false</cell>
+					          	<cell>00000000-0000-0000-0000-000000000000</cell>
+							
+								<xsl:copy-of select="/form/process-control/notice-org-person/*"/>
+					        </row>
+						</rows>
+					</xforms:instance>
+			
+					<xforms:instance id="notice_executor_range" language="CONSTANT" type="simple" columnids="fid,fname,kind,name,responsible,data_id">
+						<rows >
+							<xsl:copy-of select="/form/process-control/notice-executor-range/*"/>
+						</rows>
+					</xforms:instance>
+
+					<xforms:instance id="notice_executors" language="CONSTANT" type="grid" columnids="fid,fname,name,kind,responsible,data_id">
+						<rows >
+							<xsl:copy-of select="/form/process-control/notice-executors/*"/>
+						</rows>
+					</xforms:instance>
+
+					<xforms:action>
+		    			<xsl:attribute name="ev:event">
+		    				<xsl:choose>
+		    					<xsl:when test="count($instance/process-control/to/*) > 0">
+		    						<xsl:text>xforms-lazy-load</xsl:text>
+		    					</xsl:when>
+		    					<xsl:otherwise>
+		    						<xsl:text>xforms-ready</xsl:text>
+		    					</xsl:otherwise>
+		    				</xsl:choose>
+		    			</xsl:attribute>
+		    			
+						<xforms:script>
+						<![CDATA[
+						noticePartLoaded = true;
+		
+						var treeNoticeOrgPerson = xforms("notice_org_person_tree");
+						var colIndex = treeNoticeOrgPerson.grid.getColIndexById("data_id");
+						treeNoticeOrgPerson.grid.filterByPro(colIndex, function(val) {
+							var insNoticeData = xforms("notice");
+							var dataId = insNoticeData.store.getValueById(insNoticeData.store.selectRowID, "data_id");
+							return val == dataId;
+						});
+						treeNoticeOrgPerson.grid.expandAll();
+						
+						var gridExecutors = xforms("notice_executors_grid");
+						var colIndex = gridExecutors.grid.getColIndexById("data_id");
+						gridExecutors.grid.filterByPro(colIndex, function(val) {
+							var insNoticeData = xforms("notice");
+							var dataId = insNoticeData.store.getValueById(insNoticeData.store.selectRowID, "data_id");
+							return val == dataId;
+						});
+						noticeReady = true;
+						
+						RefreshSelectButtonState("notice_executors", "notice_org_person", "notice_select_to_left", "all_notice_select_to_left", "notice_select_to_right", "all_notice_select_to_right");
+						RefreshMoveButtonState("notice_executors", "notice_move_to_first", "notice_move_to_prev", "notice_move_to_next", "notice_move_to_last");
+
+						InitOrgPersonChecked("notice_org_person", "notice_executors");
+						
+						var noticeQueryButton = document.getElementById("notice_query_button");
+						if (noticeQueryButton) {
+							xforms.Event.attach(noticeQueryButton, "click", noticeQueryAction);
+						}
+						
+						var noticeSelectToRightButton = document.getElementById("notice_select_to_right");
+						if (noticeSelectToRightButton) {
+							xforms.Event.attach(noticeSelectToRightButton, "click", noticeSelectToRightAction);
+						}
+						
+						var noticeSelectToLeftButton = document.getElementById("notice_select_to_left");
+						if (noticeSelectToLeftButton) {
+							xforms.Event.attach(noticeSelectToLeftButton, "click", noticeSelectToLeftAction);
+						}
+						
+						var allNoticeSelectToRightButton = document.getElementById("all_notice_select_to_right");
+						if (allNoticeSelectToRightButton) {
+							xforms.Event.attach(allNoticeSelectToRightButton, "click", allNoticeSelectToRightAction);
+						}
+						
+						var allNoticeSelectToLeftButton = document.getElementById("all_notice_select_to_left");
+						if (allNoticeSelectToLeftButton) {
+							xforms.Event.attach(allNoticeSelectToLeftButton, "click", allNoticeSelectToLeftAction);
+						}
+						
+						var noticeMoveToFirstButton = document.getElementById("notice_move_to_first");
+						if (noticeMoveToFirstButton) {
+							xforms.Event.attach(noticeMoveToFirstButton, "click", noticeMoveToFirstAction);
+						}
+						
+						var noticeMoveToPrevButton = document.getElementById("notice_move_to_prev");
+						if (noticeMoveToPrevButton) {
+							xforms.Event.attach(noticeMoveToPrevButton, "click", noticeMoveToPrevAction);
+						}
+						
+						var noticeMoveToNextButton = document.getElementById("notice_move_to_next");
+						if (noticeMoveToNextButton) {
+							xforms.Event.attach(noticeMoveToNextButton, "click", noticeMoveToNextAction);
+						}
+						
+						var noticeMoveToLastButton = document.getElementById("notice_move_to_last");
+						if (noticeMoveToLastButton) {
+							xforms.Event.attach(noticeMoveToLastButton, "click", noticeMoveToLastAction);
+						}
+						]]>
+						</xforms:script>
+		    		</xforms:action>
+				</xforms:part>
+			</xsl:if>
+   		</xforms:model>
+  	</xhtml:head>
+	<xhtml:body style="margin: 0; padding: 8px;">
+		
+		<xhtml:div id="hidden_container" style="display:none">
+			<xsl:if test="count($instance/process-control/to/*) > 0">			
+				<xforms:grid data="to" id="to_grid" height="100">
+					<xforms:column ref="activity"/>
+					<xforms:column ref="process" visible="false"/>
+					<xforms:column ref="template" visible="template"/>
+					<xforms:column ref="passed_activities" visible="false"/>
+					<xforms:column ref="task_assign_mode" visible="false"/>
+					<xforms:column ref="executor_kinds"/>
+					<xforms:column ref="eurl" visible="false"/>
+					<xforms:column ref="lock" visible="false"/>
+					<xforms:column ref="warning_time" visible="false"/>
+					<xforms:column ref="execute_mode" visible="false"/>
+					<xforms:column ref="execute_mode2" visible="false"/>
+					<xforms:column ref="emergency_name" visible="false"/>
+					<xforms:column ref="catalog_id" visible="false"/>
+					<xforms:column ref="content" visible="false"/>
+					<xforms:column ref="preempt_mode" visible="false"/>
+					<xforms:column ref="activity2" visible="false"/>
+					<xforms:column ref="create_time" visible="false"/>
+					<xforms:column ref="limit_time" visible="false"/>
+					<xforms:column ref="emergency_id" visible="false"/>
+					<xforms:column ref="curl" visible="false"/>
+					<xforms:column ref="process2" visible="false"/>
+					<xforms:column ref="name" visible="false"/>
+					<xforms:column ref="last_modify_time" visible="false"/>
+					<xforms:column ref="readonly" visible="false"/>
+					<xforms:column ref="is_end" visible="false"/>
+					<xforms:column ref="selected" visible="false"/>
+					<xforms:column ref="data_id" visible="false"/>
+					<xforms:column ref="activity_id" visible="false"/>
+	 				
+					<xforms:action ev:event="xforms-index-changed">
+						<xforms:script>
+						<![CDATA[
+						if (typeof(toReady) != "undefined") {
+							var gridExecutors = xforms("to_executors_grid");
+							var colIndex = gridExecutors.grid.getColIndexById("data_id");
+							gridExecutors.grid.filterByPro(colIndex, function(val) {
+								var insToData = xforms("to");
+								var dataId = insToData.store.getValueById(insToData.store.selectRowID, "data_id");
+								return val == dataId;
+							});
+							
+							if (toQuerySwitch) {
+								toQuerySwitch = false;
+	
+								var insOrgPerson = xforms("to_org_person");
+		              			insOrgPerson.loadData(null, toSavedOrgPerson, null, false);
+		              			toSavedOrgPerson = "<rows></rows>";
+							}
+	
+							var treeToOrgPerson = xforms("to_org_person_tree");
+							var colIndex = treeToOrgPerson.grid.getColIndexById("data_id");
+							
+							treeToOrgPerson.grid.filterByPro(colIndex, function(val) {
+								var insToData = xforms("to");
+								var dataId = insToData.store.getValueById(insToData.store.selectRowID, "data_id");
+								return val == dataId;
+							});
+							treeToOrgPerson.grid.expandAll();
+						}
+						]]>
+						</xforms:script>
+					</xforms:action>
+				</xforms:grid>
+			</xsl:if>
+		</xhtml:div>
+		
+		<xhtml:table style="width:680px;" cellspacing="0" cellpadding="0">
+			<xhtml:tr>
+				<xhtml:td>
+					<xhtml:div style="height: 378px; width: 680px; overflow: hidden;" id="visible_container">
+						<xhtml:div component="/UI/system/components/tabs.xbl.xml#tabs" id="rootTabs" style="width: 680px; height: 378px; ">
+							<xsl:if test="count($instance/process-control/to/*) > 0">
+								<xui:tab id="activity_tab" selected="true">
+									<xui:label>环节</xui:label>
+									<xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="30%"
+									mode="horz" has-drag-bar="true" has-arrow-button="false" id="HSplitter2" style="width:678px;height:352px;"> 
+										<xhtml:div region="left" id="div9" > 
+											<xforms:grid data="activity_children" id="activity_children_tree" 
+												style="height:348px;width:200px;" appearance="tree" multi-selection="true"
+												onRowChecked="onActivityRowChecked" 
+												onShowNodeImg="onActivityShowNodeImg"
+												onRowDblClick="onActivityRowDblClicked">
+												<xforms:column type="tree" ref="name" select-ref="selected" readonly="true" width="*"/>
+												<xforms:column ref="activity" readonly="true"/>
+												<xforms:column ref="operator" readonly="true"/>
+												<xforms:column ref="selected" readonly="true"/>
+												<xforms:column ref="optional" readonly="true"/>
+												<xforms:column ref="is_activity" readonly="true"/>
+												<xforms:column ref="activity_id" readonly="true"/>
+												<xforms:action ev:event="xforms-index-changed">
+													<xforms:script>
+													<![CDATA[
+														activityRowIndexChanged(event);
+													]]>
+													</xforms:script>
+												</xforms:action>
+											</xforms:grid>
+										</xhtml:div>  
+										<xhtml:div region="right" id="div11">
+											<xhtml:div component="/UI/system/components/tabs.xbl.xml#tabs" id="tabs1" style="width:471px; height:352px">
+												<xui:tab id="activity_base_tab" selected="true" style="width:469px; height:326px">
+													<xui:label>基本</xui:label>
+													
+													<xhtml:div style="width: 469px; height:326px;" component="/UI/system/components/borderLayout.xbl.xml#borderLayout">
+														<top size="25px">
+															<!--component="/UI/system/components/tableLayout.xbl.xml#tableLayout"-->
+															<xhtml:table style="width: 464px; height: 25px; table-layout: fixed;" 
+																border="0" cellspacing="0" cellpadding="0">
+																<xhtml:tr>
+																	<xhtml:td style="padding-left: 5px; padding-bottom: 3px;width:65px;">任务主题：</xhtml:td>
+																	<xhtml:td style="border-bottom: 1px solid #c0c0c0;">
+																		<xforms:input ref="instance('to')/name" class="xui-autofill"/>
+																	</xhtml:td>
+																</xhtml:tr>
+															</xhtml:table>
+														</top>
+														<center>
+														  <xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="50%"
+															mode="horz" has-drag-bar="true" has-arrow-button="false" style="width:469px;height:301px;"> 
+															<xhtml:div region="left"> 
+																<xhtml:div style="width: 232px; height:301px;" component="/UI/system/components/borderLayout.xbl.xml#borderLayout">
+																	<top size="25px">
+																		<xhtml:table style="width: 232px; height: 25px; table-layout: fixed;" 
+																			border="0" cellspacing="0" cellpadding="0">
+																			<xhtml:tr>
+																				<xhtml:td style="padding-left: 5px; padding-bottom: 3px; width:65px;">快速查询：</xhtml:td>
+																				<xhtml:td style="width:110px">
+																					<xhtml:input type="text" id="to_query_input" 
+																					style="width: 110px; border: 0; border-bottom: 1px solid #c0c0c0" 
+																					onkeydown="to_filter_input_keydown(event);"/>
+																				</xhtml:td >
+																				
+																				<xhtml:td >
+																					<xhtml:button id="to_query_button" class="hand_cursor" style="border: 0; background: transparent">
+																						<xhtml:img src="/UI/system/images/process/select0.gif"/>
+																					</xhtml:button>
+																				</xhtml:td>
+																				
+																			</xhtml:tr>
+																		</xhtml:table>	
+																	</top>
+																	<center>
+																		<xhtml:div style="width: 232px; height: 276px; overflow: auto;">
+																			<xforms:grid data="to_org_person" id="to_org_person_tree" style="height:272px;width:230px" 
+																				appearance="tree" delay="true" onShowNodeImg="org_person_tree_getNodeImage"
+																				onRowExpand="toDataOrgPersonTreeRowExpand"
+																				onRowDblClick="toDataOrgPersonTreeRowDBClick" onRowChecked="toDataOrgPersonTreeRowChecked" multi-selection="true" cascade="true">
+			
+																				<xforms:column ref="name" type="tree" readonly="true"/>
+																				<xforms:column ref="fid" readonly="true"/>
+																				<xforms:column ref="fname" readonly="true"/>
+																				<xforms:column ref="id" readonly="true"/>
+																				<xforms:column ref="kind" readonly="true"/>
+																				<xforms:column ref="loaded" readonly="true"/>
+																				<xforms:column ref="selectable" readonly="true"/>
+																				<xforms:column ref="data_id" readonly="true"/>
+																			</xforms:grid>
+																		</xhtml:div>
+																	</center>
+																</xhtml:div>
+															</xhtml:div>  
+															<xhtml:div region="right">
+																	<xhtml:table component="/UI/system/components/tableLayout.xbl.xml#tableLayout" style="width: 232px; height: 301px; table-layout: fixed" border="0" cellspacing="0" cellpadding="0">
+																		<xhtml:tr height="27px">
+																			<xhtml:td>
+																				<xhtml:div style="padding:2px;">
+																					<xhtml:div style="float:left;margin:0;padding:0;">
+																						<button class="move_button" id="to_move_to_first">首位</button>
+																					</xhtml:div>
+																					<xhtml:div style="float:left;margin:0;padding:0;margin-left:1px">
+																						<button class="move_button" id="to_move_to_prev">上移</button>
+																					</xhtml:div>
+																					<xhtml:div style="float:left;margin:0;padding:0;margin-left:1px">
+																						<button class="move_button" id="to_move_to_next">下移</button>
+																					</xhtml:div>
+																					<xhtml:div style="float:left;margin:0;padding:0;margin-left:1px">
+																						<button class="move_button" id="to_move_to_last">末位</button>
+																					</xhtml:div>
+																				</xhtml:div>
+																			</xhtml:td>
+																		</xhtml:tr>
+																		<xhtml:tr >
+																			<xhtml:td>
+																				<xhtml:div style="width: 232px; height: 274px;" onkeydown="UnSelectButtonClick('to_select_to_left')">
+																					<xforms:grid data="to_executors" id="to_executors_grid" style="height:270px;width:230px"
+																						onRowDblClick="toDataExecutorsGridRowDBClick">
+																						<xforms:column ref="fid" visible="false"/>
+																						<xforms:column ref="fname" visible="false"/>
+																						<xforms:column ref="name" label="名称" width="*"/>
+																						<xforms:column ref="kind" align="center" type="html" onRender="executorKindCallback" label="类型" width="60"/>
+																						<xforms:column ref="responsible" align="center" type="ch" label="管理者" width="60"/>
+																						<xforms:column ref="data_id" visible="false"/>
+																						
+																						<xforms:action ev:event="xforms-index-changed">
+																							<xforms:script>
+																							<![CDATA[
+																								RefreshMoveButtonState("to_executors", "to_move_to_first", "to_move_to_prev", "to_move_to_next", "to_move_to_last");
+																							]]>
+																							</xforms:script>
+																						</xforms:action>
+																					</xforms:grid>
+																				</xhtml:div>
+																			</xhtml:td>
+																		</xhtml:tr>
+																	</xhtml:table>
+																</xhtml:div> 
+															</xhtml:div>
+														</center>
+													</xhtml:div>
+												</xui:tab>
+												<xui:tab id="activity_advance_tab">
+													<xui:label>高级</xui:label>
+													<xforms:action ev:event="xforms-select" if="event('target')='activity_advance_tab'">
+														<xforms:load-part target="activity_advance_tab_lazy"/>
+													</xforms:action>
+													
+													<xforms:group id="activity_advance_tab_lazy" xforms:lazy="true">
+														<xhtml:table style="width: 464px; table-layout: fixed;" border="0" cellpadding="0" cellspacing="0" class="no-editor-border">
+															<xhtml:tr height="1px">
+																<xhtml:td width="65px"/>
+																<xhtml:td width="190px"/>
+																<xhtml:td width="65px"/>
+																<xhtml:td/>
+															</xhtml:tr>
+															<xhtml:tr height="25px" border="0" valign="bottom">
+																<xhtml:td style="padding-left: 5px; padding-bottom: 3px">任务主题：</xhtml:td>
+																<xhtml:td colspan="3" style="border-bottom: 1px solid #c0c0c0">
+																	<xforms:input ref="instance('to')/name" class="xui-autofill"/>
+																</xhtml:td>
+															</xhtml:tr>
+															<xhtml:tr height="25px" valign="bottom">
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">紧迫程度：</xhtml:td>
+																<xhtml:td style="padding-top: 3px; border-bottom: 1px solid #c0c0c0">
+																	<xforms:gridselect1 id="to_emergency_kind_select" ref="instance('to')/emergency_id" label-ref="instance('to')/emergency_name" class="xui-autofill">
+																		<xforms:label ref="name"/>
+																		<xforms:value ref="id"/>
+																		<xforms:itemset>
+																			<xforms:column ref="id" visable="false" width="30"/>
+																			<xforms:column ref="name" visable="true" width="100"/>
+																			<itemset-data>
+																				<rows>
+																					<row>
+																						<cell>teLower</cell>
+																						<cell>较低</cell>
+																					</row>
+																					<row>
+																						<cell>teMiddle</cell>
+																						<cell>一般</cell>
+																					</row>
+																					<row>
+																						<cell>teHight</cell>
+																						<cell>急迫</cell>
+																					</row>
+																					<row>
+																						<cell>teHighest</cell>
+																						<cell>紧急</cell>
+																					</row>
+																				</rows>
+																			</itemset-data>
+																		</xforms:itemset>
+																	</xforms:gridselect1>
+																</xhtml:td>
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">提交时间：</xhtml:td>
+																<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																	<xforms:input ref="instance('to')/create_time" xforms:format="format-dateTime('yyyy-MM-dd hh:mm:ss')" class="xui-autofill"/>
+																</xhtml:td>
+															</xhtml:tr>
+															<xhtml:tr height="25px" valign="bottom">
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">完成期限：</xhtml:td>
+																<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																	<xforms:input ref="instance('to')/limit_time" xforms:format="format-dateTime('yyyy-MM-dd hh:mm:ss')" class="xui-autofill"/>
+																</xhtml:td>
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">提醒时间：</xhtml:td>
+																<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																	<xforms:input ref="instance('to')/warning_time" xforms:format="format-dateTime('yyyy-MM-dd hh:mm:ss')" class="xui-autofill"/>
+																</xhtml:td>
+															</xhtml:tr>
+															<xhtml:tr height="25px" valign="bottom">
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">执行模式：</xhtml:td>
+																<xhtml:td style="padding-top: 3px; border-bottom: 1px solid #c0c0c0">
+																	<xforms:gridselect1 id="to_execute_mode_select" ref="instance('to')/execute_mode" class="xui-autofill">
+																		<xforms:label ref="name"/>
+																		<xforms:value ref="id"/>
+																		<xforms:itemset>
+																			<xforms:column ref="id" visable="false" width="30"/>
+																			<xforms:column ref="name" visable="true" width="100"/>
+																			<itemset-data>
+																				<rows>
+																					<row>
+																						<cell>temSequential</cell>
+																						<cell>顺序</cell>
+																					</row>
+																					<row>
+																						<cell>temPreempt</cell>
+																						<cell>抢占</cell>
+																					</row>
+																					<row>
+																						<cell>temSimultaneous</cell>
+																						<cell>同时</cell>
+																					</row>
+																				</rows>
+																			</itemset-data>
+																		</xforms:itemset>
+				
+																		<xforms:action ev:event="xforms-value-changed">
+																			<xforms:setvalue ref="instance('to')/preempt_mode" value="''" if="instance('to')/execute_mode != 'temPreempt'"/>
+																			<xforms:setvalue ref="instance('to')/preempt_mode" value="'tpmOpen'" if="instance('to')/execute_mode = 'temPreempt'"/>
+																		</xforms:action>
+																	</xforms:gridselect1>
+																</xhtml:td>
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">抢占模式：</xhtml:td>
+																<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																	<xforms:gridselect1 id="to_preempt_mode_select" ref="instance('to')/preempt_mode" class="xui-autofill">
+																		<xforms:label ref="name"/>
+																		<xforms:value ref="id"/>
+																		<xforms:itemset>
+																			<xforms:column ref="id" visable="false" width="30"/>
+																			<xforms:column ref="name" visable="true" width="100"/>
+																			<itemset-data>
+																				<rows>
+																					<row>
+																						<cell>tpmOpen</cell>
+																						<cell>打开时抢占</cell>
+																					</row>
+																					<row>
+																						<cell>tpmExecute</cell>
+																						<cell>执行时抢占</cell>
+																					</row>
+																				</rows>
+																			</itemset-data>
+																		</xforms:itemset>
+																	</xforms:gridselect1>
+																</xhtml:td>
+															</xhtml:tr>
+															<xhtml:tr height="25px" valign="bottom">
+																<xhtml:td style="padding-left: 5px; padding-bottom: 2px">简短附言：</xhtml:td>
+																<xhtml:td colspan="3" style="border-bottom: 1px solid #c0c0c0">
+																	<xforms:input ref="instance('to')/content"  class="xui-autofill"/>
+																</xhtml:td>
+															</xhtml:tr>
+														</xhtml:table>
+													</xforms:group>
+												</xui:tab>
+											</xhtml:div>
+											</xhtml:div> 
+									</xhtml:div>  
+								</xui:tab>
+							</xsl:if>
+				
+							<xsl:if test="count($instance/process-control/notice/*) > 0">
+								<xui:tab id="message_tab">
+									<xsl:if test="count($instance/process-control/to/*) = 0">
+										<xsl:attribute name="selected">
+											<xsl:text>true</xsl:text>
+										</xsl:attribute>
+									</xsl:if>
+								 
+									<xui:label>通知</xui:label>
+
+									<xsl:if test="count($instance/process-control/to/*) > 0">
+										<xforms:action ev:event="xforms-select" if="event('target')='message_tab'">
+											<xforms:load-part target="message_tab_lazy"/>
+											
+											<xforms:script>
+											<![CDATA[
+												if (typeof(noticePartLoaded) == "undefined") {
+													xforms.XMLEvents.dispatch(xforms('mainmodel'), 'xforms-lazy-load');
+												}
+											]]>
+											</xforms:script>
+										</xforms:action>
+									</xsl:if>
+									
+									
+									
+									<xforms:group id="message_tab_lazy" xforms:depend="notice_lazy" style="width: 678px; height: 352px; overflow: hidden; margin: 0; padding: 0;">
+										<xsl:attribute name="xforms:lazy">
+											<xsl:choose>
+												<xsl:when test="count($instance/process-control/to/*) > 0">
+													<xsl:text>true</xsl:text>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:text>false</xsl:text>
+												</xsl:otherwise>
+											</xsl:choose>
+										</xsl:attribute>
+										
+										<xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="30%"
+											mode="horz" has-drag-bar="true" has-arrow-button="false" id="_HSplitter2" style="width:678px;height:352px;"> 
+											<xhtml:div region="left" id="_div9" > 	
+												<xforms:grid data="notice" id="notice_grid" style="height:348px;width:200px">
+													<xforms:column ref="activity" visible="false"/>
+													<xforms:column ref="process" visible="false"/>
+													<xforms:column ref="passed_activities" visible="false"/>
+													<xforms:column ref="task_assign_mode" visible="false"/>
+													<xforms:column ref="executor_kinds" visible="false"/>
+													<xforms:column ref="eurl" visible="false"/>
+													<xforms:column ref="lock" visible="false"/>
+													<xforms:column ref="warning_time" visible="false"/>
+													<xforms:column ref="execute_mode" visible="false"/>
+													<xforms:column ref="execute_mode2" visible="false"/>
+													<xforms:column ref="emergency_name" visible="false"/>
+													<xforms:column ref="catalog_id" visible="false"/>
+													<xforms:column ref="content" visible="false"/>
+													<xforms:column ref="preempt_mode" visible="false"/>
+													<xforms:column ref="activity2" visible="false"/>
+													<xforms:column ref="create_time" visible="false"/>
+													<xforms:column ref="limit_time" visible="false"/>
+													<xforms:column ref="emergency_id" visible="false"/>
+													<xforms:column ref="curl" visible="false"/>
+													<xforms:column ref="process2" visible="false"/>
+													<xforms:column ref="name" label="标题" width="*"/>
+													<xforms:column ref="last_modify_time" visible="false"/>
+													<xforms:column ref="readonly" visible="false"/>
+													<xforms:column ref="is_end" visible="false"/>
+													<xforms:column ref="selected" visible="false"/>
+													<xforms:column ref="data_id" visible="false"/>
+													<xforms:column ref="activity_id" visible="false"/>
+												
+													<xforms:action ev:event="xforms-index-changed">
+														<xforms:script>
+														<![CDATA[
+														if (typeof(noticeReady) != "undefined") {
+															var gridExecutors = xforms("notice_executors_grid");
+															var colIndex = gridExecutors.grid.getColIndexById("data_id");
+															gridExecutors.grid.filterByPro(colIndex, function(val) {
+																var insNoticeData = xforms("notice");
+																var dataId = insNoticeData.store.getValueById(insNoticeData.store.selectRowID, "data_id");
+																return val == dataId;
+															});
+														
+															var treeNoticeOrgPerson = xforms("notice_org_person_tree");
+															var colIndex = treeNoticeOrgPerson.grid.getColIndexById("data_id");
+															treeNoticeOrgPerson.grid.filterByPro(colIndex, function(val) {
+																var insNoticeData = xforms("notice");
+																var dataId = insNoticeData.store.getValueById(insNoticeData.store.selectRowID, "data_id");
+																return val == dataId;
+															});
+															treeNoticeOrgPerson.grid.expandAll();
+															
+															var insNoticeOrgPerson = xforms("notice_org_person");
+															insNoticeOrgPerson.setIndex(0);
+															
+															var insNoticeExecutors = xforms("notice_executors");
+															if (insNoticeExecutors.store.rowsBuffer[0] != null) {
+																insNoticeExecutors.setIndex(insNoticeExecutors.store.rowsBuffer[0].rowIndex);
+															}
+															
+															RefreshSelectButtonState("notice_executors", "notice_org_person", "notice_select_to_left", "all_notice_select_to_left", "notice_select_to_right", "all_notice_select_to_right");
+															RefreshMoveButtonState("notice_executors", "notice_move_to_first", "notice_move_to_prev", "notice_move_to_next", "notice_move_to_last");
+															
+															InitOrgPersonChecked("notice_org_person", "notice_executors");
+														}
+														]]>
+														</xforms:script>
+													</xforms:action>
+												</xforms:grid>									
+										
+											</xhtml:div>
+											
+											<xhtml:div region="right" id="_div11">
+												<xhtml:div component="/UI/system/components/tabs.xbl.xml#tabs" id="tabs2" style="width:471px; height:352px">
+													<xui:tab id="message_base_tab" selected="true" style="width:469px; height:326px">
+														<xui:label>基本</xui:label>
+														
+														<xhtml:div style="width: 469px; height:326px;" component="/UI/system/components/borderLayout.xbl.xml#borderLayout">
+															<top size="25px">
+																<xhtml:table style="width:469px; height:25px; table-layout: fixed;"
+																	border="0" cellspacing="0" cellpadding="0">
+																	<xhtml:tr>
+																		<xhtml:td style="padding-left: 5px; padding-bottom: 3px; width: 65px">任务主题：</xhtml:td>
+																		<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																			<xforms:input ref="instance('notice')/name" class="xui-autofill"/>
+																		</xhtml:td>
+																	</xhtml:tr>
+																</xhtml:table>	
+															</top>
+															<center>
+															  <xhtml:div component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="50%"
+																mode="horz" has-drag-bar="true" has-arrow-button="false" style="width:469px;height:301px;"> 
+																<xhtml:div region="left"> 
+																	<xhtml:div style="width:232px; height:301px;" component="/UI/system/components/borderLayout.xbl.xml#borderLayout">
+																		<top size="25px">
+																			<xhtml:table style="width:232px; height:25px; table-layout: fixed;" 
+																				border="0" cellspacing="0" cellpadding="0">
+																				<xhtml:tr>
+																					<xhtml:td style="padding-left: 5px; padding-bottom: 3px; width:65px;">快速查询：</xhtml:td>
+																					<xhtml:td style="width:110px">
+																						<xhtml:input type="text" id="notice_query_input" style="width: 110px; border: 0; border-bottom: 1px solid #c0c0c0" onkeydown="notice_filter_input_keydown(event);"/>
+																					</xhtml:td>
+																					
+																					<xhtml:td >
+																						<xhtml:button id="notice_query_button" class="hand_cursor" style="border: 0; background: transparent">
+																							<xhtml:img src="/UI/system/images/process/select0.gif"/>
+																						</xhtml:button>
+																					</xhtml:td>
+																					
+																				</xhtml:tr>
+																			</xhtml:table>	
+																			
+																		</top>
+																		<center>
+																			<xhtml:div style="width: 232px; height: 276px; overflow: auto;">
+																				<xforms:grid data="notice_org_person" id="notice_org_person_tree" style="height:272px;width:230px"
+																					appearance="tree" delay="true" 
+																					onShowNodeImg="org_person_tree_getNodeImage"
+																					onRowExpand="noticeDataOrgPersonRowExpand"
+																					onRowDblClick="noticeDataOrgPersonRowDBClick" onRowChecked="noticeDataOrgPersonTreeRowChecked" multi-selection="true" cascade="true">
+													
+																					<xforms:column ref="name" type="tree" readonly="true"/>
+																					<xforms:column ref="fid" readonly="true"/>
+																					<xforms:column ref="fname" readonly="true"/>
+																					<xforms:column ref="id" readonly="true"/>
+																					<xforms:column ref="kind" readonly="true"/>
+																					<xforms:column ref="loaded" readonly="true"/>
+																					<xforms:column ref="selectable" readonly="true"/>
+																					<xforms:column ref="data_id" readonly="true"/>
+																				</xforms:grid>
+																			</xhtml:div>
+																		</center>
+																	</xhtml:div>
+																</xhtml:div>  
+																<xhtml:div region="right">
+																		<xhtml:table component="/UI/system/components/tableLayout.xbl.xml#tableLayout" style="width: 232px; height: 301px; table-layout: fixed" border="0" cellspacing="0" cellpadding="0">
+																			<xhtml:tr height="27px">
+																				<xhtml:td>
+																					<xhtml:div style="padding:2px;">
+																						<xhtml:div style="float:left;margin:0;padding:0;">
+																							<button class="move_button" id="notice_move_to_first">首位</button>
+																						</xhtml:div>
+																						<xhtml:div style="float:left;margin:0;padding:0;margin-left:1px">
+																							<button class="move_button" id="notice_move_to_prev">上移</button>
+																						</xhtml:div>
+																						<xhtml:div style="float:left;margin:0;padding:0;margin-left:1px">
+																							<button class="move_button" id="notice_move_to_next">下移</button>
+																						</xhtml:div>
+																						<xhtml:div style="float:left;margin:0;padding:0;margin-left:1px">
+																							<button class="move_button" id="notice_move_to_last">末位</button>
+																						</xhtml:div>
+																					</xhtml:div>
+																				</xhtml:td>
+																			</xhtml:tr>
+																			<xhtml:tr >
+																				<xhtml:td>
+																					<xhtml:div style="width: 232px; height: 274px" onkeydown="UnSelectButtonClick('notice_select_to_left')">
+																						<xforms:grid data="notice_executors" id="notice_executors_grid" style="height:270px;width:230px"
+																							onRowDblClick="noticeDataExecuteorsGridRowDBClick">
+																							<xforms:column ref="fid" visible="false"/>
+																							<xforms:column ref="fname" visible="false"/>
+																							<xforms:column ref="name" label="名称" width="*"/>
+																							<xforms:column ref="kind" align="center" type="html" onRender="executorKindCallback" label="类型" width="60"/>
+																							<xforms:column ref="responsible" align="center" type="ch" label="管理者" width="75"/>
+																							<xforms:column ref="data_id" visible="false"/>
+																							
+																							<xforms:action ev:event="xforms-index-changed">
+																								<xforms:script>
+																								<![CDATA[
+																									RefreshMoveButtonState("notice_executors", "notice_move_to_first", "notice_move_to_prev", "notice_move_to_next", "notice_move_to_last");
+																								]]>
+																								</xforms:script>
+																							</xforms:action>
+																						</xforms:grid>
+																					</xhtml:div>
+																				
+																				</xhtml:td>
+																			</xhtml:tr>
+																		</xhtml:table>
+																	</xhtml:div> 
+																</xhtml:div>
+															</center>
+														</xhtml:div>												
+													</xui:tab>
+													<xui:tab id="message_advance_tab">
+														<xui:label>高级</xui:label>
+														
+														<xforms:action ev:event="xforms-select" if="event('target')='message_advance_tab'">
+															<xforms:load-part target="message_advance_tab_lazy"/>
+														</xforms:action>
+				
+														<xforms:group id="message_advance_tab_lazy" xforms:lazy="true">
+															<xhtml:table style="width: 469px; table-layout: fixed;" border="0" cellpadding="0" cellspacing="0" class="no-editor-border">
+																<xhtml:tr height="1px">
+																	<xhtml:td width="65px"/>
+																	<xhtml:td width="200px"/>
+																	<xhtml:td width="65px"/>
+																	<xhtml:td/>
+																</xhtml:tr>
+																<xhtml:tr height="25px" border="0" valign="bottom">
+																	<xhtml:td style="padding-left: 5px; padding-bottom: 3px;">任务主题：</xhtml:td>
+																	<xhtml:td colspan="3" style="border-bottom: 1px solid #c0c0c0">
+																		<xforms:input ref="instance('notice')/name" class="xui-autofill"/>
+																	</xhtml:td>
+																</xhtml:tr>
+																<xhtml:tr height="25px" valign="bottom">
+																	<xhtml:td style="padding-left: 5px">紧迫程度：</xhtml:td>
+																	<xhtml:td style="padding-top: 3px; border-bottom: 1px solid #c0c0c0">
+																		<xforms:gridselect1 id="notice_emergency_kind_select" ref="instance('notice')/emergency_id" 
+																			label-ref="instance('notice')/emergency_name" class="xui-autofill">
+																			<xforms:label ref="name"/>
+																			<xforms:value ref="id"/>
+																			<xforms:itemset>
+																				<xforms:column ref="id" visable="false" width="30"/>
+																				<xforms:column ref="name" visable="true" width="100"/>
+																				<itemset-data>
+																					<rows>
+																						<row>
+																							<cell>teLower</cell>
+																							<cell>较低</cell>
+																						</row>
+																						<row>
+																							<cell>teMiddle</cell>
+																							<cell>一般</cell>
+																						</row>
+																						<row>
+																							<cell>teHight</cell>
+																							<cell>急迫</cell>
+																						</row>
+																						<row>
+																							<cell>teHighest</cell>
+																							<cell>紧急</cell>
+																						</row>
+																					</rows>
+																				</itemset-data>
+																			</xforms:itemset>
+																		</xforms:gridselect1>
+																	</xhtml:td>
+																	<xhtml:td style="padding-left: 5px">提交时间：</xhtml:td>
+																	<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																		<xforms:input ref="instance('notice')/create_time" xforms:format="format-dateTime('yyyy-MM-dd hh:mm:ss')" class="xui-autofill"/>
+																	</xhtml:td>
+																</xhtml:tr>
+																<xhtml:tr height="25px" valign="bottom">
+																	<xhtml:td style="padding-left: 5px">完成期限：</xhtml:td>
+																	<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																		<xforms:input ref="instance('notice')/limit_time" xforms:format="format-dateTime('yyyy-MM-dd hh:mm:ss')" class="xui-autofill"/>
+																	</xhtml:td>
+																	<xhtml:td style="padding-left: 5px">提醒时间：</xhtml:td>
+																	<xhtml:td style="border-bottom: 1px solid #c0c0c0">
+																		<xforms:input ref="instance('notice')/warning_time" xforms:format="format-dateTime('yyyy-MM-dd hh:mm:ss')" class="xui-autofill"/>
+																	</xhtml:td>
+																</xhtml:tr>
+																<xhtml:tr height="25px" valign="bottom">
+																	<xhtml:td style="padding-left: 5px">简短附言：</xhtml:td>
+																	<xhtml:td colspan="3" style="border-bottom: 1px solid #c0c0c0">
+																		<xforms:input ref="instance('notice')/content" class="xui-autofill"/>
+																	</xhtml:td>
+																</xhtml:tr>
+															</xhtml:table>
+														</xforms:group>
+													</xui:tab>
+												</xhtml:div>
+											</xhtml:div> 
+										</xhtml:div>	
+									</xforms:group>
+								</xui:tab>				
+							</xsl:if>
+						
+					
+					
+						</xhtml:div>
+					</xhtml:div>			
+				</xhtml:td>
+			</xhtml:tr>
+			
+			<xhtml:tr>
+				<xhtml:td>
+					<xhtml:div style="padding-top: 4px;">
+						<xhtml:table cellspacing="0" cellpadding="0">
+							<xhtml:tr>
+								<xhtml:td style="width:100%">
+								</xhtml:td>
+								<xhtml:td>
+									<xforms:trigger class="xui-button" style="margin-right: 8px;width:75px;">
+										<xforms:label>确定</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xsl:if test="(count($instance/process-control/to/*) > 0) and (count($instance/process-control/notice/*) > 0)">
+												<xforms:load-part target="message_tab_lazy"/>
+											</xsl:if>	
+											<xforms:script>
+												closeDialogAction();
+											</xforms:script>
+										</xforms:action>
+									</xforms:trigger>
+								</xhtml:td>
+								<xhtml:td>
+									<xforms:trigger class="xui-button" style="width:75px;">
+										<xforms:label>取消</xforms:label>
+										<xforms:action ev:event="DOMActivate">
+											<xforms:script>
+												cancelDialogAction();
+											</xforms:script>
+										</xforms:action>
+									</xforms:trigger>
+								</xhtml:td>
+							</xhtml:tr>
+						</xhtml:table>
+					</xhtml:div>
+				</xhtml:td>
+			</xhtml:tr>
+		</xhtml:table>
+	</xhtml:body> 
+</xhtml:html>
+
+	</xsl:template>
+</xsl:stylesheet>

@@ -1,0 +1,351 @@
+/*
+font-face
+*/
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'systemIcons';
+  src: url("./font/fontello.eot?10760871");
+  src: url("./font/fontello.eot?10760871#iefix") format('embedded-opentype'), url("./font/fontello.woff?10760871") format('woff'), url("./font/fontello.ttf?10760871") format('truetype'), url("./font/fontello.svg?10760871#new") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'new';
+    src: url('./font/fontello.svg?10760871#new') format('svg');
+  }
+}
+*/
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: 'systemIcons';
+  font-style: normal;
+  font-weight: normal;
+	speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+
+  text-align: center;
+
+/* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  line-height: 1em;
+
+
+
+
+
+
+
+}
+
+.icon-system-android:before { content: '\f4'; } 
+.icon-system-plus:before { content: '\a3'; } 
+.icon-system-minus:before { content: '\a5'; } 
+.icon-system-appstore:before { content: '\f5'; } 
+.icon-system-windows:before { content: '\f6'; } 
+.icon-system-left:before { content: '\bd'; } 
+.icon-system-up:before { content: '\bf'; } 
+.icon-system-right:before { content: '\be'; } 
+.icon-system-down:before { content: '\bc'; } 
+.icon-system-home:before { content: '\d2'; } 
+.icon-system-pause:before { content: '\e9'; } 
+.icon-system-stop:before { content: '\e8'; } 
+.icon-system-up-dir:before { content: '\fe'; } 
+.icon-system-play:before { content: '\e7'; } 
+.icon-system-right-dir:before { content: '\af'; } 
+.icon-system-down-dir:before { content: '\ac'; } 
+.icon-system-left-dir:before { content: '\ae'; } 
+.icon-system-star:before { content: '\a1'; } 
+.icon-system-star-empty:before { content: '\a2'; } 
+.icon-system-check:before { content: '\c4'; } 
+.icon-system-th-list:before { content: '\fb'; } 
+.icon-system-menu:before { content: '\cf'; } 
+.icon-system-heart-empty:before { content: '\c9'; } 
+.icon-system-heart:before { content: '\c8'; } 
+.icon-system-layout:before { content: '\ce'; } 
+.icon-system-attention:before { content: '\da'; } 
+.icon-system-mail:before { content: '\c7'; } 
+.icon-system-pencil:before { content: '\d8'; } 
+.icon-system-ok:before { content: '\f2'; } 
+.icon-system-cancel:before { content: '\f3'; } 
+.icon-system-plus-circle:before { content: '\a4'; } 
+.icon-system-minus-circle:before { content: '\a6'; } 
+.icon-system-forward:before { content: '\d6'; } 
+.icon-system-trash:before { content: '\f9'; } 
+.icon-system-eye:before { content: '\f7'; } 
+.icon-system-edit-alt:before { content: '\f8'; } 
+.icon-system-config:before { content: '\fa'; } 
+.icon-system-user-add:before { content: '\cc'; } 
+.icon-system-help-circled:before { content: '\d0'; } 
+.icon-system-reply:before { content: '\d4'; } 
+.icon-system-reply-all:before { content: '\d5'; } 
+.icon-system-export:before { content: '\d7'; } 
+.icon-system-print:before { content: '\d9'; } 
+.icon-system-vcard:before { content: '\db'; } 
+.icon-system-location:before { content: '\dc'; } 
+.icon-system-archive:before { content: '\de'; } 
+.icon-system-login:before { content: '\e2'; } 
+.icon-system-logout:before { content: '\e3'; } 
+.icon-system-popup:before { content: '\e5'; } 
+.icon-system-window:before { content: '\e6'; } 
+.icon-system-chart-pie:before { content: '\ea'; } 
+.icon-system-down-open:before { content: '\b0'; } 
+.icon-system-left-open:before { content: '\b1'; } 
+.icon-system-right-open:before { content: '\b2'; } 
+.icon-system-up-open:before { content: '\b3'; } 
+.icon-system-refresh:before { content: '\fc'; } 
+.icon-system-flow-tree:before { content: '\f0'; } 
+.icon-system-gauge:before { content: '\f1'; } 
+.icon-system-check-empty:before { content: '\f0dc'; } 
+.icon-system-sort:before { content: '\c5'; } 
+.icon-system-sitemap:before { content: '\c6'; } 
+.icon-system-angle-double-left:before { content: '\b8'; } 
+.icon-system-angle-double-right:before { content: '\b9'; } 
+.icon-system-angle-double-up:before { content: '\ba'; } 
+.icon-system-angle-double-down:before { content: '\bb'; } 
+.icon-system-angle-left:before { content: '\b4'; } 
+.icon-system-angle-right:before { content: '\b5'; } 
+.icon-system-angle-up:before { content: '\b6'; } 
+.icon-system-angle-down:before { content: '\b7'; } 
+.icon-system-desktop:before { content: '\c0'; } 
+.icon-system-laptop:before { content: '\c1'; } 
+.icon-system-tablet:before { content: '\c2'; } 
+.icon-system-mobile:before { content: '\c3'; } 
+.icon-system-user:before { content: '\ca'; } 
+.icon-system-users:before { content: '\cb'; } 
+.icon-system-floppy:before { content: '\ee'; } 
+.icon-system-folder:before { content: '\dd'; } 
+.icon-system-calendar:before { content: '\e1'; } 
+.icon-system-chart-line:before { content: '\eb'; } 
+.icon-system-chart-bar:before { content: '\ec'; } 
+.icon-system-pin:before { content: '\a9'; } 
+.icon-system-attach:before { content: '\d3'; } 
+.icon-system-phone:before { content: '\e0'; } 
+.icon-system-upload:before { content: '\ab'; } 
+.icon-system-download:before { content: '\aa'; } 
+.icon-system-box:before { content: '\df'; } 
+.icon-system-camera:before { content: '\cd'; } 
+.icon-system-search:before { content: '\fd'; } 
+.icon-system-key:before { content: '\ef'; } 
+.icon-system-lock:before { content: '\a7'; } 
+.icon-system-lock-open:before { content: '\a8'; } 
+.icon-system-back:before { content: '\d1'; } 
+.icon-system-chart-area:before { content: '\ed'; } 
+.icon-system-clock:before { content: '\e4'; } 
+
+.icon-system-android,
+.icon-system-plus,
+.icon-system-minus,
+.icon-system-appstore,
+.icon-system-windows,
+.icon-system-left,
+.icon-system-up,
+.icon-system-right,
+.icon-system-down,
+.icon-system-home,
+.icon-system-pause,
+.icon-system-stop,
+.icon-system-up-dir,
+.icon-system-play,
+.icon-system-right-dir,
+.icon-system-down-dir,
+.icon-system-left-dir,
+.icon-system-star,
+.icon-system-star-empty,
+.icon-system-check,
+.icon-system-menu,
+.icon-system-th-list,
+.icon-system-heart-empty,
+.icon-system-heart,
+.icon-system-layout,
+.icon-system-attention,
+.icon-system-mail,
+.icon-system-pencil,
+.icon-system-ok,
+.icon-system-cancel,
+.icon-system-plus-circle,
+.icon-system-minus-circle,
+.icon-system-forward,
+.icon-system-trash,
+.icon-system-eye,
+.icon-system-edit-alt,
+.icon-system-config,
+.icon-system-user-add,
+.icon-system-help-circled,
+.icon-system-reply,
+.icon-system-reply-all,
+.icon-system-export,
+.icon-system-print,
+.icon-system-vcard,
+.icon-system-location,
+.icon-system-archive,
+.icon-system-login,
+.icon-system-logout,
+.icon-system-popup,
+.icon-system-window,
+.icon-system-chart-pie,
+.icon-system-down-open,
+.icon-system-left-open,
+.icon-system-right-open,
+.icon-system-up-open,
+.icon-system-refresh,
+.icon-system-flow-tree,
+.icon-system-gauge,
+.icon-system-check-empty,
+.icon-system-sort,
+.icon-system-sitemap,
+.icon-system-angle-double-left,
+.icon-system-angle-double-right,
+.icon-system-angle-double-up,
+.icon-system-angle-double-down,
+.icon-system-angle-left,
+.icon-system-angle-right,
+.icon-system-angle-up,
+.icon-system-angle-down,
+.icon-system-desktop,
+.icon-system-laptop,
+.icon-system-tablet,
+.icon-system-mobile,
+.icon-system-user,
+.icon-system-users,
+.icon-system-floppy,
+.icon-system-folder,
+.icon-system-calendar,
+.icon-system-chart-line,
+.icon-system-chart-bar,
+.icon-system-pin,
+.icon-system-attach,
+.icon-system-phone,
+.icon-system-upload,
+.icon-system-download,
+.icon-system-box,
+.icon-system-camera,
+.icon-system-search,
+.icon-system-key,
+.icon-system-lock,
+.icon-system-lock-open,
+.icon-system-back,
+.icon-system-chart-area,
+.icon-system-clock{
+  *font-family: 'systemIcons';
+  *font-style: normal;
+  *font-weight: normal;
+
+  *line-height: 1em;
+
+
+}
+
+.icon-system-android { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf4;'); }
+.icon-system-plus { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa3;'); }
+.icon-system-minus { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa5;'); }
+.icon-system-appstore { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf5;'); }
+.icon-system-windows { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf6;'); }
+.icon-system-left { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xbd;'); }
+.icon-system-up { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xbf;'); }
+.icon-system-right { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xbe;'); }
+.icon-system-down { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xbc;'); }
+.icon-system-home { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd2;'); }
+.icon-system-pause { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe9;'); }
+.icon-system-stop { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe8;'); }
+.icon-system-up-dir { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xfe;'); }
+.icon-system-play { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe7;'); }
+.icon-system-right-dir { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xaf;'); }
+.icon-system-down-dir { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xac;'); }
+.icon-system-left-dir { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xae;'); }
+.icon-system-star { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa1;'); }
+.icon-system-star-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa2;'); }
+.icon-system-check { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc4;'); }
+.icon-system-th-list { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xfb;'); }
+.icon-system-menu { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xcf;'); }
+.icon-system-heart-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc9;'); }
+.icon-system-heart { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc8;'); }
+.icon-system-layout { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xce;'); }
+.icon-system-attention { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xda;'); }
+.icon-system-mail { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc7;'); }
+.icon-system-pencil { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd8;'); }
+.icon-system-ok { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf2;'); }
+.icon-system-cancel { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf3;'); }
+.icon-system-plus-circle { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa4;'); }
+.icon-system-minus-circle { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa6;'); }
+.icon-system-forward { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd6;'); }
+.icon-system-trash { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf9;'); }
+.icon-system-eye { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf7;'); }
+.icon-system-edit-alt { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf8;'); }
+.icon-system-config { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xfa;'); }
+.icon-system-user-add { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xcc;'); }
+.icon-system-help-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd0;'); }
+.icon-system-reply { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd4;'); }
+.icon-system-reply-all { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd5;'); }
+.icon-system-export { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd7;'); }
+.icon-system-print { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd9;'); }
+.icon-system-vcard { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xdb;'); }
+.icon-system-location { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xdc;'); }
+.icon-system-archive { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xde;'); }
+.icon-system-login { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe2;'); }
+.icon-system-logout { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe3;'); }
+.icon-system-popup { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe5;'); }
+.icon-system-window { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe6;'); }
+.icon-system-chart-pie { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xea;'); }
+.icon-system-down-open { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb0;'); }
+.icon-system-left-open { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb1;'); }
+.icon-system-right-open { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb2;'); }
+.icon-system-up-open { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb3;'); }
+.icon-system-refresh { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xfc;'); }
+.icon-system-flow-tree { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0;'); }
+.icon-system-gauge { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1;'); }
+.icon-system-check-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0dc;'); }
+.icon-system-sort { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc5;'); }
+.icon-system-sitemap { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc6;'); }
+.icon-system-angle-double-left { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb8;'); }
+.icon-system-angle-double-right { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb9;'); }
+.icon-system-angle-double-up { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xba;'); }
+.icon-system-angle-double-down { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xbb;'); }
+.icon-system-angle-left { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb4;'); }
+.icon-system-angle-right { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb5;'); }
+.icon-system-angle-up { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb6;'); }
+.icon-system-angle-down { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xb7;'); }
+.icon-system-desktop { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc0;'); }
+.icon-system-laptop { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc1;'); }
+.icon-system-tablet { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc2;'); }
+.icon-system-mobile { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xc3;'); }
+.icon-system-user { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xca;'); }
+.icon-system-users { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xcb;'); }
+.icon-system-floppy { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xee;'); }
+.icon-system-folder { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xdd;'); }
+.icon-system-calendar { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe1;'); }
+.icon-system-chart-line { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb;'); }
+.icon-system-chart-bar { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xec;'); }
+.icon-system-pin { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa9;'); }
+.icon-system-attach { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd3;'); }
+.icon-system-phone { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe0;'); }
+.icon-system-upload { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xab;'); }
+.icon-system-download { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xaa;'); }
+.icon-system-box { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xdf;'); }
+.icon-system-camera { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xcd;'); }
+.icon-system-search { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xfd;'); }
+.icon-system-key { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xef;'); }
+.icon-system-lock { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa7;'); }
+.icon-system-lock-open { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xa8;'); }
+.icon-system-back { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xd1;'); }
+.icon-system-chart-area { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xed;'); }
+.icon-system-clock { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe4;'); }
+
+/*
+.icon-system-refresh{ color: green;}
+.icon-system-trash, .icon-system-stop { color: #D6542B;}
+
+.blue .icon-system-floppy,
+.orange .icon-system-trash {
+	color: white;
+} 
+*/

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript" src="/UI/system/components/windowRunner/windowRunner.js"/>
+	
+	<xbl:binding id="windowRunner">
+		<xbl:template template-type="xslt">
+		
+		</xbl:template>
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var windowRunner = new justep.WindowRunner(node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('maximise')
+														,node.getAttribute('onSend'),node.getAttribute('onReceive'));
+				windowRunner.setProcess(node.getAttribute("process"));
+				windowRunner.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, windowRunner);
+			}
+		})			
+		]]>		
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xbl:xbl xmlns:xbl="http://www.w3.org/ns/xbl" xmlns="http://www.w3.org/ns/xbl" xmlns:xui="http://www.justep.com/xui"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xforms="http://www.justep.com/xforms"
+  xmlns:ev="http://www.w3.org/2001/xml-events" xsl:version="2.0" script-type="text/javascript">  
+  <binding id="extOutput" delete-bound-element="false"> 
+	<resources>
+		<style src="/UI/appCommon/components/extOutput/css/extOutput.css" />
+	</resources>
+    <template template-type="xslt"> 
+      <xsl:template match="/*"> 
+        <xsl:variable name="id" select="@id"/>  
+        <xsl:variable name="class" select="@class"/>  
+
+        <xsl:variable name="outputID" select="concat($id, '_output')"/>  
+        <xsl:variable name="outputRef" select="@output-ref"/>  
+        <xsl:variable name="outputLinked" select="@output-linked"/>  
+        <xsl:variable name="linkAccessKey" select="@link-accessKey"/>  
+        <xsl:variable name="linkClickFunc" select="concat($id, '_linkClick')"/>
+        <xsl:variable name="linkClickEvent" select="@onLinkClick"/>
+        
+        <xsl:variable name="triggerID" select="concat($id, '_trigger')"/>  
+        <xsl:variable name="triggerAccessKey" select="@trigger-accessKey"/>  
+        <xsl:variable name="triggerAppearance" select="@trigger-appearance"/>  
+        <xsl:variable name="triggerLabel" select="@trigger-label"/>  
+        <xsl:variable name="triggerSrc" select="@trigger-src"/>  
+        <xsl:variable name="triggerDisSrc" select="@trigger-disSrc"/>  
+        <xsl:variable name="triggerRef" select="@trigger-ref"/>  
+        <xsl:variable name="triggerVisibled" select="@trigger-visibled"/>  
+        <xsl:variable name="triggerDisabled" select="@trigger-disabled"/>  
+        <xsl:variable name="triggerClickEvent" select="./*[local-name()='action']"/>  
+        <xui:root> 
+          <xsl:attribute name="class" namespace="http://www.w3.org/ns/xbl"> 
+            <xsl:value-of select="concat('xui-input ', string($class)) "/> 
+          </xsl:attribute>  
+          <xhtml:table style="width: 100%; height: 100%; table-layout: fixed;" cellspacing="0" cellpadding="0"> 
+            <xhtml:tr> 
+              <xhtml:td> 
+                <xforms:output id="{$outputID}">
+                	<xsl:choose>
+			          <xsl:when test="string($outputLinked) = 'true'">
+		          		<xsl:attribute name="mediatype"> 
+		            		<xsl:value-of select="'text/html'"/> 
+		          		</xsl:attribute>  
+		          		<xsl:attribute name="value"> 
+		            		<xsl:value-of select="concat('concat(''&lt;a accesskey=&quot;', $linkAccessKey, '&quot; class=&quot;xui-extOutput-link&quot; href=&quot;#&quot; onclick=&quot;', $linkClickFunc,'()&quot;&gt;'',', $outputRef, ', ''&lt;/a&gt;'')')"/> 
+		          		</xsl:attribute>  
+			          </xsl:when>
+			          <xsl:otherwise>
+		          		<xsl:attribute name="ref"> 
+		            		<xsl:value-of select="$outputRef"/> 
+		          		</xsl:attribute>  
+			          </xsl:otherwise>
+			        </xsl:choose>
+			        <xsl:choose>
+			          <xsl:when test="string($triggerVisibled) = 'true'">
+		          		<xsl:attribute name="class"> 
+		            		<xsl:value-of select="'xui-autofill'"/> 
+		          		</xsl:attribute>  
+			          </xsl:when>
+			          <xsl:otherwise>
+		          		<xsl:attribute name="class"> 
+		            		<xsl:value-of select="'xui-autofill-readonly'"/> 
+		          		</xsl:attribute>  
+			          </xsl:otherwise>
+			        </xsl:choose>
+                </xforms:output>  
+              </xhtml:td>  
+              <xsl:if test="string($triggerVisibled) != 'false'"> 
+                <xhtml:td style="width: 18px"> 
+                  <xforms:trigger id="{$triggerID}"> 
+                    <xsl:if test="$triggerAppearance"> 
+                      <xsl:attribute name="appearance"> 
+                        <xsl:value-of select="$triggerAppearance"/> 
+                      </xsl:attribute> 
+                    </xsl:if>  
+                    <xsl:if test="$triggerSrc"> 
+                      <xsl:attribute name="src"> 
+                        <xsl:value-of select="$triggerSrc"/> 
+                      </xsl:attribute> 
+                    </xsl:if>  
+                    <xsl:if test="$triggerDisSrc"> 
+                      <xsl:attribute name="dis-src"> 
+                        <xsl:value-of select="$triggerDisSrc"/> 
+                      </xsl:attribute> 
+                    </xsl:if>  
+                    <xsl:if test="$triggerRef"> 
+                      <xsl:attribute name="ref"> 
+                        <xsl:value-of select="$triggerRef"/> 
+                      </xsl:attribute> 
+                    </xsl:if>  
+                    <xsl:if test="$triggerDisabled"> 
+                      <xsl:attribute name="disabled"> 
+                        <xsl:value-of select="$triggerDisabled"/> 
+                      </xsl:attribute> 
+                    </xsl:if>  
+                    <xsl:if test="$triggerAccessKey"> 
+                      <xsl:attribute name="accessKey"> 
+                        <xsl:value-of select="$triggerAccessKey"/> 
+                      </xsl:attribute> 
+                    </xsl:if>  
+                    <xforms:label> 
+                      <xsl:value-of select="$triggerLabel"/> 
+                    </xforms:label>  
+                    <xsl:copy-of select="$triggerClickEvent"/> 
+                  </xforms:trigger> 
+                </xhtml:td> 
+              </xsl:if> 
+            </xhtml:tr> 
+          </xhtml:table> 
+			<xhtml:script>
+				function <xsl:value-of select="$linkClickFunc" />() {
+					var e = justep.Function.get(<xsl:value-of select="$linkClickEvent" />);
+					if (e) e();
+				}
+			</xhtml:script>
+        </xui:root> 
+      </xsl:template> 
+    </template> 
+  </binding> 
+</xbl:xbl>

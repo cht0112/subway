@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xbl:xbl xmlns:xbl="http://www.w3.org/ns/xbl" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:justep="http://www.justep.com/x5#" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events"
+  xmlns:xui="http://www.justep.com/xui" xsl:version="2.0" script-type="text/javascript">  
+  <xbl:binding id="buttonBar"> 
+    <xbl:template template-type="xslt"> 
+      <xsl:template match="/*">  
+		<xsl:variable name="sepLine" select="@separator" />
+		<xsl:variable name="expandable" select="@expandable = 'true'" />
+		<xsl:variable name="expandedPosition" select="@expanded-position" />
+		<xsl:variable name="id" select="@id" />
+		<xsl:variable name="expandedWidth" select="@expanded-width" />
+		<xsl:variable name="expandedLabel" select="@expanded-label" />
+		<xsl:variable name="collapsedLabel" select="@collapsed-label" />
+		<xsl:variable name="iconExpanded" select="@icon-expanded" />
+		<xsl:variable name="iconCollapsed" select="@icon-collapsed" />
+		<xsl:variable name="expanded" select="@expanded = 'true'" />
+		<xsl:variable name="separatorSize" select="@separator-size" />
+        <root>
+        	<xhtml:ul>
+			<xsl:for-each select="./*">
+				<xsl:if test="$expandable">
+					<xsl:if test="position() = $expandedPosition">
+						<xhtml:li class="extend">
+					      <xforms:trigger id="{concat($id, '-extend')}" appearance="image-minimal">
+							<xsl:if test="$expandedWidth">
+								<xsl:attribute name="style" select="concat('width:', $expandedWidth, 'px;')"></xsl:attribute>
+							</xsl:if>	
+							<xsl:if test="$expanded">
+								<xsl:attribute name="icon-class" select="if($iconCollapsed) then $iconCollapsed else 'icon-system-minus-circle'"></xsl:attribute>
+					        	<xforms:label>
+									<xsl:value-of select="$collapsedLabel"></xsl:value-of>
+					        	</xforms:label>  
+							</xsl:if>
+							<xsl:if test="not($expanded)">
+								<xsl:attribute name="icon-class" select="if($iconExpanded) then $iconExpanded else 'icon-system-plus-circle'"></xsl:attribute>
+					        	<xforms:label>
+									<xsl:value-of select="$expandedLabel"></xsl:value-of>
+					        	</xforms:label>  
+							</xsl:if>
+					        <xforms:action ev:event="DOMActivate"> 
+					          <xforms:script>justep.xbl('<xsl:value-of select="$id"/>').toggle(event);return false;</xforms:script> 
+					        </xforms:action> 
+					      </xforms:trigger>  
+						</xhtml:li>
+						<xsl:if test="position() != last()">
+						<li class="space {if($sepLine='true') then '' else 'nosep'}" style="margin: 0 {if($separatorSize) then $separatorSize div 2 else 8}px;">|</li>
+						</xsl:if>
+					</xsl:if>
+				</xsl:if>
+				<xhtml:li class="{if(position() = last()) then 'last' else ''}">
+					<xsl:if test="$expandable and not($expanded) and (position() >= $expandedPosition)">
+						<xsl:attribute name="style" select="'display: none;'"></xsl:attribute>
+					</xsl:if>
+					<xsl:copy-of select="."/>
+				</xhtml:li>
+				<xsl:if test="position() != last()">
+				<li class="space {if($sepLine='true') then '' else 'nosep'}" style="margin: 0 {if($separatorSize) then $separatorSize div 2 else 8}px;">
+					<xsl:if test="$expandable and not($expanded) and (position() >= $expandedPosition)">
+						<xsl:attribute name="style" select="'display: none;'"></xsl:attribute>
+					</xsl:if>
+				|</li>
+				</xsl:if>
+			</xsl:for-each>
+        	</xhtml:ul>
+        </root>  
+      </xsl:template>  
+    </xbl:template>  
+    <xbl:implementation><![CDATA[
+			({
+				initXBL: function(){
+					this.$el = $(this.domNode);
+					this.expandable = this.$el.attr('expandable') == 'true';
+					if(this.expandable){
+						this.expanded = this.$el.attr('expanded') == 'true';
+						this.expandedLabel = this.$el.attr('expanded-label');
+						this.collapsedLabel = this.$el.attr('collapsed-label');
+						this.iconExpanded = this.$el.attr('icon-expanded') || 'icon-system-plus-circle';
+						this.iconCollapsed= this.$el.attr('icon-collapsed') || 'icon-system-minus-circle';
+						this.btn = justep.xbl(this.domNode.id + '-extend');
+						this.expandedItems = $('li.extend ~ li', this.$el); 
+					}
+				},
+				toggle: function(){
+					this.expandable && this.extend(!this.expanded);
+				},
+				extend: function(value){
+					if(this.expandable && this.expanded != value){
+						this.expanded = value;
+						this.btn.setLabel(this.expanded? this.collapsedLabel : this.expandedLabel);
+						if(this.expanded){
+							this.expandedItems.show();
+							$('.icon', this.btn.element).removeClass(this.iconExpanded).addClass(this.iconCollapsed);
+						}else{
+							this.expandedItems.hide();
+							$('.icon', this.btn.element).removeClass(this.iconCollapsed).addClass(this.iconExpanded);
+						}	
+					}
+				}
+			})
+		]]> </xbl:implementation>  
+    <xbl:resources> 
+      <xbl:style src="/UI/system/components/buttonBar/buttonBar.css"/> 
+    </xbl:resources> 
+  </xbl:binding> 
+</xbl:xbl>

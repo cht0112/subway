@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="process" tag-type="rich" tag-name="div" icon="process-mini.gif" text="流程控制" 
+		binding-component="/UI/system/components/process.xbl.xml#process" display-property="id"
+		discriminate-condition="@component=/UI/system/components/process.xbl.xml#process"
+		component-class="com.justep.studio.ui.editors.xui.OperationComponent"
+		js-class="justep.design.Process" 
+		parent-range="view"
+		component-type="formControl" design-view="web-designer" >
+		
+		<properties>
+			<property name="id" text="编号" required="true"/>        
+			<property name="data" text="主Data" is-id-ref="true"  editor-ref="contextComponent" editor-parameter="data"/>        
+			<property name="auto-close" text="是否自动关闭页面" default-value="true" editor-ref="booleanList" data-type="boolean"/>
+			<property name="auto-start" text="是否自动启动流程" default-value="true" editor-ref="booleanList" data-type="boolean"/>        
+			<property name="auto-save" text="是否自动保存业务数据" default-value="true" editor-ref="booleanList" data-type="boolean"/>
+			<property name="auto-filter" text="是否自动过滤业务数据" default-value="true" editor-ref="booleanList" data-type="boolean"/>        
+			<!--  
+			<property name="component" text="组件" required="true" readonly="true"/>
+			-->    
+			
+			<property name="data-type" text="数据类型" default-value="xml" editor-ref="dataTypeList"/>
+			<group name="dialog-option" text="流转对话框">
+				<property name="window" text="页面" path="@dialog-window"/>
+				<property name="height" text="高度" path="@dialog-height"/>
+				<property name="width" text="宽度" path="@dialog-width"/>
+			</group>
+			
+			<property name="old-version" text="是否是老版本" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			
+		</properties>
+	 	<toolbar>			
+			<item text="编辑操作"  method="editOperatoions"/>
+		</toolbar>
+		
+		<operations>
+			<operation name="back" label="回退" img-src="" dis-src=""  enable="true" icon-class="icon-system-reply"/>
+			<operation name="advance" label="流转" img-src="" dis-src=""  enable="true" icon-class="icon-system-play"/>
+			<operation name="transfer" label="转发" img-src="" dis-src=""  enable="true" icon-class="icon-system-export"/>
+			<operation name="suspend" label="暂停" img-src="" dis-src=""  enable="true" icon-class="icon-system-pause"/>
+			<operation name="abort" label="终止" img-src="" dis-src=""  enable="true" icon-class="icon-system-stop" />
+			<!--<operation name="customized" label="定制" img-src="" dis-src=""  enable="true"/>-->
+			<operation name="customized" label="流程定制" img-src="" dis-src=""  enable="true" icon-class="icon-system-config"/>
+			<operation name="showChart" label="流程图" img-src="" dis-src=""  enable="true" icon-class="icon-flow-tree" />
+			<operation name="executeList" label="执行列表" img-src="" dis-src=""  enable="true" icon-class="icon-system-menu"/>
+		</operations>
+		
+		<property-editors><!--属性编辑器描述，可通过下拉列表或者弹出对话框来设置属性值，不这是默认问普通的文本输入框。-->
+			<property-editor name="dataTypeList" type="list" >
+				<static-data value="json,xml"/>
+			</property-editor>
+		</property-editors>
+		<imitation-config js-class-name="Process" />
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/process.xbl.xml#process" 
+				use-simple-dialog="true"
+				data-type="json"
+				dialog-window="/UI/system/service/process/dialogs/processDialog.w"
+				dialog-height="480"
+				dialog-width="600"
+				/>
+		   ]]></template>
+		</templates>
+		<events>
+			<!-- 需要参数描述 -->
+			<group name="流程启动">
+	           <event name="onBeforeStart" text="" parameters="event"/>
+	           <event name="onAfterStart" text="" parameters="event"/>
+	           <event name="onStartCommit" text="" parameters="event"/>
+	           <event name="onStartError" text="" parameters="event"/>
+			</group>
+
+			<group name="流程流转">
+	           	<event name="onBeforeAdvance" text="" parameters="event"/>
+	           	<event name="onAfterAdvance" text="" parameters="event"/>
+	           	<event name="onAdvanceCommit" text="" parameters="event"/>
+	           	<event name="onAdvanceError" text="" parameters="event"/>
+	           	<event name="onBeforeAdvanceQuery" text="" parameters="event"/>
+	           	<event name="onAfterAdvanceQuery" text="" parameters="event"/>
+	           	<event name="onAdvanceQueryError" text="" parameters="event"/>
+			</group>
+           
+           
+			<group name="流程回退">
+	           	<event name="onBeforeBack" text="" parameters="event"/>
+	           	<event name="onAfterBack" text="" parameters="event"/>
+	           	<event name="onBackCommit" text="" parameters="event"/>
+	           	<event name="onBackError" text="" parameters="event"/>
+	           	<event name="onBeforeBackQuery" text="" parameters="event"/>
+	           	<event name="onAfterBackQuery" text="" parameters="event"/>
+	           	<event name="onBackQueryError" text="" parameters="event"/>
+           	</group>
+           
+			<group name="流程终止">
+	           <event name="onBeforeAbort" text="" parameters="event"/>
+	           <event name="onAfterAbort" text="" parameters="event"/>
+	           <event name="onAbortCommit" text="" parameters="event"/>
+	           <event name="onAbortError" text="" parameters="event"/>
+	           <event name="onBeforeAbortQuery" text="" parameters="event"/>
+	           <event name="onAfterAbortQuery" text="" parameters="event"/>
+	           <event name="onAbortQueryError" text="" parameters="event"/>
+			</group>
+			
+			<group name="流程暂停">
+           <event name="onBeforeSuspend" text="" parameters="event"/>
+           <event name="onAfterSuspend" text="" parameters="event"/>
+           <event name="onSuspendCommit" text="" parameters="event"/>
+           <event name="onSuspendError" text="" parameters="event"/>
+           <event name="onBeforeSuspendQuery" text="" parameters="event"/>
+           <event name="onAfterSuspendQuery" text="" parameters="event"/>
+           <event name="onSuspendQueryError" text="" parameters="event"/>
+			</group>
+			
+			<group name="转发">
+           <event name="onBeforeTransfer" text="" parameters="event"/>
+           <event name="onAfterTransfer" text="" parameters="event"/>
+           <event name="onTransferCommit" text="" parameters="event"/>
+           <event name="onTransferError" text="" parameters="event"/>
+           <event name="onBeforeTransferQuery" text="" parameters="event"/>
+           <event name="onAfterTransferQuery" text="" parameters="event"/>
+           <event name="onTransferQueryError" text="" parameters="event"/>
+			</group>
+			
+			<group name="定义流程模板">
+	           <event name="onBeforeStartCustomizedQuery" text="" parameters="event"/>
+	           <event name="onAfterStartCustomizedQuery" text="" parameters="event"/>
+	           <event name="onStartCustomizedQueryError" text="" parameters="event"/>
+			</group>
+			
+			<group name="流程对话框">
+	           <event name="onBeforeOpenDialog" text="" parameters="event"/>
+			</group>
+		</events>
+		
+	</element>
+</elements>

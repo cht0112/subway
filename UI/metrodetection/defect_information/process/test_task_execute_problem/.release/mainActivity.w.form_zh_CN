@@ -1,0 +1,1604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js">
+</script>      <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js">
+</script>      <script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js">
+</script>      <script language="javascript" src="/UI/system/components/dialog/dialog.js">
+</script>      <script language="javascript" src="/UI/system/components/tabs/tabs.js">
+</script>      <link href="/UI/system/components/./tabs/tabs.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css"></style>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/metrodetection/defect_information/process/test_task_execute_problem/mainActivity.js">
+</script>      <script>
+new justep.XBizData('dataMain',true,false,{'queryAction':"NewProjectAction",'saveAction':"saveTEST_TASK_EXECUTE_PROBLEMAction",'newAction':"createTEST_TASK_EXECUTE_PROBLEMAction",'dataModel':"/metrodetection/system_code/data",'concept':"{'TEST_TASK_EXECUTE_PROBLEM':'TEST_TASK_EXECUTE_PROBLEM'}",'limit':20,'idColumn':"{'name':'TEST_TASK_EXECUTE_PROBLEM','relation':'TEST_TASK_EXECUTE_PROBLEM','define':'TEST_TASK_EXECUTE_PROBLEM','type':'Integer'}",'directDelete':true,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"tESTCASEID,sUBTESTCASEID,eXECUTEDATETIME,pROBLEMID,pROBLEMPRIORCNAME,pROBLEMTYPECNAME,tASKNAME",'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tASKID':{'type':'Integer','relation':'TEST_TASK_EXECUTE_PROBLEM.tASKID','define':'TEST_TASK_EXECUTE_PROBLEM.tASKID','label':'任务ID'},'dEVICEID':{'type':'String','relation':'TEST_TASK_EXECUTE_PROBLEM.dEVICEID','define':'TEST_TASK_EXECUTE_PROBLEM.dEVICEID','label':'设备ID'},'tESTCASEID':{'type':'String','relation':'TEST_TASK_EXECUTE_PROBLEM.tESTCASEID','define':'TEST_TASK_EXECUTE_PROBLEM.tESTCASEID','label':'测试用例ID'},'sUBTESTCASEID':{'type':'String','relation':'TEST_TASK_EXECUTE_PROBLEM.sUBTESTCASEID','define':'TEST_TASK_EXECUTE_PROBLEM.sUBTESTCASEID','label':'测试子用例ID'},'sUBTESTCASESTEPID':{'type':'Decimal','relation':'TEST_TASK_EXECUTE_PROBLEM.sUBTESTCASESTEPID','define':'TEST_TASK_EXECUTE_PROBLEM.sUBTESTCASESTEPID','label':'测试子用例步骤ID'},'eXECUTEDATETIME':{'type':'Date','relation':'TEST_TASK_EXECUTE_PROBLEM.eXECUTEDATETIME','define':'TEST_TASK_EXECUTE_PROBLEM.eXECUTEDATETIME','label':'执行出错日期'},'pROBLEMPRIOR':{'type':'Decimal','relation':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMPRIOR','define':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMPRIOR','label':'问题级别'},'pROBLEMTYPE':{'type':'Decimal','relation':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMTYPE','define':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMTYPE','label':'问题类型'},'pROBLEMDESC':{'type':'String','relation':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMDESC','define':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMDESC','label':'问题描述'},'oPERATORID':{'type':'String','relation':'TEST_TASK_EXECUTE_PROBLEM.oPERATORID','define':'TEST_TASK_EXECUTE_PROBLEM.oPERATORID','label':'检测人员'},'rEPORTDATE':{'type':'DateTime','relation':'TEST_TASK_EXECUTE_PROBLEM.rEPORTDATE','define':'TEST_TASK_EXECUTE_PROBLEM.rEPORTDATE','label':'上报日期'},'mEMO':{'type':'String','relation':'TEST_TASK_EXECUTE_PROBLEM.mEMO','define':'TEST_TASK_EXECUTE_PROBLEM.mEMO','label':'备注'},'pROBLEMID':{'type':'Decimal','relation':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMID','define':'TEST_TASK_EXECUTE_PROBLEM.pROBLEMID','label':'解决问题编号'},'pROBLEMPRIORCNAME':{'type':'String','relation':'PROBLEM_PRIOR_CODE.pROBLEMPRIORCNAME','define':'PROBLEM_PRIOR_CODE.pROBLEMPRIORCNAME','label':'问题级别'},'pROBLEMTYPECNAME':{'type':'String','relation':'PROBLEM_TYPE_CODE.pROBLEMTYPECNAME','define':'PROBLEM_TYPE_CODE.pROBLEMTYPECNAME','label':'问题类型'},'tASKNAME':{'type':'String','relation':'TEST_PROJECT_TASK_INFO.tASKNAME','define':'TEST_PROJECT_TASK_INFO.tASKNAME','label':'任务名称'},'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'姓名'}}"},'',{}).attachEvents({'onValueChanged':'mainActivity.dataMainValueChanged','onIndexChanged':'mainActivity.dataMainIndexChanged'});</script>  
+    <script>
+new justep.XBizData('bizData7',true,false,{'queryAction':"queryAFC_MANUFACTURER_INFOAction",'saveAction':"saveAFC_MANUFACTURER_INFOAction",'newAction':"createAFC_MANUFACTURER_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'AFC_MANUFACTURER_INFO':'AFC_MANUFACTURER_INFO'}",'limit':20,'idColumn':"{'name':'AFC_MANUFACTURER_INFO','relation':'AFC_MANUFACTURER_INFO','define':'AFC_MANUFACTURER_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'mANUFACTUREIDCNAME':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','define':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','label':'厂商和检测机构商中文名称'},'mANUFACTUREIDENAME':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREIDENAME','define':'AFC_MANUFACTURER_INFO.mANUFACTUREIDENAME','label':'厂商和检测机构商英文名称'},'mANUFACTURETYPE':{'type':'Integer','relation':'AFC_MANUFACTURER_INFO.mANUFACTURETYPE','define':'AFC_MANUFACTURER_INFO.mANUFACTURETYPE','label':'厂商和检测机构商类型'},'mANUFACTUREADDRESS':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREADDRESS','define':'AFC_MANUFACTURER_INFO.mANUFACTUREADDRESS','label':'厂商通信地址'},'mANUFACTUREPOSTCODE':{'type':'Integer','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREPOSTCODE','define':'AFC_MANUFACTURER_INFO.mANUFACTUREPOSTCODE','label':'厂商邮编'},'cONTACTTELEPHONE':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTTELEPHONE','define':'AFC_MANUFACTURER_INFO.cONTACTTELEPHONE','label':'联系电话'},'cONTACTOR':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTOR','define':'AFC_MANUFACTURER_INFO.cONTACTOR','label':'联系人'},'cONTACTMOBILE':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTMOBILE','define':'AFC_MANUFACTURER_INFO.cONTACTMOBILE','label':'联系手机'},'fAXNUMBER':{'type':'String','relation':'AFC_MANUFACTURER_INFO.fAXNUMBER','define':'AFC_MANUFACTURER_INFO.fAXNUMBER','label':'传真'},'cONTACTEMAIL':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTEMAIL','define':'AFC_MANUFACTURER_INFO.cONTACTEMAIL','label':'联系邮件'},'mEMO':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mEMO','define':'AFC_MANUFACTURER_INFO.mEMO','label':'备注'},'oPERATOR_ID':{'type':'String','relation':'AFC_MANUFACTURER_INFO.oPERATOR_ID','define':'AFC_MANUFACTURER_INFO.oPERATOR_ID','label':'操作员ID'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData1',true,false,{'queryAction':"ProblemAction",'saveAction':"savePROBLEM_RESOURCE_INFOAction",'newAction':"createPROBLEM_RESOURCE_INFOAction",'dataModel':"/metrodetection/defect_information/data",'dataType':"xml",'concept':"{'PROBLEM_RESOURCE_INFO':'PROBLEM_RESOURCE_INFO'}",'limit':20,'idColumn':"{'name':'PROBLEM_RESOURCE_INFO','relation':'PROBLEM_RESOURCE_INFO','define':'PROBLEM_RESOURCE_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'MANUFACTURE_ID':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.MANUFACTURE_ID','define':'PROBLEM_RESOURCE_INFO.MANUFACTURE_ID','label':'受测厂商'},'APPLY_FOR_OBJECT':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.APPLY_FOR_OBJECT','define':'PROBLEM_RESOURCE_INFO.APPLY_FOR_OBJECT','label':'应用检测对象类型'},'APPLY_FOR_DEVICE_TYPE':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.APPLY_FOR_DEVICE_TYPE','define':'PROBLEM_RESOURCE_INFO.APPLY_FOR_DEVICE_TYPE','label':'应用检测对象'},'DEVICE_STYLE':{'type':'String','relation':'PROBLEM_RESOURCE_INFO.DEVICE_STYLE','define':'PROBLEM_RESOURCE_INFO.DEVICE_STYLE','label':'对象型号'},'APPLY_FOR_RANGE':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.APPLY_FOR_RANGE','define':'PROBLEM_RESOURCE_INFO.APPLY_FOR_RANGE','label':'应用检测方面类型'},'APPLY_FOR_SUB_RANGE':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.APPLY_FOR_SUB_RANGE','define':'PROBLEM_RESOURCE_INFO.APPLY_FOR_SUB_RANGE','label':'应用检测方面'},'HARDWARE_VERSION':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.HARDWARE_VERSION','define':'PROBLEM_RESOURCE_INFO.HARDWARE_VERSION','label':'版本信息'},'PROBLEM_PRIOR':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.PROBLEM_PRIOR','define':'PROBLEM_RESOURCE_INFO.PROBLEM_PRIOR','label':'问题级别'},'PROBLEM_TYPE':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.PROBLEM_TYPE','define':'PROBLEM_RESOURCE_INFO.PROBLEM_TYPE','label':'问题类型'},'PROBLEM_DESC':{'type':'String','relation':'PROBLEM_RESOURCE_INFO.PROBLEM_DESC','define':'PROBLEM_RESOURCE_INFO.PROBLEM_DESC','label':'问题描述'},'SOLUTION':{'type':'String','relation':'PROBLEM_RESOURCE_INFO.SOLUTION','define':'PROBLEM_RESOURCE_INFO.SOLUTION','label':'解决方案'},'MEMO':{'type':'String','relation':'PROBLEM_RESOURCE_INFO.MEMO','define':'PROBLEM_RESOURCE_INFO.MEMO','label':'备注'},'PROBLEM_PRIOR':{'type':'Integer','relation':'PROBLEM_RESOURCE_INFO.PROBLEM_PRIOR','define':'PROBLEM_RESOURCE_INFO.PROBLEM_PRIOR','label':'问题级别'},'dETECTIONOBJECTCNAME':{'type':'String','relation':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','label':'检测对象类别'},'dEVICETYPECNAME':{'type':'String','relation':'DEVICE_TYPE_CODE.dEVICETYPECNAME','define':'DEVICE_TYPE_CODE.dEVICETYPECNAME','label':'检测对象'},'dETECTIONRANGECNAME':{'type':'String','relation':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','label':'检测方面类别'},'rANGEIDCNAME':{'type':'String','relation':'DETECTION_RANGE_CODE.rANGEIDCNAME','define':'DETECTION_RANGE_CODE.rANGEIDCNAME','label':'检测方面'},'PROBLEM_TYPE_CODE':{'type':'String','relation':'PROBLEM_TYPE_CODE','define':'EXPRESS','label':'null'},'pROBLEMPRIOR1':{'type':'Integer','relation':'PROBLEM_TYPE_CODE.pROBLEMPRIOR','define':'PROBLEM_TYPE_CODE.pROBLEMPRIOR','label':'问题级别'},'pROBLEMTYPE':{'type':'Decimal','relation':'PROBLEM_TYPE_CODE.pROBLEMTYPE','define':'PROBLEM_TYPE_CODE.pROBLEMTYPE','label':'问题类型'},'pROBLEMTYPECNAME':{'type':'String','relation':'PROBLEM_TYPE_CODE.pROBLEMTYPECNAME','define':'PROBLEM_TYPE_CODE.pROBLEMTYPECNAME','label':'问题类型'},'mANUFACTUREIDCNAME':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','define':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','label':'厂商和检测机构商中文名称'},'mANUFACTURETYPE':{'type':'Integer','relation':'AFC_MANUFACTURER_INFO.mANUFACTURETYPE','define':'AFC_MANUFACTURER_INFO.mANUFACTURETYPE','label':'厂商和检测机构商类型'},'pROBLEMPRIORCNAME':{'type':'String','relation':'PROBLEM_PRIOR_CODE.pROBLEMPRIORCNAME','define':'PROBLEM_PRIOR_CODE.pROBLEMPRIORCNAME','label':'问题级别'}}"},'',{}).attachEvents({'onValueChanged':'mainActivity.bizData1ValueChanged'});</script>  
+    <script>
+new justep.XBizData('bizData2',true,false,{'queryAction':"queryDETECTION_OBJECT_TYPEAction",'saveAction':"saveDETECTION_OBJECT_TYPEAction",'newAction':"createDETECTION_OBJECT_TYPEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DETECTION_OBJECT_TYPE':'DETECTION_OBJECT_TYPE'}",'limit':20,'idColumn':"{'name':'DETECTION_OBJECT_TYPE','relation':'DETECTION_OBJECT_TYPE','define':'DETECTION_OBJECT_TYPE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dETECTIONOBJECTCNAME':{'type':'String','relation':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','label':'检测对象类别'},'dETECTIONOBJECTENAME':{'type':'String','relation':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTENAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTENAME','label':'检测对象类别'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData3',true,false,{'queryAction':"queryDEVICE_TYPE_CODEAction",'saveAction':"saveDEVICE_TYPE_CODEAction",'newAction':"createDEVICE_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DEVICE_TYPE_CODE':'DEVICE_TYPE_CODE'}",'limit':20,'idColumn':"{'name':'DEVICE_TYPE_CODE','relation':'DEVICE_TYPE_CODE','define':'DEVICE_TYPE_CODE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dETECTIONOBJECTTYPE':{'type':'Integer','relation':'DEVICE_TYPE_CODE.dETECTIONOBJECTTYPE','define':'DEVICE_TYPE_CODE.dETECTIONOBJECTTYPE','label':'检测对象类别'},'dEVICETYPE':{'type':'Integer','relation':'DEVICE_TYPE_CODE.dEVICETYPE','define':'DEVICE_TYPE_CODE.dEVICETYPE','label':'检测对象'},'dEVICETYPECNAME':{'type':'String','relation':'DEVICE_TYPE_CODE.dEVICETYPECNAME','define':'DEVICE_TYPE_CODE.dEVICETYPECNAME','label':'检测对象'},'dEVICETYPEENAME':{'type':'String','relation':'DEVICE_TYPE_CODE.dEVICETYPEENAME','define':'DEVICE_TYPE_CODE.dEVICETYPEENAME','label':'检测对象'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData4',true,false,{'queryAction':"queryDETECTION_RANGE_TYPEAction",'saveAction':"saveDETECTION_RANGE_TYPEAction",'newAction':"createDETECTION_RANGE_TYPEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DETECTION_RANGE_TYPE':'DETECTION_RANGE_TYPE'}",'limit':20,'idColumn':"{'name':'DETECTION_RANGE_TYPE','relation':'DETECTION_RANGE_TYPE','define':'DETECTION_RANGE_TYPE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dETECTIONRANGECNAME':{'type':'String','relation':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','label':'检测方面类别'},'dETECTIONRANGEENAME':{'type':'String','relation':'DETECTION_RANGE_TYPE.dETECTIONRANGEENAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGEENAME','label':'检测方面类别'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData5',true,false,{'queryAction':"queryDETECTION_RANGE_CODEAction",'saveAction':"saveDETECTION_RANGE_CODEAction",'newAction':"createDETECTION_RANGE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DETECTION_RANGE_CODE':'DETECTION_RANGE_CODE'}",'limit':20,'idColumn':"{'name':'DETECTION_RANGE_CODE','relation':'DETECTION_RANGE_CODE','define':'DETECTION_RANGE_CODE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dETECTIONRANGETYPE':{'type':'Integer','relation':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','define':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','label':'检测方面类别'},'dETECTIONRANGEID':{'type':'Decimal','relation':'DETECTION_RANGE_CODE.dETECTIONRANGEID','define':'DETECTION_RANGE_CODE.dETECTIONRANGEID','label':'检测方面'},'rANGEIDCNAME':{'type':'String','relation':'DETECTION_RANGE_CODE.rANGEIDCNAME','define':'DETECTION_RANGE_CODE.rANGEIDCNAME','label':'检测方面'},'rANGEIDENAME':{'type':'String','relation':'DETECTION_RANGE_CODE.rANGEIDENAME','define':'DETECTION_RANGE_CODE.rANGEIDENAME','label':'检测方面'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData6',true,false,{'queryAction':"queryPROBLEM_PRIOR_CODEAction",'saveAction':"savePROBLEM_PRIOR_CODEAction",'newAction':"createPROBLEM_PRIOR_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'PROBLEM_PRIOR_CODE':'PROBLEM_PRIOR_CODE'}",'limit':20,'idColumn':"{'name':'PROBLEM_PRIOR_CODE','relation':'PROBLEM_PRIOR_CODE','define':'PROBLEM_PRIOR_CODE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'pROBLEMPRIORCNAME':{'type':'String','relation':'PROBLEM_PRIOR_CODE.pROBLEMPRIORCNAME','define':'PROBLEM_PRIOR_CODE.pROBLEMPRIORCNAME','label':'问题级别'},'pROBLEMPRIORENAME':{'type':'String','relation':'PROBLEM_PRIOR_CODE.pROBLEMPRIORENAME','define':'PROBLEM_PRIOR_CODE.pROBLEMPRIORENAME','label':'问题级别英文名称'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData8',true,false,{'queryAction':"queryPROBLEM_TYPE_CODEAction",'saveAction':"savePROBLEM_TYPE_CODEAction",'newAction':"createPROBLEM_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'PROBLEM_TYPE_CODE':'PROBLEM_TYPE_CODE'}",'limit':20,'idColumn':"{'name':'PROBLEM_TYPE_CODE','relation':'PROBLEM_TYPE_CODE','define':'PROBLEM_TYPE_CODE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'pROBLEMPRIOR':{'type':'Integer','relation':'PROBLEM_TYPE_CODE.pROBLEMPRIOR','define':'PROBLEM_TYPE_CODE.pROBLEMPRIOR','label':'问题级别'},'pROBLEMTYPE':{'type':'Decimal','relation':'PROBLEM_TYPE_CODE.pROBLEMTYPE','define':'PROBLEM_TYPE_CODE.pROBLEMTYPE','label':'问题类型'},'pROBLEMTYPECNAME':{'type':'String','relation':'PROBLEM_TYPE_CODE.pROBLEMTYPECNAME','define':'PROBLEM_TYPE_CODE.pROBLEMTYPECNAME','label':'问题类型'},'pROBLEMTYPEENAME':{'type':'String','relation':'PROBLEM_TYPE_CODE.pROBLEMTYPEENAME','define':'PROBLEM_TYPE_CODE.pROBLEMTYPEENAME','label':'问题类型英文名称'}}"},'',{});</script>  
+    <script>
+new justep.XBizData('bizData9',true,false,{'queryAction':"queryAFC_MANUFACTURER_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'AFC_MANUFACTURER_INFO':'AFC_MANUFACTURER_INFO'}",'limit':20,'idColumn':"{'name':'AFC_MANUFACTURER_INFO','relation':'AFC_MANUFACTURER_INFO','define':'AFC_MANUFACTURER_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'mANUFACTUREIDCNAME':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','define':'AFC_MANUFACTURER_INFO.mANUFACTUREIDCNAME','label':'厂商和检测机构商中文名称'},'mANUFACTUREIDENAME':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREIDENAME','define':'AFC_MANUFACTURER_INFO.mANUFACTUREIDENAME','label':'厂商和检测机构商英文名称'},'mANUFACTURETYPE':{'type':'Integer','relation':'AFC_MANUFACTURER_INFO.mANUFACTURETYPE','define':'AFC_MANUFACTURER_INFO.mANUFACTURETYPE','label':'厂商和检测机构商类型'},'mANUFACTUREADDRESS':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREADDRESS','define':'AFC_MANUFACTURER_INFO.mANUFACTUREADDRESS','label':'厂商通信地址'},'mANUFACTUREPOSTCODE':{'type':'Integer','relation':'AFC_MANUFACTURER_INFO.mANUFACTUREPOSTCODE','define':'AFC_MANUFACTURER_INFO.mANUFACTUREPOSTCODE','label':'厂商邮编'},'cONTACTTELEPHONE':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTTELEPHONE','define':'AFC_MANUFACTURER_INFO.cONTACTTELEPHONE','label':'联系电话'},'cONTACTOR':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTOR','define':'AFC_MANUFACTURER_INFO.cONTACTOR','label':'联系人'},'cONTACTMOBILE':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTMOBILE','define':'AFC_MANUFACTURER_INFO.cONTACTMOBILE','label':'联系手机'},'fAXNUMBER':{'type':'String','relation':'AFC_MANUFACTURER_INFO.fAXNUMBER','define':'AFC_MANUFACTURER_INFO.fAXNUMBER','label':'传真'},'cONTACTEMAIL':{'type':'String','relation':'AFC_MANUFACTURER_INFO.cONTACTEMAIL','define':'AFC_MANUFACTURER_INFO.cONTACTEMAIL','label':'联系邮件'},'mEMO':{'type':'String','relation':'AFC_MANUFACTURER_INFO.mEMO','define':'AFC_MANUFACTURER_INFO.mEMO','label':'备注'},'oPERATOR_ID':{'type':'String','relation':'AFC_MANUFACTURER_INFO.oPERATOR_ID','define':'AFC_MANUFACTURER_INFO.oPERATOR_ID','label':'操作员ID'}}"},'',{});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/tabs.xbl.xml#tabs"] = _xbl_JSClassDefine_tabs;
+justep.XBLObject._classes["/UI/system/components/windowDialog.xbl.xml#windowDialog"] = _xbl_JSClassDefine_windowDialog;
+justep.XBLObject._classes["/UI/system/components/menu.xbl.xml#menu"] = _xbl_JSClassDefine_menu;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"] = _xbl_JSClassDefine_bizDataFilterPattern;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"] = _xbl_JSClassDefine_bizDataFilterDialog;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_tabs(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tabs.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.tabbar = new justep.JSTabbar(this.domNode.id);
+				justep.Utils.proxable(this, this.tabbar, justep.JSTabbar);
+			}
+		}));
+
+function _xbl_JSClassDefine_windowDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.WindowDialog(node.id,node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('modal')=="true",node.getAttribute('status'),
+				                  node.getAttribute('width'),node.getAttribute('height'),node.getAttribute('left'),node.getAttribute('top'),node.getAttribute("reload-on-open") =='true',		                  node.getAttribute('onSend') , node.getAttribute('onReceive') ,node.getAttribute('onInit') ,node.getAttribute('onOpen') ,node.getAttribute('onClose'));
+				dialog.setClosable(node.getAttribute('closable')!="false");
+				dialog.setMinmaxable(node.getAttribute('minmaxable')!="false");
+				dialog.setResizable(node.getAttribute('resizable')!="false");
+				dialog.setNeighbor(node.getAttribute('neighbor'));
+				dialog.setAutoSize(node.getAttribute('autosize')=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				dialog.setProcess(node.getAttribute("process"));
+				dialog.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+function _xbl_JSClassDefine_menu(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_menu.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_id": null,
+				"_itemsets": null,
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len &gt; i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+				}
+			}));
+
+function _xbl_JSClassDefine_bizDataFilterPattern(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterPattern.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var menuEl = this.getElementByXblID("filter-pattern-menu");
+				this.menuId = $(menuEl).firstElement().getAttribute("menu-id");
+				var dialogEl = this.getElementByXblID("filter-pattern-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-pattern-dialog-iframe");
+				this.iframeId = frameEl.getAttribute("name");
+			},
+			"show": function(data, controlId, filterDlgId) {
+				if (typeof(data) == "string") {
+					data = justep.xbl(data);
+				}
+				if (data) {
+					if (typeof(data.advanceFilter) != "undefined") {
+						var frameEl = document.getElementById(this.iframeId);
+						if (frameEl) {
+							frameEl.dialogId = this.dialogId;
+							frameEl.currData = data;
+							frameEl.advanceFilter = data.advanceFilter.getFilter();
+							showFilterPatternMenu(data, this.menuId, controlId, filterDlgId);
+						}
+					}
+				}
+			}
+		}));
+
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;			var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+function _xbl_JSClassDefine_bizDataFilterDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var dialogEl = this.getElementByXblID("filter-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-dialog-iframe");
+				this.iframeId = frameEl.id;
+			},
+			"show": function(data, callBack) {
+				var filterData = data;
+				if (typeof(filterData) == "string") {
+					filterData = justep.xbl(filterData);
+				}
+				if (filterData) {
+					if (typeof(filterData.advanceFilter) != "undefined") {
+						var dialog = xforms(this.dialogId);
+						if(dialog) {
+							var frameEl = justep(this.iframeId);
+							if (frameEl) {
+								frameEl.dialogId = this.dialogId;
+								frameEl.filterData = filterData;
+								frameEl.callBack = callBack;
+								dialog.open();
+								return true;
+							}
+						}
+					}
+				}
+				return false;
+			}
+		}));
+
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		}));
+
+	var ids=[{id:'52ae1806b9a14123b93f18faa3eb24f8', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'tabpanel1', name:'/UI/system/components/tabs.xbl.xml#tabs', children:[{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'tbsMain1', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'20a77c05d1dd48fdba42389d938012fb', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'}]},{id:'grdMain', name:'xforms:grid'}]},{id:'tbsMain2', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'saveMas', name:'xforms:trigger', children:[{id:'fd2477eabb2e4549867b5bdb70408439', name:'xforms:label'}]},{id:'trigger2', name:'xforms:trigger', children:[{id:'default13', name:'xforms:label'}]}]},{id:'iptTASKID', name:'xforms:input'},{id:'iptDEVICEID', name:'xforms:input'},{id:'iptTESTCASEID', name:'xforms:input'},{id:'iptSUBTESTCASEID', name:'xforms:input'},{id:'iptSUBTESTCASESTEPID', name:'xforms:input'},{id:'iptEXECUTEDATETIME', name:'xforms:input'},{id:'iptPROBLEMPRIOR', name:'xforms:input'},{id:'iptPROBLEMTYPE', name:'xforms:input'},{id:'iptOPERATORID', name:'xforms:input'},{id:'iptREPORTDATE', name:'xforms:input'},{id:'textarea1', name:'xforms:textarea'},{id:'textarea2', name:'xforms:textarea'},{id:'windowDialog2', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'windowDialog4', name:'/UI/system/components/windowDialog.xbl.xml#windowDialog'},{id:'DEVICE_STYLE', name:'xforms:input'},{id:'HARDWARE_VERSION', name:'xforms:input'},{id:'PROBLEM_DESC', name:'xforms:input'},{id:'SOLUTION', name:'xforms:input'},{id:'MEMO', name:'xforms:input'},{id:'input2', name:'xforms:input'},{id:'input5', name:'xforms:input'},{id:'input6', name:'xforms:input'},{id:'input7', name:'xforms:input'},{id:'input8', name:'xforms:input'},{id:'input9', name:'xforms:input'},{id:'input10', name:'xforms:input'},{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'default15', name:'xforms:label'},{id:'default16', name:'xforms:value'}]}]},{id:'filter-pattern-988c85f0-5b96-4470-8fb6-270574756305', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'f76138f0f8ec4c25a4341521f00ca39b', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_1582078333', name:'xforms:menu'}]},{id:'GLOBAL_ID_2099716837', name:'xforms:dialog'}]},{id:'filter-dialog-9e6cac2b-cbc1-4e2e-8a7e-a3ba2c0c9fae', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_N471726543', name:'xforms:dialog'}]},{id:'filter-pattern-abbe9008-f4dc-4ff7-bdf7-792fa0090aba', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'da4df6e00f82407ea00d7829a7ac02c6', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_105710539', name:'xforms:menu'}]},{id:'GLOBAL_ID_N1653200500', name:'xforms:dialog'}]},{id:'filter-dialog-f1394bfc-c3fb-4138-ba79-b532c1106c9a', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_N62897601', name:'xforms:dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'grdMain');xf._a(null,'saveMas');xf._a('saveMas','fd2477eabb2e4549867b5bdb70408439');xf._a(null,'trigger2');xf._a('trigger2','default13');xf._a(null,'iptTASKID');xf._a(null,'iptDEVICEID');xf._a(null,'iptTESTCASEID');xf._a(null,'iptSUBTESTCASEID');xf._a(null,'iptSUBTESTCASESTEPID');xf._a(null,'iptEXECUTEDATETIME');xf._a(null,'iptPROBLEMPRIOR');xf._a(null,'iptPROBLEMTYPE');xf._a(null,'iptOPERATORID');xf._a(null,'iptREPORTDATE');xf._a(null,'textarea1');xf._a(null,'textarea2');xf._a(null,'DEVICE_STYLE');xf._a(null,'HARDWARE_VERSION');xf._a(null,'PROBLEM_DESC');xf._a(null,'SOLUTION');xf._a(null,'MEMO');xf._a(null,'input2');xf._a(null,'input5');xf._a(null,'input6');xf._a(null,'input7');xf._a(null,'input8');xf._a(null,'input9');xf._a(null,'input10');xf._a(null,'gridSelect2');xf._a('gridSelect2','default15');xf._a('gridSelect2','default18');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dataMain')/dECTIONPROBLEMNO",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','dECTIONPROBLEMNO')))));	
+xf._b("true()",xf._f('true'));	
+xf._b("instance('dataMain')/pROJECTID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROJECTID')))));	
+xf._b("instance('dataMain')/tASKID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','tASKID')))));	
+xf._b("instance('dataMain')/dEVICEID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','dEVICEID')))));	
+xf._b("instance('dataMain')/tESTCASEID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','tESTCASEID')))));	
+xf._b("instance('dataMain')/sUBTESTCASEID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEID')))));	
+xf._b("instance('dataMain')/sUBTESTCASESTEPID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPID')))));	
+xf._b("instance('dataMain')/eXECUTEDATETIME",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','eXECUTEDATETIME')))));	
+xf._b("instance('dataMain')/pROBLEMPRIOR",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMPRIOR')))));	
+xf._b("instance('dataMain')/pROBLEMTYPE",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMTYPE')))));	
+xf._b("instance('dataMain')/pROBLEMDESC",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMDESC')))));	
+xf._b("instance('dataMain')/oPERATORID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','oPERATORID')))));	
+xf._b("instance('dataMain')/rEPORTDATE",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','rEPORTDATE')))));	
+xf._b("instance('dataMain')/pROBLEMID",xf._g(xf._f('instance',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMID')))));	
+xf._b("instance('bizData7')/mANUFACTURETYPE",xf._g(xf._f('instance',xf._i("bizData7")),xf._h(false, xf._k("child",xf._j('','mANUFACTURETYPE')))));	
+xf._b("instance('bizData7')/mANUFACTUREPOSTCODE",xf._g(xf._f('instance',xf._i("bizData7")),xf._h(false, xf._k("child",xf._j('','mANUFACTUREPOSTCODE')))));	
+xf._b("instance('bizData1')/MANUFACTURE_ID",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','MANUFACTURE_ID')))));	
+xf._b("instance('bizData1')/APPLY_FOR_OBJECT",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','APPLY_FOR_OBJECT')))));	
+xf._b("instance('bizData1')/APPLY_FOR_DEVICE_TYPE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','APPLY_FOR_DEVICE_TYPE')))));	
+xf._b("instance('bizData1')/APPLY_FOR_RANGE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','APPLY_FOR_RANGE')))));	
+xf._b("instance('bizData1')/APPLY_FOR_SUB_RANGE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','APPLY_FOR_SUB_RANGE')))));	
+xf._b("instance('bizData1')/HARDWARE_VERSION",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','HARDWARE_VERSION')))));	
+xf._b("instance('bizData1')/PROBLEM_PRIOR",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','PROBLEM_PRIOR')))));	
+xf._b("instance('bizData1')/PROBLEM_TYPE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','PROBLEM_TYPE')))));	
+xf._b("instance('bizData1')/pROBLEMPRIOR1",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','pROBLEMPRIOR1')))));	
+xf._b("instance('bizData1')/pROBLEMTYPE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','pROBLEMTYPE')))));	
+xf._b("instance('bizData1')/mANUFACTURETYPE",xf._g(xf._f('instance',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','mANUFACTURETYPE')))));	
+xf._b("instance('bizData3')/dETECTIONOBJECTTYPE",xf._g(xf._f('instance',xf._i("bizData3")),xf._h(false, xf._k("child",xf._j('','dETECTIONOBJECTTYPE')))));	
+xf._b("instance('bizData3')/dEVICETYPE",xf._g(xf._f('instance',xf._i("bizData3")),xf._h(false, xf._k("child",xf._j('','dEVICETYPE')))));	
+xf._b("instance('bizData5')/dETECTIONRANGETYPE",xf._g(xf._f('instance',xf._i("bizData5")),xf._h(false, xf._k("child",xf._j('','dETECTIONRANGETYPE')))));	
+xf._b("instance('bizData5')/dETECTIONRANGEID",xf._g(xf._f('instance',xf._i("bizData5")),xf._h(false, xf._k("child",xf._j('','dETECTIONRANGEID')))));	
+xf._b("instance('bizData8')/pROBLEMPRIOR",xf._g(xf._f('instance',xf._i("bizData8")),xf._h(false, xf._k("child",xf._j('','pROBLEMPRIOR')))));	
+xf._b("instance('bizData8')/pROBLEMTYPE",xf._g(xf._f('instance',xf._i("bizData8")),xf._h(false, xf._k("child",xf._j('','pROBLEMTYPE')))));	
+xf._b("instance('bizData9')/mANUFACTURETYPE",xf._g(xf._f('instance',xf._i("bizData9")),xf._h(false, xf._k("child",xf._j('','mANUFACTURETYPE')))));	
+xf._b("instance('bizData9')/mANUFACTUREPOSTCODE",xf._g(xf._f('instance',xf._i("bizData9")),xf._h(false, xf._k("child",xf._j('','mANUFACTUREPOSTCODE')))));	
+xf._b("tASKNAME",xf._h(false, xf._k("child",xf._j('','tASKNAME'))));	
+xf._b("tESTCASEID",xf._h(false, xf._k("child",xf._j('','tESTCASEID'))));	
+xf._b("eXECUTEDATETIME",xf._h(false, xf._k("child",xf._j('','eXECUTEDATETIME'))));	
+xf._b("sUBTESTCASEID",xf._h(false, xf._k("child",xf._j('','sUBTESTCASEID'))));	
+xf._b("pROBLEMPRIORCNAME",xf._h(false, xf._k("child",xf._j('','pROBLEMPRIORCNAME'))));	
+xf._b("pROBLEMTYPECNAME",xf._h(false, xf._k("child",xf._j('','pROBLEMTYPECNAME'))));	
+xf._b("pROBLEMID",xf._h(false, xf._k("child",xf._j('','pROBLEMID'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("data('dataMain')/tASKNAME",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','tASKNAME')))));	
+xf._b("true",xf._h(false, xf._k("child",xf._j('','true'))));	
+xf._b("data('dataMain')/dEVICEID",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','dEVICEID')))));	
+xf._b("data('dataMain')/tESTCASEID",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','tESTCASEID')))));	
+xf._b("data('dataMain')/sUBTESTCASEID",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASEID')))));	
+xf._b("data('dataMain')/sUBTESTCASESTEPID",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','sUBTESTCASESTEPID')))));	
+xf._b("data('dataMain')/eXECUTEDATETIME",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','eXECUTEDATETIME')))));	
+xf._b("data('dataMain')/pROBLEMPRIORCNAME",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMPRIORCNAME')))));	
+xf._b("data('dataMain')/pROBLEMTYPECNAME",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMTYPECNAME')))));	
+xf._b("data('dataMain')/oPERATORNAME",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','oPERATORNAME')))));	
+xf._b("data('dataMain')/rEPORTDATE",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','rEPORTDATE')))));	
+xf._b("data('dataMain')/pROBLEMDESC",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','pROBLEMDESC')))));	
+xf._b("data('dataMain')/mEMO",xf._g(xf._f('data',xf._i("dataMain")),xf._h(false, xf._k("child",xf._j('','mEMO')))));	
+xf._b("data('bizData1')/DEVICE_STYLE",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','DEVICE_STYLE')))));	
+xf._b("data('bizData1')/HARDWARE_VERSION",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','HARDWARE_VERSION')))));	
+xf._b("data('bizData1')/PROBLEM_DESC",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','PROBLEM_DESC')))));	
+xf._b("data('bizData1')/SOLUTION",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','SOLUTION')))));	
+xf._b("data('bizData1')/MEMO",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','MEMO')))));	
+xf._b("data('bizData1')/mANUFACTUREIDCNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','mANUFACTUREIDCNAME')))));	
+xf._b("data('bizData1')/dETECTIONOBJECTCNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','dETECTIONOBJECTCNAME')))));	
+xf._b("data('bizData1')/dEVICETYPECNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','dEVICETYPECNAME')))));	
+xf._b("data('bizData1')/dETECTIONRANGECNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','dETECTIONRANGECNAME')))));	
+xf._b("data('bizData1')/rANGEIDCNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','rANGEIDCNAME')))));	
+xf._b("data('bizData1')/pROBLEMPRIORCNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','pROBLEMPRIORCNAME')))));	
+xf._b("data('bizData1')/pROBLEMTYPECNAME",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','pROBLEMTYPECNAME')))));	
+xf._b("data('bizData1')/mANUFACTURETYPE",xf._g(xf._f('data',xf._i("bizData1")),xf._h(false, xf._k("child",xf._j('','mANUFACTURETYPE')))));	
+xf._b("col_1",xf._h(false, xf._k("child",xf._j('','col_1'))));	
+xf._b("col_0",xf._h(false, xf._k("child",xf._j('','col_0'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))),'','');	
+xf._b("not(call('justep.XData.canDo','dataMain','Pre'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dataMain"),xf._i("Pre"))));	
+xf._b("not(call('justep.XData.canDo','dataMain','Next'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("dataMain"),xf._i("Next"))));	
+xf._b("not(call('justep.XData.canDo','bizData1','Save'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("bizData1"),xf._i("Save"))));	
+xf._b("not(call('justep.XData.canDo','bizData1','Delete'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("bizData1"),xf._i("Delete"))));	
+xf._b("not(call('justep.XData.canDo','bizData1','First'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("bizData1"),xf._i("First"))));	
+xf._b("not(call('justep.XData.canDo','bizData1','Pre'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("bizData1"),xf._i("Pre"))));	
+xf._b("not(call('justep.XData.canDo','bizData1','Next'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("bizData1"),xf._i("Next"))));	
+xf._b("not(call('justep.XData.canDo','bizData1','Last'))",xf._f('not',xf._f('call',xf._i("justep.XData.canDo"),xf._i("bizData1"),xf._i("Last"))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('ed', 'null');var xf_model_mdDefault = new xforms.XFModel('mdDefault',null);	
+new xforms.XFInstance2('dataMain','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('dataMain',null);	
+xf._c('xf-bind-0','mdDefault',"instance('dataMain')/dECTIONPROBLEMNO",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-1','mdDefault',"instance('dataMain')/pROJECTID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-2','mdDefault',"instance('dataMain')/tASKID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-3','mdDefault',"instance('dataMain')/dEVICEID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-4','mdDefault',"instance('dataMain')/tESTCASEID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-5','mdDefault',"instance('dataMain')/sUBTESTCASEID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-6','mdDefault',"instance('dataMain')/sUBTESTCASESTEPID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-7','mdDefault',"instance('dataMain')/eXECUTEDATETIME",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-8','mdDefault',"instance('dataMain')/pROBLEMPRIOR",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-9','mdDefault',"instance('dataMain')/pROBLEMTYPE",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-10','mdDefault',"instance('dataMain')/pROBLEMDESC",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-11','mdDefault',"instance('dataMain')/oPERATORID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-12','mdDefault',"instance('dataMain')/rEPORTDATE",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-13','mdDefault',"instance('dataMain')/pROBLEMID",null,null,"true()",null,null,null,null);	
+xf._c('xf-bind-14','mdDefault',"instance('dataMain')/tASKID","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-15','mdDefault',"instance('dataMain')/sUBTESTCASESTEPID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-16','mdDefault',"instance('dataMain')/eXECUTEDATETIME","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-17','mdDefault',"instance('dataMain')/pROBLEMPRIOR","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-18','mdDefault',"instance('dataMain')/pROBLEMTYPE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-19','mdDefault',"instance('dataMain')/rEPORTDATE","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-20','mdDefault',"instance('dataMain')/pROBLEMID","xsd:float",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData7','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+xf._c('xf-bind-21','mdDefault',"instance('bizData7')/mANUFACTURETYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-22','mdDefault',"instance('bizData7')/mANUFACTUREPOSTCODE","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData1','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('bizData1',null);	
+xf._c('xf-bind-23','mdDefault',"instance('bizData1')/MANUFACTURE_ID","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-24','mdDefault',"instance('bizData1')/APPLY_FOR_OBJECT","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-25','mdDefault',"instance('bizData1')/APPLY_FOR_DEVICE_TYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-26','mdDefault',"instance('bizData1')/APPLY_FOR_RANGE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-27','mdDefault',"instance('bizData1')/APPLY_FOR_SUB_RANGE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-28','mdDefault',"instance('bizData1')/HARDWARE_VERSION","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-29','mdDefault',"instance('bizData1')/PROBLEM_PRIOR","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-30','mdDefault',"instance('bizData1')/PROBLEM_TYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-31','mdDefault',"instance('bizData1')/PROBLEM_PRIOR","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-32','mdDefault',"instance('bizData1')/pROBLEMPRIOR1","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-33','mdDefault',"instance('bizData1')/pROBLEMTYPE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-34','mdDefault',"instance('bizData1')/mANUFACTURETYPE","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData2','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+new xforms.XFInstance2('bizData3','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+xf._c('xf-bind-35','mdDefault',"instance('bizData3')/dETECTIONOBJECTTYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-36','mdDefault',"instance('bizData3')/dEVICETYPE","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData4','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+new xforms.XFInstance2('bizData5','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+xf._c('xf-bind-37','mdDefault',"instance('bizData5')/dETECTIONRANGETYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-38','mdDefault',"instance('bizData5')/dETECTIONRANGEID","xsd:float",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData6','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+new xforms.XFInstance2('bizData8','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');	
+xf._c('xf-bind-39','mdDefault',"instance('bizData8')/pROBLEMPRIOR","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-40','mdDefault',"instance('bizData8')/pROBLEMTYPE","xsd:float",null,null,null,null,null,null);	
+new xforms.XFInstance2('bizData9','mdDefault',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('bizData9',null);	
+xf._c('xf-bind-41','mdDefault',"instance('bizData9')/mANUFACTURETYPE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-42','mdDefault',"instance('bizData9')/mANUFACTUREPOSTCODE","xsd:integer",null,null,null,null,null,null);	
+xforms.load_parts('rootView');	
+var xf_menu_GLOBAL_ID_1582078333 = new xforms.XFMenu('GLOBAL_ID_1582078333','context');xf_menu_GLOBAL_ID_1582078333.menu.addContextZone('f76138f0f8ec4c25a4341521f00ca39b');xforms.Event.attach(document.body, "click", function(){xf_menu_GLOBAL_ID_1582078333.hide()});xf_menu_GLOBAL_ID_1582078333.menu.setOpenMode('web');	
+var xf_action_xf_action_3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){									var menuItemId = event.getData().itemId;									if (menuItemId == "glglms") {										var dialog = xforms("GLOBAL_ID_2099716837");										if(dialog) {											event.getData().menuitem.dhtmlxMenu.$needLoad=true;											dialog.open();																					}									} else if (menuItemId == "qkdqgl") {										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.clear();										data.filters.deleteFilter(data.advanceFilter.filterName);										data.refreshData();									} else if (menuItemId == "zdycx"){										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(dataId) == "object") {											dataId = dataId.id;										}										if(dlgId) justep.xbl(dlgId).show(dataId);									} else {										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.setFilter(advanceFilter, true, true);									}}));xf._p(justep('GLOBAL_ID_1582078333'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_3,'GLOBAL_ID_1582078333', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_2099716837',"过滤模式",'modal',true,false,true,true,false,null,'550','440',null,null,null,null);	
+var xf_action_xf_action_4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_N1447119367');									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";									}justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "GLOBAL_ID_N1447119367", "");}));xf._p(justep('GLOBAL_ID_2099716837'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_4,'GLOBAL_ID_2099716837', evt,false)});	
+var xf_action_xf_action_5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_N1447119367');									if (iframe) {										var data = iframe.currData;										data.advanceFilter.setFilter(iframe.advanceFilter);									}}));xf._p(justep('GLOBAL_ID_2099716837'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_action_xf_action_5,'GLOBAL_ID_2099716837', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_N471726543',"查询对话框",'modal',true,false,true,true,false,null,'490','340',null,null,null,null);	
+var xf_action_xf_action_6=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var frameEl = justep('GLOBAL_ID_N1269033595');									if (frameEl) {										if(frameEl.contentWindow.document.body){											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";										}										}justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_N1269033595", "");}));xf._p(justep('GLOBAL_ID_N471726543'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_6,'GLOBAL_ID_N471726543', evt,false)});	
+var xf_menu_GLOBAL_ID_105710539 = new xforms.XFMenu('GLOBAL_ID_105710539','context');xf_menu_GLOBAL_ID_105710539.menu.addContextZone('da4df6e00f82407ea00d7829a7ac02c6');xforms.Event.attach(document.body, "click", function(){xf_menu_GLOBAL_ID_105710539.hide()});xf_menu_GLOBAL_ID_105710539.menu.setOpenMode('web');	
+var xf_action_xf_action_7=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){									var menuItemId = event.getData().itemId;									if (menuItemId == "glglms") {										var dialog = xforms("GLOBAL_ID_N1653200500");										if(dialog) {											event.getData().menuitem.dhtmlxMenu.$needLoad=true;											dialog.open();																					}									} else if (menuItemId == "qkdqgl") {										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.clear();										data.filters.deleteFilter(data.advanceFilter.filterName);										data.refreshData();									} else if (menuItemId == "zdycx"){										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(dataId) == "object") {											dataId = dataId.id;										}										if(dlgId) justep.xbl(dlgId).show(dataId);									} else {										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.setFilter(advanceFilter, true, true);									}}));xf._p(justep('GLOBAL_ID_105710539'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_7,'GLOBAL_ID_105710539', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_N1653200500',"过滤模式",'modal',true,false,true,true,false,null,'550','440',null,null,null,null);	
+var xf_action_xf_action_8=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_889016491');									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";									}justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "GLOBAL_ID_889016491", "");}));xf._p(justep('GLOBAL_ID_N1653200500'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_8,'GLOBAL_ID_N1653200500', evt,false)});	
+var xf_action_xf_action_9=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_889016491');									if (iframe) {										var data = iframe.currData;										data.advanceFilter.setFilter(iframe.advanceFilter);									}}));xf._p(justep('GLOBAL_ID_N1653200500'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_action_xf_action_9,'GLOBAL_ID_N1653200500', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_N62897601',"查询对话框",'modal',true,false,true,true,false,null,'490','340',null,null,null,null);	
+var xf_action_xf_action_10=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var frameEl = justep('GLOBAL_ID_893072738');									if (frameEl) {										if(frameEl.contentWindow.document.body){											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";										}										}justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_893072738", "");}));xf._p(justep('GLOBAL_ID_N62897601'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_10,'GLOBAL_ID_N62897601', evt,false)});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+function load_rootView(){if (justep("rootView").getAttribute('loaded') &amp;&amp; justep("rootView").getAttribute('loaded') == 'true') return;justep("rootView").setAttribute('loaded', 'true');	
+if(typeof(load_rootView_html) == 'function')load_rootView_html();	
+new xforms.XFGrid({id:'grdMain',instance:'dataMain',systemColumnsPro:'tASKID,dEVICEID,sUBTESTCASESTEPID,pROBLEMPRIOR,pROBLEMTYPE,pROBLEMDESC,oPERATORID,rEPORTDATE,mEMO,oPERATORNAME',onInit:null,type:'grid',smartRender:null,delay:false,ids:'tASKNAME,tESTCASEID,eXECUTEDATETIME,sUBTESTCASEID,pROBLEMPRIORCNAME,pROBLEMTYPECNAME,pROBLEMID,space-column',headNames:'任务名称,测试用例ID,执行出错日期,测试子用例ID,问题级别,问题类型,问题编号,&amp;nbsp;',widths:'100,158,120,121,141,100,100,*',types:'ro,ro,ro,ro,ro,ro,ed,ro',hiddenColumns:'',aligns:',center,center,center,center,,,',serverSort:true,sorts:'na,na,na,na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:'mainActivity.grdMainRowDblClick',onLastEditorPressEnter:null,initFun:function(){}});	
+var xf_trigger_saveMas=new xforms.XFTrigger('saveMas',null,"/UI/system/images/standardToolbar/standard/save.gif","/UI/system/images/standardToolbar/standard/un_save.gif",false,false,false,null,null,null);	
+var xf_action_xf_action_0=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.saveMore(event)}));xf._p(justep('saveMas'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_0,'saveMas', evt,false)});	
+var xf_trigger_trigger2=new xforms.XFTrigger('trigger2',null,null,null,false,false,false,null,null,null);	
+var xf_action_action3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mainActivity.trigger2Click(event)}));xf._p(justep('trigger2'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action3,'trigger2', evt,false)});	
+xforms.load_parts('vDetail');	
+xforms.load_parts('view1');	
+}	
+function load_rootView_xblinit(){if (justep("rootView").getAttribute('xblloaded') &amp;&amp; justep("rootView").getAttribute('xblloaded') == 'true') return;justep("rootView").setAttribute('xblloaded', 'true');	
+}	
+function load_vDetail(){if (justep("vDetail").getAttribute('loaded') &amp;&amp; justep("vDetail").getAttribute('loaded') == 'true') return;justep("vDetail").setAttribute('loaded', 'true');	
+if(typeof(load_vDetail_html) == 'function')load_vDetail_html();	
+xf._d('iptTASKID','text',xf._q("data('dataMain')/tASKNAME"),null,null,null,null,false,true);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){(event)}));xf._p(justep('iptTASKID'),"xforms-value-changed",null,function(evt) { xforms.run(xf_action_action1,'iptTASKID', evt,false)});	
+xf._d('iptDEVICEID','text',xf._q("data('dataMain')/dEVICEID"),null,null,null,null,false,true);	
+xf._d('iptTESTCASEID','text',xf._q("data('dataMain')/tESTCASEID"),null,null,null,null,false,true);	
+xf._d('iptSUBTESTCASEID','text',xf._q("data('dataMain')/sUBTESTCASEID"),null,null,null,null,false,true);	
+xf._d('iptSUBTESTCASESTEPID','text',xf._q("data('dataMain')/sUBTESTCASESTEPID"),null,null,null,null,false,true);	
+xf._d('iptEXECUTEDATETIME','text',xf._q("data('dataMain')/eXECUTEDATETIME"),null,null,null,"yyyy-MM-dd",true,false);	
+xf._d('iptPROBLEMPRIOR','text',xf._q("data('dataMain')/pROBLEMPRIORCNAME"),null,null,null,null,false,true);	
+xf._d('iptPROBLEMTYPE','text',xf._q("data('dataMain')/pROBLEMTYPECNAME"),null,null,null,null,false,true);	
+xf._d('iptOPERATORID','text',xf._q("data('dataMain')/oPERATORNAME"),null,null,null,null,false,true);	
+xf._d('iptREPORTDATE','text',xf._q("data('dataMain')/rEPORTDATE"),null,null,null,"yyyy-MM-dd",true,false);	
+xf._d('textarea1','textarea',xf._q("data('dataMain')/pROBLEMDESC"),null,null,null,null,false,true);	
+xf._d('textarea2','textarea',xf._q("data('dataMain')/mEMO"),null,null,null,null,false,true);	
+}	
+function load_vDetail_xblinit(){if (justep("vDetail").getAttribute('xblloaded') &amp;&amp; justep("vDetail").getAttribute('xblloaded') == 'true') return;justep("vDetail").setAttribute('xblloaded', 'true');	
+}	
+function load_view1(){if (justep("view1").getAttribute('loaded') &amp;&amp; justep("view1").getAttribute('loaded') == 'true') return;justep("view1").setAttribute('loaded', 'true');	
+if(typeof(load_view1_html) == 'function')load_view1_html();	
+xf._d('DEVICE_STYLE','text',xf._q("data('bizData1')/DEVICE_STYLE"),null,null,null,null,false,false);	
+xf._d('HARDWARE_VERSION','text',xf._q("data('bizData1')/HARDWARE_VERSION"),null,null,null,null,false,false);	
+xf._d('PROBLEM_DESC','text',xf._q("data('bizData1')/PROBLEM_DESC"),null,null,null,null,false,false);	
+xf._d('SOLUTION','text',xf._q("data('bizData1')/SOLUTION"),null,null,null,null,false,false);	
+xf._d('MEMO','text',xf._q("data('bizData1')/MEMO"),null,null,null,null,false,false);	
+xf._d('input2','text',xf._q("data('bizData1')/mANUFACTUREIDCNAME"),null,null,null,null,false,true);	
+xf._d('input5','text',xf._q("data('bizData1')/dETECTIONOBJECTCNAME"),null,null,null,null,false,true);	
+xf._d('input6','text',xf._q("data('bizData1')/dEVICETYPECNAME"),null,null,null,null,false,true);	
+xf._d('input7','text',xf._q("data('bizData1')/dETECTIONRANGECNAME"),null,null,null,null,false,true);	
+xf._d('input8','text',xf._q("data('bizData1')/rANGEIDCNAME"),null,null,null,null,false,true);	
+xf._d('input9','text',xf._q("data('bizData1')/pROBLEMPRIORCNAME"),null,null,null,null,false,true);	
+xf._d('input10','text',xf._q("data('bizData1')/pROBLEMTYPECNAME"),null,null,null,null,false,true);	
+new xforms.XFExtSelect({id:'gridSelect2',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('bizData1')/mANUFACTURETYPE"),labelRef:null,extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:null,columns:'col_0,col_1,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'col_0',valueColumn:'col_0',labelColumn:'col_1',extColumn:null,labels:',,',aligns:',,',types:'ro,ro,ro',widths:{widths:"#,#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows id="default106"&gt;&lt;row id="default107"&gt;&lt;cell id="default108"&gt;1&lt;/cell&gt;&lt;cell id="default109"&gt;设备厂商&lt;/cell&gt;&lt;/row&gt;&lt;row id="default110"&gt;&lt;cell id="default111"&gt;2&lt;/cell&gt;&lt;cell id="default112"&gt;工具厂商&lt;/cell&gt;&lt;/row&gt;&lt;row id="default113"&gt;&lt;cell id="default114"&gt;3&lt;/cell&gt;&lt;cell id="default118"&gt;第三方检测机构&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:true,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+}	
+function load_view1_xblinit(){if (justep("view1").getAttribute('xblloaded') &amp;&amp; justep("view1").getAttribute('xblloaded') == 'true') return;justep("view1").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" lazy="false" style="height:100%;width:100%">         <div class="component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="tabpanel1" style="height:100%;width:100%;;">           <div class="jstabbar" id="tabpanel1_root">             <ul class="tabItems clearfix">               <li class="selected" id="tabList_tab">                 <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabList');this.blur();" type="button">列表</button> 
+              </li>  
+              <li id="tabDetail_tab"> 
+                <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabDetail');this.blur();" type="button">详细</button> 
+              </li> 
+            </ul>  
+            <div class="contents" id="tabpanel1_contents"> 
+              <div class="content selected" id="tabList"> 
+                <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;"> 
+                  <div borderSize="0" class="xui-borderlayout-root"> 
+                    <div class="xui-borderlayout-area xui-borderlayout-top" size="40px" style=""> 
+                      <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbsMain1"> 
+                        <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                          <tr> 
+                            <td> 
+                              <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                <div class="toolbar-style" name="toolbargroup"> 
+                                  <table cellpadding="0" cellspacing="1px"> 
+                                    <tr> 
+                                      <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                        <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"></td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="barItem4" model="mdDefault" onclick="justep.xbl('dataMain').refreshData(); "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-separator-style"> 
+                                        <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="barItem1" model="mdDefault" onclick="justep.xbl('filter-pattern-988c85f0-5b96-4470-8fb6-270574756305').show('dataMain', event.target||event.srcElement, 'filter-dialog-9e6cac2b-cbc1-4e2e-8a7e-a3ba2c0c9fae');"> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/UI/system/images/standardToolbar/standard/search.gif" style="border:none" title="查询"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">查询</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="dataMain" id="20a77c05d1dd48fdba42389d938012fb" items="pre,next,ext" mode="IMG_TXT_LR" page-count="0"> 
+                                          <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;"> 
+                                            <tr class=""> 
+                                              <td class="xui-pageNavigator-button" style="display:none;"> 
+                                                <table xmlns="">  
+                                                  <tr align="center" valign="middle"> 
+                                                    <td align="center" style="" valign="middle"> 
+                                                      <img align="absmiddle" style="border:0px" title="第一页"></img> 
+                                                    </td>  
+                                                    <td align="center" class="xui-pageNavigator-label" style="" valign="middle">第一页</td> 
+                                                  </tr> 
+                                                </table> 
+                                              </td>  
+                                              <td class="xui-pageNavigator-button" style=""> 
+                                                <table xmlns="">  
+                                                  <tr align="center" valign="middle"> 
+                                                    <td align="center" style="" valign="middle"> 
+                                                      <img align="absmiddle" style="border:0px" title="上一页"></img> 
+                                                    </td>  
+                                                    <td align="center" class="xui-pageNavigator-label" style="" valign="middle">上一页</td> 
+                                                  </tr> 
+                                                </table> 
+                                              </td>  
+                                              <td class="xui-pageNavigator-page" nowrap="true" style="display:none;"></td>  
+                                              <td class="xui-pageNavigator-button" style=""> 
+                                                <table xmlns="">  
+                                                  <tr align="center" valign="middle"> 
+                                                    <td align="center" style="" valign="middle"> 
+                                                      <img align="absmiddle" style="border:0px" title="下一页"></img> 
+                                                    </td>  
+                                                    <td align="center" class="xui-pageNavigator-label" style="" valign="middle">下一页</td> 
+                                                  </tr> 
+                                                </table> 
+                                              </td>  
+                                              <td class="xui-pageNavigator-button" style="display:none;"> 
+                                                <table xmlns="">  
+                                                  <tr align="center" valign="middle"> 
+                                                    <td align="center" style="" valign="middle"> 
+                                                      <img align="absmiddle" style="border:0px" title="最后页"></img> 
+                                                    </td>  
+                                                    <td align="center" class="xui-pageNavigator-label" style="" valign="middle">最后页</td> 
+                                                  </tr> 
+                                                </table> 
+                                              </td>  
+                                              <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td> 
+                                            </tr> 
+                                          </table>  
+                                          <span count="" data="dataMain" limit="" offset="" page-count="0" style="display:none" xblid="attribute"></span> 
+                                        </div> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </div> 
+                            </td>  
+                            <td style="width:100%"></td> 
+                          </tr> 
+                        </table> 
+                      </div> 
+                    </div>  
+                    <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"></div>  
+                    <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+                      <div class="component_6298A7A1 grid" data="dataMain" id="grdMain" onRowDblClick="mainActivity.grdMainRowDblClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="tASKID,dEVICEID,sUBTESTCASESTEPID,pROBLEMPRIOR,pROBLEMTYPE,pROBLEMDESC,oPERATORID,rEPORTDATE,mEMO,oPERATORNAME"></div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div>  
+              <div class="content" id="tabDetail" xforms-select="mainActivity.tabDetailSelect"> 
+                <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbsMain2" style="height:54px;width:544px;"> 
+                  <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                    <tr> 
+                      <td> 
+                        <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                          <div class="toolbar-style" name="toolbargroup"> 
+                            <table cellpadding="0" cellspacing="1px"> 
+                              <tr> 
+                                <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                  <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"></td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="saveMas" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                            <img src="/UI/system/images/standardToolbar/standard/save.gif"></img>  
+                                            <span class="xforms-label " id="fd2477eabb2e4549867b5bdb70408439">保存</span> 
+                                          </button> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                  <table id="barItem17" model="mdDefault" onclick="justep.xbl('dataMain').refreshData(); "> 
+                                    <tr align="center" valign="middle"> 
+                                      <td align="center" valign="middle"> 
+                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img> 
+                                      </td>  
+                                      <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                                    </tr> 
+                                  </table> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                  <table id="barItem21" model="mdDefault" onclick="justep.xbl('dataMain').pre(); " readonly="not(call('justep.XData.canDo','dataMain','Pre'))"> 
+                                    <tr align="center" valign="middle"> 
+                                      <td align="center" valign="middle"> 
+                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_pre.gif" src="/UI/system/images/standardToolbar/standard/pre.gif" style="border:none" title="上一条"></img> 
+                                      </td>  
+                                      <td align="center" class="xforms-trigger-label" valign="middle">上一条</td> 
+                                    </tr> 
+                                  </table> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                  <table id="barItem22" model="mdDefault" onclick="justep.xbl('dataMain').next(); " readonly="not(call('justep.XData.canDo','dataMain','Next'))"> 
+                                    <tr align="center" valign="middle"> 
+                                      <td align="center" valign="middle"> 
+                                        <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_next.gif" src="/UI/system/images/standardToolbar/standard/next.gif" style="border:none" title="下一条"></img> 
+                                      </td>  
+                                      <td align="center" class="xforms-trigger-label" valign="middle">下一条</td> 
+                                    </tr> 
+                                  </table> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                  <input class="xui-input" id="input1" style="width:150px;height:20px;" type="text" value=""></input> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"></td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:108px;;table-layout:fixed"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="xxf-value"> 
+                                          <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                            <span class="xforms-label " id="default13">查询可用解决方案</span> 
+                                          </button> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </td>  
+                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"></td> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </div> 
+                      </td>  
+                      <td style="width:100%"></td> 
+                    </tr> 
+                  </table> 
+                </div>  
+                <div class="xui-container" id="vDetail" lazy="false" style="height:100%;;position:relative;;width:100%;height:49%;"> 
+                  <label style="position:absolute;top:38px;left:85px;">任务名称</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptTASKID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:141px;top:30px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:397px;top:38px;">设备ID</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptDEVICEID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:442px;top:30px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:68px;left:72px;">测试用例ID</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptTESTCASEID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:141px;top:60px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:66px;left:361px;">测试子用例ID</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptSUBTESTCASEID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:442px;top:60px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:98px;left:36px;">测试子用例步骤ID</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptSUBTESTCASESTEPID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:141px;top:90px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:362px;top:98px;">执行出错时间</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptEXECUTEDATETIME" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:442px;top:90px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" disabled="disabled" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:128px;left:85px;">问题级别</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptPROBLEMPRIOR" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:141px;top:120px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:386px;top:128px;">问题类型</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptPROBLEMTYPE" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:442px;top:120px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:386px;top:158px;">检测人员</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptOPERATORID" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:442px;top:150px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:158px;left:85px;">上报日期</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptREPORTDATE" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="font-size:10pt;position: absolute;left:141px;top:150px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" disabled="disabled" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:189px;left:85px;">问题描述</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-textarea xforms-appearance-minimal xui-textarea" id="textarea1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:141px;width:456px;top:181px;height:35px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <textarea accesskey="" class="xforms-value" readonly="readonly" tabindex=""></textarea> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:240px;left:109px;">备注</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-textarea xforms-appearance-minimal xui-textarea" id="textarea2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:141px;width:456px;top:227px;height:38px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <textarea accesskey="" class="xforms-value" readonly="readonly" tabindex=""></textarea> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label class="xui-label" id="label1" style="position:absolute;width:600px;background-color:#ECFFFE;height:18px;left:1px;top:2px;font-weight:bold;color:#000000;text-align:center;">检测系统问题</label>  
+                  <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="450px" id="windowDialog2" modal="true" onClose="mainActivity.windowDialog2Close" onReceive="mainActivity.windowDialog2Receive" status="maximize" style="position:absolute;top:310px;left:80px;" title="" url="/UI/metrodetection/defect_information/process/test_task_execute_problem/DialogActivity.w" width="450px"></div>  
+                  <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="300px" id="windowDialog4" modal="true" onClose="mainActivity.windowDialog4Close" onReceive="mainActivity.windowDialog4Receive" status="maximize" style="position:absolute;top:312px;left:193px;" title="" url="/UI/metrodetection/defect_information/process/test_task_execute_problem/zhishiyuan.w" width="400px"></div> 
+                </div>  
+                <div class="xui-container" id="view1" lazy="false" style="position:relative;;width:100%;height:47%;"> 
+                  <label style="font-size:10pt;position: absolute;left:407px;top:137px;">对象型号</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="DEVICE_STYLE" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;left:465px;top:129px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;left:78px;top:133px;">版本信息</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="HARDWARE_VERSION" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;left:138px;top:128px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;left:78px;top:225px;">问题描述</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="PROBLEM_DESC" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;width:482px;left:138px;top:221px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;left:78px;top:194px;">解决方案</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="SOLUTION" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;width:482px;left:138px;top:190px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="font-size:10pt;position: absolute;left:104px;top:256px;">备注</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="MEMO" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position: absolute;width:482px;left:138px;top:252px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label class="xui-label" id="label2" style="position:absolute;width:600px;background-color:#ECFFFE;height:18px;top:3px;left:2px;font-weight:bold;color:#000000;text-align:center;">检测系统知识库</label>  
+                  <label style="position:absolute;top:43px;left:82px;">受测厂商</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:35px;left:138px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:34px;top:73px;">应用检测对象类型</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input5" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:138px;top:66px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:387px;top:75px;">应用检测对象</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input6" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:465px;top:67px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:34px;top:103px;">应用检测方面类型</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input7" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:138px;top:97px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:387px;top:106px;">应用检测方面</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input8" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:465px;top:98px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:82px;top:164px;">问题级别</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input9" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:138px;top:159px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;left:411px;top:169px;">问题类型</label>  
+                  <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input10" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:465px;top:160px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <input accesskey="" class="xforms-value" readonly="readonly" tabindex="" type="text"></input> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td>  
+                        <td class="xui-ie-input-bug"></td> 
+                      </tr> 
+                    </tbody> 
+                  </table>  
+                  <label style="position:absolute;top:47px;left:411px;">厂商类型</label>  
+                  <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:39px;left:465px;;table-layout:fixed"> 
+                    <tbody> 
+                      <tr> 
+                        <td class="focus" style="display:none;width:0px"></td>  
+                        <td class="xxf-value"> 
+                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                              <tr style="border:none"> 
+                                <td style="width:100%;height:100%;border:none;"> 
+                                  <input accesskey="" class="xforms-ext-select-input" readonly="readonly" tabindex=""></input> 
+                                </td>  
+                                <td style="border:none" width="20px"> 
+                                  <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                </td> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </td>  
+                        <td class="xxf-alert"> 
+                          <span class="xforms-alert"> 
+                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                            <div class="xforms-alert-value" id=""></div> 
+                          </span> 
+                        </td> 
+                      </tr> 
+                    </tbody> 
+                  </table> 
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-988c85f0-5b96-4470-8fb6-270574756305"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="f76138f0f8ec4c25a4341521f00ca39b" menu-id="GLOBAL_ID_1582078333" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_1582078333" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_1582078333" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_2099716837" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_2099716837-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N1447119367" name="GLOBAL_ID_N1447119367" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-9e6cac2b-cbc1-4e2e-8a7e-a3ba2c0c9fae"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N471726543" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N471726543-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N1269033595" name="GLOBAL_ID_N1269033595" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-abbe9008-f4dc-4ff7-bdf7-792fa0090aba"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="da4df6e00f82407ea00d7829a7ac02c6" menu-id="GLOBAL_ID_105710539" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_105710539" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_105710539" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_N1653200500" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_N1653200500-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_889016491" name="GLOBAL_ID_889016491" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-f1394bfc-c3fb-4138-ba79-b532c1106c9a"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N62897601" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N62897601-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_893072738" name="GLOBAL_ID_893072738" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

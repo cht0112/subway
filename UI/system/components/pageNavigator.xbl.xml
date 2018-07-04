@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" script-type="text/javascript">
+
+	<xbl:script type="text/javascript" src="/UI/system/components/pageNavigator/pageNavigator.js"/>
+	<xbl:binding id="pageNavigator">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+					<root>
+						<xsl:variable name="root" select="." />
+						<xsl:variable name="displayItems" select="if($root/@items!='')then $root/@items else 'first pre page next last ext'" />
+						<xsl:variable name="limit" select="$root/@limit" />
+						<xsl:variable name="offset" select="$root/@offset" />
+						<xsl:variable name="count" select="$root/@count" />
+						<xsl:variable name="page-count">
+							<xsl:choose>
+								<xsl:when test="$root/@page-count!='' and matches($root/@page-count,'^[0-9]+%?$')">
+									<xsl:value-of select="$root/@page-count" />
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="'7'" />
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+						
+						<xsl:variable name="base-id" select="replace(generate-global-id(),'-','_')" />
+						
+						<xhtml:table class="xui-pageNavigator" border="0" cellpadding="0" cellspacing="0px" style="_height:100%;">
+							<xhtml:tr class="{if(@mode='IMG_TXT_TB') then 'xui-img-txt-tb' else ''}">
+								<xhtml:td class="xui-pageNavigator-button" style="{if(contains($displayItems,'first')) then '' else 'display:none;'}">
+									<xsl:choose>
+										<xsl:when test="@mode='IMG_TXT_LR' or @mode='IMG_TXT_TB' or @mode='TXT'">
+											<table>
+												<tr valign="middle" align="center">
+												  <td valign="middle" align="center" style="{if(@mode='TXT') then 'display:none;' else ''}">
+													<img style="border:0px" align="absmiddle" >
+														<xsl:attribute name="title"><xsl:value-of>i18n{first-page}</xsl:value-of></xsl:attribute>
+													</img>
+												  </td>
+												  <td class="xui-pageNavigator-label" style="{if(@mode='IMG_TXT_TB') then 'display:none;' else ''}" valign="middle" align="center">
+													<xsl:value-of>i18n{first-page}</xsl:value-of>
+												  </td>
+												</tr>
+												<xsl:if test="@mode='IMG_TXT_TB'">
+													<tr valign="middle" align="center">
+													  <td class="xui-pageNavigator-label" valign="middle" align="center">
+														<xsl:value-of>i18n{first-page}</xsl:value-of>
+													  </td>
+													</tr>
+												</xsl:if>
+											</table>
+										</xsl:when>
+										<xsl:otherwise>
+											<xhtml:img style="border:0px" _disabled="true" onclick="if(!this.getAttribute('_disabled')) justep.XBLObject.getXBLObject(this).gotoPage(1)" >
+												<xsl:attribute name="title"><xsl:value-of>i18n{first-page}</xsl:value-of></xsl:attribute>
+											</xhtml:img>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xhtml:td>
+								<xhtml:td class="xui-pageNavigator-button" style="{if(contains($displayItems,'pre')) then '' else 'display:none;'}">
+									<xsl:choose>
+										<xsl:when test="@mode='IMG_TXT_LR' or @mode='IMG_TXT_TB' or @mode='TXT'">
+											<table>
+												<tr valign="middle" align="center">
+												  <td valign="middle" align="center" style="{if(@mode='TXT') then 'display:none;' else ''}">
+													<img style="border:0px" align="absmiddle">
+														<xsl:attribute name="title"><xsl:value-of>i18n{pre-page}</xsl:value-of></xsl:attribute>
+													</img>
+												  </td>
+												  <td class="xui-pageNavigator-label" style="{if(@mode='IMG_TXT_TB') then 'display:none;' else ''}" valign="middle" align="center">
+													<xsl:value-of>i18n{pre-page}</xsl:value-of>
+												  </td>
+												</tr>
+												<xsl:if test="@mode='IMG_TXT_TB'">
+													<tr style="{if(@mode='IMG_TXT_TB') then '' else 'display:none;'}" valign="middle" align="center">
+													  <td class="xui-pageNavigator-label" valign="middle" align="center">
+														<xsl:value-of>i18n{pre-page}</xsl:value-of>
+													  </td>
+													</tr>
+												</xsl:if>
+											</table>
+										</xsl:when>
+										<xsl:otherwise>
+											<xhtml:img style="border:0px" _disabled="true" >
+												<xsl:attribute name="title"><xsl:value-of>i18n{pre-page}</xsl:value-of></xsl:attribute>
+											</xhtml:img>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xhtml:td>
+								<xhtml:td nowrap="true" class="xui-pageNavigator-page" style="{if(contains($displayItems,'page')) then '' else 'display:none;'}">
+								</xhtml:td>
+								<xhtml:td class="xui-pageNavigator-button" style="{if(contains($displayItems,'next')) then '' else 'display:none;'}">
+									<xsl:choose>
+										<xsl:when test="@mode='IMG_TXT_LR' or @mode='IMG_TXT_TB' or @mode='TXT'">
+											<table>
+												<tr valign="middle" align="center">
+												  <td valign="middle" align="center" style="{if(@mode='TXT') then 'display:none;' else ''}">
+													<img style="border:0px" align="absmiddle">
+														<xsl:attribute name="title"><xsl:value-of>i18n{next-page}</xsl:value-of></xsl:attribute>
+													</img>
+												  </td>
+												  <td class="xui-pageNavigator-label" style="{if(@mode='IMG_TXT_TB') then 'display:none;' else ''}" valign="middle" align="center">
+													<xsl:value-of>i18n{next-page}</xsl:value-of>
+												  </td>
+												</tr>
+												<xsl:if test="@mode='IMG_TXT_TB'">
+													<tr style="{if(@mode='IMG_TXT_TB') then '' else 'display:none;'}" valign="middle" align="center">
+													  <td class="xui-pageNavigator-label" valign="middle" align="center">
+														<xsl:value-of>i18n{next-page}</xsl:value-of>
+													  </td>
+													</tr>
+												</xsl:if>
+											</table>
+										</xsl:when>
+										<xsl:otherwise>
+											<xhtml:img style="border:0px" >
+												<xsl:attribute name="title"><xsl:value-of>i18n{next-page}</xsl:value-of></xsl:attribute>
+											</xhtml:img>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xhtml:td>
+								<xhtml:td class="xui-pageNavigator-button" style="{if(contains($displayItems,'last')) then '' else 'display:none;'}">
+									<xsl:choose>
+										<xsl:when test="@mode='IMG_TXT_LR' or @mode='IMG_TXT_TB' or @mode='TXT'">
+											<table>
+												<tr valign="middle" align="center">
+												  <td valign="middle" align="center" style="{if(@mode='TXT') then 'display:none;' else ''}">
+													<img style="border:0px" align="absmiddle">
+														<xsl:attribute name="title"><xsl:value-of>i18n{last-page}</xsl:value-of></xsl:attribute>
+													</img>
+												  </td>
+												  <td class="xui-pageNavigator-label" style="{if(@mode='IMG_TXT_TB') then 'display:none;' else ''}" valign="middle" align="center">
+													<xsl:value-of>i18n{last-page}</xsl:value-of>
+												  </td>
+												</tr>
+												<xsl:if test="@mode='IMG_TXT_TB'">
+													<tr style="{if(@mode='IMG_TXT_TB') then '' else 'display:none;'}" valign="middle" align="center">
+													  <td class="xui-pageNavigator-label" valign="middle" align="center">
+														<xsl:value-of>i18n{last-page}</xsl:value-of>
+													  </td>
+													</tr>
+												</xsl:if>
+											</table>
+										</xsl:when>
+										<xsl:otherwise>
+											<xhtml:img style="border:0px" >
+												<xsl:attribute name="title"><xsl:value-of>i18n{last-page}</xsl:value-of></xsl:attribute>
+											</xhtml:img>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xhtml:td>
+								<xhtml:td nowrap="true" valign="middle" class="xui-pageNavigator-ext" style="{if(contains($displayItems,'ext')) then '' else 'display:none;'}">
+								</xhtml:td>
+							</xhtml:tr>
+						</xhtml:table>
+						<xhtml:span style="display:none" xblid="attribute" 
+							data="{@data}"
+							limit="{$limit}"
+							offset="{$offset}"
+							count="{$count}"
+							page-count="{$page-count}"/>									
+					</root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation> ({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+			    
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+			
+		})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style><![CDATA[
+				.xui-pageNavigator{
+					_height:100%;
+					white-space:nowrap;
+					display:inline;
+					overflow:hidden;
+				}
+				.xui-pageNavigator *{
+					vertical-align:middle;
+				}
+				.xui-pageNavigator-label{
+					white-space: nowrap;
+				}				
+				.xui-pageNavigator span{
+				}
+				.xui-pageNavigator-button {
+					_border:1px solid #dfe8f6;	
+				}
+				.xui-pageNavigator-button img{
+					_border:1px solid transparent;				
+				}
+				.xui-pageNavigator-page a{
+					cursor:pointer;
+					text-decoration:underline;
+					width:16px;
+					padding-right:4px;
+					padding-left:4px;
+					text-align:center;
+					font-size:16px;
+				}
+				.xui-img-txt-tb .xui-pageNavigator-page,.xui-img-txt-tb .xui-pageNavigator-ext{
+					padding-bottom :18px;
+				}
+				.xui-pageNavigator-ext span{
+					border:0px solid transparent;
+				}
+				.xui-pageNavigator-ext input{
+					width:16px;
+					text-align:center; 
+					border-width:0px;
+					border-bottom:1px dotted;
+				}
+				
+			]]>
+			</xbl:style>
+		</xbl:resources>		
+	</xbl:binding>
+</xbl:xbl>

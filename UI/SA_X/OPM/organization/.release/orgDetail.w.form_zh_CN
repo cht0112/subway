@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <script language="javascript" src="/UI/system/components/windowDialog/windowDialogReceiver.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="opmUtils" src="/UI/SA/OPM/js/OpmUtils.js">
+</script>      <script id="htmlScript1" src="/UI/SA/OPM/organization/orgDetail.js">
+</script>      <script>
+new justep.XBizData('dOrg',false,false,{'queryAction':"queryOPOrgAction",'saveAction':"saveOPOrgAction",'newAction':"createOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'Object','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}",'defCalcRelations':"{'calcOrgKind':{'type':'http://www.w3.org/2001/XMLSchema#string'},'calcValidState':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dOrg_part',{});</script>  
+    <script>
+new justep.XBizData('dParent',false,false,{'queryAction':"queryOPOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'},'ognName':{'type':'String','relation':'ognName','define':'EXPRESS','label':'null'},'dptName':{'type':'String','relation':'dptName','define':'EXPRESS','label':'null'},'posName':{'type':'String','relation':'posName','define':'EXPRESS','label':'null'},'operatorState':{'type':'String','relation':'operatorState','define':'EXPRESS','label':'null'},'personID':{'type':'Object','relation':'personID','define':'EXPRESS','label':'null'},'personName':{'type':'String','relation':'SA_OPPerson.sName','define':'SA_OPPerson.sName','label':'名称'},'personCode':{'type':'String','relation':'SA_OPPerson.sCode','define':'SA_OPPerson.sCode','label':'编码'},'personNumb':{'type':'Integer','relation':'SA_OPPerson.sNumb','define':'SA_OPPerson.sNumb','label':'数字编号'},'personLoginName':{'type':'String','relation':'SA_OPPerson.sLoginName','define':'SA_OPPerson.sLoginName','label':'登录名'},'personPassword':{'type':'String','relation':'SA_OPPerson.sPassword','define':'SA_OPPerson.sPassword','label':'密码(MD5)'},'personMainOrgID':{'type':'String','relation':'SA_OPPerson.sMainOrgID','define':'SA_OPPerson.sMainOrgID','label':'所属部门'},'personIDCard':{'type':'String','relation':'SA_OPPerson.sIDCard','define':'SA_OPPerson.sIDCard','label':'身份证号'},'personValidState':{'type':'Integer','relation':'SA_OPPerson.sValidState','define':'SA_OPPerson.sValidState','label':'可用状态'},'personVersion':{'type':'Integer','relation':'SA_OPPerson.version','define':'SA_OPPerson.version','label':'版本'},'personSex':{'type':'String','relation':'SA_OPPerson.sSex','define':'SA_OPPerson.sSex','label':'性别'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'学历'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'职称'},'EDUCATION_CODE':{'type':'Integer','relation':'EDUCATION_CODE','define':'EXPRESS','label':'null'},'eDUCATIONIDCNAME':{'type':'String','relation':'EDUCATION_CODE.eDUCATIONIDCNAME','define':'EDUCATION_CODE.eDUCATIONIDCNAME','label':'学历'},'POSITIONAL_TITLE_CODE':{'type':'Integer','relation':'POSITIONAL_TITLE_CODE','define':'EXPRESS','label':'null'},'pOSITIONALTITLEIDCNAME':{'type':'String','relation':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','define':'POSITIONAL_TITLE_CODE.pOSITIONALTITLEIDCNAME','label':'职称'}}"},'dParent_part',{});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver"] = _xbl_JSClassDefine_windowDialogReceiver;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_windowDialogReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowDialogReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var s = node.getAttribute('onReceive');
+				if(s) justep.windowDialogReceiver.acceptParentParamsFun = s;
+			},
+			"windowEnsure" : function(data,noclose){
+				justep.windowDialogReceiver.windowEnsure(data,noclose);
+			}, 
+			"windowCancel" : function(){
+				justep.windowDialogReceiver.windowCancel();
+			}, 
+			"windowRefresh" : function(){
+				justep.windowDialogReceiver.windowRefresh();
+			}
+		}));
+
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+	var ids=[{id:'3d012c228a374635a390c6692221a2f7', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'inputParentFName', name:'xforms:input'},{id:'inputName', name:'xforms:input'},{id:'inputCode', name:'xforms:input'},{id:'receiver', name:'/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver'},{id:'gridOrg', name:'xforms:grid'},{id:'btnOK', name:'xforms:trigger', children:[{id:'xuiLabel1', name:'xforms:label'}]},{id:'btnCancel', name:'xforms:trigger', children:[{id:'xuiLabel2', name:'xforms:label'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'inputParentFName');xf._a(null,'inputName');xf._a(null,'inputCode');xf._a(null,'gridOrg');xf._a(null,'btnOK');xf._a('btnOK','xuiLabel1');xf._a(null,'btnCancel');xf._a('btnCancel','xuiLabel2');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dOrg')/calcOrgKind",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','calcOrgKind')))));	
+xf._b("call('justep.OpmUtils.getOrgKindLabel',data('dOrg')/sOrgKindID)",xf._f('call',xf._i("justep.OpmUtils.getOrgKindLabel"),xf._g(xf._f('data',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sOrgKindID'))))));	
+xf._b("true()",xf._f('true'));	
+xf._b("instance('dOrg')/calcValidState",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','calcValidState')))));	
+xf._b("call('justep.OpmUtils.getValidStateLabel', data('dOrg')/sValidState)",xf._f('call',xf._i("justep.OpmUtils.getValidStateLabel"),xf._g(xf._f('data',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sValidState'))))));	
+xf._b("instance('dOrg')",xf._f('instance',xf._i("dOrg")));	
+xf._b("call('orgDetail.getReadOnly')",xf._f('call',xf._i("orgDetail.getReadOnly")));	
+xf._b("instance('dOrg')/sName",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sName')))));	
+xf._b("'名称不能为空！'",xf._i("名称不能为空！"));	
+xf._b("instance('dOrg')/sCode",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sCode')))));	
+xf._b("'编码不能为空！'",xf._i("编码不能为空！"));	
+xf._b("instance('dOrg')/sValidState",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dOrg')/sLevel",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sLevel')))));	
+xf._b("instance('dOrg')/version",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dOrg')/personNumb",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','personNumb')))));	
+xf._b("instance('dOrg')/personValidState",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','personValidState')))));	
+xf._b("instance('dOrg')/personVersion",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','personVersion')))));	
+xf._b("instance('dOrg')/eDUCATIONID",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','eDUCATIONID')))));	
+xf._b("instance('dOrg')/pOSITIONALTITLE",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','pOSITIONALTITLE')))));	
+xf._b("instance('dOrg')/EDUCATION_CODE",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','EDUCATION_CODE')))));	
+xf._b("instance('dOrg')/POSITIONAL_TITLE_CODE",xf._g(xf._f('instance',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','POSITIONAL_TITLE_CODE')))));	
+xf._b("instance('dParent')/sFName",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','sFName')))));	
+xf._b("instance('dParent')/sValidState",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('dParent')/sLevel",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','sLevel')))));	
+xf._b("instance('dParent')/version",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dParent')/personNumb",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','personNumb')))));	
+xf._b("instance('dParent')/personValidState",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','personValidState')))));	
+xf._b("instance('dParent')/personVersion",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','personVersion')))));	
+xf._b("instance('dParent')/eDUCATIONID",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','eDUCATIONID')))));	
+xf._b("instance('dParent')/pOSITIONALTITLE",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','pOSITIONALTITLE')))));	
+xf._b("instance('dParent')/EDUCATION_CODE",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','EDUCATION_CODE')))));	
+xf._b("instance('dParent')/POSITIONAL_TITLE_CODE",xf._g(xf._f('instance',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','POSITIONAL_TITLE_CODE')))));	
+xf._b("data('dParent')/sFName",xf._g(xf._f('data',xf._i("dParent")),xf._h(false, xf._k("child",xf._j('','sFName')))));	
+xf._b("data('dOrg')/sName",xf._g(xf._f('data',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sName')))));	
+xf._b("data('dOrg')/sCode",xf._g(xf._f('data',xf._i("dOrg")),xf._h(false, xf._k("child",xf._j('','sCode')))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');var xf_model_model1 = new xforms.XFModel('model1',null);	
+xf._d('inputParentFName','text',xf._q("data('dParent')/sFName"),null,null,null,null,false,false);	
+xf._d('inputName','text',xf._q("data('dOrg')/sName"),null,null,null,null,false,false);	
+xf._d('inputCode','text',xf._q("data('dOrg')/sCode"),null,null,null,null,false,false);	
+new xforms.XFGrid({id:'gridOrg',instance:'dOrg',systemColumnsPro:'sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,ognName,dptName,posName,operatorState,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,nATION,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,eDUCATIONIDCNAME,POSITIONAL_TITLE_CODE,pOSITIONALTITLEIDCNAME,calcOrgKind,calcValidState',onInit:null,type:'grid',smartRender:null,delay:false,ids:'space-column,sName',headNames:',',widths:'*,*',types:'ro,ro',hiddenColumns:'',aligns:',',serverSort:true,sorts:'na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){}});	
+var xf_trigger_btnOK=new xforms.XFTrigger('btnOK',null,null,null,false,false,false,null,null,null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){orgDetail.btnOKClick(event)}));xf._p(justep('btnOK'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action1,'btnOK', evt,false)});	
+var xf_trigger_btnCancel=new xforms.XFTrigger('btnCancel',null,null,null,false,false,false,null,null,null);	
+var xf_action_action2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){orgDetail.btnCancelClick(event)}));xf._p(justep('btnCancel'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action2,'btnCancel', evt,false)});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dOrg_part_loaded = false;	
+function load_dOrg_part(callback){if (dOrg_part_loaded) return;dOrg_part_loaded = true;	
+new xforms.XFInstance2('dOrg','model1',null,null,null,null,null,null,null,null,'calcOrgKind,calcValidState',null,'whereVersion');	
+xf._c('xf-bind-0','model1',"instance('dOrg')/calcOrgKind",null,"true()",null,null,"call('justep.OpmUtils.getOrgKindLabel',data('dOrg')/sOrgKindID)",null,null);	
+xf._c('xf-bind-1','model1',"instance('dOrg')/calcValidState",null,"true()",null,null,"call('justep.OpmUtils.getValidStateLabel', data('dOrg')/sValidState)",null,null);	
+xf._c('xf-bind-2','model1',"instance('dOrg')",null,"call('orgDetail.getReadOnly')",null,null,null,null,null);	
+xf._c('xf-bind-3','model1',"instance('dOrg')/sName",null,null,"true()",null,null,null,"'名称不能为空！'");	
+xf._c('xf-bind-4','model1',"instance('dOrg')/sCode",null,null,"true()",null,null,null,"'编码不能为空！'");	
+xf._c('xf-bind-5','model1',"instance('dOrg')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-6','model1',"instance('dOrg')/sLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-7','model1',"instance('dOrg')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-8','model1',"instance('dOrg')/personNumb","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-9','model1',"instance('dOrg')/personValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-10','model1',"instance('dOrg')/personVersion","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-11','model1',"instance('dOrg')/eDUCATIONID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-12','model1',"instance('dOrg')/pOSITIONALTITLE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-13','model1',"instance('dOrg')/EDUCATION_CODE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-14','model1',"instance('dOrg')/POSITIONAL_TITLE_CODE","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dOrg_part_init_loaded = false;	
+function load_dOrg_part_init(){if (dOrg_part_init_loaded) return;dOrg_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var dParent_part_loaded = false;	
+function load_dParent_part(callback){if (dParent_part_loaded) return;dParent_part_loaded = true;	
+new xforms.XFInstance2('dParent','model1',null,null,null,null,null,null,null,null,null,null,'whereVersion');new SimpleStore('dParent',null);	
+xf._c('xf-bind-15','model1',"instance('dParent')/sFName",null,"true()",null,null,null,null,null);	
+xf._c('xf-bind-16','model1',"instance('dParent')/sValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-17','model1',"instance('dParent')/sLevel","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-18','model1',"instance('dParent')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-19','model1',"instance('dParent')/personNumb","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-20','model1',"instance('dParent')/personValidState","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-21','model1',"instance('dParent')/personVersion","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-22','model1',"instance('dParent')/eDUCATIONID","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-23','model1',"instance('dParent')/pOSITIONALTITLE","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-24','model1',"instance('dParent')/EDUCATION_CODE","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-25','model1',"instance('dParent')/POSITIONAL_TITLE_CODE","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dParent_part_init_loaded = false;	
+function load_dParent_part_init(){if (dParent_part_init_loaded) return;dParent_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="xui-container" id="rootView" style="position:relative;height:200px;width:300px;">         <div class="xui-container" id="div1" style="position:absolute;background-color:#F8F8F8;width:279px;top:61px;height:22px;left:49px;">           <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputParentFName" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="border-style:none none none none;width:82%;height:100%;;table-layout:fixed">             <tbody>               <tr>                 <td class="focus" style="display:none;width:0px"></td>                  <td class="xxf-value">                   <input accesskey="" class="xforms-value" tabindex="" type="text"></input>                 </td>                  <td class="xxf-alert">                   <span class="xforms-alert">                     <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                      <div class="xforms-alert-value" id=""></div>                   </span>                 </td>                  <td class="xui-ie-input-bug"></td>               </tr>             </tbody>           </table>         </div>          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputName" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:147px;top:101px;left:50px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputCode" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:147px;top:148px;left:52px;;table-layout:fixed">           <tbody>             <tr>               <td class="focus" style="display:none;width:0px"></td>                <td class="xxf-value">                 <input accesskey="" class="xforms-value" tabindex="" type="text"></input>               </td>                <td class="xxf-alert">                 <span class="xforms-alert">                   <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                    <div class="xforms-alert-value" id=""></div>                 </span>               </td>                <td class="xui-ie-input-bug"></td>             </tr>           </tbody>         </table>          <div class="component_45CC9B41 windowDialogReceiver" component="/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver" id="receiver" onReceive="orgDetail.receiverReceive" style="position:absolute;top:210px;left:241px;"></div>          <div class="component_6298A7A1 grid" data="dOrg" id="gridOrg" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:200px;height:100px;position:absolute;top:384px;left:94px;display:none;;overflow:hidden" system-columns="sCode,sLongName,sFName,sFCode,sFID,sOrgKindID,sSequence,sValidState,sParent,sLevel,sPhone,sFax,sAddress,sZip,sDescription,sPersonID,sNodeKind,version,ognName,dptName,posName,operatorState,personID,personName,personCode,personNumb,personLoginName,personPassword,personMainOrgID,personIDCard,personValidState,personVersion,personSex,nATION,eDUCATIONID,pOSITIONALTITLE,EDUCATION_CODE,eDUCATIONIDCNAME,POSITIONAL_TITLE_CODE,pOSITIONALTITLEIDCNAME,calcOrgKind,calcValidState"></div>          <label style="position:absolute;top:65px;left:8px;">上级</label>  
+        <label style="position:absolute;top:106px;left:9px;">名称</label>  
+        <label style="position:absolute;top:153px;left:10px;">编码</label>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnOK" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:75px;top:101px;left:216px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="xxf-value"> 
+                <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                  <span class="xforms-label " id="xuiLabel1">确定</span> 
+                </button> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnCancel" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:75px;top:147px;left:218px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="xxf-value"> 
+                <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                  <span class="xforms-label " id="xuiLabel2">取消</span> 
+                </button> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

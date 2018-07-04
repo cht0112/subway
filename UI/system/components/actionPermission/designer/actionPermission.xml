@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<elements> 
+  <element name="actionPermission" tag-name="div" icon="actionPermission16.png" text="全局参数"
+    binding-component="/UI/system/components/actionPermission.xbl.xml#actionPermission"
+    display-property="id" component-class="ActionPermission" base-class="actionPermission"
+    component-type="formControl" design-view="web-designer"> 
+    <properties> 
+      <property name="id" text="编号" required="true"/> 
+    </properties>  
+    <toolbar> 
+      <item text="添加项" method="addActionPermissionItem"/> 
+    </toolbar>  
+    <property-editors/>  
+    <events> 
+      <event name="onBeforeExecute" parameters="event"/> 
+      <event name="onAfterExecute" parameters="event"/> 
+    </events>  
+    <templates> 
+      <template name="default"> <![CDATA[ 
+				<xhtml:div component="/UI/system/components/actionPermission.xbl.xml#actionPermission"/>
+		   		]]> </template> 
+    </templates> 
+  </element>
+    
+  <element name="actionPermissionItem" tag-name="item" icon="actionPermissionItem16.png" text="参数"
+    discriminate-condition="parent()/@component=/UI/system/components/actionPermission.xbl.xml#actionPermission"
+    display-property="action"> 
+    <properties> 
+      <property name="action" text="动作" required="true" editor-ref="actionDlg"/>  
+      <property name="control" text="控件" editor-ref="controlList"/>  
+    </properties>  
+    <property-editors>
+		<property-editor name="controlList" type="list">
+			<dynamic-data xpath="//*[local-name()='layout']//*[local-name()='place']/@control"/>
+			<!--  
+			 //*[local-name()='layout']/*[namespace-uri()='http://www.w3.org/1999/xhtml']/@id" />								
+			-->
+		</property-editor>
+    </property-editors>  
+    <templates> 
+      	<template name="default"> <![CDATA[<item/>]]> </template> 
+    </templates> 
+  </element> 
+</elements>

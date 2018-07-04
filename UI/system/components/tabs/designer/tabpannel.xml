@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="tabPanel" tag-type="rich" tag-name="div" icon="tabPanel.gif" text="页签" imitation="dhtmlXTabBar"
+		discriminate-condition="@component=/UI/system/components/tabs.xbl.xml#tabs" 
+	    binding-component="/UI/system/components/tabs.xbl.xml#tabs" display-property="id" 
+		component-class="TabPanel" 
+		component-type="layout-container" validator="ViewValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-discriptor-ref=""/>  
+			<property name="ref" text="引用"  editor-ref="dataRef" />	 
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog" use-default="true"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false"/>
+		</properties>
+		<templates>
+		   <template name="default"><![CDATA[ 
+		<xhtml:div component="/UI/system/components/tabs.xbl.xml#tabs" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui">
+			<xui:tab >
+				<xui:label>列表</xui:label>
+
+			</xui:tab>
+			<xui:tab>
+				<xui:label>详细</xui:label>
+			</xui:tab>
+		</xhtml:div>
+		   ]]></template>
+		</templates>
+ 
+		<toolbar>
+			<item text="添加tab" method="addTab"/>
+			<!--<item text="修改tab" method="modifyTab"/>
+			 <item text="删除tab" method="deleteTab"/> -->
+		</toolbar>
+	</element>
+	
+	<element name="tabPage" tag-name="tab" icon="tabPanel.gif" text="tab页面"  
+			 namespace="xui" namespace-uri="http://www.justep.com/xui" 
+			 component-class="TabPage" component-type="layout-container" >
+		<properties>
+			<property name="id" text="编号"  required="false"/>   
+			<property name="title" text="标题"  path="label/text()"/>
+			<property name="selected" text="初始化时是否选中"  editor-ref="booleanList" readonly="true" data-type="boolean"/>
+			<property name="ref" text="引用"  editor-ref="dataRef" />      
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false" data-type="boolean"/>
+			<property name="visable" text="显示" editor-ref="booleanList" default-value="true"/>
+		</properties>
+		<events>
+			<event name="xforms-select" display-name="onSelect" text="选中事件" />
+			<event name="xforms-deselect" display-name="onDeSelect" text="选中移出事件" />
+		</events>
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xui:tab xmlns:xui="http://www.justep.com/xui">
+				<xui:label>tab</xui:label>
+			</xui:tab>
+		   ]]></template> 
+		</templates>
+	</element>
+	
+	<element name="xuiLabel" tag-name="label" icon="label.gif" text="xui标签"  visible='false'
+			 namespace="xui" namespace-uri="http://www.justep.com/xui" 
+			 component-class="XuiLabel">
+ 
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xui:label xmlns:xui="http://www.justep.com/xui">
+			</xui:label>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

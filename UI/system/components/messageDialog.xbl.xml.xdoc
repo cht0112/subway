@@ -1,0 +1,142 @@
+/**
+	@name UI.messageDialog
+	@component /UI/system/components/messageDialog.xbl.xml#messageDialog
+	@class justep.System.showMessage
+	@description <b>[rich]</b>信息提示组件
+	@model UI
+	@example 
+	<b>JS代码示例：</b>
+	动态创建{@link UI.messageDialog#UI.messageDialog}
+	
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/messageDialog.xbl.xml#messageDialog" message="" img="" id="messageDialog1" title=""/>
+</xmp>
+*/
+
+/**
+	@name UI.messageDialog#UI.messageDialog
+	@function
+	@param {object} options 创建参数<br/>
+	<b>参数说明：</b>
+	<xmp>
+		"id" : 组件ID,
+		"title" : 标题,
+		"type" : 类型，取值范围：OK(0)：确认按钮、OKCancel(1)：确认取消按钮、YesNo(2)：是否按钮、YesNoCancel(3)：是否取消按钮,
+		"msg" : 提示信息,
+		"details" : 详细内容,
+		"img" : 显示的图标('info','error','question','right')，或者自定义的img url,
+		"width" : 宽度,
+		"height" : 高度,
+	</xmp>
+	@description 构造函数
+	@example
+	//动态创建
+	var options = {
+		id : '',
+		"title" : '',
+		"type" : 0		
+	}; 
+	var messageDialog = new justep.System.showMessage(options);
+	//参考：{@link messageDialog#open}
+	messageDialog.open({msg:'.......'});
+*/
+
+/**
+	@name UI.messageDialog#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/messageDialog.xbl.xml#messageDialog"
+*/
+
+/**
+	@name UI.messageDialog#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.messageDialog#title
+	@attribute
+	@description 标题
+*/
+
+/**
+	@name UI.messageDialog#message
+	@attribute
+	@description 提示信息
+*/
+
+/**
+	@name UI.messageDialog#details
+	@attribute
+	@description 详细信息，显示在详细区域的信息，当设置了详细信息将出现"详细"的连接
+*/
+
+/**
+	@name UI.messageDialog#img
+	@attribute
+	@description 显示图片<br/>
+	<b>取值范围：</b>
+	<xmp>
+	'info'： 信息提示图标,
+	'error'：错误提示图标,
+	'question'：询问提示图标,
+	'right'：确认提示图标,
+	自定义url，如：/UI/system/images/folder64.png
+	</xmp>
+*/
+
+/**
+	@name UI.messageDialog#type
+	@attribute
+	@description 类型 <br/>
+	<b>取值范围：</b>
+	<xmp>
+	OK(0)：确认按钮
+	OKCancel(1)：确认取消按钮
+	YesNo(2)：是否按钮
+	YesNoCancel(3)：是否取消按钮
+	</xmp>
+*/
+
+/**
+	@name UI.messageDialog#open
+	@function
+ 	@param {object} params <b>[required]</b>参数
+ 	<br/><b>参数说明：</b>
+ 	<xmp>
+	{
+		"msg" : 提示信息,
+		"type" : 类型，取值范围：OK(0)：确认按钮、OKCancel(1)：确认取消按钮、YesNo(2)：是否按钮、YesNoCancel(3)：是否取消按钮,
+		"details" : 详细信息,
+		"title" : 标题,
+		"img" : 显示的图标('info','error','question','right')，或者自定义的img url,
+		"width" : 宽度,
+		"height" : 高度,
+		"callback" : 回调函数，function(event)（对话框关闭后调用，返回关闭前点击的按钮标识）
+			event参数说明：
+			{
+				"status" : {string} 返回点击按钮返回值，取值返回：cancel、ok、no、yes
+			}
+	}
+ 	</xmp>
+	@description 打开信息对话框
+	@example
+	<xmp>
+	justep.xbl('message').open(
+		{
+			msg : "数据已修改，是否保存？",
+			title : '标题',
+			type ： 2,//显示是否按钮
+			callback : function(event){
+				alert('点击：'+event.status);
+			}
+		}
+	);		
+	</xmp>
+*/
+

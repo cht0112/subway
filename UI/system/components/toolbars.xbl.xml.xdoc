@@ -1,0 +1,30 @@
+/**
+	@name UI.toolbars
+	@component /UI/system/components/toolbars.xbl.xml#toolbars
+	@class
+	@model UI
+	@description <b>[rich]</b>工具栏容器组件，可以放：{@link navigatorBar}、{@link customBar}、{@link processBar}、{@link pageNavigator}等组件
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1">
+		<!-- 各种工具条 -->
+		...
+	</div>
+</xmp>
+*/
+
+/**
+	@name UI.toolbars#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/toolbars.xbl.xml#toolbars"
+*/
+
+/**
+	@name UI.toolbars#id
+	@attribute
+	@required
+	@description id标识
+*/

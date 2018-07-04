@@ -1,0 +1,144 @@
+/**
+	@name UI.attachmentImage2
+	@model UI
+	@component /UI/system/components/attachmentImage2.xbl.xml#attachmentImage2
+	@class XBL组件
+	@description <b>[rich]</b>图片组件
+	@example 
+		<xmp>
+			<xhtml:div component="/UI/system/components/attachmentImage2.xbl.xml#attachmentImage2"
+				id="attachmentImage2"
+				model="mainmodel"
+				ref="data('main')/sattachmentImage2"
+				runtime="html4"
+				sub-path="'bcb'"
+				limit-size=""
+				disabled="false"
+				stretch="true"
+				show-button="true">
+			</xhtml:div>	   		
+		</xmp>
+*/
+
+/**
+	@name UI.attachmentImage2#component
+	@property
+	@description <b>[attribute]</b><b>[required]</b>组件标识
+	@default "/UI/system/components/attachmentImage2.xbl.xml#attachmentImage2"
+*/
+
+/**
+	@name UI.attachmentImage2#id
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>id标识
+*/
+
+/**
+	@name UI.attachmentImage2#model
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>绑定图片的主数据所在model标识
+*/
+
+/**
+	@name UI.attachmentImage2#ref
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>数据引用
+*/
+/**
+	@name UI.attachmentImage2#runtime
+	@property 
+	@description <b>[attribute]</b><b>[required]</b>附件采用html4原生方案上传还是采用flash上传
+*/
+
+/**
+	@name UI.attachmentImage2#disabled
+	@property 
+	@description <b>[attribute]</b>图片上传删除按钮是否可用
+*/
+
+/**
+	@name UI.attachmentImage2#stretch
+	@property 
+	@description <b>[attribute]</b>图片是否拉伸
+*/
+
+/**
+	@name UI.attachmentImage2#limit__sub__size
+	@property 
+	@description <b>[attribute]</b>限制上传文件的大小
+*/
+
+/**
+	@name UI.attachmentImage2#show__sub__button
+	@property 
+	@description <b>[attribute]</b>是否显示按钮
+	@default "true"
+*/
+
+/**
+	@name UI.attachmentImage2#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.attachmentImage2#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.attachmentImage2#deleteattachmentImage2
+	@function
+	@description 删除图片
+	@returns void
+*/
+
+/**
+	@name UI.attachmentImage2#refresh
+	@function
+	@description 设置附件初始化并加载数据：justep.xbl('attachmentImage2_id').refresh();
+	@returns void
+*/
+
+/**
+	@name UI.attachmentImage2#setExtensionFilter
+	@function
+	@description 设置附件上传文件类型: justep.xbl('attachmentImage2_id').setExtensionFilter(extensionFilter);
+	@returns void
+*/
+
+/**
+	@name UI.attachmentImage2#onCreate
+	@event
+	@description <b>[回调型事件]</b>组件创建时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+
+/**
+	@name UI.attachmentImage2#onEditClick
+	@event
+	@description <b>[回调型事件]</b>组件点击修改按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+
+/**
+	@name UI.attachmentImage2#onDeleteClick
+	@event
+	@description <b>[回调型事件]</b>组件删除按钮时
+	@param event 它的结构如下:<br/>{"source":组件的js对象}
+*/
+/**
+	@name UI.attachmentImage2#onFileSelected
+	@event
+	@description <b>[回调型事件]</b>选完要上传的附件后，只在flash时候支持，html4不支持此事件
+	@param event 它的结构如下:<br/>
+	{	'cancel' : 是否取消事件,
+		'source' : 组件的js对象,
+		'fileList':选中要上传的文件数组,
+		'uploader':上传组件的js对象,
+		'fileNum':这个附件上总共的文件数（包含原来上传的和这次新选择要双传的）
+	}
+*/

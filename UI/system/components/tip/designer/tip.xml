@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="tip" tag-name="div" icon="info.gif" text="信息提示"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/tip.xbl.xml#tip"
+		display-property="id" component-class="Tip" component-type="formControl">
+
+		<properties>
+			<property name="id" text="编号" required="true" />bottom
+			<property name="display" text="显示位置" editor-ref="positionList" readonly="true" default-value="center" enum-values=""/>
+			<property name="display-style" text="显示样式" editor-ref="styleDialog" default-value="width:200px;height:20px;background-color:yellow"/>
+			<property name="time" text="显示时间(秒)" data-type="integer" default-value="2"/>
+
+		</properties>
+
+		<property-editors>
+			<property-editor name="positionList" type="list">
+				<static-data value="center,top,bottom,left,right,topleft,topright,bottomleft,bottomright"></static-data>
+			</property-editor>
+		</property-editors>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml"           
+					component="/UI/system/components/tip.xbl.xml#tip" display-style="width:200px;height:20px;background-color:yellow"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

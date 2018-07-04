@@ -1,0 +1,132 @@
+/**
+	@name UI.textarea
+	@class
+	@component textarea
+	@model UI
+	@description <b>[rich]</b>文本输入框、富文本编辑器
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<xforms:textarea ref=""/>		   		
+	</xmp>
+*/
+ 
+/**
+	@name UI.textarea#id
+	@attribute
+	@required
+	@description 唯一标识
+*/
+
+/**
+	@name UI.textarea#ref
+	@attribute
+	@required
+	@description 绑定引用
+*/
+
+/**
+	@name UI.textarea#mediatype
+	@attribute
+	@type boolean
+	@description 值为text/html时，展示为富文本编辑器
+*/
+
+/**
+	@name UI.textarea#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.textarea#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.textarea#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.textarea#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.textarea#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.textarea#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.textarea#readonly
+	@attribute
+	@description 只读
+*/
+
+/**
+	@name UI.textarea#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.textarea#setReadonly
+	@function
+	@param readonly {boolean} <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.textarea#disabled
+	@attribute
+	@description 禁用
+*/
+
+/**
+	@name UI.textarea#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.textarea#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.textarea#onChange
+	@event
+	@description <b>[回调事件]</b> 值改变
+*/
+
+/**
+	@name UI.textarea#onFocus
+	@event
+	@description <b>[回调事件]</b> 获得焦点
+*/
+
+/**
+	@name UI.textarea#onBlur
+	@event
+	@description <b>[回调事件]</b> 失去焦点
+*/
+

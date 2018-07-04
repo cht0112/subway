@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+	<default-config>
+		<sheet all="false" start="1" end="1"/>
+		<row all="false" start="2" />
+	</default-config>
+	<concept name="INDEX_SYSTEM_VALUE">
+		<primary-key>
+			<key-value cell-number="1"/>
+		</primary-key>
+		<relation name="iNDEXSYSTEMNO" cell-number="1" value-type="decimal"/>
+		<relation name="bUSINESSID" cell-number="16"/>
+		<relation name="iNDEXID" cell-number="3" value-type="decimal"/>
+		<relation name="aPPLYFOROBJECT" cell-number="14" value-type="decimal"/>
+		<relation name="aPPLYFORDEVICETYPE" cell-number="15" value-type="decimal"/>
+		<relation name="iNDEXVALUE" cell-number="5" />		
+		<relation name="iNDEXVALUEDESC" cell-number="6"/>	
+
+<!--		<has-relation relation="iNDEXVALUEDESC" size="10" required="true"> -->
+<!--      <label language="zh_CN">指标库序号</label> -->
+<!--    </has-relation>  -->
+<!--    <has-relation relation="bUSINESSID" size="5" required="true"> -->
+<!--      <label language="zh_CN">指标应用业务类型</label> -->
+<!--    </has-relation>  -->
+<!--    <has-relation relation="iNDEXID" size="5" required="true"> -->
+<!--      <label language="zh_CN">指标ID</label> -->
+<!--    </has-relation>  -->
+<!--    <has-relation relation="aPPLYFOROBJECT" size="5" required="true"> -->
+<!--      <label language="zh_CN">应用检测对象类型</label> -->
+<!--    </has-relation>  -->
+<!--    <has-relation relation="aPPLYFORDEVICETYPE" size="5" required="true"> -->
+<!--      <label language="zh_CN">应用检测对象</label> -->
+<!--    </has-relation>  -->
+<!--    <has-relation relation="iNDEXVALUE" size="200" required="true"> -->
+<!--      <label language="zh_CN">指标值公式</label> -->
+<!--    </has-relation>  -->
+<!--    <has-relation relation="iNDEXVALUEDESC" size="200" required="true"> -->
+<!--      <label language="zh_CN">指标值文字描述</label> -->
+<!--    </has-relation> -->
+		
+	</concept>
+</mapping>
+
+<!--
+		default-config: 导入默认参数
+			sheet：excel页
+				all：是否导入全部页
+				start：导入开始页
+				end：导入结束页
+			row：excel行
+				all：是否导入全部行
+				start：导入开始行
+				end：导入结束行
+		concept：数据映射
+			name：概念名称 
+	    	relation：关系
+	        	name： 关系名称
+	         	value-type：数据类型，需要转换成的数据类型，没有定义时取relation的类型。类型包括：string,integer,float,date,datetime,time,decimal,text
+	         	cell-number：关系在excel中对应的列号，从1开始。
+	         	date-pattern：数据转换格式，如excel中为文本类型，导入关系为日期类型时，可通过定义该属性设置转换规则，格式如："yyyy-MM-dd hh:mm:ss"
+	         
+	   	注意：
+	    	系统会读取excel单元格类型，当excel单元格的类型与所导入关系类型不一致时，需要通过定义 value-type或date-pattern属性进行格式转换。否则将造成导入失败的问题。
+-->

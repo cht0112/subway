@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates> 
+  <template name="ksql" text="KSQL查询语句" description="" type="java" model="BIZ;UI;mobileUI;"> 
+    <dialog class="com.justep.studio.common.template.views.KSQLDialog">
+    </dialog> 
+  </template>  
+  <template name="temp1314087844046" text="main" description="主函数" type="java" model="BIZ;UI;mobileUI;"> 
+    <template-content><![CDATA[public static void main(String[] args) {
+		
+}]]></template-content> 
+  </template>  
+  <template name="temp1314087965343" text="for" description="for循环" type="java"
+    model="BIZ;UI;mobileUI;"> 
+    <template-content><![CDATA[for (int i = 0; i < args.length; i++) {
+			
+}]]></template-content> 
+  </template>  
+  <template name="temp1314088111609" text="for" description="for循环" type="js" model="mobileUI;"> 
+    <template-content><![CDATA[for ( var i = 0; i < array.length; i++) {
+	
+}]]></template-content> 
+  </template>  
+  <template name="temp1314088330328" text="当前行" description="" type="css" model="UI;mobileUI;"> 
+    <template-content><![CDATA[tr.xui-grid-current td {
+   background-color: #FFC;
+}]]></template-content> 
+  </template>  
+  <template name="temp1314088364765" text="表头" description="" type="css" model="UI;mobileUI;"> 
+    <template-content><![CDATA[.xui-grid-head td{
+
+}]]></template-content> 
+  </template> 
+</templates>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="resource" tag-name="resource" icon="resource.gif" text="资源" display-property="id" design-view="web-designer"
+	component-class="Resource">
+		<properties>
+			<property name="id" text="编码" readonly="true"/>
+		</properties>
+		<toolbar>			
+			<item text="增加js引用" method="addJS"/>				
+			<item text="增加css引用" method="addCSS"/>
+		</toolbar>
+	</element>
+	
+	
+</elements>

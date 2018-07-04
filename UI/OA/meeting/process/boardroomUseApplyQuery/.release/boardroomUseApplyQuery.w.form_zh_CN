@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <script language="javascript" src="/UI/system/components/processChart/js/processChart.js">
+</script>      <script language="javascript" src="/UI/system/components/tabs/tabs.js">
+</script>      <link href="/UI/system/components/./tabs/tabs.css" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css"></style>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/UI/appCommon/js/appCommon.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/standardProcessQueryBar/js/standardProcessQueryBar.js">
+</script>      <script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js">
+</script>      <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/filter/js/filter.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/extDateFilter/js/extDateFilter.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/extOrgFilter/js/extOrgFilter.js">
+</script>      <style rel="stylesheet" type="text/css"></style>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/OA/meeting/process/boardroomUseApplyQuery/boardroomUseApplyQuery.js">
+</script>      <script src="/UI/system/components/windowDialog/FrameWindow.js">
+</script>      <link href="/UI/appCommon/css/common.css" rel="STYLESHEET" type="text/css"></link>      <script src="/UI/appCommon/js/appCommon.js" type="text/javascript">
+</script>      <script>
+new justep.XBizData('dApplyList',false,false,{'queryAction':"queryMTUSEAPPLYAction",'dataModel':"/OA/meeting/data",'concept':"{'OA_MT_UseApply':'OA_MT_UseApply'}",'limit':20,'idColumn':"{'name':'OA_MT_UseApply','relation':'OA_MT_UseApply','define':'OA_MT_UseApply','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"fApplyDeptName,fApplyPsnName,fApplyDate,fMeetName,fBoardroom,fBeginTime,fEndTime,fBizStateName",'updateMode':"whereVersion",'orderBys':"{'fApplyDate':0}",'defRelations':"{'version':{'type':'Integer','relation':'OA_MT_UseApply.version','define':'OA_MT_UseApply.version','label':'版本'},'fNO':{'type':'String','relation':'OA_MT_UseApply.fNO','define':'OA_MT_UseApply.fNO','label':'单据号'},'fApplyOgnID':{'type':'String','relation':'OA_MT_UseApply.fApplyOgnID','define':'OA_MT_UseApply.fApplyOgnID','label':'申请机构ID'},'fApplyOgnName':{'type':'String','relation':'OA_MT_UseApply.fApplyOgnName','define':'OA_MT_UseApply.fApplyOgnName','label':'申请机构'},'fApplyDeptName':{'type':'String','relation':'OA_MT_UseApply.fApplyDeptName','define':'OA_MT_UseApply.fApplyDeptName','label':'申请部门'},'fApplyPsnID':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnID','define':'OA_MT_UseApply.fApplyPsnID','label':'申请人员ID'},'fApplyPsnName':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnName','define':'OA_MT_UseApply.fApplyPsnName','label':'申请人员'},'fApplyPsnFID':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnFID','define':'OA_MT_UseApply.fApplyPsnFID','label':'申请人员FullID'},'fApplyPsnFName':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnFName','define':'OA_MT_UseApply.fApplyPsnFName','label':'申请人员FullName'},'fApplyDate':{'type':'DateTime','relation':'OA_MT_UseApply.fApplyDate','define':'OA_MT_UseApply.fApplyDate','label':'申请日期'},'fMeetName':{'type':'String','relation':'OA_MT_UseApply.fMeetName','define':'OA_MT_UseApply.fMeetName','label':'会议主题'},'fMeetPsns':{'type':'String','relation':'OA_MT_UseApply.fMeetPsns','define':'OA_MT_UseApply.fMeetPsns','label':'参会人员'},'fMeetPsnNum':{'type':'Integer','relation':'OA_MT_UseApply.fMeetPsnNum','define':'OA_MT_UseApply.fMeetPsnNum','label':'参会人数'},'fBoardroomID':{'type':'String','relation':'OA_MT_UseApply.fBoardroomID','define':'OA_MT_UseApply.fBoardroomID','label':'会议室ID'},'fBoardroom':{'type':'String','relation':'OA_MT_UseApply.fBoardroom','define':'OA_MT_UseApply.fBoardroom','label':'会议室'},'fBeginTime':{'type':'DateTime','relation':'OA_MT_UseApply.fBeginTime','define':'OA_MT_UseApply.fBeginTime','label':'开始时间'},'fEndTime':{'type':'DateTime','relation':'OA_MT_UseApply.fEndTime','define':'OA_MT_UseApply.fEndTime','label':'结束时间'},'fPhone':{'type':'String','relation':'OA_MT_UseApply.fPhone','define':'OA_MT_UseApply.fPhone','label':'电话'},'fDescription':{'type':'String','relation':'OA_MT_UseApply.fDescription','define':'OA_MT_UseApply.fDescription','label':'描述'},'fArrBoardroomID':{'type':'String','relation':'OA_MT_UseApply.fArrBoardroomID','define':'OA_MT_UseApply.fArrBoardroomID','label':'安排会议室ID'},'fArrBoardroom':{'type':'String','relation':'OA_MT_UseApply.fArrBoardroom','define':'OA_MT_UseApply.fArrBoardroom','label':'安排会议室'},'fArrBeginTime':{'type':'DateTime','relation':'OA_MT_UseApply.fArrBeginTime','define':'OA_MT_UseApply.fArrBeginTime','label':'安排开始时间'},'fArrEndTime':{'type':'DateTime','relation':'OA_MT_UseApply.fArrEndTime','define':'OA_MT_UseApply.fArrEndTime','label':'安排结束时间'},'fArrOgnID':{'type':'String','relation':'OA_MT_UseApply.fArrOgnID','define':'OA_MT_UseApply.fArrOgnID','label':'安排机构'},'fArrOgnName':{'type':'String','relation':'OA_MT_UseApply.fArrOgnName','define':'OA_MT_UseApply.fArrOgnName','label':'安排机构名称'},'fArrDeptID':{'type':'String','relation':'OA_MT_UseApply.fArrDeptID','define':'OA_MT_UseApply.fArrDeptID','label':'安排部门ID'},'fArrDeptName':{'type':'String','relation':'OA_MT_UseApply.fArrDeptName','define':'OA_MT_UseApply.fArrDeptName','label':'安排人'},'fArrPsnID':{'type':'String','relation':'OA_MT_UseApply.fArrPsnID','define':'OA_MT_UseApply.fArrPsnID','label':'安排人ID'},'fArrPsnName':{'type':'String','relation':'OA_MT_UseApply.fArrPsnName','define':'OA_MT_UseApply.fArrPsnName','label':'安排人'},'fArrPsnFID':{'type':'String','relation':'OA_MT_UseApply.fArrPsnFID','define':'OA_MT_UseApply.fArrPsnFID','label':'安排人FID'},'fArrPsnFName':{'type':'String','relation':'OA_MT_UseApply.fArrPsnFName','define':'OA_MT_UseApply.fArrPsnFName','label':'安排人FName'},'fArrTime':{'type':'DateTime','relation':'OA_MT_UseApply.fArrTime','define':'OA_MT_UseApply.fArrTime','label':'安排时间'},'fArrRemark':{'type':'String','relation':'OA_MT_UseApply.fArrRemark','define':'OA_MT_UseApply.fArrRemark','label':'安排备注'},'fBizState':{'type':'String','relation':'OA_MT_UseApply.fBizState','define':'OA_MT_UseApply.fBizState','label':'业务流程状态编码'},'fBizStateName':{'type':'String','relation':'OA_MT_UseApply.fBizStateName','define':'OA_MT_UseApply.fBizStateName','label':'状态'},'fCreateOgnID':{'type':'String','relation':'OA_MT_UseApply.fCreateOgnID','define':'OA_MT_UseApply.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_MT_UseApply.fCreateOgnName','define':'OA_MT_UseApply.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_MT_UseApply.fCreateDeptID','define':'OA_MT_UseApply.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_MT_UseApply.fCreateDeptName','define':'OA_MT_UseApply.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_MT_UseApply.fCreatePosID','define':'OA_MT_UseApply.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_MT_UseApply.fCreatePosName','define':'OA_MT_UseApply.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnID','define':'OA_MT_UseApply.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnName','define':'OA_MT_UseApply.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnFID','define':'OA_MT_UseApply.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnFName','define':'OA_MT_UseApply.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_MT_UseApply.fCreateTime','define':'OA_MT_UseApply.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_MT_UseApply.fUpdatePsnID','define':'OA_MT_UseApply.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_MT_UseApply.fUpdatePsnName','define':'OA_MT_UseApply.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_MT_UseApply.fUpdateTime','define':'OA_MT_UseApply.fUpdateTime','label':'修改时间'},'fRemark':{'type':'String','relation':'OA_MT_UseApply.fRemark','define':'OA_MT_UseApply.fRemark','label':'备注'},'fApplyDeptID':{'type':'String','relation':'OA_MT_UseApply.fApplyDeptID','define':'OA_MT_UseApply.fApplyDeptID','label':'申请部门ID'},'fCurrentActivities':{'type':'String','relation':'OA_MT_UseApply.fCurrentActivities','define':'OA_MT_UseApply.fCurrentActivities','label':'当前环节'},'fCurrentExecutors':{'type':'String','relation':'OA_MT_UseApply.fCurrentExecutors','define':'OA_MT_UseApply.fCurrentExecutors','label':'当前执行者'},'fOutPsns':{'type':'String','relation':'OA_MT_UseApply.fOutPsns','define':'OA_MT_UseApply.fOutPsns','label':'外部参会人员'},'fExtendStr1':{'type':'String','relation':'OA_MT_UseApply.fExtendStr1','define':'OA_MT_UseApply.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_MT_UseApply.fExtendStr2','define':'OA_MT_UseApply.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_MT_UseApply.fExtendStr3','define':'OA_MT_UseApply.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_MT_UseApply.fExtendStr4','define':'OA_MT_UseApply.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_MT_UseApply.fExtendStr5','define':'OA_MT_UseApply.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_MT_UseApply.fExtendStr6','define':'OA_MT_UseApply.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_MT_UseApply.fExtendStr7','define':'OA_MT_UseApply.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_MT_UseApply.fExtendStr8','define':'OA_MT_UseApply.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_MT_UseApply.fExtendStr9','define':'OA_MT_UseApply.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate1','define':'OA_MT_UseApply.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate2','define':'OA_MT_UseApply.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate3','define':'OA_MT_UseApply.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate4','define':'OA_MT_UseApply.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate5','define':'OA_MT_UseApply.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum1','define':'OA_MT_UseApply.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum2','define':'OA_MT_UseApply.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum3','define':'OA_MT_UseApply.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum4','define':'OA_MT_UseApply.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum5','define':'OA_MT_UseApply.fExtendNum5','label':'扩展字段'}}"},'dApplyList_part',{});</script>  
+    <script>
+new justep.XCommonData('dStatus',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('dFilter',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XBizData('dBoardroom',true,false,{'queryAction':"queryMTBOARDROOMAction",'dataModel':"/OA/meeting/data",'concept':"{'OA_MT_Boardroom':'OA_MT_Boardroom'}",'limit':20,'idColumn':"{'name':'OA_MT_Boardroom','relation':'OA_MT_Boardroom','define':'OA_MT_Boardroom','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fCode':1}",'defRelations':"{'version':{'type':'Integer','relation':'OA_MT_Boardroom.version','define':'OA_MT_Boardroom.version','label':'版本'},'fType':{'type':'String','relation':'OA_MT_Boardroom.fType','define':'OA_MT_Boardroom.fType','label':'会议室类型'},'fHoldNum':{'type':'Integer','relation':'OA_MT_Boardroom.fHoldNum','define':'OA_MT_Boardroom.fHoldNum','label':'容纳人数'},'fUse':{'type':'String','relation':'OA_MT_Boardroom.fUse','define':'OA_MT_Boardroom.fUse','label':'主要用途'},'fFloor':{'type':'String','relation':'OA_MT_Boardroom.fFloor','define':'OA_MT_Boardroom.fFloor','label':'所在楼层'},'fBaseConfig':{'type':'String','relation':'OA_MT_Boardroom.fBaseConfig','define':'OA_MT_Boardroom.fBaseConfig','label':'基础配置'},'fEquipment':{'type':'String','relation':'OA_MT_Boardroom.fEquipment','define':'OA_MT_Boardroom.fEquipment','label':'附属设备'},'fDescription':{'type':'String','relation':'OA_MT_Boardroom.fDescription','define':'OA_MT_Boardroom.fDescription','label':'描述'},'fPicture':{'type':'String','relation':'OA_MT_Boardroom.fPicture','define':'OA_MT_Boardroom.fPicture','label':'图片'},'fUseStatus':{'type':'String','relation':'OA_MT_Boardroom.fUseStatus','define':'OA_MT_Boardroom.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_MT_Boardroom.fUseStatusName','define':'OA_MT_Boardroom.fUseStatusName','label':'启用标识'},'fDuptOgnID':{'type':'String','relation':'OA_MT_Boardroom.fDuptOgnID','define':'OA_MT_Boardroom.fDuptOgnID','label':'所属机构ID'},'fDuptOgnName':{'type':'String','relation':'OA_MT_Boardroom.fDuptOgnName','define':'OA_MT_Boardroom.fDuptOgnName','label':'所属机构'},'fDuptOgnFID':{'type':'String','relation':'OA_MT_Boardroom.fDuptOgnFID','define':'OA_MT_Boardroom.fDuptOgnFID','label':'责任机构FID'},'fDutyDeptID':{'type':'String','relation':'OA_MT_Boardroom.fDutyDeptID','define':'OA_MT_Boardroom.fDutyDeptID','label':'责任部门ID'},'fDutyDeptName':{'type':'String','relation':'OA_MT_Boardroom.fDutyDeptName','define':'OA_MT_Boardroom.fDutyDeptName','label':'责任部门'},'fDutyPsnID':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnID','define':'OA_MT_Boardroom.fDutyPsnID','label':'责任人'},'fDutyPsnName':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnName','define':'OA_MT_Boardroom.fDutyPsnName','label':'责任人姓名'},'fDutyPsnFID':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnFID','define':'OA_MT_Boardroom.fDutyPsnFID','label':'责任人全路径'},'fDutyPsnFName':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnFName','define':'OA_MT_Boardroom.fDutyPsnFName','label':'责任人完整姓名'},'fCreateOgnID':{'type':'String','relation':'OA_MT_Boardroom.fCreateOgnID','define':'OA_MT_Boardroom.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_MT_Boardroom.fCreateOgnName','define':'OA_MT_Boardroom.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_MT_Boardroom.fCreateDeptID','define':'OA_MT_Boardroom.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_MT_Boardroom.fCreateDeptName','define':'OA_MT_Boardroom.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_MT_Boardroom.fCreatePosID','define':'OA_MT_Boardroom.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_MT_Boardroom.fCreatePosName','define':'OA_MT_Boardroom.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnID','define':'OA_MT_Boardroom.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnName','define':'OA_MT_Boardroom.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnFID','define':'OA_MT_Boardroom.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnFName','define':'OA_MT_Boardroom.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_MT_Boardroom.fCreateTime','define':'OA_MT_Boardroom.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_MT_Boardroom.fUpdatePsnID','define':'OA_MT_Boardroom.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_MT_Boardroom.fUpdatePsnName','define':'OA_MT_Boardroom.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_MT_Boardroom.fUpdateTime','define':'OA_MT_Boardroom.fUpdateTime','label':'修改时间'},'fDisUseTime':{'type':'DateTime','relation':'OA_MT_Boardroom.fDisUseTime','define':'OA_MT_Boardroom.fDisUseTime','label':'停用时间'},'fAddress':{'type':'String','relation':'OA_MT_Boardroom.fAddress','define':'OA_MT_Boardroom.fAddress','label':'地址'},'fCode':{'type':'String','relation':'OA_MT_Boardroom.fCode','define':'OA_MT_Boardroom.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_MT_Boardroom.fName','define':'OA_MT_Boardroom.fName','label':'名称'},'fRemark':{'type':'String','relation':'OA_MT_Boardroom.fRemark','define':'OA_MT_Boardroom.fRemark','label':'备注'},'fExtendStr1':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr1','define':'OA_MT_Boardroom.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr2','define':'OA_MT_Boardroom.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr3','define':'OA_MT_Boardroom.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr4','define':'OA_MT_Boardroom.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr5','define':'OA_MT_Boardroom.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr6','define':'OA_MT_Boardroom.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr7','define':'OA_MT_Boardroom.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr8','define':'OA_MT_Boardroom.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr9','define':'OA_MT_Boardroom.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate1','define':'OA_MT_Boardroom.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate2','define':'OA_MT_Boardroom.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate3','define':'OA_MT_Boardroom.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate4','define':'OA_MT_Boardroom.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate5','define':'OA_MT_Boardroom.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum1','define':'OA_MT_Boardroom.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum2','define':'OA_MT_Boardroom.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum3','define':'OA_MT_Boardroom.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum4','define':'OA_MT_Boardroom.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum5','define':'OA_MT_Boardroom.fExtendNum5','label':'扩展字段'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_bizStateFilter_data_910146252',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_dateFilter_data_1224423119',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_orgFilter_data_783303227',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XBizData('standardProcessQueryBar_orgFilter_orgData_783303227',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'_valid_state_filter_':'SA_OPOrg.sValidState = 1'}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'1=1','nodeKindRelation':'sNodeKind'}"},'standardProcessQueryBar_orgFilter_orgData_783303227_part',{});</script>  
+    <script>
+new justep.XCommonData('gridFilter_data_6921718',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter"] = _xbl_JSClassDefine_extOrgFilter;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"] = _xbl_JSClassDefine_bizDataFilterPattern;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+justep.XBLObject._classes["/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter"] = _xbl_JSClassDefine_extDateFilter;
+justep.XBLObject._classes["/UI/system/components/processChart.xbl.xml#processPertChart"] = _xbl_JSClassDefine_processPertChart;
+justep.XBLObject._classes["/UI/system/components/processChart.xbl.xml#processChart"] = _xbl_JSClassDefine_processChart;
+justep.XBLObject._classes["/UI/appCommon/components/filter.xbl.xml#gridFilter"] = _xbl_JSClassDefine_gridFilter;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/tabs.xbl.xml#tabs"] = _xbl_JSClassDefine_tabs;
+justep.XBLObject._classes["/UI/system/components/menu.xbl.xml#menu"] = _xbl_JSClassDefine_menu;
+justep.XBLObject._classes["/UI/system/components/tableLayout.xbl.xml#tableLayout"] = _xbl_JSClassDefine_tableLayout;
+justep.XBLObject._classes["/UI/system/components/processChart.xbl.xml#processTrackChart"] = _xbl_JSClassDefine_processTrackChart;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"] = _xbl_JSClassDefine_bizDataFilterDialog;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_extOrgFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_extOrgFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ExtOrgFilter(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_bizDataFilterPattern(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterPattern.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var menuEl = this.getElementByXblID("filter-pattern-menu");
+				this.menuId = $(menuEl).firstElement().getAttribute("menu-id");
+				var dialogEl = this.getElementByXblID("filter-pattern-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-pattern-dialog-iframe");
+				this.iframeId = frameEl.getAttribute("name");
+			},
+			"show": function(data, controlId, filterDlgId) {
+				if (typeof(data) == "string") {
+					data = justep.xbl(data);
+				}
+				if (data) {
+					if (typeof(data.advanceFilter) != "undefined") {
+						var frameEl = document.getElementById(this.iframeId);
+						if (frameEl) {
+							frameEl.dialogId = this.dialogId;
+							frameEl.currData = data;
+							frameEl.advanceFilter = data.advanceFilter.getFilter();
+							showFilterPatternMenu(data, this.menuId, controlId, filterDlgId);
+						}
+					}
+				}
+			}
+		}));
+
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.rootEl = $("#" + id + " &gt; div");
+			   	this.topEl = $("#" + id + " &gt; div &gt; " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " &gt; div &gt; " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " &gt; div &gt; " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " &gt; div &gt; " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " &gt; div &gt; " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " &gt; div &gt; " + baseCls + "border-bottom");
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" &gt;.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+function _xbl_JSClassDefine_extDateFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_extDateFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ExtDateFilter(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_processPertChart(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_processPertChart.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_task" : null,
+				"_p" : null,
+				"_pi" : null,
+				"_bizData" : null,
+				"load" : function(){
+					var task = justep.Context.getTask();
+					if (task != null){
+						this.loadByTask(task);
+					}else{
+						var process = justep.Context.getCurrentProcess();
+						this.loadByData(process, null);
+					}
+				},
+				"loadByTask" : function(task){
+					if (task != this._task){
+						this._task = task;
+						this.__load(null, null, null, task);
+					}
+				},
+				"loadByPI" : function(pi){
+					if (pi != this._pi){
+						this._pi = pi;
+						this.__load(null, null, pi, null);
+					}
+				},
+				"loadByData" : function(p, bizData){
+					if ((p != this._p) || (bizData != this._bizData)){
+						this._p = p;
+						this._bizData = bizData;
+						this.__load(bizData, p, null, null);
+					}
+				},
+				"__load": function(bizData, p, pi, task) {
+					var ext = this.domNode.getAttribute('ext');
+					var processChartData = createActionStringAndExecuteActionGetFlowTrack(bizData, p, pi, task, ext);
+					this.__loadByChartData(processChartData);
+				},
+				"__loadByChartData": function(chartData) {
+					var interface = this.getElementByXblID("interface");
+					var onClick = this.domNode.getAttribute('onPertItemClick');
+					if (onClick &amp;&amp; (onClick!='')){
+						onClick = justep.Function.get(onClick);
+					}
+					__wfLoadBot(interface.getAttribute('chartControlID'), chartData, onClick);
+				}
+			}));
+
+function _xbl_JSClassDefine_processChart(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_processChart.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_task" : null,
+				"_p" : null,
+				"_pi" : null,
+				"_bizData" : null,
+				"_chartData" : null,
+				"_botLoaded" : false,
+				"load" : function(){
+					var task = justep.Context.getTask();
+					if (task != null){
+						this.loadByTask(task);
+					}else{
+						var process = justep.Context.getCurrentProcess();
+						this.loadByData(process, null);
+					}
+				},
+				"loadByTask" : function(task){
+					if (task != this._task){
+						this._task = task;
+						this.__load(null, null, null, task);
+					}
+				},
+				"loadByPI" : function(pi){
+					if (pi != this._pi){
+						this._pi = pi;
+						this.__load(null, null, pi, null);
+					}
+				},
+				"loadByData" : function(p, bizData){
+					if ((p != this._p) || (bizData != this._bizData)){
+						this._p = p;
+						this._bizData = bizData;
+						this.__load(bizData, p, null, null);
+					}
+				},
+				"__load": function(bizData, p, pi, task) {
+					var ext = this.domNode.getAttribute('ext');
+					this._chartData = createActionStringAndExecuteActionGetFlowTrack(bizData, p, pi, task, ext);
+					var interface = this.getElementByXblID("interface");
+					justep.xbl(interface.getAttribute('trackID')).__loadByChartData(this._chartData);
+					justep.xbl(interface.getAttribute('pertID')).__loadByChartData(this._chartData);
+				}, 
+				"__loadBot" : function(){
+					if (this._botLoaded == false){
+						this._botLoaded = true;
+						var interface = this.getElementByXblID("interface");
+						justep.xbl(interface.getAttribute('pertID')).__loadByChartData(this._chartData);
+					}
+				}
+			}));
+
+function _xbl_JSClassDefine_gridFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_gridFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.GridFilter(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_tabs(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tabs.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.tabbar = new justep.JSTabbar(this.domNode.id);
+				justep.Utils.proxable(this, this.tabbar, justep.JSTabbar);
+			}
+		}));
+
+function _xbl_JSClassDefine_menu(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_menu.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_id": null,
+				"_itemsets": null,
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len &gt; i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+				}
+			}));
+
+function _xbl_JSClassDefine_tableLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tableLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.trs = $("&gt;tbody tr", this.el);
+			   	this.spacing = this._getSpace();
+			   	/*为了兼容ie789, cellpadding都强设为0*/
+			   	this.el.attr("cellpadding", "0");
+			   	$("&gt;tbody&gt;tr&gt;td", this.el).css("padding", "0");
+			   	this.padding = this._getPadding();
+		   		this.onWindowResize();
+			},
+			_getSpace : function(){
+				/*默认2是为了解决ie下无法获得默认值的问题*/
+				var spacing = this.el.attr("cellspacing") || (!justep.Browser.IE?this.el.css("border-spacing"):null) || "2px";
+			   	spacing = spacing.split(" ");
+			   	return parseInt(spacing[1] || spacing[0]) || 0;  
+			},
+			_getPadding : function(){
+				/*默认是为了解决ie下无法获得默认值的问题，ie7默认是2px,ie89默认是1px*/
+				var ret = parseInt(this.el.attr("cellpadding"));
+				return ret || (ret===0 ? 0 : (justep.Browser.IE7 ? "2" : "1")); 
+			},
+			onWindowResize : function(){
+				if(!justep.Browser.IE){
+					$("&gt;tbody &gt;tr", this.el).each(function(index, tr){
+						var td = $(tr.children[0]);
+						tr = $(tr);
+						var h = tr.attr('height') || tr.get(0).style["height"],
+							hd = td.attr('height') || td.get(0).style["height"];
+						if((h == null || h == '') &amp;&amp; (hd == null || hd == '')){
+							td.get(0).height = '100%';
+							td.get(0).style["height"] = '100%';
+						}
+					});
+					return;
+				}	
+				var el = this.el;
+				if(el.parent().get(0).tagName.toLowerCase()=="td"){
+					el = el.parent();
+				}
+				var h = el.height(),that = this,
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).height || tr.get(0).style["height"],
+						hd = td.get(0).height || td.get(0).style["height"];
+					/*为了兼容已有应用*/ 
+					if(h=='100%') {
+						h=null;
+						tr.get(0).height = null;
+						tr.get(0).style["height"] = null;
+					}
+					if(hd=='100%') {
+						hd=null;
+						td.get(0).height = null;
+						td.get(0).style["height"] = null;
+					}
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						var mh = Math.max(
+							parseInt(tr.get(0).height)||0,
+							parseInt(tr.get(0).style["height"])||0,
+							(parseInt(td.get(0).height) + that.padding*2)||0,
+							(parseInt(td.get(0).style["height"]) + that.padding*2)||0
+						);
+						b += mh;
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));/*这是防止td被内容撑开*/
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					if(a[0].get(0).children[0]){
+						/*第一个td*/
+						var mh = h-b-this.padding*2; 
+						a[0].get(0).children[0].setAttribute("height", (h-b-this.padding*2)+"px");
+						var td = $(a[0].get(0).children[0]);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			},   	
+			resize2 : function(){
+				var h = this.el.parent().height(),that = this,
+					w = this.el.parent().width(),
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.el.width(w);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).style["height"] || tr.attr('height'),
+						hd = td.get(0).style["height"] || tr.attr('height');
+					/*为了兼容已有应用*/ 
+					if(h=='100%') h=null;
+					if(hd=='100%') hd=null;
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						b += tr.outerHeight();
+						/*这是防止td被内容撑开*/
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(td.height()));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(td.height());
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					/*第一个td*/
+					var td;
+					if(td = a[0].get(0).children[0]){
+						var mh = h-b-this.padding*2; 
+						td.setAttribute("height", mh+"px");
+						td = $(td);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			}   	
+		}));
+
+function _xbl_JSClassDefine_processTrackChart(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_processTrackChart.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_task" : null,
+				"_p" : null,
+				"_pi" : null,
+				"_bizData" : null,
+				"load" : function(){
+					var task = justep.Context.getTask();
+					if (task != null){
+						this.loadByTask(task);
+					}else{
+						var process = justep.Context.getCurrentProcess();
+						this.loadByData(process, null);
+					}
+				},
+				"loadByTask" : function(task){
+					if (task != this._task){
+						this._task = task;
+						this.__load(null, null, null, task);
+					}
+				},
+				"loadByPI" : function(pi){
+					if (pi != this._pi){
+						this._pi = pi;
+						this.__load(null, null, pi, null);
+					}
+				},
+				"loadByData" : function(p, bizData){
+					if ((p != this._p) || (bizData != this._bizData)){
+						this._p = p;
+						this._bizData = bizData;
+						this.__load(bizData, p, null, null);
+					}
+				},
+				"__load": function(bizData, p, pi, task) {
+					var ext = this.domNode.getAttribute('ext');
+					var processChartData = createActionStringAndExecuteActionGetFlowTrack(bizData, p, pi, task, ext);
+					this.__loadByChartData(processChartData);
+				},
+				"__loadByChartData": function(chartData) {
+					var interface = this.getElementByXblID("interface");
+					var onClick = this.domNode.getAttribute('onTrackItemClick');
+					if (onClick &amp;&amp; (onClick!='')){
+						onClick = justep.Function.get(onClick);
+					}
+					__wfLoadTrack(interface.getAttribute('chartControlID'), chartData, onClick);
+				},
+				"getSelectedActivities" : function(){
+					var ret = [];
+					var interface = this.getElementByXblID("interface");
+					var canvas = JustepFlowTrack[interface.getAttribute('chartControlID')];
+					var selections = canvas.selections;
+					for(var id in selections){
+						if((selections[id].type!='Connection')&amp;&amp;(typeof selections[id].type!='undefined')){
+							var activity = canvas.modelData.processMainData[id];
+							ret.push(activity);
+						}
+					}
+					return ret;
+				},
+				"getTrackCanvas" : function(){
+					var ret = [];
+					var interface = this.getElementByXblID("interface");
+					var canvas = JustepFlowTrack[interface.getAttribute('chartControlID')];
+					return canvas;
+				}
+			}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];	if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";	group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+function _xbl_JSClassDefine_bizDataFilterDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var dialogEl = this.getElementByXblID("filter-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-dialog-iframe");
+				this.iframeId = frameEl.id;
+			},
+			"show": function(data, callBack) {
+				var filterData = data;
+				if (typeof(filterData) == "string") {
+					filterData = justep.xbl(filterData);
+				}
+				if (filterData) {
+					if (typeof(filterData.advanceFilter) != "undefined") {
+						var dialog = xforms(this.dialogId);
+						if(dialog) {
+							var frameEl = justep(this.iframeId);
+							if (frameEl) {
+								frameEl.dialogId = this.dialogId;
+								frameEl.filterData = filterData;
+								frameEl.callBack = callBack;
+								dialog.open();
+								return true;
+							}
+						}
+					}
+				}
+				return false;
+			}
+		}));
+
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		}));
+
+	var ids=[{id:'3f0139614a5143778d7d111d27cb07c0', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'table1', name:'/UI/system/components/tableLayout.xbl.xml#tableLayout', children:[{id:'tbrApplyList', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'4622009cddb94920b227e0537d206a7a', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'},{id:'standardProcessQueryBar_bizStateFilter', name:'/UI/appCommon/components/filter.xbl.xml#gridFilter', children:[{id:'standardProcessQueryBar_bizStateFilter_select_910146252', name:'xforms:gridselect', children:[{id:'f4b12e26927b4bfda306150fc234ad7e', name:'xforms:value'},{id:'2c3d559c17f54ce0b2674be70b3373a3', name:'xforms:label'}]},{id:'standardProcessQueryBar_bizStateFilter_defaultValue_910146252', name:'xforms:output'}]},{id:'standardProcessQueryBar_dateFilter', name:'/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter', children:[{id:'standardProcessQueryBar_dateFilter_select_1224423119', name:'xforms:gridselect1', children:[{id:'b7eb725455f345f6b7beaac1ef363923', name:'xforms:value'},{id:'7aeae9dc288649d8b2140033e770b7e4', name:'xforms:label'}]},{id:'standardProcessQueryBar_dateFilter_dialog_1224423119', name:'xforms:dialog', children:[{id:'d7c861f459044e21881e5be18ef1123a', name:'xforms:input'},{id:'233aba09d96e4a0b81ab561e565b2243', name:'xforms:input'}]}]},{id:'standardProcessQueryBar_orgFilter', name:'/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter', children:[{id:'standardProcessQueryBar_orgFilter_manageTypeCodes_783303227', name:'xforms:output'},{id:'standardProcessQueryBar_orgFilter_select_783303227', name:'xforms:treeselect', children:[{id:'828be88375b34022b97d42dc024dd711', name:'xforms:label'},{id:'3859ab5a007c452996c174a8e09aae84', name:'xforms:value'}]}]}]},{id:'grdApply', name:'xforms:grid'}]},{id:'filter-dialog-f106d167-c8fd-4212-8cfc-ecbea543d0af', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_N2103240998', name:'xforms:dialog'}]},{id:'filter-pattern-5f1cb499-8e57-4a6d-831c-468fac78138c', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'b9a6642c613a49f2adcd831b628576f1', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_1752184955', name:'xforms:menu'}]},{id:'GLOBAL_ID_1546637340', name:'xforms:dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'standardProcessQueryBar_bizStateFilter_select_910146252');xf._a('standardProcessQueryBar_bizStateFilter_select_910146252','2c3d559c17f54ce0b2674be70b3373a3');xf._a('standardProcessQueryBar_bizStateFilter_select_910146252','xf-itemset-0');xf._a(null,'standardProcessQueryBar_bizStateFilter_defaultValue_910146252');xf._a(null,'standardProcessQueryBar_dateFilter_select_1224423119');xf._a('standardProcessQueryBar_dateFilter_select_1224423119','7aeae9dc288649d8b2140033e770b7e4');xf._a('standardProcessQueryBar_dateFilter_select_1224423119','xf-itemset-1');xf._a(null,'d7c861f459044e21881e5be18ef1123a');xf._a(null,'233aba09d96e4a0b81ab561e565b2243');xf._a(null,'standardProcessQueryBar_orgFilter_manageTypeCodes_783303227');xf._a(null,'standardProcessQueryBar_orgFilter_select_783303227');xf._a('standardProcessQueryBar_orgFilter_select_783303227','828be88375b34022b97d42dc024dd711');xf._a('standardProcessQueryBar_orgFilter_select_783303227','xf-itemset-2');xf._a(null,'grdApply');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dApplyList')",xf._f('instance',xf._i("dApplyList")));	
+xf._b("true()",xf._f('true'));	
+xf._b("instance('dApplyList')/version",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dApplyList')/fApplyDate",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fApplyDate')))));	
+xf._b("instance('dApplyList')/fMeetPsnNum",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fMeetPsnNum')))));	
+xf._b("instance('dApplyList')/fBeginTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fBeginTime')))));	
+xf._b("instance('dApplyList')/fEndTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fEndTime')))));	
+xf._b("instance('dApplyList')/fArrBeginTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fArrBeginTime')))));	
+xf._b("instance('dApplyList')/fArrEndTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fArrEndTime')))));	
+xf._b("instance('dApplyList')/fArrTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fArrTime')))));	
+xf._b("instance('dApplyList')/fCreateTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dApplyList')/fUpdateTime",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dApplyList')/fExtendDate1",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendDate1')))));	
+xf._b("instance('dApplyList')/fExtendDate2",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendDate2')))));	
+xf._b("instance('dApplyList')/fExtendDate3",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendDate3')))));	
+xf._b("instance('dApplyList')/fExtendDate4",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendDate4')))));	
+xf._b("instance('dApplyList')/fExtendDate5",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendDate5')))));	
+xf._b("instance('dApplyList')/fExtendNum1",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendNum1')))));	
+xf._b("instance('dApplyList')/fExtendNum2",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendNum2')))));	
+xf._b("instance('dApplyList')/fExtendNum3",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendNum3')))));	
+xf._b("instance('dApplyList')/fExtendNum4",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendNum4')))));	
+xf._b("instance('dApplyList')/fExtendNum5",xf._g(xf._f('instance',xf._i("dApplyList")),xf._h(false, xf._k("child",xf._j('','fExtendNum5')))));	
+xf._b("instance('dBoardroom')/version",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dBoardroom')/fHoldNum",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fHoldNum')))));	
+xf._b("instance('dBoardroom')/fCreateTime",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dBoardroom')/fUpdateTime",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dBoardroom')/fDisUseTime",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fDisUseTime')))));	
+xf._b("instance('dBoardroom')/fExtendDate1",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendDate1')))));	
+xf._b("instance('dBoardroom')/fExtendDate2",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendDate2')))));	
+xf._b("instance('dBoardroom')/fExtendDate3",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendDate3')))));	
+xf._b("instance('dBoardroom')/fExtendDate4",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendDate4')))));	
+xf._b("instance('dBoardroom')/fExtendDate5",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendDate5')))));	
+xf._b("instance('dBoardroom')/fExtendNum1",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendNum1')))));	
+xf._b("instance('dBoardroom')/fExtendNum2",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendNum2')))));	
+xf._b("instance('dBoardroom')/fExtendNum3",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendNum3')))));	
+xf._b("instance('dBoardroom')/fExtendNum4",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendNum4')))));	
+xf._b("instance('dBoardroom')/fExtendNum5",xf._g(xf._f('instance',xf._i("dBoardroom")),xf._h(false, xf._k("child",xf._j('','fExtendNum5')))));	
+xf._b("instance('standardProcessQueryBar_bizStateFilter_data_910146252')/value",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_bizStateFilter_data_910146252")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('standardProcessQueryBar_bizStateFilter_data_910146252')/label",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_bizStateFilter_data_910146252")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("'编辑中,处理中,已完成'",xf._i("编辑中,处理中,已完成"));	
+xf._b("'全部'",xf._i("全部"));	
+xf._b("rowid",xf._h(false, xf._k("child",xf._j('','rowid'))));	
+xf._b("label",xf._h(false, xf._k("child",xf._j('','label'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))),'','');	
+xf._b("'bsEditing,bsExecuting,bsFinished'",xf._i("bsEditing,bsExecuting,bsFinished"));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_1224423119')/beginDate",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_1224423119")),xf._h(false, xf._k("child",xf._j('','beginDate')))));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_1224423119')/endDate",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_1224423119")),xf._h(false, xf._k("child",xf._j('','endDate')))));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_1224423119')/value",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_1224423119")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_1224423119')/label",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_1224423119")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')",xf._f('call',xf._i("appCommon.component.StandardProcessQueryBar.getManageTypeCodes")));	
+xf._b("instance('standardProcessQueryBar_orgFilter_orgData_783303227')/sValidState",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_orgFilter_orgData_783303227")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('standardProcessQueryBar_orgFilter_data_783303227')/value",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_orgFilter_data_783303227")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('standardProcessQueryBar_orgFilter_data_783303227')/label",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_orgFilter_data_783303227")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("'本人'",xf._i("本人"));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xf._b("sFID",xf._h(false, xf._k("child",xf._j('','sFID'))));	
+xf._b("sOrgKindID",xf._h(false, xf._k("child",xf._j('','sOrgKindID'))));	
+xf._b("sCode",xf._h(false, xf._k("child",xf._j('','sCode'))));	
+xf._b("sLongName",xf._h(false, xf._k("child",xf._j('','sLongName'))));	
+xf._b("sFName",xf._h(false, xf._k("child",xf._j('','sFName'))));	
+xf._b("sFCode",xf._h(false, xf._k("child",xf._j('','sFCode'))));	
+xf._b("sParent",xf._h(false, xf._k("child",xf._j('','sParent'))));	
+xf._b("sNodeKind",xf._h(false, xf._k("child",xf._j('','sNodeKind'))));	
+xf._b("sValidState",xf._h(false, xf._k("child",xf._j('','sValidState'))));	
+xf._b("sPersonID",xf._h(false, xf._k("child",xf._j('','sPersonID'))));	
+xf._b("recNo",xf._h(false, xf._k("child",xf._j('','recNo'))));	
+xf._b("fBizStateName",xf._h(false, xf._k("child",xf._j('','fBizStateName'))));	
+xf._b("fApplyDeptName",xf._h(false, xf._k("child",xf._j('','fApplyDeptName'))));	
+xf._b("fApplyPsnName",xf._h(false, xf._k("child",xf._j('','fApplyPsnName'))));	
+xf._b("fApplyDate",xf._h(false, xf._k("child",xf._j('','fApplyDate'))));	
+xf._b("fMeetName",xf._h(false, xf._k("child",xf._j('','fMeetName'))));	
+xf._b("fBoardroom",xf._h(false, xf._k("child",xf._j('','fBoardroom'))));	
+xf._b("fBeginTime",xf._h(false, xf._k("child",xf._j('','fBeginTime'))));	
+xf._b("fEndTime",xf._h(false, xf._k("child",xf._j('','fEndTime'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('dateTime', 'null');xforms.Schema.registerPrefix('html', 'null');var xf_model_mdMain = new xforms.XFModel('mdMain',null);	
+new xforms.XFInstance2('dStatus','mdMain',null,'&lt;rows&gt;&lt;row&gt;&lt;cell&gt;编辑中&lt;/cell&gt;&lt;cell&gt;bsEditing&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;待办中&lt;/cell&gt;&lt;cell&gt;bsWaiting&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;流转中&lt;/cell&gt;&lt;cell&gt;bsFlowing&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;已完成&lt;/cell&gt;&lt;cell&gt;bsFinished&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;已终止&lt;/cell&gt;&lt;cell&gt;bsAbort&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('dStatus','label,value');	
+new xforms.XFInstance2('dFilter','mdMain',null,'&lt;rows&gt;&lt;row&gt;&lt;cell&gt;&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;cell&gt;bsFinished&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('dFilter','person,keyword,roomIDs,status');	
+new xforms.XFInstance2('dBoardroom','mdMain',null,null,null,null,null,null,null,null,null,null,'whereVersion');	
+xf._c('xf-bind-21','mdMain',"instance('dBoardroom')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-22','mdMain',"instance('dBoardroom')/fHoldNum","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-23','mdMain',"instance('dBoardroom')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-24','mdMain',"instance('dBoardroom')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-25','mdMain',"instance('dBoardroom')/fDisUseTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-26','mdMain',"instance('dBoardroom')/fExtendDate1","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-27','mdMain',"instance('dBoardroom')/fExtendDate2","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-28','mdMain',"instance('dBoardroom')/fExtendDate3","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-29','mdMain',"instance('dBoardroom')/fExtendDate4","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-30','mdMain',"instance('dBoardroom')/fExtendDate5","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-31','mdMain',"instance('dBoardroom')/fExtendNum1","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-32','mdMain',"instance('dBoardroom')/fExtendNum2","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-33','mdMain',"instance('dBoardroom')/fExtendNum3","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-34','mdMain',"instance('dBoardroom')/fExtendNum4","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-35','mdMain',"instance('dBoardroom')/fExtendNum5","xsd:float",null,null,null,null,null,null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mdMainxforms_model_construct_done(event)}));xf._p(justep('mdMain'),"xforms-model-construct-done",null,function(evt) { xforms.run(xf_action_action1,'mdMain', evt,false)});	
+xforms.load_parts('rootView');	
+new xforms.XFDialog('GLOBAL_ID_N2103240998',"查询对话框",'modal',true,false,true,true,false,null,'490','340',null,null,null,null);	
+var xf_action_xf_action_4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var frameEl = justep('GLOBAL_ID_271152820');									if (frameEl) {										if(frameEl.contentWindow.document.body){											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";										}										}justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_271152820", "");}));xf._p(justep('GLOBAL_ID_N2103240998'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_4,'GLOBAL_ID_N2103240998', evt,false)});	
+var xf_menu_GLOBAL_ID_1752184955 = new xforms.XFMenu('GLOBAL_ID_1752184955','context');xf_menu_GLOBAL_ID_1752184955.menu.addContextZone('b9a6642c613a49f2adcd831b628576f1');xforms.Event.attach(document.body, "click", function(){xf_menu_GLOBAL_ID_1752184955.hide()});xf_menu_GLOBAL_ID_1752184955.menu.setOpenMode('web');	
+var xf_action_xf_action_5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){									var menuItemId = event.getData().itemId;									if (menuItemId == "glglms") {										var dialog = xforms("GLOBAL_ID_1546637340");										if(dialog) {											event.getData().menuitem.dhtmlxMenu.$needLoad=true;											dialog.open();																					}									} else if (menuItemId == "qkdqgl") {										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.clear();										data.filters.deleteFilter(data.advanceFilter.filterName);										data.refreshData();									} else if (menuItemId == "zdycx"){										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(dataId) == "object") {											dataId = dataId.id;										}										if(dlgId) justep.xbl(dlgId).show(dataId);									} else {										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);					var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.setFilter(advanceFilter, true, true);									}}));xf._p(justep('GLOBAL_ID_1752184955'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_5,'GLOBAL_ID_1752184955', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_1546637340',"过滤模式",'modal',true,false,true,true,false,null,'550','440',null,null,null,null);	
+var xf_action_xf_action_6=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_713244587');									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";									}justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "GLOBAL_ID_713244587", "");}));xf._p(justep('GLOBAL_ID_1546637340'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_6,'GLOBAL_ID_1546637340', evt,false)});	
+var xf_action_xf_action_7=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_713244587');									if (iframe) {										var data = iframe.currData;										data.advanceFilter.setFilter(iframe.advanceFilter);									}}));xf._p(justep('GLOBAL_ID_1546637340'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_action_xf_action_7,'GLOBAL_ID_1546637340', evt,false)});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dApplyList_part_loaded = false;	
+function load_dApplyList_part(callback){if (dApplyList_part_loaded) return;dApplyList_part_loaded = true;	
+new xforms.XFInstance2('dApplyList','mdMain',null,null,null,null,null,null,null,null,null,null,'whereVersion');	
+xf._c('xf-bind-0','mdMain',"instance('dApplyList')",null,"true()",null,null,null,null,null);	
+xf._c('xf-bind-1','mdMain',"instance('dApplyList')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-2','mdMain',"instance('dApplyList')/fApplyDate","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-3','mdMain',"instance('dApplyList')/fMeetPsnNum","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-4','mdMain',"instance('dApplyList')/fBeginTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-5','mdMain',"instance('dApplyList')/fEndTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-6','mdMain',"instance('dApplyList')/fArrBeginTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-7','mdMain',"instance('dApplyList')/fArrEndTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-8','mdMain',"instance('dApplyList')/fArrTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-9','mdMain',"instance('dApplyList')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-10','mdMain',"instance('dApplyList')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-11','mdMain',"instance('dApplyList')/fExtendDate1","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-12','mdMain',"instance('dApplyList')/fExtendDate2","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-13','mdMain',"instance('dApplyList')/fExtendDate3","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-14','mdMain',"instance('dApplyList')/fExtendDate4","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-15','mdMain',"instance('dApplyList')/fExtendDate5","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-16','mdMain',"instance('dApplyList')/fExtendNum1","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-17','mdMain',"instance('dApplyList')/fExtendNum2","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-18','mdMain',"instance('dApplyList')/fExtendNum3","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-19','mdMain',"instance('dApplyList')/fExtendNum4","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-20','mdMain',"instance('dApplyList')/fExtendNum5","xsd:float",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dApplyList_part_init_loaded = false;	
+function load_dApplyList_part_init(){if (dApplyList_part_init_loaded) return;dApplyList_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+function load_rootView(){if (justep("rootView").getAttribute('loaded') &amp;&amp; justep("rootView").getAttribute('loaded') == 'true') return;justep("rootView").setAttribute('loaded', 'true');	
+if(typeof(load_rootView_html) == 'function')load_rootView_html();	
+var xf_model_standardProcessQueryBar_bizStateFilter_model_910146252 = new xforms.XFModel('standardProcessQueryBar_bizStateFilter_model_910146252',null);	
+new xforms.XFInstance2('standardProcessQueryBar_bizStateFilter_data_910146252','standardProcessQueryBar_bizStateFilter_model_910146252',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('standardProcessQueryBar_bizStateFilter_data_910146252','value,label');	
+var xf_action_xf_action_1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.Filter.setFilterCondition("standardProcessQueryBar_bizStateFilter", justep.xbl("dApplyList"), "fBizState", "", appCommon.component.Filter.getDefaultValueBinding("standardProcessQueryBar_bizStateFilter_defaultValue_910146252"), true, ",", "", false);}));xf._p(justep('standardProcessQueryBar_bizStateFilter_model_910146252'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_1,'standardProcessQueryBar_bizStateFilter_model_910146252', evt,false)});	
+new xforms.XFExtSelect({id:'standardProcessQueryBar_bizStateFilter_select_910146252',type:'gridselect',defaultLabelRef:xf._q("'编辑中,处理中,已完成'"),allSelectedLabelRef:xf._q("'全部'"),ref:xf._q("instance('standardProcessQueryBar_bizStateFilter_data_910146252')/value"),labelRef:xf._q("instance('standardProcessQueryBar_bizStateFilter_data_910146252')/label"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:null,dataId:null,columns:'label,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'',valueColumn:'rowid',labelColumn:'label',extColumn:null,labels:',',aligns:',',types:'checkbox,ro',widths:{widths:"#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows&gt;&lt;row id="bsEditing"&gt;&lt;cell&gt;编辑中&lt;/cell&gt;&lt;/row&gt;&lt;row id="bsExecuting"&gt;&lt;cell&gt;处理中&lt;/cell&gt;&lt;/row&gt;&lt;row id="bsFinished"&gt;&lt;cell&gt;已完成&lt;/cell&gt;&lt;/row&gt;&lt;row id="bsAborted"&gt;&lt;cell&gt;已终止&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+var xf_output_standardProcessQueryBar_bizStateFilter_defaultValue_910146252=new xforms.XFOutput('standardProcessQueryBar_bizStateFilter_defaultValue_910146252',xf._q("'bsEditing,bsExecuting,bsFinished'"),null,null);	
+var xf_model_standardProcessQueryBar_dateFilter_model_1224423119 = new xforms.XFModel('standardProcessQueryBar_dateFilter_model_1224423119',null);	
+xf._c('xf-bind-36','standardProcessQueryBar_dateFilter_model_1224423119',"instance('standardProcessQueryBar_dateFilter_data_1224423119')/beginDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-37','standardProcessQueryBar_dateFilter_model_1224423119',"instance('standardProcessQueryBar_dateFilter_data_1224423119')/endDate","xsd:date",null,null,null,null,null,null);	
+new xforms.XFInstance2('standardProcessQueryBar_dateFilter_data_1224423119','standardProcessQueryBar_dateFilter_model_1224423119',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('standardProcessQueryBar_dateFilter_data_1224423119','value,label,beginDate,endDate');	
+var xf_action_xf_action_2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.ExtDateFilter.setFilterCondition("standardProcessQueryBar_dateFilter", justep.xbl("dApplyList"), "single", "fCreateTime", "", "", "0", null, null, "", false);}));xf._p(justep('standardProcessQueryBar_dateFilter_model_1224423119'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_2,'standardProcessQueryBar_dateFilter_model_1224423119', evt,false)});	
+new xforms.XFExtSelect({id:'standardProcessQueryBar_dateFilter_select_1224423119',type:'gridselect1',defaultLabelRef:xf._q("'全部'"),allSelectedLabelRef:null,ref:xf._q("instance('standardProcessQueryBar_dateFilter_data_1224423119')/value"),labelRef:xf._q("instance('standardProcessQueryBar_dateFilter_data_1224423119')/label"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:null,columns:'label,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'',valueColumn:'rowid',labelColumn:'label',extColumn:null,labels:',',aligns:',',types:'ro,ro',widths:{widths:"#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows&gt;&lt;row id="0"&gt;&lt;cell&gt;全部&lt;/cell&gt;&lt;/row&gt;&lt;row id="1"&gt;&lt;cell&gt;今天&lt;/cell&gt;&lt;/row&gt;&lt;row id="2"&gt;&lt;cell&gt;昨天&lt;/cell&gt;&lt;/row&gt;&lt;row id="3"&gt;&lt;cell&gt;本周&lt;/cell&gt;&lt;/row&gt;&lt;row id="4"&gt;&lt;cell&gt;上周&lt;/cell&gt;&lt;/row&gt;&lt;row id="5"&gt;&lt;cell&gt;本月&lt;/cell&gt;&lt;/row&gt;&lt;row id="6"&gt;&lt;cell&gt;上月&lt;/cell&gt;&lt;/row&gt;&lt;row id="7"&gt;&lt;cell&gt;今年&lt;/cell&gt;&lt;/row&gt;&lt;row id="8"&gt;&lt;cell&gt;去年&lt;/cell&gt;&lt;/row&gt;&lt;row id="9"&gt;&lt;cell&gt;自定义...&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+new xforms.XFDialog('standardProcessQueryBar_dateFilter_dialog_1224423119',"自定义",'model',true,false,true,true,false,null,'250','135',null,null,null,null);	
+xf._d('d7c861f459044e21881e5be18ef1123a','text',xf._q("instance('standardProcessQueryBar_dateFilter_data_1224423119')/beginDate"),null,null,null,null,false,false);	
+xf._d('233aba09d96e4a0b81ab561e565b2243','text',xf._q("instance('standardProcessQueryBar_dateFilter_data_1224423119')/endDate"),null,null,null,null,false,false);	
+var xf_output_standardProcessQueryBar_orgFilter_manageTypeCodes_783303227=new xforms.XFOutput('standardProcessQueryBar_orgFilter_manageTypeCodes_783303227',xf._q("call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')"),null,null);	
+var xf_model_standardProcessQueryBar_orgFilter_model_783303227 = new xforms.XFModel('standardProcessQueryBar_orgFilter_model_783303227',null);	
+new xforms.XFInstance2('standardProcessQueryBar_orgFilter_data_783303227','standardProcessQueryBar_orgFilter_model_783303227',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('standardProcessQueryBar_orgFilter_data_783303227','value,label');	
+var xf_action_xf_action_3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.ExtOrgFilter.setFilterCondition("standardProcessQueryBar_orgFilter", justep.xbl("dApplyList"), "fCreatePsnID", "fCreatePsnFID", "OA_MT_UseExecute", "本人", "", false);}));xf._p(justep('standardProcessQueryBar_orgFilter_model_783303227'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_3,'standardProcessQueryBar_orgFilter_model_783303227', evt,false)});	
+new xforms.XFExtSelect({id:'standardProcessQueryBar_orgFilter_select_783303227',type:'treeselect',defaultLabelRef:xf._q("'本人'"),allSelectedLabelRef:null,ref:xf._q("instance('standardProcessQueryBar_orgFilter_data_783303227')/value"),labelRef:xf._q("instance('standardProcessQueryBar_orgFilter_data_783303227')/label"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:null,dataId:'standardProcessQueryBar_orgFilter_orgData_783303227',columns:'sName,__c_,sOrgKindID,sCode,sLongName,sFName,sFCode,sFID,sParent,sNodeKind,sValidState,sPersonID',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'sOrgKindID,sCode,sLongName,sFName,sFCode,sFID,sParent,sNodeKind,sValidState,sPersonID',valueColumn:'sFID',labelColumn:'sName',extColumn:null,labels:',,,,,,,,,,,',aligns:',,,,,,,,,,,',types:'tree,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:true,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:'func_313393767',onRowHasChildren:func_244749819,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+xforms.load_parts('vApplyList');	
+}	
+function load_rootView_xblinit(){if (justep("rootView").getAttribute('xblloaded') &amp;&amp; justep("rootView").getAttribute('xblloaded') == 'true') return;justep("rootView").setAttribute('xblloaded', 'true');	
+if(xforms.ready)justep('standardProcessQueryBar_bizStateFilter_model_910146252').xformsObject.construct_part();	
+if(xforms.ready)justep('standardProcessQueryBar_dateFilter_model_1224423119').xformsObject.construct_part();	
+if(xforms.ready)justep('standardProcessQueryBar_orgFilter_model_783303227').xformsObject.construct_part();	
+}	
+var standardProcessQueryBar_orgFilter_orgData_783303227_part_loaded = false;	
+function load_standardProcessQueryBar_orgFilter_orgData_783303227_part(callback){if (standardProcessQueryBar_orgFilter_orgData_783303227_part_loaded) return;standardProcessQueryBar_orgFilter_orgData_783303227_part_loaded = true;	
+new xforms.XFInstance2('standardProcessQueryBar_orgFilter_orgData_783303227','standardProcessQueryBar_orgFilter_model_783303227',null,null,null,null,null,null,'sNodeKind',null,null,null,'whereVersion');	
+xf._c('xf-bind-38','standardProcessQueryBar_orgFilter_model_783303227',"instance('standardProcessQueryBar_orgFilter_orgData_783303227')/sValidState","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var standardProcessQueryBar_orgFilter_orgData_783303227_part_init_loaded = false;	
+function load_standardProcessQueryBar_orgFilter_orgData_783303227_part_init(){if (standardProcessQueryBar_orgFilter_orgData_783303227_part_init_loaded) return;standardProcessQueryBar_orgFilter_orgData_783303227_part_init_loaded = true;	
+if(xforms.ready)justep('standardProcessQueryBar_orgFilter_model_783303227').xformsObject.construct_part();}	
+function load_vApplyList(){if (justep("vApplyList").getAttribute('loaded') &amp;&amp; justep("vApplyList").getAttribute('loaded') == 'true') return;justep("vApplyList").setAttribute('loaded', 'true');	
+if(typeof(load_vApplyList_html) == 'function')load_vApplyList_html();	
+new xforms.XFGrid({id:'grdApply',instance:'dApplyList',systemColumnsPro:'version,fNO,fApplyOgnID,fApplyOgnName,fApplyPsnID,fApplyPsnFID,fApplyPsnFName,fMeetPsns,fMeetPsnNum,fBoardroomID,fPhone,fDescription,fArrBoardroomID,fArrBoardroom,fArrBeginTime,fArrEndTime,fArrOgnID,fArrOgnName,fArrDeptID,fArrDeptName,fArrPsnID,fArrPsnName,fArrPsnFID,fArrPsnFName,fArrTime,fArrRemark,fBizState,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fRemark,fApplyDeptID,fCurrentActivities,fCurrentExecutors,fOutPsns,fExtendStr1,fExtendStr2,fExtendStr3,fExtendStr4,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate1,fExtendDate2,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5',onInit:null,type:'grid',smartRender:null,delay:false,ids:'recNo,fBizStateName,fApplyDeptName,fApplyPsnName,fApplyDate,fMeetName,fBoardroom,fBeginTime,fEndTime,space-column',headNames:'序号,状态,申请部门,申请人员,申请日期,会议主题,会议室,开始时间,结束时间,&amp;nbsp;',widths:'30,60,80,80,100,140,100,100,*,*',types:'cntr,ro,ro,ro,dateTime,html,ro,dateTime,dateTime,ro',hiddenColumns:'',aligns:'center,,,,,,,,,',serverSort:true,sorts:'na,na,na,na,na,na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:null,onLastEditorPressEnter:null,initFun:function(){this.grid.bindColFormat(null,'fApplyDate','yyyy-MM-dd hh:mm');this.grid.bindColHTMLCallback(null,'fMeetName','grdApply_fMeetNameRender');this.grid.bindColFormat(null,'fBeginTime','yyyy-MM-dd hh:mm');this.grid.bindColFormat(null,'fEndTime','yyyy-MM-dd hh:mm');}});	
+}	
+function load_vApplyList_xblinit(){if (justep("vApplyList").getAttribute('xblloaded') &amp;&amp; justep("vApplyList").getAttribute('xblloaded') == 'true') return;justep("vApplyList").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" lazy="false" style="height:100%;width:100%;">         <table class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table1" style="width:100%;height:100%;table-layout:fixed;">           <tr id="default9">             <td style="height:35px;">               <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrApplyList">                 <table cellpadding="0" cellspacing="0" style="width:100%">                   <tr>                     <td>                       <div class="toolbar-manager" name="toolbarmanager" width="100%">                         <div class="toolbar-style" name="toolbargroup">                           <table cellpadding="0" cellspacing="1px">                             <tr>                               <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="item4ee9d25a-4021-4377-bd53-609014189daf" model="mdMain" onclick="justep.xbl('dApplyList').refreshData(); ">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="item8ab65574-fc7c-46df-aa7c-b4da2bec4287" model="mdMain" onclick="justep.xbl('filter-dialog-f106d167-c8fd-4212-8cfc-ecbea543d0af').show('dApplyList');">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/UI/system/images/standardToolbar/standard/search.gif" style="border:none" title="查询"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="item919624ae-231c-4ac4-89c9-6f90608c99b4" model="mdMain" onclick="justep.xbl('filter-pattern-5f1cb499-8e57-4a6d-831c-468fac78138c').show('dApplyList', event.target||event.srcElement);">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" style="border:none" title="查询方案"></img>                                 </span>                               </td>                                <td class="toolbar-separator-style">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="dApplyList" id="4622009cddb94920b227e0537d206a7a" mode="IMG">                                   <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;">                                     <tr class="">                                       <td class="xui-pageNavigator-button" style="">                                         <img _disabled="true" onclick="if(!this.getAttribute('_disabled')) justep.XBLObject.getXBLObject(this).gotoPage(1)" style="border:0px" title="第一页"></img>                                       </td>                                        <td class="xui-pageNavigator-button" style="">                                         <img _disabled="true" style="border:0px" title="上一页"></img>                                       </td>                                        <td class="xui-pageNavigator-page" nowrap="true" style=""></td>                                        <td class="xui-pageNavigator-button" style="">                                         <img style="border:0px" title="下一页"></img>                                       </td>                                        <td class="xui-pageNavigator-button" style="">                                         <img style="border:0px" title="最后页"></img>                                       </td>                                        <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td>                                     </tr>                                   </table>                                    <span count="" data="dApplyList" limit="" offset="" page-count="7" style="display:none" xblid="attribute"></span>                                 </div>                               </td>                             </tr>                           </table>                         </div>                       </div>                     </td>                      <td>                       <div class="toolbar-manager" name="toolbarmanager" width="100%">                         <div class="toolbar-style" name="toolbargroup">                           <table cellpadding="0" cellspacing="1px">                             <tr>                               <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <div all-selected-label="'全部'" auto-refresh="true" class="xui-select component_E8111CC2 gridFilter" component="/UI/appCommon/components/filter.xbl.xml#gridFilter" default-label="'编辑中,处理中,已完成'" default-value="'bsEditing,bsExecuting,bsFinished'" filter-data="dApplyList" filter-relation="fBizState" id="standardProcessQueryBar_bizStateFilter" label-separator="," multi-select="true" style="width: 80px" value-separator=",">                                   <span auto-refresh="true" default-value-binding-id="standardProcessQueryBar_bizStateFilter_defaultValue_910146252" filter-data="dApplyList" filter-relation="fBizState" inner-data-id="standardProcessQueryBar_bizStateFilter_data_910146252" model-id="standardProcessQueryBar_bizStateFilter_model_910146252" select-id="standardProcessQueryBar_bizStateFilter_select_910146252" style="display:none" xblid="attribute"></span>                                    <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect xforms-appearance-minimal xui-select" id="standardProcessQueryBar_bizStateFilter_select_910146252" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)">                                     <tbody>                                       <tr>                                         <td class="focus" style="display:none;width:0px"></td>                                          <td class="xxf-value">                                           <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)">                                             <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;">                                               <tr style="border:none">                                                 <td style="width:100%;height:100%;border:none;">                                                   <input accesskey="" class="xforms-ext-select-input" tabindex=""></input>                                                 </td>                                                  <td style="border:none" width="20px">                                                   <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img>                                                 </td>                                               </tr>                                             </table>                                           </div>                                         </td>                                          <td class="xxf-alert">                                           <span class="xforms-alert">                                             <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                                              <div class="xforms-alert-value" id=""></div>                                           </span>                                         </td>                                       </tr>                                     </tbody>                                   </table>                                    <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="standardProcessQueryBar_bizStateFilter_defaultValue_910146252" style="display:none">                                     <tr>                                       <td>                                         <span class="xforms-value"></span>                                          <span class="xforms-alert">                                           <span class="xforms-alert-icon"></span>                                         </span>                                       </td>                                     </tr>                                   </table>                                 </div>                               </td>                                <td class="toolbar-separator-style">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <div class="xui-select component_B42F6D5E extDateFilter" component="/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter" filter-data="dApplyList" filter-date-mode="single" filter-date-relation1="fCreateTime" id="standardProcessQueryBar_dateFilter" style="width: 80px">                                   <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="standardProcessQueryBar_dateFilter_select_1224423119" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)">                                     <tbody>                                       <tr>                                         <td class="focus" style="display:none;width:0px"></td>                                          <td class="xxf-value">                                           <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)">                                             <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;">                                               <tr style="border:none">                                                 <td style="width:100%;height:100%;border:none;">                                                   <input accesskey="" class="xforms-ext-select-input" tabindex=""></input>                                                 </td>                                                  <td style="border:none" width="20px">                                                   <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img>                                                 </td>                                               </tr>                                             </table>                                           </div>                                         </td>                                          <td class="xxf-alert">                                           <span class="xforms-alert">                                             <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                                              <div class="xforms-alert-value" id=""></div>                                           </span>                                         </td>                                       </tr>                                     </tbody>                                   </table>                                    <div id="standardProcessQueryBar_dateFilter_dialog_1224423119" style="display:none"></div>                                    <div style="width:246px;height:110px;position:absolute;left:-9000px;top:-9000px">                                     <div class="xforms-dialog" height="135" id="standardProcessQueryBar_dateFilter_dialog_1224423119-content" minmax="false" resizeable="false" style="width:100%;height:100%" title="自定义" width="250">                                       <table style="margin: 5px; width: 220px; font-size: 12px;">                                         <tr style="height: 25px">                                           <td style="width: 67px; text-align: center;">开始日期</td>  
+                                          <td> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="d7c861f459044e21881e5be18ef1123a" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="focus" style="display:none;width:0px"></td>  
+                                                  <td class="xxf-value"> 
+                                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                      <div class="xforms-alert-value" id=""></div> 
+                                                    </span> 
+                                                  </td>  
+                                                  <td class="xui-ie-input-bug"></td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td> 
+                                        </tr>  
+                                        <tr style="height: 25px"> 
+                                          <td style="width: 67px; text-align: center;">结束日期</td>  
+                                          <td> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="233aba09d96e4a0b81ab561e565b2243" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="focus" style="display:none;width:0px"></td>  
+                                                  <td class="xxf-value"> 
+                                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                      <div class="xforms-alert-value" id=""></div> 
+                                                    </span> 
+                                                  </td>  
+                                                  <td class="xui-ie-input-bug"></td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td> 
+                                        </tr>  
+                                        <tr style="height: 35px"> 
+                                          <td colspan="2" style="text-align: center;"> 
+                                            <input onclick="xforms.blur(true); if (justep.xbl('standardProcessQueryBar_dateFilter')._doDialogCheck()) {xforms('standardProcessQueryBar_dateFilter_dialog_1224423119').close();}" style="width: 60px" type="button" value="确定"></input>  
+                                            <input onclick="xforms('standardProcessQueryBar_dateFilter_dialog_1224423119').close();" style="width: 60px" type="button" value="取消"></input> 
+                                          </td> 
+                                        </tr> 
+                                      </table> 
+                                    </div> 
+                                  </div>  
+                                  <span auto-refresh="true" default-select="0" dialog-id="standardProcessQueryBar_dateFilter_dialog_1224423119" filter-data="dApplyList" filter-date-mode="single" filter-date-relation1="fCreateTime" inner-data-id="standardProcessQueryBar_dateFilter_data_1224423119" model-id="standardProcessQueryBar_dateFilter_model_1224423119" select-id="standardProcessQueryBar_dateFilter_select_1224423119" style="display:none" xblid="attribute"></span> 
+                                </div> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="xui-select component_AAB8FC3C extOrgFilter" component="/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter" execute-concept="OA_MT_UseExecute" filter-data="dApplyList" id="standardProcessQueryBar_orgFilter" manage-type-codes="call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')" org-url-relation="fCreatePsnFID" person-id-relation="fCreatePsnID" style="width: 140px"> 
+                                  <span auto-refresh="true" execute-concept="OA_MT_UseExecute" filter-data="dApplyList" inner-data-id="standardProcessQueryBar_orgFilter_data_783303227" manage-type-codes-binding-id="standardProcessQueryBar_orgFilter_manageTypeCodes_783303227" model-id="standardProcessQueryBar_orgFilter_model_783303227" org-data-id="standardProcessQueryBar_orgFilter_orgData_783303227" org-url-relation="fCreatePsnFID" person-id-relation="fCreatePsnID" select-id="standardProcessQueryBar_orgFilter_select_783303227" style="display:none" xblid="attribute"></span>  
+                                  <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="standardProcessQueryBar_orgFilter_manageTypeCodes_783303227" style="display:none"> 
+                                    <tr> 
+                                      <td> 
+                                        <span class="xforms-value"></span>  
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon"></span> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </table>  
+                                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_DE7FA61F treeSelect xforms-control xforms-treeselect xforms-appearance-minimal xui-select" id="standardProcessQueryBar_orgFilter_select_783303227" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="focus" style="display:none;width:0px"></td>  
+                                        <td class="xxf-value"> 
+                                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                              <tr style="border:none"> 
+                                                <td style="width:100%;height:100%;border:none;"> 
+                                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                                </td>  
+                                                <td style="border:none" width="20px"> 
+                                                  <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </div> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td style="width:100%"></td> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="default10"> 
+            <td id="td3"> 
+              <div class="" id="vApplyList" lazy="false" style="height:100%;width:100%;"> 
+                <div class="component_6298A7A1 grid" data="dApplyList" id="grdApply" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;;overflow:hidden" system-columns="version,fNO,fApplyOgnID,fApplyOgnName,fApplyPsnID,fApplyPsnFID,fApplyPsnFName,fMeetPsns,fMeetPsnNum,fBoardroomID,fPhone,fDescription,fArrBoardroomID,fArrBoardroom,fArrBeginTime,fArrEndTime,fArrOgnID,fArrOgnName,fArrDeptID,fArrDeptName,fArrPsnID,fArrPsnName,fArrPsnFID,fArrPsnFName,fArrTime,fArrRemark,fBizState,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fRemark,fApplyDeptID,fCurrentActivities,fCurrentExecutors,fOutPsns,fExtendStr1,fExtendStr2,fExtendStr3,fExtendStr4,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate1,fExtendDate2,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5"></div> 
+              </div> 
+            </td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-f106d167-c8fd-4212-8cfc-ecbea543d0af"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N2103240998" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N2103240998-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_271152820" name="GLOBAL_ID_271152820" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-5f1cb499-8e57-4a6d-831c-468fac78138c"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="b9a6642c613a49f2adcd831b628576f1" menu-id="GLOBAL_ID_1752184955" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_1752184955" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_1752184955" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_1546637340" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_1546637340-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_713244587" name="GLOBAL_ID_713244587" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script>
+function func_313393767(data){var oData = justep.XData.$('standardProcessQueryBar_orgFilter_orgData_783303227');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_244749819(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="extOutput" tag-name="div" icon="extOutput.png" text="output扩展" 
+		binding-component="/UI/appCommon/components/extOutput.xbl.xml#extOutput"
+        namespace="xforms"  namespace-uri="http://www.justep.com/xforms"
+        display-property="id" 
+        component-class="ExtOutput" 
+        component-type="formControl" >
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="output-ref" text="引用" editor-ref="dataRef" required="true"/>	
+			<property name="output-linked" text="是否显示为链接" editor-ref="booleanList" default-value="false" data-type="boolean"/>	
+			<property name="link-accessKey" text="链接快捷键" />
+
+			<property name="trigger-appearance" text="表现"  editor-ref="triggerAppearanceList" />
+			<property name="trigger-label" text="按钮标签" required="true" />  
+			<property name="trigger-src" text="按钮可用时的图片" editor-ref="triggerImgDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp" />  
+			<property name="trigger-disSrc" text="按钮不可用时的图片" editor-ref="triggerImgDialog" editor-parameter="*.*;*.gif;*.jpg;*.png;*.jpeg;*.bmp" />    
+			<property name="trigger-ref" text="按钮引用" editor-ref="dataRef"/>	
+			<property name="trigger-visibled" text="按钮显示"  editor-ref="booleanList" default-value="true" data-type="boolean"/>
+			<property name="trigger-disabled" text="按钮禁用" editor-ref="booleanList" default-value="false" data-type="boolean"/>
+			<property name="trigger-accessKey" text="按钮快捷键" />
+
+			<property name="default-class"  text="默认class" default-value="xui-input" readonly="true"/>
+			<property name="class"  text="class"/>
+			<property name="style"  text="样式" editor-ref="styleDialog">
+			    <property name="width" text="宽度" is-style="true"/>
+				<property name="height" text="高度" is-style="true"/>
+			</property>
+		</properties>
+		<property-editors>
+			<property-editor name="triggerAppearanceList" type="list">
+				<static-data value=",minimal,image"></static-data>
+			</property-editor>
+  			<property-editor name="triggerImgDialog" type="dialog" class-name="EditSrcPage"/>		
+		</property-editors>
+		<events>
+			<event name="onLinkClick" type="callback" text="链接点击事件"/>
+			<event name="DOMActivate" display-name="onTriggerClick" type="event" text="按钮点击事件" parameters="event" is-script="true"/>
+		</events>
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div component="/UI/appCommon/components/extOutput.xbl.xml#extOutput"
+					trigger-appearance="image"
+					trigger-src="/UI/appCommon/components/extOutput/designer/images/select.png">
+				</xhtml:div>
+			]]></template>
+		</templates>
+	</element>
+</elements>

@@ -1,0 +1,104 @@
+/**
+	@name UI.chart
+	@model UI
+	@component /UI/system/components/chart.xbl.xml#chart
+	@class XBL组件
+	@description <b>[rich]</b><b>[quick]</b><b>[mobile]</b>图表组件
+	@example 
+	<xmp>
+	<xhtml:div id="" component="/UI/system/components/chart.xbl.xml#chart"  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+		chart-name="图表" auto-load="false" style="" data-list="">			
+		<chart>
+			<config/>
+			<series-set/>													
+		</chart>	
+	</xhtml:div>		
+	</xmp>
+*/
+
+/**
+	@name UI.chart#component
+	@property
+	@description <b>[attribute][required]</b>组件标识
+	@default "/UI/system/components/chart.xbl.xml#chart"
+*/			
+
+/**
+	@name UI.chart#id
+	@property 
+	@description <b>[attribute]</b>id标识
+*/
+
+/**
+	@name UI.chart#chart__sub__name
+	@property 
+	@description <b>[attribute]</b>图表名
+*/
+
+/**
+	@name UI.chart#style
+	@property 
+	@description <b>[attribute]</b>图表样式(如：style="width:500px;height:375px;" )
+*/
+
+/**
+	@name UI.chart#auto__sub__load
+	@property 
+	@description <b>[attribute]</b>自动加载
+*/
+
+/**
+	@name UI.chart#data__sub__list
+	@property 
+	@description <b>[child]</b>数据源列表, 逗号分隔的数据源列表
+*/	
+
+/**
+ @name UI.chart#refresh
+ @function
+ @description 图表组件刷新
+*/
+
+/**
+ @name UI.chart#setTitle
+ @function
+ @param	title <b>[required]</b>标题
+ @description 设置图表标题
+*/
+
+/**
+ @name UI.chart#pageSetup
+ @function
+ @description 打印设置
+*/
+
+/**
+ @name UI.chart#print
+ @function
+ @description 打印
+*/
+
+/**
+ @name UI.chart#exportPDF
+ @function
+ @description 导出PDF
+*/
+
+/**
+ @name UI.chart#exportWord
+ @function
+ @description 导出Word
+*/
+
+/**
+ @name UI.chart#exportExcel
+ @function
+ @description 导出Excel
+*/
+
+/**
+ @name UI.chart#preview
+ @function
+ @description 打印预览
+*/
+

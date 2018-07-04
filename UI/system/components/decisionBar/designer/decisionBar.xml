@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	
+	<element name="decisionBar" tag-type="rich" tag-name="bar" icon="toolbar.gif"
+		text="决策工具栏"
+		namespace="xui" namespace-uri="http://www.justep.com/xui"
+		binding-component="/UI/system/components/decisionBar.xbl.xml#decisionBar"
+	    parent-range="toolbars"
+		display-property="id"
+		component-class="ReportDecisionBar"
+		component-type="layoutContainer" design-view="web-designer">
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+			    	<bar component="/UI/system/components/decisionBar.xbl.xml#decisionBar">
+			    		<item name="decision-cube-nav-item"/>
+			    		<item name="decision-sort-config-item"/>
+			    		
+			    		<item name="decision-level-style-item"/>
+			    		<item name="decision-properties-item"/>
+			    		<item name="decision-properties-config-item"/>
+			    		<item name="decision-non-empty-item"/>
+			    		<item name="decision-swap-axes-item"/>
+			    		
+			    		<item name="decision-drill-member-item"/>
+			    		<item name="decision-drill-position-item"/>
+			    		<item name="decision-drill-replace-item"/>
+			    		<item name="decision-drill-through-item"/>
+			   		</bar>
+				]]>
+			</template>
+		</templates>
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref="" />
+			<property name="decision" text="决策组件" required="true" editor-ref="decisionlist" />
+		</properties>
+		<property-editors>
+			<property-editor name="decisionlist" type="list">
+				<dynamic-data xpath="//*[local-name()='div' and @component='/UI/system/components/decisionGrid.xbl.xml#grid']/@id"/>								
+			</property-editor>
+		</property-editors>		
+		<toolbar>
+			<item text="设置项" method="setBarItem" />
+		</toolbar>			
+	</element>
+
+</elements>

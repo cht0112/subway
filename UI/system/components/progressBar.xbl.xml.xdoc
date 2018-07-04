@@ -1,0 +1,72 @@
+/**
+	@name UI.progressBar
+	@component /UI/system/components/progressBar.xbl.xml#progressBar
+	@class 
+	@description 进度条组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<div component="/UI/system/components/progressBar.xbl.xml#progressBar"
+		id="progressBar1" ref="data('state')/pos"/>
+	</xmp>
+*/
+
+/**
+	@name UI.progressBar#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/progressBar.xbl.xml#progressBar"
+*/
+
+/**
+	@name UI.progressBar#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.progressBar#ref
+	@attribute
+	@required
+	@description 引用数据，自动感知关联的data的列，当data数据变化进度条自动显示即可以通过修改关联的data列数据来控制进度显示
+*/
+
+/**
+	@name UI.progressBar#show__sub__value
+	@attribute
+	@description 进度条上显示数值
+*/
+
+/**
+	@name UI.progressBar#inner__sub__height
+	@description 内部高度
+*/
+
+/**
+	@name UI.progressBar#readonly
+	@attribute
+	@description 不允许鼠标移动影响进度状态，readonly=true时不影响状态
+*/
+
+/**
+	@name UI.progressBar#precision
+	@attribute
+	@description 精度即小数点位数
+	@default 2
+*/
+
+/**
+	@name UI.progressBar#active__sub__img
+	@attribute
+	@description 进度图片1
+*/
+
+/**
+	@name UI.progressBar#deactive__sub__img
+	@attribute
+	@description 进度图片2
+*/

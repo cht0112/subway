@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;">  
+  <head>
+    <xhtml:script language="javascript" src="/component/data/data.js"/>
+    <xhtml:style rel="stylesheet" type="text/css">.toolbar-style{border:solid 0px #dfe8f6;} .toolbar-style a{color: #000000;} .toolbar-item-style,.toolbar-item-style-out,.toolbar-separator-style{text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over{text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up{text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down{text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style{font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group{ display:inline; } .toolbar-manager .xforms-disabled{ display:none; } .toolbar-manager .xforms-group-content{ display:inline; }</xhtml:style>
+    <xhtml:script language="javascript" src="/UI/system/components/windowDialog/windowDialog.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/./process/process.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/dialog/dialog.js"/>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <!-- 
+		<script type="text/javascript" src="/base/base.js"/>
+		<script type="text/javascript" src="/form/form.js"/>
+		 -->  
+    <script>
+		 <![CDATA[
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) && msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length > 0 ? msgs[0] : "";
+					var detail = msgs.length > 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length > 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null && activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		]]>
+		</script>  
+    <!--  
+		<script id="__script"/>
+		-->  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/system/config/user.css"/>
+    <xhtml:script id="htmlScript1" src="/UI/metrodetection/zhip_documents_archive/process/wendangxiaohui/businessActivity2.js"/>
+    <xhtml:script><![CDATA[new justep.XBizData('dataMain',true,false,{'queryAction':"myQuerydocuments_destroy_record",'saveAction':"saveDOCUMENTS_DESTROY_RECORDAction",'newAction':"createDOCUMENTS_DESTROY_RECORDAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DOCUMENTS_DESTROY_RECORD':'DOCUMENTS_DESTROY_RECORD'}",'limit':20,'idColumn':"{'name':'DOCUMENTS_DESTROY_RECORD','relation':'DOCUMENTS_DESTROY_RECORD','define':'DOCUMENTS_DESTROY_RECORD','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLICATIONTIME':{'type':'Date','relation':'DOCUMENTS_DESTROY_RECORD.aPPLICATIONTIME','define':'DOCUMENTS_DESTROY_RECORD.aPPLICATIONTIME','label':'销毁申请时间'},'dESTROYTYPE':{'type':'Integer','relation':'DOCUMENTS_DESTROY_RECORD.dESTROYTYPE','define':'DOCUMENTS_DESTROY_RECORD.dESTROYTYPE','label':'销毁类别'},'fILEID':{'type':'String','relation':'DOCUMENTS_DESTROY_RECORD.fILEID','define':'DOCUMENTS_DESTROY_RECORD.fILEID','label':'文件编号'},'fILENAME':{'type':'String','relation':'DOCUMENTS_DESTROY_RECORD.fILENAME','define':'DOCUMENTS_DESTROY_RECORD.fILENAME','label':'文件名称'},'fILEVER':{'type':'String','relation':'DOCUMENTS_DESTROY_RECORD.fILEVER','define':'DOCUMENTS_DESTROY_RECORD.fILEVER','label':'文件版本'},'sECRETLEVEL':{'type':'Integer','relation':'DOCUMENTS_DESTROY_RECORD.sECRETLEVEL','define':'DOCUMENTS_DESTROY_RECORD.sECRETLEVEL','label':'涉密级别'},'fILEDESC':{'type':'String','relation':'DOCUMENTS_DESTROY_RECORD.fILEDESC','define':'DOCUMENTS_DESTROY_RECORD.fILEDESC','label':'文件简介'},'mEMO':{'type':'String','relation':'DOCUMENTS_DESTROY_RECORD.mEMO','define':'DOCUMENTS_DESTROY_RECORD.mEMO','label':'备注'},'oPERATORID':{'type':'String','relation':'DOCUMENTS_DESTROY_RECORD.oPERATORID','define':'DOCUMENTS_DESTROY_RECORD.oPERATORID','label':'申请人'},'dOCUMENTCATEGORY':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','label':'文件科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','label':'文件类型'},'dOCUMENTCATEGORYCNAME':{'type':'String','relation':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','define':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','label':'中文名称'},'dOCUMENTTYPECNAME':{'type':'String','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','label':'中文名称'},'sParentID':{'type':'String','relation':'SA_DocNode.sParentID','define':'SA_DocNode.sParentID','label':'节点父标识'},'sDocName':{'type':'String','relation':'SA_DocNode.sDocName','define':'SA_DocNode.sDocName','label':'文件名称'},'sDocName1':{'type':'String','relation':'SA_DocNode_1.sDocName','define':'SA_DocNode[1].sDocName','label':'文件名称'},'OPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('cData',true,false,{'queryAction':"queryCHECK_RECORDAction",'saveAction':"saveCHECK_RECORDAction",'newAction':"createCHECK_RECORDAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'CHECK_RECORD':'CHECK_RECORD'}",'limit':20,'idColumn':"{'name':'CHECK_RECORD','relation':'CHECK_RECORD','define':'CHECK_RECORD','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLICATIONNO':{'type':'Integer','relation':'CHECK_RECORD.aPPLICATIONNO','define':'CHECK_RECORD.aPPLICATIONNO','label':'申请序号'},'aPPLICATIONTYPE':{'type':'Integer','relation':'CHECK_RECORD.aPPLICATIONTYPE','define':'CHECK_RECORD.aPPLICATIONTYPE','label':'申请类型'},'cHECKNAME':{'type':'String','relation':'CHECK_RECORD.cHECKNAME','define':'CHECK_RECORD.cHECKNAME','label':'审批级别'},'cHECKER':{'type':'String','relation':'CHECK_RECORD.cHECKER','define':'CHECK_RECORD.cHECKER','label':'审批人'},'cHECKRESULT':{'type':'Integer','relation':'CHECK_RECORD.cHECKRESULT','define':'CHECK_RECORD.cHECKRESULT','label':'审批结果'},'cHECKDESC':{'type':'String','relation':'CHECK_RECORD.cHECKDESC','define':'CHECK_RECORD.cHECKDESC','label':'审批说明'},'cHECKTIME':{'type':'Date','relation':'CHECK_RECORD.cHECKTIME','define':'CHECK_RECORD.cHECKTIME','label':'审批时间'},'mEMO':{'type':'String','relation':'CHECK_RECORD.mEMO','define':'CHECK_RECORD.mEMO','label':'备注'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('sysOperData',true,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'dataType':"json",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('hrPerData',true,false,{'queryAction':"queryHR_BASE_INFOAction",'saveAction':"saveHR_BASE_INFOAction",'newAction':"createHR_BASE_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'HR_BASE_INFO':'HR_BASE_INFO'}",'limit':20,'idColumn':"{'name':'HR_BASE_INFO','relation':'HR_BASE_INFO','define':'HR_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'oPERATORSEX':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSEX','define':'HR_BASE_INFO.oPERATORSEX','label':'oPERATORSEX'},'oPERATORBIRTHDAY':{'type':'Date','relation':'HR_BASE_INFO.oPERATORBIRTHDAY','define':'HR_BASE_INFO.oPERATORBIRTHDAY','label':'oPERATORBIRTHDAY'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'oFFICEID':{'type':'Decimal','relation':'HR_BASE_INFO.oFFICEID','define':'HR_BASE_INFO.oFFICEID','label':'职位'},'pOSITIONID':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONID','define':'HR_BASE_INFO.pOSITIONID','label':'pOSITIONID'},'dEGREEID':{'type':'Decimal','relation':'HR_BASE_INFO.dEGREEID','define':'HR_BASE_INFO.dEGREEID','label':'dEGREEID'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'eDUCATIONID'},'pOLITICALID':{'type':'Decimal','relation':'HR_BASE_INFO.pOLITICALID','define':'HR_BASE_INFO.pOLITICALID','label':'pOLITICALID'},'pROFESSIONAL':{'type':'String','relation':'HR_BASE_INFO.pROFESSIONAL','define':'HR_BASE_INFO.pROFESSIONAL','label':'专业'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'pOSITIONALTITLE'},'eMAILADDRESS':{'type':'String','relation':'HR_BASE_INFO.eMAILADDRESS','define':'HR_BASE_INFO.eMAILADDRESS','label':'eMAILADDRESS'},'mOBILE':{'type':'String','relation':'HR_BASE_INFO.mOBILE','define':'HR_BASE_INFO.mOBILE','label':'移动电话'},'oPERATORSTATE':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSTATE','define':'HR_BASE_INFO.oPERATORSTATE','label':'oPERATORSTATE'},'Scode':{'type':'String','relation':'HR_BASE_INFO.Scode','define':'HR_BASE_INFO.Scode','label':'编码'},'mEMO':{'type':'String','relation':'HR_BASE_INFO.mEMO','define':'HR_BASE_INFO.mEMO','label':'备注'},'cARDID':{'type':'String','relation':'HR_BASE_INFO.cARDID','define':'HR_BASE_INFO.cARDID','label':'cARDID'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('bizData1',true,false,{'queryAction':"queryP_DOCUMENTS_ARCHIVEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'P_DOCUMENTS_ARCHIVE':'P_DOCUMENTS_ARCHIVE'}",'limit':20,'idColumn':"{'name':'P_DOCUMENTS_ARCHIVE','relation':'P_DOCUMENTS_ARCHIVE','define':'P_DOCUMENTS_ARCHIVE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORY':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','label':'文件科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','label':'文件类型'},'pFILENAME':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILENAME','define':'P_DOCUMENTS_ARCHIVE.pFILENAME','label':'文件名称'},'fILEVER':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.fILEVER','define':'P_DOCUMENTS_ARCHIVE.fILEVER','label':'文件版本'},'sECRETLEVEL':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.sECRETLEVEL','define':'P_DOCUMENTS_ARCHIVE.sECRETLEVEL','label':'涉密级别'},'pFILEPROPERTY':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILEPROPERTY','define':'P_DOCUMENTS_ARCHIVE.pFILEPROPERTY','label':'文件属性'},'pFILEDESC':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILEDESC','define':'P_DOCUMENTS_ARCHIVE.pFILEDESC','label':'文件简介'},'lOCATIONROOMID':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.lOCATIONROOMID','define':'P_DOCUMENTS_ARCHIVE.lOCATIONROOMID','label':'存档房间'},'lOCATIONCABINETID':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.lOCATIONCABINETID','define':'P_DOCUMENTS_ARCHIVE.lOCATIONCABINETID','label':'存档文件柜'},'aRCHIVEDATE':{'type':'Date','relation':'P_DOCUMENTS_ARCHIVE.aRCHIVEDATE','define':'P_DOCUMENTS_ARCHIVE.aRCHIVEDATE','label':'存档日期'},'aRCHIVEOPERATOR':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.aRCHIVEOPERATOR','define':'P_DOCUMENTS_ARCHIVE.aRCHIVEOPERATOR','label':'存档人'},'iNPUTOPERATOR':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.iNPUTOPERATOR','define':'P_DOCUMENTS_ARCHIVE.iNPUTOPERATOR','label':'记录人'},'aLLOWBORROW':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','define':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','label':'可借状态'},'dESTROYSTATE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dESTROYSTATE','define':'P_DOCUMENTS_ARCHIVE.dESTROYSTATE','label':'销毁状态'},'mEMO':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.mEMO','define':'P_DOCUMENTS_ARCHIVE.mEMO','label':'备注'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('kemu',true,false,{'queryAction':"queryDOCUMENT_CATEGORY_CODEAction",'saveAction':"saveDOCUMENT_CATEGORY_CODEAction",'newAction':"createDOCUMENT_CATEGORY_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DOCUMENT_CATEGORY_CODE':'DOCUMENT_CATEGORY_CODE'}",'limit':20,'idColumn':"{'name':'DOCUMENT_CATEGORY_CODE','relation':'DOCUMENT_CATEGORY_CODE','define':'DOCUMENT_CATEGORY_CODE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORYCNAME':{'type':'String','relation':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','define':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','label':'中文名称'},'dOCUMENTCATEGORYENAME':{'type':'String','relation':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYENAME','define':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYENAME','label':'英文名称'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('leixing',true,false,{'queryAction':"queryDOCUMENT_TYPE_CODEAction",'saveAction':"saveDOCUMENT_TYPE_CODEAction",'newAction':"createDOCUMENT_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DOCUMENT_TYPE_CODE':'DOCUMENT_TYPE_CODE'}",'limit':20,'idColumn':"{'name':'DOCUMENT_TYPE_CODE','relation':'DOCUMENT_TYPE_CODE','define':'DOCUMENT_TYPE_CODE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORY':{'type':'Integer','relation':'DOCUMENT_TYPE_CODE.dOCUMENTCATEGORY','define':'DOCUMENT_TYPE_CODE.dOCUMENTCATEGORY','label':'文档科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPE','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPE','label':'文件类型'},'dOCUMENTTYPECNAME':{'type':'String','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','label':'中文名称'},'dOCUMENTTYPEENAME':{'type':'String','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPEENAME','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPEENAME','label':'英文名称'}}"},'');]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('docNodeTree',true,false,{'queryAction':"queryDocNodeAction",'dataModel':"/system/data",'concept':"{'SA_DocNode':'SA_DocNode'}",'limit':-1,'idColumn':"{'name':'SA_DocNode','relation':'SA_DocNode','define':'SA_DocNode','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'sKindFilter':'SA_DocNode.sKind=\\'dir\\'','sFlagFilter':'SA_DocNode.sFlag=1'}",'defRelations':"{'sParentID':{'type':'String','relation':'SA_DocNode.sParentID','define':'SA_DocNode.sParentID','label':'节点父标识'},'sDocName':{'type':'String','relation':'SA_DocNode.sDocName','define':'SA_DocNode.sDocName','label':'文件名称'},'sSequence':{'type':'String','relation':'SA_DocNode.sSequence','define':'SA_DocNode.sSequence','label':'序号'},'sSize':{'type':'Float','relation':'SA_DocNode.sSize','define':'SA_DocNode.sSize','label':'文件大小'},'sKind':{'type':'String','relation':'SA_DocNode.sKind','define':'SA_DocNode.sKind','label':'任务分类'},'sDocPath':{'type':'String','relation':'SA_DocNode.sDocPath','define':'SA_DocNode.sDocPath','label':'文件id路径'},'sDocDisplayPath':{'type':'String','relation':'SA_DocNode.sDocDisplayPath','define':'SA_DocNode.sDocDisplayPath','label':'文件路径'},'sCreatorFID':{'type':'String','relation':'SA_DocNode.sCreatorFID','define':'SA_DocNode.sCreatorFID','label':'提交者FID'},'sCreatorName':{'type':'String','relation':'SA_DocNode.sCreatorName','define':'SA_DocNode.sCreatorName','label':'提交者'},'sCreatorDeptName':{'type':'String','relation':'SA_DocNode.sCreatorDeptName','define':'SA_DocNode.sCreatorDeptName','label':'提交者部门'},'sCreateTime':{'type':'DateTime','relation':'SA_DocNode.sCreateTime','define':'SA_DocNode.sCreateTime','label':'创建时间'},'sEditorFID':{'type':'String','relation':'SA_DocNode.sEditorFID','define':'SA_DocNode.sEditorFID','label':'编辑人标识'},'sEditorName':{'type':'String','relation':'SA_DocNode.sEditorName','define':'SA_DocNode.sEditorName','label':'编辑人姓名'},'sEditorDeptName':{'type':'String','relation':'SA_DocNode.sEditorDeptName','define':'SA_DocNode.sEditorDeptName','label':'编辑人部门'},'sLastWriterFID':{'type':'String','relation':'SA_DocNode.sLastWriterFID','define':'SA_DocNode.sLastWriterFID','label':'最后修改人标识'},'sLastWriterName':{'type':'String','relation':'SA_DocNode.sLastWriterName','define':'SA_DocNode.sLastWriterName','label':'最后修改人'},'sLastWriterDeptName':{'type':'String','relation':'SA_DocNode.sLastWriterDeptName','define':'SA_DocNode.sLastWriterDeptName','label':'最后修改人部门'},'sLastWriteTime':{'type':'DateTime','relation':'SA_DocNode.sLastWriteTime','define':'SA_DocNode.sLastWriteTime','label':'最后修改时间'},'sFileID':{'type':'String','relation':'SA_DocNode.sFileID','define':'SA_DocNode.sFileID','label':'文档服务器的文件引用标识'},'sDescription':{'type':'String','relation':'SA_DocNode.sDescription','define':'SA_DocNode.sDescription','label':'描述'},'sDocLiveVersionID':{'type':'Integer','relation':'SA_DocNode.sDocLiveVersionID','define':'SA_DocNode.sDocLiveVersionID','label':'文档当前版本标志'},'sDocSerialNumber':{'type':'String','relation':'SA_DocNode.sDocSerialNumber','define':'SA_DocNode.sDocSerialNumber','label':'文件编号'},'sKeywords':{'type':'String','relation':'SA_DocNode.sKeywords','define':'SA_DocNode.sKeywords','label':'关键字'},'sClassification':{'type':'String','relation':'SA_DocNode.sClassification','define':'SA_DocNode.sClassification','label':'文件类别'},'sFinishTime':{'type':'DateTime','relation':'SA_DocNode.sFinishTime','define':'SA_DocNode.sFinishTime','label':'结束时间'},'sNameSpace':{'type':'String','relation':'SA_DocNode.sNameSpace','define':'SA_DocNode.sNameSpace','label':'名空间'},'sFlag':{'type':'Integer','relation':'SA_DocNode.sFlag','define':'SA_DocNode.sFlag','label':'删除标示'},'version':{'type':'Integer','relation':'SA_DocNode.version','define':'SA_DocNode.version','label':'版本'},'sCacheName':{'type':'String','relation':'SA_DocNode.sCacheName','define':'SA_DocNode.sCacheName','label':'文档缓存文件名'},'sRevisionCacheName':{'type':'String','relation':'SA_DocNode.sRevisionCacheName','define':'SA_DocNode.sRevisionCacheName','label':'文档修订版缓存文件名'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParentID','rootFilter':'SA_DocNode.sParentID IS NULL'}"},'').attachEvents({'onIndexChanged':'docNodeTreeIndexChanged'});]]></xhtml:script>
+    <xhtml:script><![CDATA[new justep.XBizData('docData',false,false,{'queryAction':"queryDocNodeAction",'dataModel':"/system/data",'dataType':"json",'concept':"{'SA_DocNode':'SA_DocNode'}",'limit':200,'idColumn':"{'name':'SA_DocNode','relation':'SA_DocNode','define':'SA_DocNode','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sParentID':{'type':'String','relation':'SA_DocNode.sParentID','define':'SA_DocNode.sParentID','label':'节点父标识'},'sDocName':{'type':'String','relation':'SA_DocNode.sDocName','define':'SA_DocNode.sDocName','label':'文件名称'},'sSequence':{'type':'String','relation':'SA_DocNode.sSequence','define':'SA_DocNode.sSequence','label':'序号'},'sSize':{'type':'Float','relation':'SA_DocNode.sSize','define':'SA_DocNode.sSize','label':'文件大小'},'sKind':{'type':'String','relation':'SA_DocNode.sKind','define':'SA_DocNode.sKind','label':'任务分类'},'sDocPath':{'type':'String','relation':'SA_DocNode.sDocPath','define':'SA_DocNode.sDocPath','label':'文件id路径'},'sDocDisplayPath':{'type':'String','relation':'SA_DocNode.sDocDisplayPath','define':'SA_DocNode.sDocDisplayPath','label':'文件路径'},'sCreatorFID':{'type':'String','relation':'SA_DocNode.sCreatorFID','define':'SA_DocNode.sCreatorFID','label':'提交者FID'},'sCreatorName':{'type':'String','relation':'SA_DocNode.sCreatorName','define':'SA_DocNode.sCreatorName','label':'提交者'},'sCreatorDeptName':{'type':'String','relation':'SA_DocNode.sCreatorDeptName','define':'SA_DocNode.sCreatorDeptName','label':'提交者部门'},'sCreateTime':{'type':'DateTime','relation':'SA_DocNode.sCreateTime','define':'SA_DocNode.sCreateTime','label':'创建时间'},'sEditorFID':{'type':'String','relation':'SA_DocNode.sEditorFID','define':'SA_DocNode.sEditorFID','label':'编辑人标识'},'sEditorName':{'type':'String','relation':'SA_DocNode.sEditorName','define':'SA_DocNode.sEditorName','label':'编辑人姓名'},'sEditorDeptName':{'type':'String','relation':'SA_DocNode.sEditorDeptName','define':'SA_DocNode.sEditorDeptName','label':'编辑人部门'},'sLastWriterFID':{'type':'String','relation':'SA_DocNode.sLastWriterFID','define':'SA_DocNode.sLastWriterFID','label':'最后修改人标识'},'sLastWriterName':{'type':'String','relation':'SA_DocNode.sLastWriterName','define':'SA_DocNode.sLastWriterName','label':'最后修改人'},'sLastWriterDeptName':{'type':'String','relation':'SA_DocNode.sLastWriterDeptName','define':'SA_DocNode.sLastWriterDeptName','label':'最后修改人部门'},'sLastWriteTime':{'type':'DateTime','relation':'SA_DocNode.sLastWriteTime','define':'SA_DocNode.sLastWriteTime','label':'最后修改时间'},'sFileID':{'type':'String','relation':'SA_DocNode.sFileID','define':'SA_DocNode.sFileID','label':'文档服务器的文件引用标识'},'sDescription':{'type':'String','relation':'SA_DocNode.sDescription','define':'SA_DocNode.sDescription','label':'描述'},'sDocLiveVersionID':{'type':'Integer','relation':'SA_DocNode.sDocLiveVersionID','define':'SA_DocNode.sDocLiveVersionID','label':'文档当前版本标志'},'sDocSerialNumber':{'type':'String','relation':'SA_DocNode.sDocSerialNumber','define':'SA_DocNode.sDocSerialNumber','label':'文件编号'},'sKeywords':{'type':'String','relation':'SA_DocNode.sKeywords','define':'SA_DocNode.sKeywords','label':'关键字'},'sClassification':{'type':'String','relation':'SA_DocNode.sClassification','define':'SA_DocNode.sClassification','label':'文件类别'},'sFinishTime':{'type':'DateTime','relation':'SA_DocNode.sFinishTime','define':'SA_DocNode.sFinishTime','label':'结束时间'},'sNameSpace':{'type':'String','relation':'SA_DocNode.sNameSpace','define':'SA_DocNode.sNameSpace','label':'名空间'},'sFlag':{'type':'Integer','relation':'SA_DocNode.sFlag','define':'SA_DocNode.sFlag','label':'删除标示'},'version':{'type':'Integer','relation':'SA_DocNode.version','define':'SA_DocNode.version','label':'版本'},'sCacheName':{'type':'String','relation':'SA_DocNode.sCacheName','define':'SA_DocNode.sCacheName','label':'文档缓存文件名'},'sRevisionCacheName':{'type':'String','relation':'SA_DocNode.sRevisionCacheName','define':'SA_DocNode.sRevisionCacheName','label':'文档修订版缓存文件名'}}"},'docData_part');]]></xhtml:script>
+    <xforms:model id="model1" style="height:auto;top:90px;left:534px;">
+      <xforms:instance id="dataMain" update-mode="whereAll" concept="DOCUMENTS_DESTROY_RECORD" type="simple"/>
+      <xforms:bind nodeset="instance('dataMain')/aPPLICATIONTIME" type="xsd:date"/>
+      <xforms:bind nodeset="instance('dataMain')/dESTROYTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMain')/sECRETLEVEL" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMain')/dOCUMENTCATEGORY" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('dataMain')/dOCUMENTTYPE" type="xsd:integer"/>  
+      <xforms:instance id="cData" update-mode="whereAll" concept="CHECK_RECORD" type="simple"/>
+      <xforms:bind nodeset="instance('cData')/aPPLICATIONNO" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('cData')/aPPLICATIONTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('cData')/cHECKRESULT" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('cData')/cHECKTIME" type="xsd:date"/>  
+      <xforms:action id="action1" ev:event="xbl-loaded">
+        <xforms:script id="xformsScript1">businessActivity2.model1XBLLoaded(event)</xforms:script>
+      </xforms:action>  
+      <xforms:instance id="sysOperData" update-mode="whereVersion" concept="SA_OPOrg" type="simple"/>
+      <xforms:bind nodeset="instance('sysOperData')/sValidState" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('sysOperData')/sLevel" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('sysOperData')/version" type="xsd:integer"/>  
+      <xforms:instance id="hrPerData" update-mode="whereAll" concept="HR_BASE_INFO" type="simple"/>
+      <xforms:bind nodeset="instance('hrPerData')/oPERATORSEX" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/oPERATORBIRTHDAY" type="xsd:date"/>
+      <xforms:bind nodeset="instance('hrPerData')/oFFICEID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/pOSITIONID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/dEGREEID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/eDUCATIONID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/pOLITICALID" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/pOSITIONALTITLE" type="xsd:float"/>
+      <xforms:bind nodeset="instance('hrPerData')/oPERATORSTATE" type="xsd:float"/>  
+      <xforms:instance id="bizData1" update-mode="whereAll" concept="P_DOCUMENTS_ARCHIVE" type="grid"/>
+      <xforms:bind nodeset="instance('bizData1')/dOCUMENTCATEGORY" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/dOCUMENTTYPE" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/sECRETLEVEL" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/lOCATIONROOMID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/aRCHIVEDATE" type="xsd:date"/>
+      <xforms:bind nodeset="instance('bizData1')/aLLOWBORROW" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('bizData1')/dESTROYSTATE" type="xsd:integer"/>  
+      <xforms:instance id="kemu" update-mode="whereAll" concept="DOCUMENT_CATEGORY_CODE" type="grid"/>  
+      <xforms:instance id="leixing" update-mode="whereAll" concept="DOCUMENT_TYPE_CODE" type="grid"/>
+      <xforms:bind nodeset="instance('leixing')/dOCUMENTCATEGORY" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('leixing')/dOCUMENTTYPE" type="xsd:integer"/>  
+      <xforms:instance id="docNodeTree" update-mode="whereVersion" concept="SA_DocNode" type="grid"/>
+      <xforms:bind nodeset="instance('docNodeTree')/sSize" type="xsd:float"/>
+      <xforms:bind nodeset="instance('docNodeTree')/sCreateTime" type="xsd:dateTime"/>
+      <xforms:bind nodeset="instance('docNodeTree')/sLastWriteTime" type="xsd:dateTime"/>
+      <xforms:bind nodeset="instance('docNodeTree')/sDocLiveVersionID" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('docNodeTree')/sFinishTime" type="xsd:dateTime"/>
+      <xforms:bind nodeset="instance('docNodeTree')/sFlag" type="xsd:integer"/>
+      <xforms:bind nodeset="instance('docNodeTree')/version" type="xsd:integer"/>  
+      <xforms:part id="docData_part" xforms:lazy="true">
+        <xforms:instance id="docData" update-mode="whereVersion" concept="SA_DocNode" type="grid"/>
+        <xforms:bind nodeset="instance('docData')/sSize" type="xsd:float"/>
+        <xforms:bind nodeset="instance('docData')/sCreateTime" type="xsd:dateTime"/>
+        <xforms:bind nodeset="instance('docData')/sLastWriteTime" type="xsd:dateTime"/>
+        <xforms:bind nodeset="instance('docData')/sDocLiveVersionID" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('docData')/sFinishTime" type="xsd:dateTime"/>
+        <xforms:bind nodeset="instance('docData')/sFlag" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('docData')/version" type="xsd:integer"/>
+      </xforms:part>  
+      <xforms:action id="action2" ev:event="onload">
+        <xforms:script id="xformsScript2">businessActivity2.model1Load(event)</xforms:script>
+      </xforms:action>
+    </xforms:model>
+    <xhtml:script id="xbl_script" language="javascript"><![CDATA[__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/dialog.xbl.xml#dialog"] = _xbl_JSClassDefine_dialog;
+justep.XBLObject._classes["/UI/system/components/process.xbl.xml#process"] = _xbl_JSClassDefine_process;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_dialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_dialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.Dialog(node.getAttribute("id"),node.getAttribute("title"),node.getAttribute("modal")=="true",node.getAttribute("status"),node.getAttribute("width"),node.getAttribute("height"),node.getAttribute("left"),node.getAttribute("top")
+					,node.getAttribute("onInit"),node.getAttribute("onOpen"),node.getAttribute("onClose")
+				);
+				dialog.setClosable(node.getAttribute("closable")!="false");
+				dialog.setMinmaxable(node.getAttribute("minmaxable")!="false");
+				dialog.setResizable(node.getAttribute("resizable")!="false");
+				dialog.setNeighbor(node.getAttribute("neighbor"));
+				dialog.setAutoSize(node.getAttribute("auto-size")=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+function _xbl_JSClassDefine_process(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_process.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function(){
+					justep.Object.extend(this, new justep.ProcessEngine(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					//todo: 相似组件以后可以集中统一触发一次 
+					//xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					this.modelRefreshcb();
+				} 
+			},
+			
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+							 
+						}
+					}
+				}
+			},
+			
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group && group.parentNode==this.__dragObject.manager) {
+						if (td && td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" && cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+	var ids=[{id:'7c73482bcd9c4b5cae4965e9ddaacbe8', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'toolbars1', name:'/UI/system/components/toolbars.xbl.xml#toolbars'},{id:'toolbars2', name:'/UI/system/components/toolbars.xbl.xml#toolbars'},{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'default27', name:'xforms:label'},{id:'default28', name:'xforms:value'}]},{id:'input4', name:'xforms:input'},{id:'treeSelect1', name:'xforms:treeselect1', children:[{id:'default42', name:'xforms:label'},{id:'default57', name:'xforms:value'}]},{id:'gridSelect6', name:'xforms:gridselect1', children:[{id:'default64', name:'xforms:label'},{id:'default67', name:'xforms:value'}]},{id:'gridSelect4', name:'xforms:gridselect1', children:[{id:'default18', name:'xforms:label'},{id:'default19', name:'xforms:value'}]},{id:'gridSelect5', name:'xforms:gridselect1', children:[{id:'default23', name:'xforms:label'},{id:'default24', name:'xforms:value'}]},{id:'gridSelect3', name:'xforms:gridselect1', children:[{id:'default15', name:'xforms:label'},{id:'default16', name:'xforms:value'}]},{id:'input5', name:'xforms:input'},{id:'gridSelect1', name:'xforms:gridselect1', children:[{id:'default11', name:'xforms:label'},{id:'default12', name:'xforms:value'}]},{id:'textarea1', name:'xforms:textarea'},{id:'textarea2', name:'xforms:textarea'},{id:'radio1', name:'xforms:select1', children:[{id:'selectItem1', name:'xforms:item', children:[{id:'default7', name:'xforms:label'},{id:'default8', name:'xforms:value'}]},{id:'selectItem2', name:'xforms:item', children:[{id:'default9', name:'xforms:label'},{id:'default10', name:'xforms:value'}]}]},{id:'textarea3', name:'xforms:textarea'},{id:'textarea4', name:'xforms:textarea'},{id:'process1', name:'/UI/system/components/process.xbl.xml#process', children:[{id:'process1_processControlDialog', name:'xforms:dialog'},{id:'process1_processChartDialogID', name:'xforms:dialog'},{id:'process1_processConfirmDialog', name:'xforms:dialog', children:[{id:'ee179dc2665b4edd853ea169c0d3e076', name:'xforms:trigger', children:[{id:'63e0a498754243acb584cf8ba2a0b1e4', name:'xforms:label'}]},{id:'f3181fc2954b4d808a75a963d2986d73', name:'xforms:trigger', children:[{id:'328e43801ab2475ba9e6fd9f73a680c7', name:'xforms:label'}]}]},{id:'process1_customizedDialogID', name:'/UI/system/components/dialog.xbl.xml#dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+]]></xhtml:script>
+  </head>  
+  <!-- onunload="_closeActivity_();" -->  
+  <body style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <!-- 可视部分 即用户描述的界面 -->  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <xhtml:div id="rootView" class="" style="height:100%;width:100%"> 
+        <xhtml:div xforms:lazy="false" id="view1" class="xui-container" style="position:relative;;width:755px;height:619px;">  
+          <xhtml:div component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1" class="component_D66742E1 toolbars" style="position:absolute;width:79px;height:25px;left:2px;top:5px;"> 
+            <xhtml:table cellspacing="0" cellpadding="0" style="width:100%"> 
+              <xhtml:tr> 
+                <xhtml:td> 
+                  <xhtml:div width="100%" class="toolbar-manager" name="toolbarmanager"> 
+                    <xhtml:div name="toolbargroup" class="toolbar-style"> 
+                      <xhtml:table cellpadding="0" cellspacing="1px"> 
+                        <xhtml:tr> 
+                          <xhtml:td width="5" onmouseover="this.style.border='1px ridge';" onmouseout="this.style.border='1px solid #dfe8f6';" name="group_anchor" class="groupanchor"> 
+                            <xhtml:img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"/> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem2" model="model1" onclick="justep.xbl('cData').saveData(); " readonly="not(call('justep.XData.canDo','cData','Save'))"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/save.gif" dis-src="/UI/system/images/standardToolbar/standard/un_save.gif" title="保存"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">保存</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td> 
+                        </xhtml:tr> 
+                      </xhtml:table> 
+                    </xhtml:div> 
+                  </xhtml:div> 
+                </xhtml:td>  
+                <xhtml:td style="width:100%"/> 
+              </xhtml:tr> 
+            </xhtml:table> 
+          </xhtml:div>  
+          <xhtml:div component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars2" class="component_D66742E1 toolbars" style="position:absolute;width:400px;height:25px;top:5px;left:76px;"> 
+            <xhtml:table cellspacing="0" cellpadding="0" style="width:100%"> 
+              <xhtml:tr> 
+                <xhtml:td> 
+                  <xhtml:div width="100%" class="toolbar-manager" name="toolbarmanager"> 
+                    <xhtml:div name="toolbargroup" class="toolbar-style"> 
+                      <xhtml:table cellpadding="0" cellspacing="1px"> 
+                        <xhtml:tr> 
+                          <xhtml:td width="5" onmouseover="this.style.border='1px ridge';" onmouseout="this.style.border='1px solid #dfe8f6';" name="group_anchor" class="groupanchor"> 
+                            <xhtml:img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"/> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem9" model="model1" onclick="var flowEngine = justep.xbl('process1');  flowEngine.backQuery() " readonly="call('justep.Context.isReadonlyMode')"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/back.gif" dis-src="/UI/system/images/standardToolbar/standard/un_back.gif" title="回退"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">回退</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem10" model="model1" onclick="var flowEngine = justep.xbl('process1');  flowEngine.advanceQuery();" readonly="call('justep.Context.isReadonlyMode')"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/turn.gif" dis-src="/UI/system/images/standardToolbar/standard/un_turn.gif" title="流转"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">流转</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem12" model="model1" onclick="var flowEngine = justep.xbl('process1'); flowEngine.suspendQuery(); " readonly="call('justep.Context.isReadonlyMode')"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/pause.gif" dis-src="/UI/system/images/standardToolbar/standard/un_pause.gif" title="暂停"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">暂停</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem13" model="model1" onclick="var flowEngine = justep.xbl('process1');  flowEngine.abortQuery();" readonly="call('justep.Context.isReadonlyMode')"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/stop.gif" dis-src="/UI/system/images/standardToolbar/standard/un_stop.gif" title="终止"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">终止</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem15" model="model1" onclick="var flowEngine = justep.xbl('process1');  flowEngine.showChart();"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/chart.gif" dis-src="/UI/system/images/standardToolbar/standard/chart.gif" title="流程图"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">流程图</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td>  
+                          <xhtml:td onmouseover="this.className='toolbar-item-style-over';" onmouseout="this.className='toolbar-item-style-out';" onmousedown="this.className='toolbar-item-style-down';" onmouseup="this.className='toolbar-item-style-up';" class="toolbar-item-style"> 
+                            <xhtml:table id="barItem1" model="model1" onclick="var flowEngine = justep.xbl('process1'); flowEngine.openExecuteListDialog();"> 
+                              <xhtml:tr valign="middle" align="center"> 
+                                <xhtml:td valign="middle" align="center"> 
+                                  <xhtml:img class="xforms-trigger-img" style="border:none" align="absmiddle" src="/UI/system/images/standardToolbar/standard/executeList.png" dis-src="/UI/system/images/standardToolbar/standard/executeList.png" title="流程记录"/> 
+                                </xhtml:td>  
+                                <xhtml:td class="xforms-trigger-label" valign="middle" align="center">流程记录</xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:td> 
+                        </xhtml:tr> 
+                      </xhtml:table> 
+                    </xhtml:div> 
+                  </xhtml:div> 
+                </xhtml:td>  
+                <xhtml:td style="width:100%"/> 
+              </xhtml:tr> 
+            </xhtml:table> 
+          </xhtml:div>  
+          <xhtml:div xforms:lazy="false" id="view2" class="xui-container" style="position:relative;;left:7px;top:45px;width:757px;height:579px;position:relative;"> 
+            <xhtml:table border="0" cellpadding="0" cellspacing="0" class="no-editor-border" style="width:770px;height:469px;border-collapse: collapse; table-layout: fixed;"> 
+              <xhtml:tr height="0px"> 
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/>  
+                <xhtml:td width="77px" height="0px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="18px"> 
+                <xhtml:td height="18px" colspan="8" style="Text-Align:Center;Vertical-Align:Middle;Background:#F2FFFD;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Font-Weight:Bold;">文档销毁申请单</xhtml:td>  
+                <xhtml:td height="18px"/>  
+                <xhtml:td height="18px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="25px"> 
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">销毁类别</xhtml:td>  
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect2" ref="data('dataMain')/dESTROYTYPE" disabled="true" class="xui-autofill component_E1635FC7 gridSelect"> 
+                    <xforms:label ref="col_1" id="default27"/>  
+                    <xforms:value ref="col_0" id="default28"/>  
+                    <xforms:itemset id="default29" auto-load-data="true"> 
+                      <itemset-data xmlns="" id="default30"> 
+                        <rows id="default31"> 
+                          <row id="default32"> 
+                            <cell id="default33">1</cell>  
+                            <cell id="default34">电子文档销毁</cell> 
+                          </row>  
+                          <row id="default35"> 
+                            <cell id="default36">2</cell>  
+                            <cell id="default37">纸质文档销毁</cell> 
+                          </row> 
+                        </rows> 
+                      </itemset-data>  
+                      <xforms:column ref="col_0" visible="false" id="default38"/>  
+                      <xforms:column ref="col_1" id="default39"/> 
+                    </xforms:itemset> 
+                  </xforms:gridselect1> 
+                </xhtml:td>  
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">销毁申请时间</xhtml:td>  
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:input id="input4" ref="data('dataMain')/aPPLICATIONTIME" format="yyyy-MM-dd" disabled="true" class="xui-autofill"/> 
+                </xhtml:td>  
+                <xhtml:td height="25px"/>  
+                <xhtml:td height="25px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="25px"> 
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">电子文档目录</xhtml:td>  
+                <xhtml:td height="25px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:treeselect1 label-separator="," value-separator="," ext-separator="," id="treeSelect1" ref="data('dataMain')/sParentID" label-ref="data('dataMain')/sDocName1" disabled="true" class="xui-autofill component_DE7FA61F treeSelect"> 
+                    <xforms:label id="default42" ref="sDocName"/>  
+                    <xforms:value id="default57" ref="sParentID"/>  
+                    <xforms:itemset id="default60" data="docNodeTree" auto-load-data="true"> 
+                      <xforms:column ref="sDocName" id="default79"/>  
+                      <xforms:column ref="sParentID" visible="false"/>  
+                      <xforms:column ref="sSequence" visible="false"/>  
+                      <xforms:column ref="sSize" visible="false"/>  
+                      <xforms:column ref="sKind" visible="false"/>  
+                      <xforms:column ref="sDocPath" visible="false"/>  
+                      <xforms:column ref="sDocDisplayPath" visible="false"/>  
+                      <xforms:column ref="sCreatorFID" visible="false"/>  
+                      <xforms:column ref="sCreatorName" visible="false"/>  
+                      <xforms:column ref="sCreatorDeptName" visible="false"/>  
+                      <xforms:column ref="sCreateTime" visible="false"/>  
+                      <xforms:column ref="sEditorFID" visible="false"/>  
+                      <xforms:column ref="sEditorName" visible="false"/>  
+                      <xforms:column ref="sEditorDeptName" visible="false"/>  
+                      <xforms:column ref="sLastWriterFID" visible="false"/>  
+                      <xforms:column ref="sLastWriterName" visible="false"/>  
+                      <xforms:column ref="sLastWriterDeptName" visible="false"/>  
+                      <xforms:column ref="sLastWriteTime" visible="false"/>  
+                      <xforms:column ref="sFileID" visible="false"/>  
+                      <xforms:column ref="sDescription" visible="false"/>  
+                      <xforms:column ref="sDocLiveVersionID" visible="false"/>  
+                      <xforms:column ref="sDocSerialNumber" visible="false"/>  
+                      <xforms:column ref="sKeywords" visible="false"/>  
+                      <xforms:column ref="sClassification" visible="false"/>  
+                      <xforms:column ref="sFinishTime" visible="false"/>  
+                      <xforms:column ref="sNameSpace" visible="false"/>  
+                      <xforms:column ref="sFlag" visible="false"/>  
+                      <xforms:column ref="version" visible="false"/>  
+                      <xforms:column ref="sCacheName" visible="false"/>  
+                      <xforms:column ref="sRevisionCacheName" visible="false"/> 
+                    </xforms:itemset> 
+                  </xforms:treeselect1> 
+                </xhtml:td>  
+                <xhtml:td height="25px"/>  
+                <xhtml:td height="25px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="25px"> 
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">电子文档名称</xhtml:td>  
+                <xhtml:td height="25px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect6" ref="data('dataMain')/fILEID" label-ref="data('dataMain')/sDocName" disabled="true" class="xui-autofill component_E1635FC7 gridSelect"> 
+                    <xforms:label ref="sDocName" id="default64"/>  
+                    <xforms:value ref="SA_DocNode" id="default67"/>  
+                    <xforms:itemset id="default68" data="docData" auto-load-data="true"> 
+                      <xforms:column ref="SA_DocNode" visible="false" id="default82"/>  
+                      <xforms:column ref="sDocName" id="default83"/>  
+                      <xforms:column ref="sParentID" visible="false"/>  
+                      <xforms:column ref="sSequence" visible="false"/>  
+                      <xforms:column ref="sSize" visible="false"/>  
+                      <xforms:column ref="sKind" visible="false"/>  
+                      <xforms:column ref="sDocPath" visible="false"/>  
+                      <xforms:column ref="sDocDisplayPath" visible="false"/>  
+                      <xforms:column ref="sCreatorFID" visible="false"/>  
+                      <xforms:column ref="sCreatorName" visible="false"/>  
+                      <xforms:column ref="sCreatorDeptName" visible="false"/>  
+                      <xforms:column ref="sCreateTime" visible="false"/>  
+                      <xforms:column ref="sEditorFID" visible="false"/>  
+                      <xforms:column ref="sEditorName" visible="false"/>  
+                      <xforms:column ref="sEditorDeptName" visible="false"/>  
+                      <xforms:column ref="sLastWriterFID" visible="false"/>  
+                      <xforms:column ref="sLastWriterName" visible="false"/>  
+                      <xforms:column ref="sLastWriterDeptName" visible="false"/>  
+                      <xforms:column ref="sLastWriteTime" visible="false"/>  
+                      <xforms:column ref="sFileID" visible="false"/>  
+                      <xforms:column ref="sDescription" visible="false"/>  
+                      <xforms:column ref="sDocLiveVersionID" visible="false"/>  
+                      <xforms:column ref="sDocSerialNumber" visible="false"/>  
+                      <xforms:column ref="sKeywords" visible="false"/>  
+                      <xforms:column ref="sClassification" visible="false"/>  
+                      <xforms:column ref="sFinishTime" visible="false"/>  
+                      <xforms:column ref="sNameSpace" visible="false"/>  
+                      <xforms:column ref="sFlag" visible="false"/>  
+                      <xforms:column ref="version" visible="false"/>  
+                      <xforms:column ref="sCacheName" visible="false"/>  
+                      <xforms:column ref="sRevisionCacheName" visible="false"/> 
+                    </xforms:itemset> 
+                  </xforms:gridselect1> 
+                </xhtml:td>  
+                <xhtml:td height="25px"/>  
+                <xhtml:td height="25px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="25px"> 
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">纸质文档科目</xhtml:td>  
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect4" ref="data('bizData1')/dOCUMENTCATEGORY" disabled="true" class="xui-autofill component_E1635FC7 gridSelect"> 
+                    <xforms:label ref="dOCUMENTCATEGORYCNAME" id="default18"/>  
+                    <xforms:value ref="DOCUMENT_CATEGORY_CODE" id="default19"/>  
+                    <xforms:itemset id="default22" data="kemu" auto-load-data="true"> 
+                      <xforms:column ref="DOCUMENT_CATEGORY_CODE" visible="false" id="default58"/>  
+                      <xforms:column ref="dOCUMENTCATEGORYCNAME" id="default59"/>  
+                      <xforms:column ref="dOCUMENTCATEGORYENAME" visible="false"/> 
+                    </xforms:itemset> 
+                  </xforms:gridselect1> 
+                </xhtml:td>  
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">纸质文档类型</xhtml:td>  
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect5" ref="data('bizData1')/dOCUMENTTYPE" disabled="true" class="xui-autofill component_E1635FC7 gridSelect"> 
+                    <xforms:label ref="dOCUMENTTYPECNAME" id="default23"/>  
+                    <xforms:value ref="DOCUMENT_TYPE_CODE" id="default24"/>  
+                    <xforms:itemset id="default41" data="leixing" auto-load-data="true"> 
+                      <xforms:column ref="DOCUMENT_TYPE_CODE" visible="false" id="default65"/>  
+                      <xforms:column ref="dOCUMENTTYPECNAME" id="default66"/>  
+                      <xforms:column ref="dOCUMENTCATEGORY" visible="false"/>  
+                      <xforms:column ref="dOCUMENTTYPE" visible="false"/>  
+                      <xforms:column ref="dOCUMENTTYPEENAME" visible="false"/> 
+                    </xforms:itemset> 
+                  </xforms:gridselect1> 
+                </xhtml:td>  
+                <xhtml:td height="25px"/>  
+                <xhtml:td height="25px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="26px"> 
+                <xhtml:td height="26px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">纸质文档名称</xhtml:td>  
+                <xhtml:td height="26px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect3" ref="data('dataMain')/fILEID" label-ref="data('dataMain')/fILENAME" disabled="true" class="xui-autofill component_E1635FC7 gridSelect"> 
+                    <xforms:label ref="pFILENAME" id="default15"/>  
+                    <xforms:value ref="P_DOCUMENTS_ARCHIVE" id="default16"/>  
+                    <xforms:itemset id="default17" data="bizData1" auto-load-data="true"> 
+                      <xforms:column ref="P_DOCUMENTS_ARCHIVE" visible="false" id="default20"/>  
+                      <xforms:column ref="pFILENAME" id="default21"/>  
+                      <xforms:column ref="dOCUMENTCATEGORY" visible="false"/>  
+                      <xforms:column ref="dOCUMENTTYPE" visible="false"/>  
+                      <xforms:column ref="fILEVER" visible="false"/>  
+                      <xforms:column ref="sECRETLEVEL" visible="false"/>  
+                      <xforms:column ref="pFILEPROPERTY" visible="false"/>  
+                      <xforms:column ref="pFILEDESC" visible="false"/>  
+                      <xforms:column ref="lOCATIONROOMID" visible="false"/>  
+                      <xforms:column ref="lOCATIONCABINETID" visible="false"/>  
+                      <xforms:column ref="aRCHIVEDATE" visible="false"/>  
+                      <xforms:column ref="aRCHIVEOPERATOR" visible="false"/>  
+                      <xforms:column ref="iNPUTOPERATOR" visible="false"/>  
+                      <xforms:column ref="aLLOWBORROW" visible="false"/>  
+                      <xforms:column ref="dESTROYSTATE" visible="false"/>  
+                      <xforms:column ref="mEMO" visible="false"/> 
+                    </xforms:itemset> 
+                  </xforms:gridselect1> 
+                </xhtml:td>  
+                <xhtml:td height="26px"/>  
+                <xhtml:td height="26px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="26px"> 
+                <xhtml:td height="26px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">文档版本</xhtml:td>  
+                <xhtml:td height="26px" colspan="2" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:input id="input5" ref="data('dataMain')/fILEVER" disabled="true" class="xui-autofill"/> 
+                </xhtml:td>  
+                <xhtml:td height="26px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">涉密级别</xhtml:td>  
+                <xhtml:td height="26px" colspan="2" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:gridselect1 label-separator="," value-separator="," ext-separator="," id="gridSelect1" ref="data('dataMain')/sECRETLEVEL" disabled="true" class="xui-autofill component_E1635FC7 gridSelect"> 
+                    <xforms:label ref="col_1" id="default11"/>  
+                    <xforms:value ref="col_0" id="default12"/>  
+                    <xforms:itemset id="default13" auto-load-data="true"> 
+                      <xforms:column ref="col_0" visible="false" id="default25"/>  
+                      <xforms:column ref="col_1" id="default26"/>  
+                      <itemset-data xmlns="" id="default43"> 
+                        <rows id="default44"> 
+                          <row id="default45"> 
+                            <cell id="default46">1</cell>  
+                            <cell id="default47">普通</cell> 
+                          </row>  
+                          <row id="default48"> 
+                            <cell id="default49">2</cell>  
+                            <cell id="default50">秘密</cell> 
+                          </row>  
+                          <row id="default51"> 
+                            <cell id="default52">3</cell>  
+                            <cell id="default53">机密</cell> 
+                          </row>  
+                          <row id="default54"> 
+                            <cell id="default55">4</cell>  
+                            <cell id="default56">绝密</cell> 
+                          </row> 
+                        </rows> 
+                      </itemset-data> 
+                    </xforms:itemset> 
+                  </xforms:gridselect1> 
+                </xhtml:td>  
+                <xhtml:td height="26px"/>  
+                <xhtml:td height="26px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="64px"> 
+                <xhtml:td height="64px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">文档简介</xhtml:td>  
+                <xhtml:td height="64px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:textarea ref="data('dataMain')/fILEDESC" id="textarea1" style="height:80px;" disabled="true" class="xui-autofill"/> 
+                </xhtml:td>  
+                <xhtml:td height="64px"/>  
+                <xhtml:td height="64px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="64px"> 
+                <xhtml:td height="64px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">备注</xhtml:td>  
+                <xhtml:td height="64px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:textarea ref="data('dataMain')/mEMO" id="textarea2" style="height:65px;" disabled="true" class="xui-autofill"/> 
+                </xhtml:td>  
+                <xhtml:td height="64px"/>  
+                <xhtml:td height="64px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="18px"> 
+                <xhtml:td height="18px" colspan="8" style="Text-Align:Center;Vertical-Align:Middle;Background:#F2FFFD;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Font-Weight:Bold;">初审信息</xhtml:td>  
+                <xhtml:td height="18px"/>  
+                <xhtml:td height="18px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="25px"> 
+                <xhtml:td height="25px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">审批结果</xhtml:td>  
+                <xhtml:td height="25px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:select1 ref="data('cData')/cHECKRESULT" id="radio1" class="xui-autofill"> 
+                    <xforms:item id="selectItem1"> 
+                      <xforms:label id="default7">通过</xforms:label>  
+                      <xforms:value id="default8">1</xforms:value> 
+                    </xforms:item>  
+                    <xforms:item id="selectItem2"> 
+                      <xforms:label id="default9">拒绝</xforms:label>  
+                      <xforms:value id="default10">2</xforms:value> 
+                    </xforms:item> 
+                  </xforms:select1> 
+                </xhtml:td>  
+                <xhtml:td height="25px"/>  
+                <xhtml:td height="25px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="64px"> 
+                <xhtml:td height="64px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">审批说明</xhtml:td>  
+                <xhtml:td height="64px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;"> 
+                  <xforms:textarea ref="data('cData')/cHECKDESC" id="textarea3" style="height:70px;" class="xui-autofill"/> 
+                </xhtml:td>  
+                <xhtml:td height="64px"/>  
+                <xhtml:td height="64px"/> 
+              </xhtml:tr>  
+              <xhtml:tr height="64px"> 
+                <xhtml:td height="64px" colspan="2" style="Text-Align:Center;Vertical-Align:Middle;Background:#F6F6F4;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Color:#3366FF;">备注</xhtml:td>  
+                <xhtml:td height="64px" colspan="6" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;"> 
+                  <xforms:textarea ref="data('cData')/mEMO" id="textarea4" style="height:67px;" class="xui-autofill"/> 
+                </xhtml:td>  
+                <xhtml:td height="64px"/>  
+                <xhtml:td height="64px"/> 
+              </xhtml:tr> 
+            </xhtml:table>  
+            <xhtml:div component="/UI/system/components/process.xbl.xml#process" use-simple-dialog="true" data-type="json" dialog-window="/UI/system/service/process/dialogs/processDialog.w" dialog-height="480" dialog-width="600" id="process1" data="dataMain" auto-filter="false" class="component_E95FFB33 process" style="position:absolute;top:348px;left:102px;"> 
+              <xforms:model id=""> 
+                <xforms:action ev:event="xforms-model-construct">  
+                  <xforms:script/> 
+                </xforms:action> 
+              </xforms:model>  
+              <xforms:dialog title="流转信息" level="modal" close="true" width="700" height="445" appearance="full" visible="false" id="process1_processControlDialog" neighbor=""> 
+                <xforms:script ev:event="xforms-dialog-close">var processControlDialog = justep('process1_processControlDialog').xformsObject; var isOk = processControlDialog._isOk; var processControl = processControlDialog._processControl; var task = processControlDialog._task; var callback = processControlDialog._callback; var options = processControlDialog._options; processControlDialog._isOk = false; processControlDialog._processControl = null; processControlDialog._task = null; processControlDialog._callback = null; processControlDialog._options = null; if (isOk){ var process = justep.xbl('process1'); process[callback](task, processControl, options); } justep('process1_processControlDialogIFrame').src="";</xforms:script>  
+                <xhtml:iframe name="process1_processControlDialogIFrame" id="process1_processControlDialogIFrame" frameborder="no" style="width:100%;height:100%;"/> 
+              </xforms:dialog>  
+              <xforms:dialog title="流程图" neighbor="" status="maximize" level="modal" close="true" width="700" height="445" appearance="full" visible="false" id="process1_processChartDialogID" show-title="false"> 
+                <xforms:script ev:event="xforms-dialog-close">justep('process1_processChartDialogIFrame').src="";</xforms:script>  
+                <xforms:script ev:event="xforms-dialog-open">var url = "/UI/system/service/process/processChart.w?process=" + justep.Context.getCurrentProcess() + "&amp;activity=" + justep.Context.getCurrentActivity(); var task = justep.Context.getTask(); if (task != null){ url = url + "&amp;task=" + task; } url = justep.Request.convertURL(url); justep('process1_processChartDialogIFrame').src=url;</xforms:script>  
+                <xhtml:iframe name="process1_processChartDialogIFrame" id="process1_processChartDialogIFrame" frameborder="no" style="width:100%;height:100%;"/> 
+              </xforms:dialog>  
+              <xforms:dialog level="modal" close="true" draggable="true" width="250" height="90" neighbor="" appearance="full" visible="false" id="process1_processConfirmDialog"> 
+                <xforms:script ev:event="xforms-dialog-close">var processConfirmDialog = justep('process1_processConfirmDialog').xformsObject; var isOk = processConfirmDialog._isOk; var processControl = processConfirmDialog._processControl; var task = processConfirmDialog._task; var callback = processConfirmDialog._callback; var options = processConfirmDialog._options; processConfirmDialog._isOk = false; processConfirmDialog._task = null; processConfirmDialog._processControl = null; processConfirmDialog._callback = null; processConfirmDialog._options = null; if (isOk &amp;&amp; processControl.isOk()){ var process = justep.xbl('process1'); process[callback](task, processControl, options); }</xforms:script>  
+                <xhtml:table border="0" cellpadding="0" cellspacing="8" style="width:100%;height:100%;table-layout:fixed"> 
+                  <xhtml:tr> 
+                    <xhtml:td> 
+                      <xhtml:div xblid="process1_processConfirmContent" style="padding: 5px;"/> 
+                    </xhtml:td> 
+                  </xhtml:tr>  
+                  <xhtml:tr height="22px"> 
+                    <xhtml:td> 
+                      <xhtml:table border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;table-layout:fixed"> 
+                        <xhtml:tr> 
+                          <xhtml:td align="right"> 
+                            <xforms:trigger style="width:75px;margin-right:8px;" id="ee179dc2665b4edd853ea169c0d3e076"> 
+                              <xforms:label id="63e0a498754243acb584cf8ba2a0b1e4">确定</xforms:label>  
+                              <xforms:action ev:event="DOMActivate">  
+                                <xforms:script>var processConfirmDialog = justep('process1_processConfirmDialog').xformsObject; processConfirmDialog._isOk = true; xforms('process1_processConfirmDialog').close();</xforms:script> 
+                              </xforms:action> 
+                            </xforms:trigger> 
+                          </xhtml:td>  
+                          <xhtml:td width="75px"> 
+                            <xforms:trigger style="width:75px" id="f3181fc2954b4d808a75a963d2986d73"> 
+                              <xforms:label id="328e43801ab2475ba9e6fd9f73a680c7">取消</xforms:label>  
+                              <xforms:action ev:event="DOMActivate">  
+                                <xforms:script>var processConfirmDialog = justep('process1_processConfirmDialog').xformsObject; processConfirmDialog._isOk = false; xforms('process1_processConfirmDialog').close();</xforms:script> 
+                              </xforms:action> 
+                            </xforms:trigger> 
+                          </xhtml:td> 
+                        </xhtml:tr> 
+                      </xhtml:table> 
+                    </xhtml:td> 
+                  </xhtml:tr> 
+                </xhtml:table> 
+              </xforms:dialog>  
+              <xhtml:div component="/UI/system/components/dialog.xbl.xml#dialog" modal="true" neighbor="" width="500" height="405" id="process1_customizedDialogID" title="定制流程" xblid="_customizedDialog_" class="component_41508DE1 dialog"> 
+                <xhtml:div style="display:none;height:100%;width:100%" id="process1_customizedDialogID-content"> 
+                  <xhtml:iframe scrolling="no" src="about:blank" frameborder="no" style="width: 100%; height: 100%; overflow: hidden" id="process1_customizedDialogIFrameID" name="process1_customizedDialogIFrameID"/> 
+                </xhtml:div> 
+              </xhtml:div>  
+              <xhtml:div style="display:none"> 
+                <xhtml:input xblid="_processInputData_" processControlDialogID="process1_processControlDialog" processConfirmDialogID="process1_processConfirmDialog" processConfirmContentID="process1_processConfirmContent" iframeID="process1_processControlDialogIFrame" customizedDialogID="process1_customizedDialogID" customizedDialogIFrameID="process1_customizedDialogIFrameID" processChartDialogID="process1_processChartDialogID"/> 
+              </xhtml:div> 
+            </xhtml:div> 
+          </xhtml:div> 
+        </xhtml:div> 
+      </xhtml:div>
+    </div>  
+    <xforms:model xforms:partial="model1"></xforms:model>
+    <xforms:model xforms:partial="model1">
+      <xforms:xpath ref="not(call('justep.XData.canDo','cData','Save'))"/>
+    </xforms:model>
+    <xforms:model xforms:partial="model1">
+      <xforms:xpath ref="call('justep.Context.isReadonlyMode')"/>
+      <xforms:xpath ref="call('justep.Context.isReadonlyMode')"/>
+      <xforms:xpath ref="call('justep.Context.isReadonlyMode')"/>
+      <xforms:xpath ref="call('justep.Context.isReadonlyMode')"/>
+    </xforms:model>
+  </body>  
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="processBar" tag-type="rich" tag-name="bar" icon="Control_ToolBar.gif" 
+														text="流程工具栏"  
+		discriminate-condition="@component=/UI/system/components/processBar.xbl.xml#processBar" 
+		binding-component="/UI/system/components/processBar.xbl.xml#processBar" display-property="id" 
+		component-class="ProcessBar" parent-range="toolbars" child-range="barItem"
+		component-type="layoutContainer" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="false" editor-ref=""/>
+			<!--  
+			<property name="component" text="组件" required="true" editor-ref="" readonly="true"/>
+			-->
+			<property name="process" text="流程控制" required="true" editor-ref="processList" is-id-ref="true"/>    
+			<property name="mode" text="显示模式" editor-ref="btnDisplayModes"/>    
+		</properties>
+		<property-editors>
+			<property-editor name="processList" type="list" >
+				<dynamic-data xpath="//*[@component='/UI/system/components/process.xbl.xml#process']/@id" /> 
+			</property-editor>
+		</property-editors>		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xui:bar component="/UI/system/components/processBar.xbl.xml#processBar" xmlns:xui="http://www.justep.com/xui">    
+					<item name="back-process-item"/>
+					<item name="advance-process-item"/>
+					<item name="transfer-task-item"/>
+					<item name="suspend-process-item"/>
+					<item name="abort-process-item"/>	
+					<item name="customized-process-item"/>
+					
+					<item name="process-chart-item"/>
+					<item name="execute-list-item"/>
+					<item name="withdraw-task-item"/>
+					<item name="modify-executor-item"/>					
+						
+				</xui:bar>
+			]]></template>
+		</templates>
+		<toolbar>
+			<item text="设置项" method="setBarItem"/>
+		</toolbar>		
+	</element>
+	
+	<!--  	
+	<element name="barItem" tag-name="item" icon="Control_TrackBar.gif" text="工具按钮项" 
+		component-class="BarItem"  display-property="name" 
+		component-type="barItem"  parent-range="navigatorBar"
+		validator="BarItemValidator">
+		<properties>
+			<property name="name" text="名称" required="true" editor-ref="itemList"/>
+			<property name="readonly" text="只读" required="" editor-ref=""/>
+			<property name="relevant" text="相关" required="true" editor-ref=""/>   
+		</properties>
+		<property-editor name="itemList" type="list" >
+			<static-data value="insert-item,save-item,delete-item,refresh-item,filter-item,filter-pattern-item,first-item,pre-item,next-item,last-item,next-page-item,all-page-item,create-new-child-item,create-new-brother-item,create-new-root-item" />				
+		</property-editor>
+	</element>
+	-->
+</elements>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xui="http://www.justep.com/xui"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	
+	<script src="/UI/system/components/common/common.js" />
+	<binding id="orgFilter" >
+		<template template-type="java"  src="OrgFilter" />	
+		<implementation>
+		<![CDATA[
+			({
+				"initXBL" : function() {
+					this.curPersonLabel = (new justep.Message(justep.Message.JUSTEP231077)).getMessage();
+					this.id = this.domNode.id;
+					this.__attribute_node = this.getElementByXblID('attribute');
+					this.__data_id = this.__attribute_node?this.__attribute_node.getAttribute('data-id'):'';
+					this.__select_id = this.__attribute_node?this.__attribute_node.getAttribute('select-id'):'';
+					this.__result_instance_id = this.__attribute_node?this.__attribute_node.getAttribute('instance-id'):'';
+					this.__data_obj = this.__data_id?justep.xbl(this.__data_id):null;
+					this.__select_obj = this.__select_id?xforms(this.__select_id):null;
+					this.__result_instance_obj = this.__result_instance_id?xforms(this.__result_instance_id):null;
+					this.hasCurrentPerson = this.domNode.getAttribute('has-current-person')!='false';
+					this.showOrgTypes = this.domNode.getAttribute('show-org-types');
+					this.showOrgTypes = this.showOrgTypes?this.showOrgTypes.split(','):[];
+					
+					this.filterDataID = this.__attribute_node.getAttribute('filter-data');
+					this.personIDRelation = this.__attribute_node.getAttribute('person-id-relation');
+					this.orgURLRelation = this.__attribute_node.getAttribute('org-url-relation');
+					this.autoRefresh = this.__attribute_node.getAttribute('auto-refresh') == "true";
+					this.onGetCondition = this.__attribute_node.getAttribute('onGetCondition');
+					this.executeConcept = this.__attribute_node.getAttribute('execute-concept');
+					this.defaultValue = this.__attribute_node.getAttribute('default-value') ;
+					
+					var filter = '';
+					for(var i=0;i<this.showOrgTypes.length;i++){
+						var nodeType = this.showOrgTypes[i];
+						var s = justep.String.trim(nodeType);
+						if(s) filter += (filter!=''?",":"")+"'"+s+"'";
+					}
+					this.showOrgTypeFilter = filter!=''?'SA_OPOrg.sOrgKindID in ('+filter+')':'';
+					this.manageCodes =  justep.String.trim(this.domNode.getAttribute('manage-codes'));
+					if(!this.manageCodes) this.manageCodes='businessManagement';
+					this.__onChanged = this.domNode.getAttribute("onChanged")?justep.Function.get(this.domNode.getAttribute("onChanged")):null;
+					this.__onInit = this.domNode.getAttribute("onInit")?justep.Function.get(this.domNode.getAttribute("onInit")):null;
+				
+					if(this.domNode.getAttribute("onDropdown")) this.__onDropdown = justep.Function.get(this.domNode.getAttribute("onDropdown")); else this.__onDropdown = null;
+					if(this.domNode.getAttribute("onRowExpand")) this.__onRowExpand = justep.Function.get(this.domNode.getAttribute("onRowExpand")); else this.__onRowExpand = null;
+					if(this.__select_obj){
+				        this.__select_obj.attachEvent("onCloseup", this.__closeup, this);
+				        if(this.__onRowExpand)
+							this.__select_obj.attachEvent("onRowExpand", this.__onRowExpand, this);
+						this.__select_obj.attachEvent("onShowNodeImg", this.__doShowNodeImg, this);
+						this.__select_obj.attachEvent("onDropdown", this.__doDropdown, this);
+					}
+					if(this.__data_obj){
+					    this.__data_obj.attachEvent("onBeforeNew", this._doBeforeNew, this);
+					    this.__data_obj.attachEvent("onBeforeDelete", this._doBeforeDelete, this);
+						this.__data_obj.attachEvent("onRefreshCreateParam", this._doCreateParam, this);
+					}
+					if(this.__result_instance_obj){
+						this.setDefaultValue(this.defaultValue,this.defaultValue);
+					}
+					if(this.__onInit) this.__onInit({'source':this});
+				},
+
+				"setDefaultValue" : function(value,label){
+					if(this.__result_instance_obj){
+						if(value==this.curPersonLabel) {value = justep.Context.getCurrentPersonID();label = this.curPersonLabel;}
+						var rowId = this.__result_instance_obj.getId();
+						this.__result_instance_obj.setValue('label',label,rowId);
+						this.__result_instance_obj.setValue('value',value,rowId);
+					}
+				},
+
+				"_doCreateParam" : function(event){
+					var queryParam = event.param;
+					var data = this.__data_obj;
+					var filter = this._getFilter();
+					var userFilter = data.buildFilter();
+					if(userFilter) filter = filter?'('+userFilter+') AND ('+filter+')':userFilter;
+					if(filter) queryParam.setString('filter', filter);
+					else queryParam.deleteParam('filter');
+
+					if(justep.XData.IS_TREE_ROOT==this.__data_obj.defTreeOption.loadTreeParent && this.manageCodes){
+						queryParam.setString('manageCodes', this.manageCodes);
+					}else queryParam.deleteParam('manageCodes');
+				},
+				
+				"_getFilter" : function(){
+					var orgFilter = this.showOrgTypeFilter;
+					if(orgFilter==""){
+						orgFilter += 'SA_OPOrg.sValidState=1';
+					}
+					else{
+						orgFilter += ' AND SA_OPOrg.sValidState=1';
+					}
+					return orgFilter;
+				},
+				
+				"_doBeforeNew" : function(event){
+					event.cancel = true;
+				},
+
+				"_doBeforeDelete" : function(event){
+					event.cancel = true;
+				},
+				
+				"getData" : function(){
+					return this.__data_obj;
+				},
+				
+				"getSelect" : function(){
+					return this.__select_obj;
+				},
+				
+				"__closeup" : function(event){
+					if(event.valueChanged && this.getFilterData())
+						this._setFilter(this.id, this
+								.getFilterData(), this.personIDRelation, this.orgURLRelation,
+								this.executeConcept, this.getSelecteds(), this.onGetCondition,
+								this.autoRefresh);
+					
+					if (this.__onChanged) this.__onChanged({'source':this});
+				},
+				"getFilterData" : function(){
+					return this.filterDataID?justep.xbl(this.filterDataID):null;
+				},
+				"setAutoRefresh" : function(autoRefresh){
+					this.autoRefresh = autoRefresh;
+				},				
+				"clearFilter" : function(){
+					this.getFilterData().setFilter(this.getFilterName(),"");
+					this.setDefaultValue(this.defaultValue,this.defaultValue);
+				},				
+				"getFilterName" : function(){
+					return "_" + this.id + "_filter";
+				},
+				"_setFilter" : function(id, filterData, personIDRelation, orgURLRelation, executeConcept, value, onGetConditionEvent, isRefresh){
+					var filterName = this.getFilterName();
+					var condition = this._doGetCondition(id,
+							filterData, personIDRelation, orgURLRelation, executeConcept,
+							value, onGetConditionEvent);
+					var oldCondition = filterData?filterData.getFilter(filterName):"";
+					if (condition != oldCondition) {
+						filterData.setFilter(filterName, condition, value);
+						if (isRefresh)
+							filterData.refreshData();
+					}
+				},
+				"_doGetCondition" : function(id, filterData,personIDRelation, orgURLRelation, executeConcept, value,onGetConditionEvent){
+					var condition = this._getFilterCondition(filterData, 
+							personIDRelation, orgURLRelation, executeConcept, value);
+					var fun = justep.Function.get(onGetConditionEvent);
+					if (fun) {
+						var eventData = {
+							"source" : this,
+							"id" : id,
+							"filterData" : filterData,
+							"personIDRelation" : personIDRelation,
+							"orgURLRelation" : orgURLRelation,
+							"executeConcept" : executeConcept,
+							"value" : value,
+							"defaultCondition" : condition,
+							"handled" : false
+						};
+						var customCondition = fun(eventData);
+						if (eventData.handled)
+							condition = customCondition;
+					}
+				
+					return condition;				
+				},
+				"_getFilterCondition" : function(filterData, personIDRelation, orgURLRelation, executeConcept, value){				
+					if(!value && this.defaultValue) {
+						value = this.defaultValue;
+						this.setDefaultValue(this.defaultValue,this.defaultValue);
+					}
+					if(!value ) return "";
+					var personR = personIDRelation?justep.Components.FilterUtils.getRelationAlias(this.filterDataID,personIDRelation):null;
+					var orgR = justep.Components.FilterUtils.getRelationAlias(this.filterDataID,orgURLRelation);
+					
+					var condition = this.getFilter(orgR, personR);
+					return condition;				
+				},
+				"__addCurrentPerson" : function(data, grid){
+					if(!data) return;
+					justep.XData.disableControls();
+					try{
+						var currentPersonId = justep.Context.getCurrentPersonID();
+						data.insert(currentPersonId,0);
+						data.setValue('sName',this.curPersonLabel,currentPersonId);
+						data.setValue('sCode',justep.Context.getCurrentPersonCode(),currentPersonId);
+						data.setValue('sOrgKindID','psn',currentPersonId);
+						data.setValue('sValidState','1',currentPersonId);
+						if(grid) grid.setNodeLoadSuccess(currentPersonId);
+					}finally{justep.XData.enableControls();}
+				},
+				
+				"__doDropdown" : function(event){
+					if(this.__onDropdown) this.__onDropdown(event);
+					if(!event.source.isLoadData){
+						var data = this.__data_obj;
+						if(!data) return;
+						if(this.hasCurrentPerson) this.__addCurrentPerson(data, this.getSelect());
+						event.source.isLoadData = data.loadTreeData(justep.XData.IS_TREE_ROOT);
+					}
+				},
+				
+				"__doShowNodeImg" : function(event){
+					var data = justep.xbl(event.instance.element.id);
+					if(!data) return;
+					var orgKind = !event.grid._isVirtualRoot(event.rowId)?data.getValue('sOrgKindID', event.rowId):'root';
+					var ValidState = !event.grid._isVirtualRoot(event.rowId)?(1==data.getValue('sValidState', event.rowId)):true;
+					return justep.Resource.getOrgImgURL(orgKind, !ValidState);
+				},
+				
+				"getSelecteds" : function(){
+					var data = this.getData();
+					var rowIds = this.getSelect().grid.getCheckedRowIds();
+					var values=[];
+					var names=['sName','sOrgKindID','sCode','sLongName','sFName','sFCode','sFID','sParent','sNodeKind','sValidState','sPersonID'];
+					if(!this.getSelect().isLoadData){
+						if(this.hasCurrentPerson && this.curPersonLabel==this.domNode.getAttribute('default-value')){
+							var o = {};
+							o['sID'] = justep.Context.getCurrentPersonID();
+							o['sPersonID'] = o['sID'];
+							o['sCode'] = justep.Context.getCurrentPersonCode();
+							o['sName'] = justep.Context.getCurrentPersonName();
+							o['sOrgKindID'] = 'psn';
+							values.push(o);
+						}
+						return values;
+					}
+					for (var i = 0; i < rowIds.length; i++) {
+						var o = {};
+						var isAdd = true;
+						var rowId = rowIds[i];
+						o['sID'] = rowId;
+						var FId = data.getValue('sFID',rowId);
+						var kind = data.getValue('sOrgKindID',rowId);
+						if('psn'!=kind){
+							for (var j=values.length-1; j>=0; j--){
+								if('psn'==values[j].sOrgKindID) continue;
+							    var s = values[j].sFID;
+								if(0==s.indexOf(FId))
+									values.splice(j,1);
+								else if(0==FId.indexOf(s)) isAdd = false;	
+							}
+						}
+					    for (var j=0; j<names.length; j++){
+					        var name = names[j];
+							var value = data.getValue(name,rowId);
+							o[name] = value;
+						}
+						if(isAdd) values.push(o);
+					}
+					return values;
+				},
+				"setTabIndex" : function(tabIndex){
+					this.__select_obj.setTabIndex(tabIndex);
+				},
+				"getTabIndex" : function(){
+					return this.__select_obj.getTabIndex();
+				},			
+				"setAccessKey" : function(key){
+					this.__select_obj.setAccessKey(key);
+				},			
+				"getAccessKey" : function(){
+					return this.__select_obj.getAccessKey();
+				},			
+				"setReadonly" : function(readonly){
+					this.__select_obj.setReadonly(readonly);
+				},			
+				"getReadonly" : function(){
+					return this.__select_obj.getReadonly();
+				},			
+				"setDisabled" : function(disabled){alert(disabled);
+					this.__select_obj.setDisabled(disabled);
+				},			
+				"getDisabled" : function(){
+					return this.__select_obj.getDisabled();
+				},
+				"getFilter" : function(orgFIdRelation, psnRelation, selectedValues){
+					var values = !selectedValues?this.getSelecteds():selectedValues;
+					var result = [];
+					for(var i=0;i<values.length;i++){
+					    var o = values[i];
+						var s = '';
+						if('psn'==o.sOrgKindID){
+							s = psnRelation? ("(" + psnRelation + " LIKE '" + o.sID + "%')") : ("(" + orgFIdRelation + " LIKE '%" + o.sID + "@%')");
+						}else if('psm'==o.sOrgKindID){
+							s = psnRelation? ("(" + psnRelation + " = '" + o.sPersonID + "')") : ("(" + orgFIdRelation + " LIKE '%" + o.sID + ".psm')");
+						}else{
+						    s = "(" + orgFIdRelation + " LIKE '" + o.sFID + "%')";
+						}	
+						if(s) result.push(s);
+					}
+					return result.join(' OR ');
+				}
+			})
+		]]>	
+		</implementation>		
+	</binding>	
+</xbl:xbl>				

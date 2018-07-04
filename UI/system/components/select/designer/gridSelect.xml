@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="gridSelect" tag-type="rich" tag-name="div" icon="gridSelect.gif" text="下拉列表" 
+		binding-component="/UI/system/components/select.xbl.xml#gridSelect" base-class="select"
+		display-property="id" component-class="GridSelect" component-type="formControl"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="ref" text="引用" editor-ref="dataRef" required="true"/>	
+			<property name="label-ref" text="label引用" editor-ref="dataRef"/>
+			<property name="ext-ref" text="扩展引用" editor-ref="dataRef"/>
+			<property name="default-label-ref" text="空值引用。空值时，用此ref显示在输入框" editor-ref="dataRef"/>
+			<property name="all-selected-label-ref" text="全选引用。全选时，用此ref显示在输入框" editor-ref="dataRef"/>
+			<property name="multi-select" text="多选" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="smart-render" text="智能渲染" data-type="integer"/>
+			<property name="value-separator" text="多选value分割字符"/>
+			<property name="label-separator" text="多选label分割字符"/>
+			<property name="ext-separator" text="多选ext分割字符"/>
+			<property name="input-changeable" text="允许在直接在input框中输入改变值" editor-ref="booleanList" readonly="true" default-value="false" enabled-condition="@multi-select='false'"/>
+			<!-- 
+			<property name="input-inputable" text="input框中是否有输入能力" editor-ref="booleanList" readonly="true" default-value="false"/>
+			 -->
+			<property name="delay-create-grid" text="延迟创建grid" editor-ref="booleanList" readonly="true" default-value="false"/>
+			
+			<property name="dropdown-height" text="下拉框高度(px)" data-type="integer"/>
+			<property name="dropdown-width" text="下拉框宽度(px)" data-type="integer"/>
+			<property name="column-header-height"  text="下拉表格列头高(px)" data-type="integer"/>
+			<property name="row-height"  text="下拉表格行高(px)" data-type="integer"/>
+			<property name="dropdown-class" text="下拉框class" editor-ref="gridClassDialog" editor-parameter=" "/>
+			<group name="itemset">
+				<property name="data-ref" path="itemset/@data" text="引用data,优先级高于静态数" editor-ref="dataList" checkup-condition="itemset/itemset-data/@description=''" data-ref="true" required="true"/>
+				<property name="auto-load-data" path="itemset/@auto-load-data" text="第一次下拉时触发data动态加载" editor-ref="booleanList" readonly="true" default-value="false"/>
+				<property name="independence" path="itemset/@independence" default-value="false" text="为true时，多个select可以绑定同一个data，但只在下拉时刷新一次数据，数据改变后，需要用户主动触发刷新。" editor-ref="booleanList" readonly="true"/>
+				<property name="static-data" path="itemset/itemset-data/@description" type="complex" editor-ref="dataDialog"  readonly="true" is-virtual = 'true'  fixed-value='[静态数据]'/>
+				<property name="columns"  text="下拉表格列" path="itemset/@columns-description" type="complex" editor-ref="columnsDialog" readonly="true" is-virtual = 'true'  fixed-value='[...]' required="false"/>
+			</group>
+			<group name="column-ref"> 
+				<property name="value" path="xforms:value/@ref" text="与ref对应的列" editor-ref="cols" required="true" checkup-condition="not(itemset/@data='')"/>
+				<property name="label" path="xforms:label/@ref" text="选择后再输入框显示的列/与label-ref对应的列" editor-ref="cols" required="true" checkup-condition="not(itemset/@data='')"/>
+				<property name="ext" path="xforms:ext-value/@ref" text="与ext-ref对应的列" editor-ref="cols"/>
+			</group>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-select"/>
+			<property name="class"  text="class" editor-extend-data="xui-select:select"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="readonly" text="只读" editor-ref="edit-readonly" default-value="false"/>
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false"/>
+		</properties>
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel">				
+			</item>			
+		</toolbar>
+		<property-editors>
+			<property-editor name="dropdown-width" type="list">
+				<static-data value=":自动,self-width:使用组件的宽度"></static-data>
+			</property-editor>
+			<property-editor name="gridClassDialog" type="list" mutil-selection='true'>
+				<static-data value="xui-grid-hide-VLine:隐藏竖分隔线,xui-grid-hide-HLine:隐藏横分隔线"/> <!--直接定义的静态数据 -->				
+			</property-editor>
+			<property-editor name="cols" type="list">
+				<static-data value="rowID"/>
+				<dynamic-data xpath="*[local-name()='itemset']/*[local-name()='column']/@ref"/>								
+			</property-editor>
+			<property-editor name="dataList" type="list">
+				<static-data value=":无"/>
+				<dynamic-data xpath="//*[local-name()='data']/@id" />								
+			</property-editor>
+			<property-editor name="dataDialog" type="dialog">
+				<dialog-page class-name="SelectItemsetDataPage"/>				
+			</property-editor>
+			<property-editor name="columnsDialog" type="dialog">
+				<dialog-page class-name="SelectColumnPage"/>				
+			</property-editor>
+			
+		</property-editors>
+		<events>  <!--组件事件-->			
+		<!--  
+			<event name="onGridInit"  text="下拉表格初始化"/>
+		-->
+			<event name="onRowDisabled"  text="行是否可选"/>
+			<event name="onAfterRowFill"  text="行渲染结束"/>
+			<event name="onDropdown"  text="显示下拉"/>
+			<event name="onCloseup"  text="关闭下拉"/>
+			<event name="onKeyDown"  text="按键按下事件"/>
+			<event name="onKeyUp"  text="按键抬起事件"/>
+			<event name="onKeyPress"  text="按键按下又抬起事件"/>      
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div component="/UI/system/components/select.xbl.xml#gridSelect" row-height="36" dropdown-class="xui-grid-hide-VLine" label-separator="," value-separator="," ext-separator=",">
+				   <xforms:label ref=""/>
+				   <xforms:value ref=""/>
+				   <xforms:itemset>
+						
+				   </xforms:itemset>
+				</xhtml:div>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

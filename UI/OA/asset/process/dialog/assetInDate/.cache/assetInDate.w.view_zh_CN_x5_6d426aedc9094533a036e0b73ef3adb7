@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v0f551da0b2994c0f985a4f6095b0ecd8/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v5135b283e1474342847b3d9028d90615/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v6c469afd1e9b4dc78f53b13f0679fa65/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vea4da4d0fa9941a4955a8ce58860a879/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2708b6227f8a4c8997fd29319008c937/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v47131d9390d34532bd3329b572ca609c/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v57c713b896e044e89d311104267a3ccc/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v58314970753f4b6d92edd2b42ac5e53d/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v81ff2f72f61d4212917c36e40e91c4cf/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v852bcfcb46214623a2cb4638f4bfd0b9/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v38b9903daf1b42c7a370546f8bf13aaa/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$va1127f854be14da6a59d8bad5c436ba0/component/data/data.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/x5/$v70af6cefaa464aec87da7c2999cb21d7/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v4288c9108beb4d15ad3be264bfa7149c/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$v5f7e8757c9bf46098d86b8f43b2b49bf/UI/OA/asset/process/dialog/assetInDate/assetInDate.js?language=zh_CN">
+</script>      <script src="/x5/$vcbf9ecaebf954eb382bb001834189182/UI/system/components/windowDialog/FrameWindow.js?language=zh_CN" type="text/javascript">
+</script>      <link href="/x5/$v703b4967fe1649c9a82a4093795f44cf/UI/appCommon/css/common.css?language=zh_CN" rel="STYLESHEET" type="text/css"></link>      <script>
+new justep.XCommonData('dAssetInDate',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script type="text/javascript" src="/x5/$veb7980c98a704fedabbed03603d12e53/UI/OA/asset/process/dialog/assetInDate/.cache/assetInDate_zh_CN_x5_8d3ed0954498469599673d49fafeb60b.js?language=zh_CN&amp;$version=afe162c8-ed58-4a73-b84e-4b45728c090a"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;"> 
+        <table border="0" cellpadding="0" cellspacing="0" class="no-editor-border" style="width:244px;height:165px;border-collapse: collapse; table-layout: fixed;"> 
+          <tr height="0px"> 
+            <td height="0px" width="15px"></td>  
+            <td height="0px" width="66px"></td>  
+            <td height="0px" width="25px"></td>  
+            <td height="0px" width="49px"></td>  
+            <td height="0px" width="24px"></td>  
+            <td height="0px" width="51px"></td>  
+            <td height="0px" width="14px"></td> 
+          </tr>  
+          <tr height="18px"> 
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="18px" style="Font-Family:宋体;Font-Size:9pt;"></td> 
+          </tr>  
+          <tr height="22px"> 
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="22px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">入库日期：</td>  
+            <td colspan="4" height="22px" style="Text-Align:Left;Vertical-Align:Middle;border-Bottom:1px Solid #BFBFBF;border-Left:1px Solid #BFBFBF;border-Right:1px Solid #BFBFBF;border-Top:1px Solid #BFBFBF;Font-Family:宋体;Font-Size:9pt;"> 
+              <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                <tbody> 
+                  <tr> 
+                    <td class="focus" style="display:none;width:0px"></td>  
+                    <td class="xxf-value"> 
+                      <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                    </td>  
+                    <td class="xxf-alert"> 
+                      <span class="xforms-alert"> 
+                        <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                        <div class="xforms-alert-value" id=""></div> 
+                      </span> 
+                    </td>  
+                    <td class="xui-ie-input-bug"></td> 
+                  </tr> 
+                </tbody> 
+              </table> 
+            </td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td> 
+          </tr>  
+          <tr height="103px"> 
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="103px" style="Font-Family:宋体;Font-Size:9pt;"></td> 
+          </tr>  
+          <tr height="22px"> 
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"> 
+              <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgOK" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                <tbody> 
+                  <tr> 
+                    <td class="xxf-value"> 
+                      <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                        <span class="xforms-label " id="03f6766e6cb642c3b936cff82923f039">确定</span> 
+                      </button> 
+                    </td>  
+                    <td class="xxf-alert"> 
+                      <span class="xforms-alert"> 
+                        <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                        <div class="xforms-alert-value" id=""></div> 
+                      </span> 
+                    </td> 
+                  </tr> 
+                </tbody> 
+              </table> 
+            </td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"> 
+              <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trgCancel" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                <tbody> 
+                  <tr> 
+                    <td class="xxf-value"> 
+                      <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                        <span class="xforms-label " id="e6fdb67857a54d8fad58445a154fc10e">取消</span> 
+                      </button> 
+                    </td>  
+                    <td class="xxf-alert"> 
+                      <span class="xforms-alert"> 
+                        <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                        <div class="xforms-alert-value" id=""></div> 
+                      </span> 
+                    </td> 
+                  </tr> 
+                </tbody> 
+              </table> 
+            </td>  
+            <td height="22px" style="Font-Family:宋体;Font-Size:9pt;"></td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

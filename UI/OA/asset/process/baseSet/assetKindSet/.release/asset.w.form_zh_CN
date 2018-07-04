@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <script language="javascript" src="/UI/system/components/windowReceiver/windowReceiver.js">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/OA/asset/process/baseSet/assetKindSet/asset.js">
+</script>      <script>
+new justep.XBizData('assetTypeD',false,false,{'queryAction':"queryTOOL_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TOOL_TYPE_CODE':'TOOL_TYPE_CODE'}",'limit':-1,'idColumn':"{'name':'TOOL_TYPE_CODE','relation':'TOOL_TYPE_CODE','define':'TOOL_TYPE_CODE','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLTYPECNAME':{'type':'String','relation':'TOOL_TYPE_CODE.tOOLTYPECNAME','define':'TOOL_TYPE_CODE.tOOLTYPECNAME','label':'工具名称'},'tOOLTYPEENAME':{'type':'String','relation':'TOOL_TYPE_CODE.tOOLTYPEENAME','define':'TOOL_TYPE_CODE.tOOLTYPEENAME','label':'英文名称'},'nUMSCODE':{'type':'String','relation':'TOOL_TYPE_CODE.nUMSCODE','define':'TOOL_TYPE_CODE.nUMSCODE','label':'编码'},'version':{'type':'Integer','relation':'TOOL_TYPE_CODE.version','define':'TOOL_TYPE_CODE.version','label':'版本'},'pARENTLEV':{'type':'Integer','relation':'TOOL_TYPE_CODE.pARENTLEV','define':'TOOL_TYPE_CODE.pARENTLEV','label':'父级标识'}}"},'assetTypeD_part',{});</script>  
+    <script>
+new justep.XBizData('toolSortD',false,false,{'queryAction':"queryTOOL_SORT_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TOOL_SORT_CODE':'TOOL_SORT_CODE'}",'limit':-1,'idColumn':"{'name':'TOOL_SORT_CODE','relation':'TOOL_SORT_CODE','define':'TOOL_SORT_CODE','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLSORTCNAME':{'type':'String','relation':'TOOL_SORT_CODE.tOOLSORTCNAME','define':'TOOL_SORT_CODE.tOOLSORTCNAME','label':'工具类型'},'tOOLSORTENAME':{'type':'String','relation':'TOOL_SORT_CODE.tOOLSORTENAME','define':'TOOL_SORT_CODE.tOOLSORTENAME','label':'英文名称'},'nUMSCODE':{'type':'String','relation':'TOOL_SORT_CODE.nUMSCODE','define':'TOOL_SORT_CODE.nUMSCODE','label':'编码'},'version':{'type':'Integer','relation':'TOOL_SORT_CODE.version','define':'TOOL_SORT_CODE.version','label':'版本'},'pARENTLEV':{'type':'Integer','relation':'TOOL_SORT_CODE.pARENTLEV','define':'TOOL_SORT_CODE.pARENTLEV','label':'父级标识'}}"},'toolSortD_part',{});</script>  
+    <script>
+new justep.XBizData('toolCategoryD',true,false,{'queryAction':"queryTOOL_CATEGORY_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TOOL_CATEGORY_CODE':'TOOL_CATEGORY_CODE'}",'limit':-1,'idColumn':"{'name':'TOOL_CATEGORY_CODE','relation':'TOOL_CATEGORY_CODE','define':'TOOL_CATEGORY_CODE','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLCATEGORYCNAME':{'type':'String','relation':'TOOL_CATEGORY_CODE.tOOLCATEGORYCNAME','define':'TOOL_CATEGORY_CODE.tOOLCATEGORYCNAME','label':'工具分类'},'tOOLCATEGORYENAME':{'type':'String','relation':'TOOL_CATEGORY_CODE.tOOLCATEGORYENAME','define':'TOOL_CATEGORY_CODE.tOOLCATEGORYENAME','label':'英文名称'},'nUMSCODE':{'type':'String','relation':'TOOL_CATEGORY_CODE.nUMSCODE','define':'TOOL_CATEGORY_CODE.nUMSCODE','label':'编码'},'version':{'type':'Integer','relation':'TOOL_CATEGORY_CODE.version','define':'TOOL_CATEGORY_CODE.version','label':'版本'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('toolSortTypeCategoryCD',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':false,'dataType':"xml"}, {});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/windowReceiver.xbl.xml#windowReceiver"] = _xbl_JSClassDefine_windowReceiver;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_windowReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				this.domNode._xblObject.initXBL();
+			},
+			"initXBL2" : function() {
+				this.domNode._xblObject.initXBL2();
+			}
+		}));
+
+	var ids=[{id:'window', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'windowReceiver1', name:'/UI/system/components/windowReceiver.xbl.xml#windowReceiver'},{id:'gridSelect1', name:'xforms:gridselect1', children:[{id:'default4', name:'xforms:label'},{id:'default5', name:'xforms:value'}]},{id:'gridSelect2', name:'xforms:gridselect1', children:[{id:'default7', name:'xforms:label'},{id:'default8', name:'xforms:value'}]},{id:'gridSelect3', name:'xforms:gridselect1', children:[{id:'default10', name:'xforms:label'},{id:'default11', name:'xforms:value'}]},{id:'trigger1', name:'xforms:trigger', children:[{id:'default37', name:'xforms:label'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'gridSelect1');xf._a('gridSelect1','default4');xf._a('gridSelect1','default6');xf._a(null,'gridSelect2');xf._a('gridSelect2','default7');xf._a('gridSelect2','default9');xf._a(null,'gridSelect3');xf._a('gridSelect3','default10');xf._a('gridSelect3','default12');xf._a(null,'trigger1');xf._a('trigger1','default37');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('assetTypeD')/version",xf._g(xf._f('instance',xf._i("assetTypeD")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('assetTypeD')/pARENTLEV",xf._g(xf._f('instance',xf._i("assetTypeD")),xf._h(false, xf._k("child",xf._j('','pARENTLEV')))));	
+xf._b("instance('toolSortD')/version",xf._g(xf._f('instance',xf._i("toolSortD")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('toolSortD')/pARENTLEV",xf._g(xf._f('instance',xf._i("toolSortD")),xf._h(false, xf._k("child",xf._j('','pARENTLEV')))));	
+xf._b("instance('toolCategoryD')/version",xf._g(xf._f('instance',xf._i("toolCategoryD")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('toolSortTypeCategoryCD')/toolCategory",xf._g(xf._f('instance',xf._i("toolSortTypeCategoryCD")),xf._h(false, xf._k("child",xf._j('','toolCategory')))));	
+xf._b("true()",xf._f('true'));	
+xf._b("'不能为空'",xf._i("不能为空"));	
+xf._b("instance('toolSortTypeCategoryCD')/toolSort",xf._g(xf._f('instance',xf._i("toolSortTypeCategoryCD")),xf._h(false, xf._k("child",xf._j('','toolSort')))));	
+xf._b("instance('toolSortTypeCategoryCD')/toolType",xf._g(xf._f('instance',xf._i("toolSortTypeCategoryCD")),xf._h(false, xf._k("child",xf._j('','toolType')))));	
+xf._b("data('toolSortTypeCategoryCD')/toolCategory",xf._g(xf._f('data',xf._i("toolSortTypeCategoryCD")),xf._h(false, xf._k("child",xf._j('','toolCategory')))));	
+xf._b("tOOLCATEGORYCNAME",xf._h(false, xf._k("child",xf._j('','tOOLCATEGORYCNAME'))));	
+xf._b("TOOL_CATEGORY_CODE",xf._h(false, xf._k("child",xf._j('','TOOL_CATEGORY_CODE'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))));	
+xf._b("tOOLCATEGORYENAME",xf._h(false, xf._k("child",xf._j('','tOOLCATEGORYENAME'))));	
+xf._b("nUMSCODE",xf._h(false, xf._k("child",xf._j('','nUMSCODE'))));	
+xf._b("version",xf._h(false, xf._k("child",xf._j('','version'))));	
+xf._b("data('toolSortTypeCategoryCD')/toolSort",xf._g(xf._f('data',xf._i("toolSortTypeCategoryCD")),xf._h(false, xf._k("child",xf._j('','toolSort')))));	
+xf._b("tOOLSORTCNAME",xf._h(false, xf._k("child",xf._j('','tOOLSORTCNAME'))));	
+xf._b("TOOL_SORT_CODE",xf._h(false, xf._k("child",xf._j('','TOOL_SORT_CODE'))));	
+xf._b("tOOLSORTENAME",xf._h(false, xf._k("child",xf._j('','tOOLSORTENAME'))));	
+xf._b("pARENTLEV",xf._h(false, xf._k("child",xf._j('','pARENTLEV'))));	
+xf._b("data('toolSortTypeCategoryCD')/toolType",xf._g(xf._f('data',xf._i("toolSortTypeCategoryCD")),xf._h(false, xf._k("child",xf._j('','toolType')))));	
+xf._b("tOOLTYPECNAME",xf._h(false, xf._k("child",xf._j('','tOOLTYPECNAME'))));	
+xf._b("TOOL_TYPE_CODE",xf._h(false, xf._k("child",xf._j('','TOOL_TYPE_CODE'))));	
+xf._b("tOOLTYPEENAME",xf._h(false, xf._k("child",xf._j('','tOOLTYPEENAME'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');var xf_model_model1 = new xforms.XFModel('model1',null);	
+new xforms.XFInstance2('toolCategoryD','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('toolCategoryD',null);	
+xf._c('xf-bind-4','model1',"instance('toolCategoryD')/version","xsd:integer",null,null,null,null,null,null);	
+new xforms.XFInstance2('toolSortTypeCategoryCD','model1',null,null,null,null,null,null,null,null,null,null,null);new SimpleStore('toolSortTypeCategoryCD','toolCategory,toolSort,toolType');	
+xf._c('xf-bind-5','model1',"instance('toolSortTypeCategoryCD')/toolCategory",null,null,"true()",null,null,null,"'不能为空'");	
+xf._c('xf-bind-6','model1',"instance('toolSortTypeCategoryCD')/toolSort",null,null,"true()",null,null,null,"'不能为空'");	
+xf._c('xf-bind-7','model1',"instance('toolSortTypeCategoryCD')/toolType",null,null,"true()",null,null,null,"'不能为空'");	
+xforms.load_parts('view1');	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var assetTypeD_part_loaded = false;	
+function load_assetTypeD_part(callback){if (assetTypeD_part_loaded) return;assetTypeD_part_loaded = true;	
+new xforms.XFInstance2('assetTypeD','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('assetTypeD',null);	
+xf._c('xf-bind-0','model1',"instance('assetTypeD')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-1','model1',"instance('assetTypeD')/pARENTLEV","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var assetTypeD_part_init_loaded = false;	
+function load_assetTypeD_part_init(){if (assetTypeD_part_init_loaded) return;assetTypeD_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+var toolSortD_part_loaded = false;	
+function load_toolSortD_part(callback){if (toolSortD_part_loaded) return;toolSortD_part_loaded = true;	
+new xforms.XFInstance2('toolSortD','model1',null,null,null,null,null,null,null,null,null,null,'whereAll');new SimpleStore('toolSortD',null);	
+xf._c('xf-bind-2','model1',"instance('toolSortD')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-3','model1',"instance('toolSortD')/pARENTLEV","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var toolSortD_part_init_loaded = false;	
+function load_toolSortD_part_init(){if (toolSortD_part_init_loaded) return;toolSortD_part_init_loaded = true;	
+if(xforms.ready)justep('model1').xformsObject.construct_part();}	
+function load_view1(){if (justep("view1").getAttribute('loaded') &amp;&amp; justep("view1").getAttribute('loaded') == 'true') return;justep("view1").setAttribute('loaded', 'true');	
+if(typeof(load_view1_html) == 'function')load_view1_html();	
+new xforms.XFExtSelect({id:'gridSelect1',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('toolSortTypeCategoryCD')/toolCategory"),labelRef:null,extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:'toolCategoryD',columns:'TOOL_CATEGORY_CODE,tOOLCATEGORYCNAME,__c_,tOOLCATEGORYENAME,nUMSCODE,version',headerH:null,rowH:'36',dropdownClass:'xui-grid-hide-VLine',hiddenColumns:'TOOL_CATEGORY_CODE,tOOLCATEGORYENAME,nUMSCODE,version',valueColumn:'TOOL_CATEGORY_CODE',labelColumn:'tOOLCATEGORYCNAME',extColumn:null,labels:',,,,,',aligns:',,,,,',types:'ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+new xforms.XFExtSelect({id:'gridSelect2',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('toolSortTypeCategoryCD')/toolSort"),labelRef:null,extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:'toolSortD',columns:'TOOL_SORT_CODE,tOOLSORTCNAME,__c_,tOOLSORTENAME,nUMSCODE,version,pARENTLEV',headerH:null,rowH:'36',dropdownClass:'xui-grid-hide-VLine',hiddenColumns:'TOOL_SORT_CODE,tOOLSORTENAME,nUMSCODE,version,pARENTLEV',valueColumn:'TOOL_SORT_CODE',labelColumn:'tOOLSORTCNAME',extColumn:null,labels:',,,,,,',aligns:',,,,,,',types:'ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:'asset.gridSelect2Dropdown',onCloseup:null});	
+new xforms.XFExtSelect({id:'gridSelect3',type:'gridselect1',defaultLabelRef:null,allSelectedLabelRef:null,ref:xf._q("data('toolSortTypeCategoryCD')/toolType"),labelRef:null,extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:',',dataId:'assetTypeD',columns:'TOOL_TYPE_CODE,tOOLTYPECNAME,__c_,tOOLTYPEENAME,nUMSCODE,version,pARENTLEV',headerH:null,rowH:'36',dropdownClass:'xui-grid-hide-VLine',hiddenColumns:'TOOL_TYPE_CODE,tOOLTYPEENAME,nUMSCODE,version,pARENTLEV',valueColumn:'TOOL_TYPE_CODE',labelColumn:'tOOLTYPECNAME',extColumn:null,labels:',,,,,,',aligns:',,,,,,',types:'ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,#,*,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:true,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:'asset.gridSelect3Dropdown',onCloseup:null});	
+var xf_trigger_trigger1=new xforms.XFTrigger('trigger1',null,null,null,false,false,false,null,null,null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){asset.trigger1Click(event)}));xf._p(justep('trigger1'),"DOMActivate",null,function(evt) { xforms.run(xf_action_action1,'trigger1', evt,false)});	
+}	
+function load_view1_xblinit(){if (justep("view1").getAttribute('xblloaded') &amp;&amp; justep("view1").getAttribute('xblloaded') == 'true') return;justep("view1").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="windowReceiver1" onReceive="asset.windowReceiver1Receive" style="position:absolute;top:247px;left:246px;">           <script>
+new justep.WindowReceiver('windowReceiver1');</script> 
+        </div>  
+        <div class="xui-container" id="view1" lazy="false" style="position:relative;;height:100%;width:100%;"> 
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:46px;left:72px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:89px;left:72px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect3" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:137px;left:72px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:188px;left:100px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="xxf-value"> 
+                  <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                    <span class="xforms-label " id="default37">确定</span> 
+                  </button> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <label class="xui-label" id="label1" style="position:absolute;top:48px;left:20px;">工具分类</label>  
+          <label class="xui-label" id="label2" style="position:absolute;left:20px;position:absolute;top:93px;">工具类型</label>  
+          <label class="xui-label" id="label4" style="position:absolute;left:20px;position:absolute;position:absolute;top:139px;">工具名字</label> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

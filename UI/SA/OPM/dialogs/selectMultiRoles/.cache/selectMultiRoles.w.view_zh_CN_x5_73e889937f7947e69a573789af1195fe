@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$vd6e806cc82bb4508b452bfc04fc089fb/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v0916f5b48f1f4a3f82e8c1fa4222d825/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$ve7144b1e15c34bcea753e6977dd83b0f/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vd98fe67bfc8747f89c8ded753632c434/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v1ab9c1284e964e26826d042e3ecfea8b/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v3e3842fac7854b58bfc51c20567ef65a/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$vc5654d971413442cbc22441723277a67/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vce844d6ea4c3489ab94d9f26f6a14d9a/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vf0f177096ef947748a0c7ae2afabadea/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v9dca80eaca6c48c18e59909862f32e35/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v2c92065988b14771aec2d0d74e8f38c7/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v1c5a46da6b4b4be68aa430a3e4af1678/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <link href="/x5/$v4ed4fe6e3f46453b9b977b1d2284179f/UI/system/components/buttonBar/buttonBar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script language="javascript" src="/x5/$v1042ddbf51c644a981e120697ac7d46b/UI/system/components/windowDialog/windowDialogReceiver.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css"/>      <meta content="ajaxforms" http-equiv="Media-Type"/>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>      <link href="/x5/$v2c74f40f88844ff0a951d59e683a409b/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vaeab5f953f144e58b00f4f2dbbfefa3b/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script id="htmlScript1" src="/x5/$vfbd7bc0a0d3a4cbca5053ec56d1881fd/UI/SA/OPM/dialogs/selectMultiRoles/selectMultiRoles.js?language=zh_CN">
+</script>      <script id="opmUtils" src="/x5/$v9ed43a96391f4da5b3db972c153598df/UI/SA/OPM/js/OpmUtils.js?language=zh_CN">
+</script>      <link href="/x5/$va749e3e68a3f4d70844c7a669797cf24/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="STYLESHEET" type="text/css"/>      <script>
+new justep.XBizData('dRole',false,false,{'queryAction':"queryOPRoleAction",'dataModel':"/system/data",'concept':"{'SA_OPRole':'SA_OPRole'}",'limit':20,'idColumn':"{'name':'SA_OPRole','relation':'SA_OPRole','define':'SA_OPRole','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'filterValidState':'SA_OPRole.sValidState = 1'}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPRole.sName','define':'SA_OPRole.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPRole.sCode','define':'SA_OPRole.sCode','label':'编码'},'sCatalog':{'type':'String','relation':'SA_OPRole.sCatalog','define':'SA_OPRole.sCatalog','label':'分类'},'sRoleKind':{'type':'String','relation':'SA_OPRole.sRoleKind','define':'SA_OPRole.sRoleKind','label':'角色类型'},'sDescription':{'type':'String','relation':'SA_OPRole.sDescription','define':'SA_OPRole.sDescription','label':'描述'},'sSequence':{'type':'Integer','relation':'SA_OPRole.sSequence','define':'SA_OPRole.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPRole.sValidState','define':'SA_OPRole.sValidState','label':'可用状态'},'sParentRolesNames':{'type':'String','relation':'SA_OPRole.sParentRolesNames','define':'SA_OPRole.sParentRolesNames','label':'父角色名称列表'},'version':{'type':'Integer','relation':'SA_OPRole.version','define':'SA_OPRole.version','label':'版本'},'fZW':{'type':'String','relation':'SA_OPRole.fZW','define':'SA_OPRole.fZW','label':'职位'},'fGW':{'type':'String','relation':'SA_OPRole.fGW','define':'SA_OPRole.fGW','label':'岗位'}}",'defCalcRelations':"{'calcIndex':{'type':'http://www.w3.org/2001/XMLSchema#string'},'calcCheckBox':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dRole_part',{}).attachEvents({'onRefreshCreateParam':'selectMultiRoles.dRoleRefreshCreateParam'});</script>  
+    <script type="text/javascript" src="/x5/$vda8102d52d5b4845b077bfb5565bbc7b/UI/SA/OPM/dialogs/selectMultiRoles/.cache/selectMultiRoles_zh_CN_x5_42e32d22240b4d05801e9e23f55a7ea1.js?language=zh_CN&amp;$version=130c556f-d2b9-4af6-a925-cd0bb23857fd"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"/>  
+    <span id="infoPanel" style="position:absolute;display:none"/>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div border-size="8px" class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%; height: 100%;;"> 
+          <div borderSize="8px" class="xui-borderlayout-root"> 
+            <div class="xui-borderlayout-area xui-borderlayout-top" size="35px" style=""> 
+              <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar1" separator-size="4"> 
+                <ul> 
+                  <li class=""> 
+                    <input class="xui-input" id="inputSearch" onkeydown="selectMultiRoles.inputSearchKeydown(event)" style="width:100px;;" type="text" value=""/> 
+                  </li>  
+                  <li class="space nosep" style="margin: 0 2px;">|</li>  
+                  <li class="last"> 
+                    <table cellpadding="0" cellspacing="0" class="button-yellow xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="imageSearch" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="height:25px;width:25px;;table-layout:fixed"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="xxf-value"> 
+                            <button class="xui-button-label xforms-trigger-image" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex=""> 
+                              <i class="icon icon-system-search"/> 
+                            </button> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                              <div class="xforms-alert-value" id=""/> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </li> 
+                </ul> 
+              </div>  
+              <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar2" separator-size="8"> 
+                <ul> 
+                  <li class=""> 
+                    <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="triggerNextPage" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="xxf-value"> 
+                            <a class="xui-button-label" tabindex=""> 
+                              <i class="icon icon-system-angle-right"/>  
+                              <span class="xforms-label " id="default2">下页</span> 
+                            </a> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                              <div class="xforms-alert-value" id=""/> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </li>  
+                  <li class="space nosep" style="margin: 0 4px;">|</li>  
+                  <li class="last"> 
+                    <table cellpadding="0" cellspacing="0" class="component_C30EB7C5 trigger xforms-control xforms-trigger xforms-appearance-minimal xui-button" component="/UI/system/components/trigger.xbl.xml#trigger" id="triggerAllPage" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="xxf-value"> 
+                            <a class="xui-button-label" tabindex=""> 
+                              <i class="icon icon-system-angle-double-right"/>  
+                              <span class="xforms-label " id="default3">全部</span> 
+                            </a> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                              <div class="xforms-alert-value" id=""/> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </li> 
+                </ul> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"/>  
+            <div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+              <div class="grid-compact component_6298A7A1 grid" data="dRole" delay="false" header-row-height="30" id="gridRole" right-click-selected="true" row-height="30" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;border-style:solid solid solid solid;border-width:1px 1px 1px 1px;border-color:#C0C0C0 #C0C0C0 #C0C0C0 #C0C0C0;;overflow:hidden" system-columns="sDescription,sSequence,sValidState,version,fZW,fGW"/> 
+            </div>  
+            <div class="xui-borderlayout-area xui-borderlayout-bottom" size="38px" style=""> 
+              <div class="component_CC0FD117 buttonBar" component="/UI/system/components/buttonBar.xbl.xml#buttonBar" id="buttonBar3" style="float:right;margin:10px 0;"> 
+                <ul> 
+                  <li class=""> 
+                    <table cellpadding="0" cellspacing="0" class="button-green xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnOK" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="xxf-value"> 
+                            <button class="xui-button-label xforms-trigger-image " onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                              <i class="icon "/>  
+                              <span class="xforms-label " id="xuiLabel2">确定</span> 
+                            </button> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                              <div class="xforms-alert-value" id=""/> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </li>  
+                  <li class="space nosep" style="margin: 0 8px;">|</li>  
+                  <li class="last"> 
+                    <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnCancel" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                      <tbody> 
+                        <tr> 
+                          <td class="xxf-value"> 
+                            <a class="xui-button-label" tabindex=""> 
+                              <i class="icon "/>  
+                              <span class="xforms-label " id="xuiLabel1">取消</span> 
+                            </a> 
+                          </td>  
+                          <td class="xxf-alert"> 
+                            <span class="xforms-alert"> 
+                              <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                              <div class="xforms-alert-value" id=""/> 
+                            </span> 
+                          </td> 
+                        </tr> 
+                      </tbody> 
+                    </table> 
+                  </li> 
+                </ul> 
+              </div> 
+            </div>  
+            <div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"/> 
+          </div> 
+        </div>  
+        <div class="component_45CC9B41 windowDialogReceiver" component="/UI/system/components/windowDialogReceiver.xbl.xml#windowDialogReceiver" id="receiver" onReceive="selectMultiRoles.receiverReceive" style="top:210px;left:125px;"/> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

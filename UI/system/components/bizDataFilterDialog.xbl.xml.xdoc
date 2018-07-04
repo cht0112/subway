@@ -1,0 +1,46 @@
+/**
+	@name UI.bizDataFilterDialog
+	@component /UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog
+	@class
+	@description <b>[rich]</b>通用查询对话框组件, 推荐使用 UI.bizDataFilterMenu
+	@model UI
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<xhtml:div component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"/>
+	</xmp>
+	@see UI.bizDataFilterMenu
+*/
+
+/**
+	@name UI.bizDataFilterDialog#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"
+*/
+
+/**
+	@name UI.bizDataFilterDialog#id
+	@attribute 
+	@description id标识
+*/
+
+/**
+	@name UI.bizDataFilterDialog#show
+	@function
+	@description 打开通用查询对话框
+	@param {justep.XData/string} data <b>[required]</b> bizData组件的id或实例
+	@param {function} callBack 对话框关闭时要执行的回调函数，如果没有将对指定的bizData组件进行过滤刷新操作
+	<br/><b>回调函数格式: </b>
+	<xmp>
+	function callBackFunc(advanceFilter)
+	
+	参数advanceFilter : 参数类型为数组，数组内容是用户增加的过滤条件
+	</xmp>
+	@returns {boolean}
+	@example
+	<xmp>
+	justep.xbl('bizDataFilterDialog_id').show(data);
+	</xmp>
+*/

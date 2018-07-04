@@ -1,0 +1,298 @@
+/**
+	@name ProcessExternalActions
+	@class
+	@model BIZ
+	@description 流程动作
+	@see com.justep.system.process.ProcessUtils
+	@example
+	流程的各种操作，一般都由查询和实际做两大类业务动作构成，只有个别操作没有提供关于查询的动作。所有查询动作
+都只是基于内存的推导和运算，把相关需要计算的规则，环节和执行者都计算完毕后生成流程控制信息（ProcessControl），
+而不留下任何痕迹。实际做的业务动作都是根据传入的流程控制信息（ProcessControl）完成实际的操作，并且把结果存入
+数据库。
+	大部分流程操作都是两个动作一起组合起来实现的，例如流转操作是由流转查询（externalAdvanceProcessQueryAction）
+动作先查出流程控制信息（ProcessControl），然后流程流转（externalAdvanceProcessAction）动作根据流程控制信息
+（ProcessControl）进行流转。
+	默认提供的业务动作都是全局的，只需要流程的定义模块引用（use或include）系统动作模块“/system/logic/code”之
+后，不需要在流程或环节主动引用就可以直接调用的。
+*/
+
+/**
+	@name ProcessExternalActions.externalStartProcessQueryAction
+	@action
+	@description 流程启动查询
+	@param {String} process 被启动的流程的全路径
+	@param {Map<String, Object>} attributes 流程实例的属性值 
+	@param {List<String>} tokens 初始token
+	@param {String} executor 首环节的执行者，允许值为空，默认是当前人员成员
+	@param {String} creator 首环节的创建者，允许值为空，默认是当前人员成员        
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.startProcessQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalStartProcessAction
+	@action
+	@description 流程启动
+	@param {String} process 被启动的流程的全路径
+	@param {Map<String, Object>} attributes 流程实例的属性值 
+	@param {List<String>} tokens 初始token
+	@param {String} executor 首环节的执行者，可选参数，默认是当前人员成员
+	@param {String} creator 首环节的创建者，可选参数，默认是当前人员成员        
+	@returns {Document}
+	@see com.justep.system.process.ProcessUtils.startProcess
+	@example
+	返回的是待办任务的信息，返回的XML数据结构如下：
+<xmp>
+	<items>
+		<item>
+			<!--待办任务关联的流程全路径-->
+			<process/>
+			<!--待办任务关联的环节标识-->
+			<activity/>
+			<!--待办任务ID-->
+			<task/>
+		</item>
+
+		<!--如果有多个待办时，就有若干个item-->
+	</items>
+</xmp>	
+*/
+
+/**
+	@name ProcessExternalActions.externalAdvanceProcessQueryAction
+	@action
+	@description 流程流转查询
+	@param {String} task 任务标识
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.advanceProcessQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalAdvanceProcessAction
+	@action
+	@description 流程流转
+	@param {String} task 任务标识
+	@param {com.justep.system.process.ProcessControl} control 流程控制信息，值允许为null
+	@returns {Document}
+	@see com.justep.system.process.ProcessUtils.advanceProcess
+	@example
+	返回的是待办任务的信息，返回的XML数据结构如下：
+<xmp>
+	<items>
+		<item>
+			<!--待办任务关联的流程全路径-->
+			<process/>
+			<!--待办任务关联的环节标识-->
+			<activity/>
+			<!--待办任务ID-->
+			<task/>
+		</item>
+
+		<!--如果有多个待办时，就有若干个item-->
+	</items>
+</xmp>	
+*/
+
+
+/**
+	@name ProcessExternalActions.externalBackProcessQueryAction
+	@action
+	@description 流程回退查询
+	@param {String} task 任务标识
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.backProcessQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalBackProcessAction
+	@action
+	@description 流程回退
+	@param {String} task 任务标识
+	@param {com.justep.system.process.ProcessControl} control 流程控制信息，值允许为null
+	@returns {Document}
+	@see com.justep.system.process.ProcessUtils.backProcess
+	@example
+	返回的是待办任务的信息，返回的XML数据结构如下：
+<xmp>
+	<items>
+		<item>
+			<!--待办任务关联的流程全路径-->
+			<process/>
+			<!--待办任务关联的环节标识-->
+			<activity/>
+			<!--待办任务ID-->
+			<task/>
+		</item>
+
+		<!--如果有多个待办时，就有若干个item-->
+	</items>
+</xmp>	
+*/
+
+/**
+	@name ProcessExternalActions.externalAbortProcessQueryAction
+	@action
+	@description 流程终止查询
+	@param {String} task 任务标识
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.abortProcessQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalAbortProcessAction
+	@action
+	@description 流程终止
+	@param {String} task 任务标识
+	@param {com.justep.system.process.ProcessControl} control 流程控制信息，值允许为null
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.abortProcess
+*/
+
+/**
+	@name ProcessExternalActions.externalSuspendProcessQueryAction
+	@action
+	@description 流程暂停查询
+	@param {String} task 任务标识
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.suspendProcessQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalSuspendProcessAction
+	@action
+	@description 流程暂停
+	@param {String} task 任务标识
+	@param {com.justep.system.process.ProcessControl} control 流程控制信息，值允许为null
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.suspendProcess
+*/
+
+/**
+	@name ProcessExternalActions.externalSpecialProcessQueryAction
+	@action
+	@description 流程特送查询
+	@param {String} task 任务标识
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.specialProcessQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalSpecialProcessAction
+	@action
+	@description 流程特送
+	@param {String} task 任务标识
+	@param {com.justep.system.process.ProcessControl} control 流程控制信息，值允许为null
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.specialProcess
+*/
+
+/**
+	@name ProcessExternalActions.externalTransferTaskQueryAction
+	@action
+	@description 任务转发查询
+	@param {String} task 任务标识
+	@returns {com.justep.system.process.ProcessControl}
+	@see com.justep.system.process.ProcessUtils.transferTaskQuery
+*/
+
+/**
+	@name ProcessExternalActions.externalTransferTaskAction
+	@action
+	@description 任务转发
+	@param {String} task 任务标识
+	@param {com.justep.system.process.ProcessControl} control 流程控制信息，值允许为null
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.transferTask
+*/
+
+/**
+	@name ProcessExternalActions.externalFinishProcessAction
+	@action
+	@description 结束流程
+	@param {String} task 任务标识
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.finishProcess
+*/
+
+/**
+	@name ProcessExternalActions.externalResumeProcessAction
+	@action
+	@description 唤醒流程
+	@param {String} task 任务标识
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.resumeProcess
+*/
+
+/**
+	@name ProcessExternalActions.externalWithdrawTaskAction
+	@action
+	@description 回收任务
+	@param {String} task 任务标识
+	@returns {void}
+*/
+
+/**
+	@name ProcessExternalActions.externalStartCustomizedProcessQueryAction
+	@action
+	@description 启动流程定制查询
+	@param {String} task 任务标识
+	@returns {Document}
+	@see com.justep.system.process.ProcessUtils.startCustomizedProcessQuery
+	@example
+	返回的数据结构如下：
+<xmp>
+	<customized>
+		<!--是否允许定制-->
+		<enabled/>
+		
+		<!--流程模板标识-->
+		<template/>		
+		
+		<!--流程模板类型-->
+		<templateType/>
+		
+		<!--当前步骤，5.2.6兼容保留，不建议使用-->
+		<templateItemSequence/>
+		
+		<!--当前流程全路径-->
+		<process/>
+		
+		<!--当前流程名称-->
+		<processName/>
+		
+		<!--当前环节标识-->
+		<activity/>
+
+		<!--当前环节名称-->		
+		<activityName/>
+		
+		<!--正在运行的环节-->
+		<activeActivities/>
+		
+		<!--已经结束的环节-->
+		<finishedActivities/>
+	</customized>
+</xmp>	
+*/
+
+
+/**
+	@name ProcessExternalActions.externalStartCustomizedProcessAction
+	@action
+	@description 启动流程定制
+	@param {String} task 任务标识
+	@param {String} template 流程模板标识
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.startCustomizedProcess
+*/
+
+/**
+	@name ProcessExternalActions.externalCancelCustomizedProcessAction
+	@action
+	@description 取消流程定制
+	@param {String} task 任务标识
+	@returns {void}
+	@see com.justep.system.process.ProcessUtils.cancelCustomizedProcess
+*/
+
+

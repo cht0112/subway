@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root> 
+  <item display="solid" label="appCommon"> 
+    <item label="我的常用语" url="/appCommon/process/commonWords/mainActivity.w" display="solid" process="/appCommon/process/commonWords/commonWordsProcess" activity="mainActivity"/>  
+    <item label="个人签名" process="/appCommon/process/personSignature/personSignatureProcess" activity="mainActivity" url="/appCommon/process/personSignature/mainActivity.w"/>  
+    <item label="我的邮箱" process="/appCommon/process/turbomailLogin/turbomailLoginProcess" activity="mainActivity" url="/appCommon/process/turbomailLogin/turbomailLoginIframe.p"/>  
+    <item label="组织机构分组_个人" process="/appCommon/process/customOrgGroup/customOrgGroupProcess" activity="personalActivity" url="/appCommon/process/customOrgGroup/personalActivity.w"/>
+    <item label="组织机构分组_系统" process="/appCommon/process/customOrgGroup/customOrgGroupProcess" activity="globalActivity" url="/appCommon/process/customOrgGroup/globalActivity.w"/>
+  </item> 
+</root>

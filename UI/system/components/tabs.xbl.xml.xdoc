@@ -1,0 +1,218 @@
+/**
+	@name UI.tab
+	@component /UI/system/components/tabs.xbl.xml#tabs.tab
+	@class
+	@model UI
+	@description <b>[rich]</b>页签组件的页
+	@see tabPanel
+*/
+
+/**
+	@name UI.tab#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.tab#ref
+	@attribute
+	@description 关联的Data的列，感知data上的规则readonly、relevant，控制组件只读和显示
+*/
+
+/**
+	@name UI.tab#title
+	@attribute
+	@description 页签显示名称
+*/
+
+/**
+	@name UI.tab#selected
+	@attribute
+	@description 初始选中
+*/
+
+/**
+	@name UI.tab#tabindex
+	@attribute
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.tab#accesskey
+	@attribute
+	@description 快捷键
+*/
+
+/**
+	@name UI.tab#disabled
+	@attribute
+	@description 禁止
+	@default false
+*/
+
+/**
+	@name UI.tab#visable
+	@attribute
+	@description 可见
+	@default true
+*/
+
+/**
+	@name UI.tab#onSelect
+	@event
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+	@description <b>[xforms事件]</b> 选中页签后
+*/
+
+/**
+	@name UI.tab#onDeSelect
+	@event
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+	@description <b>[xforms事件]</b> 非选中后
+*/
+
+/**
+	@name UI.tabPanel
+	@component /UI/system/components/tabs.xbl.xml#tabs
+	@class justep.JSTabbar
+	@model UI
+	@description <b>[rich]</b>页签组件
+	@see UI.tab
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/tabs.xbl.xml#tabs">
+		<xui:tab >
+			<xui:label>列表</xui:label>
+			<!--列表页签内容-->
+			...
+		</xui:tab>
+		<xui:tab>
+			<xui:label>详细</xui:label>
+			<!--详细页签内容-->
+			...
+		</xui:tab>
+	</xhtml:div>		   		
+</xmp>
+*/
+
+/**
+	@name UI.tabPanel#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/tabs.xbl.xml#tabs"
+*/
+
+/**
+	@name UI.tabPanel#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.tabPanel#ref
+	@attribute
+	@description 关联的Data的列，感知data上的规则relevant，控制组件显示
+*/
+
+/**
+	@name UI.tabPanel#setTabActive
+	@function
+	@param id {string} <b>[required]</b>页签ID
+	@description 选中某个页签
+*/
+
+/**
+	@name UI.tabPanel#getActiveID
+	@function
+	@description 返回当前页签的id
+	@returns {integer}
+*/
+
+/**
+	@name UI.tabPanel#setVisable
+	@function
+	@param {string} id <b>[required]</b>页签ID
+	@param {boolean} show <b>[required]</b>是否可见
+	@param {string} activeId <b>[required]</b>如果隐藏页签为当前显示页签则切换到的页签，默认切换到下一个页签
+	@description 设置页签是否可见
+*/
+
+/**
+	@name UI.tabPanel#getTabIndex
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.tabPanel#setTabIndex
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.tabPanel#getAccessKey
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.tabPanel#setAccessKey
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.tabPanel#getDisabled
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.tabPanel#setDisabled
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.tabPanel#setLabel
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@param {string} label 标签
+	@description 设置标签
+*/
+
+/**
+	@name UI.tabPanel#getLabel
+	@function
+	@param {string} id <b>[required]</b>页签标识(id)
+	@description 获取id
+	@returns {string}
+*/

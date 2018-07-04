@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v2229_da3704d6ce4cc4cafa0774aeb339ee0ef/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_dcfaf3c7740e24de8b1e1f17b1f5401f1/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d9ea36b9bc8c64f51b0beabdb622880ce/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d7756541586404712bfdf9491de750a3e/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d4649151b34814b9297e1c869e201d8fb/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d39c97648fcee4c2c9a39ca57d36b80ba/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2229_dcbe4b7a9a12743bf9ed78898a847f3a7/base/base.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script src="/x5/$v2229_d9a4efc997997495b9a3d6a3cbd1a8d5a/form/form.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d1dd2a10c8e7e4ec8ad9c3f6d0c627a84/component/data/data.js?language=zh_CN">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_db4cc9e8410374f3cac37ed8325fba246/UI/system/components/pageNavigator/pageNavigator.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/x5/$v2229_d1fb045ff0a3845bba7b7094230b3a7a1/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length &gt; 0 ? msgs[0] : "";
+					var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}		</script>  
+    <link href="/x5/$v2229_d4e50dd75d2684840af583ac11f0d4827/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$v2229_d8f78af93cd01435495df6bd1c571685b/UI/metrodetection/testing_standard/process/yongliProcess/relationIndex.js?language=zh_CN">
+		</script>  
+    <script>
+new justep.XBizData('subTestCaseD',true,false,{'queryAction':"querySubCaseRelationIndexAction",'saveAction':"saveSUB_TEST_CASE_BASE_INFOAction",'newAction':"createSUB_TEST_CASE_BASE_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'INDEX_SYSTEM_VALUE':'INDEX_SYSTEM_VALUE'}",'limit':20,'idColumn':"{'name':'SUB_TEST_CASE_BASE_INFO','relation':'SUB_TEST_CASE_BASE_INFO','define':'SUB_TEST_CASE_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"iNDEXIDCNAME,dEVICETYPECNAME,dETECTIONRANGECNAME,rANGEIDCNAME,tESTCASEVER,tESTCASEID,sUBTESTCASEID",'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLYFORDEVICETYPE':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.aPPLYFORDEVICETYPE','define':'INDEX_SYSTEM_VALUE.aPPLYFORDEVICETYPE','label':'应用检测对象'},'iNDEXID1':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.iNDEXID','define':'INDEX_SYSTEM_VALUE.iNDEXID','label':'指标ID'},'INDEX_ID_BASE_INFO':{'type':'Integer','relation':'INDEX_ID_BASE_INFO','define':'EXPRESS','label':'null'},'iNDEXIDCNAME':{'type':'String','relation':'INDEX_ID_BASE_INFO.iNDEXIDCNAME','define':'INDEX_ID_BASE_INFO.iNDEXIDCNAME','label':'指标名称'},'dETECTIONRANGETYPE':{'type':'Decimal','relation':'INDEX_ID_BASE_INFO.dETECTIONRANGETYPE','define':'INDEX_ID_BASE_INFO.dETECTIONRANGETYPE','label':'指标检测方面类别'},'dETECTIONRANGEID':{'type':'Decimal','relation':'INDEX_ID_BASE_INFO.dETECTIONRANGEID','define':'INDEX_ID_BASE_INFO.dETECTIONRANGEID','label':'检测方面'},'DEVICE_TYPE_CODE':{'type':'String','relation':'DEVICE_TYPE_CODE','define':'EXPRESS','label':'null'},'dETECTIONOBJECTTYPE':{'type':'Integer','relation':'DEVICE_TYPE_CODE.dETECTIONOBJECTTYPE','define':'DEVICE_TYPE_CODE.dETECTIONOBJECTTYPE','label':'检测对象类别'},'dEVICETYPE':{'type':'Integer','relation':'DEVICE_TYPE_CODE.dEVICETYPE','define':'DEVICE_TYPE_CODE.dEVICETYPE','label':'检测对象'},'dEVICETYPECNAME':{'type':'String','relation':'DEVICE_TYPE_CODE.dEVICETYPECNAME','define':'DEVICE_TYPE_CODE.dEVICETYPECNAME','label':'检测对象'},'DETECTION_RANGE_TYPE':{'type':'Integer','relation':'DETECTION_RANGE_TYPE','define':'EXPRESS','label':'null'},'dETECTIONRANGECNAME':{'type':'String','relation':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','label':'检测方面类别'},'DETECTION_RANGE_CODE':{'type':'String','relation':'DETECTION_RANGE_CODE','define':'EXPRESS','label':'null'},'dETECTIONRANGETYPE1':{'type':'Integer','relation':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','define':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','label':'检测方面类别'},'dETECTIONRANGEID1':{'type':'Decimal','relation':'DETECTION_RANGE_CODE.dETECTIONRANGEID','define':'DETECTION_RANGE_CODE.dETECTIONRANGEID','label':'检测方面'},'rANGEIDCNAME':{'type':'String','relation':'DETECTION_RANGE_CODE.rANGEIDCNAME','define':'DETECTION_RANGE_CODE.rANGEIDCNAME','label':'检测方面'},'tESTCASEVER':{'type':'Decimal','relation':'SUB_TEST_CASE_BASE_INFO.tESTCASEVER','define':'SUB_TEST_CASE_BASE_INFO.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'SUB_TEST_CASE_BASE_INFO.tESTCASEID','define':'SUB_TEST_CASE_BASE_INFO.tESTCASEID','label':'测试用例ID'},'sUBTESTCASEID':{'type':'String','relation':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASEID','define':'SUB_TEST_CASE_BASE_INFO.sUBTESTCASEID','label':'测试子用例ID'}}",'defCalcRelations':"{'calSeq':{'type':'http://www.w3.org/2001/XMLSchema#string'},'checkBox':{'type':'http://www.w3.org/2001/XMLSchema#string'},'calBusinessId':{'type':'http://www.w3.org/2001/XMLSchema#string'},'indexNo':{'type':'http://www.w3.org/2001/XMLSchema#string'},'businessId':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'').attachEvents({'onAfterRefresh':'relationIndex.subTestCaseDAfterRefresh'});		</script>  
+    <script>
+new justep.XCommonData('businessCD',false,false,null,'businessCD_part','',{'deleteConfirm':true,'refreshConfirm':true,'refreshConfirmText':"xml"});		</script>  
+    <script>
+new justep.XBizData('indexValueD',true,false,{'queryAction':"myQueryIndexSystemValueParamAction",'saveAction':"saveINDEX_SYSTEM_VALUEAction",'newAction':"createINDEX_SYSTEM_VALUEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'INDEX_SYSTEM_VALUE':'INDEX_SYSTEM_VALUE'}",'limit':20,'idColumn':"{'name':'INDEX_SYSTEM_VALUE','relation':'INDEX_SYSTEM_VALUE','define':'INDEX_SYSTEM_VALUE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'iNDEXSYSTEMNO':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.iNDEXSYSTEMNO','define':'INDEX_SYSTEM_VALUE.iNDEXSYSTEMNO','label':'指标库序号'},'bUSINESSID':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.bUSINESSID','define':'INDEX_SYSTEM_VALUE.bUSINESSID','label':'指标应用业务类型'},'iNDEXID':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.iNDEXID','define':'INDEX_SYSTEM_VALUE.iNDEXID','label':'指标ID'},'aPPLYFOROBJECT':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.aPPLYFOROBJECT','define':'INDEX_SYSTEM_VALUE.aPPLYFOROBJECT','label':'应用检测对象类型'},'aPPLYFORDEVICETYPE':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE.aPPLYFORDEVICETYPE','define':'INDEX_SYSTEM_VALUE.aPPLYFORDEVICETYPE','label':'应用检测对象'},'iNDEXVALUE':{'type':'String','relation':'INDEX_SYSTEM_VALUE.iNDEXVALUE','define':'INDEX_SYSTEM_VALUE.iNDEXVALUE','label':'指标值公式'},'iNDEXVALUEDESC':{'type':'String','relation':'INDEX_SYSTEM_VALUE.iNDEXVALUEDESC','define':'INDEX_SYSTEM_VALUE.iNDEXVALUEDESC','label':'指标值文字描述'},'INDEX_SYSTEM_PARAMETER':{'type':'Integer','relation':'INDEX_SYSTEM_PARAMETER','define':'EXPRESS','label':'null'},'iNDEXSYSTEMNAME':{'type':'String','relation':'INDEX_SYSTEM_PARAMETER.iNDEXSYSTEMNAME','define':'INDEX_SYSTEM_PARAMETER.iNDEXSYSTEMNAME','label':'指标库名称'},'BUSINESS_TYPE_CODE':{'type':'Integer','relation':'BUSINESS_TYPE_CODE','define':'EXPRESS','label':'null'},'bUSINESSIDCNAME':{'type':'String','relation':'BUSINESS_TYPE_CODE.bUSINESSIDCNAME','define':'BUSINESS_TYPE_CODE.bUSINESSIDCNAME','label':'业务类型'},'DETECTION_OBJECT_TYPE':{'type':'Integer','relation':'DETECTION_OBJECT_TYPE','define':'EXPRESS','label':'null'},'dETECTIONOBJECTCNAME':{'type':'String','relation':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','define':'DETECTION_OBJECT_TYPE.dETECTIONOBJECTCNAME','label':'检测对象类别'},'dEVICETYPE':{'type':'Integer','relation':'DEVICE_TYPE_CODE.dEVICETYPE','define':'DEVICE_TYPE_CODE.dEVICETYPE','label':'检测对象'},'dEVICETYPECNAME':{'type':'String','relation':'DEVICE_TYPE_CODE.dEVICETYPECNAME','define':'DEVICE_TYPE_CODE.dEVICETYPECNAME','label':'检测对象'},'INDEX_ID_BASE_INFO':{'type':'Integer','relation':'INDEX_ID_BASE_INFO','define':'EXPRESS','label':'null'},'iNDEXIDCNAME':{'type':'String','relation':'INDEX_ID_BASE_INFO.iNDEXIDCNAME','define':'INDEX_ID_BASE_INFO.iNDEXIDCNAME','label':'指标名称'},'dETECTIONRANGETYPE':{'type':'Decimal','relation':'INDEX_ID_BASE_INFO.dETECTIONRANGETYPE','define':'INDEX_ID_BASE_INFO.dETECTIONRANGETYPE','label':'指标检测方面类别'},'dETECTIONRANGEID':{'type':'Decimal','relation':'INDEX_ID_BASE_INFO.dETECTIONRANGEID','define':'INDEX_ID_BASE_INFO.dETECTIONRANGEID','label':'检测方面'},'DETECTION_RANGE_TYPE':{'type':'Integer','relation':'DETECTION_RANGE_TYPE','define':'EXPRESS','label':'null'},'dETECTIONRANGECNAME':{'type':'String','relation':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','define':'DETECTION_RANGE_TYPE.dETECTIONRANGECNAME','label':'检测方面类别'},'DETECTION_RANGE_CODE':{'type':'String','relation':'DETECTION_RANGE_CODE','define':'EXPRESS','label':'null'},'dETECTIONRANGETYPE1':{'type':'Integer','relation':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','define':'DETECTION_RANGE_CODE.dETECTIONRANGETYPE','label':'检测方面类别'},'dETECTIONRANGEID1':{'type':'Decimal','relation':'DETECTION_RANGE_CODE.dETECTIONRANGEID','define':'DETECTION_RANGE_CODE.dETECTIONRANGEID','label':'检测方面'},'rANGEIDCNAME':{'type':'String','relation':'DETECTION_RANGE_CODE.rANGEIDCNAME','define':'DETECTION_RANGE_CODE.rANGEIDCNAME','label':'检测方面'}}"},'');		</script>  
+    <script>
+new justep.XBizData('relationIndexD',true,false,{'queryAction':"myQueryRelationIndexCaseAction",'saveAction':"saveRELATIONSHIP_INDEX_AND_CASEAction",'newAction':"createRELATIONSHIP_INDEX_AND_CASEAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"xml",'concept':"{'RELATIONSHIP_INDEX_AND_CASE':'riac'}",'limit':20,'idColumn':"{'name':'riac','relation':'riac','define':'RELATIONSHIP_INDEX_AND_CASE','type':'String'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tESTCASEVER':{'type':'Decimal','relation':'riac.tESTCASEVER','define':'RELATIONSHIP_INDEX_AND_CASE.tESTCASEVER','label':'测试用例版本'},'tESTCASEID':{'type':'String','relation':'riac.tESTCASEID','define':'RELATIONSHIP_INDEX_AND_CASE.tESTCASEID','label':'测试用例ID'},'sUBTESTCASEID':{'type':'String','relation':'riac.sUBTESTCASEID','define':'RELATIONSHIP_INDEX_AND_CASE.sUBTESTCASEID','label':'测试子用例ID'},'bUSINESSID':{'type':'Decimal','relation':'riac.bUSINESSID','define':'RELATIONSHIP_INDEX_AND_CASE.bUSINESSID','label':'指标应用业务类型'},'iNDEXNO':{'type':'Decimal','relation':'riac.iNDEXNO','define':'RELATIONSHIP_INDEX_AND_CASE.iNDEXNO','label':'指标序号'},'BUSINESS_TYPE_CODE':{'type':'Integer','relation':'BUSINESS_TYPE_CODE','define':'EXPRESS','label':'null'},'bUSINESSIDCNAME':{'type':'String','relation':'BUSINESS_TYPE_CODE.bUSINESSIDCNAME','define':'BUSINESS_TYPE_CODE.bUSINESSIDCNAME','label':'业务类型'},'INDEX_SYSTEM_VALUE':{'type':'Integer','relation':'INDEX_SYSTEM_VALUE','define':'EXPRESS','label':'null'},'iNDEXVALUE':{'type':'String','relation':'INDEX_SYSTEM_VALUE.iNDEXVALUE','define':'INDEX_SYSTEM_VALUE.iNDEXVALUE','label':'指标值公式'}}"},'');		</script>  
+    <script type="text/javascript" src="/x5/$v2229_d10b26454aeb94e2e8001aab3944e479b/UI/metrodetection/testing_standard/process/yongliProcess/.cache/relationIndex.js?$version=01b02932-c1aa-467d-8b57-423f12b3d5e3"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="xui-container" id="view1" lazy="false" style="position:relative;;height:100%;width:100%;"> 
+          <div class="component_6298A7A1 grid" data="subTestCaseD" id="grid1" onRowDblClick="relationIndex.grid1RowDblClick" onRowValueChanged="relationIndex.grid1RowValueChanged" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="position:absolute;top:55px;left:-2px;width:100%;height:89%;;overflow:hidden" system-columns="aPPLYFORDEVICETYPE,INDEX_ID_BASE_INFO,dETECTIONRANGETYPE,dETECTIONRANGEID,DEVICE_TYPE_CODE,dETECTIONOBJECTTYPE,dEVICETYPE,DETECTION_RANGE_TYPE,DETECTION_RANGE_CODE,dETECTIONRANGETYPE1,dETECTIONRANGEID1,indexNo,businessId"></div>  
+          <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1" style="position:absolute;height:41px;width:558px;left:2px;top:8px;"> 
+            <table cellpadding="0" cellspacing="0" style="width:100%"> 
+              <tr> 
+                <td> 
+                  <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                    <div class="toolbar-style" name="toolbargroup"> 
+                      <table cellpadding="0" cellspacing="1px"> 
+                        <tr> 
+                          <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                            <img align="absmiddle" class="standard-btn" src="/x5/$v2229_dc813e7f72565498fb7114c716f6ecb61/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xforms-triger-image-text" id="insertTrigger" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                              <tbody> 
+                                <tr> 
+                                  <td class="xxf-value"> 
+                                    <table> 
+                                      <tr align="center" valign="middle"> 
+                                        <td align="center" valign="middle"> 
+                                          <img align="absmiddle" src="/x5/$v2229_d69bd0409b36444fbbdd868c4bea4279d/UI/system/images/standardToolbar/standard/save.gif?language=zh_CN" tabindex="" title="保存"></img> 
+                                        </td>  
+                                        <td align="center" class="xforms-trigger-label" style="" valign="middle"> 
+                                          <span class="xforms-label " id="44db74637a87478080306b5fcc377da2">保存</span> 
+                                        </td> 
+                                      </tr>  
+                                      <tr align="center" style="display:none;" valign="middle"> 
+                                        <td align="center" class="xforms-trigger-label" valign="middle"> 
+                                          <span class="xforms-label " id="44db74637a87478080306b5fcc377da2">保存</span> 
+                                        </td> 
+                                      </tr> 
+                                    </table>  
+                                    <button style="POSITION:absolute;top:1px;left:1px;padding:0px;border-width:0px;width:0px;height:0px;" type="button"></button> 
+                                  </td>  
+                                  <td class="xxf-alert"> 
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                      <div class="xforms-alert-value" id=""></div> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </tbody> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="barItem4" model="model1" onclick="justep.xbl('subTestCaseD').refreshData(); "> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/x5/$v2229_d144513947e184a729a8c20cd86612690/UI/system/images/standardToolbar/standard/refresh.gif?language=zh_CN" style="border:none" title="刷新"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="customBarItem1" model="model1" onclick="justep.xbl('filter-pattern-51fdbead-9941-4956-ad9c-2f9248488d79').show('subTestCaseD', event.target||event.srcElement, 'filter-dialog-025568d2-9da3-4527-bd65-dc195e639060');"> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/x5/$v2229_d9230f663b906411c8dffb1970f6732c1/UI/system/images/standardToolbar/standard/search.gif?language=zh_CN" style="border:none" title="查询"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">查询</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-separator-style"> 
+                            <img align="absmiddle" class="standard-btn" src="/x5/$v2229_d002c8fec245e4a21a6946b262f6c03f8/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"></img> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="subTestCaseD" id="14f286f78e004b34b667018719159850" mode="IMG_TXT_LR"> 
+                              <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;"> 
+                                <tr class=""> 
+                                  <td class="xui-pageNavigator-button" style=""> 
+                                    <table>  
+                                      <tr align="center" valign="middle"> 
+                                        <td align="center" style="" valign="middle"> 
+                                          <img align="absmiddle" style="border:0px" title="第一页"></img> 
+                                        </td>  
+                                        <td align="center" class="xui-pageNavigator-label" style="" valign="middle">第一页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </td>  
+                                  <td class="xui-pageNavigator-button" style=""> 
+                                    <table>  
+                                      <tr align="center" valign="middle"> 
+                                        <td align="center" style="" valign="middle"> 
+                                          <img align="absmiddle" style="border:0px" title="上一页"></img> 
+                                        </td>  
+                                        <td align="center" class="xui-pageNavigator-label" style="" valign="middle">上一页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </td>  
+                                  <td class="xui-pageNavigator-page" nowrap="true" style=""></td>  
+                                  <td class="xui-pageNavigator-button" style=""> 
+                                    <table>  
+                                      <tr align="center" valign="middle"> 
+                                        <td align="center" style="" valign="middle"> 
+                                          <img align="absmiddle" style="border:0px" title="下一页"></img> 
+                                        </td>  
+                                        <td align="center" class="xui-pageNavigator-label" style="" valign="middle">下一页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </td>  
+                                  <td class="xui-pageNavigator-button" style=""> 
+                                    <table>  
+                                      <tr align="center" valign="middle"> 
+                                        <td align="center" style="" valign="middle"> 
+                                          <img align="absmiddle" style="border:0px" title="最后页"></img> 
+                                        </td>  
+                                        <td align="center" class="xui-pageNavigator-label" style="" valign="middle">最后页</td> 
+                                      </tr> 
+                                    </table> 
+                                  </td>  
+                                  <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td> 
+                                </tr> 
+                              </table>  
+                              <span count="" data="subTestCaseD" limit="" offset="" page-count="7" style="display:none" xblid="attribute"></span> 
+                            </div> 
+                          </td> 
+                        </tr> 
+                      </table> 
+                    </div> 
+                  </div> 
+                </td>  
+                <td style="width:100%"></td> 
+              </tr> 
+            </table> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div style="display:none"> 
+      <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect6" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+        <tbody> 
+          <tr> 
+            <td class="focus" style="display:none;width:0px"></td>  
+            <td class="xxf-value"> 
+              <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                  <tr style="border:none"> 
+                    <td style="width:100%;height:100%;border:none;"> 
+                      <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                    </td>  
+                    <td style="border:none" width="20px"> 
+                      <img align="absMiddle" src="/x5/$v2229_d1d0f2b91fc1c45a0893f67fd50ee4715/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                    </td> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td>  
+            <td class="xxf-alert"> 
+              <span class="xforms-alert"> 
+                <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                <div class="xforms-alert-value" id=""></div> 
+              </span> 
+            </td> 
+          </tr> 
+        </tbody> 
+      </table> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-51fdbead-9941-4956-ad9c-2f9248488d79"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="6769964042f146ecbfae7bd1cbc8c914" menu-id="GLOBAL_ID_N350337966" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_N350337966" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_N350337966" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_1121160753" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_1121160753-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_1340444843" name="GLOBAL_ID_1340444843" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-025568d2-9da3-4527-bd65-dc195e639060"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N1005149670" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N1005149670-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_990709077" name="GLOBAL_ID_990709077" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }		</script> 
+  </body> 
+</html>

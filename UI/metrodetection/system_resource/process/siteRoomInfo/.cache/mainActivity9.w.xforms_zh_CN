@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;">  
+  <head>
+    <xhtml:script language="javascript" src="/component/data/data.js"/>
+    <xhtml:script language="javascript" src="/UI/system/components/windowReceiver/windowReceiver.js"/>
+    <xhtml:style rel="stylesheet" type="text/css">.borderLayout{ overflow: hidden; } .xui-borderlayout-root{ position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area{ position: absolute; overflow: hidden; } .xui-borderlayout-top{ top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left{ top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right{ top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom{ left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center{ top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border{ position: absolute; background-color: white; } .xui-borderlayout-border-top{ top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left{ top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right{ top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom{ bottom: 150px; left: 0; width: 100%; height: 0; }</xhtml:style>
+    <xhtml:script language="javascript" src="/UI/system/components/blob/blob.js"/>
+    <xhtml:style rel="stylesheet" type="text/css"></xhtml:style>
+    <xhtml:style rel="stylesheet" type="text/css">.xui-blob{ width:200px; height:300px; background-color:#E3EBF7; }</xhtml:style>
+    <xhtml:script language="javascript" src="/UI/system/components/dialog/dialog.js"/>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <!-- 
+		<script type="text/javascript" src="/base/base.js"/>
+		<script type="text/javascript" src="/form/form.js"/>
+		 -->  
+    <script>
+		 <![CDATA[
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) && msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length > 0 ? msgs[0] : "";
+					var detail = msgs.length > 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length > 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null && activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		]]>
+		</script>  
+    <!--  
+		<script id="__script"/>
+		-->  
+    <xhtml:link rel="stylesheet" type="text/css" href="/UI/system/config/user.css"/>
+    <xhtml:script id="htmlScript1" src="/UI/metrodetection/system_resource/process/siteRoomInfo/mainActivity9.js"/>
+    <xhtml:script><![CDATA[new justep.XBizData('bizData1',false,false,{'queryAction':"queryROOM_APPLY_INFOAction",'saveAction':"saveROOM_APPLY_INFOAction",'newAction':"createROOM_APPLY_INFOAction",'dataModel':"/metrodetection/system_resource/data",'dataType':"json",'concept':"{'ROOM_APPLY_INFO':'ROOM_APPLY_INFO'}",'limit':20,'idColumn':"{'name':'ROOM_APPLY_INFO','relation':'ROOM_APPLY_INFO','define':'ROOM_APPLY_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'rOOMID':{'type':'Integer','relation':'ROOM_APPLY_INFO.rOOMID','define':'ROOM_APPLY_INFO.rOOMID','label':'房间编号'},'rOOMAREA':{'type':'String','relation':'ROOM_APPLY_INFO.rOOMAREA','define':'ROOM_APPLY_INFO.rOOMAREA','label':'区域'},'aPPLYFOROBJECT':{'type':'Decimal','relation':'ROOM_APPLY_INFO.aPPLYFOROBJECT','define':'ROOM_APPLY_INFO.aPPLYFOROBJECT','label':'应用检测对象类型'},'aPPLYFORDEVICETYPE':{'type':'Decimal','relation':'ROOM_APPLY_INFO.aPPLYFORDEVICETYPE','define':'ROOM_APPLY_INFO.aPPLYFORDEVICETYPE','label':'应用检测对象'},'aPPLYFORRANGE':{'type':'Decimal','relation':'ROOM_APPLY_INFO.aPPLYFORRANGE','define':'ROOM_APPLY_INFO.aPPLYFORRANGE','label':'应用检测方面类型'},'iMAGE':{'type':'Blob','relation':'ROOM_APPLY_INFO.iMAGE','define':'ROOM_APPLY_INFO.iMAGE','label':'区域位置图'}}"},'bizData1_part');]]></xhtml:script>
+    <xforms:model id="model1" style="width:143px;top:372px;height:auto;left:241px;">
+      <xforms:part id="bizData1_part" xforms:lazy="true">
+        <xforms:instance id="bizData1" update-mode="whereAll" concept="ROOM_APPLY_INFO" type="simple"/>
+        <xforms:bind nodeset="instance('bizData1')/rOOMID" type="xsd:integer"/>
+        <xforms:bind nodeset="instance('bizData1')/aPPLYFOROBJECT" type="xsd:float"/>
+        <xforms:bind nodeset="instance('bizData1')/aPPLYFORDEVICETYPE" type="xsd:float"/>
+        <xforms:bind nodeset="instance('bizData1')/aPPLYFORRANGE" type="xsd:float"/>
+      </xforms:part>
+    </xforms:model>
+    <xhtml:script id="xbl_script" language="javascript"><![CDATA[__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/system/components/blob.xbl.xml#image"] = _xbl_JSClassDefine_image;
+justep.XBLObject._classes["/UI/system/components/blob.xbl.xml#blob"] = _xbl_JSClassDefine_blob;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/dialog.xbl.xml#dialog"] = _xbl_JSClassDefine_dialog;
+justep.XBLObject._classes["/UI/system/components/windowReceiver.xbl.xml#windowReceiver"] = _xbl_JSClassDefine_windowReceiver;
+justep.XBLObject._classes["/UI/system/components/borderLayout.xbl.xml#borderLayout"] = _xbl_JSClassDefine_borderLayout;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_image(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_image.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.stretch = "false"==this.domNode.getAttribute("stretch")? false: true;
+				var blob_object = this.getElementByXblID('blob');
+			}, 
+			"setDisabled" : function(disabled){
+				var blob_object = this.getElementByXblID('blob');
+				if(blob_object && blob_object.xblObject){
+					blob_object.xblObject.disabled = disabled;
+				}
+			},
+			"getDisabled" : function(){
+				var blob_object = this.getElementByXblID('blob');
+				if(blob_object && blob_object.xblObject){
+					return blob_object.xblObject.disabled;
+				}
+			},
+			"doSubmit" : function(event){
+				var func = this.domNode.getAttribute('onSubmit');
+				if(func) func = justep.Function.get(func);
+				if(!func){
+					return justep.Blob.imgFileTest(event);
+				}else{
+					return func(event);
+				}
+			},
+			"doRefresh" : function(event){
+				this.setImgSrc(event.url);
+				var func = this.domNode.getAttribute('onRefresh');
+				if(func){
+					func = justep.Function.get(func);
+					if(func) func(event);
+				}
+			},
+			"refresh" : function(rowid){
+				var blob_object = justep.XBLObject.getXBLObject(this.getElementByXblID('blob'));
+				if(blob_object){
+					blob_object.refresh(rowid);
+				}
+			},
+			"setImgSrc" : function(src){
+				if(!src) return;
+				var blob_object = this.getElementByXblID('blob');
+				var imgWidth = $(blob_object).innerWidth();
+				var imgHeight = $(blob_object).innerHeight();
+				var img = $('#img-'+this.domNode.id);
+				if (!this.stretch) {
+					tempImage = new Image();  
+					tempImage.onload = function() {
+						/* tempImage用于获取高度和宽度 */
+						if(imgWidth && imgHeight){
+							var scaleH = tempImage.width / imgWidth;
+							var scaleV = tempImage.height / imgHeight;
+							var scale = 1;
+							if (scaleH > scaleV) {
+								scale = scaleH;
+							}
+							else {
+								scale = scaleV;
+							}
+							img.height(tempImage.height/scale).width(tempImage.width/scale);
+						}
+						img.attr('src',src);
+						tempImage = null;
+					}
+					tempImage.onerror = function() {
+						img.attr('src',src);
+						tempImage = null;
+					}
+					tempImage.src = src;
+				}else {
+					if(imgWidth && imgHeight) img.height(imgHeight).width(imgWidth);
+					img.attr('src',src);
+				}
+			}
+		}));
+
+function _xbl_JSClassDefine_blob(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_blob.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    
+				justep.Object.extend(this, new justep.Blob(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		}));
+
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_dialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_dialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.Dialog(node.getAttribute("id"),node.getAttribute("title"),node.getAttribute("modal")=="true",node.getAttribute("status"),node.getAttribute("width"),node.getAttribute("height"),node.getAttribute("left"),node.getAttribute("top")
+					,node.getAttribute("onInit"),node.getAttribute("onOpen"),node.getAttribute("onClose")
+				);
+				dialog.setClosable(node.getAttribute("closable")!="false");
+				dialog.setMinmaxable(node.getAttribute("minmaxable")!="false");
+				dialog.setResizable(node.getAttribute("resizable")!="false");
+				dialog.setNeighbor(node.getAttribute("neighbor"));
+				dialog.setAutoSize(node.getAttribute("auto-size")=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				justep.Object.extend(this, dialog);
+			} 
+		}));
+
+function _xbl_JSClassDefine_windowReceiver(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_windowReceiver.prototype = justep.Object.extend(new justep.XBLObject(), eval);
+
+function _xbl_JSClassDefine_borderLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_borderLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	
+			   	this.rootEl = $("#" + id + " > div");
+			   	this.topEl = $("#" + id + " > div > " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " > div > " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " > div > " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " > div > " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " > div > " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " > div > " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " > div > " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " > div > " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " > div > " + baseCls + "border-bottom");
+			   	
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" >.xui-borderlayout-area", this.rootEl);
+
+//				area.css({overflow:'hidden'});	
+//				area.css({overflow:'auto'});
+					
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		}));
+
+	var ids=[{id:'2ea37336c8f3479cb16e4b113f838e5f', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'windowReceiver', name:'/UI/system/components/windowReceiver.xbl.xml#windowReceiver'},{id:'borderLayout1', name:'/UI/system/components/borderLayout.xbl.xml#borderLayout', children:[{id:'blobImage1', name:'/UI/system/components/blob.xbl.xml#image', children:[{id:'blob-blobImage1', name:'/UI/system/components/blob.xbl.xml#blob', children:[{id:'dlg-blob-blobImage1', name:'/UI/system/components/dialog.xbl.xml#dialog'}]}]}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; 
+]]></xhtml:script>
+  </head>  
+  <!-- onunload="_closeActivity_();" -->  
+  <body style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <!-- 可视部分 即用户描述的界面 -->  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <xhtml:div xforms:lazy="false" id="rootView" class="" style="height:100%;width:100%"> 
+        <xhtml:div component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="windowReceiver" onReceive="mainActivity9.windowReceiverReceive" class="component_81F0BC01 windowReceiver" style="top:47px;left:181px;">  
+          <xhtml:script>new justep.windowReceiver('windowReceiver');</xhtml:script> 
+        </xhtml:div>  
+        <xhtml:div component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="borderLayout1" style="width:100%;height:100%;" class="component_8F7B2FA1 borderLayout">  
+          <xhtml:div class="xui-borderlayout-root" borderSize="0"> 
+            <xhtml:div class="xui-borderlayout-area xui-borderlayout-center" style=""> 
+              <xhtml:div xforms:lazy="false" id="view1" class="xui-container" style="position:relative;;width:650px;height:716px;">  
+                <xhtml:div component="/UI/system/components/blob.xbl.xml#image" id="blobImage1" data="bizData1" concept="ROOM_APPLY_INFO" relation="iMAGE" class="xui-blob component_CB75D877 image" style="position:absolute;width:386px;top:130px;left:229px;"> 
+                  <xhtml:script>function funcGLOBAL_ID_362405931(event){justep.xbl("blobImage1").doRefresh(event);} function funcGLOBAL_ID_N540891995(event){return justep.xbl("blobImage1").doSubmit(event);}</xhtml:script>  
+                  <xhtml:div xblid="blob" component="/UI/system/components/blob.xbl.xml#blob" id="blob-blobImage1" style="width:100%;height:100%;background-color:transparent" data="bizData1" concept="ROOM_APPLY_INFO" relation="iMAGE" onRefresh="funcGLOBAL_ID_362405931" onSubmit="funcGLOBAL_ID_N540891995" class="xui-blob component_DD42AD01 blob"> 
+                    <xhtml:div id="dlg-blob-blobImage1" title="文件上传" width="300" height="92" closable="true" minmaxable="false" resizable="false" modal="true" component="/UI/system/components/dialog.xbl.xml#dialog" class="component_41508DE1 dialog"> 
+                      <xhtml:div style="display:none;height:100%;width:100%" id="dlg-blob-blobImage1-content"> 
+                        <xhtml:table style="width:100%;height:100%;table-layout:fixed" border="0" cellspacing="8" cellpadding="0"> 
+                          <xhtml:tr> 
+                            <xhtml:td> 
+                              <xhtml:form style="margin:0 auto;" enctype="multipart/form-data" name="f" id="form-blob-blobImage1" action="/UI/system/service/common/bizAction.j" method="post" target="iframe-blob-blobImage1"> 
+                                <xhtml:input name="dataModel" type="hidden"/>  
+                                <xhtml:input name="concept" type="hidden"/>  
+                                <xhtml:input name="relation" type="hidden"/>  
+                                <xhtml:input name="id" type="hidden"/>  
+                                <xhtml:input name="size" type="hidden"/>  
+                                <xhtml:input name="process" type="hidden"/>  
+                                <xhtml:input name="activity" type="hidden"/>  
+                                <xhtml:input name="action" type="hidden" value="blobUpdateAction"/>  
+                                <xhtml:input style="width:100%;height:22px;vertical-align:middle;line-height:18px;" name="blobData" type="file"/> 
+                              </xhtml:form> 
+                            </xhtml:td> 
+                          </xhtml:tr>  
+                          <xhtml:tr height="22px"> 
+                            <xhtml:td> 
+                              <xhtml:input type="button" style="float:right;width:75px;" class="xui-button" onclick="justep.xbl('blob-blobImage1').dialogCancel();" value="取消"/>  
+                              <xhtml:input type="button" style="float:right;margin-right:8px;width:75px;" class="xui-button" onclick="justep.xbl('blob-blobImage1').dialogOk();" value="确定"/> 
+                            </xhtml:td> 
+                          </xhtml:tr> 
+                        </xhtml:table>  
+                        <xhtml:iframe id="iframe-blob-blobImage1" name="iframe-blob-blobImage1" style="display:none" onload="var o=justep.xbl('blob-blobImage1');if(o)o.checkResult(this);"/> 
+                      </xhtml:div> 
+                    </xhtml:div>  
+                    <xhtml:span xblid="attribute" xbl-obj-id="blob-blobImage1" edit-button="btn-edit-blob-blobImage1" delete-button="btn-del-blob-blobImage1" dialog-id="dlg-blob-blobImage1" form-id="form-blob-blobImage1" form-delete-id="form-delete-blob-blobImage1" ctrl-id="ctrl-blob-blobImage1" style="display:none"/>  
+                    <xhtml:table style="position:relative;table-layout:fixed;border:0px solid;width:100%;height:100%;" cellpadding="0" cellspacing="0" onmouseover="var o=justep.xbl('blob-blobImage1');if(o) o.domouseover(this);" onmouseout="var o=justep.xbl('blob-blobImage1');if(o) o.domouseout(this);"> 
+                      <xhtml:tr valign="middle" style="height:100%;"> 
+                        <xhtml:td align="center" style="height:100%;"> 
+                          <xhtml:div style="height:100%;"> 
+                            <xhtml:img src="/UI/system/components/none" id="img-blobImage1" onerror="this.src=justep.Request.convertURL('/UI/system/images/doc/empty.gif', true)" style="vertical-align:middle;width:100%;height:100%"/> 
+                          </xhtml:div>  
+                          <xhtml:div id="ctrl-blob-blobImage1" style="POSITION:absolute;display:none"> 
+                            <xhtml:table> 
+                              <xhtml:tr> 
+                                <xhtml:td> 
+                                  <xhtml:div id="btn-edit-blob-blobImage1"/> 
+                                </xhtml:td>  
+                                <xhtml:td> 
+                                  <xhtml:div id="btn-del-blob-blobImage1"/> 
+                                </xhtml:td> 
+                              </xhtml:tr> 
+                            </xhtml:table> 
+                          </xhtml:div> 
+                        </xhtml:td> 
+                      </xhtml:tr> 
+                    </xhtml:table> 
+                  </xhtml:div> 
+                </xhtml:div> 
+              </xhtml:div> 
+            </xhtml:div>  
+            <xhtml:div class="xui-borderlayout-area xui-borderlayout-bottom" size="40px" style=""> 
+              <xhtml:input xmlns="http://www.justep.com/xui" class="xui-button" id="input(button)2" onclick="justep.xbl('windowReceiver').windowCancel()" style="width:75px;float:right;margin-left:8px;margin-right:20px" type="button" value="取消"></xhtml:input>  
+              <xhtml:input xmlns="http://www.justep.com/xui" class="xui-button" id="input(button)1" onclick="mainActivity9.inputbutton1Click(event)" style="width:75px;float:right" type="button" value="确定"></xhtml:input> 
+            </xhtml:div>  
+            <xhtml:div class="xui-borderlayout-border xui-borderlayout-border-bottom" style="height:0"/> 
+          </xhtml:div> 
+        </xhtml:div> 
+      </xhtml:div>
+    </div> 
+  </body>  
+</html>

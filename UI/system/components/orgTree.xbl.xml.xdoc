@@ -1,0 +1,71 @@
+/**
+	@name UI.orgTree
+	@component /UI/system/components/orgTree.xbl.xml#orgTree
+	@class 
+	@description <b>[rich]</b>组织树组件
+	@model UI
+	@see UI.grid
+	@example
+	组织树组件是复合组件，内部包含查询组织机构的data和展现数据的tree，可以通过getData()和getTree()获取
+	
+	组件支持禁用组织过滤，管理权限过滤和机构类型过滤 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/orgTree.xbl.xml#orgTree" id="orgTree"/>
+</xmp>
+*/
+
+/**
+	@name UI.orgTree#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/orgTree.xbl.xml#orgTree"
+*/
+
+/**
+	@name UI.orgTree#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.orgTree#include__sub__disable__sub__org
+	@attribute 
+	@description 显示已经禁用的组织
+	@default false
+*/
+
+/**
+	@name UI.orgTree#manage__sub__codes
+	@attribute 
+	@description 使用管理权限过滤的类型代码，多个用','分隔，关于组织机构相关知识请参考<<开发者高级手册>>
+*/
+
+/**
+	@name UI.orgTree#use__sub__virtual__sub__root
+	@attribute 
+	@description 显示组织tree虚根，当data上没有指定虚根时默认：组织机构
+*/
+
+/**
+	@name UI.orgTree#show__sub__org__sub__type
+	@attribute 
+	@description 显示的机构类型，如：ogn,dpt,pos,psm，多个用','分隔
+*/
+
+/**
+ @name UI.orgTree#getData
+ @function
+ @returns {justep.XData}
+ @description 返回相关的data组件
+*/
+
+/**
+ @name UI.orgTree#getTree
+ @function
+ @returns {grid}
+ @description 返回相关的tree组件
+*/

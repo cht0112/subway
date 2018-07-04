@@ -1,0 +1,63 @@
+<!-- bizData数据格式：-->
+		 <root>
+			 <fBizID></fBizID>	<!-- 业务数据ID(必填)-->
+			 <fBizType></fBizType> <!-- 业务数据类型(必填)-->
+			 <fBizTypeName></fBizTypeName> <!-- 业务数据类型名称-->
+			 <fTitle></fTitle> <!-- 知识标题(必填)-->
+			 <fKeyword></fKeyword> <!-- 关键字-->
+			 <fDocNumber></fDocNumber> <!-- 文号 -->
+			 <fWriter></fWriter> <!-- 作者-->
+			 <fContentType></fContentType> <!-- 知识正文类型(必填,目前支持三种类型：htmltemplate/urllink/uploaddoc)-->
+			 <fContentTypeName></fContentTypeName><!-- 知识正文类型名称(HTML模板/引用链接/上传文档)-->
+			 <fImportant></fImportant> <!-- 重要度-->
+			 <fImportantName></fImportantName>
+			 <fDocument></fDocument>     <!-- 正文(支持doc/excel/pdf/txt等) -->
+			 <fAttachment></fAttachment> <!-- 附件 -->
+			 <fFolderID></fFolderID> <!-- 发布到主栏目ID(必填)-->
+			 <fFolderName></fFolderName> <!-- 发布到栏目名字(必填)-->
+			 <fFolderFullID></fFolderFullID> <!-- 发布到栏目ID路径(必填)-->
+			 <fFolderFullName></fFolderFullName> <!-- 发布到栏目名字路径(必填)-->
+			 <fCreateOgnID></fCreateOgnID> <!-- 知识创建人机构ID(建议填写)-->
+			 <fCreateOgnName></fCreateOgnName> <!-- 知识创建人机构(建议填写)-->
+			 <fCreateDeptID></fCreateDeptID> <!--知识创建人部门ID(建议填写)-->
+			 <fCreateDeptName></fCreateDeptName> <!--知识创建人部门(建议填写)-->
+			 <fCreatePsnID></fCreatePsnID> <!--知识创建人ID(必填)-->
+			 <fCreatePsnName></fCreatePsnName> <!--知识创建人(必填)-->
+			 <fCreatePsnFID></fCreatePsnFID> <!--知识创建人ID路径(必填)-->
+			 <fCreatePsnFName></fCreatePsnFName> <!--知识创建人name路径(建议填写)-->
+			 <fReleaseOgnID></fReleaseOgnID> <!--知识发布人机构ID(建议填写)-->
+			 <fReleaseOgnName></fReleaseOgnName> <!--知识发布人机构(建议填写)-->
+			 <fReleaseDeptID></fReleaseDeptID> <!--知识发布人部门ID(建议填写)-->
+			 <fReleaseDeptName></fReleaseDeptName> <!--知识发布人部门(建议填写)-->
+			 <fReleasePsnID></fReleasePsnID> <!--知识发布人ID(必填)-->
+			 <fReleasePsnName></fReleasePsnName> <!--知识发布人(必填)-->
+			 <fReleasePsnFID></fReleasePsnFID> <!--知识发布人ID路径(必填)-->
+			 <fReleasePsnFName></fReleasePsnFName> <!--知识发布人name路径(建议填写)-->
+
+			<!-- 同时发布到其他栏目(可选) -->
+			 <otherFolders>
+				 <folder>
+					 <fFolderID></fFolderID>
+					 <fFolderName></fFolderName>
+					 <fFolderFullID></fFolderFullID>
+					 <fFolderFullName></fFolderFullName>
+				 </folder>
+			 </otherFolders>
+			 
+			 <!-- 知识权限(可选),不指定则知识权限继承栏目权限 -->
+			 <rights>
+				 <right>
+					 <fOrgKind></fOrgKind>
+					 <fOrgID></fOrgID>
+					 <fOrgName></fOrgName>
+					 <fOrgFullID></fOrgFullID>
+					 <fOrgFullName></fOrgFullName>
+					 <fCanReadKW />
+					 <fCanCreateKW />
+					 <fCanReadComment />
+					 <fCanCreateComment />
+					 <fCanReadRecord />
+					 <fCanScore />
+				 </right>
+			 </rights>
+		 </root>

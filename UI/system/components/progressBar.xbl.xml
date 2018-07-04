@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<xbl:binding id="progressBar">
+		<xbl:template template-type="xslt">			
+			<xsl:template match="/*">				
+				<xsl:variable name="ref" select="@ref"/>
+				<xsl:variable name="precision" select="@precision"/>
+				<xsl:variable name="processheight" select="@inner-height"/>
+				<xsl:variable name="activeimg" select="@active-img"/>
+				<xsl:variable name="deactiveimg" select="@deactive-img"/>
+				<xsl:variable name="showvalue" select="@show-value"/>
+				<root xbl:class="xui-progressBar">                     
+				<xhtml:table xblid="bar_table" border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" style="position:relative;">
+					<xhtml:tr>
+						<xhtml:td style="display:none;visibility:hidden;">
+							<xhtml:div xblid="refinput">
+								<xforms:input>
+									<xsl:attribute name="ref"><xsl:value-of select="$ref"/></xsl:attribute>
+								</xforms:input>
+							</xhtml:div>
+						</xhtml:td>
+					</xhtml:tr>
+					<xhtml:tr xblid="active_div">
+						<xhtml:td>
+							<xhtml:img xblid="active_img" style="border:none;vertical-align:middle;">
+								<xsl:choose>
+									<xsl:when test="$activeimg">
+										<xsl:attribute name="src"><xsl:value-of select="$activeimg"/></xsl:attribute>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="src">/UI/system/images/demo/processing_active.gif</xsl:attribute>
+									</xsl:otherwise>
+								</xsl:choose>
+								<xsl:attribute name="width">100%</xsl:attribute>
+								<xsl:choose>
+									<xsl:when test="$processheight">
+										<xsl:attribute name="height"><xsl:value-of select="$processheight"/></xsl:attribute>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="height">10</xsl:attribute>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xhtml:img>
+						</xhtml:td>
+						<xhtml:td style="width:100%">
+							<xhtml:img xblid="deactive_img" style="border:none;vertical-align:middle;">
+								<xsl:choose>
+									<xsl:when test="$deactiveimg">
+										<xsl:attribute name="src"><xsl:value-of select="$deactiveimg"/></xsl:attribute>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="src">/UI/system/images/demo/processing_deactive.gif</xsl:attribute>
+									</xsl:otherwise>
+								</xsl:choose>
+								<xsl:choose>
+									<xsl:when test="$processheight">
+										<xsl:attribute name="height"><xsl:value-of select="$processheight"/></xsl:attribute>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:attribute name="height">10</xsl:attribute>
+									</xsl:otherwise>
+								</xsl:choose>
+								<xsl:attribute name="width">100%</xsl:attribute>
+							</xhtml:img>
+							<xsl:if test="$showvalue = 'true'">
+								<xhtml:div xblid="percent">
+									<xsl:choose>
+										<xsl:when test="$processheight">
+											<xsl:attribute name="style">font-family:Arial;font-size:<xsl:value-of select="$processheight - 2"/>px;color:black;position:absolute;right:10px;top:4px;vertical-align:middle;</xsl:attribute>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:attribute name="style">font-family:Arial;font-size:8px;color:black;position:absolute;right:10px;top:4px;vertical-align:middle;</xsl:attribute>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xhtml:div>
+							</xsl:if>
+						</xhtml:td>
+					</xhtml:tr>
+				</xhtml:table>
+				</root>	
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+		({
+			"initXBL" : function() {
+				this.__totalwidth = 0;
+				this.__process = null;
+				this.__active = null;
+				this.__deactive = null;
+				this.__valuearea = null;
+				this.__inputarea = null;
+				this.__tempvalue = 0;
+				this.__precision = this.domNode.getAttribute("precision") || 2;
+				this.__readonly = this.domNode.getAttribute("readonly");
+				
+				this.__barTable = this.getElementByXblID("bar_table");
+				this.__process = this.getElementByXblID("active_div");
+				this.__totalwidth = parseInt(this.__process.offsetWidth)-4;
+				this.__active = this.getElementByXblID("active_img");
+				this.__deactive = this.getElementByXblID("deactive_img");
+				this.__inputarea = this.getElementByXblID("refinput");
+				this.__valuearea = this.getElementByXblID("percent");
+				this.__xfinput = $(this.__inputarea).firstElement().xformsObject;
+				if(this.__xfinput) this.__input = this.__xfinput.input;
+				var nowV = this.__input?this.__input.value:null;
+				if (nowV) {
+					this.__tempvalue = parseFloat(nowV);
+				}
+				else {
+					this.__tempvalue = 0;
+				}
+				this.__inputarea.value = this.__tempvalue;
+				this.__refresh();
+				if (this.__readonly!="true") {
+					xforms.Event.attach(this.__barTable, "click", this.click, false, this);
+					xforms.Event.attach(this.__active, "mousemove", this.mousemove, false, this);
+					xforms.Event.attach(this.__deactive, "mousemove", this.mousemove, false, this);
+					xforms.Event.attach(this.__process, "mouseleave", this.loadValue, false, this);
+				}
+				if (this.__input) {/*接管input的赋值动作进行刷新*/
+				    var self = this;
+					this.__xfinput._old_setValue = this.__xfinput.setValue;
+					this.__xfinput.setValue = function(value){
+						self.__xfinput._old_setValue(value);
+						self.updateValue();
+					};
+				}
+			},
+			"__refresh" : function() {
+				if (this.__totalwidth>0) {
+					var l1 = parseInt(this.__totalwidth * this.__tempvalue);
+					var l2 = this.__totalwidth - l1;
+					this.__active.width = l1;
+					this.__deactive.width = l2; 
+					if (this.__valuearea) {
+						var tmp = this.__precision - 2;
+						if (tmp>0) {
+							this.__valuearea.innerText = (this.__tempvalue * 100).toFixed(tmp) + "%";
+						}
+						else {
+							this.__valuearea.innerText = parseInt(this.__tempvalue * 100) + "%";
+						}
+					}
+				}
+			},
+			"loadValue" : function() {
+				var nowV = this.__input?this.__input.value:null;
+				if (nowV) {
+					this.__tempvalue = parseFloat(nowV);
+				}
+				else {
+					this.__tempvalue = 0;
+				}
+				
+				this.__refresh();
+			},
+			"updateValue" : function() {
+			 var nowV = this.__input.value;
+				if (nowV) {
+					this.__tempvalue = parseFloat(nowV);
+				}
+				else {
+					this.__tempvalue = 0;
+				}
+				this.__inputarea.value = this.__tempvalue;
+				this.__refresh();
+
+			},
+			"click" : function(evt) {
+				var src = event.srcElement||event.target;
+				var offset = event.offsetX;
+				if (src.tagName=='IMG') {
+					if (src.getAttribute("xblid")=="active_img") {
+						this.__tempvalue = offset / this.__totalwidth ;
+					}
+					else if (src.getAttribute("xblid")=='deactive_img') {
+						this.__tempvalue = (parseInt(this.__active.width) + offset) / this.__totalwidth ;
+					}
+				}
+				var tmp = parseFloat(this.__tempvalue.toFixed(this.__precision));
+
+				var node = this.__xfinput.element.node;
+				if (!node.nodeType){  
+					model = this.__xfinput.binding.model
+							? this.__xfinput.binding.model
+							: node.store.instance.model;
+				}else{
+					model = node.ownerDocument.model;
+				}		
+				xforms.openAction();
+				model.addChange(node);
+				xforms.setValue(node, tmp || "");
+				xforms.closeAction();
+			},
+			"mousemove" : function() {
+				var src = event.srcElement;
+				var offset = event.offsetX;
+				if (src.tagName=='IMG') {
+					if (src.getAttribute("xblid")=="active_img") {
+						this.__tempvalue = offset / this.__totalwidth ;
+						this.__refresh();
+					}
+					else if (src.getAttribute("xblid")=='deactive_img') {
+						this.__tempvalue = (parseInt(this.__active.width) + offset) / this.__totalwidth ;
+						this.__refresh();
+					}
+				}
+			}
+		})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-progressBar{
+					width:200px;
+					height:12px;	
+				}			
+			]]>
+			</xbl:style>
+		</xbl:resources>				
+	</xbl:binding>
+	
+
+
+</xbl:xbl>
+

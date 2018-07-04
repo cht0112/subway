@@ -1,0 +1,269 @@
+﻿/**
+	@name UI.dateFilter
+	@class
+	@component /UI/system/components/dateFilter.xbl.xml#dateFilter
+	@description <b>[rich]</b>时间过滤组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<div component="/UI/system/components/dateFilter.xbl.xml#dateFilter" onChenged="" id="dateFilter1"
+		default-select="0"/>
+</xmp>
+*/
+
+/**
+	@name UI.dateFilter#component
+	@attribute
+	@required
+	@description 组件标识
+	@default /UI/system/components/dateFilter.xbl.xml#dateFilter
+*/
+
+/**
+	@name UI.dateFilter#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.dateFilter#filter__sub__date__sub__mode
+	@attribute
+	@description 过滤模式，取值范围：single:单日期过滤、range:日期范围过滤
+	@example
+	<xmp>
+	single时使用 (filter-date-relation1 >= 开始时间 AND filter-date-relation1 <= 结束时间) 作为Data的filter；
+	range时使用 (filter-date-relation1 >= 开始时间 AND filter-date-relation2 <= 结束时间) 作为Data的filter；
+	</xmp>
+*/
+
+/**
+	@name UI.dateFilter#filter__sub__data
+	@attribute
+	@description 过滤Data的ID
+*/
+
+/**
+	@name UI.dateFilter#filter__sub__date__sub__relation1
+	@attribute
+	@description 过滤日期关系1，配合{@link UI.dateFilter#filter__sub__date__sub__mode}使用
+	@see UI.dateFilter#filter__sub__date__sub__mode
+*/
+
+/**
+	@name UI.dateFilter#filter__sub__date__sub__relation2
+	@attribute
+	@description 过滤日期关系2，配合{@link UI.dateFilter#filter__sub__date__sub__mode}使用
+	@see UI.dateFilter#filter__sub__date__sub__mode
+*/
+
+/**
+	@name UI.dateFilter#auto__sub__refresh
+	@attribute
+	@description 当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）
+*/
+
+/**
+	@name UI.dateFilter#getBeginDatetime
+	@function
+	@description 返回选中的开始时间
+	@returns {date}
+*/
+
+/**
+	@name UI.dateFilter#getEndDatetime
+	@function
+	@description 返回选中的结束时间
+	@returns {date}
+*/
+
+/**
+	@name UI.dateFilter#getDateFilter
+	@function
+	@param {string} relation <b>[required]</b>关系
+	@description 返回按指定关系组成的KSQL过滤表达式
+	@returns {string}
+*/
+
+/**
+	@name UI.dateFilter#getCondition
+	@function
+	@description 获取过滤条件
+*/
+
+/**
+	@name UI.dateFilter#getInnerSelect
+	@function
+	@description 获取内部select组件对象
+*/
+
+/**
+	@name UI.dateFilter#getInnerDialog
+	@function
+	@description 获取内部dialog组件对象
+*/
+
+/**
+	@name UI.dateFilter#getInnerData
+	@function
+	@description 获取内部Data对象
+*/
+
+/**
+	@name UI.dateFilter#getValue
+	@function
+	@description 获取选择值
+*/
+
+/**
+	@name UI.dateFilter#getCurrentSelect
+	@function
+	@description 获取当前选择的值
+*/
+
+/**
+	@name UI.dateFilter#getCurrentLabel
+	@function
+	@description 获取当前选择的值对应的名称
+*/
+
+/**
+	@name UI.dateFilter#getCustomBeginDate
+	@function
+	@description 获取当前开始时间(string)
+*/
+
+/**
+	@name UI.dateFilter#getCustomEndDate
+	@function
+	@description 获取当前结束时间(string)
+*/
+
+/**
+	@name UI.dateFilter#setAutoRefresh
+	@function
+	@param {boolean} autoRefresh <b>[required]</b>是否自动刷新
+	@description 是否自动刷新，true时焦点离开即刷新数据，false时需要使用data.refreshData()方法刷新数据。
+*/
+
+/**
+	@name UI.dateFilter#clearFilter
+	@function
+	@description 清空过滤条件
+*/
+
+/**
+	@name UI.dateFilter#tabindex
+	@attribute 
+	@description Tab键顺序
+*/
+
+/**
+	@name UI.dateFilter#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.dateFilter#setTabIndex
+	@function
+	@param {integer} tabIndex <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.dateFilter#accesskey
+	@attribute 
+	@description 快捷键
+*/
+
+/**
+	@name UI.dateFilter#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.dateFilter#setAccessKey
+	@function
+	@param {string} key <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.dateFilter#readonly
+	@attribute 
+	@description 只读
+*/
+
+/**
+	@name UI.dateFilter#getReadonly
+	@function
+	@description 返回只读
+	@returns {boolean}
+*/
+
+/**
+	@name UI.dateFilter#setReadonly
+	@function
+	@param {boolean} readonly <b>[required]</b>只读
+	@description 设置只读
+*/
+
+/**
+	@name UI.dateFilter#disabled
+	@attribute 
+	@description 禁用
+*/
+
+/**
+	@name UI.dateFilter#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.dateFilter#setDisabled
+	@function
+	@param {boolean} disabled <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.dateFilter#onChanged
+	@event
+	@description <b>[回调型事件]</b>选择变化时触发
+	@param event 
+	<br/><b>结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.dateFilter#onGetCondition
+	@event 
+	@description <b>[回调型事件]</b>构造过滤条件
+	@param event 
+	<br/><b>结构如下：</b>
+	<xmp>
+	{
+		"filterData"：过滤数据集,
+		"filterMode"：过滤日期模式,
+		"dateRelation1"：过滤日期关系1,
+		"dateRelation2"：过滤日期关系2,
+		"currentSelect"：当前选择,
+		"defaultSelect"：默认选择,
+		"customBeginDate"：开始时间,
+		"customEndDate"：结束时间,
+		"defaultCondition"：过滤条件表达式
+	}
+	</xmp>
+	@return {string} 返回过滤条件表达式，没有返回时继续使用原过滤条件表达式
+*/

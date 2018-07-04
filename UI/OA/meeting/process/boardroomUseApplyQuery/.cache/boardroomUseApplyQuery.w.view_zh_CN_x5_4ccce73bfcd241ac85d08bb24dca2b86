@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$vb13a880f3d98419b9c286fe819063987/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vd9216012d8b5435b98630457977e83c4/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v4b421b6820bc474a93d490c3c1c18e0a/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v11bf7a199a8d4dc7947c08fd6b812237/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$va28e8d20f0544a62823a63f1b6eb2926/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v6856d81d3c8e49a4890c1f60feaa43e3/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v970029934c6442fabbf5ddcd49234266/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$ve17019bd9ea140589ffca9965c1b4097/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v83c95bdd0e014887bfd92ced52465721/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vfdbb867a55cc40f3a16d48befa79679b/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v3a31f6790aa2472d99b8ddb4d53f48e4/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vad4f0e94bc184940be896f260ef92b0b/component/data/data.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v1ea3bcc12e5d4165b2883e6e96d48fbd/UI/system/components/processChart/js/processChart.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$ve09eabb4e4b74d45a8c97d0035d8d6bf/UI/system/components/tabs/tabs.js?language=zh_CN">
+</script>      <link href="/x5/$vd0ec1e51ea0c4da8850cc366fc0252f8/UI/system/components/./tabs/tabs.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css"></style>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/x5/$vd34ba8d237804b5d8e691029c60e101c/UI/appCommon/js/appCommon.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v989c9cd501844b3fbfce6a6c86fcb909/UI/appCommon/components/standardProcessQueryBar/js/standardProcessQueryBar.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vbe04e077187b4b5bbef5d89eb44f2318/UI/system/components/pageNavigator/pageNavigator.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/x5/$v3652bca3b77544f9ac6b2c9cdf25342c/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v85b1317ba83c4cfabeffa6051782e4da/UI/appCommon/components/filter/js/filter.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vdc261319af92476aad48e2fc072c2243/UI/appCommon/components/extDateFilter/js/extDateFilter.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v3e8ce4f6d90242498637e6d8bd2b2c52/UI/appCommon/components/extOrgFilter/js/extOrgFilter.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css"></style>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/x5/$vd3721d093a534815905c0ad8c5e0be97/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v683ba8210ae8402e9c07c64c2646aaed/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$vb9e474f3c747435a8ad83dd42308c203/UI/OA/meeting/process/boardroomUseApplyQuery/boardroomUseApplyQuery.js?language=zh_CN">
+</script>      <script src="/x5/$v1061735ad840436ab27d6fda96d9e74f/UI/system/components/windowDialog/FrameWindow.js?language=zh_CN">
+</script>      <link href="/x5/$v05a259d97dc04ca98872f9bf27c4dcfa/UI/appCommon/css/common.css?language=zh_CN" rel="STYLESHEET" type="text/css"></link>      <script src="/x5/$v3b46b3ea304a48e9b0f520aa7a9b6d15/UI/appCommon/js/appCommon.js?language=zh_CN" type="text/javascript">
+</script>      <script>
+new justep.XBizData('dApplyList',false,false,{'queryAction':"queryMTUSEAPPLYAction",'dataModel':"/OA/meeting/data",'concept':"{'OA_MT_UseApply':'OA_MT_UseApply'}",'limit':20,'idColumn':"{'name':'OA_MT_UseApply','relation':'OA_MT_UseApply','define':'OA_MT_UseApply','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"fApplyDeptName,fApplyPsnName,fApplyDate,fMeetName,fBoardroom,fBeginTime,fEndTime,fBizStateName",'updateMode':"whereVersion",'orderBys':"{'fApplyDate':0}",'defRelations':"{'version':{'type':'Integer','relation':'OA_MT_UseApply.version','define':'OA_MT_UseApply.version','label':'版本'},'fNO':{'type':'String','relation':'OA_MT_UseApply.fNO','define':'OA_MT_UseApply.fNO','label':'单据号'},'fApplyOgnID':{'type':'String','relation':'OA_MT_UseApply.fApplyOgnID','define':'OA_MT_UseApply.fApplyOgnID','label':'申请机构ID'},'fApplyOgnName':{'type':'String','relation':'OA_MT_UseApply.fApplyOgnName','define':'OA_MT_UseApply.fApplyOgnName','label':'申请机构'},'fApplyDeptName':{'type':'String','relation':'OA_MT_UseApply.fApplyDeptName','define':'OA_MT_UseApply.fApplyDeptName','label':'申请部门'},'fApplyPsnID':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnID','define':'OA_MT_UseApply.fApplyPsnID','label':'申请人员ID'},'fApplyPsnName':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnName','define':'OA_MT_UseApply.fApplyPsnName','label':'申请人员'},'fApplyPsnFID':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnFID','define':'OA_MT_UseApply.fApplyPsnFID','label':'申请人员FullID'},'fApplyPsnFName':{'type':'String','relation':'OA_MT_UseApply.fApplyPsnFName','define':'OA_MT_UseApply.fApplyPsnFName','label':'申请人员FullName'},'fApplyDate':{'type':'DateTime','relation':'OA_MT_UseApply.fApplyDate','define':'OA_MT_UseApply.fApplyDate','label':'申请日期'},'fMeetName':{'type':'String','relation':'OA_MT_UseApply.fMeetName','define':'OA_MT_UseApply.fMeetName','label':'会议主题'},'fMeetPsns':{'type':'String','relation':'OA_MT_UseApply.fMeetPsns','define':'OA_MT_UseApply.fMeetPsns','label':'参会人员'},'fMeetPsnNum':{'type':'Integer','relation':'OA_MT_UseApply.fMeetPsnNum','define':'OA_MT_UseApply.fMeetPsnNum','label':'参会人数'},'fBoardroomID':{'type':'String','relation':'OA_MT_UseApply.fBoardroomID','define':'OA_MT_UseApply.fBoardroomID','label':'会议室ID'},'fBoardroom':{'type':'String','relation':'OA_MT_UseApply.fBoardroom','define':'OA_MT_UseApply.fBoardroom','label':'会议室'},'fBeginTime':{'type':'DateTime','relation':'OA_MT_UseApply.fBeginTime','define':'OA_MT_UseApply.fBeginTime','label':'开始时间'},'fEndTime':{'type':'DateTime','relation':'OA_MT_UseApply.fEndTime','define':'OA_MT_UseApply.fEndTime','label':'结束时间'},'fPhone':{'type':'String','relation':'OA_MT_UseApply.fPhone','define':'OA_MT_UseApply.fPhone','label':'电话'},'fDescription':{'type':'String','relation':'OA_MT_UseApply.fDescription','define':'OA_MT_UseApply.fDescription','label':'描述'},'fArrBoardroomID':{'type':'String','relation':'OA_MT_UseApply.fArrBoardroomID','define':'OA_MT_UseApply.fArrBoardroomID','label':'安排会议室ID'},'fArrBoardroom':{'type':'String','relation':'OA_MT_UseApply.fArrBoardroom','define':'OA_MT_UseApply.fArrBoardroom','label':'安排会议室'},'fArrBeginTime':{'type':'DateTime','relation':'OA_MT_UseApply.fArrBeginTime','define':'OA_MT_UseApply.fArrBeginTime','label':'安排开始时间'},'fArrEndTime':{'type':'DateTime','relation':'OA_MT_UseApply.fArrEndTime','define':'OA_MT_UseApply.fArrEndTime','label':'安排结束时间'},'fArrOgnID':{'type':'String','relation':'OA_MT_UseApply.fArrOgnID','define':'OA_MT_UseApply.fArrOgnID','label':'安排机构'},'fArrOgnName':{'type':'String','relation':'OA_MT_UseApply.fArrOgnName','define':'OA_MT_UseApply.fArrOgnName','label':'安排机构名称'},'fArrDeptID':{'type':'String','relation':'OA_MT_UseApply.fArrDeptID','define':'OA_MT_UseApply.fArrDeptID','label':'安排部门ID'},'fArrDeptName':{'type':'String','relation':'OA_MT_UseApply.fArrDeptName','define':'OA_MT_UseApply.fArrDeptName','label':'安排人'},'fArrPsnID':{'type':'String','relation':'OA_MT_UseApply.fArrPsnID','define':'OA_MT_UseApply.fArrPsnID','label':'安排人ID'},'fArrPsnName':{'type':'String','relation':'OA_MT_UseApply.fArrPsnName','define':'OA_MT_UseApply.fArrPsnName','label':'安排人'},'fArrPsnFID':{'type':'String','relation':'OA_MT_UseApply.fArrPsnFID','define':'OA_MT_UseApply.fArrPsnFID','label':'安排人FID'},'fArrPsnFName':{'type':'String','relation':'OA_MT_UseApply.fArrPsnFName','define':'OA_MT_UseApply.fArrPsnFName','label':'安排人FName'},'fArrTime':{'type':'DateTime','relation':'OA_MT_UseApply.fArrTime','define':'OA_MT_UseApply.fArrTime','label':'安排时间'},'fArrRemark':{'type':'String','relation':'OA_MT_UseApply.fArrRemark','define':'OA_MT_UseApply.fArrRemark','label':'安排备注'},'fBizState':{'type':'String','relation':'OA_MT_UseApply.fBizState','define':'OA_MT_UseApply.fBizState','label':'业务流程状态编码'},'fBizStateName':{'type':'String','relation':'OA_MT_UseApply.fBizStateName','define':'OA_MT_UseApply.fBizStateName','label':'状态'},'fCreateOgnID':{'type':'String','relation':'OA_MT_UseApply.fCreateOgnID','define':'OA_MT_UseApply.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_MT_UseApply.fCreateOgnName','define':'OA_MT_UseApply.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_MT_UseApply.fCreateDeptID','define':'OA_MT_UseApply.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_MT_UseApply.fCreateDeptName','define':'OA_MT_UseApply.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_MT_UseApply.fCreatePosID','define':'OA_MT_UseApply.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_MT_UseApply.fCreatePosName','define':'OA_MT_UseApply.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnID','define':'OA_MT_UseApply.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnName','define':'OA_MT_UseApply.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnFID','define':'OA_MT_UseApply.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_MT_UseApply.fCreatePsnFName','define':'OA_MT_UseApply.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_MT_UseApply.fCreateTime','define':'OA_MT_UseApply.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_MT_UseApply.fUpdatePsnID','define':'OA_MT_UseApply.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_MT_UseApply.fUpdatePsnName','define':'OA_MT_UseApply.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_MT_UseApply.fUpdateTime','define':'OA_MT_UseApply.fUpdateTime','label':'修改时间'},'fRemark':{'type':'String','relation':'OA_MT_UseApply.fRemark','define':'OA_MT_UseApply.fRemark','label':'备注'},'fApplyDeptID':{'type':'String','relation':'OA_MT_UseApply.fApplyDeptID','define':'OA_MT_UseApply.fApplyDeptID','label':'申请部门ID'},'fCurrentActivities':{'type':'String','relation':'OA_MT_UseApply.fCurrentActivities','define':'OA_MT_UseApply.fCurrentActivities','label':'当前环节'},'fCurrentExecutors':{'type':'String','relation':'OA_MT_UseApply.fCurrentExecutors','define':'OA_MT_UseApply.fCurrentExecutors','label':'当前执行者'},'fOutPsns':{'type':'String','relation':'OA_MT_UseApply.fOutPsns','define':'OA_MT_UseApply.fOutPsns','label':'外部参会人员'},'fExtendStr1':{'type':'String','relation':'OA_MT_UseApply.fExtendStr1','define':'OA_MT_UseApply.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_MT_UseApply.fExtendStr2','define':'OA_MT_UseApply.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_MT_UseApply.fExtendStr3','define':'OA_MT_UseApply.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_MT_UseApply.fExtendStr4','define':'OA_MT_UseApply.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_MT_UseApply.fExtendStr5','define':'OA_MT_UseApply.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_MT_UseApply.fExtendStr6','define':'OA_MT_UseApply.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_MT_UseApply.fExtendStr7','define':'OA_MT_UseApply.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_MT_UseApply.fExtendStr8','define':'OA_MT_UseApply.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_MT_UseApply.fExtendStr9','define':'OA_MT_UseApply.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate1','define':'OA_MT_UseApply.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate2','define':'OA_MT_UseApply.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate3','define':'OA_MT_UseApply.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate4','define':'OA_MT_UseApply.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_MT_UseApply.fExtendDate5','define':'OA_MT_UseApply.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum1','define':'OA_MT_UseApply.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum2','define':'OA_MT_UseApply.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum3','define':'OA_MT_UseApply.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum4','define':'OA_MT_UseApply.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_MT_UseApply.fExtendNum5','define':'OA_MT_UseApply.fExtendNum5','label':'扩展字段'}}"},'dApplyList_part',{});</script>  
+    <script>
+new justep.XCommonData('dStatus',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('dFilter',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XBizData('dBoardroom',true,false,{'queryAction':"queryMTBOARDROOMAction",'dataModel':"/OA/meeting/data",'concept':"{'OA_MT_Boardroom':'OA_MT_Boardroom'}",'limit':20,'idColumn':"{'name':'OA_MT_Boardroom','relation':'OA_MT_Boardroom','define':'OA_MT_Boardroom','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fCode':1}",'defRelations':"{'version':{'type':'Integer','relation':'OA_MT_Boardroom.version','define':'OA_MT_Boardroom.version','label':'版本'},'fType':{'type':'String','relation':'OA_MT_Boardroom.fType','define':'OA_MT_Boardroom.fType','label':'会议室类型'},'fHoldNum':{'type':'Integer','relation':'OA_MT_Boardroom.fHoldNum','define':'OA_MT_Boardroom.fHoldNum','label':'容纳人数'},'fUse':{'type':'String','relation':'OA_MT_Boardroom.fUse','define':'OA_MT_Boardroom.fUse','label':'主要用途'},'fFloor':{'type':'String','relation':'OA_MT_Boardroom.fFloor','define':'OA_MT_Boardroom.fFloor','label':'所在楼层'},'fBaseConfig':{'type':'String','relation':'OA_MT_Boardroom.fBaseConfig','define':'OA_MT_Boardroom.fBaseConfig','label':'基础配置'},'fEquipment':{'type':'String','relation':'OA_MT_Boardroom.fEquipment','define':'OA_MT_Boardroom.fEquipment','label':'附属设备'},'fDescription':{'type':'String','relation':'OA_MT_Boardroom.fDescription','define':'OA_MT_Boardroom.fDescription','label':'描述'},'fPicture':{'type':'String','relation':'OA_MT_Boardroom.fPicture','define':'OA_MT_Boardroom.fPicture','label':'图片'},'fUseStatus':{'type':'String','relation':'OA_MT_Boardroom.fUseStatus','define':'OA_MT_Boardroom.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_MT_Boardroom.fUseStatusName','define':'OA_MT_Boardroom.fUseStatusName','label':'启用标识'},'fDuptOgnID':{'type':'String','relation':'OA_MT_Boardroom.fDuptOgnID','define':'OA_MT_Boardroom.fDuptOgnID','label':'所属机构ID'},'fDuptOgnName':{'type':'String','relation':'OA_MT_Boardroom.fDuptOgnName','define':'OA_MT_Boardroom.fDuptOgnName','label':'所属机构'},'fDuptOgnFID':{'type':'String','relation':'OA_MT_Boardroom.fDuptOgnFID','define':'OA_MT_Boardroom.fDuptOgnFID','label':'责任机构FID'},'fDutyDeptID':{'type':'String','relation':'OA_MT_Boardroom.fDutyDeptID','define':'OA_MT_Boardroom.fDutyDeptID','label':'责任部门ID'},'fDutyDeptName':{'type':'String','relation':'OA_MT_Boardroom.fDutyDeptName','define':'OA_MT_Boardroom.fDutyDeptName','label':'责任部门'},'fDutyPsnID':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnID','define':'OA_MT_Boardroom.fDutyPsnID','label':'责任人'},'fDutyPsnName':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnName','define':'OA_MT_Boardroom.fDutyPsnName','label':'责任人姓名'},'fDutyPsnFID':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnFID','define':'OA_MT_Boardroom.fDutyPsnFID','label':'责任人全路径'},'fDutyPsnFName':{'type':'String','relation':'OA_MT_Boardroom.fDutyPsnFName','define':'OA_MT_Boardroom.fDutyPsnFName','label':'责任人完整姓名'},'fCreateOgnID':{'type':'String','relation':'OA_MT_Boardroom.fCreateOgnID','define':'OA_MT_Boardroom.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_MT_Boardroom.fCreateOgnName','define':'OA_MT_Boardroom.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_MT_Boardroom.fCreateDeptID','define':'OA_MT_Boardroom.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_MT_Boardroom.fCreateDeptName','define':'OA_MT_Boardroom.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_MT_Boardroom.fCreatePosID','define':'OA_MT_Boardroom.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_MT_Boardroom.fCreatePosName','define':'OA_MT_Boardroom.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnID','define':'OA_MT_Boardroom.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnName','define':'OA_MT_Boardroom.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnFID','define':'OA_MT_Boardroom.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_MT_Boardroom.fCreatePsnFName','define':'OA_MT_Boardroom.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_MT_Boardroom.fCreateTime','define':'OA_MT_Boardroom.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_MT_Boardroom.fUpdatePsnID','define':'OA_MT_Boardroom.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_MT_Boardroom.fUpdatePsnName','define':'OA_MT_Boardroom.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_MT_Boardroom.fUpdateTime','define':'OA_MT_Boardroom.fUpdateTime','label':'修改时间'},'fDisUseTime':{'type':'DateTime','relation':'OA_MT_Boardroom.fDisUseTime','define':'OA_MT_Boardroom.fDisUseTime','label':'停用时间'},'fAddress':{'type':'String','relation':'OA_MT_Boardroom.fAddress','define':'OA_MT_Boardroom.fAddress','label':'地址'},'fCode':{'type':'String','relation':'OA_MT_Boardroom.fCode','define':'OA_MT_Boardroom.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_MT_Boardroom.fName','define':'OA_MT_Boardroom.fName','label':'名称'},'fRemark':{'type':'String','relation':'OA_MT_Boardroom.fRemark','define':'OA_MT_Boardroom.fRemark','label':'备注'},'fExtendStr1':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr1','define':'OA_MT_Boardroom.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr2','define':'OA_MT_Boardroom.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr3','define':'OA_MT_Boardroom.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr4','define':'OA_MT_Boardroom.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr5','define':'OA_MT_Boardroom.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr6','define':'OA_MT_Boardroom.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr7','define':'OA_MT_Boardroom.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr8','define':'OA_MT_Boardroom.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_MT_Boardroom.fExtendStr9','define':'OA_MT_Boardroom.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate1','define':'OA_MT_Boardroom.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate2','define':'OA_MT_Boardroom.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate3','define':'OA_MT_Boardroom.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate4','define':'OA_MT_Boardroom.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_MT_Boardroom.fExtendDate5','define':'OA_MT_Boardroom.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum1','define':'OA_MT_Boardroom.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum2','define':'OA_MT_Boardroom.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum3','define':'OA_MT_Boardroom.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum4','define':'OA_MT_Boardroom.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_MT_Boardroom.fExtendNum5','define':'OA_MT_Boardroom.fExtendNum5','label':'扩展字段'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_bizStateFilter_data_910146252',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_dateFilter_data_1224423119',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_orgFilter_data_783303227',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XBizData('standardProcessQueryBar_orgFilter_orgData_783303227',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'_valid_state_filter_':'SA_OPOrg.sValidState = 1'}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'1=1','nodeKindRelation':'sNodeKind'}"},'standardProcessQueryBar_orgFilter_orgData_783303227_part',{});</script>  
+    <script>
+new justep.XCommonData('gridFilter_data_6921718',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script type="text/javascript" src="/x5/$v111b9f5d8a5445eabf5f9f1e3fd6f4f1/UI/OA/meeting/process/boardroomUseApplyQuery/.cache/boardroomUseApplyQuery_zh_CN_x5_529fa7fbf98d4fb5b50ba14cc93ccb51.js?language=zh_CN&amp;$version=65139cd2-4af5-4de4-b10c-16430f629feb"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" lazy="false" style="height:100%;width:100%;"> 
+        <table class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table1" style="width:100%;height:100%;table-layout:fixed;"> 
+          <tr id="default9"> 
+            <td style="height:35px;"> 
+              <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrApplyList"> 
+                <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                  <tr> 
+                    <td> 
+                      <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                        <div class="toolbar-style" name="toolbargroup"> 
+                          <table cellpadding="0" cellspacing="1px"> 
+                            <tr> 
+                              <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$vb0604e8bfb6e4250b97bba4c61962622/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <span id="item4ee9d25a-4021-4377-bd53-609014189daf" model="mdMain" onclick="justep.xbl('dApplyList').refreshData(); "> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/x5/$v2eb6a146b8c741dd844e5e79fb90687b/UI/system/images/standardToolbar/standard/refresh.gif?language=zh_CN" style="border:none" title="刷新"></img> 
+                                </span> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <span id="item8ab65574-fc7c-46df-aa7c-b4da2bec4287" model="mdMain" onclick="justep.xbl('filter-dialog-f106d167-c8fd-4212-8cfc-ecbea543d0af').show('dApplyList');"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/x5/$vb23f3c7aa43b4912912ce6477b73bfce/UI/system/images/standardToolbar/standard/search.gif?language=zh_CN" style="border:none" title="查询"></img> 
+                                </span> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <span id="item919624ae-231c-4ac4-89c9-6f90608c99b4" model="mdMain" onclick="justep.xbl('filter-pattern-5f1cb499-8e57-4a6d-831c-468fac78138c').show('dApplyList', event.target||event.srcElement);"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" src="/x5/$v925564b30d784e009a34ebda14ba3992/UI/system/images/standardToolbar/standard/filter-dropdown.gif?language=zh_CN" style="border:none" title="查询方案"></img> 
+                                </span> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$v4428f9c691ae4ba19b77a5b7eec01c07/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="dApplyList" id="4622009cddb94920b227e0537d206a7a" mode="IMG"> 
+                                  <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;"> 
+                                    <tr class=""> 
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <img _disabled="true" onclick="if(!this.getAttribute('_disabled')) justep.XBLObject.getXBLObject(this).gotoPage(1)" style="border:0px" title="第一页"></img> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <img _disabled="true" style="border:0px" title="上一页"></img> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-page" nowrap="true" style=""></td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <img style="border:0px" title="下一页"></img> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-button" style=""> 
+                                        <img style="border:0px" title="最后页"></img> 
+                                      </td>  
+                                      <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td> 
+                                    </tr> 
+                                  </table>  
+                                  <span count="" data="dApplyList" limit="" offset="" page-count="7" style="display:none" xblid="attribute"></span> 
+                                </div> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td> 
+                      <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                        <div class="toolbar-style" name="toolbargroup"> 
+                          <table cellpadding="0" cellspacing="1px"> 
+                            <tr> 
+                              <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$v6aa84691a4104c1a9c93f0dd4f87faf3/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div all-selected-label="'全部'" auto-refresh="true" class="xui-select component_E8111CC2 gridFilter" component="/UI/appCommon/components/filter.xbl.xml#gridFilter" default-label="'编辑中,处理中,已完成'" default-value="'bsEditing,bsExecuting,bsFinished'" filter-data="dApplyList" filter-relation="fBizState" id="standardProcessQueryBar_bizStateFilter" label-separator="," multi-select="true" style="width: 80px" value-separator=","> 
+                                  <span auto-refresh="true" default-value-binding-id="standardProcessQueryBar_bizStateFilter_defaultValue_910146252" filter-data="dApplyList" filter-relation="fBizState" inner-data-id="standardProcessQueryBar_bizStateFilter_data_910146252" model-id="standardProcessQueryBar_bizStateFilter_model_910146252" select-id="standardProcessQueryBar_bizStateFilter_select_910146252" style="display:none" xblid="attribute"></span>  
+                                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect xforms-appearance-minimal xui-select" id="standardProcessQueryBar_bizStateFilter_select_910146252" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="focus" style="display:none;width:0px"></td>  
+                                        <td class="xxf-value"> 
+                                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                              <tr style="border:none"> 
+                                                <td style="width:100%;height:100%;border:none;"> 
+                                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                                </td>  
+                                                <td style="border:none" width="20px"> 
+                                                  <img align="absMiddle" src="/x5/$v0979b08990544506bab908254f18d52f/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table>  
+                                  <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="standardProcessQueryBar_bizStateFilter_defaultValue_910146252" style="display:none"> 
+                                    <tr> 
+                                      <td> 
+                                        <span class="xforms-value"></span>  
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon"></span> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$v6e59aefda90a4606ab7431f0fadc772e/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="xui-select component_B42F6D5E extDateFilter" component="/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter" filter-data="dApplyList" filter-date-mode="single" filter-date-relation1="fCreateTime" id="standardProcessQueryBar_dateFilter" style="width: 80px"> 
+                                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="standardProcessQueryBar_dateFilter_select_1224423119" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="focus" style="display:none;width:0px"></td>  
+                                        <td class="xxf-value"> 
+                                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                              <tr style="border:none"> 
+                                                <td style="width:100%;height:100%;border:none;"> 
+                                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                                </td>  
+                                                <td style="border:none" width="20px"> 
+                                                  <img align="absMiddle" src="/x5/$v7d4ae3a530254984bcf52a4e2aa77aab/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table>  
+                                  <div id="standardProcessQueryBar_dateFilter_dialog_1224423119" style="display:none"></div>  
+                                  <div style="width:246px;height:110px;position:absolute;left:-9000px;top:-9000px"> 
+                                    <div class="xforms-dialog" height="135" id="standardProcessQueryBar_dateFilter_dialog_1224423119-content" minmax="false" resizeable="false" style="width:100%;height:100%" title="自定义" width="250"> 
+                                      <table style="margin: 5px; width: 220px; font-size: 12px;"> 
+                                        <tr style="height: 25px"> 
+                                          <td style="width: 67px; text-align: center;">开始日期</td>  
+                                          <td> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="d7c861f459044e21881e5be18ef1123a" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="focus" style="display:none;width:0px"></td>  
+                                                  <td class="xxf-value"> 
+                                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                      <div class="xforms-alert-value" id=""></div> 
+                                                    </span> 
+                                                  </td>  
+                                                  <td class="xui-ie-input-bug"></td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td> 
+                                        </tr>  
+                                        <tr style="height: 25px"> 
+                                          <td style="width: 67px; text-align: center;">结束日期</td>  
+                                          <td> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="233aba09d96e4a0b81ab561e565b2243" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="focus" style="display:none;width:0px"></td>  
+                                                  <td class="xxf-value"> 
+                                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                      <div class="xforms-alert-value" id=""></div> 
+                                                    </span> 
+                                                  </td>  
+                                                  <td class="xui-ie-input-bug"></td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td> 
+                                        </tr>  
+                                        <tr style="height: 35px"> 
+                                          <td colspan="2" style="text-align: center;"> 
+                                            <input onclick="xforms.blur(true); if (justep.xbl('standardProcessQueryBar_dateFilter')._doDialogCheck()) {xforms('standardProcessQueryBar_dateFilter_dialog_1224423119').close();}" style="width: 60px" type="button" value="确定"></input>  
+                                            <input onclick="xforms('standardProcessQueryBar_dateFilter_dialog_1224423119').close();" style="width: 60px" type="button" value="取消"></input> 
+                                          </td> 
+                                        </tr> 
+                                      </table> 
+                                    </div> 
+                                  </div>  
+                                  <span auto-refresh="true" default-select="0" dialog-id="standardProcessQueryBar_dateFilter_dialog_1224423119" filter-data="dApplyList" filter-date-mode="single" filter-date-relation1="fCreateTime" inner-data-id="standardProcessQueryBar_dateFilter_data_1224423119" model-id="standardProcessQueryBar_dateFilter_model_1224423119" select-id="standardProcessQueryBar_dateFilter_select_1224423119" style="display:none" xblid="attribute"></span> 
+                                </div> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/x5/$v436015a7e4394a4da0bf7c7ff3dde612/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="xui-select component_AAB8FC3C extOrgFilter" component="/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter" execute-concept="OA_MT_UseExecute" filter-data="dApplyList" id="standardProcessQueryBar_orgFilter" manage-type-codes="call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')" org-url-relation="fCreatePsnFID" person-id-relation="fCreatePsnID" style="width: 140px"> 
+                                  <span auto-refresh="true" execute-concept="OA_MT_UseExecute" filter-data="dApplyList" inner-data-id="standardProcessQueryBar_orgFilter_data_783303227" manage-type-codes-binding-id="standardProcessQueryBar_orgFilter_manageTypeCodes_783303227" model-id="standardProcessQueryBar_orgFilter_model_783303227" org-data-id="standardProcessQueryBar_orgFilter_orgData_783303227" org-url-relation="fCreatePsnFID" person-id-relation="fCreatePsnID" select-id="standardProcessQueryBar_orgFilter_select_783303227" style="display:none" xblid="attribute"></span>  
+                                  <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="standardProcessQueryBar_orgFilter_manageTypeCodes_783303227" style="display:none"> 
+                                    <tr> 
+                                      <td> 
+                                        <span class="xforms-value"></span>  
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon"></span> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </table>  
+                                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_DE7FA61F treeSelect xforms-control xforms-treeselect xforms-appearance-minimal xui-select" id="standardProcessQueryBar_orgFilter_select_783303227" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="focus" style="display:none;width:0px"></td>  
+                                        <td class="xxf-value"> 
+                                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                              <tr style="border:none"> 
+                                                <td style="width:100%;height:100%;border:none;"> 
+                                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                                </td>  
+                                                <td style="border:none" width="20px"> 
+                                                  <img align="absMiddle" src="/x5/$vf52b8dd7d26f4643b47b363fa7c54412/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </div> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td style="width:100%"></td> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="default10"> 
+            <td id="td3"> 
+              <div class="" id="vApplyList" lazy="false" style="height:100%;width:100%;"> 
+                <div class="component_6298A7A1 grid" data="dApplyList" id="grdApply" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="height:100%;width:100%;;overflow:hidden" system-columns="version,fNO,fApplyOgnID,fApplyOgnName,fApplyPsnID,fApplyPsnFID,fApplyPsnFName,fMeetPsns,fMeetPsnNum,fBoardroomID,fPhone,fDescription,fArrBoardroomID,fArrBoardroom,fArrBeginTime,fArrEndTime,fArrOgnID,fArrOgnName,fArrDeptID,fArrDeptName,fArrPsnID,fArrPsnName,fArrPsnFID,fArrPsnFName,fArrTime,fArrRemark,fBizState,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fRemark,fApplyDeptID,fCurrentActivities,fCurrentExecutors,fOutPsns,fExtendStr1,fExtendStr2,fExtendStr3,fExtendStr4,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate1,fExtendDate2,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5"></div> 
+              </div> 
+            </td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-f106d167-c8fd-4212-8cfc-ecbea543d0af"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N2103240998" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N2103240998-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_271152820" name="GLOBAL_ID_271152820" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-5f1cb499-8e57-4a6d-831c-468fac78138c"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="b9a6642c613a49f2adcd831b628576f1" menu-id="GLOBAL_ID_1752184955" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_1752184955" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_1752184955" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_1546637340" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_1546637340-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_713244587" name="GLOBAL_ID_713244587" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script>
+function func_313393767(data){var oData = justep.XData.$('standardProcessQueryBar_orgFilter_orgData_783303227');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_244749819(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

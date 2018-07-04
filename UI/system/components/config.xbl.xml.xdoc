@@ -1,0 +1,68 @@
+/**
+	@name UI.config
+	@component /UI/system/components/config.xbl.xml#config
+	@class 
+	@description 全局参数组件，相当于页面上的全局变量，可以存储开关变量在继承页面中修改
+	@model UI
+	@example
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/config.xbl.xml#config">
+		<item label="参数1" name="param1" value="aaa" id="configItem1"></item>
+		<item label="参数2" name="param2" value="bbb" id="configItem2"></item>
+	</xhtml:div>
+</xmp>
+*/
+
+/**
+	@name UI.config#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/config.xbl.xml#config"
+*/
+
+/**
+	@name UI.config#id
+	@attribute
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.config#item
+	@attribute
+	@description 项，存放参数
+	@example 
+	<b>属性：</b>
+	label {string}  参数标签，用于设计时显示的名称
+	name  {string}  参数名称，唯一标识，通过name赋值和取值
+	value {string}  参数值
+	
+	<b>JS代码示例：</b>
+	var cfg = justep.xbl('config');
+	cfg.getValue('param1');
+	//如果name='param2'的参数不存在将新增
+	cfg.setValue('param2','beijing');
+*/
+
+/**
+	@name UI.config#getValue
+	@function
+	@param {string} name 参数名称
+	@description 获取指定参数的值
+	@see UI.config#item
+*/
+
+/**
+	@name UI.config#setValue
+	@function
+	@param {string} name <b>[required]</b>参数名称
+	@param {string} value <b>[required]</b>参数值
+	@param {string} label 参数标签
+	@description 设置参数，如果没有根据name找到对应的参数值则新增一个参数
+	@see UI.config#item
+*/
+

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/ns/xbl"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">       
+	<xbl:script type="text/javascript"
+		src="/UI/system/components/excel/excel.js" />
+	<xbl:script type="text/javascript"
+		src="/UI/system/components/dialog/dialog.js" />
+	<xbl:script type="text/javascript"
+		src="/UI/system/components/windowDialog/windowDialog.js" />
+	
+	<xbl:binding id="export">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:xforms="http://www.justep.com/xforms">
+			<xsl:variable name="id" select="if(@id) then @id else generate-global-id()" />
+				<xsl:variable name="trigger-id" select="concat('trigger-',$id)" />
+				<xsl:variable name="appearance">
+					<xsl:choose>
+						<xsl:when test="@appearance != ''">
+							<xsl:value-of select="@appearance" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="'image'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="appearance-mode">
+					<xsl:choose>
+						<xsl:when test="@image-text-mode != ''">
+							<xsl:value-of select="@image-text-mode" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="''" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="label">
+					<xsl:choose>
+						<xsl:when test="@label != ''">
+							<xsl:value-of select="@label" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of>i18n{export-label}</xsl:value-of>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="image">
+					<xsl:choose>
+						<xsl:when test="@image != ''">
+							<xsl:value-of select="@image" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="'/UI/system/components/excel/images/export.gif'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="dis-image">
+					<xsl:choose>
+						<xsl:when test="@dis-image != ''">
+							<xsl:value-of select="@dis-image" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="'/UI/system/components/excel/images/unexport.gif'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<root>
+					<xhtml:span xblid="attribute" 
+								xbl-obj-id="{$id}"
+								trigger-id="{$trigger-id}"
+								style="display:none"/>
+					<xhtml:iframe xblid="download" src="about:blank" style="display:none"/>
+					<xforms:trigger appearance="{$appearance}" mode="{$appearance-mode}" icon-class="{@icon-class}" id="{$trigger-id}" tabindex="{@tabindex}" accesskey="{@accesskey}" disabled="{@disabled}">
+						<xsl:if test="not(@icon-class) or (@icon-class = '')">
+							<xsl:attribute name="src" select="$image"/>
+							<xsl:attribute name="dis-src" select="$dis-image"/>
+						</xsl:if>	
+						<xsl:if test="@ref!=''">
+							<xsl:attribute name="ref" select="@ref"/>
+						</xsl:if>
+						<xforms:label><xsl:value-of select="$label"/></xforms:label>
+						<xforms:action ev:event="DOMActivate">
+							<xforms:script>
+								<![CDATA[justep.XBLObject.getXBLObject(event.target).exportExcel();]]>
+							</xforms:script>
+						</xforms:action>
+					</xforms:trigger>
+				</root>
+			</xsl:template>	
+		</xbl:template>
+		
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    
+				justep.Object.extend(this, new justep.ExportExcel(this));
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		})
+		]]>	
+		</xbl:implementation>
+		<xbl:resources>
+		</xbl:resources>
+	</xbl:binding>
+	
+	<xbl:binding id="import">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*" xmlns:xforms="http://www.justep.com/xforms">
+				<xsl:variable name="id" select="if(@id) then @id else generate-global-id()" />
+				<xsl:variable name="dialog-id" select="concat('_dlg_',$id)" />
+				<xsl:variable name="div-form" select="concat('_form_',$id)" />
+				<xsl:variable name="span-config" select="concat('_config_',$id)" />
+				<xsl:variable name="input-config" select="concat('_input_',$id)" />
+				<xsl:variable name="div-iframe" select="concat('_iframe_',$id)" />
+				<xsl:variable name="trigger-id" select="concat('_trigger_',$id)" />
+				<xsl:variable name="appearance">
+					<xsl:choose>
+						<xsl:when test="@appearance != ''">
+							<xsl:value-of select="@appearance" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="'image'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="appearance-mode">
+					<xsl:choose>
+						<xsl:when test="@image-text-mode != ''">
+							<xsl:value-of select="@image-text-mode" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="''" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="label">
+					<xsl:choose>
+						<xsl:when test="@label != ''">
+							<xsl:value-of select="@label" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of>i18n{import-label}</xsl:value-of>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="image">
+					<xsl:choose>
+						<xsl:when test="@image != ''">
+							<xsl:value-of select="@image" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="'/UI/system/components/excel/images/import.gif'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<xsl:variable name="dis-image">
+					<xsl:choose>
+						<xsl:when test="@dis-image != ''">
+							<xsl:value-of select="@dis-image" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of
+								select="'/UI/system/components/excel/images/unimport.gif'" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				<root>
+					<xhtml:div id="{$dialog-id}" width="350" height="268"
+						closable="true" minmaxable="false" resizable="false" modal="true"
+						onInit="" onOpen="" onClose=""            
+						component="/UI/system/components/dialog.xbl.xml#dialog">
+						    <xsl:attribute name="title">i18n{import-title}</xsl:attribute>
+							<xhtml:table cellpadding="0" cellspacing="8" style="table-layout:fixed;height:100%;width:100%;" border="0" component="/UI/system/components/tableLayout.xbl.xml#tableLayout">
+								<xhtml:tr>
+									<xhtml:td>
+										<xhtml:table cellpadding="0" cellspacing="0" style="table-layout:fixed;" border="0">
+											<xhtml:tr style="height:94px">
+												<xhtml:td>
+													<xhtml:form enctype="multipart/form-data" name="f" id="{$div-form}"
+														action="/UI/system/components/excel/import/upload.j" method="post" target="{$div-iframe}" style="margin:0;">
+														<xhtml:input name="process" type="hidden" value="/SA/excel/system/systemProcess"/>
+														<xhtml:input name="activity" type="hidden" value="mainActivity"/>
+														<xhtml:input name="action" type="hidden" value="uploadImportExcel"/>
+														<xhtml:div style="height:20px;">i18n{import-mapping}</xhtml:div>
+														<xhtml:select class="xui-select" name="mapping" style="margin-top:4;width:330px;height:20px;vertical-align:middle;line-height:18px;">
+															<xsl:for-each select="tokenize(@mapping-src,',')">
+															    <xsl:variable name="tempList" select="tokenize(.,'/')" />
+																<xhtml:option value="{.}"><xsl:value-of select="$tempList[last()]"/></xhtml:option>
+															</xsl:for-each>
+														</xhtml:select>
+														<xhtml:div style="margin-top:8px;height:20px;">i18n{import-excel}</xhtml:div>														
+														<xhtml:input name="excel" type="file" style="margin-top:4;width:100%;height:20px;vertical-align:middle;line-height:18px;"/>
+													</xhtml:form>
+												</xhtml:td>
+											</xhtml:tr>
+											<xhtml:tr style="height:30px">
+												<xhtml:td>
+												<xhtml:input id="{$input-config}" name="excel-config-use-default" type="checkbox">
+												
+													<xsl:if test="@use-default='false'">
+														<xsl:attribute name="checked">true</xsl:attribute>
+													</xsl:if>
+												
+													<xsl:attribute name="onclick">var s = this.checked; $(this).closest("table").find("div[name='excel-import-config']").find("input").attr('disabled',!s);</xsl:attribute>
+												</xhtml:input>i18n{import-param}
+												</xhtml:td>
+											</xhtml:tr>
+											<xhtml:tr style="height:48px">
+												<xhtml:td>
+												<xhtml:div id="{$span-config}" name="excel-import-config">
+													<xhtml:div>
+														<xhtml:input name="all-sheet" type="checkbox">
+															<xsl:if test="not(@use-default) or @use-default='true'">
+																<xsl:attribute name="disabled">true</xsl:attribute>
+															</xsl:if>
+															<xsl:attribute name="onclick">var s = this.checked; $(this).siblings().attr('disabled',s);</xsl:attribute>
+														</xhtml:input>i18n{import-all}
+														i18n{import-from}<xhtml:input class="xui-input" style="width:60px;text-align:center;height:18px;vertical-align:middle;line-height:18px;" name="sheet-start" type="text" value="1">
+															<xsl:if test="not(@use-default) or @use-default='true'">
+																<xsl:attribute name="disabled">true</xsl:attribute>
+															</xsl:if>
+														</xhtml:input>
+														i18n{import-to}<xhtml:input class="xui-input" style="width:60px;text-align:center;height:18px;vertical-align:middle;line-height:18px;" name="sheet-end" type="text" value="1">
+															<xsl:if test="not(@use-default) or @use-default='true'">
+																<xsl:attribute name="disabled">true</xsl:attribute>
+															</xsl:if>
+														</xhtml:input>i18n{import-page}
+													</xhtml:div>
+													<xhtml:div>
+														<xhtml:input name="all-row" type="checkbox">
+																<xsl:if test="not(@use-default) or @use-default='true'">
+																	<xsl:attribute name="disabled">true</xsl:attribute>
+																</xsl:if>
+																<xsl:attribute name="onclick">var s = this.checked; $(this).siblings().attr('disabled',s);</xsl:attribute>
+														</xhtml:input>i18n{import-all-row}
+														i18n{import-from}<xhtml:input class="xui-input" style="width:60px;text-align:center;height:18px;vertical-align:middle;line-height:18px;" name="row-start" type="text" value="1">
+															<xsl:if test="not(@use-default) or @use-default='true'">
+																<xsl:attribute name="disabled">true</xsl:attribute>
+															</xsl:if>
+														</xhtml:input>
+														i18n{import-to}<xhtml:input class="xui-input" style="width:60px;text-align:center;height:18px;vertical-align:middle;line-height:18px;" name="row-end" type="text" value="1">
+															<xsl:if test="not(@use-default) or @use-default='true'">
+																<xsl:attribute name="disabled">true</xsl:attribute>
+															</xsl:if>
+														</xhtml:input>i18n{import-row}
+													</xhtml:div>                   
+												</xhtml:div>
+												</xhtml:td>								
+											</xhtml:tr>
+										</xhtml:table>
+									</xhtml:td>
+								</xhtml:tr>
+								<xhtml:tr height="40px">
+									<xhtml:td>
+            <xforms:trigger  style="float:right;width:75px;" appearance="minimal"> 
+              <xforms:label ><![CDATA[i18n{cancel}]]></xforms:label>  
+              <xforms:action ev:event="DOMActivate" > 
+                <xforms:script >justep.xbl('<xsl:value-of	select="$id" />').dialogCancel();</xforms:script> 
+              </xforms:action> 
+            </xforms:trigger>  
+            <xforms:trigger style="float:right;margin-right:8px;width:75px;" class="button-green"> 
+              <xforms:label ><![CDATA[i18n{ok}]]></xforms:label>  
+              <xforms:action ev:event="DOMActivate" > 
+                <xforms:script >justep.xbl('<xsl:value-of	select="$id" />').dialogOk();</xforms:script> 
+              </xforms:action> 
+            </xforms:trigger>  
+									</xhtml:td>
+								</xhtml:tr>
+							</xhtml:table >
+					</xhtml:div>
+					
+					<xhtml:iframe id="{$div-iframe}" name="{$div-iframe}" style="display:none" >
+						<xsl:attribute name="onload">var o=justep.xbl('<xsl:value-of select="$id"/>');if(o)o.doImport(this);</xsl:attribute>
+					</xhtml:iframe>
+					<xhtml:span xblid="attribute" 
+								xbl-obj-id="{$id}"
+								form-id="{$div-form}" 
+								dialog-id="{$dialog-id}"
+								trigger-id="{$trigger-id}"
+								config-id="{$span-config}"
+								input-id="{$input-config}"
+								style="display:none"/>
+					
+					<xforms:trigger appearance="{$appearance}" mode="{$appearance-mode}" id="{$trigger-id}" tabindex="{@tabindex}" accesskey="{@accesskey}" disabled="{@disabled}" icon-class="{@icon-class}">
+						<xsl:if test="not(@icon-class) or (@icon-class = '')">
+							<xsl:attribute name="src" select="$image"/>
+							<xsl:attribute name="dis-src" select="$dis-image"/>
+						</xsl:if>	
+						<xsl:if test="@ref!=''">
+							<xsl:attribute name="ref" select="@ref"/>
+						</xsl:if>
+						<xforms:label><xsl:value-of select="$label"/></xforms:label>
+						<xforms:action ev:event="DOMActivate">
+							<xforms:script>
+								<![CDATA[justep.XBLObject.getXBLObject(event.target).importExcel();]]>
+							</xforms:script>
+						</xforms:action>
+					</xforms:trigger>
+				</root>
+			</xsl:template>	
+		</xbl:template>
+		
+		<xbl:implementation>
+		<![CDATA[
+		({
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+				justep.Object.extend(this, new justep.ImportExcel(this));
+			},
+			
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		})
+		]]>	
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>	

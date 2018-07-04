@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="window" tag-name="window" icon="window.gif" text="窗体组件" 
+		binding-component="/UI/system/components/window.xbl.xml#window" display-property="id"
+		component-class="com.justep.studio.ui.editors.xui.component.Window" 
+		component-type="frame" validator="WindowValidator" design-view="web-designer" >
+		<properties>
+			<property name="id" text="编码" readonly="true"/>
+			<property name="cacheable" text="组件" editor-ref="booleanList" readonly="true" data-type="boolean"/>
+			<!--editor-parameter格式   #左边：显示的文件后缀名如:'.w'  #右边是否包含UI路径 true:包含  (注：#和后边字符可以不写  默认为不包含UI路径)
+				第二个#后边代表是否排除正在编辑的.w文件(自己)true:排除 默认是不排除的,第三个#后边标识单选还是多选true表示单选,false标识多选
+			-->
+			<property name="extends" text="继承" editor-ref="fileTreeDialog" editor-parameter=".w#true#true" />
+		</properties>
+		<!--<sub-dirs>
+				<item name="data" display-name="数据"> 
+                  <menu>
+				    <menuItem text="添加" icon="add.gif"> 
+						<menu>
+							<menuItem text="kql-xml data" target="data" action="newConceptData"/> 
+						</menu>
+					</menuItem>
+				  </menu>
+                </item>				
+				<item name="binding" display-name="数据绑定">
+                  <menu>
+				    <menuItem text="添加" icon="add.gif" target="binding" action="newNode"/> 
+				  </menu>
+                </item>				
+				
+		</sub-dirs>-->
+		<templates>
+		   <template name="default">
+		   <![CDATA[ 
+  <xui:window xmlns="http://www.justep.com/xui" xmlns:xui="http://www.justep.com/xui" xmlns:xforms="http://www.justep.com/xforms" component="/UI/system/components/window.xbl.xml#window">
+	  <xforms:model id="model1">
+	    
+	  </xforms:model>
+	  <xui:view id="rootView" auto-load="true">
+	     <xui:layout style="height:100%;width:100%" id="rootLayout"></xui:layout>
+	  </xui:view>
+	  <xui:resource id="resource1"></xui:resource>
+  </xui:window>
+		   ]]></template>
+		</templates>
+		<events>
+           
+        </events> 
+	</element>
+ 
+	
+</elements>

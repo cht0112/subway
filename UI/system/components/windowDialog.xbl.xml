@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	script-type="text/javascript">
+	<!--
+		@author zn 
+		@createDate  2010年5月12日 
+		弹出div ，并能加载指定的.w文件 
+		使用说明：
+			如果父页面和子页面需要数据通讯，需要引入：/UI/system/components/windowReceiver/windowReceiver.js
+			
+			参数、事件说明：
+				
+				参数
+				id 唯一识别码，要求全局唯一
+				url 被加载页面的地址
+				title 弹出框标题
+				modal 是否是模态
+				status 值为maximize 时初始化为最大化
+				width  弹出框宽度  ，优先级低于 autosize
+				height 弹出框高度 ， 优先级低于autosize
+				left   弹出框左上角横坐标 。为0时表示在屏幕中间
+				top    弹出框左上角纵坐标
+				minmaxable 是否显示最大最小化
+				resizable 是否可以拖动修改大小
+				neighbor   弹出框停靠的兄弟节点
+				autosize   通过内容自适应大小
+				
+				事件
+				
+				onSend 当往iframe页面发送数据时触发，该事件实现函数需要返回一个发送给iframe页面的数据。
+				onReceive 当接收到iframe页面发回的数据时触发，该事件实现函数需要接收事件参数。该参数里面包装了返回的数据。
+				onInit 弹出框初始化的时候触发。
+				onOpen: 时触发
+				onClose 弹出框关闭时触发
+				事件的实现请参照下面js调用的实现
+				
+				
+			xbl 调用
+				<xhtml:div component="/UI/system/components/windowDialog.xbl.xml#windowDialog"
+					id="testWindowDialogXbl"
+					url="/system/service/common_choose/tree_list_multi_person_choose.w"
+					title="testWindowDialogXbl"
+					modal="true"
+					status="maximize"
+					width="500"
+					height="500"
+					left="0"                  
+					top="0"
+					minmaxable="true"
+					resizable="true"
+					neighbor="testneighbor"
+					autosize="false"
+					onSend="testOnSendToFrame"
+					onReceive= "testReceiveFromFreame"
+					onInit="testonInit"
+					onOpen="onOpen"
+					onClose="testOnDialogClose" 
+				/>
+			js 调用
+			    *****注意****** js的实例一定要注意作用域 ，推荐作为全局变量。
+			    
+			    使用js调用需要引入：
+			    /UI/system/components/windowDialog/windowDialog.js
+			    /UI/system/components/dialog/dialog.js
+			    这两个js
+			    
+			  	var windowDialog ; 
+				if(!windowDialog){            
+		 			windowDialog = new justep.WindowDialog("testW",url,"测试案例",true,null,600,500,0,0,false);
+					windowDialog.attachEvent("onInit", function(){alert('init event');} , windowDialog);
+					windowDialog.attachEvent("onOpen", function(onOpenn event');} , windowDialog);  
+					windowDialog.attachEvent("onClose", function(){alert('close event');} , windowDialog);
+					windowDialog.attachEvent("onSend", function(){
+						var data = new SimpleStore('mySimpleStoreas','sName,sCode') ;
+				 		data.loadData(null, "<rows><row id='PSN01'><cell>张宁</cell><cell>zn</cell></row></rows>", null, true);
+				 		var para = new justep.CommonChoosePara('sName,sCode' ,data);
+				 		return para; 
+					} , windowDialog);
+					windowDialog.attachEvent("onReceive", function(event){alert(event)} , windowDialog);
+				}
+				windowDialog.open();
+				  
+			 与iframe 子页面通讯
+				     如果要实现通讯子页面必须引入 ： /UI/system/components/windowReceiver/windowReceiver.js　
+				     并将自己实现的接收数据的函数注册到  acceptParentParamsFun
+					 例如：   acceptParentParamsFun = function(data){ ... ....} 
+				                  或
+				       function receive(data){
+				       	... ...
+				       }            
+				       acceptParentParamsFun = "receive"
+			      
+			      子页面控制刷新、取消、确定：
+			          确定
+			             子页面调用 windowEnsure(obj) 既可以实现确定 。
+			            参数 obj 为传回到父页面的数据。
+			    
+			          刷新
+			               子页面调用 windowRefresh() 既可以实现刷新
+			                  
+			          取消
+			                子页面调用 windowCancel() 既可以实现取消 
+			      
+	 -->
+	<xbl:script type="text/javascript" src="/UI/system/components/windowDialog/windowDialog.js"/>
+	<xbl:script type="text/javascript" src="/UI/system/components/dialog/dialog.js"/>
+	
+	<xbl:binding id="windowDialog">
+		<xbl:template template-type="xslt">
+		</xbl:template>
+		<xbl:implementation>
+		({
+			"initXBL" : function() {
+				var node = this.domNode;
+				var dialog = new justep.WindowDialog(node.id,node.getAttribute('url'),node.getAttribute('title'),node.getAttribute('modal')=="true",node.getAttribute('status'),
+				                  node.getAttribute('width'),node.getAttribute('height'),node.getAttribute('left'),node.getAttribute('top'),node.getAttribute("reload-on-open") =='true',
+				                  node.getAttribute('onSend') , node.getAttribute('onReceive') ,node.getAttribute('onInit') ,node.getAttribute('onOpen') ,node.getAttribute('onClose'));
+				dialog.setClosable(node.getAttribute('closable')!="false");
+				dialog.setMinmaxable(node.getAttribute('minmaxable')!="false");
+				dialog.setResizable(node.getAttribute('resizable')!="false");
+				dialog.setNeighbor(node.getAttribute('neighbor'));
+				dialog.setAutoSize(node.getAttribute('autosize')=="true");
+				dialog.setShowTitle(node.getAttribute("show-title")!="false");
+				dialog.setProcess(node.getAttribute("process"));
+				dialog.setActivity(node.getAttribute("activity"));
+				justep.Object.extend(this, dialog);
+			} 
+		})			
+		</xbl:implementation>
+	</xbl:binding>
+</xbl:xbl>

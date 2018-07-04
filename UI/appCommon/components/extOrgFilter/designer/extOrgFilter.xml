@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="extOrgFilter" tag-name="div" icon="orgFilter.png" text="扩展组织过滤" 
+		binding-component="/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter"
+		display-property="id" component-class="ExtOrgFilter" component-type="formControl"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+
+			<property name="filter-data" text="过滤数据集" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="person-id-relation" text="人员标识关系" required="true" editor-ref="relationDlg" editor-parameter="filter-data"/>
+			<property name="org-url-relation" text="组织路径关系" required="true" editor-ref="relationDlg" editor-parameter="filter-data"/>
+			<property name="manage-type-codes" text="管理权限类型(xpath)" editor-ref="xpathEditor"/>
+			<property name="execute-concept" text="处理表概念" required="true"/>
+			
+			<property name="auto-refresh" text="当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="dropdown-height" text="下拉框高度" />
+
+			<property name="auto-size" text="自动尺寸" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="style" text="样式" editor-ref="styleDialog" />
+		</properties>
+		
+		<events>  
+			<event name="onGetCondition" text="构造过滤条件"/>
+		</events>
+		
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+				<xhtml:div component="/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter" style="width:140px" />
+		  		]]>
+		   	</template>
+		</templates>
+	</element>
+</elements>

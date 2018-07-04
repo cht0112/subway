@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$veec3389f8dac4b94b725193cfd47d607/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v77edefe58f454ffe87c3616f83de4564/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$va133d6a609b0415daa8eabe83d168fbd/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vf3e92f4831a249b3a92b90e26de280a2/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vc4e90382ff1a406ab0985b8ab9d9d153/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v631054d6cb8d44ed91a140d231a4228c/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2de0734c7ace4e41b0cc46f4e858ba24/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vbf442b44dae44d6faa4d73e2973bb3f9/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v9594b2c84ab74b8dbdfc455e42e703a5/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v40c680a5147342f68dcdd1e07d310df4/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$vfbf5df8ec392488e8e483b5207a238d3/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v4646c7111b7541b793746d77cf12c2d4/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.splitter { width: 100%; height: 100%; } .xui-splitter-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-splitter-region { position: absolute; overflow: auto; background-color: white; } .xui-splitter-left { top: 0; left: 0; height: 100%; } .xui-splitter-right { top: 0; right: 0; height: 100%; } .xui-splitter-top { top: 0; left: 0; width: 100%; } .xui-splitter-bottom { bottom: 0; left: 0; width: 100%; } .xui-splitter-handler { position: absolute; background: #DFE8F6; } .xui-splitter-handler-h { top: 0; width: 5px; height: 100%; } .xui-splitter-handler-v { left: 0; height: 5px; width: 100%; } .xui-splitter-btn { position: absolute; } .xui-splitter-btn-h { left:0; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-h-right { left:-27px; bottom: 20px; margin-top: -35px; margin-left: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v { right:20px; margin-left: -35px; bottom: 3px; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; } .xui-splitter-btn-v-up { right:20px; margin-left: -35px; top: 0; color: white; background-color: #DFE8F6; cursor: pointer; padding: 5px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/x5/$v2574bedc22dc4c1cab7ccc7733628e41/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vc4f6b10839614bbeb29fef35990a7a89/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$ve6fbcc45873f46c8a2c5e7e915e0c856/UI/metrodetection/test_progress_info/process/TaskProgressInfo/process/taskProgressInfoPublic/mainActivity.js?language=zh_CN">
+</script>      <script>
+new justep.XBizData('proData',false,false,{'queryAction':"queryJINDU_VIEWAction",'saveAction':"saveJINDU_VIEWAction",'newAction':"createJINDU_VIEWAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'JINDU_VIEW':'JINDU_VIEW'}",'limit':-1,'idColumn':"{'name':'JINDU_VIEW','relation':'JINDU_VIEW','define':'JINDU_VIEW','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'FID':{'type':'String','relation':'JINDU_VIEW.FID','define':'JINDU_VIEW.FID','label':'FID'},'FPARENTID':{'type':'String','relation':'JINDU_VIEW.FPARENTID','define':'JINDU_VIEW.FPARENTID','label':'FPARENTID'},'TNAME':{'type':'String','relation':'JINDU_VIEW.TNAME','define':'JINDU_VIEW.TNAME','label':'TNAME'},'TPERSON':{'type':'String','relation':'JINDU_VIEW.TPERSON','define':'JINDU_VIEW.TPERSON','label':'TPERSON'},'TPERSONNAME':{'type':'String','relation':'JINDU_VIEW.TPERSONNAME','define':'JINDU_VIEW.TPERSONNAME','label':'TPERSONNAME'},'TSTART':{'type':'DateTime','relation':'JINDU_VIEW.TSTART','define':'JINDU_VIEW.TSTART','label':'TSTART'},'TEND':{'type':'DateTime','relation':'JINDU_VIEW.TEND','define':'JINDU_VIEW.TEND','label':'TEND'},'TEXECUTE':{'type':'String','relation':'JINDU_VIEW.TEXECUTE','define':'JINDU_VIEW.TEXECUTE','label':'TEXECUTE'},'TCHECK':{'type':'String','relation':'JINDU_VIEW.TCHECK','define':'JINDU_VIEW.TCHECK','label':'TCHECK'},'ROOMID':{'type':'Integer','relation':'JINDU_VIEW.ROOMID','define':'JINDU_VIEW.ROOMID','label':'ROOMID'},'ROOMAREA':{'type':'String','relation':'JINDU_VIEW.ROOMAREA','define':'JINDU_VIEW.ROOMAREA','label':'ROOMAREA'},'TOOLNO':{'type':'Integer','relation':'JINDU_VIEW.TOOLNO','define':'JINDU_VIEW.TOOLNO','label':'TOOLNO'},'LINEID':{'type':'Integer','relation':'JINDU_VIEW.LINEID','define':'JINDU_VIEW.LINEID','label':'LINEID'},'TASKID':{'type':'String','relation':'JINDU_VIEW.TASKID','define':'JINDU_VIEW.TASKID','label':'TASKID'}}",'treeOption':"{'isDelayLoad':false,'parentRelation':'FPARENTID'}"},'proData_part',{});</script>  
+    <script>
+new justep.XBizData('taskData',true,false,{'queryAction':"queryTEST_PROJECT_TASK_INFOAction",'saveAction':"saveTEST_PROJECT_TASK_INFOAction",'newAction':"createTEST_PROJECT_TASK_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'TEST_PROJECT_TASK_INFO':'TEST_PROJECT_TASK_INFO'}",'limit':20,'idColumn':"{'name':'TEST_PROJECT_TASK_INFO','relation':'TEST_PROJECT_TASK_INFO','define':'TEST_PROJECT_TASK_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'pROJECTID':{'type':'Integer','relation':'TEST_PROJECT_TASK_INFO.pROJECTID','define':'TEST_PROJECT_TASK_INFO.pROJECTID','label':'项目ID'},'tASKTYPE':{'type':'Decimal','relation':'TEST_PROJECT_TASK_INFO.tASKTYPE','define':'TEST_PROJECT_TASK_INFO.tASKTYPE','label':'任务类型'},'tASKID':{'type':'Integer','relation':'TEST_PROJECT_TASK_INFO.tASKID','define':'TEST_PROJECT_TASK_INFO.tASKID','label':'任务ID'},'tASKNAME':{'type':'String','relation':'TEST_PROJECT_TASK_INFO.tASKNAME','define':'TEST_PROJECT_TASK_INFO.tASKNAME','label':'任务名称'},'pLANOPERATORID':{'type':'String','relation':'TEST_PROJECT_TASK_INFO.pLANOPERATORID','define':'TEST_PROJECT_TASK_INFO.pLANOPERATORID','label':'计划执行人'},'pLANSTARTDATE':{'type':'DateTime','relation':'TEST_PROJECT_TASK_INFO.pLANSTARTDATE','define':'TEST_PROJECT_TASK_INFO.pLANSTARTDATE','label':'计划开始日期'},'pLANENDINGDATE':{'type':'DateTime','relation':'TEST_PROJECT_TASK_INFO.pLANENDINGDATE','define':'TEST_PROJECT_TASK_INFO.pLANENDINGDATE','label':'计划结束日期'},'tESTTASKAREA':{'type':'String','relation':'TEST_PROJECT_TASK_INFO.tESTTASKAREA','define':'TEST_PROJECT_TASK_INFO.tESTTASKAREA','label':'区域'},'tESTTASKITERATIVE':{'type':'String','relation':'TEST_PROJECT_TASK_INFO.tESTTASKITERATIVE','define':'TEST_PROJECT_TASK_INFO.tESTTASKITERATIVE','label':'迭代'},'tESTTASKREASON':{'type':'Decimal','relation':'TEST_PROJECT_TASK_INFO.tESTTASKREASON','define':'TEST_PROJECT_TASK_INFO.tESTTASKREASON','label':'任务生成原因'},'aCTUALOPERATORID':{'type':'String','relation':'TEST_PROJECT_TASK_INFO.aCTUALOPERATORID','define':'TEST_PROJECT_TASK_INFO.aCTUALOPERATORID','label':'任务执行人'},'aCTUALSTARTDATE':{'type':'DateTime','relation':'TEST_PROJECT_TASK_INFO.aCTUALSTARTDATE','define':'TEST_PROJECT_TASK_INFO.aCTUALSTARTDATE','label':'任务开始日期'},'aCTUALENDINGDATE':{'type':'DateTime','relation':'TEST_PROJECT_TASK_INFO.aCTUALENDINGDATE','define':'TEST_PROJECT_TASK_INFO.aCTUALENDINGDATE','label':'任务结束日期'},'tASKEXECUTE':{'type':'Decimal','relation':'TEST_PROJECT_TASK_INFO.tASKEXECUTE','define':'TEST_PROJECT_TASK_INFO.tASKEXECUTE','label':'任务执行状态'},'tASKCHECK':{'type':'Integer','relation':'TEST_PROJECT_TASK_INFO.tASKCHECK','define':'TEST_PROJECT_TASK_INFO.tASKCHECK','label':'任务执行结果'},'tESTTASKFILE':{'type':'Text','relation':'TEST_PROJECT_TASK_INFO.tESTTASKFILE','define':'TEST_PROJECT_TASK_INFO.tESTTASKFILE','label':'测试任务下发XML文件'},'tESTTASKRESULTFILE':{'type':'Text','relation':'TEST_PROJECT_TASK_INFO.tESTTASKRESULTFILE','define':'TEST_PROJECT_TASK_INFO.tESTTASKRESULTFILE','label':'测试任务结果XML文件'}}"},'',{});</script>  
+    <script type="text/javascript" src="/x5/$vc6befd0e66aa48beb886778ca62e5df2/UI/metrodetection/test_progress_info/process/TaskProgressInfo/process/taskProgressInfoPublic/.cache/mainActivity_zh_CN_x5_35c4751d1d1644c0a68e1ef43eb6996c.js?language=zh_CN&amp;$version=edd551c7-2c0c-4e92-8525-700347dab211"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="xui-splitter component_81628EC1 splitter" component="/UI/system/components/splitter.xbl.xml#splitter" fix-size="177px" has-arrow-button="true" has-drag-bar="true" id="HSplitter1" mode="horz" style="height:100%;width:100%;line-height:20px;"> 
+          <div class="xui-splitter-root"> 
+            <div class="xui-splitter-region xui-splitter-left"> 
+              <div class="component_6298A7A1 grid" data="taskData" id="grid1" onRowClick="mainActivity.grid1RowClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;line-height:normal;width:100%;;overflow:hidden" system-columns="pROJECTID,tASKTYPE,tASKID,pLANOPERATORID,pLANSTARTDATE,pLANENDINGDATE,tESTTASKAREA,tESTTASKITERATIVE,tESTTASKREASON,aCTUALOPERATORID,aCTUALSTARTDATE,aCTUALENDINGDATE,tASKEXECUTE,tASKCHECK,tESTTASKFILE,tESTTASKRESULTFILE"></div> 
+            </div>  
+            <div class="xui-splitter-region xui-splitter-right"> 
+              <div class="component_6298A7A1 grid" data="proData" id="grid2" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" smart-render="20" style="height:100%;width:100%;;overflow:hidden" system-columns="FID,FPARENTID,TPERSON,ROOMID,ROOMAREA,TOOLNO,LINEID,TASKID"></div> 
+            </div>  
+            <div class="xui-splitter-handler xui-splitter-handler-h"> 
+              <div class="xui-splitter-btn xui-splitter-btn-h" role="left"> 
+                <i class="icon-system-left-dir white-icon"></i> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

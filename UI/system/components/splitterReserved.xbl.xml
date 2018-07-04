@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript" src="/UI/system/components/splitter/splitter.js"/>
+	
+	<!-- xyh 2010-03-31  -->
+	<xbl:binding id="splitter">
+		<xbl:template template-type="java" src="Splitter"/>
+		
+		<xbl:implementation>
+			<![CDATA[
+
+		
+		({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+				var el = $("#"+this.domNode.id);
+				$(window).resize(function() {
+					var h = el.parent().height(),
+						w = el.parent().width(),
+						tb = (parseInt(el.css("padding-top"))||0) 
+							+ (parseInt(el.css("padding-bottom"))||0) 
+							+ (parseInt(el.css("border-top"))||0) 
+							+ (parseInt(el.css("border-bottom"))||0),  
+						lr = (parseInt(el.css("padding-left"))||0)
+							+ (parseInt(el.css("padding-right"))||0) 
+							+ (parseInt(el.css("border-left"))||0)
+							+ (parseInt(el.css("border-right"))||0);  
+					el.height(h - tb).width(w - lr);
+				});
+				$(window).resize();
+			
+			   	var node = this.domNode; if (node==null) return;
+			   	var drag = node.getAttribute('has-drag-bar')==null?"true":node.getAttribute('has-drag-bar')=="true";
+			   	if(!drag){return;}
+			   	var resizable = node.getAttribute('resizable')?node.getAttribute('resizable')=="true":null;
+			   	var collapseType = node.getAttribute('collapse-type');
+			   	var arrow = node.getAttribute('has-arrow-button')==null?"true":node.getAttribute('has-arrow-button')=="true";
+			   	var mode = node.getAttribute('mode');
+				var splitter = new justep.Splitter(this.domNode.id,mode,drag,arrow,resizable,collapseType);
+				node.splitter = splitter;
+				this.splitter = splitter;
+				var status = node.getAttribute('status');
+				if(status=='show-first' || status=='show-left' || status=='show-top'){
+					splitter.moveToEnd();
+				}else if(status=="show-second" || status=='show-top' || status=='show-bottom'){
+					splitter.moveToStart();
+				}
+				
+				var onRegionResize = node.getAttribute("onRegionResize");
+				if(onRegionResize && onRegionResize!=""){
+					var f=null;
+					try{
+						f= eval(onRegionResize);
+					}catch(e){}
+					if(f && typeof f =="function"){
+						splitter.onRegionResize = f;
+					}
+				}
+			}
+		})
+			]]>
+		
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.xui-splitter{
+					width:200px;
+					height:200px;
+				}				
+			]]>
+			</xbl:style>
+		</xbl:resources>					
+	</xbl:binding>
+</xbl:xbl>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="chart" tag-name="div" icon="chart.gif" text="图表" 
+		binding-component="/UI/system/components/chart.xbl.xml#chart" display-property="id" 
+		component-class="Chart" 
+		component-type="formControl">
+		<operations>
+			<operation name="pageSetup" label="页面设置" img-src="" dis-src=""  enable="true"/>
+			<operation name="print" label="打印" img-src="" dis-src=""  enable="true"  icon-class="icon-system-print"/>
+			<operation name="preview" label="预览" img-src="" dis-src=""  enable="true"/>
+			<operation name="pdf" label="导出pdf" img-src="" dis-src=""  enable="true"/>
+			<operation name="word" label="导出word" img-src="" dis-src=""  enable="true"/>
+			<operation name="excel" label="导出excel" img-src="" dis-src=""  enable="true"/>
+		</operations>
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+					<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml" _xmlns="" component="/UI/system/components/chart.xbl.xml#chart" 
+						chart-name="chart" auto-load="true" data-list="" >				
+						<chart>
+							<config/>
+							<series-set/>													
+						</chart>	
+					</xhtml:div>				
+				]]>
+			</template>
+		</templates>
+		<properties>
+			<property name="id" text="编号" required="true" editor-ref=""/>
+			<property name="chart-name" text="图表导出文件名称" />
+			<property name="auto-load" text="自动加载" editor-ref="itemList"/>
+			<property name="data-list" text="数据源定义" editor-ref="dataListDialog"/>			
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-chart"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+		</properties>
+		<property-editors>
+			<property-editor name="dataListDialog" type="dialog">
+				<dialog-page class-name="ChartDataListConfigDialog" />
+			</property-editor>
+			<property-editor name="itemList" type="list" >
+				<static-data value="true,false" />				
+			</property-editor>	
+			<property-editor name="modelItemList" type="list" >
+				<static-data value="window,dialog,replace" />				
+			</property-editor>		
+		</property-editors>		
+		<toolbar>		
+			<item text="添加子图表" method="appendChart">				
+			</item>			
+		</toolbar>
+	</element>	
+	
+	<element name="chartSeries" tag-name="series" icon="chart.gif" text="series" display-property="name" component-class="ChartSeries">		     
+		<properties>
+			<!--  
+			<property name="name" text="名称" required="true" editor-ref=""/>
+			-->
+			<property name="chart-type" text="类型" required="true" editor-ref="chartTypeList"/>		
+			<!--  
+			<property name="ref" text="数据源" editor-ref=""/>
+			-->	
+			<property name="data" text="数据设置" editor-ref="chartDataConfigPage" is-virtual = 'true'  fixed-value='[...]'/>
+			<property name="config" text="属性设置" editor-ref="chartPropertyConfigPage" is-virtual = 'true'  fixed-value='[...]'/>
+		</properties>
+		<property-editors>
+			<property-editor name="chartDataConfigPage" type="dialog">
+				<dialog-page class-name="com.justep.desinger.chart.page.ChartDataConfigPage" />
+			</property-editor>			
+			<property-editor name="chartPropertyConfigPage" type="dialog">
+				<dialog-page class-name="com.justep.desinger.chart.page.ChartPropertyConfigPage" />
+			</property-editor>
+			
+			<property-editor name="chartTypeList" type="list" >			
+				<dynamic-data class-name="com.justep.desinger.chart.common.ChartTypeSelect" method="getChartTypeList"/>
+			</property-editor>	
+			
+			
+		</property-editors>		
+		<events>
+		</events>
+	</element>
+
+	<element name="chart" tag-name="chart" text="chart"  >		     
+		<properties>
+		</properties>
+		<property-editors>
+		</property-editors>		
+		<events>
+		</events>
+	</element>
+
+	<element name="seriesData" tag-name="data" text="data" discriminate-condition="parent()/tagName()=series" >		     
+		<properties>
+		</properties>
+		<property-editors>
+		</property-editors>		
+		<events>
+		</events>
+	</element>
+	
+	<element name="series-set" tag-name="series-set" text="series-set" >		     
+		<properties>
+		</properties>
+		<property-editors>
+		</property-editors>		
+		<events>
+		</events>
+	</element>
+</elements>

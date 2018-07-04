@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v7b66ea35a03f423da6d7c0f5728a5a61/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$va60d9ea22e154c7198157e66879cfbbc/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v0a8be52301434203878b7e385777ef47/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vd1afb21237d14235adec7ad6e1d9f45b/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v588e053b5ffd47d193e5054d3827fd35/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v21bb5d5726f74c59b6f72bb069ca64c5/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$v00b535b701eb4927bef7bafb162e06ba/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v617a6d01be294d9690412f1f27cdf4f6/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v619bb775024a4642b7b957e1ff276ea3/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v56d54e165a7a4deda148e708304b2a1c/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v52605d2f5dc647db993fce78f6863379/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vee455e8a6a1a4f6294536541f63a497a/component/data/data.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"/>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>      <link href="/x5/$v5ad34a0cfa744321b9c19567c1794bd1/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vcb3a4a8f68314418ae7461a1c15ded3a/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script id="htmlScript1" src="/x5/$ve8955f3cb6f44b4e9dd4d8b14b4cb525/UI/metrodetection/detection_case_info_view/process/importCase/mainActivity.js?language=zh_CN">
+</script>      <script>
+new justep.XBizData('dectionBaseInfoData',true,false,{'queryAction':"queryDECTION_BASED_ON_INFOAction",'saveAction':"saveDECTION_BASED_ON_INFOAction",'newAction':"createDECTION_BASED_ON_INFOAction",'dataModel':"/metrodetection/testing_standard/data",'dataType':"xml",'concept':"{'DECTION_BASED_ON_INFO':'DECTION_BASED_ON_INFO'}",'limit':20,'idColumn':"{'name':'DECTION_BASED_ON_INFO','relation':'DECTION_BASED_ON_INFO','define':'DECTION_BASED_ON_INFO','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dECTIONBASEDONNAME':{'type':'String','relation':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','define':'DECTION_BASED_ON_INFO.dECTIONBASEDONNAME','label':'检测依据文件名称'},'vALIDDATETIME':{'type':'DateTime','relation':'DECTION_BASED_ON_INFO.vALIDDATETIME','define':'DECTION_BASED_ON_INFO.vALIDDATETIME','label':'依据生效时间'},'vALIDSTATE':{'type':'Integer','relation':'DECTION_BASED_ON_INFO.vALIDSTATE','define':'DECTION_BASED_ON_INFO.vALIDSTATE','label':'依据有效状态'},'version':{'type':'Integer','relation':'DECTION_BASED_ON_INFO.version','define':'DECTION_BASED_ON_INFO.version','label':'版本'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('tempData',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true,'dataType':"xml"}, {});</script>  
+    <script type="text/javascript" src="/x5/$v8885da9e3b214136823da103445b6404/UI/metrodetection/detection_case_info_view/process/importCase/.cache/mainActivity_zh_CN_x5_4158b23258824a8383b6f9e7a730a8f4.js?language=zh_CN&amp;$version=a845bb1b-2822-4845-9302-b537f5c8bf87"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"/>  
+    <span id="infoPanel" style="position:absolute;display:none"/>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="xui-container" id="view1" lazy="false" style="position:relative;;width:814px;height:518px;"> 
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:64px;width:213px;left:266px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"/>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""/> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/x5/$vd9dc83264ec94fa88e643ea1a9ad675d/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"/> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                    <div class="xforms-alert-value" id=""/> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <label class="xui-label" id="label1" style="position:absolute;top:68px;left:170px;">请选择检测依据</label>  
+          <input class="xui-input" id="caseVersion" style="position:absolute;top:115px;left:266px;width:213px;" type="text" value=""/>  
+          <label class="xui-label" id="label3" style="position:absolute;top:115px;left:170px;">请输入用例版本</label>  
+          <form xmlns="http://www.justep.com/xui" action="" enctype="multipart/form-data" id="fileupload" method="post" name="fileupload" target="bbb">  
+            <hidden id="caseVersion" name="caseVersion"/>  
+            <hidden id="jianceyiju" name="jianceyiju"/>  
+            <span style="position:absolute;height:24px;left:170px;top:180px;">请选择用例文件</span>  
+            <input id="file" name="file" style="position:absolute;height:24px;left:266px;top:180px;" type="file"/>  
+            <input id="importModel" name="importModel" style="position:absolute;left:260px;height:24px;top:220px;" type="checkbox"/>  
+            <span style="position:absolute;left:280px;height:24px;top:228px;">覆盖已存在用例</span>  
+            <input class="xui-button" id="sub" name="sub" onclick="uploadCase();" style="position:absolute;left:260px;height:24px;top:280px;" type="button" value="上传"/> 
+          </form>  
+          <iframe id="bbb" name="bbb" onload="mainActivity.afterImportCase(this);" src="about:blank" style="display:none;"/> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

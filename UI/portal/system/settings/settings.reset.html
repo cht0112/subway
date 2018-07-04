@@ -1,0 +1,46 @@
+<div id="settings_reset_inner" class="settings_content_inner">
+	<fieldset id="settings_reset_fieldset">
+		<legend>复位操作</legend>	
+		<div class="item">
+			<div class="label">点击确定恢复到默认的布局,当前自定义标签和布局将丢失!</div>
+			<div class="content"><input type="button" name="settings_general_reset_layout" id="settings_general_reset_layout" value="确定"/></div>
+		</div>
+		<div class="item">
+			<div class="label">点击确定恢复到默认的主题,当前自定义主题将丢失!</div>
+			<div class="content"><input type="button" name="settings_general_reset_templet" id="settings_general_reset_templet" value="确定"/></div>
+		</div>
+		<div class="item">
+			<div class="label">点击确定恢复到默认的快捷方式,当前自定义快捷方式将丢失!</div>
+			<div class="content"><input type="button" name="settings_general_reset_shortcuts" id="settings_general_reset_shortcuts" value="确定"/></div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	
+	$("#settings_general_reset_layout").click(function(){
+		if (confirm("是否恢复到默认布局？")) {
+			$.jpolite.resetLayout();
+		}
+	});
+	$("#settings_general_reset_templet").click(function(){
+		if (confirm("是否恢复到默认主题样式？")) {
+			var c = "defaultTheme";
+			$.jpolite.Data.system.Layout.saveTheme("{'theme':'" + c + "'}");
+			$('link[title]','head').each(function(){
+				this.disabled = true;
+				this.disabled = (this.title != c); 
+				$.triggerEvent("settingTemplateActivateEvent"); 
+			});
+		}
+	});
+	$("#settings_general_reset_shortcuts").click(function(){
+		if (confirm("是否恢复到默认快捷方式？")) {
+			$.jpolite.Data.system.Layout.removeShortcuts(function(data){
+				if(data && data.status){
+					$(".shortcuts_define", "#settings_shortcuts_inner").ShortcutsDefine();
+					$(".functree", "#functree_owner").FuncTreeShortcuts();
+				}
+			});
+		}
+	});
+</script>

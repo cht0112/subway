@@ -1,0 +1,173 @@
+/**
+	@name justep.Org.OrgUtils
+	@class
+	@model UI
+	@language javascript
+	@description justep.Org.OrgUtils类包含组织相关的常用函数，使用时在页面中引用/UI/system/service/org/orgUtils.js
+*/
+
+/**
+	@name justep.Org.OrgUtils.getIDByFID
+	@function
+	@description 从组织的标识全路径中获取指定类型的组织标识
+	@param {String} orgFID 组织的标识全路径
+	@param {String} orgKindID 组织类型
+	@returns {String} 返回指定类型的组织标识 - 如果路径中存在多个符合条件的组织标识，则只返回最末级的；如果没有符合条件的，则返回null
+*/
+
+/**
+	@name justep.Org.OrgUtils.getNameByFName
+	@function
+	@description 从组织的名称全路径中获取指定类型的组织名称
+	@param {String} orgFID 组织的标识全路径
+	@param {String} orgFName 组织的名称全路径
+	@param {String} orgKindID 组织类型
+	@returns {String} 返回指定类型的组织名称 - 如果路径中存在多个符合条件的组织名称，则只返回最末级的；如果没有符合条件的，则返回null
+*/
+
+/**
+	@name justep.Org.OrgUtils.getOrgID
+	@function
+	@description 从组织的标识全路径中获取组织的标识（最后一节的标识），亦可用于从组织的名称全路径获取组织的名称
+	@param {String} orgFID 组织的标识全路径
+	@returns {String} 返回组织标识
+*/
+
+/**
+	@name justep.Org.OrgUtils.getOrgKindID
+	@function
+	@description 从组织的标识全路径中获取组织类型（最后一节的后缀）
+	@param {String} orgFID 组织的标识全路径
+	@returns {String} 返回组织类型
+*/
+
+/**
+	@name justep.Org.OrgUtils.getParentPath
+	@function
+	@description 从组织的全路径中获取上级组织路径
+	@param {String} path 组织的全路径
+	@returns {String} 返回上级组织的路径
+*/
+
+/**
+	@name justep.Org.OrgUtils.getRealFName
+	@function
+	@description 获取真实组织名称路径（从组织路径中排除虚拟的组织节点）
+	@param {String} orgFID 组织的标识全路径
+	@param {String} orgFName 组织的名称全路径
+	@returns {String} 返回真实组织名称路径
+*/
+
+/**
+	@name justep.Org.OrgKinds
+	@class
+	@model UI
+	@language javascript
+	@description justep.Org.OrgKinds类包含组织类型相关的函数，从5.2.6版本开始支持可配置的组织类型，见：/BIZ/system/config/opm.config.m
+*/
+
+/**
+	@name justep.Org.OrgKinds.getIDs
+	@function
+	@description 获取所有的组织类型ID
+	@returns {String[]}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.getRealIDs
+	@function
+	@description 获取所有的真实组织类型ID，排除虚拟组织类型
+	@returns {String[]}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.getLabels
+	@function
+	@description 获取组织类型所有名称（多语言）
+	@param {String} id 组织类型ID
+	@returns {Object} 
+	@example
+返回数据的json格式：
+	{
+		language: label
+	}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.getLabel
+	@function
+	@description 获取组织类型指定语言的名称
+	@param {String} id 组织类型ID
+	@param {String} language 语言 - 如果语言为null，则使用上下文的默认语言
+	@returns {String}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.hasProperty
+	@function
+	@description 判断组织类型是否有某个属性
+	@param {String} id 组织类型ID
+	@param {String} property 属性名称
+	@returns {boolean}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.getProperty
+	@function
+	@description 获取组织类型的属性
+	@param {String} id 组织类型ID
+	@param {String} property 属性名称
+	@returns {Object}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.getParents
+	@function
+	@description 获取父组织类型，用于限定组织节点的上下级关系
+	@param {String} id 组织类型ID
+	@returns {String[]}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.isVirtual
+	@function
+	@description 是否虚拟组织类型，虚拟节点一般指现实中不存在的组织节点（例如：分组节点、非本单位等），虚拟节点不能作为流程执行者
+	@param {String} id 组织类型ID
+	@returns {boolean}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.getSequence
+	@function
+	@description 获取组织类型顺序，用于组织类型列表显示时的排序	
+	@param {String} id 组织类型ID
+	@returns {String}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.isPersonMember
+	@function
+	@description 是否人员类型
+	@param {String} id 组织类型ID
+	@returns {boolean}
+	 
+*/
+
+/**
+	@name justep.Org.OrgKinds.isRoot
+	@function
+	@description 是否可以成为组织的根节点
+	@param {String} id 组织类型ID
+	@returns {boolean}
+	 
+*/
+

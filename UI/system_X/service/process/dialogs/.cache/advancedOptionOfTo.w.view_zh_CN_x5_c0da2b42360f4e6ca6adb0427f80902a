@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v7d8323ebe8bf4deaa76adc4c1378d68b/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v7a084eebe0dd4cf7ac7ab3c0774f4893/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$vd8b4d70013cd407180a9e195e1c89584/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v7b3b2960f72a4783b758a19bd0694f7e/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v39d69c4906a54323ab683a5195b502f4/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <link href="/x5/$v0e17ceb154d74023a8a9cae7743dc9cb/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script src="/x5/$v655ef4bb2fcb4fba94551ef6fed92989/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v1dd3b852c35d46c68f826ce0642a4ea5/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v9195d852f3694a0095f1ecc2d7d860be/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v76cb1474e50f46bbb8922478106f05b6/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v23ca7dfac28d4ead9c155f9fcc995e7e/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v63be26b4170e42d6ae4b0e2e299037a3/component/data/data.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vc1c9a4a8070444c8bdbefdf2aecbc503/UI/system/components/windowReceiver/windowReceiver.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"/>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"/>      <link href="/x5/$ve8daf7df8ba4464f920b3a48660a9183/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"/>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vf9437ea63cbd4931b929ebba93dffe75/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"/>  
+    <script id="htmlScript1" src="/x5/$v13e8bde5521146d78fd024330f860b33/UI/system/service/process/dialogs/advancedOptionOfTo.js?language=zh_CN">
+</script>      <script>
+new justep.XCommonData('dMain',false,false,null,'dMain_part','',{'deleteConfirm':true,'refreshConfirm':true,'dataType':"json"}, {});</script>  
+    <script type="text/javascript" src="/x5/$vcdda535940414ae2bcf8f6aaf8a9667b/UI/system/service/process/dialogs/.cache/advancedOptionOfTo_zh_CN_x5_11f548b495c54cea81057274a931409c.js?language=zh_CN&amp;$version=6101149e-7942-4204-8f5f-1b6a6576e7b8"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"/>  
+    <span id="infoPanel" style="position:absolute;display:none"/>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="xui-container" id="rootView" style="height:100%;width:100%;position:relative"> 
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="inputName" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:15px;left:70px;width:361px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"/>  
+              <td class="xxf-value"> 
+                <input accesskey="" class="xforms-value" tabindex="" type="text"/> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td>  
+              <td class="xui-ie-input-bug"/> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <label class="xui-label" id="label1" style="position:absolute;width:60px;top:22px;left:10px;">任务标题</label>  
+        <label class="xui-label" id="label2" style="position:absolute;width:60px;left:10px;top:55px;">执行模式</label>  
+        <label class="xui-label" id="label3" style="position:absolute;width:60px;top:54px;left:222px;">抢占模式</label>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnOk" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:80px;left:200px;top:170px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="xxf-value"> 
+                <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                  <span class="xforms-label " id="xuiLabel1">确定</span> 
+                </button> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="btnCancel" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:80px;left:290px;top:170px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="xxf-value"> 
+                <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                  <span class="xforms-label " id="xuiLabel2">取消</span> 
+                </button> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="windowReceiver" onReceive="advancedOptionOfTo.windowReceiverReceive" style="position:absolute;top:98px;left:508px;"> 
+          <script>
+new justep.WindowReceiver('windowReceiver');</script> 
+        </div>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelectExecuteMode" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;left:70px;top:50px;width:134px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"/>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""/> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/x5/$v59633d59532b439c92ce17fdab40d6e6/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"/> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelectPreemptMode" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:50px;left:275px;width:154px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"/>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""/> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/x5/$vc9b46bbeb0ee45a9886d81b2ca4819e5/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"/> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <label style="position:absolute;top:90px;left:10px;">提交时间</label>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:85px;left:70px;width:360px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"/>  
+              <td class="xxf-value"> 
+                <input accesskey="" class="xforms-value" tabindex="" type="text"/> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td>  
+              <td class="xui-ie-input-bug"/> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <label style="position:absolute;height:16px;top:130px;left:10px;">完成期限</label>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input3" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:124px;left:70px;width:135px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"/>  
+              <td class="xxf-value"> 
+                <input accesskey="" class="xforms-value" tabindex="" type="text"/> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td>  
+              <td class="xui-ie-input-bug"/> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <label style="position:absolute;top:132px;left:222px;">提醒时间</label>  
+        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="input4" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:124px;left:275px;;table-layout:fixed"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"/>  
+              <td class="xxf-value"> 
+                <input accesskey="" class="xforms-value" tabindex="" type="text"/> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"/>  
+                  <div class="xforms-alert-value" id=""/> 
+                </span> 
+              </td>  
+              <td class="xui-ie-input-bug"/> 
+            </tr> 
+          </tbody> 
+        </table> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

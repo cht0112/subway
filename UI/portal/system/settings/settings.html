@@ -1,0 +1,69 @@
+<div id="settings_inner">
+	<div class="jqmTitle">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="jqmTitleLeft" width="5">&nbsp;</td>
+				<td class="jqmTitleContent">:: 设置 ::
+				</td>
+				<td class="jqmTitleRight" width="5">&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<div class="jqmContent">
+		<div class="jqmClose"/>
+		<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td width="148" class="sepLine">
+						<div id="settings_nav">
+							<dl>
+								<dd><a rev="#settings_page_changePassword|../UI/portal/system/settings/settings.changePassword.html">修改密码</a></dd>
+								<dd><a rev="#settings_page_reset|../UI/portal/system/settings/settings.reset.html">复位操作</a></dd>
+								<dd><a rev="#settings_page_shortcuts|../UI/portal/system/settings/settings.shortcuts.html">快捷方式</a></dd>
+								<dd style="display:none"><a rev="#settings_page_local|../UI/portal/system/settings/settings.local.html">本地内容</a></dd>
+								<dd style="display:none"><a rev="#settings_page_language|../UI/portal/system/settings/settings.language.html">语言</a></dd>
+								<dd><a rev="#settings_page_templet|../UI/portal/system/settings/settings.templet.html">主题</a></dd>
+								<dd style="display:none"><a rev="#settings_page_custom|../UI/portal/system/settings/settings.custom.html">自定义</a></dd>
+							</dl>
+						</div>
+					</td>
+					<td bordercolor="0" style="vertical-align:top;display:block">
+						<div id="settings_content">
+							<div class="settings_page" id="settings_page_changePassword"/>
+							<div class="settings_page" id="settings_page_reset"/>
+							<div class="settings_page" id="settings_page_shortcuts"/>
+							<div class="settings_page" id="settings_page_local"/>
+							<div class="settings_page" id="settings_page_language"/>
+							<div class="settings_page" id="settings_page_templet"/>
+							<div class="settings_page" id="settings_page_custom"/>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="jqmFooter">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="jqmFooterLeft" width="150">&nbsp;</td>
+				<td class="jqmFooterContent">&nbsp;</td>
+				<td class="jqmFooterRight" width="5">&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script type="text/javascript" src="../UI/portal/system/settings/shortcuts.js"/>
+<script>
+	$("a", "#settings_nav").click(function(){
+		var s = this.getAttribute('rev').split("|");
+		$(this).parent().on();
+		if (!this._loaded_) {
+			this._loaded_ = true;
+			$(s[0]).load(s[1],function(){
+				$(this).on();
+			});
+		} else {
+			$(s[0]).on();
+		}
+	}).eq(0).click();
+</script>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reg-info>
+	<!-- 组件目录注册  -->
+	<component-dirs>
+		processExecuteDialog, processExecuteBar, 
+		standardProcessBar, standardProcessQueryBar,
+		filter, bizStateFilter, extDateFilter, smartFilter, extOrgFilter,
+		processExecuteListIframe, standardProcessExecuteList,
+		extOutput, searchSelect
+	</component-dirs>
+	
+	<!-- 组件工具箱配置 -->
+	<toolbox>
+		<catalog name="appCommonToolbars" text="应用标准组件">
+			 <item component-name="standardProcessBar"/>
+			 <item component-name="standardProcessQueryBar"/>
+			 <item component-name="standardProcessExecuteList"/>
+		</catalog>
+		<catalog name="appCommonComponents" text="应用公共组件">
+			 <item component-name="processExecuteDialog"/>
+			 <item component-name="processExecuteBar"/>
+			 <item component-name="processExecuteListIframe"/>
+			 <item component-name="extGridFilter"/>
+			 <item component-name="extTreeFilter"/>
+			 <item component-name="extDateFilter"/>
+			 <item component-name="extSmartFilter"/>
+			 <item component-name="extOrgFilter"/>
+			 <item component-name="bizStateFilter"/>
+			 <item component-name="extOutput" design-view="excel"/>
+			 <item component-name="searchSelect" design-view="excel"/>
+		</catalog>
+	</toolbox>
+</reg-info>

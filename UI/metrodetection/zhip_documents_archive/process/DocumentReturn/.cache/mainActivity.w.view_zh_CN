@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v2229_d9694fae3aab44fdb87784442860de509/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d5cfef07118da4bdebe1d4fed37292ace/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_dc9348f6e9d68480bb7264838fccbab34/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_dc3bdcbfced9745ad9224f3dea7325d6f/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_d148ea1c712c44945a5391e1d3305dbe2/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v2229_dcdf067dbbe4f4599af58ff51fafba31e/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2229_d70f79b1a6f70417f8d5ad3fee9c00cdb/base/base.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script src="/x5/$v2229_db7342c3462fa485e8c1dca6d6fa68e00/form/form.js?language=zh_CN" type="text/javascript">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_dbfbc5fcb0ca14558bda03f125c1d03a2/component/data/data.js?language=zh_CN">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d1bc0fc11da804a58b23c580008d02c01/UI/system/components/windowDialog/windowDialog.js?language=zh_CN">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d29f593b83ea041f5bb5e6925c2285bf8/UI/system/components/dialog/dialog.js?language=zh_CN">
+		</script>  
+    <script language="javascript" src="/x5/$v2229_d22ecf709f2a542438f4048136ef6b54c/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js?language=zh_CN">
+		</script>  
+    <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误！';
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var msg = msgs.length &gt; 0 ? msgs[0] : "";
+					var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+					(new justep.System.showMessage()).open({"msg":msg,"details":detail,"title":"提示"});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误！");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}		</script>  
+    <link href="/x5/$v2229_d78c7e643b0c44a49a3474afce0e35d6f/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$v2229_dc1e3d8d20342420abbf602439695cabd/UI/metrodetection/zhip_documents_archive/process/DocumentReturn/mainActivity.js?language=zh_CN">
+		</script>  
+    <script>
+new justep.XBizData('dBorrowReturn',true,false,{'queryAction':"myQueryp_documents_borrow_record",'saveAction':"saveP_DOCUMENTS_BORROW_RECORDAction",'newAction':"createP_DOCUMENTS_BORROW_RECORDAction",'dataModel':"/metrodetection/system_code/data",'concept':"{'P_DOCUMENTS_BORROW_RECORD':'P_DOCUMENTS_BORROW_RECORD'}",'limit':20,'idColumn':"{'name':'P_DOCUMENTS_BORROW_RECORD','relation':'P_DOCUMENTS_BORROW_RECORD','define':'P_DOCUMENTS_BORROW_RECORD','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'filterRelations':"aPPLICATIONTIME,pFILENAME,rETURNDATE,dOCUMENTCATEGORYCNAME,dOCUMENTTYPECNAME",'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'aPPLICATIONTIME':{'type':'DateTime','relation':'P_DOCUMENTS_BORROW_RECORD.aPPLICATIONTIME','define':'P_DOCUMENTS_BORROW_RECORD.aPPLICATIONTIME','label':'借阅申请时间'},'pFILEID':{'type':'String','relation':'P_DOCUMENTS_BORROW_RECORD.pFILEID','define':'P_DOCUMENTS_BORROW_RECORD.pFILEID','label':'文件编号'},'dOCUMENTCATEGORY':{'type':'Integer','relation':'P_DOCUMENTS_BORROW_RECORD.dOCUMENTCATEGORY','define':'P_DOCUMENTS_BORROW_RECORD.dOCUMENTCATEGORY','label':'文件科目'},'dOCUMENTTYPE1':{'type':'Integer','relation':'P_DOCUMENTS_BORROW_RECORD.dOCUMENTTYPE','define':'P_DOCUMENTS_BORROW_RECORD.dOCUMENTTYPE','label':'文件类型'},'pFILENAME':{'type':'String','relation':'P_DOCUMENTS_BORROW_RECORD.pFILENAME','define':'P_DOCUMENTS_BORROW_RECORD.pFILENAME','label':'文件名称'},'bORROWER':{'type':'String','relation':'P_DOCUMENTS_BORROW_RECORD.bORROWER','define':'P_DOCUMENTS_BORROW_RECORD.bORROWER','label':'借阅者'},'rETURNDATE':{'type':'Date','relation':'P_DOCUMENTS_BORROW_RECORD.rETURNDATE','define':'P_DOCUMENTS_BORROW_RECORD.rETURNDATE','label':'预计归还日期'},'iNDEEDRETURNDATE':{'type':'Date','relation':'P_DOCUMENTS_BORROW_RECORD.iNDEEDRETURNDATE','define':'P_DOCUMENTS_BORROW_RECORD.iNDEEDRETURNDATE','label':'实际归还日期'},'mEMO':{'type':'String','relation':'P_DOCUMENTS_BORROW_RECORD.mEMO','define':'P_DOCUMENTS_BORROW_RECORD.mEMO','label':'备注'},'DOCUMENT_CATEGORY_CODE':{'type':'Integer','relation':'DOCUMENT_CATEGORY_CODE','define':'EXPRESS','label':'null'},'dOCUMENTCATEGORYCNAME':{'type':'String','relation':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','define':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','label':'文档科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPE','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPE','label':'文件类型'},'dOCUMENTTYPECNAME':{'type':'String','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','label':'文件类型'},'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'oPERATORNAME1':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'oPERATORNAME2':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'aLLOWBORROW':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','define':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','label':'可借状态'}}",'defCalcRelations':"{'recCB':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'').attachEvents({'onValueChanging':'mainActivity.dataMainValueChanging'});		</script>  
+    <script>
+new justep.XBizData('kemu',true,false,{'queryAction':"queryDOCUMENT_CATEGORY_CODEAction",'saveAction':"saveDOCUMENT_CATEGORY_CODEAction",'newAction':"createDOCUMENT_CATEGORY_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DOCUMENT_CATEGORY_CODE':'DOCUMENT_CATEGORY_CODE'}",'limit':20,'idColumn':"{'name':'DOCUMENT_CATEGORY_CODE','relation':'DOCUMENT_CATEGORY_CODE','define':'DOCUMENT_CATEGORY_CODE','type':'Integer'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORYCNAME':{'type':'String','relation':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','define':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYCNAME','label':'文档科目'},'dOCUMENTCATEGORYENAME':{'type':'String','relation':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYENAME','define':'DOCUMENT_CATEGORY_CODE.dOCUMENTCATEGORYENAME','label':'英文名称'}}"},'');		</script>  
+    <script>
+new justep.XBizData('leixing',true,false,{'queryAction':"queryDOCUMENT_TYPE_CODEAction",'saveAction':"saveDOCUMENT_TYPE_CODEAction",'newAction':"createDOCUMENT_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'DOCUMENT_TYPE_CODE':'DOCUMENT_TYPE_CODE'}",'limit':20,'idColumn':"{'name':'DOCUMENT_TYPE_CODE','relation':'DOCUMENT_TYPE_CODE','define':'DOCUMENT_TYPE_CODE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORY':{'type':'Integer','relation':'DOCUMENT_TYPE_CODE.dOCUMENTCATEGORY','define':'DOCUMENT_TYPE_CODE.dOCUMENTCATEGORY','label':'文档科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPE','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPE','label':'文件类型'},'dOCUMENTTYPECNAME':{'type':'String','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPECNAME','label':'文件类型'},'dOCUMENTTYPEENAME':{'type':'String','relation':'DOCUMENT_TYPE_CODE.dOCUMENTTYPEENAME','define':'DOCUMENT_TYPE_CODE.dOCUMENTTYPEENAME','label':'英文名称'}}"},'');		</script>  
+    <script>
+new justep.XBizData('hrData',true,false,{'queryAction':"queryHR_BASE_INFOAction",'saveAction':"saveHR_BASE_INFOAction",'newAction':"createHR_BASE_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'HR_BASE_INFO':'HR_BASE_INFO'}",'limit':20,'idColumn':"{'name':'HR_BASE_INFO','relation':'HR_BASE_INFO','define':'HR_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'oPERATORSEX':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSEX','define':'HR_BASE_INFO.oPERATORSEX','label':'oPERATORSEX'},'oPERATORBIRTHDAY':{'type':'Date','relation':'HR_BASE_INFO.oPERATORBIRTHDAY','define':'HR_BASE_INFO.oPERATORBIRTHDAY','label':'oPERATORBIRTHDAY'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'oFFICEID':{'type':'Decimal','relation':'HR_BASE_INFO.oFFICEID','define':'HR_BASE_INFO.oFFICEID','label':'职位'},'pOSITIONID':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONID','define':'HR_BASE_INFO.pOSITIONID','label':'pOSITIONID'},'dEGREEID':{'type':'Decimal','relation':'HR_BASE_INFO.dEGREEID','define':'HR_BASE_INFO.dEGREEID','label':'dEGREEID'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'eDUCATIONID'},'pOLITICALID':{'type':'Decimal','relation':'HR_BASE_INFO.pOLITICALID','define':'HR_BASE_INFO.pOLITICALID','label':'pOLITICALID'},'pROFESSIONAL':{'type':'String','relation':'HR_BASE_INFO.pROFESSIONAL','define':'HR_BASE_INFO.pROFESSIONAL','label':'专业'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'pOSITIONALTITLE'},'eMAILADDRESS':{'type':'String','relation':'HR_BASE_INFO.eMAILADDRESS','define':'HR_BASE_INFO.eMAILADDRESS','label':'eMAILADDRESS'},'mOBILE':{'type':'String','relation':'HR_BASE_INFO.mOBILE','define':'HR_BASE_INFO.mOBILE','label':'移动电话'},'oPERATORSTATE':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSTATE','define':'HR_BASE_INFO.oPERATORSTATE','label':'oPERATORSTATE'},'Scode':{'type':'String','relation':'HR_BASE_INFO.Scode','define':'HR_BASE_INFO.Scode','label':'编码'},'mEMO':{'type':'String','relation':'HR_BASE_INFO.mEMO','define':'HR_BASE_INFO.mEMO','label':'备注'},'cARDID':{'type':'String','relation':'HR_BASE_INFO.cARDID','define':'HR_BASE_INFO.cARDID','label':'cARDID'}}"},'');		</script>  
+    <script>
+new justep.XBizData('bizData1',false,false,{'queryAction':"queryP_DOCUMENTS_ARCHIVEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'P_DOCUMENTS_ARCHIVE':'P_DOCUMENTS_ARCHIVE'}",'limit':20,'idColumn':"{'name':'P_DOCUMENTS_ARCHIVE','relation':'P_DOCUMENTS_ARCHIVE','define':'P_DOCUMENTS_ARCHIVE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORY':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','label':'文件科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','label':'文件类型'},'pFILENAME':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILENAME','define':'P_DOCUMENTS_ARCHIVE.pFILENAME','label':'文件名称'},'fILEVER':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.fILEVER','define':'P_DOCUMENTS_ARCHIVE.fILEVER','label':'文件版本'},'sECRETLEVEL':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.sECRETLEVEL','define':'P_DOCUMENTS_ARCHIVE.sECRETLEVEL','label':'涉密级别'},'pFILEPROPERTY':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILEPROPERTY','define':'P_DOCUMENTS_ARCHIVE.pFILEPROPERTY','label':'文件属性'},'pFILEDESC':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILEDESC','define':'P_DOCUMENTS_ARCHIVE.pFILEDESC','label':'文件简介'},'lOCATIONROOMID':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.lOCATIONROOMID','define':'P_DOCUMENTS_ARCHIVE.lOCATIONROOMID','label':'存档房间'},'lOCATIONCABINETID':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.lOCATIONCABINETID','define':'P_DOCUMENTS_ARCHIVE.lOCATIONCABINETID','label':'存档文件柜'},'aRCHIVEDATE':{'type':'Date','relation':'P_DOCUMENTS_ARCHIVE.aRCHIVEDATE','define':'P_DOCUMENTS_ARCHIVE.aRCHIVEDATE','label':'存档日期'},'aRCHIVEOPERATOR':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.aRCHIVEOPERATOR','define':'P_DOCUMENTS_ARCHIVE.aRCHIVEOPERATOR','label':'存档人'},'iNPUTOPERATOR':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.iNPUTOPERATOR','define':'P_DOCUMENTS_ARCHIVE.iNPUTOPERATOR','label':'记录人'},'aLLOWBORROW':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','define':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','label':'可借状态'},'dESTROYSTATE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dESTROYSTATE','define':'P_DOCUMENTS_ARCHIVE.dESTROYSTATE','label':'销毁状态'},'mEMO':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.mEMO','define':'P_DOCUMENTS_ARCHIVE.mEMO','label':'备注'}}"},'bizData1_part');		</script>  
+    <script>
+new justep.XBizData('hrPerData',true,false,{'queryAction':"queryHR_BASE_INFOAction",'saveAction':"saveHR_BASE_INFOAction",'newAction':"createHR_BASE_INFOAction",'dataModel':"/metrodetection/system_code/data",'dataType':"json",'concept':"{'HR_BASE_INFO':'HR_BASE_INFO'}",'limit':20,'idColumn':"{'name':'HR_BASE_INFO','relation':'HR_BASE_INFO','define':'HR_BASE_INFO','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'oPERATORNAME':{'type':'String','relation':'HR_BASE_INFO.oPERATORNAME','define':'HR_BASE_INFO.oPERATORNAME','label':'oPERATORNAME'},'oPERATORSEX':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSEX','define':'HR_BASE_INFO.oPERATORSEX','label':'oPERATORSEX'},'oPERATORBIRTHDAY':{'type':'Date','relation':'HR_BASE_INFO.oPERATORBIRTHDAY','define':'HR_BASE_INFO.oPERATORBIRTHDAY','label':'oPERATORBIRTHDAY'},'nATION':{'type':'String','relation':'HR_BASE_INFO.nATION','define':'HR_BASE_INFO.nATION','label':'民族'},'oFFICEID':{'type':'Decimal','relation':'HR_BASE_INFO.oFFICEID','define':'HR_BASE_INFO.oFFICEID','label':'职位'},'pOSITIONID':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONID','define':'HR_BASE_INFO.pOSITIONID','label':'pOSITIONID'},'dEGREEID':{'type':'Decimal','relation':'HR_BASE_INFO.dEGREEID','define':'HR_BASE_INFO.dEGREEID','label':'dEGREEID'},'eDUCATIONID':{'type':'Decimal','relation':'HR_BASE_INFO.eDUCATIONID','define':'HR_BASE_INFO.eDUCATIONID','label':'eDUCATIONID'},'pOLITICALID':{'type':'Decimal','relation':'HR_BASE_INFO.pOLITICALID','define':'HR_BASE_INFO.pOLITICALID','label':'pOLITICALID'},'pROFESSIONAL':{'type':'String','relation':'HR_BASE_INFO.pROFESSIONAL','define':'HR_BASE_INFO.pROFESSIONAL','label':'专业'},'pOSITIONALTITLE':{'type':'Decimal','relation':'HR_BASE_INFO.pOSITIONALTITLE','define':'HR_BASE_INFO.pOSITIONALTITLE','label':'pOSITIONALTITLE'},'eMAILADDRESS':{'type':'String','relation':'HR_BASE_INFO.eMAILADDRESS','define':'HR_BASE_INFO.eMAILADDRESS','label':'eMAILADDRESS'},'mOBILE':{'type':'String','relation':'HR_BASE_INFO.mOBILE','define':'HR_BASE_INFO.mOBILE','label':'移动电话'},'oPERATORSTATE':{'type':'Decimal','relation':'HR_BASE_INFO.oPERATORSTATE','define':'HR_BASE_INFO.oPERATORSTATE','label':'oPERATORSTATE'},'Scode':{'type':'String','relation':'HR_BASE_INFO.Scode','define':'HR_BASE_INFO.Scode','label':'编码'},'mEMO':{'type':'String','relation':'HR_BASE_INFO.mEMO','define':'HR_BASE_INFO.mEMO','label':'备注'},'cARDID':{'type':'String','relation':'HR_BASE_INFO.cARDID','define':'HR_BASE_INFO.cARDID','label':'cARDID'}}"},'');		</script>  
+    <script>
+new justep.XBizData('sysOperData',true,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'dataType':"xml",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':20,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}"},'');		</script>  
+    <script>
+new justep.XBizData('guidang',true,false,{'queryAction':"queryP_DOCUMENTS_ARCHIVEAction",'saveAction':"saveP_DOCUMENTS_ARCHIVEAction",'newAction':"createP_DOCUMENTS_ARCHIVEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'P_DOCUMENTS_ARCHIVE':'P_DOCUMENTS_ARCHIVE'}",'limit':20,'idColumn':"{'name':'P_DOCUMENTS_ARCHIVE','relation':'P_DOCUMENTS_ARCHIVE','define':'P_DOCUMENTS_ARCHIVE','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'dOCUMENTCATEGORY':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTCATEGORY','label':'文件科目'},'dOCUMENTTYPE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','define':'P_DOCUMENTS_ARCHIVE.dOCUMENTTYPE','label':'文件类型'},'pFILENAME':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILENAME','define':'P_DOCUMENTS_ARCHIVE.pFILENAME','label':'文件名称'},'fILEVER':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.fILEVER','define':'P_DOCUMENTS_ARCHIVE.fILEVER','label':'文件版本'},'sECRETLEVEL':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.sECRETLEVEL','define':'P_DOCUMENTS_ARCHIVE.sECRETLEVEL','label':'涉密级别'},'pFILEPROPERTY':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILEPROPERTY','define':'P_DOCUMENTS_ARCHIVE.pFILEPROPERTY','label':'文件属性'},'pFILEDESC':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.pFILEDESC','define':'P_DOCUMENTS_ARCHIVE.pFILEDESC','label':'文件简介'},'lOCATIONROOMID':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.lOCATIONROOMID','define':'P_DOCUMENTS_ARCHIVE.lOCATIONROOMID','label':'存档房间'},'lOCATIONCABINETID':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.lOCATIONCABINETID','define':'P_DOCUMENTS_ARCHIVE.lOCATIONCABINETID','label':'存档文件柜'},'aRCHIVEDATE':{'type':'Date','relation':'P_DOCUMENTS_ARCHIVE.aRCHIVEDATE','define':'P_DOCUMENTS_ARCHIVE.aRCHIVEDATE','label':'存档日期'},'aRCHIVEOPERATOR':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.aRCHIVEOPERATOR','define':'P_DOCUMENTS_ARCHIVE.aRCHIVEOPERATOR','label':'存档人'},'iNPUTOPERATOR':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.iNPUTOPERATOR','define':'P_DOCUMENTS_ARCHIVE.iNPUTOPERATOR','label':'记录人'},'aLLOWBORROW':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','define':'P_DOCUMENTS_ARCHIVE.aLLOWBORROW','label':'可借状态'},'dESTROYSTATE':{'type':'Integer','relation':'P_DOCUMENTS_ARCHIVE.dESTROYSTATE','define':'P_DOCUMENTS_ARCHIVE.dESTROYSTATE','label':'销毁状态'},'mEMO':{'type':'String','relation':'P_DOCUMENTS_ARCHIVE.mEMO','define':'P_DOCUMENTS_ARCHIVE.mEMO','label':'备注'}}"},'').attachEvents({'onValueChanged':'mainActivity.guidangValueChanged'});		</script>  
+    <script type="text/javascript" src="/x5/$v2229_d370a60137921426795bcfa9b7a6cb490/UI/metrodetection/zhip_documents_archive/process/DocumentReturn/.cache/mainActivity.js?$version=fb7cdc0c-24f4-46f6-ba25-afb0ac8dbefe"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" lazy="false" style="height:100%;width:100%"> 
+        <div class="component_6579B0E1 windowDialog" component="/UI/system/components/windowDialog.xbl.xml#windowDialog" height="350px" id="dlgBorrowReturn" modal="true" onClose="mainActivity.dlgBorrowReturnClose" onReceive="mainActivity.dlgBorrowReturnReceive" style="position:absolute;top:79px;left:508px;" title="文档归还" url="/UI/metrodetection/zhip_documents_archive/process/DocumentReturn/guihuan.w" width="580px"></div>  
+        <div class="xui-container" id="view1" lazy="false" style="position:relative;;width:805px;height:644px;"> 
+          <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="toolbars1" style="position:absolute;top:8px;left:5px;height:39px;width:462px;"> 
+            <table cellpadding="0" cellspacing="0" style="width:100%"> 
+              <tr> 
+                <td> 
+                  <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                    <div class="toolbar-style" name="toolbargroup"> 
+                      <table cellpadding="0" cellspacing="1px"> 
+                        <tr> 
+                          <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                            <img align="absmiddle" class="standard-btn" src="/x5/$v2229_d9f81205ef57d4f5fabaf3947fc0fea15/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="barItem4" model="mdDefault" onclick="justep.xbl('dBorrowReturn').refreshData(); "> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/x5/$v2229_d982685fd337544f3a2a35090695f2715/UI/system/images/standardToolbar/standard/refresh.gif?language=zh_CN" style="border:none" title="刷新"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="customBarItem1" model="mdDefault" onclick="justep.xbl('filter-pattern-ba0c99da-4044-4243-bbd2-f708fb475f4d').show('dBorrowReturn', event.target||event.srcElement, 'filter-dialog-5d9b2951-b38d-4316-b4bd-5b97d7991dd1');"> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/x5/$v2229_d74ad0310146c4052948cce9b59a7651a/UI/system/images/standardToolbar/standard/search.gif?language=zh_CN" style="border:none" title="查询"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">查询</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-separator-style"> 
+                            <img align="absmiddle" class="standard-btn" src="/x5/$v2229_d8ad1f2ab7c024d41b7afd8116e2fd3c4/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"></img> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="barItem5" model="mdDefault" onclick="justep.xbl('dBorrowReturn').first(); " readonly="not(call('justep.XData.canDo','dBorrowReturn','First'))"> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_first.gif" src="/x5/$v2229_d14cd7e562daa4b8aa5c0299a09a125c3/UI/system/images/standardToolbar/standard/first.gif?language=zh_CN" style="border:none" title="第一条"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">第一条</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="barItem6" model="mdDefault" onclick="justep.xbl('dBorrowReturn').pre(); " readonly="not(call('justep.XData.canDo','dBorrowReturn','Pre'))"> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_pre.gif" src="/x5/$v2229_df87e4591159c48faac99a53a669c8ae5/UI/system/images/standardToolbar/standard/pre.gif?language=zh_CN" style="border:none" title="上一条"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">上一条</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="barItem7" model="mdDefault" onclick="justep.xbl('dBorrowReturn').next(); " readonly="not(call('justep.XData.canDo','dBorrowReturn','Next'))"> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_next.gif" src="/x5/$v2229_d0da55f766708401ca9328a7948992700/UI/system/images/standardToolbar/standard/next.gif?language=zh_CN" style="border:none" title="下一条"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">下一条</td> 
+                              </tr> 
+                            </table> 
+                          </td>  
+                          <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                            <table id="barItem8" model="mdDefault" onclick="justep.xbl('dBorrowReturn').last(); " readonly="not(call('justep.XData.canDo','dBorrowReturn','Last'))"> 
+                              <tr align="center" valign="middle"> 
+                                <td align="center" valign="middle"> 
+                                  <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_last.gif" src="/x5/$v2229_d6cd62ac3dccc400390be2c217f1c25a7/UI/system/images/standardToolbar/standard/last.gif?language=zh_CN" style="border:none" title="最后条"></img> 
+                                </td>  
+                                <td align="center" class="xforms-trigger-label" valign="middle">最后条</td> 
+                              </tr> 
+                            </table> 
+                          </td> 
+                        </tr> 
+                      </table> 
+                    </div> 
+                  </div> 
+                </td>  
+                <td style="width:100%"></td> 
+              </tr> 
+            </table> 
+          </div>  
+          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button xforms-triger-button" id="btnReturn" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;width:62px;height:30px;top:9px;left:437px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="xxf-value"> 
+                  <button class="xforms-trigger-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                    <span class="xforms-label " id="default5">归还</span> 
+                  </button> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <div class="xui-container" id="view2" lazy="false" style="position:relative;;position:absolute;height:100%;width:100%;top:12px;left:5px;"> 
+            <div class="xui-container" id="view3" lazy="false" style="position:relative;;position:absolute;height:100%;width:100%;top:37px;left:5px;"> 
+              <div class="component_6298A7A1 grid" data="dBorrowReturn" id="grid1" right-click-selected="true" style="height:100%;width:131%;top:5px;left:5px;;overflow:hidden" system-columns="pFILEID,dOCUMENTCATEGORY,dOCUMENTTYPE1,bORROWER,iNDEEDRETURNDATE,mEMO,DOCUMENT_CATEGORY_CODE,dOCUMENTTYPE,oPERATORNAME,oPERATORNAME1,aLLOWBORROW"></div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-ba0c99da-4044-4243-bbd2-f708fb475f4d"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="d88899e4fadb4f50bb0518b607e02641" menu-id="GLOBAL_ID_1433731079" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_1433731079" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_1433731079" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_N1073277449" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_N1073277449-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_681831089" name="GLOBAL_ID_681831089" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-5d9b2951-b38d-4316-b4bd-5b97d7991dd1"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N647761587" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N647761587-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_2058965243" name="GLOBAL_ID_2058965243" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }		</script> 
+  </body> 
+</html>

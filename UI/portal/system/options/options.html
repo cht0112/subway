@@ -1,0 +1,72 @@
+<div id="options_inner">
+	<div class="jqmTitle">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="jqmTitleLeft" width="5">&nbsp;</td>
+				<td class="jqmTitleContent">:: 设置 ::
+					
+				</td>
+				<td class="jqmTitleRight" width="5">&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<div class="jqmContent">
+		<div class="jqmClose"></div>
+		<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td width="148" class="sepLine">
+						<div id="options_nav">
+							<dl>
+								<dd id="options_page_general_item"><a rev="#options_page_general|../UI/portal/system/options/options.general.html">一般</a></dd>
+								<dd id="options_page_widgets_item"><a rev="#options_page_widgets|../UI/portal/system/options/options.widgets.html">组件</a></dd>
+								<dd id="options_page_layouts_item"><a rev="#options_page_layouts|../UI/portal/system/options/options.layouts.html">布局</a></dd>
+							</dl>
+						</div>
+					</td>
+					<td bordercolor="0" style="vertical-align:top;display:block">
+						<div id="options_content">
+							<div class="options_page" id="options_page_general"/>
+							<div class="options_page" id="options_page_widgets"/>
+							<div class="options_page" id="options_page_layouts"/>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="jqmFooter">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="jqmFooterLeft" width="150">&nbsp;</td>
+				<td class="jqmFooterContent">&nbsp;</td>
+				<td class="jqmFooterRight" width="5">&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<script>
+	$("a", "#options_nav").click(function(){
+		var s = this.getAttribute('rev').split("|");
+		$(this).parent().on();
+		if (!this._loaded_) {
+			this._loaded_ = true;
+			$(s[0]).load(s[1],function(){
+				$(this).on();
+				if(s[0]=="#options_page_general"){
+					$.triggerEvent("optionGeneralActivateEvent");
+				}else if(s[0]=="#options_page_layouts"){
+					$.triggerEvent("optionLayoutActivateEvent");
+				}
+			});
+		} else {
+			$(s[0]).on();
+			if(s[0]=="#options_page_general"){
+				$.triggerEvent("optionGeneralActivateEvent");
+			}else if(s[0]=="#options_page_layouts"){
+				$.triggerEvent("optionLayoutActivateEvent");
+			}
+		}
+	}).eq(0).click();
+</script>

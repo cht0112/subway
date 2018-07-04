@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="windowFrame" tag-name="div" icon="windowFrame.gif" text="" 
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		display-property="id" component-class="WindowFrame" 
+		binding-component="/UI/system/components/windowFrame.xbl.xml#windowFrame"
+		component-type="formControl">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="url" text="页面文件" editor-ref="fileDialog" editor-parameter="*.w"/>
+			<property name="process" text="打开窗口的process，默认使用当前环境中的process"/>
+			<property name="activity" text="打开窗口的activity，默认使用当前环境中的activity"/>
+			<property name="auto-load" text="页面打开时是否加载url" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-windowFrame"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog" use-default="true"/>	
+		</properties>
+		
+		<property-editors>
+
+		</property-editors>
+		
+		<events>
+			<event name="onSend" />
+			<event name="onReceive" parameters="event"/>
+			<event name="onInit"/>
+			<event name="onInitFrame"/>
+		</events>
+		
+		<toolbar>
+			<item text="跳转到对话框页面" method="skipPage" />
+		</toolbar>
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div component="/UI/system/components/windowFrame.xbl.xml#windowFrame" xmlns:xhtml="http://www.w3.org/1999/xhtml" />
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

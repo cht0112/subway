@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root> 
+  <enabled>true</enabled>  
+  <data-model>/OA/workPlan/data</data-model>  
+  <biz-concept>OA_GZJH</biz-concept>  
+  <execute-concept>OA_GZJH_Execute</execute-concept>  
+  <execute-dialog> 
+    <verdict-displayed>bizActivity2</verdict-displayed>  
+    <opinion-required>none</opinion-required>  
+    <!-- 流转 -->  
+    <advance-enabled>all</advance-enabled>  
+    <!-- 回退 -->  
+    <back-enabled>deptEdActivity,manageActivity,mainActivity</back-enabled>  
+    <!-- 转发 -->  
+    <transfer-enabled>deptEdActivity,manageActivity,mainActivity</transfer-enabled>  
+    <!-- 终止 -->  
+    <abort-enabled>all</abort-enabled> 
+  </execute-dialog> 
+  <execute-list> 
+    <displayed-activities/> 
+  </execute-list> 
+</root>

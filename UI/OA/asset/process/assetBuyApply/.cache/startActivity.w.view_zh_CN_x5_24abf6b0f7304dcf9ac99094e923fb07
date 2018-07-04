@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$v0751014150984e95af850de614da9f98/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v6f13ff34bb8a45edb5b16e34b8895979/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$ve18331423ec14959a16fc1d23c1fb4a1/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v522ee1f1ef964cd2b171c84533a4aff8/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vbf6d8c0fbbc4482ba2ad6f4b5da929a5/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v98546f263a3243ca86a1ab526c361d14/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v8562aed76b314ac9acd6ce337a2fe0c4/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v5eaa09ef1f8e4379aadd14419d298038/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v30e1e58d5cf845d88ce5a572aaca1aa6/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v6bfb9f7485b94d10bfa3af16dfb722d3/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v94539fd9269143608a9928c87a83a386/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v717c819d29634cb0aac9cdedcc7838e6/component/data/data.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/x5/$v49403f48d6b942ea87243ce81c027904/UI/appCommon/js/appCommon.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v1b39e091ffed483f8ca8265735054f61/UI/system/components/windowDialog/windowDialog.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v79e425efc416418380acdb6ffa48717a/UI/system/components/./process/process.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v3bf0c8b09e7740fcb8937c79ef4be4d7/UI/system/components/dialog/dialog.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vc7a70f766afe408bb38032e4afeb67cb/UI/system/components/processChart/js/processChart.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v466bde7cae2d47bebcd92fc5a8ff576e/UI/system/components/tabs/tabs.js?language=zh_CN">
+</script>      <link href="/x5/$v84d3a6e426d743a78bc100a0e75ffc56/UI/system/components/./tabs/tabs.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <style rel="stylesheet" type="text/css"></style>      <style rel="stylesheet" type="text/css">.borderLayout { overflow: hidden; } .xui-borderlayout-root { position: relative; width: 100%; height: 100%; overflow: hidden; } .xui-borderlayout-area { position: absolute; /*overflow: hidden;*/ } .xui-borderlayout-top { top:0; left:0; width:100%; height:100px; } .xui-borderlayout-left { top:100px; left:0; width:100px; height:100px; } .xui-borderlayout-right { top:100px; right:0; width:100px; height:100px; } .xui-borderlayout-bottom { left:0; bottom:0; width:100%; height:100px; } .xui-borderlayout-center { top: 0; left:0; width:100%; height:100%; } .xui-borderlayout-border { position: absolute; background-color: white; } .xui-borderlayout-border-top { top: 95px; left: 0; width: 100%; height: 5px; } .xui-borderlayout-border-left { top: 100px; left: 95px; width: 0; height: 100px; } .xui-borderlayout-border-right { top: 100px; right: 150px; width: 0; height: 100px; } .xui-borderlayout-border-bottom { bottom: 150px; left: 0; width: 100%; height: 0; }</style>  
+    <script language="javascript" src="/x5/$vb8045f4cf2db48a1a08e572d2a89249f/UI/appCommon/components/standardProcessExecuteList/js/standardProcessExecuteList.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.xui-collapsePanel-div-title { width:100%; background-color:#C9D6E6; font-weight:bold; font-family:Arial; color:#000000; padding-left:4px; padding-right:4px; } .xui-collapsePanel-div-content { box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; border:1px solid #C9D6E6; } .xui-collapsePanel-img { float:right; margin-top:3px; width:16px; } .xui-collapsePanel .xui-collapsePanel-div-title { height:24px; line-height:24px; } .xui-collapsePanel-m .xui-collapsePanel-div-title { line-height:32px; height:32px; }</style>  
+    <script language="javascript" src="/x5/$vfb1a2014349b48799a488c60643a6d54/UI/system/components/windowFrame/windowFrame.js?language=zh_CN">
+</script>      <style rel="stylesheet" type="text/css">.xui-windowFrame { width:200px; height:100px; }</style>  
+    <meta content="ajaxforms" http-equiv="Media-Type"></meta>  
+    <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>  
+    <link href="/x5/$v0d3d9add318b410ab8caba87997885ab/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$vff833a5b56e14c7d8b28aabba6e4a58f/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$vf81722679735457f8eec259b41a73f5b/UI/OA/asset/process/assetBuyApply/startActivity.js?language=zh_CN">
+</script>      <link href="/x5/$v6c0ca81ec2724cbe9207978ea5cd7a5c/UI/appCommon/css/common.css?language=zh_CN" rel="STYLESHEET" type="text/css"></link>      <script>
+new justep.XBizData('dBuyApplyM',false,false,{'queryAction':"queryASBuyApplyMAction",'saveAction':"saveASBuyApplyMAction",'newAction':"createASBuyApplyMAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_BuyApplyM':'OA_AS_BuyApplyM'}",'limit':1,'idColumn':"{'name':'OA_AS_BuyApplyM','relation':'OA_AS_BuyApplyM','define':'OA_AS_BuyApplyM','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_BuyApplyM.version','define':'OA_AS_BuyApplyM.version','label':'版本'},'fNO':{'type':'String','relation':'OA_AS_BuyApplyM.fNO','define':'OA_AS_BuyApplyM.fNO','label':'单据号'},'fApplyOgnID':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyOgnID','define':'OA_AS_BuyApplyM.fApplyOgnID','label':'申请机构ID'},'fApplyOgnName':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyOgnName','define':'OA_AS_BuyApplyM.fApplyOgnName','label':'申请机构'},'fApplyDeptID':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyDeptID','define':'OA_AS_BuyApplyM.fApplyDeptID','label':'申请部门ID'},'fApplyDeptName':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyDeptName','define':'OA_AS_BuyApplyM.fApplyDeptName','label':'申请部门'},'fApplyPosID':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyPosID','define':'OA_AS_BuyApplyM.fApplyPosID','label':'申请岗位ID'},'fApplyPosName':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyPosName','define':'OA_AS_BuyApplyM.fApplyPosName','label':'申请岗位'},'fApplyPsnID':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyPsnID','define':'OA_AS_BuyApplyM.fApplyPsnID','label':'申请人员ID'},'fApplyPsnName':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyPsnName','define':'OA_AS_BuyApplyM.fApplyPsnName','label':'申请人员'},'fApplyPsnFID':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyPsnFID','define':'OA_AS_BuyApplyM.fApplyPsnFID','label':'申请人员FullID'},'fApplyPsnFName':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyPsnFName','define':'OA_AS_BuyApplyM.fApplyPsnFName','label':'申请人员FullName'},'fApplyDate':{'type':'Date','relation':'OA_AS_BuyApplyM.fApplyDate','define':'OA_AS_BuyApplyM.fApplyDate','label':'申请日期'},'fApplyReason':{'type':'String','relation':'OA_AS_BuyApplyM.fApplyReason','define':'OA_AS_BuyApplyM.fApplyReason','label':'购置原因'},'fAmount':{'type':'Decimal','relation':'OA_AS_BuyApplyM.fAmount','define':'OA_AS_BuyApplyM.fAmount','label':'总金额'},'fRemark':{'type':'String','relation':'OA_AS_BuyApplyM.fRemark','define':'OA_AS_BuyApplyM.fRemark','label':'备注'},'fBizState':{'type':'String','relation':'OA_AS_BuyApplyM.fBizState','define':'OA_AS_BuyApplyM.fBizState','label':'业务流程状态编码'},'fBizStateName':{'type':'String','relation':'OA_AS_BuyApplyM.fBizStateName','define':'OA_AS_BuyApplyM.fBizStateName','label':'状态'},'fCreateOgnID':{'type':'String','relation':'OA_AS_BuyApplyM.fCreateOgnID','define':'OA_AS_BuyApplyM.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_BuyApplyM.fCreateOgnName','define':'OA_AS_BuyApplyM.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_BuyApplyM.fCreateDeptID','define':'OA_AS_BuyApplyM.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_BuyApplyM.fCreateDeptName','define':'OA_AS_BuyApplyM.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_AS_BuyApplyM.fCreatePosID','define':'OA_AS_BuyApplyM.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_AS_BuyApplyM.fCreatePosName','define':'OA_AS_BuyApplyM.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_AS_BuyApplyM.fCreatePsnID','define':'OA_AS_BuyApplyM.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_BuyApplyM.fCreatePsnName','define':'OA_AS_BuyApplyM.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_BuyApplyM.fCreatePsnFID','define':'OA_AS_BuyApplyM.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_AS_BuyApplyM.fCreatePsnFName','define':'OA_AS_BuyApplyM.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_BuyApplyM.fCreateTime','define':'OA_AS_BuyApplyM.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_BuyApplyM.fUpdatePsnID','define':'OA_AS_BuyApplyM.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_BuyApplyM.fUpdatePsnName','define':'OA_AS_BuyApplyM.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_BuyApplyM.fUpdateTime','define':'OA_AS_BuyApplyM.fUpdateTime','label':'修改时间'},'fState':{'type':'Integer','relation':'OA_AS_BuyApplyM.fState','define':'OA_AS_BuyApplyM.fState','label':'入库状态'},'fStateName':{'type':'String','relation':'OA_AS_BuyApplyM.fStateName','define':'OA_AS_BuyApplyM.fStateName','label':'入库状态'},'fUseApplyNO':{'type':'String','relation':'OA_AS_BuyApplyM.fUseApplyNO','define':'OA_AS_BuyApplyM.fUseApplyNO','label':'资产使用申请单据号'},'fCurrentActivities':{'type':'String','relation':'OA_AS_BuyApplyM.fCurrentActivities','define':'OA_AS_BuyApplyM.fCurrentActivities','label':'当前环节'},'fCurrentExecutors':{'type':'String','relation':'OA_AS_BuyApplyM.fCurrentExecutors','define':'OA_AS_BuyApplyM.fCurrentExecutors','label':'当前执行者'},'fExtendStr1':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr1','define':'OA_AS_BuyApplyM.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr2','define':'OA_AS_BuyApplyM.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr3','define':'OA_AS_BuyApplyM.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr4','define':'OA_AS_BuyApplyM.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr5','define':'OA_AS_BuyApplyM.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr6','define':'OA_AS_BuyApplyM.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr7','define':'OA_AS_BuyApplyM.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr8','define':'OA_AS_BuyApplyM.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_AS_BuyApplyM.fExtendStr9','define':'OA_AS_BuyApplyM.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_AS_BuyApplyM.fExtendDate1','define':'OA_AS_BuyApplyM.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_AS_BuyApplyM.fExtendDate2','define':'OA_AS_BuyApplyM.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_AS_BuyApplyM.fExtendDate3','define':'OA_AS_BuyApplyM.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_AS_BuyApplyM.fExtendDate4','define':'OA_AS_BuyApplyM.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_AS_BuyApplyM.fExtendDate5','define':'OA_AS_BuyApplyM.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_AS_BuyApplyM.fExtendNum1','define':'OA_AS_BuyApplyM.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_AS_BuyApplyM.fExtendNum2','define':'OA_AS_BuyApplyM.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_AS_BuyApplyM.fExtendNum3','define':'OA_AS_BuyApplyM.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_AS_BuyApplyM.fExtendNum4','define':'OA_AS_BuyApplyM.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_AS_BuyApplyM.fExtendNum5','define':'OA_AS_BuyApplyM.fExtendNum5','label':'扩展字段'}}"},'dBuyApplyM_part',{}).attachEvents({'onValueChanged':'dBuyApplyMValueChanged'});</script>  
+    <script>
+new justep.XBizData('dBuyApplyD',true,false,{'queryAction':"queryASBuyApplyDAction",'saveAction':"saveASBuyApplyDAction",'newAction':"createASBuyApplyDAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_BuyApplyD':'OA_AS_BuyApplyD'}",'limit':-1,'idColumn':"{'name':'OA_AS_BuyApplyD','relation':'OA_AS_BuyApplyD','define':'OA_AS_BuyApplyD','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_BuyApplyD.version','define':'OA_AS_BuyApplyD.version','label':'版本'},'fMasterID':{'type':'String','relation':'OA_AS_BuyApplyD.fMasterID','define':'OA_AS_BuyApplyD.fMasterID','label':'主数据ID'},'fNO':{'type':'String','relation':'OA_AS_BuyApplyD.fNO','define':'OA_AS_BuyApplyD.fNO','label':'采购单号'},'fKindID':{'type':'String','relation':'OA_AS_BuyApplyD.fKindID','define':'OA_AS_BuyApplyD.fKindID','label':'资产类别ID'},'fKind':{'type':'String','relation':'OA_AS_BuyApplyD.fKind','define':'OA_AS_BuyApplyD.fKind','label':'资产类别'},'fSpecType':{'type':'String','relation':'OA_AS_BuyApplyD.fSpecType','define':'OA_AS_BuyApplyD.fSpecType','label':'规格型号'},'fUnitID':{'type':'String','relation':'OA_AS_BuyApplyD.fUnitID','define':'OA_AS_BuyApplyD.fUnitID','label':'单位ID'},'fUnit':{'type':'String','relation':'OA_AS_BuyApplyD.fUnit','define':'OA_AS_BuyApplyD.fUnit','label':'单位'},'fInNum':{'type':'Integer','relation':'OA_AS_BuyApplyD.fInNum','define':'OA_AS_BuyApplyD.fInNum','label':'入库数量'},'fBuyNum':{'type':'Integer','relation':'OA_AS_BuyApplyD.fBuyNum','define':'OA_AS_BuyApplyD.fBuyNum','label':'采购数量'},'fPrice':{'type':'Decimal','relation':'OA_AS_BuyApplyD.fPrice','define':'OA_AS_BuyApplyD.fPrice','label':'单价'},'fAmount':{'type':'Decimal','relation':'OA_AS_BuyApplyD.fAmount','define':'OA_AS_BuyApplyD.fAmount','label':'金额'},'fRemark':{'type':'String','relation':'OA_AS_BuyApplyD.fRemark','define':'OA_AS_BuyApplyD.fRemark','label':'备注'},'fName':{'type':'String','relation':'OA_AS_BuyApplyD.fName','define':'OA_AS_BuyApplyD.fName','label':'资产名称'}}",'defCalcRelations':"{'subRecNo':{'type':'http://www.w3.org/2001/XMLSchema#string'}}",'masterData':"{'id':'dBuyApplyM','relation':'fMasterID','autoLoad':true}"},'',{}).attachEvents({'onAfterDelete':'dBuyApplyDAfterDelete','onValueChanged':'dBuyApplyDValueChanged'});</script>  
+    <script>
+new justep.XBizData('dAssetKind',false,false,{'queryAction':"queryASKindAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_Kind':'OA_AS_Kind'}",'limit':20,'idColumn':"{'name':'OA_AS_Kind','relation':'OA_AS_Kind','define':'OA_AS_Kind','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fSequence':1}",'filters':"{'kindFilter':'OA_AS_Kind.fUseStatus=\\'1\\''}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_Kind.version','define':'OA_AS_Kind.version','label':'版本'},'fCode':{'type':'String','relation':'OA_AS_Kind.fCode','define':'OA_AS_Kind.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_AS_Kind.fName','define':'OA_AS_Kind.fName','label':'名称'},'fDescription':{'type':'String','relation':'OA_AS_Kind.fDescription','define':'OA_AS_Kind.fDescription','label':'描述'},'fSequence':{'type':'String','relation':'OA_AS_Kind.fSequence','define':'OA_AS_Kind.fSequence','label':'排序'},'fUseStatus':{'type':'String','relation':'OA_AS_Kind.fUseStatus','define':'OA_AS_Kind.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_AS_Kind.fUseStatusName','define':'OA_AS_Kind.fUseStatusName','label':'启用标识'},'fParentCode':{'type':'String','relation':'OA_AS_Kind.fParentCode','define':'OA_AS_Kind.fParentCode','label':'上级编码'},'fLevel':{'type':'Integer','relation':'OA_AS_Kind.fLevel','define':'OA_AS_Kind.fLevel','label':'等级'},'fURL':{'type':'String','relation':'OA_AS_Kind.fURL','define':'OA_AS_Kind.fURL','label':'ID路径'},'fCreateOgnID':{'type':'String','relation':'OA_AS_Kind.fCreateOgnID','define':'OA_AS_Kind.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_Kind.fCreateOgnName','define':'OA_AS_Kind.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_Kind.fCreateDeptID','define':'OA_AS_Kind.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_Kind.fCreateDeptName','define':'OA_AS_Kind.fCreateDeptName','label':'提交部门'},'fCreatePsnID':{'type':'String','relation':'OA_AS_Kind.fCreatePsnID','define':'OA_AS_Kind.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_Kind.fCreatePsnName','define':'OA_AS_Kind.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_Kind.fCreatePsnFID','define':'OA_AS_Kind.fCreatePsnFID','label':'提交人员FullID'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_Kind.fCreateTime','define':'OA_AS_Kind.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_Kind.fUpdatePsnID','define':'OA_AS_Kind.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_Kind.fUpdatePsnName','define':'OA_AS_Kind.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_Kind.fUpdateTime','define':'OA_AS_Kind.fUpdateTime','label':'修改时间'},'lINKCODE':{'type':'String','relation':'OA_AS_Kind.lINKCODE','define':'OA_AS_Kind.lINKCODE','label':'联动编码'}}"},'dAssetKind_part',{});</script>  
+    <script>
+new justep.XBizData('dAssetUnit',false,false,{'queryAction':"queryASUnitAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_Unit':'OA_AS_Unit'}",'limit':20,'idColumn':"{'name':'OA_AS_Unit','relation':'OA_AS_Unit','define':'OA_AS_Unit','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{'fSequence':1}",'filters':"{'unitFilter':'OA_AS_Unit.fUseStatus=\\'1\\''}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_Unit.version','define':'OA_AS_Unit.version','label':'版本'},'fCode':{'type':'String','relation':'OA_AS_Unit.fCode','define':'OA_AS_Unit.fCode','label':'编码'},'fName':{'type':'String','relation':'OA_AS_Unit.fName','define':'OA_AS_Unit.fName','label':'名称'},'fDescription':{'type':'String','relation':'OA_AS_Unit.fDescription','define':'OA_AS_Unit.fDescription','label':'描述'},'fSequence':{'type':'String','relation':'OA_AS_Unit.fSequence','define':'OA_AS_Unit.fSequence','label':'排序'},'fUseStatus':{'type':'String','relation':'OA_AS_Unit.fUseStatus','define':'OA_AS_Unit.fUseStatus','label':'启用标识'},'fUseStatusName':{'type':'String','relation':'OA_AS_Unit.fUseStatusName','define':'OA_AS_Unit.fUseStatusName','label':'启用标识'},'fParentCode':{'type':'String','relation':'OA_AS_Unit.fParentCode','define':'OA_AS_Unit.fParentCode','label':'上级编码'},'fLevel':{'type':'Integer','relation':'OA_AS_Unit.fLevel','define':'OA_AS_Unit.fLevel','label':'等级'},'fURL':{'type':'String','relation':'OA_AS_Unit.fURL','define':'OA_AS_Unit.fURL','label':'ID路径'},'fCreateOgnID':{'type':'String','relation':'OA_AS_Unit.fCreateOgnID','define':'OA_AS_Unit.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_Unit.fCreateOgnName','define':'OA_AS_Unit.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_Unit.fCreateDeptID','define':'OA_AS_Unit.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_Unit.fCreateDeptName','define':'OA_AS_Unit.fCreateDeptName','label':'提交部门'},'fCreatePsnID':{'type':'String','relation':'OA_AS_Unit.fCreatePsnID','define':'OA_AS_Unit.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_Unit.fCreatePsnName','define':'OA_AS_Unit.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_Unit.fCreatePsnFID','define':'OA_AS_Unit.fCreatePsnFID','label':'提交人员FullID'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_Unit.fCreateTime','define':'OA_AS_Unit.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_Unit.fUpdatePsnID','define':'OA_AS_Unit.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_Unit.fUpdatePsnName','define':'OA_AS_Unit.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_Unit.fUpdateTime','define':'OA_AS_Unit.fUpdateTime','label':'修改时间'}}"},'dAssetUnit_part',{});</script>  
+    <script>
+new justep.XBizData('dOrg',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','nodeKindRelation':'sNodeKind'}"},'dOrg_part',{});</script>  
+    <script>
+new justep.XBizData('dPsm',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sSequence':{'type':'String','relation':'SA_OPOrg.sSequence','define':'SA_OPOrg.sSequence','label':'序号'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sLevel':{'type':'Integer','relation':'SA_OPOrg.sLevel','define':'SA_OPOrg.sLevel','label':'级别'},'sPhone':{'type':'String','relation':'SA_OPOrg.sPhone','define':'SA_OPOrg.sPhone','label':'电话'},'sFax':{'type':'String','relation':'SA_OPOrg.sFax','define':'SA_OPOrg.sFax','label':'传真'},'sAddress':{'type':'String','relation':'SA_OPOrg.sAddress','define':'SA_OPOrg.sAddress','label':'地址'},'sZip':{'type':'String','relation':'SA_OPOrg.sZip','define':'SA_OPOrg.sZip','label':'邮编'},'sDescription':{'type':'String','relation':'SA_OPOrg.sDescription','define':'SA_OPOrg.sDescription','label':'描述'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'version':{'type':'Integer','relation':'SA_OPOrg.version','define':'SA_OPOrg.version','label':'版本'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'1=1','nodeKindRelation':'sNodeKind'}"},'dPsm_part',{});</script>  
+    <script type="text/javascript" src="/x5/$v427e72050bdc46ffa420382542fc46e8/UI/OA/asset/process/assetBuyApply/.cache/startActivity_zh_CN_x5_1ef31e8dca83435c9a6f21b54f0487e7.js?language=zh_CN&amp;$version=d84c1a44-c4f1-4b24-a83d-3d440ced18df"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" lazy="false" style="height:100%;width:100%"> 
+        <div class="component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="tabBuyApply" style="height:100%;width:100%;;"> 
+          <div class="jstabbar" id="tabBuyApply_root"> 
+            <ul class="tabItems clearfix"> 
+              <li class="selected" id="tabDetail_tab"> 
+                <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabDetail');this.blur();" type="button">详细</button> 
+              </li>  
+              <li id="tabFlowChart_tab"> 
+                <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('tabFlowChart');this.blur();" type="button">流程轨迹</button> 
+              </li> 
+            </ul>  
+            <div class="contents" id="tabBuyApply_contents"> 
+              <div class="content selected" id="tabDetail"> 
+                <table align="center" id="table"> 
+                  <tr> 
+                    <td style="height:32px"> 
+                      <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrBuyApplyM"> 
+                        <script>
+function standardProcessBar_getRowState () { var d = justep.xbl('dBuyApplyM'); return d.getRowState(d.getRowId()); } function standardProcessBar_getBackRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("back"); return result; } function standardProcessBar_getAdvanceRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("advance"); return result; } function standardProcessBar_getTransferRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("transfer"); return result; } function standardProcessBar_getSuspendRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("suspend"); return result; } function standardProcessBar_getAbortRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("abort"); return result; } function standardProcessBar_getCustomizedRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("customized"); return result; } function standardProcessBar_getProcessChartRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("processChart"); return result; } function standardProcessBar_getExecuteListRelevant () { var result = appCommon.ProcessBar.getProcessBarItemRelevant("executeList"); return result; }</script>  
+                        <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                          <tr> 
+                            <td> 
+                              <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                <div class="toolbar-style" name="toolbargroup"> 
+                                  <table cellpadding="0" cellspacing="1px"> 
+                                    <tr> 
+                                      <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                        <img align="absmiddle" class="standard-btn" src="/x5/$v5eebb340e94545a7beedbdbb2fee0eb2/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="barItem7" model="mdMain" onclick="justep.xbl('dBuyApplyM').saveData(); " readonly="not(call('justep.XData.canDo','dBuyApplyM','Save'))"> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_save.gif" src="/x5/$v3ef494c48dfc4b6c92c64ecaad1edb02/UI/system/images/standardToolbar/standard/save.gif?language=zh_CN" style="border:none" title="保存"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">保存</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="barItem9" model="mdMain" onclick="justep.xbl('dBuyApplyM').refreshData(); " readonly="call('standardProcessBar_getRowState') = 'new'"> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/x5/$vc2493992579e46c8b06a3953c901a127/UI/system/images/standardToolbar/standard/refresh.gif?language=zh_CN" style="border:none" title="刷新"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">刷新</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </div> 
+                            </td>  
+                            <td> 
+                              <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                <div class="toolbar-style" name="toolbargroup"> 
+                                  <table cellpadding="0" cellspacing="1px"> 
+                                    <tr> 
+                                      <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                        <img align="absmiddle" class="standard-btn" src="/x5/$v519b98e31d3b4f63b0a5e31b500d3c7a/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="itemab4d8789-a85e-4c60-9d56-d59f0ec4ec8e" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess');  flowEngine.backQuery() " readonly="call('justep.Context.isReadonlyMode')" relevant="call('standardProcessBar_getBackRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_back.gif" src="/x5/$va3f0face6233459a8eb4012608423fc0/UI/system/images/standardToolbar/standard/back.gif?language=zh_CN" style="border:none" title="回退"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">回退</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="item9cacf726-2b9d-4f8f-be07-11d704140603" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess');  flowEngine.advanceQuery();" readonly="call('justep.Context.isReadonlyMode')" relevant="call('standardProcessBar_getAdvanceRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_turn.gif" src="/x5/$v3cc329e8edc043d49f2d0588e136d4cd/UI/system/images/standardToolbar/standard/turn.gif?language=zh_CN" style="border:none" title="流转"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">流转</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="itembce4421f-2fee-456c-ac0c-58773569efb8" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess');  flowEngine.transferQuery();" readonly="call('justep.Context.isReadonlyMode')" relevant="call('standardProcessBar_getTransferRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_redirect.gif" src="/x5/$v17a0b48e0ce740dab1f920a4153cc196/UI/system/images/standardToolbar/standard/redirect.gif?language=zh_CN" style="border:none" title="转发"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">转发</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="item7a97c216-0306-4bef-ae5c-8959334037a3" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess'); flowEngine.suspendQuery(); " readonly="call('justep.Context.isReadonlyMode')" relevant="call('standardProcessBar_getSuspendRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_pause.gif" src="/x5/$v689625cdc06e495681857f5f3a75a995/UI/system/images/standardToolbar/standard/pause.gif?language=zh_CN" style="border:none" title="暂停"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">暂停</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="item55e54526-ff33-44b5-8c37-043edfe15098" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess');  flowEngine.abortQuery();" readonly="call('justep.Context.isReadonlyMode')" relevant="call('standardProcessBar_getAbortRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_stop.gif" src="/x5/$v9d6477d32bc5434dab868b8032e5e4fc/UI/system/images/standardToolbar/standard/stop.gif?language=zh_CN" style="border:none" title="终止"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">终止</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="item55c2b2e1-c941-4d38-ae60-75e5d4e13c7a" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess');  flowEngine.startCustomizedQuery();" readonly="call('justep.Context.isReadonlyMode')" relevant="call('standardProcessBar_getCustomizedRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_customized.gif" src="/x5/$v9587babd042343eda9170fde7a4bb000/UI/system/images/standardToolbar/standard/customized.gif?language=zh_CN" style="border:none" title="定制流程"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">定制流程</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="item14a6222b-56d3-4ed2-a4b3-0fc37d064590" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess');  flowEngine.showChart();" relevant="call('standardProcessBar_getProcessChartRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/chart.gif" src="/x5/$v2cbd06386f1b4d9fb7db1a32ebca3bef/UI/system/images/standardToolbar/standard/chart.gif?language=zh_CN" style="border:none" title="流程图"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">流程图</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td>  
+                                      <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                        <table id="item19d2edec-1271-488d-a111-b42b98e957f9" model="mdMain" onclick="var flowEngine = justep.xbl('assetBuyApplyProcess'); flowEngine.openExecuteListDialog();" relevant="call('standardProcessBar_getExecuteListRelevant') "> 
+                                          <tr align="center" valign="middle"> 
+                                            <td align="center" valign="middle"> 
+                                              <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/executeList.png" src="/x5/$v97a494a598ec471595a5e78c328779f3/UI/system/images/standardToolbar/standard/executeList.png?language=zh_CN" style="border:none" title="流程记录"></img> 
+                                            </td>  
+                                            <td align="center" class="xforms-trigger-label" valign="middle">流程记录</td> 
+                                          </tr> 
+                                        </table> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </div> 
+                            </td>  
+                            <td style="width:100%"></td> 
+                          </tr> 
+                        </table> 
+                      </div> 
+                    </td> 
+                  </tr>  
+                  <tr> 
+                    <td> 
+                      <div class="component_E95FFB33 process" component="/UI/system/components/process.xbl.xml#process" data="dBuyApplyM" id="assetBuyApplyProcess" onBeforeAdvanceQuery="startActivity.assetBuyApplyProcessBeforeAdvanceQuery" style="width:24px;top:51px;left:411px;"> 
+                        <div id="assetBuyApplyProcess_processControlDialog" style="display:none"></div>  
+                        <div style="width:696px;height:440px;position:absolute;left:-9000px;top:-9000px"> 
+                          <div appearance="full" class="xforms-dialog" close="true" height="465" id="assetBuyApplyProcess_processControlDialog-content" level="modal" neighbor="" style="width:100%;height:100%" title="流转信息" visible="false" width="700"> 
+                            <iframe frameborder="no" id="assetBuyApplyProcess_processControlDialogIFrame" name="assetBuyApplyProcess_processControlDialogIFrame" style="width:100%;height:100%;"></iframe> 
+                          </div> 
+                        </div>  
+                        <div id="assetBuyApplyProcess_processChartDialogID" style="display:none"></div>  
+                        <div style="width:696px;height:420px;position:absolute;left:-9000px;top:-9000px"> 
+                          <div appearance="full" class="xforms-dialog" close="true" height="445" id="assetBuyApplyProcess_processChartDialogID-content" level="modal" neighbor="" show-title="false" status="maximize" style="width:100%;height:100%" title="流程图" visible="false" width="700"> 
+                            <iframe frameborder="no" id="assetBuyApplyProcess_processChartDialogIFrame" name="assetBuyApplyProcess_processChartDialogIFrame" style="width:100%;height:100%;"></iframe> 
+                          </div> 
+                        </div>  
+                        <div id="assetBuyApplyProcess_processConfirmDialog" style="display:none"></div>  
+                        <div style="width:246px;height:65px;position:absolute;left:-9000px;top:-9000px"> 
+                          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="90" id="assetBuyApplyProcess_processConfirmDialog-content" level="modal" neighbor="" style="width:100%;height:100%" visible="false" width="250"> 
+                            <table border="0" cellpadding="0" cellspacing="8" style="width:100%;height:100%;table-layout:fixed"> 
+                              <tr> 
+                                <td> 
+                                  <div style="padding: 5px;" xblid="assetBuyApplyProcess_processConfirmContent"></div> 
+                                </td> 
+                              </tr>  
+                              <tr height="22px"> 
+                                <td> 
+                                  <table border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;table-layout:fixed"> 
+                                    <tr> 
+                                      <td align="right"> 
+                                        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="755cdbef1b054a4bbe54882e1d3c3372" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:75px;margin-right:8px;;table-layout:fixed"> 
+                                          <tbody> 
+                                            <tr> 
+                                              <td class="xxf-value"> 
+                                                <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                  <span class="xforms-label " id="c3573ee64268457eaf472aae1932c90f">确定</span> 
+                                                </button> 
+                                              </td>  
+                                              <td class="xxf-alert"> 
+                                                <span class="xforms-alert"> 
+                                                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                  <div class="xforms-alert-value" id=""></div> 
+                                                </span> 
+                                              </td> 
+                                            </tr> 
+                                          </tbody> 
+                                        </table> 
+                                      </td>  
+                                      <td width="75px"> 
+                                        <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="3e3251c39c0b42dfb0ba9d3934230211" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="width:75px;table-layout:fixed"> 
+                                          <tbody> 
+                                            <tr> 
+                                              <td class="xxf-value"> 
+                                                <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                                                  <span class="xforms-label " id="d8bdff94e50b42c6981676b8fbc05687">取消</span> 
+                                                </button> 
+                                              </td>  
+                                              <td class="xxf-alert"> 
+                                                <span class="xforms-alert"> 
+                                                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                  <div class="xforms-alert-value" id=""></div> 
+                                                </span> 
+                                              </td> 
+                                            </tr> 
+                                          </tbody> 
+                                        </table> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </td> 
+                              </tr> 
+                            </table> 
+                          </div> 
+                        </div>  
+                        <div class="component_41508DE1 dialog" component="/UI/system/components/dialog.xbl.xml#dialog" height="405" id="assetBuyApplyProcess_customizedDialogID" modal="true" neighbor="" title="定制流程" width="500" xblid="_customizedDialog_"> 
+                          <div id="assetBuyApplyProcess_customizedDialogID-content" style="display:none;height:100%;width:100%"> 
+                            <iframe frameborder="no" id="assetBuyApplyProcess_customizedDialogIFrameID" name="assetBuyApplyProcess_customizedDialogIFrameID" scrolling="no" src="about:blank" style="width: 100%; height: 100%; overflow: hidden"></iframe> 
+                          </div> 
+                        </div>  
+                        <div style="display:none"> 
+                          <input customizedDialogID="assetBuyApplyProcess_customizedDialogID" customizedDialogIFrameID="assetBuyApplyProcess_customizedDialogIFrameID" iframeID="assetBuyApplyProcess_processControlDialogIFrame" processChartDialogID="assetBuyApplyProcess_processChartDialogID" processConfirmContentID="assetBuyApplyProcess_processConfirmContent" processConfirmDialogID="assetBuyApplyProcess_processConfirmDialog" processControlDialogID="assetBuyApplyProcess_processControlDialog" xblid="_processInputData_"></input> 
+                        </div> 
+                      </div>  
+                      <div class="" id="vBuyApplyM" style="height:100%;"> 
+                        <table border="0" cellpadding="0" cellspacing="0" class="no-editor-border" style="width:741px;height:473px;border-collapse: collapse; table-layout: fixed;"> 
+                          <tr height="0px"> 
+                            <td height="0px" width="82px"></td>  
+                            <td height="0px" width="13px"></td>  
+                            <td height="0px" width="157px"></td>  
+                            <td height="0px" width="13px"></td>  
+                            <td height="0px" width="82px"></td>  
+                            <td height="0px" width="13px"></td>  
+                            <td height="0px" width="130px"></td>  
+                            <td height="0px" width="13px"></td>  
+                            <td height="0px" width="82px"></td>  
+                            <td height="0px" width="13px"></td>  
+                            <td height="0px" width="143px"></td> 
+                          </tr>  
+                          <tr height="41px"> 
+                            <td colspan="11" height="41px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:16pt;Font-Weight:Bold;">资产采购申请</td> 
+                          </tr>  
+                          <tr height="31px"> 
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">申请信息</td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Text-Align:Right;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">NO：</td>  
+                            <td height="31px" style="Text-Align:Right;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="31px" style="Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;"> 
+                              <table cellpadding="0px" cellspacing="0px" class="xui-autofill xforms-control xforms-output" id="optNO" style="background-color:transparent;"> 
+                                <tr> 
+                                  <td> 
+                                    <span class="xforms-value"></span>  
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon"></span> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </table> 
+                            </td> 
+                          </tr>  
+                          <tr height="6px"> 
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td> 
+                          </tr>  
+                          <tr height="20px"> 
+                            <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">申请部门</td>  
+                            <td height="20px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="20px" style="Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                              <div class="xui-select component_14C8CA55 orgSelect xui-autofill" component="/UI/system/components/orgSelect.xbl.xml#orgSelect" id="orgSelect" show-org-types="ogn,dpt"> 
+                                <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-no-border component_DE7FA61F treeSelect xforms-control xforms-treeselect1 xforms-appearance-minimal xui-select" id="treeSltDept" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="focus" style="display:none;width:0px"></td>  
+                                      <td class="xxf-value"> 
+                                        <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                          <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                            <tr style="border:none"> 
+                                              <td style="width:100%;height:100%;border:none;"> 
+                                                <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                              </td>  
+                                              <td style="border:none" width="20px"> 
+                                                <img align="absMiddle" src="/x5/$v95c93d56500d4c47a8829e870cbca1a8/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                                              </td> 
+                                            </tr> 
+                                          </table> 
+                                        </div> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <span data-id="dOrg" grid-id="treeSltDept" style="display:none" xblid="attribute"></span> 
+                              </div> 
+                            </td>  
+                            <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">申 请 人</td>  
+                            <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="20px" style="Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                              <div class="xui-select component_14C8CA55 orgSelect xui-autofill" component="/UI/system/components/orgSelect.xbl.xml#orgSelect" id="psmSelect" show-org-types="psm"> 
+                                <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-no-border component_DE7FA61F treeSelect xforms-control xforms-treeselect1 xforms-appearance-minimal xui-select" id="treeSltPsm" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                  <tbody> 
+                                    <tr> 
+                                      <td class="focus" style="display:none;width:0px"></td>  
+                                      <td class="xxf-value"> 
+                                        <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                          <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                            <tr style="border:none"> 
+                                              <td style="width:100%;height:100%;border:none;"> 
+                                                <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                              </td>  
+                                              <td style="border:none" width="20px"> 
+                                                <img align="absMiddle" src="/x5/$vfa927e252d954808b1c8ada7b736134e/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                                              </td> 
+                                            </tr> 
+                                          </table> 
+                                        </div> 
+                                      </td>  
+                                      <td class="xxf-alert"> 
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                          <div class="xforms-alert-value" id=""></div> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </tbody> 
+                                </table>  
+                                <span data-id="dPsm" grid-id="treeSltPsm" style="display:none" xblid="attribute"></span> 
+                              </div> 
+                            </td>  
+                            <td height="20px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">申请日期</td>  
+                            <td height="20px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="20px" style="Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                              <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-input xforms-appearance-minimal xui-input" id="iptApplyDate" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                <tbody> 
+                                  <tr> 
+                                    <td class="focus" style="display:none;width:0px"></td>  
+                                    <td class="xxf-value"> 
+                                      <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                    </td>  
+                                    <td class="xxf-alert"> 
+                                      <span class="xforms-alert"> 
+                                        <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                        <div class="xforms-alert-value" id=""></div> 
+                                      </span> 
+                                    </td>  
+                                    <td class="xui-ie-input-bug"></td> 
+                                  </tr> 
+                                </tbody> 
+                              </table> 
+                            </td> 
+                          </tr>  
+                          <tr height="6px"> 
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                            <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Color:#3366FF;"></td>  
+                            <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td> 
+                          </tr>  
+                          <tr height="54px"> 
+                            <td height="54px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">采购原因</td>  
+                            <td height="54px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td colspan="9" height="54px" style="Text-Align:Left;Vertical-Align:Top;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                              <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-textarea xforms-appearance-minimal xui-textarea" id="taApplyReason" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                <tbody> 
+                                  <tr> 
+                                    <td class="focus" style="display:none;width:0px"></td>  
+                                    <td class="xxf-value"> 
+                                      <textarea accesskey="" class="xforms-value" tabindex=""></textarea> 
+                                    </td>  
+                                    <td class="xxf-alert"> 
+                                      <span class="xforms-alert"> 
+                                        <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                        <div class="xforms-alert-value" id=""></div> 
+                                      </span> 
+                                    </td> 
+                                  </tr> 
+                                </tbody> 
+                              </table> 
+                            </td> 
+                          </tr>  
+                          <tr height="6px"> 
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td> 
+                          </tr>  
+                          <tr height="54px"> 
+                            <td height="54px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;">备 注</td>  
+                            <td height="54px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td colspan="9" height="54px" style="Text-Align:Left;Vertical-Align:Top;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                              <table cellpadding="0" cellspacing="0" class="xui-autofill xforms-control xforms-textarea xforms-appearance-minimal xui-textarea" id="taRemark" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                <tbody> 
+                                  <tr> 
+                                    <td class="focus" style="display:none;width:0px"></td>  
+                                    <td class="xxf-value"> 
+                                      <textarea accesskey="" class="xforms-value" tabindex=""></textarea> 
+                                    </td>  
+                                    <td class="xxf-alert"> 
+                                      <span class="xforms-alert"> 
+                                        <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                        <div class="xforms-alert-value" id=""></div> 
+                                      </span> 
+                                    </td> 
+                                  </tr> 
+                                </tbody> 
+                              </table> 
+                            </td> 
+                          </tr>  
+                          <tr height="6px"> 
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Center;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td> 
+                          </tr>  
+                          <tr height="31px"> 
+                            <td colspan="11" height="31px" style="Text-Align:Left;Vertical-Align:Middle;Background:#DDEEFF;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">资产信息</td> 
+                          </tr>  
+                          <tr height="6px"> 
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td> 
+                          </tr>  
+                          <tr height="32px"> 
+                            <td colspan="11" height="32px" style="Text-Align:Left;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;"> 
+                              <div class=" xui-autofill" id="vTbrBuyApplyD" style="height:100%"> 
+                                <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrBuyApplyD"> 
+                                  <table cellpadding="0" cellspacing="0" style="width:100%"> 
+                                    <tr> 
+                                      <td> 
+                                        <div class="toolbar-manager" name="toolbarmanager" width="100%"> 
+                                          <div class="toolbar-style" name="toolbargroup"> 
+                                            <table cellpadding="0" cellspacing="1px"> 
+                                              <tr> 
+                                                <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5"> 
+                                                  <img align="absmiddle" class="standard-btn" src="/x5/$v5ea13d34b695495890473e53cb265dc6/UI/system/images/standardToolbar/standard/group.gif?language=zh_CN"></img> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <span id="barItem1" model="mdMain" onclick="justep.xbl('dBuyApplyD').newData(); " readonly="not(call('justep.XData.canDo','dBuyApplyD','Insert')) or ((call('justep.Context.getRequestParameter', 'activity-pattern') = 'detail'))"> 
+                                                    <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_insert.gif" src="/x5/$v9cec7d5da58f474286368caede8f997e/UI/system/images/standardToolbar/standard/insert.gif?language=zh_CN" style="border:none" title="新建"></img> 
+                                                  </span> 
+                                                </td>  
+                                                <td class="toolbar-separator-style"> 
+                                                  <img align="absmiddle" class="standard-btn" src="/x5/$v2326592bd33f434bbe184cc9eb8102fe/UI/system/images/standardToolbar/standard/compart.gif?language=zh_CN"></img> 
+                                                </td>  
+                                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                                  <span id="barItem3" model="mdMain" onclick="justep.xbl('dBuyApplyD').deleteData(); " readonly="not(call('justep.XData.canDo','dBuyApplyD','Delete')) or ((call('justep.Context.getRequestParameter', 'activity-pattern') = 'detail'))"> 
+                                                    <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_remove.gif" src="/x5/$v068b1655556a4ed6bb19034839b0d5a0/UI/system/images/standardToolbar/standard/remove.gif?language=zh_CN" style="border:none" title="删除"></img> 
+                                                  </span> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </div> 
+                                      </td>  
+                                      <td style="width:100%"></td> 
+                                    </tr> 
+                                  </table> 
+                                </div> 
+                              </div> 
+                            </td> 
+                          </tr>  
+                          <tr height="154px"> 
+                            <td colspan="11" height="154px" style="Text-Align:Left;Vertical-Align:Top;border-Bottom:1px Solid #C0C0C0;border-Left:1px Solid #C0C0C0;border-Right:1px Solid #C0C0C0;border-Top:1px Solid #C0C0C0;Font-Family:宋体;Font-Size:9pt;"> 
+                              <div class=" xui-autofill" id="vGrdBuyApply" style="height:100%"> 
+                                <div class="component_6298A7A1 grid" data="dBuyApplyD" id="grdBuyApplyD" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="version,fNO,fKindID,fUnitID,fInNum,subRecNo"></div> 
+                              </div> 
+                            </td> 
+                          </tr>  
+                          <tr height="6px"> 
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td>  
+                            <td height="6px" style="Text-Align:Left;Vertical-Align:Top;Font-Family:宋体;Font-Size:9pt;"></td> 
+                          </tr>  
+                          <tr height="20px"> 
+                            <td colspan="9" height="20px" style="Text-Align:Right;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;">合计：</td>  
+                            <td height="20px" style="Text-Align:Right;Vertical-Align:Middle;Font-Family:宋体;Font-Size:9pt;Font-Weight:Bold;"></td>  
+                            <td height="20px" style="Text-Align:Right;Vertical-Align:Middle;border-Bottom:1px Solid #808080;border-Left:1px Solid #808080;border-Right:1px Solid #808080;border-Top:1px Solid #808080;Font-Family:宋体;Font-Size:9pt;"> 
+                              <table cellpadding="0px" cellspacing="0px" class="xui-autofill xforms-control xforms-output" id="optAmount" style=""> 
+                                <tr> 
+                                  <td> 
+                                    <span class="xforms-value"></span>  
+                                    <span class="xforms-alert"> 
+                                      <span class="xforms-alert-icon"></span> 
+                                    </span> 
+                                  </td> 
+                                </tr> 
+                              </table> 
+                            </td> 
+                          </tr> 
+                        </table> 
+                      </div> 
+                    </td> 
+                  </tr>  
+                  <tr id="default1"> 
+                    <td id="td1"> 
+                      <div class="component_FC15723C standardProcessExecuteList" component="/UI/appCommon/components/standardProcessExecuteList.xbl.xml#standardProcessExecuteList" data="dBuyApplyM" id="standardProcessExecuteList" min-height="165" panel-title="处理列表" state="collapsed" style="width:741px"> 
+                        <span collapse-panel-id="standardProcessExecuteList_collapse_panel_737337081" style="display:none" window-iframe-id="standardProcessExecuteList_windowFrame_737337081" xblid="attribute"></span>  
+                        <div class="component_4865D1C3 collapsePanel" component="/UI/system/components/collapsePanel.xbl.xml#collapsePanel" fixed="true" id="standardProcessExecuteList_collapse_panel_737337081" onCollapse="standardProcessExecuteList_collapse_fun_737337081" onExpand="standardProcessExecuteList_expand_fun_737337081" status="collapsed" style="width: 100%" title="处理列表"> 
+                          <table class="xui-collapsePanel-div-title"> 
+                            <tr> 
+                              <td>处理列表</td>  
+                              <td> 
+                                <img class="xui-collapsePanel-img" src="/x5/$v71b7a6a90d4948528e949a195c36b72f/UI/system/images/expanded.gif?language=zh_CN" xblid="collapsePanel-img"></img> 
+                              </td> 
+                            </tr> 
+                          </table>  
+                          <div class="xui-collapsePanel-div-content" style="display:none;" xblid="collapsePanel-content"> 
+                            <div class="xui-collapsePanel-panelarea" style="margin:0;padding:0;"> 
+                              <div auto-load="false" class="xui-windowFrame component_1598FA8F windowFrame" component="/UI/system/components/windowFrame.xbl.xml#windowFrame" id="standardProcessExecuteList_windowFrame_737337081" style="height:200px;width:100%" url="/UI/appCommon/components/standardProcessExecuteList/processExecute/processExecuteList.w"></div> 
+                            </div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </td> 
+                  </tr> 
+                </table> 
+              </div>  
+              <div class="content" id="tabFlowChart"> 
+                <div class="component_4D3D41 processChart" component="/UI/system/components/processChart.xbl.xml#processChart" id="processChart" style="height:100%;width:100%;"> 
+                  <div pertID="GLOBAL_ID_1803666311" style="display:none" trackID="GLOBAL_ID_N2040468914" xblid="interface"></div>  
+                  <div class="component_478DC2A1 tabs" component="/UI/system/components/tabs.xbl.xml#tabs" id="GLOBAL_ID_1709213736" style="width:100%;height:100%;overflow:auto;"> 
+                    <div class="jstabbar" id="GLOBAL_ID_1709213736_root"> 
+                      <ul class="tabItems clearfix"> 
+                        <li class="selected" id="GLOBAL_ID_2142512540_tab"> 
+                          <button class="selected" onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('GLOBAL_ID_2142512540');this.blur();" type="button">轨迹图</button> 
+                        </li>  
+                        <li id="GLOBAL_ID_733528235_tab"> 
+                          <button onclick="this.parentNode.parentNode.parentNode.parentNode.tabbar.setTabActive('GLOBAL_ID_733528235');this.blur();" type="button">波特图</button> 
+                        </li> 
+                      </ul>  
+                      <div class="contents" id="GLOBAL_ID_1709213736_contents"> 
+                        <div class="content selected" id="GLOBAL_ID_2142512540"> 
+                          <div class="component_8CF08DD0 processTrackChart" component="/UI/system/components/processChart.xbl.xml#processTrackChart" ext="" id="GLOBAL_ID_N2040468914" onTrackItemClick="" style="height:100%;"> 
+                            <div style="display:none"> 
+                              <div chartControlID="track_GLOBAL_ID_N1803426289" xblid="interface"></div> 
+                            </div>  
+                            <div class="component_8F7B2FA1 borderLayout" component="/UI/system/components/borderLayout.xbl.xml#borderLayout" id="bl2" style="height:100%;"> 
+                              <div borderSize="0" class="xui-borderlayout-root"> 
+                                <div class="xui-borderlayout-area xui-borderlayout-top" size="40px" style=""> 
+                                  <table> 
+                                    <tr> 
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:green; width:100%;height:2px"></div> 
+                                      </td>  
+                                      <td align=""> 
+                                        <span>已经过</span> 
+                                      </td>  
+                                      <td width="20"></td>  
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:black; width:100%;height:2px"></div> 
+                                      </td>  
+                                      <td> 
+                                        <span>未经过</span> 
+                                      </td>  
+                                      <td width="20"></td>  
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:red; width:100%;height:2px"></div> 
+                                      </td>  
+                                      <td> 
+                                        <span>回退</span> 
+                                      </td>  
+                                      <td width="20"></td>  
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:#0080FF; border:1px #0080FF solid; width:100%;height:20px;border-style:solid;"></div> 
+                                      </td>  
+                                      <td> 
+                                        <span>当前环节</span> 
+                                      </td>  
+                                      <td width="20"></td>  
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:green; border:1px green solid; width:100%;height:20px; border-style:solid;"></div> 
+                                      </td>  
+                                      <td> 
+                                        <span>已处理</span> 
+                                      </td>  
+                                      <td width="20"></td>  
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:#ff6666; border:1px #ff6666 solid; width:100%;height:20px;border-style:solid;"></div> 
+                                      </td>  
+                                      <td> 
+                                        <span>已终止</span> 
+                                      </td>  
+                                      <td width="20"></td>  
+                                      <td width="30"> 
+                                        <div style="overflow:hidden;display:block;background:yellow; border:1px yellow solid; width:100%;height:20px;border-style:solid;"></div> 
+                                      </td>  
+                                      <td> 
+                                        <span>已暂停</span> 
+                                      </td> 
+                                    </tr> 
+                                  </table> 
+                                </div>  
+                                <div class="xui-borderlayout-border xui-borderlayout-border-top" style="height:0"></div>  
+                                <div class="xui-borderlayout-area xui-borderlayout-center" style="overflow:auto;"> 
+                                  <div id="track_GLOBAL_ID_N1803426289" style="width:100%;height:100%;overflow:auto;"></div> 
+                                </div> 
+                              </div> 
+                            </div> 
+                          </div> 
+                        </div>  
+                        <div class="content" id="GLOBAL_ID_733528235"> 
+                          <div class="component_4502B30A processPertChart" component="/UI/system/components/processChart.xbl.xml#processPertChart" ext="" id="GLOBAL_ID_1803666311" onPertItemClick="" style="height:100%;"> 
+                            <div style="display:none"> 
+                              <div chartControlID="bot_GLOBAL_ID_N456241113" xblid="interface"></div> 
+                            </div>  
+                            <div id="bot_GLOBAL_ID_N456241113" style="width:100%;height:100%;overflow:auto;"></div> 
+                          </div> 
+                        </div> 
+                      </div> 
+                    </div> 
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gsAssetUnit" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"></td>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/x5/$v31b1212829b74f6c85b8f75ecd2afa6e/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table>  
+        <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gsAssetKind" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+          <tbody> 
+            <tr> 
+              <td class="focus" style="display:none;width:0px"></td>  
+              <td class="xxf-value"> 
+                <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                  <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                    <tr style="border:none"> 
+                      <td style="width:100%;height:100%;border:none;"> 
+                        <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                      </td>  
+                      <td style="border:none" width="20px"> 
+                        <img align="absMiddle" src="/x5/$v715db8291dae4848ac3ae98fcd3a1743/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                      </td> 
+                    </tr> 
+                  </table> 
+                </div> 
+              </td>  
+              <td class="xxf-alert"> 
+                <span class="xforms-alert"> 
+                  <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                  <div class="xforms-alert-value" id=""></div> 
+                </span> 
+              </td> 
+            </tr> 
+          </tbody> 
+        </table> 
+      </div> 
+    </div>  
+    <script>
+function standardProcessExecuteList_expand_fun_737337081() {justep.xbl('standardProcessExecuteList')._doCollapsePanelExpand();}</script>  
+    <script>
+function standardProcessExecuteList_collapse_fun_737337081() {justep.xbl('standardProcessExecuteList')._doCollapsePanelCollapse();}</script>  
+    <script>
+function standardProcessExecuteList_refresh_fun_737337081(event) {justep.xbl('standardProcessExecuteList')._doListIframeRefresh(event);}</script>  
+    <script>
+function func_195746577(data){var oData = justep.XData.$('dOrg');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_534580908(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script>
+function func_2003765223(data){var oData = justep.XData.$('dPsm');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_626502545(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

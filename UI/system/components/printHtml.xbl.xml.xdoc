@@ -1,0 +1,155 @@
+/**
+	@name UI.printHtml
+	@component /UI/system/components/printHtml.xbl.xml#printHtml
+	@class html打印组件
+	@description <b>[rich]</b>打印html页面的按钮组件
+	@model UI
+	@example 
+	<b>xml格式：</b>
+<xmp>
+	<xhtml:div component="/UI/system/components/printHtml.xbl.xml#printHtml" label="打印" is-preview="true">
+	</xhtml:div>
+</xmp>
+*/
+
+/**
+	@name UI.printHtml#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/printHtml.xbl.xml#printHtml"
+*/
+
+/**
+	@name UI.printHtml#id
+	@attribute
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.printHtml#label
+	@attribute 
+	@description 按钮显示标签
+*/
+
+/**
+	@name UI.printHtml#target__sub__id
+	@attribute 
+	@description 需要打印的目标容器id
+*/
+
+/**
+	@name UI.printHtml#is__sub__preview
+	@attribute 
+	@description 是否预览
+	@default true
+*/
+
+/**
+	@name UI.printHtml#appearance
+	@attribute 
+	@description 按钮表现形式，取值范围：button、image、image-text、minimal、image-minimal
+*/
+
+/**
+	@name UI.printHtml#appearance-mode
+	@attribute 
+	@description 按钮图文排列方式（当appearance=image-text时有效），取值范围：左右、上下
+	@default 左右
+*/
+
+/**
+	@name UI.printHtml#src
+	@attribute 
+	@description <b>[attribute]</b>可用时的图片
+*/
+
+/**
+	@name UI.printHtml#dis__sub__src
+	@attribute 
+	@description <b>[attribute]</b>不可用时的图片
+*/
+
+/**
+	@name UI.printHtml#tabindex
+	@attribute 
+	@description <b>[attribute]</b>Tab键顺序
+*/
+
+/**
+	@name UI.printHtml#getTabIndex
+	@function
+	@description 返回Tab键顺序
+	@returns {integer}
+*/
+
+/**
+	@name UI.printHtml#setTabIndex
+	@function
+	@param tabIndex {integer} <b>[required]</b>Tab键顺序
+	@description 设置Tab键顺序
+*/
+
+/**
+	@name UI.printHtml#accesskey
+	@attribute 
+	@description <b>[attribute]</b>快捷键
+*/
+
+/**
+	@name UI.printHtml#getAccessKey
+	@function
+	@description 返回快捷键
+	@returns {string}
+*/
+
+/**
+	@name UI.printHtml#setAccessKey
+	@function
+	@param key {string} <b>[required]</b>快捷键
+	@description 设置快捷键
+*/
+
+/**
+	@name UI.printHtml#disabled
+	@attribute 
+	@description <b>[attribute]</b>禁用
+*/
+
+/**
+	@name UI.printHtml#getDisabled
+	@function
+	@description 返回禁用
+	@returns {boolean}
+*/
+
+/**
+	@name UI.printHtml#setDisabled
+	@function
+	@param disabled {boolean} <b>[required]</b>禁用
+	@description 设置禁用
+*/
+
+/**
+	@name UI.printHtml#getTargetID
+	@function
+	@description 返回需要打印的目标容器id
+	@returns {string}
+*/
+
+/**
+	@name UI.printHtml#setTargetID
+	@function
+	@param id {string} <b>[required]</b>需要打印的目标容器id
+	@description 设置需要打印的目标容器id
+*/
+
+/**
+	@name UI.printHtml#print
+	@function
+	@param isPreview {boolean} 是否预览，isPreview=true时进行预览，否则按组件配置属性is-preview
+	@description 进行打印或者预览
+*/

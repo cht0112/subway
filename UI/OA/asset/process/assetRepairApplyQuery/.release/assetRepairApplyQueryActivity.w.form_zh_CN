@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head> 
+    <link href="/form/xforms/xforms.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/calendar.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/justep/showMessage.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css" rel="stylesheet" type="text/css"></link>  
+    <link href="/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css" rel="stylesheet" type="text/css"></link>  
+    <script src="/base/base.js" type="text/javascript">
+</script>      <script src="/base/base.res.js" type="text/javascript">
+</script>      <script src="/form/form.res.js" type="text/javascript">
+</script>      <script src="/form/form.js" type="text/javascript">
+</script>      <script language="javascript" src="/UI/system/resources/system.res.js">
+</script>      <script language="javascript" src="/component/data/data.js">
+</script>      <style rel="stylesheet" type="text/css">.toolbar-style {border:solid 0px #dfe8f6;} .toolbar-style a {color: #000000;} .toolbar-item-style, .toolbar-item-style-out, .toolbar-separator-style {text-align:center;cursor:pointer;border:1px solid #dfe8f6;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-over {text-align:center;cursor:pointer;border:1px ridge #cccccc;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-up {text-align:center;cursor:pointer;border:1px ridge;empty-cells: hide;border-collapse:collapse;} .toolbar-item-style-down {text-align:center;cursor:pointer;border:1px groove;empty-cells: hide;border-collapse:collapse;} .toolbar-item-font-style {font-size:12px;text-align:center;} td.groupanchor { width:5px; border:1px solid #dfe8f6; } .toolbar-manager .xforms-group { display:inline; } .toolbar-manager .xforms-disabled { display:none; } .toolbar-manager .xforms-group-content { display:inline; }</style>  
+    <script language="javascript" src="/UI/appCommon/js/appCommon.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/standardProcessQueryBar/js/standardProcessQueryBar.js">
+</script>      <script language="javascript" src="/UI/system/components/pageNavigator/pageNavigator.js">
+</script>      <style rel="stylesheet" type="text/css">.xui-pageNavigator { _height:100%; white-space:nowrap; display:inline; overflow:hidden; } .xui-pageNavigator * { vertical-align:middle; } .xui-pageNavigator-label { white-space: nowrap; } .xui-pageNavigator span { } .xui-pageNavigator-button { _border:1px solid #dfe8f6; } .xui-pageNavigator-button img { _border:1px solid transparent; } .xui-pageNavigator-page a { cursor:pointer; text-decoration:underline; width:16px; padding-right:4px; padding-left:4px; text-align:center; font-size:16px; } .xui-img-txt-tb .xui-pageNavigator-page, .xui-img-txt-tb .xui-pageNavigator-ext { padding-bottom :18px; } .xui-pageNavigator-ext span { border:0px solid transparent; } .xui-pageNavigator-ext input { width:16px; text-align:center; border-width:0px; border-bottom:1px dotted; }</style>  
+    <script language="javascript" src="/UI/system/components/bizDataFilterPattern/bizDataFilterPattern.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/filter/js/filter.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/extDateFilter/js/extDateFilter.js">
+</script>      <script language="javascript" src="/UI/appCommon/components/extOrgFilter/js/extOrgFilter.js">
+</script>      <style rel="stylesheet" type="text/css"></style>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/UI/system/icons/system.icon.css" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";							}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/UI/system/config/user.css" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/UI/OA/asset/process/assetRepairApplyQuery/assetRepairApplyQueryActivity.js">
+</script>      <link href="/UI/appCommon/css/common.css" rel="STYLESHEET" type="text/css"></link>      <script>
+new justep.XBizData('dRepairApply',false,false,{'queryAction':"queryASRepairApplyAction",'dataModel':"/OA/asset/data",'concept':"{'OA_AS_RepairApply':'OA_AS_RepairApply'}",'limit':20,'idColumn':"{'name':'OA_AS_RepairApply','relation':'OA_AS_RepairApply','define':'OA_AS_RepairApply','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'filterRelations':"fNO,fApplyDeptName,fApplyPsnName,fApplyDate,fCode,fKind,fName,fRepairType,fRepairDate,fRepairAmount,fBizStateName",'updateMode':"whereVersion",'orderBys':"{'fCreateTime':0}",'defRelations':"{'version':{'type':'Integer','relation':'OA_AS_RepairApply.version','define':'OA_AS_RepairApply.version','label':'版本'},'fNO':{'type':'String','relation':'OA_AS_RepairApply.fNO','define':'OA_AS_RepairApply.fNO','label':'单据号'},'fApplyOgnID':{'type':'String','relation':'OA_AS_RepairApply.fApplyOgnID','define':'OA_AS_RepairApply.fApplyOgnID','label':'申请机构ID'},'fApplyOgnName':{'type':'String','relation':'OA_AS_RepairApply.fApplyOgnName','define':'OA_AS_RepairApply.fApplyOgnName','label':'申请机构'},'fApplyDeptID':{'type':'String','relation':'OA_AS_RepairApply.fApplyDeptID','define':'OA_AS_RepairApply.fApplyDeptID','label':'申请部门ID'},'fApplyDeptName':{'type':'String','relation':'OA_AS_RepairApply.fApplyDeptName','define':'OA_AS_RepairApply.fApplyDeptName','label':'申请部门'},'fApplyPosID':{'type':'String','relation':'OA_AS_RepairApply.fApplyPosID','define':'OA_AS_RepairApply.fApplyPosID','label':'申请岗位ID'},'fApplyPosName':{'type':'String','relation':'OA_AS_RepairApply.fApplyPosName','define':'OA_AS_RepairApply.fApplyPosName','label':'申请岗位'},'fApplyPsnID':{'type':'String','relation':'OA_AS_RepairApply.fApplyPsnID','define':'OA_AS_RepairApply.fApplyPsnID','label':'申请人员ID'},'fApplyPsnName':{'type':'String','relation':'OA_AS_RepairApply.fApplyPsnName','define':'OA_AS_RepairApply.fApplyPsnName','label':'申请人员'},'fApplyPsnFID':{'type':'String','relation':'OA_AS_RepairApply.fApplyPsnFID','define':'OA_AS_RepairApply.fApplyPsnFID','label':'申请人员FullID'},'fApplyPsnFName':{'type':'String','relation':'OA_AS_RepairApply.fApplyPsnFName','define':'OA_AS_RepairApply.fApplyPsnFName','label':'申请人员FullName'},'fApplyDate':{'type':'Date','relation':'OA_AS_RepairApply.fApplyDate','define':'OA_AS_RepairApply.fApplyDate','label':'申请日期'},'fAssetID':{'type':'String','relation':'OA_AS_RepairApply.fAssetID','define':'OA_AS_RepairApply.fAssetID','label':'资产ID'},'fCode':{'type':'String','relation':'OA_AS_RepairApply.fCode','define':'OA_AS_RepairApply.fCode','label':'编码'},'fKindID':{'type':'String','relation':'OA_AS_RepairApply.fKindID','define':'OA_AS_RepairApply.fKindID','label':'资产类别ID'},'fKind':{'type':'String','relation':'OA_AS_RepairApply.fKind','define':'OA_AS_RepairApply.fKind','label':'资产类别'},'fName':{'type':'String','relation':'OA_AS_RepairApply.fName','define':'OA_AS_RepairApply.fName','label':'名称'},'fSpecType':{'type':'String','relation':'OA_AS_RepairApply.fSpecType','define':'OA_AS_RepairApply.fSpecType','label':'规格型号'},'fServiceYear':{'type':'Decimal','relation':'OA_AS_RepairApply.fServiceYear','define':'OA_AS_RepairApply.fServiceYear','label':'耐用年限'},'fUsedYear':{'type':'Decimal','relation':'OA_AS_RepairApply.fUsedYear','define':'OA_AS_RepairApply.fUsedYear','label':'已用年限'},'fRepairTypeID':{'type':'String','relation':'OA_AS_RepairApply.fRepairTypeID','define':'OA_AS_RepairApply.fRepairTypeID','label':'维修类型ID'},'fRepairType':{'type':'String','relation':'OA_AS_RepairApply.fRepairType','define':'OA_AS_RepairApply.fRepairType','label':'维修类型'},'fRemainValue':{'type':'Decimal','relation':'OA_AS_RepairApply.fRemainValue','define':'OA_AS_RepairApply.fRemainValue','label':'资产净残值'},'fDescription':{'type':'String','relation':'OA_AS_RepairApply.fDescription','define':'OA_AS_RepairApply.fDescription','label':'描述'},'fRemark':{'type':'String','relation':'OA_AS_RepairApply.fRemark','define':'OA_AS_RepairApply.fRemark','label':'备注'},'fRepairDate':{'type':'Date','relation':'OA_AS_RepairApply.fRepairDate','define':'OA_AS_RepairApply.fRepairDate','label':'送修日期'},'fReturnDate':{'type':'Date','relation':'OA_AS_RepairApply.fReturnDate','define':'OA_AS_RepairApply.fReturnDate','label':'预计归还日期'},'fRepairAmount':{'type':'Decimal','relation':'OA_AS_RepairApply.fRepairAmount','define':'OA_AS_RepairApply.fRepairAmount','label':'维修金额'},'fBizState':{'type':'String','relation':'OA_AS_RepairApply.fBizState','define':'OA_AS_RepairApply.fBizState','label':'业务流程状态编码'},'fBizStateName':{'type':'String','relation':'OA_AS_RepairApply.fBizStateName','define':'OA_AS_RepairApply.fBizStateName','label':'状态'},'fCreateOgnID':{'type':'String','relation':'OA_AS_RepairApply.fCreateOgnID','define':'OA_AS_RepairApply.fCreateOgnID','label':'提交机构ID'},'fCreateOgnName':{'type':'String','relation':'OA_AS_RepairApply.fCreateOgnName','define':'OA_AS_RepairApply.fCreateOgnName','label':'提交机构'},'fCreateDeptID':{'type':'String','relation':'OA_AS_RepairApply.fCreateDeptID','define':'OA_AS_RepairApply.fCreateDeptID','label':'提交部门ID'},'fCreateDeptName':{'type':'String','relation':'OA_AS_RepairApply.fCreateDeptName','define':'OA_AS_RepairApply.fCreateDeptName','label':'提交部门'},'fCreatePosID':{'type':'String','relation':'OA_AS_RepairApply.fCreatePosID','define':'OA_AS_RepairApply.fCreatePosID','label':'提交岗位ID'},'fCreatePosName':{'type':'String','relation':'OA_AS_RepairApply.fCreatePosName','define':'OA_AS_RepairApply.fCreatePosName','label':'提交岗位'},'fCreatePsnID':{'type':'String','relation':'OA_AS_RepairApply.fCreatePsnID','define':'OA_AS_RepairApply.fCreatePsnID','label':'提交人员ID'},'fCreatePsnName':{'type':'String','relation':'OA_AS_RepairApply.fCreatePsnName','define':'OA_AS_RepairApply.fCreatePsnName','label':'提交人员'},'fCreatePsnFID':{'type':'String','relation':'OA_AS_RepairApply.fCreatePsnFID','define':'OA_AS_RepairApply.fCreatePsnFID','label':'提交人员FullID'},'fCreatePsnFName':{'type':'String','relation':'OA_AS_RepairApply.fCreatePsnFName','define':'OA_AS_RepairApply.fCreatePsnFName','label':'提交人员FullName'},'fCreateTime':{'type':'DateTime','relation':'OA_AS_RepairApply.fCreateTime','define':'OA_AS_RepairApply.fCreateTime','label':'提交时间'},'fUpdatePsnID':{'type':'String','relation':'OA_AS_RepairApply.fUpdatePsnID','define':'OA_AS_RepairApply.fUpdatePsnID','label':'修改人员ID'},'fUpdatePsnName':{'type':'String','relation':'OA_AS_RepairApply.fUpdatePsnName','define':'OA_AS_RepairApply.fUpdatePsnName','label':'修改人员'},'fUpdateTime':{'type':'DateTime','relation':'OA_AS_RepairApply.fUpdateTime','define':'OA_AS_RepairApply.fUpdateTime','label':'修改时间'},'fCurrentActivities':{'type':'String','relation':'OA_AS_RepairApply.fCurrentActivities','define':'OA_AS_RepairApply.fCurrentActivities','label':'当前环节'},'fCurrentExecutors':{'type':'String','relation':'OA_AS_RepairApply.fCurrentExecutors','define':'OA_AS_RepairApply.fCurrentExecutors','label':'当前执行者'},'fExtendStr1':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr1','define':'OA_AS_RepairApply.fExtendStr1','label':'扩展字段'},'fExtendStr2':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr2','define':'OA_AS_RepairApply.fExtendStr2','label':'扩展字段'},'fExtendStr3':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr3','define':'OA_AS_RepairApply.fExtendStr3','label':'扩展字段'},'fExtendStr4':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr4','define':'OA_AS_RepairApply.fExtendStr4','label':'扩展字段'},'fExtendStr5':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr5','define':'OA_AS_RepairApply.fExtendStr5','label':'扩展字段'},'fExtendStr6':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr6','define':'OA_AS_RepairApply.fExtendStr6','label':'扩展字段'},'fExtendStr7':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr7','define':'OA_AS_RepairApply.fExtendStr7','label':'扩展字段'},'fExtendStr8':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr8','define':'OA_AS_RepairApply.fExtendStr8','label':'扩展字段'},'fExtendStr9':{'type':'String','relation':'OA_AS_RepairApply.fExtendStr9','define':'OA_AS_RepairApply.fExtendStr9','label':'扩展字段'},'fExtendDate1':{'type':'Date','relation':'OA_AS_RepairApply.fExtendDate1','define':'OA_AS_RepairApply.fExtendDate1','label':'扩展字段'},'fExtendDate2':{'type':'Date','relation':'OA_AS_RepairApply.fExtendDate2','define':'OA_AS_RepairApply.fExtendDate2','label':'扩展字段'},'fExtendDate3':{'type':'Date','relation':'OA_AS_RepairApply.fExtendDate3','define':'OA_AS_RepairApply.fExtendDate3','label':'扩展字段'},'fExtendDate4':{'type':'Date','relation':'OA_AS_RepairApply.fExtendDate4','define':'OA_AS_RepairApply.fExtendDate4','label':'扩展字段'},'fExtendDate5':{'type':'Date','relation':'OA_AS_RepairApply.fExtendDate5','define':'OA_AS_RepairApply.fExtendDate5','label':'扩展字段'},'fExtendNum1':{'type':'Decimal','relation':'OA_AS_RepairApply.fExtendNum1','define':'OA_AS_RepairApply.fExtendNum1','label':'扩展字段'},'fExtendNum2':{'type':'Decimal','relation':'OA_AS_RepairApply.fExtendNum2','define':'OA_AS_RepairApply.fExtendNum2','label':'扩展字段'},'fExtendNum3':{'type':'Decimal','relation':'OA_AS_RepairApply.fExtendNum3','define':'OA_AS_RepairApply.fExtendNum3','label':'扩展字段'},'fExtendNum4':{'type':'Decimal','relation':'OA_AS_RepairApply.fExtendNum4','define':'OA_AS_RepairApply.fExtendNum4','label':'扩展字段'},'fExtendNum5':{'type':'Decimal','relation':'OA_AS_RepairApply.fExtendNum5','define':'OA_AS_RepairApply.fExtendNum5','label':'扩展字段'}}",'defCalcRelations':"{'recNo':{'type':'http://www.w3.org/2001/XMLSchema#string'}}"},'dRepairApply_part',{});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_bizStateFilter_data_1246124391',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_dateFilter_data_718297121',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XCommonData('standardProcessQueryBar_orgFilter_data_1043630500',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':true}, {});</script>  
+    <script>
+new justep.XBizData('standardProcessQueryBar_orgFilter_orgData_1043630500',false,false,{'queryAction':"queryOrgAction",'dataModel':"/system/data",'concept':"{'SA_OPOrg':'SA_OPOrg'}",'limit':-1,'idColumn':"{'name':'SA_OPOrg','relation':'SA_OPOrg','define':'SA_OPOrg','type':'String'}",'directDelete':false,'deleteConfirm':true,'refreshConfirm':true,'updateMode':"whereVersion",'orderBys':"{}",'filters':"{'_valid_state_filter_':'SA_OPOrg.sValidState = 1'}",'defRelations':"{'sName':{'type':'String','relation':'SA_OPOrg.sName','define':'SA_OPOrg.sName','label':'名称'},'sOrgKindID':{'type':'String','relation':'SA_OPOrg.sOrgKindID','define':'SA_OPOrg.sOrgKindID','label':'组织类型'},'sCode':{'type':'String','relation':'SA_OPOrg.sCode','define':'SA_OPOrg.sCode','label':'编码'},'sLongName':{'type':'String','relation':'SA_OPOrg.sLongName','define':'SA_OPOrg.sLongName','label':'长名称'},'sFName':{'type':'String','relation':'SA_OPOrg.sFName','define':'SA_OPOrg.sFName','label':'全路径名'},'sFCode':{'type':'String','relation':'SA_OPOrg.sFCode','define':'SA_OPOrg.sFCode','label':'全路径编码'},'sFID':{'type':'String','relation':'SA_OPOrg.sFID','define':'SA_OPOrg.sFID','label':'全路径ID'},'sParent':{'type':'String','relation':'SA_OPOrg.sParent','define':'SA_OPOrg.sParent','label':'父任务'},'sNodeKind':{'type':'String','relation':'SA_OPOrg.sNodeKind','define':'SA_OPOrg.sNodeKind','label':'节点类型'},'sValidState':{'type':'Integer','relation':'SA_OPOrg.sValidState','define':'SA_OPOrg.sValidState','label':'可用状态'},'sPersonID':{'type':'String','relation':'SA_OPOrg.sPersonID','define':'SA_OPOrg.sPersonID','label':'人员'}}",'treeOption':"{'isDelayLoad':true,'parentRelation':'sParent','rootFilter':'1=1','nodeKindRelation':'sNodeKind'}"},'standardProcessQueryBar_orgFilter_orgData_1043630500_part',{});</script>  
+    <script id="xbl_script" language="javascript">
+__initXBL__ = function(){	justep.XBLObject._registerClasses = function() {
+justep.XBLObject._classes["/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter"] = _xbl_JSClassDefine_extOrgFilter;
+justep.XBLObject._classes["/UI/appCommon/components/filter.xbl.xml#gridFilter"] = _xbl_JSClassDefine_gridFilter;
+justep.XBLObject._classes["/UI/system/components/window.xbl.xml#window"] = _xbl_JSClassDefine_window;
+justep.XBLObject._classes["/UI/system/components/menu.xbl.xml#menu"] = _xbl_JSClassDefine_menu;
+justep.XBLObject._classes["/UI/system/components/tableLayout.xbl.xml#tableLayout"] = _xbl_JSClassDefine_tableLayout;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern"] = _xbl_JSClassDefine_bizDataFilterPattern;
+justep.XBLObject._classes["/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter"] = _xbl_JSClassDefine_extDateFilter;
+justep.XBLObject._classes["/UI/system/components/toolbars.xbl.xml#toolbars"] = _xbl_JSClassDefine_toolbars;
+justep.XBLObject._classes["/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog"] = _xbl_JSClassDefine_bizDataFilterDialog;
+justep.XBLObject._classes["/UI/system/components/pageNavigator.xbl.xml#pageNavigator"] = _xbl_JSClassDefine_pageNavigator;
+ };
+justep.XBLObject._registerClasses();function _xbl_JSClassDefine_extOrgFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_extOrgFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ExtOrgFilter(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_gridFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_gridFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.GridFilter(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_window(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_window.prototype = justep.Object.extend(new justep.XBLObject(), eval({}));
+
+function _xbl_JSClassDefine_menu(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_menu.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				"_id": null,
+				"_itemsets": null,
+				initXBL: function(){
+					var menuitemsets = this.getElementByXblID("menuitemsets");
+					this._id = menuitemsets.attributes["menuid"].value;
+					this._itemsets = {};
+					var nodes = $(menuitemsets).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						var info = {};
+						this.initItemset(nodes[i], info);
+						this._itemsets[info["id"]] = info;
+						if(info["init-loaded"] == "true"){
+							this.refreshMenuItemset(info["id"]);
+						}
+					}
+				},
+				initItemset: function(e, info){
+					info["id"] = e.attributes["id"].value;
+					info["init-loaded"] = e.attributes["init-loaded"].value;
+					info["replace"] = e.attributes["replace"].value;
+					info["data"] = e.attributes["data"].value;
+					info["parentID"] = e.attributes["parentID"].value;
+					var params = [];
+					info["params"] = params;
+					var nodes = $(e).children();
+					var len = nodes.length;
+					for (var i = 0; len &gt; i; i++) {
+						params[i] = {};
+						params[i]["name"] = nodes[i].attributes["name"].value;
+						params[i]["value"] = nodes[i].attributes["value"].value;
+					}
+				},
+				refreshMenu: function(){
+					for (var p in this._itemsets)
+					{
+						this.refreshMenuItemset(this._itemsets[p].id);
+					}
+				},
+				refreshMenuItemset: function(itemsetID){
+					var itemInfo = new xforms.MenuItemInfo();
+					var params = this._itemsets[itemsetID]["params"];
+					var len = params.length;
+					for (var i=0; len &gt; i; i++){
+						itemInfo[params[i]["name"]] = params[i]["value"]
+					}
+					var data = this._itemsets[itemsetID]["data"];
+					var replace = this._itemsets[itemsetID]["replace"];
+					var parentID = this._itemsets[itemsetID]["parentID"];
+					if(parentID == ""){
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace);
+					}else{
+						document.getElementById(this._id).xformsObject.loadInstance(data, itemInfo, replace, parentID);
+					}
+				}
+			}));
+
+function _xbl_JSClassDefine_tableLayout(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_tableLayout.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	this.trs = $("&gt;tbody tr", this.el);
+			   	this.spacing = this._getSpace();
+			   	/*为了兼容ie789, cellpadding都强设为0*/
+			   	this.el.attr("cellpadding", "0");
+			   	$("&gt;tbody&gt;tr&gt;td", this.el).css("padding", "0");
+			   	this.padding = this._getPadding();
+		   		this.onWindowResize();
+			},
+			_getSpace : function(){
+				/*默认2是为了解决ie下无法获得默认值的问题*/
+				var spacing = this.el.attr("cellspacing") || (!justep.Browser.IE?this.el.css("border-spacing"):null) || "2px";
+			   	spacing = spacing.split(" ");
+			   	return parseInt(spacing[1] || spacing[0]) || 0;  
+			},
+			_getPadding : function(){
+				/*默认是为了解决ie下无法获得默认值的问题，ie7默认是2px,ie89默认是1px*/
+				var ret = parseInt(this.el.attr("cellpadding"));
+				return ret || (ret===0 ? 0 : (justep.Browser.IE7 ? "2" : "1")); 
+			},
+			onWindowResize : function(){
+				if(!justep.Browser.IE){
+					$("&gt;tbody &gt;tr", this.el).each(function(index, tr){
+						var td = $(tr.children[0]);
+						tr = $(tr);
+						var h = tr.attr('height') || tr.get(0).style["height"],
+							hd = td.attr('height') || td.get(0).style["height"];
+						if((h == null || h == '') &amp;&amp; (hd == null || hd == '')){
+							td.get(0).height = '100%';
+							td.get(0).style["height"] = '100%';
+						}
+					});
+					return;
+				}	
+				var el = this.el;
+				if(el.parent().get(0).tagName.toLowerCase()=="td"){
+					el = el.parent();
+				}
+				var h = el.height(),that = this,
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).height || tr.get(0).style["height"],
+						hd = td.get(0).height || td.get(0).style["height"];
+					/*为了兼容已有应用*/ 
+					if(h=='100%') {
+						h=null;
+						tr.get(0).height = null;
+						tr.get(0).style["height"] = null;
+					}
+					if(hd=='100%') {
+						hd=null;
+						td.get(0).height = null;
+						td.get(0).style["height"] = null;
+					}
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						var mh = Math.max(
+							parseInt(tr.get(0).height)||0,
+							parseInt(tr.get(0).style["height"])||0,
+							(parseInt(td.get(0).height) + that.padding*2)||0,
+							(parseInt(td.get(0).style["height"]) + that.padding*2)||0
+						);
+						b += mh;
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));/*这是防止td被内容撑开*/
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					if(a[0].get(0).children[0]){
+						/*第一个td*/
+						var mh = h-b-this.padding*2; 
+						a[0].get(0).children[0].setAttribute("height", (h-b-this.padding*2)+"px");
+						var td = $(a[0].get(0).children[0]);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			},   	
+			resize2 : function(){
+				var h = this.el.parent().height(),that = this,
+					w = this.el.parent().width(),
+					a = [], b = this.spacing*(this.trs.length + 1);
+				this.el.width(w);
+				this.trs.each(function(index, tr){
+					var td = $(tr.children[0]);
+					tr = $(tr);
+					var h = tr.get(0).style["height"] || tr.attr('height'),
+						hd = td.get(0).style["height"] || tr.attr('height');
+					/*为了兼容已有应用*/ 
+					if(h=='100%') h=null;
+					if(hd=='100%') hd=null;
+					if(!tr.attr("noheight") &amp;&amp; ((h!=null &amp;&amp; h!=''&amp;&amp; h!='auto') || (hd!=null &amp;&amp; hd!=''&amp;&amp; hd!='auto'))){
+						b += tr.outerHeight();
+						/*这是防止td被内容撑开*/
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(td.height()));
+							td.attr("wraped", true);
+						}else{			$("&gt;div", td).height(td.height());
+						}	 
+					}else{
+						tr.attr("noheight", true);/*noheight这个笔记是为了解决ie7执行多次resize的问题*/
+						a.push(tr);
+					}
+				});
+				if(a[0]){
+					a[0].get(0).setAttribute("height", (h-b)+"px");
+					/*第一个td*/
+					var td;
+					if(td = a[0].get(0).children[0]){
+						var mh = h-b-this.padding*2; 
+						td.setAttribute("height", mh+"px");
+						td = $(td);
+						if(!td.attr("wraped")){
+							td.wrapInner($(document.createElement("div")).height(mh));
+							td.attr("wraped", true);
+						}else{
+							$("&gt;div", td).height(mh);
+						}
+					}	
+				} 
+			}   	
+		}));
+
+function _xbl_JSClassDefine_bizDataFilterPattern(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterPattern.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var menuEl = this.getElementByXblID("filter-pattern-menu");
+				this.menuId = $(menuEl).firstElement().getAttribute("menu-id");
+				var dialogEl = this.getElementByXblID("filter-pattern-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-pattern-dialog-iframe");
+				this.iframeId = frameEl.getAttribute("name");
+			},
+			"show": function(data, controlId, filterDlgId) {
+				if (typeof(data) == "string") {
+					data = justep.xbl(data);
+				}
+				if (data) {
+					if (typeof(data.advanceFilter) != "undefined") {
+						var frameEl = document.getElementById(this.iframeId);
+						if (frameEl) {
+							frameEl.dialogId = this.dialogId;
+							frameEl.currData = data;
+							frameEl.advanceFilter = data.advanceFilter.getFilter();
+							showFilterPatternMenu(data, this.menuId, controlId, filterDlgId);
+						}
+					}
+				}
+			}
+		}));
+
+function _xbl_JSClassDefine_extDateFilter(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_extDateFilter.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+				initXBL : function() {
+					justep.Object.extend(this, new appCommon.component.ExtDateFilter(this));
+				}
+			}));
+
+function _xbl_JSClassDefine_toolbars(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_toolbars.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL" : function(){
+				this.initXFormEvent();	
+			},
+			"initXFormEvent" : function(){
+				var id = this.domNode.id;
+				this.xformInfo = {};
+				var that = this;
+				var attr = "readonly";
+				var cb = function(){
+					var modelId = $(this).attr("model");
+					if (!modelId) return;
+					that.xformInfo[modelId] = that.xformInfo[modelId] || [];
+					var info = {};
+					info["id"] = this.id;
+					info["dataId"] = $(this).attr("data");
+					info[attr] = $(this).attr(attr);
+					that.xformInfo[modelId].push(info);
+				}; 
+				jQuery("[readonly]", this.domNode).each(cb);
+				var attr = "relevant";
+				jQuery("[relevant]", this.domNode).each(cb);
+				for(var model in this.xformInfo){
+					var that = this; 
+					new xforms.Listener(justep(model), "xforms-refresh", null, function(){that.modelRefreshcb();});
+					/*
+					todo: 相似组件以后可以集中统一触发一次 
+					xforms.XMLEvents.dispatch(justep.xbl(model), "xforms-refresh");
+					*/
+					this.modelRefreshcb();
+				} 
+			},
+			"modelRefreshcb" : function(){
+				for(var model in this.xformInfo){
+					var infos = this.xformInfo[model];
+					for(var i in infos){
+						var info = infos[i];
+						if (info.readonly){
+							var xpath = xforms.XPath.get(info.readonly);
+							var img = jQuery("#" + info.id + ".xforms-trigger-img,"+"#" + info.id + " .xforms-trigger-img");
+							var a = jQuery("#" + info.id);
+							if(0!=img.size()){
+								if (!info.enImg){
+									info.enImg = img.attr("src");
+									if(info.enImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.enImg = justep.Request.convertURL(info.enImg, true);
+								}
+								if (!info.disImg){
+									info.disImg = img.attr("dis-src");
+									if(info.disImg.indexOf(justep.Request.BASE_URL.substr(0, 7)) == -1)
+										info.disImg = justep.Request.convertURL(info.disImg, true);
+								}
+							}
+							if (!info.click){
+								info.click = a.attr("onclick") || function(){};
+								a.attr("onclick", null);
+							}
+							if(xpath.evaluate({})){
+								img.attr("src", info.disImg);
+								a.unbind("click");
+								a.addClass("xforms-readonly");
+							}else{
+								img.attr("src", info.enImg);
+								a.unbind("click");
+								a.bind("click", function(){if(xforms)xforms.blur(true);});
+								a.bind("click", info.click);
+								a.removeClass("xforms-readonly");
+							}
+						}else if(info.relevant){
+							var xpath = xforms.XPath.get(info.relevant);
+							var el = jQuery("#" + info.id);
+							if(xpath.evaluate({})){
+								el.parent('td').show();
+							}else{
+								el.parent('td').hide();
+							}
+						}
+					}
+				}
+			},
+			"__dragObject" : null,
+			"mousedownAction" : function(event) {
+				event = event || window.event;
+				var group = this.__findToolGroup(event.srcElement||event.target);
+				if (!group) { 
+					return;
+				}
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				this.__dragObject = new Object();
+				this.__dragObject.obj = group;
+				this.__dragObject.manager = group.parentNode;
+				group.style.position = "absolute";
+				group.style.border = "1px ridge";
+				group.style.top = posY - 0 + 4;
+				group.style.left = posX - 0 + 4;
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+			},
+			"mousemoveAction" : function() {
+				var posX = parseInt(window.event.clientX) + parseInt(document.body.scrollLeft);
+				var posY = parseInt(window.event.clientY) + parseInt(document.body.scrollTop);
+				if (this.__dragObject) {
+					this.__dragObject.obj.style.top = posY - 0 + 4;
+					this.__dragObject.obj.style.left = posX - 0 + 4;
+				}
+			},
+			"findParentTDOrTH" : function(node) {
+				var cur = node;
+				while (cur) {
+					var tmp = cur.localName || cur.tagName;
+					if (tmp.toLowerCase()=="body")
+						return null;
+					else if (tmp.toLowerCase()=="td" || tmp.toLowerCase()=="th") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return cur;
+
+			},
+			"mouseupAction" : function(event) {
+				if (this.__dragObject) {
+					event = event || window.event;
+					var target = event.srcElement || event.target;
+					var td = this.findParentTDOrTH(target);
+					var group = this.__findToolGroup(target);
+					if (group &amp;&amp; group.parentNode==this.__dragObject.manager) {
+						if (td &amp;&amp; td.name=="group_anchor") {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.insertBefore(this.__dragObject.obj, group);
+						}
+						else {
+							var manager = this.__dragObject.obj.parentNode;
+							manager.removeChild(this.__dragObject.obj);
+							manager.appendChild(this.__dragObject.obj);
+						}
+					}
+					this.__dragObject.obj.style.position = "static";
+					this.__dragObject.obj.style.border = "none";
+				}
+				xforms.Event.attach(document, "mousemove", this.mousemoveAction, null, this);
+				xforms.Event.attach(document, "mouseup", this.mouseupAction, null, this);
+				xforms.Event.attach(document, "selectstart", this.selectstartAction, null, this);
+				this.__dragObject = null;
+			},
+			"selectstartAction" : function() {
+				return false;
+			},
+			"__findToolGroup" : function(node) {
+				var cur = node;
+				while (cur) {
+					if (cur.tagName=="BODY") {
+						return null;
+					}
+					else if (cur.tagName=="DIV" &amp;&amp; cur.name=="toolbargroup") {
+						return cur;
+					}
+					cur = cur.parentNode;
+				}
+				return null;
+			}
+		}));
+
+function _xbl_JSClassDefine_bizDataFilterDialog(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_bizDataFilterDialog.prototype = justep.Object.extend(new justep.XBLObject(), eval({
+			"initXBL": function() {
+				var dialogEl = this.getElementByXblID("filter-dialog");
+				this.dialogId = $(dialogEl).firstElement().id;
+				var frameEl = this.getElementByXblID("filter-dialog-iframe");
+				this.iframeId = frameEl.id;
+			},
+			"show": function(data, callBack) {
+				var filterData = data;
+				if (typeof(filterData) == "string") {
+					filterData = justep.xbl(filterData);
+				}
+				if (filterData) {
+					if (typeof(filterData.advanceFilter) != "undefined") {
+						var dialog = xforms(this.dialogId);
+						if(dialog) {
+							var frameEl = justep(this.iframeId);
+							if (frameEl) {
+								frameEl.dialogId = this.dialogId;
+								frameEl.filterData = filterData;
+								frameEl.callBack = callBack;
+								dialog.open();
+								return true;
+							}
+						}
+					}
+				}
+				return false;
+			}
+		}));
+
+function _xbl_JSClassDefine_pageNavigator(obj) {
+ 	if (obj) {
+ 		this.domNode = obj;
+  	obj.xblObject = this;
+ 	}
+}
+_xbl_JSClassDefine_pageNavigator.prototype = justep.Object.extend(new justep.XBLObject(), eval({ 
+			"initXBL" : function() {
+			    this.__attribute_node = this.getElementByXblID('attribute');
+			    this.__limit = 20;
+			    this.__offset = 1;
+			    this.__count = 0;
+			    this.__pageCount = 5;
+			    this.__navigatorContent = '';
+			    this.__navigatorPageConten = '';
+			    this.__firstButton = '';
+			    this.__prevButton = '';
+			    this.__nextButton = '';
+			    this.__lastButton = '';
+			    this.__extendArea = '';
+				justep.Object.extend(this, new justep.PageNavigator(this));
+				this.attachStoreEvent();
+				this.refresh();
+			},
+			"__getAttributeValue" : function(name){
+				return this.__attribute_node?this.__attribute_node.getAttribute(name):'';
+			}
+		}));
+
+	var ids=[{id:'76027ac963bd41e0ac3ec39481c9e508', name:'/UI/system/components/window.xbl.xml#window', children:[{id:'table', name:'/UI/system/components/tableLayout.xbl.xml#tableLayout', children:[{id:'tbrRepairApply', name:'/UI/system/components/toolbars.xbl.xml#toolbars', children:[{id:'5e0e6afd874c42859fb2f9a859d8a263', name:'/UI/system/components/pageNavigator.xbl.xml#pageNavigator'},{id:'standardProcessQueryBar_bizStateFilter', name:'/UI/appCommon/components/filter.xbl.xml#gridFilter', children:[{id:'standardProcessQueryBar_bizStateFilter_select_1246124391', name:'xforms:gridselect', children:[{id:'a623eea98bdf4ff8b01194e2b604efa1', name:'xforms:value'},{id:'b0a2a3dd6a0f4cb8a498145b032c404a', name:'xforms:label'}]},{id:'standardProcessQueryBar_bizStateFilter_defaultValue_1246124391', name:'xforms:output'}]},{id:'standardProcessQueryBar_dateFilter', name:'/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter', children:[{id:'standardProcessQueryBar_dateFilter_select_718297121', name:'xforms:gridselect1', children:[{id:'9582962793ba41fcbb604e006d9f7623', name:'xforms:value'},{id:'a7c551a4544f44fa98a271d1eb60d9ea', name:'xforms:label'}]},{id:'standardProcessQueryBar_dateFilter_dialog_718297121', name:'xforms:dialog', children:[{id:'9e7229b1b2b34dbfb186719298634804', name:'xforms:input'},{id:'c7a8201d2b71418286a3a062fe478551', name:'xforms:input'}]}]},{id:'standardProcessQueryBar_orgFilter', name:'/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter', children:[{id:'standardProcessQueryBar_orgFilter_manageTypeCodes_1043630500', name:'xforms:output'},{id:'standardProcessQueryBar_orgFilter_select_1043630500', name:'xforms:treeselect', children:[{id:'d783d0d620fd4fcc9c8449f1e9992e36', name:'xforms:label'},{id:'d4aeeb3371de40fa9ace88443227ea3c', name:'xforms:value'}]}]}]},{id:'grdRepairApply', name:'xforms:grid'}]},{id:'filter-dialog-61ba0217-eb98-453f-ae95-f659fe228cba', name:'/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog', children:[{id:'GLOBAL_ID_N825171855', name:'xforms:dialog'}]},{id:'filter-pattern-159eff1b-3d36-45fc-8588-d0323c106020', name:'/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern', children:[{id:'2aa9dedad5e54b89b2b463c85a2aaa98', name:'/UI/system/components/menu.xbl.xml#menu', children:[{id:'GLOBAL_ID_N848953944', name:'xforms:menu'}]},{id:'GLOBAL_ID_1351434279', name:'xforms:dialog'}]}]}]; 
+justep.XBLObject.initXBL(ids);
+}; </script>  
+    <script id="xf_script" type="text/javascript">
+xforms.Core.fileName='form.js';	
+xf._a(null,'standardProcessQueryBar_bizStateFilter_select_1246124391');xf._a('standardProcessQueryBar_bizStateFilter_select_1246124391','b0a2a3dd6a0f4cb8a498145b032c404a');xf._a('standardProcessQueryBar_bizStateFilter_select_1246124391','xf-itemset-0');xf._a(null,'standardProcessQueryBar_bizStateFilter_defaultValue_1246124391');xf._a(null,'standardProcessQueryBar_dateFilter_select_718297121');xf._a('standardProcessQueryBar_dateFilter_select_718297121','a7c551a4544f44fa98a271d1eb60d9ea');xf._a('standardProcessQueryBar_dateFilter_select_718297121','xf-itemset-1');xf._a(null,'9e7229b1b2b34dbfb186719298634804');xf._a(null,'c7a8201d2b71418286a3a062fe478551');xf._a(null,'standardProcessQueryBar_orgFilter_manageTypeCodes_1043630500');xf._a(null,'standardProcessQueryBar_orgFilter_select_1043630500');xf._a('standardProcessQueryBar_orgFilter_select_1043630500','d783d0d620fd4fcc9c8449f1e9992e36');xf._a('standardProcessQueryBar_orgFilter_select_1043630500','xf-itemset-2');xf._a(null,'grdRepairApply');function init() {	
+var begin = new Date().getTime();	
+xf._b("instance('dRepairApply')/version",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','version')))));	
+xf._b("instance('dRepairApply')/fApplyDate",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fApplyDate')))));	
+xf._b("instance('dRepairApply')/fServiceYear",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fServiceYear')))));	
+xf._b("instance('dRepairApply')/fUsedYear",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fUsedYear')))));	
+xf._b("instance('dRepairApply')/fRemainValue",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fRemainValue')))));	
+xf._b("instance('dRepairApply')/fRepairDate",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fRepairDate')))));	
+xf._b("instance('dRepairApply')/fReturnDate",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fReturnDate')))));	
+xf._b("instance('dRepairApply')/fRepairAmount",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fRepairAmount')))));	
+xf._b("instance('dRepairApply')/fCreateTime",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fCreateTime')))));	
+xf._b("instance('dRepairApply')/fUpdateTime",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fUpdateTime')))));	
+xf._b("instance('dRepairApply')/fExtendDate1",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendDate1')))));	
+xf._b("instance('dRepairApply')/fExtendDate2",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendDate2')))));	
+xf._b("instance('dRepairApply')/fExtendDate3",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendDate3')))));	
+xf._b("instance('dRepairApply')/fExtendDate4",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendDate4')))));	
+xf._b("instance('dRepairApply')/fExtendDate5",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendDate5')))));	
+xf._b("instance('dRepairApply')/fExtendNum1",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendNum1')))));	
+xf._b("instance('dRepairApply')/fExtendNum2",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendNum2')))));	
+xf._b("instance('dRepairApply')/fExtendNum3",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendNum3')))));	
+xf._b("instance('dRepairApply')/fExtendNum4",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendNum4')))));	
+xf._b("instance('dRepairApply')/fExtendNum5",xf._g(xf._f('instance',xf._i("dRepairApply")),xf._h(false, xf._k("child",xf._j('','fExtendNum5')))));	
+xf._b("instance('standardProcessQueryBar_bizStateFilter_data_1246124391')/value",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_bizStateFilter_data_1246124391")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('standardProcessQueryBar_bizStateFilter_data_1246124391')/label",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_bizStateFilter_data_1246124391")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("'编辑中,处理中,已完成'",xf._i("编辑中,处理中,已完成"));	
+xf._b("'全部'",xf._i("全部"));	
+xf._b("rowid",xf._h(false, xf._k("child",xf._j('','rowid'))));	
+xf._b("label",xf._h(false, xf._k("child",xf._j('','label'))));	
+xf._b("__c_",xf._h(false, xf._k("child",xf._j('','__c_'))),'','');	
+xf._b("'bsEditing,bsExecuting,bsFinished'",xf._i("bsEditing,bsExecuting,bsFinished"));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_718297121')/beginDate",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_718297121")),xf._h(false, xf._k("child",xf._j('','beginDate')))));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_718297121')/endDate",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_718297121")),xf._h(false, xf._k("child",xf._j('','endDate')))));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_718297121')/value",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_718297121")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('standardProcessQueryBar_dateFilter_data_718297121')/label",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_dateFilter_data_718297121")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')",xf._f('call',xf._i("appCommon.component.StandardProcessQueryBar.getManageTypeCodes")));	
+xf._b("instance('standardProcessQueryBar_orgFilter_orgData_1043630500')/sValidState",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_orgFilter_orgData_1043630500")),xf._h(false, xf._k("child",xf._j('','sValidState')))));	
+xf._b("instance('standardProcessQueryBar_orgFilter_data_1043630500')/value",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_orgFilter_data_1043630500")),xf._h(false, xf._k("child",xf._j('','value')))));	
+xf._b("instance('standardProcessQueryBar_orgFilter_data_1043630500')/label",xf._g(xf._f('instance',xf._i("standardProcessQueryBar_orgFilter_data_1043630500")),xf._h(false, xf._k("child",xf._j('','label')))));	
+xf._b("'本人'",xf._i("本人"));	
+xf._b("sName",xf._h(false, xf._k("child",xf._j('','sName'))));	
+xf._b("sFID",xf._h(false, xf._k("child",xf._j('','sFID'))));	
+xf._b("sOrgKindID",xf._h(false, xf._k("child",xf._j('','sOrgKindID'))));	
+xf._b("sCode",xf._h(false, xf._k("child",xf._j('','sCode'))));	
+xf._b("sLongName",xf._h(false, xf._k("child",xf._j('','sLongName'))));	
+xf._b("sFName",xf._h(false, xf._k("child",xf._j('','sFName'))));	
+xf._b("sFCode",xf._h(false, xf._k("child",xf._j('','sFCode'))));	
+xf._b("sParent",xf._h(false, xf._k("child",xf._j('','sParent'))));	
+xf._b("sNodeKind",xf._h(false, xf._k("child",xf._j('','sNodeKind'))));	
+xf._b("sValidState",xf._h(false, xf._k("child",xf._j('','sValidState'))));	
+xf._b("sPersonID",xf._h(false, xf._k("child",xf._j('','sPersonID'))));	
+xf._b("recNo",xf._h(false, xf._k("child",xf._j('','recNo'))));	
+xf._b("fBizStateName",xf._h(false, xf._k("child",xf._j('','fBizStateName'))));	
+xf._b("fNO",xf._h(false, xf._k("child",xf._j('','fNO'))));	
+xf._b("fCode",xf._h(false, xf._k("child",xf._j('','fCode'))));	
+xf._b("fKind",xf._h(false, xf._k("child",xf._j('','fKind'))));	
+xf._b("fName",xf._h(false, xf._k("child",xf._j('','fName'))));	
+xf._b("fRepairType",xf._h(false, xf._k("child",xf._j('','fRepairType'))));	
+xf._b("fRepairDate",xf._h(false, xf._k("child",xf._j('','fRepairDate'))));	
+xf._b("true",xf._h(false, xf._k("child",xf._j('','true'))));	
+xf._b("fRepairAmount",xf._h(false, xf._k("child",xf._j('','fRepairAmount'))));	
+xf._b("fApplyDeptName",xf._h(false, xf._k("child",xf._j('','fApplyDeptName'))));	
+xf._b("fApplyPsnName",xf._h(false, xf._k("child",xf._j('','fApplyPsnName'))));	
+xf._b("fApplyDate",xf._h(false, xf._k("child",xf._j('','fApplyDate'))));	
+xf._b("space-column",xf._h(false, xf._k("child",xf._j('','space-column'))));	
+xforms.Schema.registerPrefix('xsd', 'http://www.w3.org/2001/XMLSchema');xforms.Schema.registerPrefix('ro', 'null');xforms.Schema.registerPrefix('html', 'null');xforms.Schema.registerPrefix('date', 'null');var xf_model_mdMain = new xforms.XFModel('mdMain',null);	
+var xf_action_action1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){mdMainxforms_model_construct_done(event)}));xf._p(justep('mdMain'),"xforms-model-construct-done",null,function(evt) { xforms.run(xf_action_action1,'mdMain', evt,false)});	
+var xf_model_standardProcessQueryBar_bizStateFilter_model_1246124391 = new xforms.XFModel('standardProcessQueryBar_bizStateFilter_model_1246124391',null);	
+new xforms.XFInstance2('standardProcessQueryBar_bizStateFilter_data_1246124391','standardProcessQueryBar_bizStateFilter_model_1246124391',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('standardProcessQueryBar_bizStateFilter_data_1246124391','value,label');	
+var xf_action_xf_action_1=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.Filter.setFilterCondition("standardProcessQueryBar_bizStateFilter", justep.xbl("dRepairApply"), "fBizState", "", appCommon.component.Filter.getDefaultValueBinding("standardProcessQueryBar_bizStateFilter_defaultValue_1246124391"), true, ",", "", false);}));xf._p(justep('standardProcessQueryBar_bizStateFilter_model_1246124391'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_1,'standardProcessQueryBar_bizStateFilter_model_1246124391', evt,false)});	
+new xforms.XFExtSelect({id:'standardProcessQueryBar_bizStateFilter_select_1246124391',type:'gridselect',defaultLabelRef:xf._q("'编辑中,处理中,已完成'"),allSelectedLabelRef:xf._q("'全部'"),ref:xf._q("instance('standardProcessQueryBar_bizStateFilter_data_1246124391')/value"),labelRef:xf._q("instance('standardProcessQueryBar_bizStateFilter_data_1246124391')/label"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:null,dataId:null,columns:'label,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'',valueColumn:'rowid',labelColumn:'label',extColumn:null,labels:',',aligns:',',types:'checkbox,ro',widths:{widths:"#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows&gt;&lt;row id="bsEditing"&gt;&lt;cell&gt;编辑中&lt;/cell&gt;&lt;/row&gt;&lt;row id="bsExecuting"&gt;&lt;cell&gt;处理中&lt;/cell&gt;&lt;/row&gt;&lt;row id="bsFinished"&gt;&lt;cell&gt;已完成&lt;/cell&gt;&lt;/row&gt;&lt;row id="bsAborted"&gt;&lt;cell&gt;已终止&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+var xf_output_standardProcessQueryBar_bizStateFilter_defaultValue_1246124391=new xforms.XFOutput('standardProcessQueryBar_bizStateFilter_defaultValue_1246124391',xf._q("'bsEditing,bsExecuting,bsFinished'"),null,null);	
+var xf_model_standardProcessQueryBar_dateFilter_model_718297121 = new xforms.XFModel('standardProcessQueryBar_dateFilter_model_718297121',null);	
+xf._c('xf-bind-20','standardProcessQueryBar_dateFilter_model_718297121',"instance('standardProcessQueryBar_dateFilter_data_718297121')/beginDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-21','standardProcessQueryBar_dateFilter_model_718297121',"instance('standardProcessQueryBar_dateFilter_data_718297121')/endDate","xsd:date",null,null,null,null,null,null);	
+new xforms.XFInstance2('standardProcessQueryBar_dateFilter_data_718297121','standardProcessQueryBar_dateFilter_model_718297121',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('standardProcessQueryBar_dateFilter_data_718297121','value,label,beginDate,endDate');	
+var xf_action_xf_action_2=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.ExtDateFilter.setFilterCondition("standardProcessQueryBar_dateFilter", justep.xbl("dRepairApply"), "single", "fCreateTime", "", "", "0", null, null, "", false);}));xf._p(justep('standardProcessQueryBar_dateFilter_model_718297121'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_2,'standardProcessQueryBar_dateFilter_model_718297121', evt,false)});	
+new xforms.XFExtSelect({id:'standardProcessQueryBar_dateFilter_select_718297121',type:'gridselect1',defaultLabelRef:xf._q("'全部'"),allSelectedLabelRef:null,ref:xf._q("instance('standardProcessQueryBar_dateFilter_data_718297121')/value"),labelRef:xf._q("instance('standardProcessQueryBar_dateFilter_data_718297121')/label"),extRef:null,valueSeparator:null,labelSeparator:null,extSeparator:null,dataId:null,columns:'label,__c_',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'',valueColumn:'rowid',labelColumn:'label',extColumn:null,labels:',',aligns:',',types:'ro,ro',widths:{widths:"#,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:false,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:'&lt;rows&gt;&lt;row id="0"&gt;&lt;cell&gt;全部&lt;/cell&gt;&lt;/row&gt;&lt;row id="1"&gt;&lt;cell&gt;今天&lt;/cell&gt;&lt;/row&gt;&lt;row id="2"&gt;&lt;cell&gt;昨天&lt;/cell&gt;&lt;/row&gt;&lt;row id="3"&gt;&lt;cell&gt;本周&lt;/cell&gt;&lt;/row&gt;&lt;row id="4"&gt;&lt;cell&gt;上周&lt;/cell&gt;&lt;/row&gt;&lt;row id="5"&gt;&lt;cell&gt;本月&lt;/cell&gt;&lt;/row&gt;&lt;row id="6"&gt;&lt;cell&gt;上月&lt;/cell&gt;&lt;/row&gt;&lt;row id="7"&gt;&lt;cell&gt;今年&lt;/cell&gt;&lt;/row&gt;&lt;row id="8"&gt;&lt;cell&gt;去年&lt;/cell&gt;&lt;/row&gt;&lt;row id="9"&gt;&lt;cell&gt;自定义...&lt;/cell&gt;&lt;/row&gt;&lt;/rows&gt;',inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:null,onRowHasChildren:null,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+new xforms.XFDialog('standardProcessQueryBar_dateFilter_dialog_718297121',"自定义",'model',true,false,true,true,false,null,'250','135',null,null,null,null);	
+xf._d('9e7229b1b2b34dbfb186719298634804','text',xf._q("instance('standardProcessQueryBar_dateFilter_data_718297121')/beginDate"),null,null,null,null,false,false);	
+xf._d('c7a8201d2b71418286a3a062fe478551','text',xf._q("instance('standardProcessQueryBar_dateFilter_data_718297121')/endDate"),null,null,null,null,false,false);	
+var xf_output_standardProcessQueryBar_orgFilter_manageTypeCodes_1043630500=new xforms.XFOutput('standardProcessQueryBar_orgFilter_manageTypeCodes_1043630500',xf._q("call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')"),null,null);	
+var xf_model_standardProcessQueryBar_orgFilter_model_1043630500 = new xforms.XFModel('standardProcessQueryBar_orgFilter_model_1043630500',null);	
+new xforms.XFInstance2('standardProcessQueryBar_orgFilter_data_1043630500','standardProcessQueryBar_orgFilter_model_1043630500',null,'&lt;rows rows=""&gt;&lt;row&gt;&lt;/row&gt;&lt;/rows&gt;',null,null,null,null,null,null,null,null,null);new SimpleStore('standardProcessQueryBar_orgFilter_data_1043630500','value,label');	
+var xf_action_xf_action_3=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){appCommon.component.ExtOrgFilter.setFilterCondition("standardProcessQueryBar_orgFilter", justep.xbl("dRepairApply"), "fCreatePsnID", "fCreatePsnFID", "OA_AS_RepairExecute", "本人", "", false);}));xf._p(justep('standardProcessQueryBar_orgFilter_model_1043630500'),"xforms-model-construct",null,function(evt) { xforms.run(xf_action_xf_action_3,'standardProcessQueryBar_orgFilter_model_1043630500', evt,false)});	
+new xforms.XFExtSelect({id:'standardProcessQueryBar_orgFilter_select_1043630500',type:'treeselect',defaultLabelRef:xf._q("'本人'"),allSelectedLabelRef:null,ref:xf._q("instance('standardProcessQueryBar_orgFilter_data_1043630500')/value"),labelRef:xf._q("instance('standardProcessQueryBar_orgFilter_data_1043630500')/label"),extRef:null,valueSeparator:',',labelSeparator:',',extSeparator:null,dataId:'standardProcessQueryBar_orgFilter_orgData_1043630500',columns:'sName,__c_,sOrgKindID,sCode,sLongName,sFName,sFCode,sFID,sParent,sNodeKind,sValidState,sPersonID',headerH:null,rowH:null,dropdownClass:null,hiddenColumns:'sOrgKindID,sCode,sLongName,sFName,sFCode,sFID,sParent,sNodeKind,sValidState,sPersonID',valueColumn:'sFID',labelColumn:'sName',extColumn:null,labels:',,,,,,,,,,,',aligns:',,,,,,,,,,,',types:'tree,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro,ro',widths:{widths:"#,*,*,*,*,*,*,*,*,*,*,*",total:0},height:'',dropdownWidth:'',appearance:null,delay:true,autoLoadData:false,independence:false,delayCreateGrid:false,cascade:false,dataXML:null,inputChangeable:false,disabled:false,readonly:false,smartRender:null,onAfterRowFill:null,onRowDisabled:null,onShowNodeImg:null,onRowExpand:'func_1096243201',onRowHasChildren:func_441796315,onKeyDown:null,onKeyUp:null,onKeyPress:null,onDropdown:null,onCloseup:null});	
+xforms.load_parts('vRepairApply');	
+new xforms.XFDialog('GLOBAL_ID_N825171855',"查询对话框",'modal',true,false,true,true,false,null,'490','340',null,null,null,null);	
+var xf_action_xf_action_4=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var frameEl = justep('GLOBAL_ID_N1371822876');									if (frameEl) {										if(frameEl.contentWindow.document.body){											frameEl.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";										}										}justep.Request.callURL("/system/components/bizDataFilterDialog/bizDataFilterDialog.w", "GLOBAL_ID_N1371822876", "");}));xf._p(justep('GLOBAL_ID_N825171855'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_4,'GLOBAL_ID_N825171855', evt,false)});	
+var xf_menu_GLOBAL_ID_N848953944 = new xforms.XFMenu('GLOBAL_ID_N848953944','context');xf_menu_GLOBAL_ID_N848953944.menu.addContextZone('2aa9dedad5e54b89b2b463c85a2aaa98');xforms.Event.attach(document.body, "click", function(){xf_menu_GLOBAL_ID_N848953944.hide()});xf_menu_GLOBAL_ID_N848953944.menu.setOpenMode('web');	
+var xf_action_xf_action_5=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){									var menuItemId = event.getData().itemId;									if (menuItemId == "glglms") {										var dialog = xforms("GLOBAL_ID_1351434279");										if(dialog) {											event.getData().menuitem.dhtmlxMenu.$needLoad=true;											dialog.open();																					}									} else if (menuItemId == "qkdqgl") {										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.clear();										data.filters.deleteFilter(data.advanceFilter.filterName);										data.refreshData();									} else if (menuItemId == "zdycx"){										var dlgId = event.getData().menuitem.dhtmlxMenu.filterDlgId;										var dataId = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(dataId) == "object") {											dataId = dataId.id;										}										if(dlgId) justep.xbl(dlgId).show(dataId);									} else {										var advanceFilter = generateFilterText(event.getData().menuitem.filterExpr);										var data = event.getData().menuitem.dhtmlxMenu.filterData;										if (typeof(data) == "string") {											data = justep.xbl(data);										}										data.advanceFilter.setFilter(advanceFilter, true, true);									}}));xf._p(justep('GLOBAL_ID_N848953944'),"DOMActivate",null,function(evt) { xforms.run(xf_action_xf_action_5,'GLOBAL_ID_N848953944', evt,false)});	
+new xforms.XFDialog('GLOBAL_ID_1351434279',"过滤模式",'modal',true,false,true,true,false,null,'550','440',null,null,null,null);	
+var xf_action_xf_action_6=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_725491737');									if (iframe &amp;&amp; iframe.contentWindow &amp;&amp; iframe.contentWindow.document &amp;&amp; iframe.contentWindow.document.body) {										iframe.contentWindow.document.body.innerHTML = "&lt;table width='100%' height='100%'&gt;&lt;tr&gt;&lt;td align='center' style='font-size: 12px'&gt;正在载入页面，请稍候......&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;";									}justep.Request.callURL("/system/components/bizDataFilterPattern/bizDataFilterPattern.w?process=/SA/filterPattern/filterPatternProcess&amp;activity=mainActivity", "GLOBAL_ID_725491737", "");}));xf._p(justep('GLOBAL_ID_1351434279'),"xforms-dialog-open",null,function(evt) { xforms.run(xf_action_xf_action_6,'GLOBAL_ID_1351434279', evt,false)});	
+var xf_action_xf_action_7=xf._n(null,null,null,null,false).add(xf._o(null,null,function(element, ctx, event){var iframe = document.getElementById('GLOBAL_ID_725491737');									if (iframe) {										var data = iframe.currData;										data.advanceFilter.setFilter(iframe.advanceFilter);									}}));xf._p(justep('GLOBAL_ID_1351434279'),"xforms-dialog-close",null,function(evt) { xforms.run(xf_action_xf_action_7,'GLOBAL_ID_1351434279', evt,false)});	
+xforms.DebugConsole.writeTime(begin, 'new js objects');	
+begin = new Date().getTime();	
+xforms.init();	
+xforms.DebugConsole.writeTime(begin, 'xforms init');};	
+var dRepairApply_part_loaded = false;	
+function load_dRepairApply_part(callback){if (dRepairApply_part_loaded) return;dRepairApply_part_loaded = true;	
+new xforms.XFInstance2('dRepairApply','mdMain',null,null,null,null,null,null,null,null,'recNo',null,'whereVersion');	
+xf._c('xf-bind-0','mdMain',"instance('dRepairApply')/version","xsd:integer",null,null,null,null,null,null);	
+xf._c('xf-bind-1','mdMain',"instance('dRepairApply')/fApplyDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-2','mdMain',"instance('dRepairApply')/fServiceYear","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-3','mdMain',"instance('dRepairApply')/fUsedYear","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-4','mdMain',"instance('dRepairApply')/fRemainValue","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-5','mdMain',"instance('dRepairApply')/fRepairDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-6','mdMain',"instance('dRepairApply')/fReturnDate","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-7','mdMain',"instance('dRepairApply')/fRepairAmount","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-8','mdMain',"instance('dRepairApply')/fCreateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-9','mdMain',"instance('dRepairApply')/fUpdateTime","xsd:dateTime",null,null,null,null,null,null);	
+xf._c('xf-bind-10','mdMain',"instance('dRepairApply')/fExtendDate1","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-11','mdMain',"instance('dRepairApply')/fExtendDate2","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-12','mdMain',"instance('dRepairApply')/fExtendDate3","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-13','mdMain',"instance('dRepairApply')/fExtendDate4","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-14','mdMain',"instance('dRepairApply')/fExtendDate5","xsd:date",null,null,null,null,null,null);	
+xf._c('xf-bind-15','mdMain',"instance('dRepairApply')/fExtendNum1","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-16','mdMain',"instance('dRepairApply')/fExtendNum2","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-17','mdMain',"instance('dRepairApply')/fExtendNum3","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-18','mdMain',"instance('dRepairApply')/fExtendNum4","xsd:float",null,null,null,null,null,null);	
+xf._c('xf-bind-19','mdMain',"instance('dRepairApply')/fExtendNum5","xsd:float",null,null,null,null,null,null);	
+if(callback)callback();}	
+var dRepairApply_part_init_loaded = false;	
+function load_dRepairApply_part_init(){if (dRepairApply_part_init_loaded) return;dRepairApply_part_init_loaded = true;	
+if(xforms.ready)justep('mdMain').xformsObject.construct_part();}	
+var standardProcessQueryBar_orgFilter_orgData_1043630500_part_loaded = false;	
+function load_standardProcessQueryBar_orgFilter_orgData_1043630500_part(callback){if (standardProcessQueryBar_orgFilter_orgData_1043630500_part_loaded) return;standardProcessQueryBar_orgFilter_orgData_1043630500_part_loaded = true;	
+new xforms.XFInstance2('standardProcessQueryBar_orgFilter_orgData_1043630500','standardProcessQueryBar_orgFilter_model_1043630500',null,null,null,null,null,null,'sNodeKind',null,null,null,'whereVersion');	
+xf._c('xf-bind-22','standardProcessQueryBar_orgFilter_model_1043630500',"instance('standardProcessQueryBar_orgFilter_orgData_1043630500')/sValidState","xsd:integer",null,null,null,null,null,null);	
+if(callback)callback();}	
+var standardProcessQueryBar_orgFilter_orgData_1043630500_part_init_loaded = false;	
+function load_standardProcessQueryBar_orgFilter_orgData_1043630500_part_init(){if (standardProcessQueryBar_orgFilter_orgData_1043630500_part_init_loaded) return;standardProcessQueryBar_orgFilter_orgData_1043630500_part_init_loaded = true;	
+if(xforms.ready)justep('standardProcessQueryBar_orgFilter_model_1043630500').xformsObject.construct_part();}	
+function load_vRepairApply(){if (justep("vRepairApply").getAttribute('loaded') &amp;&amp; justep("vRepairApply").getAttribute('loaded') == 'true') return;justep("vRepairApply").setAttribute('loaded', 'true');	
+if(typeof(load_vRepairApply_html) == 'function')load_vRepairApply_html();	
+new xforms.XFGrid({id:'grdRepairApply',instance:'dRepairApply',systemColumnsPro:'version,fApplyOgnID,fApplyOgnName,fApplyDeptID,fApplyPosID,fApplyPosName,fApplyPsnID,fApplyPsnFID,fApplyPsnFName,fAssetID,fKindID,fSpecType,fServiceYear,fUsedYear,fRepairTypeID,fRemainValue,fDescription,fRemark,fReturnDate,fBizState,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fCurrentActivities,fCurrentExecutors,fExtendStr1,fExtendStr2,fExtendStr3,fExtendStr4,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate1,fExtendDate2,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5',onInit:null,type:'grid',smartRender:null,delay:false,ids:'recNo,fBizStateName,fNO,fCode,fKind,fName,fRepairType,fRepairDate,fRepairAmount,fApplyDeptName,fApplyPsnName,fApplyDate,space-column',headNames:'序号,状态,单据号,资产编号,资产类别,资产名称,维修类型,送修日期,维修金额,申请部门,申请人,申请日期,&amp;nbsp;',widths:'30,50,120,100,80,80,70,70,80,94,70,80,*',types:'cntr,ro,html,ro,ro,ro,ro,date,ro,ro,ro,date,ro',hiddenColumns:'',aligns:'center,,,,,,,,right,,,,',serverSort:true,sorts:'na,na,na,na,na,na,na,na,na,na,na,na,na',fixColumnSize:null,nodeImgCallback:'',multiSelection:'',checkedRef:'',filters:'\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0,\u00A0',sysColumns:'',treeColumnReadonly:true,showTreeIndex:null,editMode:null,filterColumn:true,drag:null,beforeDragCallback:null,afterDragCallback:null,afterFillRowCallback:null,beforeIndexChangedCallback:null,afterIndexChangedCallback:null,contextMenuId:null,rightClickSelected:'true',rightClickCallback:null,allowCheckCallback:null,rowHeight:null,hdrRowH:null,hdrFilterH:null,moveColumn:null,rowValueChangedCallback:null,groupColumn:true,adjustColumn:true,saveColumn:true,showHeaderMenu:'hide-column,save-layout,group-column,adjust-column',hintCallback:null,cascade:null,hasChildrenCallback1:null,onRowCheck:null,onRowChecked:null,onRowCheckedAll:null,onRowExpand:null,onRowClick:null,onRowDblClick:'grdRepairApplyRowDblClick',onLastEditorPressEnter:null,initFun:function(){this.grid.bindColHTMLCallback(null,'fNO','grdRepairApply_fNORender');this.grid.bindColReadonly(null,'fRepairDate','true');this.grid.bindColFormat(null,'fRepairAmount','0,000.00');this.grid.bindColReadonly(null,'fApplyDate','true');}});	
+}	
+function load_vRepairApply_xblinit(){if (justep("vRepairApply").getAttribute('xblloaded') &amp;&amp; justep("vRepairApply").getAttribute('xblloaded') == 'true') return;justep("vRepairApply").setAttribute('xblloaded', 'true');	
+}	
+var __actions__ = {	
+};	
+</script>   </head>    <body class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;">     <div id="statusPanel"></div>      <span id="infoPanel" style="position:absolute;display:none"></span>      <div id="visible-element" style="height:100%;width:100%;">       <div class="" id="rootView" style="height:100%;width:100%">         <table class="component_42908985 tableLayout" component="/UI/system/components/tableLayout.xbl.xml#tableLayout" id="table" style="width:100%;height:100%;table-layout:fixed;">           <tr id="default3">             <td id="td2" style="height:35px">               <div class="component_D66742E1 toolbars" component="/UI/system/components/toolbars.xbl.xml#toolbars" id="tbrRepairApply">                 <table cellpadding="0" cellspacing="0" style="width:100%">                   <tr>                     <td>                       <div class="toolbar-manager" name="toolbarmanager" width="100%">                         <div class="toolbar-style" name="toolbargroup">                           <table cellpadding="0" cellspacing="1px">                             <tr>                               <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="item99978bf6-c6de-4dc0-a257-abfc5ac45419" model="mdMain" onclick="justep.xbl('dRepairApply').refreshData(); ">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_refresh.gif" src="/UI/system/images/standardToolbar/standard/refresh.gif" style="border:none" title="刷新"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="iteme94140ab-8d56-4a01-b85b-f7ad20252a75" model="mdMain" onclick="justep.xbl('filter-dialog-61ba0217-eb98-453f-ae95-f659fe228cba').show('dRepairApply');">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/un_search.gif" src="/UI/system/images/standardToolbar/standard/search.gif" style="border:none" title="查询"></img>                                 </span>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <span id="item73d026a7-c3ac-4585-86ed-0cc61c16f967" model="mdMain" onclick="justep.xbl('filter-pattern-159eff1b-3d36-45fc-8588-d0323c106020').show('dRepairApply', event.target||event.srcElement);">                                   <img align="absmiddle" class="xforms-trigger-img" dis-src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" src="/UI/system/images/standardToolbar/standard/filter-dropdown.gif" style="border:none" title="查询方案"></img>                                 </span>                               </td>                                <td class="toolbar-separator-style">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <div class="component_218FE365 pageNavigator" component="/UI/system/components/pageNavigator.xbl.xml#pageNavigator" data="dRepairApply" id="5e0e6afd874c42859fb2f9a859d8a263" mode="IMG">                                   <table border="0" cellpadding="0" cellspacing="0px" class="xui-pageNavigator" style="_height:100%;">                                     <tr class="">                                       <td class="xui-pageNavigator-button" style="">                                         <img _disabled="true" onclick="if(!this.getAttribute('_disabled')) justep.XBLObject.getXBLObject(this).gotoPage(1)" style="border:0px" title="第一页"></img>                                       </td>                                        <td class="xui-pageNavigator-button" style="">                                         <img _disabled="true" style="border:0px" title="上一页"></img>                                       </td>                                        <td class="xui-pageNavigator-page" nowrap="true" style=""></td>                                        <td class="xui-pageNavigator-button" style="">                                         <img style="border:0px" title="下一页"></img>                                       </td>                                        <td class="xui-pageNavigator-button" style="">                                         <img style="border:0px" title="最后页"></img>                                       </td>                                        <td class="xui-pageNavigator-ext" nowrap="true" style="" valign="middle"></td>                                     </tr>                                   </table>                                    <span count="" data="dRepairApply" limit="" offset="" page-count="7" style="display:none" xblid="attribute"></span>                                 </div>                               </td>                             </tr>                           </table>                         </div>                       </div>                     </td>                      <td>                       <div class="toolbar-manager" name="toolbarmanager" width="100%">                         <div class="toolbar-style" name="toolbargroup">                           <table cellpadding="0" cellspacing="1px">                             <tr>                               <td class="groupanchor" name="group_anchor" onmouseout="this.style.border='1px solid #dfe8f6';" onmouseover="this.style.border='1px ridge';" width="5">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/group.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <div all-selected-label="'全部'" auto-refresh="true" class="xui-select component_E8111CC2 gridFilter" component="/UI/appCommon/components/filter.xbl.xml#gridFilter" default-label="'编辑中,处理中,已完成'" default-value="'bsEditing,bsExecuting,bsFinished'" filter-data="dRepairApply" filter-relation="fBizState" id="standardProcessQueryBar_bizStateFilter" label-separator="," multi-select="true" style="width: 80px" value-separator=",">                                   <span auto-refresh="true" default-value-binding-id="standardProcessQueryBar_bizStateFilter_defaultValue_1246124391" filter-data="dRepairApply" filter-relation="fBizState" inner-data-id="standardProcessQueryBar_bizStateFilter_data_1246124391" model-id="standardProcessQueryBar_bizStateFilter_model_1246124391" select-id="standardProcessQueryBar_bizStateFilter_select_1246124391" style="display:none" xblid="attribute"></span>                                    <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect xforms-appearance-minimal xui-select" id="standardProcessQueryBar_bizStateFilter_select_1246124391" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)">                                     <tbody>                                       <tr>                                         <td class="focus" style="display:none;width:0px"></td>                                          <td class="xxf-value">                                           <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)">                                             <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;">                                               <tr style="border:none">                                                 <td style="width:100%;height:100%;border:none;">                                                   <input accesskey="" class="xforms-ext-select-input" tabindex=""></input>                                                 </td>                                                  <td style="border:none" width="20px">                                                   <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img>                                                 </td>                                               </tr>                                             </table>                                           </div>                                         </td>                                          <td class="xxf-alert">                                           <span class="xforms-alert">                                             <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                                              <div class="xforms-alert-value" id=""></div>                                           </span>                                         </td>                                       </tr>                                     </tbody>                                   </table>                                    <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="standardProcessQueryBar_bizStateFilter_defaultValue_1246124391" style="display:none">                                     <tr>                                       <td>                                         <span class="xforms-value"></span>                                          <span class="xforms-alert">                                           <span class="xforms-alert-icon"></span>                                         </span>                                       </td>                                     </tr>                                   </table>                                 </div>                               </td>                                <td class="toolbar-separator-style">                                 <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img>                               </td>                                <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';">                                 <div class="xui-select component_B42F6D5E extDateFilter" component="/UI/appCommon/components/extDateFilter.xbl.xml#extDateFilter" filter-data="dRepairApply" filter-date-mode="single" filter-date-relation1="fCreateTime" id="standardProcessQueryBar_dateFilter" style="width: 80px">                                   <table cellpadding="0" cellspacing="0" class="xui-autofill component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="standardProcessQueryBar_dateFilter_select_718297121" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)">                                     <tbody>                                       <tr>                                         <td class="focus" style="display:none;width:0px"></td>                                          <td class="xxf-value">                                           <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)">                                             <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;">                                               <tr style="border:none">                                                 <td style="width:100%;height:100%;border:none;">                                                   <input accesskey="" class="xforms-ext-select-input" tabindex=""></input>                                                 </td>                                                  <td style="border:none" width="20px">                                                   <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img>                                                 </td>                                               </tr>                                             </table>                                           </div>                                         </td>                                          <td class="xxf-alert">                                           <span class="xforms-alert">                                             <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>                                              <div class="xforms-alert-value" id=""></div>                                           </span>                                         </td>                                       </tr>                                     </tbody>                                   </table>                                    <div id="standardProcessQueryBar_dateFilter_dialog_718297121" style="display:none"></div>                                    <div style="width:246px;height:110px;position:absolute;left:-9000px;top:-9000px">                                     <div class="xforms-dialog" height="135" id="standardProcessQueryBar_dateFilter_dialog_718297121-content" minmax="false" resizeable="false" style="width:100%;height:100%" title="自定义" width="250">                                       <table style="margin: 5px; width: 220px; font-size: 12px;">                                         <tr style="height: 25px">                                           <td style="width: 67px; text-align: center;">开始日期</td>  
+                                          <td> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="9e7229b1b2b34dbfb186719298634804" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="focus" style="display:none;width:0px"></td>  
+                                                  <td class="xxf-value"> 
+                                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                      <div class="xforms-alert-value" id=""></div> 
+                                                    </span> 
+                                                  </td>  
+                                                  <td class="xui-ie-input-bug"></td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td> 
+                                        </tr>  
+                                        <tr style="height: 25px"> 
+                                          <td style="width: 67px; text-align: center;">结束日期</td>  
+                                          <td> 
+                                            <table cellpadding="0" cellspacing="0" class="xforms-control xforms-input xforms-appearance-minimal xui-input" id="c7a8201d2b71418286a3a062fe478551" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                              <tbody> 
+                                                <tr> 
+                                                  <td class="focus" style="display:none;width:0px"></td>  
+                                                  <td class="xxf-value"> 
+                                                    <input accesskey="" class="xforms-value" tabindex="" type="text"></input> 
+                                                  </td>  
+                                                  <td class="xxf-alert"> 
+                                                    <span class="xforms-alert"> 
+                                                      <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                                      <div class="xforms-alert-value" id=""></div> 
+                                                    </span> 
+                                                  </td>  
+                                                  <td class="xui-ie-input-bug"></td> 
+                                                </tr> 
+                                              </tbody> 
+                                            </table> 
+                                          </td> 
+                                        </tr>  
+                                        <tr style="height: 35px"> 
+                                          <td colspan="2" style="text-align: center;"> 
+                                            <input onclick="xforms.blur(true); if (justep.xbl('standardProcessQueryBar_dateFilter')._doDialogCheck()) {xforms('standardProcessQueryBar_dateFilter_dialog_718297121').close();}" style="width: 60px" type="button" value="确定"></input>  
+                                            <input onclick="xforms('standardProcessQueryBar_dateFilter_dialog_718297121').close();" style="width: 60px" type="button" value="取消"></input> 
+                                          </td> 
+                                        </tr> 
+                                      </table> 
+                                    </div> 
+                                  </div>  
+                                  <span auto-refresh="true" default-select="0" dialog-id="standardProcessQueryBar_dateFilter_dialog_718297121" filter-data="dRepairApply" filter-date-mode="single" filter-date-relation1="fCreateTime" inner-data-id="standardProcessQueryBar_dateFilter_data_718297121" model-id="standardProcessQueryBar_dateFilter_model_718297121" select-id="standardProcessQueryBar_dateFilter_select_718297121" style="display:none" xblid="attribute"></span> 
+                                </div> 
+                              </td>  
+                              <td class="toolbar-separator-style"> 
+                                <img align="absmiddle" class="standard-btn" src="/UI/system/images/standardToolbar/standard/compart.gif"></img> 
+                              </td>  
+                              <td class="toolbar-item-style" onmousedown="this.className='toolbar-item-style-down';" onmouseout="this.className='toolbar-item-style-out';" onmouseover="this.className='toolbar-item-style-over';" onmouseup="this.className='toolbar-item-style-up';"> 
+                                <div class="xui-select component_AAB8FC3C extOrgFilter" component="/UI/appCommon/components/extOrgFilter.xbl.xml#extOrgFilter" execute-concept="OA_AS_RepairExecute" filter-data="dRepairApply" id="standardProcessQueryBar_orgFilter" manage-type-codes="call('appCommon.component.StandardProcessQueryBar.getManageTypeCodes')" org-url-relation="fCreatePsnFID" person-id-relation="fCreatePsnID" style="width: 140px"> 
+                                  <span auto-refresh="true" execute-concept="OA_AS_RepairExecute" filter-data="dRepairApply" inner-data-id="standardProcessQueryBar_orgFilter_data_1043630500" manage-type-codes-binding-id="standardProcessQueryBar_orgFilter_manageTypeCodes_1043630500" model-id="standardProcessQueryBar_orgFilter_model_1043630500" org-data-id="standardProcessQueryBar_orgFilter_orgData_1043630500" org-url-relation="fCreatePsnFID" person-id-relation="fCreatePsnID" select-id="standardProcessQueryBar_orgFilter_select_1043630500" style="display:none" xblid="attribute"></span>  
+                                  <table cellpadding="0px" cellspacing="0px" class="xforms-control xforms-output" id="standardProcessQueryBar_orgFilter_manageTypeCodes_1043630500" style="display:none"> 
+                                    <tr> 
+                                      <td> 
+                                        <span class="xforms-value"></span>  
+                                        <span class="xforms-alert"> 
+                                          <span class="xforms-alert-icon"></span> 
+                                        </span> 
+                                      </td> 
+                                    </tr> 
+                                  </table>  
+                                  <table cellpadding="0" cellspacing="0" class="xui-autofill component_DE7FA61F treeSelect xforms-control xforms-treeselect xforms-appearance-minimal xui-select" id="standardProcessQueryBar_orgFilter_select_1043630500" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)"> 
+                                    <tbody> 
+                                      <tr> 
+                                        <td class="focus" style="display:none;width:0px"></td>  
+                                        <td class="xxf-value"> 
+                                          <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                                            <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                                              <tr style="border:none"> 
+                                                <td style="width:100%;height:100%;border:none;"> 
+                                                  <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                                                </td>  
+                                                <td style="border:none" width="20px"> 
+                                                  <img align="absMiddle" src="/form/images/combo_select.gif" style="margin-left:3px"></img> 
+                                                </td> 
+                                              </tr> 
+                                            </table> 
+                                          </div> 
+                                        </td>  
+                                        <td class="xxf-alert"> 
+                                          <span class="xforms-alert"> 
+                                            <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                                            <div class="xforms-alert-value" id=""></div> 
+                                          </span> 
+                                        </td> 
+                                      </tr> 
+                                    </tbody> 
+                                  </table> 
+                                </div> 
+                              </td> 
+                            </tr> 
+                          </table> 
+                        </div> 
+                      </div> 
+                    </td>  
+                    <td style="width:100%"></td> 
+                  </tr> 
+                </table> 
+              </div> 
+            </td> 
+          </tr>  
+          <tr id="default4"> 
+            <td id="td4"> 
+              <div class="" id="vRepairApply" lazy="false" style="height:100%"> 
+                <div class="component_6298A7A1 grid" data="dRepairApply" id="grdRepairApply" onRowDblClick="grdRepairApplyRowDblClick" right-click-selected="true" show-header-menu="hide-column,save-layout,group-column,adjust-column" style="width:100%;height:100%;;overflow:hidden" system-columns="version,fApplyOgnID,fApplyOgnName,fApplyDeptID,fApplyPosID,fApplyPosName,fApplyPsnID,fApplyPsnFID,fApplyPsnFName,fAssetID,fKindID,fSpecType,fServiceYear,fUsedYear,fRepairTypeID,fRemainValue,fDescription,fRemark,fReturnDate,fBizState,fCreateOgnID,fCreateOgnName,fCreateDeptID,fCreateDeptName,fCreatePosID,fCreatePosName,fCreatePsnID,fCreatePsnName,fCreatePsnFID,fCreatePsnFName,fCreateTime,fUpdatePsnID,fUpdatePsnName,fUpdateTime,fCurrentActivities,fCurrentExecutors,fExtendStr1,fExtendStr2,fExtendStr3,fExtendStr4,fExtendStr5,fExtendStr6,fExtendStr7,fExtendStr8,fExtendStr9,fExtendDate1,fExtendDate2,fExtendDate3,fExtendDate4,fExtendDate5,fExtendNum1,fExtendNum2,fExtendNum3,fExtendNum4,fExtendNum5"></div> 
+              </div> 
+            </td> 
+          </tr> 
+        </table> 
+      </div> 
+    </div>  
+    <div class="component_3084CC8F bizDataFilterDialog" component="/UI/system/components/bizDataFilterDialog.xbl.xml#bizDataFilterDialog" id="filter-dialog-61ba0217-eb98-453f-ae95-f659fe228cba"> 
+      <div xblid="filter-dialog"> 
+        <div id="GLOBAL_ID_N825171855" style="display:none"></div>  
+        <div style="width:486px;height:315px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="340" id="GLOBAL_ID_N825171855-content" level="modal" style="width:100%;height:100%" title="查询对话框" width="490"> 
+            <iframe frameborder="no" id="GLOBAL_ID_N1371822876" name="GLOBAL_ID_N1371822876" src="about:blank" style="width: 100%; height: 100%" xblid="filter-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="component_BBF817C1 bizDataFilterPattern" component="/UI/system/components/bizDataFilterPattern.xbl.xml#bizDataFilterPattern" id="filter-pattern-159eff1b-3d36-45fc-8588-d0323c106020"> 
+      <div xblid="filter-pattern-menu"> 
+        <div appearance="context" class="component_93319841 menu" component="/UI/system/components/menu.xbl.xml#menu" id="2aa9dedad5e54b89b2b463c85a2aaa98" menu-id="GLOBAL_ID_N848953944" style="width: 52px;"> 
+          <div menuid="GLOBAL_ID_N848953944" style="display:none" xblid="menuitemsets"></div>  
+          <div appearance="context" id="GLOBAL_ID_N848953944" open-mode="web"></div> 
+        </div> 
+      </div>  
+      <div xblid="filter-pattern-dialog"> 
+        <div id="GLOBAL_ID_1351434279" style="display:none"></div>  
+        <div style="width:546px;height:415px;position:absolute;left:-9000px;top:-9000px"> 
+          <div appearance="full" class="xforms-dialog" close="true" draggable="true" height="440" id="GLOBAL_ID_1351434279-content" level="modal" style="width:100%;height:100%" title="过滤模式" width="550"> 
+            <iframe frameborder="no" id="GLOBAL_ID_725491737" name="GLOBAL_ID_725491737" src="about:blank" style="width: 100%; height: 100%" xblid="filter-pattern-dialog-iframe"></iframe> 
+          </div> 
+        </div> 
+      </div> 
+    </div>  
+    <script>
+function func_1096243201(data){var oData = justep.XData.$('standardProcessQueryBar_orgFilter_orgData_1043630500');var eventData = data;var rowID = eventData['rowId'];var delay = eventData['delay'];var control = eventData['source'];if(delay){if(oData){ oData.loadTreeData(rowID, function(){control.setNodeLoadSuccess(rowID);});}}}</script>  
+    <script>
+function func_441796315(data){var instance = data.instance;var grid = data.grid;var cell = data.cell;var nodeKind =cell.getValueByColId(instance.nodeKindPath);return !grid.isLeafNode(nodeKind);}</script>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

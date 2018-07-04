@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sample="http://www.agencexml.com/sample" xmlns:xforms="http://www.justep.com/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:justep="http://www.justep.com/x5#" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xui="http://www.justep.com/xui" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xblcompliexblns="http://www.w3.org/ns/xbl" xsl:version="2.0" style="height:100%;width:100%;" sys-param="false">  
+  <head xmlns=""> 
+    <script language="javascript" src="/x5/$vf615e88330894a65bcef123abb642c11/base/base.js?language=zh_CN"/>  
+    <script language="javascript" src="/x5/$v3bb958160aa4495fbc42e7c0d945c2c6/UI/system/resources/system.res.js?language=zh_CN"/>  
+    <meta http-equiv="Media-Type" content="ajaxforms"/>  
+    <meta name="keywords" content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v4790a3ea51e545d09e3fc0c2cdfa0a68/UI/system/icons/system.icon.css?language=zh_CN"/>  
+    <script>
+		 
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url;
+					var javaParam = msgs.param;
+					
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					
+					
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+										
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2];
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+						
+					}
+				}
+			}
+			
+			function _close_(){
+				_closeActivity_();				
+			}
+		
+		</script>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v2b353c70ad124429976092ff2df42044/UI/system/config/user.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$vace70b881c3e457daec73f9a370ac544/UI/portal2/process/portal/components/login/login.css?language=zh_CN"/>  
+    <link rel="stylesheet" type="text/css" href="/x5/$v9cd0a763b5d6432ea74614de40a54ebe/UI/portal2/process/portal/login.css?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$vf3e11b26b2e842ebb0631f62594f8a62/UI/portal2/process/portal/lib/md5.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v742536c9ba3c4c3590e36aa4b65e2d28/UI/portal2/process/portal/lib/jquery.cookie.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v08467e0aaa974548b44d5cdaea33b834/UI/portal2/process/portal/lib/eventable.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$v23193a8ef7914c229ceb30ff4acf4e2d/UI/portal2/process/portal/components/login/login.js?language=zh_CN"/>  
+    <script type="text/javascript" src="/x5/$vf330770822d04177bab74cc360bf9e48/UI/portal2/process/portal/login.js?language=zh_CN"/>  
+    <script type="text/javascript">
+    	var _config = {
+    		license: ${license}
+    	};
+    </script>  
+    <title>X5协同管理系统</title>  
+    <script type="text/javascript" src="/x5/$v21053d9ed6b94ce5958dbfbe7b621c51/UI/portal2/process/portal/.cache/login_zh_CN_x5_d5b8d2799d274b23b0c7eb6b2d886f20.js?language=zh_CN&amp;$version=6ca17314-336d-4a54-971b-3ee4f28ce8e1"/>
+  </head>  
+  <body xmlns="" style="margin:0; padding:0;height:100%;width:100%;" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();"> 
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div xforms:lazy="false" id="rootView" class="" style="height:100%;width:100%"> 
+        <div style="height:120px"/>  
+        <div id="main"> 
+          <div class="head"/>  
+          <div id="login-form"/>  
+          <div id="setting"> 
+            <div class="inner"> 
+              <span> 
+                <input type="checkbox" name="remember"/>  
+                <label>记住用户名</label> 
+              </span>  
+              <span> 
+                <input type="checkbox" name="class"/>  
+                <label>经典门户</label> 
+              </span>  
+              <span> 
+                <input type="checkbox" name="maximize"/>  
+                <label>窗口最大化</label> 
+              </span>  
+              <div id="downApp"> 
+                <span> 
+                  <label>平板客户端下载：</label> 
+                </span>  
+                <span id="appleApp" class="icon36 icon-system-appstore"/>  
+                <span id="androidApp" class="icon36 icon-system-android"/> 
+              </div> 
+            </div> 
+          </div>  
+          <div class="tail"> 
+            <div class="color-yellow"/>  
+            <div class="color-red"/>  
+            <div class="color-blue"/>  
+            <div class="color-white"/>  
+            <div class="color-orange"/>  
+            <div class="color-green"/> 
+          </div> 
+        </div>  
+        <div class="justep-info"> 
+          <a class="fr2" href="http://www.justep.com/html/lianxiwomen/ts0982045542H6636.html" target="_blank">联系我们 　|</a> 　 
+          <a class="fr2" href="http://www.justep.com//html/falvshuoming/ts0982045347B484H.html" target="_blank">法律说明 　|</a> 　 
+          <a class="fr2" href="http://www.justep.com//html/wangzhanditu/ts09820455744B8B.html" target="_blank">网站地图　|</a> 　 
+          <a class="fr2" href="http://bbs.justep.com" target="_blank">论坛</a> 
+        </div>  
+        <div id="portal-type" style="margin: 2px auto;width: 180px;color: #666"> 
+          <input type="radio" name="index" checked="true" value="index.w">默认首页</input>  
+          <input id="type1" type="radio" name="index" value="index2.w">首页2</input>  
+          <input id="type2" type="radio" name="index" value="index3.w">首页3</input> 
+        </div> 
+      </div> 
+    </div> 
+  </body> 
+</html>

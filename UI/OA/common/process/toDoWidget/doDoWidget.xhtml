@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:exf="http://www.exforms.org/exf/1-0" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:justep="http://www.justep.com/x5#" xsl:version="2.0">  
+  <xhtml:head> 
+    <script src="/base/base.js" type="text/javascript"/>  
+    <script src="/form/form.js" type="text/javascript"/> 
+  </xhtml:head>  
+  <xhtml:body style="margin: 0px;overflow: auto"> 
+    <xsl:if test="/root/flag = 'true'"> 
+      <table style="width: 100%; height: 100%; font-size: 12px; text-align: center;"> 
+        <tr/>  
+        <tr height="50px"> 
+          <td> 
+            <a href="#" onclick="justep.Portal.openWindow('待办任务', '/SA/task/taskCenter/mainActivity.w?process=/SA/task/taskCenter/taskCenterProcess&amp;activity=mainActivity&amp;parameter=waiting', false)"> 
+	            <img alt="待办任务" src="/UI/OA/common/process/toDoWidget/images/task.png" width="48" height="48" border="0"/> 
+            </a> 
+          </td>  
+          <td> 
+            <a href="#" onclick="justep.Portal.openWindow('待阅公文', '/OA/doc/process/readDocQuery/readDocQuery.w?process=/OA/doc/process/readDocQuery/readDocQueryProcess&amp;activity=readDocQueryPortalActivity', false)"> 
+	            <img alt="待阅公文" src="/UI/OA/common/process/toDoWidget/images/waitDoc.gif" width="48" height="48" border="0"/> 
+            </a> 
+          </td>  
+          <td> 
+            <a href="#" onclick="justep.Portal.openWindow('我的日程', '/OA/schedule/process/mySchedule/mySchedule.w?process=/OA/schedule/process/mySchedule/myScheduleProcess&amp;activity=mySchedulePortalActivity', false)"> 
+              <img alt="今天日程" src="/UI/OA/common/process/toDoWidget/images/schedule.png" width="48" height="48" border="0"/> 
+            </a> 
+          </td> 
+        </tr>  
+        <tr height="20px"> 
+          <td>待办任务:
+            <a href="#" onclick="justep.Portal.openWindow('待办任务', '/SA/task/taskCenter/mainActivity.w?process=/SA/task/taskCenter/taskCenterProcess&amp;activity=mainActivity&amp;parameter=waiting', false)"> 
+	            <xsl:value-of select="/root/data/*/root/tasks-count"/>
+	        </a> 
+          </td>  
+          <td>待阅公文:
+            <a href="#" onclick="justep.Portal.openWindow('待阅公文', '/OA/doc/process/readDocQuery/readDocQuery.w?process=/OA/doc/process/readDocQuery/readDocQueryProcess&amp;activity=readDocQueryPortalActivity', false)"> 
+	            <xsl:value-of select="/root/data/*/root/waitReadDoc-count"/>
+	        </a> 
+          </td>  
+          <td>今天日程:
+            <a href="#" onclick="justep.Portal.openWindow('我的日程', '/OA/schedule/process/mySchedule/mySchedule.w?process=/OA/schedule/process/mySchedule/myScheduleProcess&amp;activity=mySchedulePortalActivity', false)"> 
+	            <xsl:value-of select="/root/data/*/root/schedules-count"/> 
+            </a> 
+          </td> 
+        </tr>  
+        <tr/> 
+      </table> 
+    </xsl:if>  
+    <xsl:if test="/root/flag != 'true'"> 
+      <xsl:value-of select="/root/message"/> 
+    </xsl:if> 
+  </xhtml:body> 
+</xhtml:html>

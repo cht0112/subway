@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+
+	<element name="simpleSelect" tag-type="rich" tag-name="div" icon="gridSelect.gif" text="下拉列表" 
+		binding-component="/UI/system/components/select.xbl.xml#simpleSelect" base-class="select"
+		 namespace="xui" namespace-uri="http://www.justep.com/xforms" 
+		display-property="id" component-class="SimpleSelect" js-class="justep.design.GridSelect" component-type="formControl"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="ref" text="引用" editor-ref="dataRef" required="true"/>	
+			<property name="label-ref" text="label引用" editor-ref="dataRef"/>
+			<property name="multi-select" text="多选" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="option-data" text="可选数据"   is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="option-label" text="可选标签" depend-on="option-data" editor-ref="relationDlg" editor-parameter="option-data"/>
+			<property name="option-value" text="可选值" depend-on="option-data" editor-ref="relationDlg" editor-parameter="option-data"/>
+			<property name="dropdown-height" text="下拉框高度" />
+			<property name="value-separator" text="多选value分割字符"/>
+			<property name="label-separator" text="多选label分割字符"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-select"/>
+			<property name="class"  text="class" editor-extend-data="xui-select:select"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+		</properties>
+		 
+		<toolbar>	
+		    <item text="编辑选项"  method="editOptionData" />			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel"/>
+		</toolbar>
+
+		<events>  <!--组件事件-->		
+			<event name="onDropdown"  text="显示下拉"/>
+			<event name="onCloseup"  text="关闭下拉"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div component="/UI/system/components/select.xbl.xml#simpleSelect"> 
+				</xhtml:div> 
+		   ]]></template>
+		</templates>
+	</element>
+
+	<element name="checkbox" tag-type="rich" tag-name="select" icon="checked.gif" text=""
+        namespace="xforms" namespace-uri="http://www.justep.com/xforms" 
+        display-property="id" 
+        component-class="XFormSelect" 
+        component-type="formControl"  design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="ref" text="引用" editor-ref="dataRef" required="true"/>	
+			<property name="class" text="class" editor-ref="classList" default-value="horizontal"/>
+			<property name="style" text="样式" editor-ref="styleDialog" use-default="true"/>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="disabled" text="禁用" editor-ref="edit-disabled" default-value="false"/>
+		</properties>
+		<property-editors>
+			<property-editor name="classList" type="list">
+				<static-data value="horizontal:横向,vertical:纵向" ></static-data>
+			</property-editor>
+		</property-editors>
+		
+		
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel"/>
+			<item text="添加Item" class="XFormSelect" method="addItem"/>
+		</toolbar>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xforms:select>
+					<xforms:item>
+						<xforms:label>item1</xforms:label>
+						<xforms:value>item1</xforms:value>
+					</xforms:item>
+					<xforms:item>
+						<xforms:label>item2</xforms:label>
+						<xforms:value>item2</xforms:value>
+					</xforms:item>
+				</xforms:select>
+		   ]]></template>
+		</templates>
+	</element>
+	
+	<element name="radio" tag-type="rich" tag-name="select1" icon="radio_on.gif" text="" 
+        namespace="xforms" namespace-uri="http://www.justep.com/xforms" 
+        display-property="id" 
+        component-class="XFormSelect" 
+        component-type="formControl"  design-view="web-designer" >
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="ref" text="引用" editor-ref="dataRef" required="true"/>	
+			<property name="class" text="class" editor-ref="classList" default-value="horizontal"/>
+			<property name="style"  text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true"/>
+			</property>
+			<property name="tabindex" text="Tab键顺序" data-type="integer" />
+			<property name="accesskey" text="快捷键" />
+			<property name="disabled" text="禁用" editor-ref="booleanList"/>
+		</properties>
+		<property-editors>
+			<property-editor name="classList" type="list">
+				<static-data value="horizontal:横向,vertical:纵向" ></static-data>
+			</property-editor>
+		</property-editors>
+		
+		
+		<events>  
+		</events>
+		
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel"/>
+			<item text="添加Item" class="XFormSelect" method="addItem"/>
+		</toolbar>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xforms:select1 ref="">
+					<xforms:item>
+						<xforms:label>item1</xforms:label>
+						<xforms:value>item1</xforms:value>
+					</xforms:item>
+					<xforms:item>
+						<xforms:label>item2</xforms:label>
+						<xforms:value>item2</xforms:value>
+					</xforms:item>
+				</xforms:select1>
+		   ]]></template>
+		</templates>
+	</element>
+
+	<element name="selectItem" tag-name="item" icon="Control_TabControl.gif" text="item"  visible='false'
+			 namespace="xforms" namespace-uri="http://www.justep.com/xforms" 
+			 component-class="SelectItem">
+		<properties>  
+			<property name="label"  text="显示文本" path="xforms:label/text()"/>
+			<property name="value"  text="值" path="xforms:value/text()"/>   
+		</properties>
+		<events>
+			<event name="xforms-select" display-name="onSelect" type="event" text="选中事件" parameters="event" is-script="true"/>
+			<event name="xforms-deselect" display-name="onDeSelect" type="event" text="选中移出事件" parameters="event" is-script="true"/>
+		</events>
+		<templates>
+		   <template name="default"><![CDATA[ 
+			<xforms:item>
+				<xforms:label>item</xforms:label>
+				<xforms:value>item</xforms:value>
+			</xforms:item>
+		   ]]></template> 
+		</templates>
+	</element>
+	
+</elements>

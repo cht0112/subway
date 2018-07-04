@@ -1,0 +1,333 @@
+/**
+	@name UI.windowOpener
+	@component /UI/system/components/windowOpener.xbl.xml#windowOpener
+	@class justep.WindowOpener
+	@extends justep.ObjectEvent
+	@model UI
+	@description <b>[rich]</b>浏览器原生对话框组件
+	@see UI.windowDialog
+	@see UI.windowRunner
+	@see UI.windowFrame
+	@see UI.windowReceiver
+	@example 
+	使用window.open打开页面，打开效果受浏览器影响
+	关于数据传递请参考windowDialog
+	<b>xml格式：</b>
+	<xmp>
+	<xhtml:div component="/UI/system/components/windowOpener.xbl.xml#windowOpener"
+		id="windowOpener1"
+		url="..."
+		modal="true"
+		width="500"
+		height="500"
+		resizable="true"
+		onSend="testOnSendToFrame"
+		onReceive= "testReceiveFromFreame"
+		onInit="testonInit"
+		onOpen="onOpen"
+		onClose="testOnDialogClose"/>
+	</xmp>
+	<b>JS使用说明：</b>
+<xmp>
+	1、使用js调用需要引入：
+		/UI/system/components/windowOpener/windowOpener.js
+	2、代码:
+		if(!windowOpener){            
+			var options = {
+				"url" : '/UI/demo/components/process/windowRunner/subWindow.w', 
+				"modal" : true,
+				"status" : "fullscreen",
+				"process" : process, 
+				"activity" : activity, 
+			};
+			windowOpener = new justep.WindowOpener(options);
+			windowOpener.attachEvent("onInit", function(){alert('init event');} , windowOpener);
+			windowOpener.attachEvent("onOpen", function(){alert('open event');} , windowOpener);  
+			windowOpener.attachEvent("onClose", function(){alert('close event');} , windowOpener);
+			windowOpener.attachEvent("onSend", 
+				function(event){
+					event.data = '自定义数据'; 
+				}, 
+				windowOpener);
+			windowOpener.attachEvent("onReceive", function(event){alert('收到的数据:'+event.data)} , windowOpener);
+		}
+		windowOpener.open({data:传入数据});
+</xmp>		
+*/
+
+/**
+	@name UI.windowOpener#windowOpener
+	@function
+	@param {object} options 创建参数
+	<br/><b>参数结构说明：</b>
+	<xmp>
+	{
+		id : {string} 组件id,
+		url : {string} 指定要打开的页的地址,
+		modal : {boolean} 是否对话框显示，参见{@link UI.windowOpener#modal},
+		status : 打开时状态，参见{@link UI.windowOpener#status},
+		width : {integer} 对话框宽(单位px),
+		height : {integer} 对话框高(单位px),
+		left : {integer} 对话框距离页面左边框的距离(单位px),
+		top : {integer}  对话框距离页面顶端的距离(单位px)，当left、top都没有时默认居中显示,
+		resizable : {boolean} 是否可以调整大小，参见{@link UI.windowOpener#parameters},
+		parameters : {string} window.open时的窗口参数，参见{@link UI.windowOpener#parameters},
+		process : {string} 打开窗口的process，默认使用当前环境中的process,
+		activity : {string} 打开窗口的activity，默认使用当前环境中的activity
+	}
+	</xmp>
+	@description 构造函数
+	@example
+	//动态创建
+	var options = {
+		"url" : '/UI/demo/components/process/windowRunner/subWindow.w', 
+		"modal" : true,
+		"status" : "fullscreen",
+		"process" : process, 
+		"activity" : activity, 
+	};
+	var opener = new justep.WindowOpener(options);
+*/
+
+/**
+	@name UI.windowOpener#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/windowOpener.xbl.xml#windowOpener"
+*/
+
+/**
+	@name UI.windowOpener#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.windowOpener#url
+	@attribute 
+	@description 被打开页面的url，如：.w文件的url、其他第三方页面的url
+*/
+
+/**
+	@name UI.windowOpener#parameters
+	@attribute 
+	@description window.open时的窗口参数，格式参考各浏览器说明
+	@example
+	<b>部分参数参考(具体效果以浏览器为准)：</b>
+	alwaysLowered | yes/no | 指定窗口隐藏在所有窗口之后 
+	alwaysRaised | yes/no | 指定窗口悬浮在所有窗口之上 
+	depended | yes/no | 是否和父窗口同时关闭 
+	directories | yes/no | Nav2和3的目录栏是否可见 
+	height | pixel value | 窗口高度 
+	hotkeys | yes/no | 在没菜单栏的窗口中设安全退出热键 
+	innerHeight | pixel value | 窗口中文档的像素高度 
+	innerWidth | pixel value | 窗口中文档的像素宽度 
+	location | yes/no | 位置栏是否可见 
+	menubar | yes/no | 菜单栏是否可见 
+	outerHeight | pixel value | 设定窗口(包括装饰边框)的像素高度 
+	outerWidth | pixel value | 设定窗口(包括装饰边框)的像素宽度 
+	resizable | yes/no | 窗口大小是否可调整 
+	screenX | pixel value | 窗口距屏幕左边界的像素长度 
+	screenY | pixel value | 窗口距屏幕上边界的像素长度 
+	scrollbars | yes/no | 窗口是否可有滚动栏 
+	titlebar | yes/no | 窗口题目栏是否可见 
+	toolbar | yes/no | 窗口工具栏是否可见 
+	Width | pixel value | 窗口的像素宽度 
+	z-look | yes/no | 窗口被激活后是否浮在其它窗口之上		
+*/
+
+/**
+	@name UI.windowOpener#modal
+	@attribute 
+	@description <b>[attribute]</b>是否弹出框显示，IE下受IE选项卡参数影响，为true时设置open属性modal=1
+	@default "false"
+*/
+
+/**
+	@name UI.windowOpener#status
+	@attribute 
+	@description <b>[attribute]</b>打开时状态, 取值范围：fullscreen:全屏显示
+*/
+
+/**
+	@name UI.windowOpener#width
+	@attribute 
+	@description 宽度(单位px)
+*/
+
+/**
+	@name UI.windowOpener#height
+	@attribute 
+	@description 高度(单位px)
+*/
+
+/**
+	@name UI.windowOpener#left
+	@attribute 
+	@description 对话框距离页面左边框的距离(单位px)
+*/
+
+/**
+	@name UI.windowOpener#top
+	@attribute 
+	@description 对话框距离页面顶端的距离(单位px)
+*/
+
+/**
+	@name UI.windowOpener#resizable
+	@attribute 
+	@type {boolean}
+	@description 是否可以拖拽改变大小，为true时设置open属性resizable=1
+	@default "true"
+*/
+
+/**
+	@name UI.windowOpener#process
+	@attribute 
+	@description 打开窗口的process，默认使用当前环境中的process
+*/
+
+/**
+	@name UI.windowOpener#activity
+	@attribute 
+	@description 打开窗口的activity，默认使用当前环境中的activity
+*/
+
+/**
+	@name UI.windowOpener#mapping 
+	@attribute 
+	@description 处理返回数据方式配置
+	@example
+	<b>接受返回数据格式：</b>
+	[
+		{//行id使用：rowid
+			列名 : 值,
+			列名 : 值,
+			...
+		},
+		...
+	]
+	<b>处理模式：</b>
+	全部新增 -- 返回数据根据映射规则全部新增到data
+	根据鉴别列新增或修改 -- 通过设置的鉴别列，当存在相关数据时修改，不存在时新增
+	删除后新增 -- 删除原有数据全部新增
+	修改当前行 -- 用返回的数据修改当前行数据
+	@see UI.windowDialog
+*/
+
+/**
+	@name UI.windowOpener#onOpen
+	@event
+	@description <b>[回调型事件]</b>打开时事件
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"window" : 新打开窗口的window对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowOpener#onClose
+	@event 
+	@description <b>[回调型事件]</b>关闭时事件
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowOpener#onSend
+	@event
+	@description <b>[回调型事件]</b> 向对话框传递数据，该事件函数的返回值将传递给对话框
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传递给打开页面的数据，可修改open方法传递的数据
+	}
+	</xmp>
+	@see UI.windowOpener#open
+*/
+
+/**
+	@name UI.windowOpener#onReceive
+	@event 
+	@description <b>[回调型事件]</b> 接受对话框返回数据，参考：{@link windowReceiver}
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传回的数据
+	}
+	</xmp>
+*/
+
+/**
+ @name UI.windowOpener#setURL
+ @function
+ @param {string} url <b>[required]</b>URL
+ @description 设置要打开的URL，重新设置URL需要在使用open2方法前
+*/
+
+/**
+	@name UI.windowOpener#open
+	@function 
+	@description 打开对话框
+	@param {object} options 打开参数
+	<br/><b>参数说明：</b>
+	<xmp>
+	{
+		data : {object} 打开传给window的数据,
+		url : {string} 指定要打开的window，但给出这个参数时会刺激dialog中window重新刷新,
+		process : {string} 缺省取环境里的,
+		activity : {string} 缺省取环境里的,
+		executor : {string} 执行者，缺省取环境里的,
+		executeContext : {string} 执行环境，缺省取环境里的
+	}
+	</xmp>
+	@example 
+	<b>代码示例：</b>
+	var options = {
+		"data" : data, 
+		"title" : title, 
+		"url" : '/UI/demo/components/process/windowRunner/subWindow.w', 
+		"process" : process, 
+		"activity" : activity, 
+		"executor" : executor, 
+		"executorContext" : executorContext
+	};
+	justep.xbl(组件ID).open(options);
+	@see UI.windowOpener#onSend
+ */
+
+/**
+ @name UI.windowOpener#close
+ @function
+ @description 关闭窗口
+**/
+
+/**
+ @name UI.windowOpener#refresh
+ @function
+ @description 刷新窗口
+**/
+
+/**
+ @name UI.windowOpener#setResizable
+ @function
+ @param {boolean}  resizable
+ @description 是否可以拖拽改变大小
+ @see UI.windowOpener#resizable
+*/
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl xmlns="http://www.w3.org/ns/xbl" xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:xforms="http://www.justep.com/xforms" script-type="text/javascript">
+	
+	<script src="/component/report/report.js"/>
+	<script src="/UI/system/components/dialog/dialog.js" />
+	<script src="/UI/system/components/windowDialog/windowDialog.js" />
+	<style src="/form/dhtmlx/dhtmlxWindows/dhtmlxwindows.css" />
+	<style src="/form/dhtmlx/dhtmlxWindows/skins/dhtmlxwindows_dhx_blue.css" />
+	
+	<binding id="report" delete-bound-element="false">
+		<resources>
+			<style>
+				<![CDATA[
+					.xui-report{
+					}
+				]]>
+			</style>
+		</resources>		
+		<template template-type="java" src="com.justep.xbl.report.Report" />		
+		<implementation>
+			({
+				initXBL : function() {
+					justep.Utils.extend(this, justep.Report, null, true);
+					this.initComponent();
+				},
+				initXBL2 : function() {
+					this.initContent();
+				}
+			})		
+		</implementation>				
+	</binding>
+	
+</xbl>

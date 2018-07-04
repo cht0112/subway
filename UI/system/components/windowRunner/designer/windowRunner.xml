@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="windowRunner" tag-name="div" icon="windowRunner.gif"
+		text="" binding-component="/UI/system/components/windowRunner.xbl.xml#windowRunner"
+		display-property="id" component-class="WindowRunner" component-type="formControl" parent-range="view"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="url" text="页面文件" editor-ref="fileDialog" editor-parameter="*.w"/>
+			<property name="title" text="对话框标题"/>
+			<property name="maximise" text="最大化(是否显示功能树)" editor-ref="booleanList" readonly="true" default-value="false"/>			
+			<property name="process" text="打开窗口的process，默认使用当前环境中的process"/>
+			<property name="activity" text="打开窗口的activity，默认使用当前环境中的activity"/>
+		</properties>
+		
+		<property-editors>
+		</property-editors>
+		
+		<events>
+			<event name="onSend" parameters="event"/>
+			<event name="onReceive" parameters="event"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div component="/UI/system/components/windowRunner.xbl.xml#windowRunner" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

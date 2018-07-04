@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+
+	<xbl:binding id="trigger">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+					<xsl:copy-of select="./*"/>
+				</root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+		<![CDATA[
+		({	
+			"initXBL" : function() {
+				this.$el = $(this.domNode);
+				justep.Utils.proxable(this, this.domNode.xformsObject, xforms.XFTrigger);
+			},
+			"initXBL2" : function() {
+				this.domNode.xformsObject.initOperation();
+			}
+		})
+		]]>
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			</xbl:style>
+		</xbl:resources>		
+	</xbl:binding>	
+</xbl:xbl>
+

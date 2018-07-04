@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="blob" tag-name="div" tag-type="rich" icon="blob.gif" text="blob"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/blob.xbl.xml#blob"
+		display-property="id" component-class="Blob" component-type="layout-container">
+		
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="关联data" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<!-- editor-parameter指定关联data的属性名称 -->
+			<property name="concept" text="概念，data中没有指定时需要指定" editor-ref="conceptDlg" editor-parameter="data" ref-type="Concept" ref-context="data/d"
+			allow-empty="true"/>
+			<!-- editor-parameter指定关联data的属性名称 -->
+			<property name="relation" text="Blob存放的关系" required="true" editor-ref="relationDlg" editor-parameter="data" ref-type="Relation" ref-context="data/d"/>
+			<property name="size" text="限制大小，支持格式：1024,25B,100KB,390M,34G"/>
+			<property name="disabled" text="禁用" required="false" editor-ref="edit-disabled" default-value="false"  data-type="boolean" allow-empty="true"/>   
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-blob"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+		</properties>
+	
+		<events>  <!--组件事件-->			
+			<event name="onRefreshButton" text="操作按钮刷新"/>
+			<event name="onRefresh"  text="刷新"/>
+			<event name="onSubmit"  text="提交"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml"            
+					component="/UI/system/components/blob.xbl.xml#blob">
+					<group name="show"/>
+				</xhtml:div>	
+		   ]]></template>
+		</templates>
+	</element>
+	
+	<element name="blobImage" tag-type="rich" tag-name="div" icon="img.gif" text="图片"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		binding-component="/UI/system/components/blob.xbl.xml#image"
+		display-property="id" component-class="BlobImage" component-type="formControl">
+		
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="data" text="关联data" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<!-- editor-parameter指定关联data的属性名称 -->
+			<property name="concept" text="概念，data中没有指定时需要指定" editor-ref="conceptDlg" editor-parameter="data" ref-type="Concept" ref-context="data/d"
+			allow-empty="true"/>
+			<!-- editor-parameter指定关联data的属性名称 -->
+			<property name="relation" text="图片存放的关系" required="true" editor-ref="relationDlg" editor-parameter="data" ref-type="Relation" ref-context="data/d"/>
+			<property name="size" text="限制大小，支持格式：1024,25B,100KB,390M,34G"/>
+			<property name="disabled" text="禁用" required="false" editor-ref="edit-disabled" default-value="false"  data-type="boolean" allow-empty="true"/>   
+			<property name="stretch" text="拉伸" required="false" editor-ref="booleanList" default-value="true" data-type="boolean" allow-empty="true"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-blob"/>
+			<property name="class" text="class"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+		</properties>
+	
+		<events>  <!--组件事件-->			
+			<event name="onRefreshButton" text="操作按钮刷新"/>
+			<event name="onRefresh"  text="刷新"/>
+			<event name="onSubmit"  text="提交"/>
+		</events>
+		
+		<templates>
+			<template name="default"><![CDATA[ 
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml"            
+					component="/UI/system/components/blob.xbl.xml#image"/>
+		   ]]></template>
+		</templates>
+	</element>
+</elements>

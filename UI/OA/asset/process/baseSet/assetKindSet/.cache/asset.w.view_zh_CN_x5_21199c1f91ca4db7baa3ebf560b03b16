@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ajx="http://www.ajaxforms.net/2006/ajx" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" style="height:100%;width:100%;" version="2.0">  
+  <head xmlns=""> 
+    <link href="/x5/$vcec7f0c22ccb49b7a97950355a52821a/form/xforms/xforms.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$vcc5fc3ca12b94a36b54af27935cf026b/form/justep/calendar.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v851384a3a78b4de181f9f24c4b997e3b/form/justep/showMessage.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v90951b101c754b349d3a9c614147f9e0/form/dhtmlx/dhtmlxGrid/dhtmlx_grid.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v3d910443364f4e85bd7b6a6078792ed7/form/dhtmlx/dhtmlxWindows/skins/dhtmlx_window.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <link href="/x5/$v3225c6b01c0548658b1e14ce00ae4711/form/dhtmlx/dhtmlxMenu/skins/dhtmlxmenu_glassy_blue.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script src="/x5/$v2d75aeb44a3e4385b59fdc6331ac8241/base/base.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v3e10da84ae924c2bb34d603f103f339a/base/base.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$vdf438234246d46a78e4e33c47c602ba6/form/form.res.js?language=zh_CN" type="text/javascript">
+</script>      <script src="/x5/$v0955b43050b8442bb3e5063cf926a6aa/form/form.js?language=zh_CN" type="text/javascript">
+</script>      <script language="javascript" src="/x5/$v76f6cda25e7a4854804d07aaf53216df/UI/system/resources/system.res.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$v23a53c7f5ba94d1aa7dd97052d1e9602/component/data/data.js?language=zh_CN">
+</script>      <script language="javascript" src="/x5/$vfd37d2e63bf4439480199d37bf3b19ac/UI/system/components/windowReceiver/windowReceiver.js?language=zh_CN">
+</script>      <meta content="ajaxforms" http-equiv="Media-Type"></meta>      <meta content="AJAX, Javascript, Web, XForms, XSLTForms, Exemples, Samples" name="keywords"></meta>      <link href="/x5/$vab86f148805140478c7a375b75e5fc93/UI/system/icons/system.icon.css?language=zh_CN" rel="stylesheet" type="text/css"></link>      <script>
+
+			onerror = pageErrorHandler;
+			function pageErrorHandler(msg, url, line, stack) {
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Uncaught Error:/,''):'未知错误';
+				msg = ('string'==typeof(msg) &amp;&amp; msg)? msg.replace(/Error:/,''):'未知错误';
+				msg = justep.String.trim(msg);
+				if (msg.substring(0,1) == "{"){
+					/*认为是json格式的数据*/
+					var msgs = JSON.parse(msg);
+					var code = msgs.code;
+					var message = msgs.message;
+					var reason = msgs.reason;
+					var messages = msgs.messages;
+					var javaStack = msgs.stack;
+					var javaUrl = msgs.url
+					var javaParam = msgs.param;
+					if (code!=null &amp;&amp; code!=undefined &amp;&amp; code!=""){
+						message = code + ", " + message;
+					}
+					var detail = "";
+					if (javaStack){
+						detail += javaStack; 
+					} 
+					if (javaUrl){
+						detail += '\n\r url:' + javaUrl;
+						if (javaParam){
+							detail += '\n\r param:' + javaParam;
+						}
+					}
+					if(url){
+						detail += ('\n at ('+url); 
+						if(line) detail += (':'+line); 
+						detail += ')';
+					}
+					if(stack) detail += stack;	
+					(new justep.System.showMessage()).open({"width":600,"msg":message,"details":detail,"title":"提示", "reason": reason, "messages": messages});
+					return true;
+				}else{
+					var msgs = msg.split("|");
+					if(justep.System.showMessage) {
+						var msg = msgs.length &gt; 0 ? msgs[0] : "";
+						var detail = msgs.length &gt; 1 ? (msgs[1] == "" ? msg : msgs[1]) : msg;
+						if(url){detail += ('\n at ('+url); if(line) detail += (':'+line); detail += ')';}
+						if(stack) detail += ('\n'+stack);
+						(new justep.System.showMessage()).open({"width":600,"msg":msg,"details":detail,"title":"提示"});
+						return true;
+					} else {
+						alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+						return false;
+					}
+				}
+				var msgs = msg.split("|");
+				if(justep.System.showMessage) {
+					var tip = "";
+					var reason = "";
+					var others = "";
+					var messages = "";
+					if (msgs.length == 1){
+						tip = msgs[0];
+						reason = "";
+						messages = "";
+						others = "";					
+					}else if (msgs.length == 2){
+						tip = msgs[0];
+						reason = "未知";
+						messages = "";
+						others = msgs[1];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = "";
+						others = msgs[2];
+					}else if (msgs.length == 3){
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}else {
+						tip = msgs[0];
+						reason = msgs[1];
+						messages = msgs[2]
+						others = msgs[3];
+					}
+					if(url){
+						others += ('\n at ('+url); 
+						if(line) others += (':'+line); 
+						others += ')';
+					}
+					if(stack){ 
+						others += ('\n'+stack);
+					}	
+					(new justep.System.showMessage()).open({"width":600,"msg":tip,"details":others,"title":"提示","reason":reason,"messages":messages});
+					return true;
+				} else {
+					alert(msgs.length &gt; 0 ? msgs[0] : "未知错误");
+					return false;
+				}
+			}
+			var _closeActivityed = false;
+			function _closeActivity_(){
+				window._noShowSessionTimeOut_ = true;
+				if (!_closeActivityed){
+					_closeActivityed = true;
+					var log = justep.Context.getRequestParameter("log"); 
+					if (log==1 || log=="1"){
+						var process = justep.Context.getCurrentProcess();
+						var activity = justep.Context.getCurrentActivity();
+						var executor = justep.Context.getExecutor();
+						if (process!=null &amp;&amp; activity!=null){
+							var xmlHttpRequest = justep.Request.sendBizRequest(process, activity, "closeActivityAction", "", null, function(data){}, true, executor);
+						}
+					}else{
+					}
+				}
+			}
+			function _close_(){
+				_closeActivity_();				
+			}</script>  
+    <link href="/x5/$v2b3003e65ace48ca9e5cfa2f7405aed1/UI/system/config/user.css?language=zh_CN" rel="stylesheet" type="text/css"></link>  
+    <script id="htmlScript1" src="/x5/$vbb87c168eb9d4a698d6b8537ad5b9989/UI/OA/asset/process/baseSet/assetKindSet/asset.js?language=zh_CN">
+</script>      <script>
+new justep.XBizData('assetTypeD',false,false,{'queryAction':"queryTOOL_TYPE_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TOOL_TYPE_CODE':'TOOL_TYPE_CODE'}",'limit':-1,'idColumn':"{'name':'TOOL_TYPE_CODE','relation':'TOOL_TYPE_CODE','define':'TOOL_TYPE_CODE','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLTYPECNAME':{'type':'String','relation':'TOOL_TYPE_CODE.tOOLTYPECNAME','define':'TOOL_TYPE_CODE.tOOLTYPECNAME','label':'工具名称'},'tOOLTYPEENAME':{'type':'String','relation':'TOOL_TYPE_CODE.tOOLTYPEENAME','define':'TOOL_TYPE_CODE.tOOLTYPEENAME','label':'英文名称'},'nUMSCODE':{'type':'String','relation':'TOOL_TYPE_CODE.nUMSCODE','define':'TOOL_TYPE_CODE.nUMSCODE','label':'编码'},'version':{'type':'Integer','relation':'TOOL_TYPE_CODE.version','define':'TOOL_TYPE_CODE.version','label':'版本'},'pARENTLEV':{'type':'Integer','relation':'TOOL_TYPE_CODE.pARENTLEV','define':'TOOL_TYPE_CODE.pARENTLEV','label':'父级标识'}}"},'assetTypeD_part',{});</script>  
+    <script>
+new justep.XBizData('toolSortD',false,false,{'queryAction':"queryTOOL_SORT_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TOOL_SORT_CODE':'TOOL_SORT_CODE'}",'limit':-1,'idColumn':"{'name':'TOOL_SORT_CODE','relation':'TOOL_SORT_CODE','define':'TOOL_SORT_CODE','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLSORTCNAME':{'type':'String','relation':'TOOL_SORT_CODE.tOOLSORTCNAME','define':'TOOL_SORT_CODE.tOOLSORTCNAME','label':'工具类型'},'tOOLSORTENAME':{'type':'String','relation':'TOOL_SORT_CODE.tOOLSORTENAME','define':'TOOL_SORT_CODE.tOOLSORTENAME','label':'英文名称'},'nUMSCODE':{'type':'String','relation':'TOOL_SORT_CODE.nUMSCODE','define':'TOOL_SORT_CODE.nUMSCODE','label':'编码'},'version':{'type':'Integer','relation':'TOOL_SORT_CODE.version','define':'TOOL_SORT_CODE.version','label':'版本'},'pARENTLEV':{'type':'Integer','relation':'TOOL_SORT_CODE.pARENTLEV','define':'TOOL_SORT_CODE.pARENTLEV','label':'父级标识'}}"},'toolSortD_part',{});</script>  
+    <script>
+new justep.XBizData('toolCategoryD',true,false,{'queryAction':"queryTOOL_CATEGORY_CODEAction",'dataModel':"/metrodetection/system_code/data",'dataType':"xml",'concept':"{'TOOL_CATEGORY_CODE':'TOOL_CATEGORY_CODE'}",'limit':-1,'idColumn':"{'name':'TOOL_CATEGORY_CODE','relation':'TOOL_CATEGORY_CODE','define':'TOOL_CATEGORY_CODE','type':'Integer'}",'directDelete':true,'deleteConfirm':false,'refreshConfirm':false,'updateMode':"whereAll",'orderBys':"{}",'defRelations':"{'tOOLCATEGORYCNAME':{'type':'String','relation':'TOOL_CATEGORY_CODE.tOOLCATEGORYCNAME','define':'TOOL_CATEGORY_CODE.tOOLCATEGORYCNAME','label':'工具分类'},'tOOLCATEGORYENAME':{'type':'String','relation':'TOOL_CATEGORY_CODE.tOOLCATEGORYENAME','define':'TOOL_CATEGORY_CODE.tOOLCATEGORYENAME','label':'英文名称'},'nUMSCODE':{'type':'String','relation':'TOOL_CATEGORY_CODE.nUMSCODE','define':'TOOL_CATEGORY_CODE.nUMSCODE','label':'编码'},'version':{'type':'Integer','relation':'TOOL_CATEGORY_CODE.version','define':'TOOL_CATEGORY_CODE.version','label':'版本'}}"},'',{});</script>  
+    <script>
+new justep.XCommonData('toolSortTypeCategoryCD',true,false,null,'','',{'deleteConfirm':true,'refreshConfirm':false,'dataType':"xml"}, {});</script>  
+    <script type="text/javascript" src="/x5/$v83f952cfa0fe42c2866bdb5a3152f001/UI/OA/asset/process/baseSet/assetKindSet/.cache/asset_zh_CN_x5_ecad902b7308449290f18717be170819.js?language=zh_CN&amp;$version=04797264-2338-46bb-8304-517067aebfde"/>
+  </head>  
+  <body xmlns="" class="xui-body" onload="if (window.justep &amp;&amp; justep.XBLObject)justep.XBLObject.init();" style="margin:0; padding:0;height:100%;width:100%;"> 
+    <div id="statusPanel"></div>  
+    <span id="infoPanel" style="position:absolute;display:none"></span>  
+    <div id="visible-element" style="height:100%;width:100%;"> 
+      <div class="" id="rootView" style="height:100%;width:100%"> 
+        <div class="component_81F0BC01 windowReceiver" component="/UI/system/components/windowReceiver.xbl.xml#windowReceiver" id="windowReceiver1" onReceive="asset.windowReceiver1Receive" style="position:absolute;top:247px;left:246px;"> 
+          <script>
+new justep.WindowReceiver('windowReceiver1');</script> 
+        </div>  
+        <div class="xui-container" id="view1" lazy="false" style="position:relative;;height:100%;width:100%;"> 
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:46px;left:72px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/x5/$v813202060a454735810d8888bdfaaed9/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect2" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:89px;left:72px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/x5/$vf597fa8914844f018c7071afc1b597d3/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <table cellpadding="0" cellspacing="0" class="component_E1635FC7 gridSelect xforms-control xforms-gridselect1 xforms-appearance-minimal xui-select" id="gridSelect3" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:137px;left:72px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="focus" style="display:none;width:0px"></td>  
+                <td class="xxf-value"> 
+                  <div class="xforms-control xforms-ext-select" onmouseout="xforms.Core.setClass(this,'ext-select-mouse-over',false)" onmouseover="xforms.Core.setClass(this,'ext-select-mouse-over',true)"> 
+                    <table border="0px" cellpadding="0px" cellspacing="0px" style="width:100%;height:100%;border:none;table-layout:fixed;"> 
+                      <tr style="border:none"> 
+                        <td style="width:100%;height:100%;border:none;"> 
+                          <input accesskey="" class="xforms-ext-select-input" tabindex=""></input> 
+                        </td>  
+                        <td style="border:none" width="20px"> 
+                          <img align="absMiddle" src="/x5/$vd2398b9be7dc47e29fc7c07043c7655c/form/images/combo_select.gif?language=zh_CN" style="margin-left:3px"></img> 
+                        </td> 
+                      </tr> 
+                    </table> 
+                  </div> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <table cellpadding="0" cellspacing="0" class="xforms-control xforms-trigger xforms-appearance-minimal xui-button" id="trigger1" onmouseout="xforms.showMessage(this,false)" onmouseover="xforms.showMessage(this,true)" style="position:absolute;top:188px;left:100px;;table-layout:fixed"> 
+            <tbody> 
+              <tr> 
+                <td class="xxf-value"> 
+                  <button class="xui-button-label" onmouseout="xforms.Core.setClass(this,'xforms-trigger-over')" onmouseover="xforms.Core.setClass(this,'xforms-trigger-over',true)" tabindex="" type="button"> 
+                    <span class="xforms-label " id="default37">确定</span> 
+                  </button> 
+                </td>  
+                <td class="xxf-alert"> 
+                  <span class="xforms-alert"> 
+                    <span class="xforms-alert-icon" onmouseout="show(this, null, false)" onmouseover="show(this, null, true)"></span>  
+                    <div class="xforms-alert-value" id=""></div> 
+                  </span> 
+                </td> 
+              </tr> 
+            </tbody> 
+          </table>  
+          <label class="xui-label" id="label1" style="position:absolute;top:48px;left:20px;">工具分类</label>  
+          <label class="xui-label" id="label2" style="position:absolute;left:20px;position:absolute;top:93px;">工具类型</label>  
+          <label class="xui-label" id="label4" style="position:absolute;left:20px;position:absolute;position:absolute;top:139px;">工具名字</label> 
+        </div> 
+      </div> 
+    </div>  
+    <script type="text/javascript">
+if (typeof(xforms.Dialog) != "undefined") { xforms.Dialog.show('statusPanel'); }</script> 
+  </body> 
+</html>

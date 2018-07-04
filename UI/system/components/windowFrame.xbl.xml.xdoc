@@ -1,0 +1,173 @@
+/**
+	@name UI.windowFrame
+	@component /UI/system/components/windowFrame.xbl.xml#windowFrame
+	@class justep.WindowFrame
+	@extends justep.ObjectEvent
+	@model UI
+	@description <b>[rich]</b>windowFrame组件
+	@see UI.windowDialog
+	@see UI.windowRunner
+	@see UI.windowOpener
+	@see UI.windowReceiver
+	@example
+	关于数据传递请参考windowDialog
+	
+	<b>xml格式：</b>
+	<xmp>
+	<xhtml:div component="/UI/system/components/windowFrame.xbl.xml#windowFrame"
+		id="windowFrame1" 
+		auto-load="false" 
+		url="/demo/components/process/windowFrame/subWindow.w"
+		onReceive="windowFrame.windowFrame1Receive" 
+		onSend="windowFrame.windowFrame1Send" 
+		onInitFrame="windowFrame.windowFrame1InitFrame"/>
+	</xmp>      
+*/
+
+/**
+	@name UI.windowFrame#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/windowDialog.xbl.xml#windowDialog"
+*/
+
+/**
+	@name UI.windowFrame#id
+	@attribute
+	@required
+	@description id标识
+*/
+
+/**
+	@name UI.windowFrame#url
+	@attribute 
+	@description iframe中页面的url，如：.w文件的url、其他第三方页面的url
+*/
+
+/**
+	@name UI.windowFrame#process
+	@attribute 
+	@description iframe中页面使用的process，默认使用当前环境中的process
+*/
+
+/**
+	@name UI.windowFrame#activity
+	@attribute 
+	@description iframe中页面使用的activity，默认使用当前环境中的activity
+*/
+
+/**
+	@name UI.windowFrame#onInit
+	@event 
+	@description <b>[回调型事件]</b>初始化时触发
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowFrame#onInitFrame
+	@event
+	@description <b>[回调型事件]</b> 初始化iframe时机
+	@param {object} event
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象,
+		"frame" : iframe对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowFrame#onSend
+	@event
+	@description <b>[回调型事件]</b> 向windowFrame传递数据，该事件函数的返回值将传递给组件中的页面
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传递给打开页面的数据，可修改open方法传递的数据
+	}
+	</xmp>
+	@see UI.windowFrame#open2
+*/
+
+/**
+	@name UI.windowFrame#onReceive
+	@event
+	@description <b>[回调型事件]</b> iframe页面返回数据，参考：{@link UI.windowReceiver}
+	@param {object} event 
+	<br/><b>参数结构如下：</b>
+	<xmp>
+	{
+		"source" : 组件的js对象，
+		"data" : 传回的数据
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.windowFrame#open
+	@function
+	@param {object} data <b>[required]</b>传入的数据
+	@param {string} url <b>[required]</b> 页面的地址
+ 	@param {string} process 缺省取环境里的
+ 	@param {string} activity 缺省取环境里的
+ 	@param {string} executor 执行者，缺省取环境里的
+ 	@param {string} executeContext 执行环境，缺省取环境里的
+	@description 在iframe中打开页面
+*/
+
+/**
+	@name UI.windowFrame#open2
+	@function 
+	@description 在iframe中打开页面，推荐使用
+	@param {object} options 打开参数
+	@example 
+		<xmp>
+	options参数说明	
+     data {object} <b>[required]</b>传入的数据
+     url {string} <b>[required]</b> 页面的地址
+     process {string} 缺省取环境里的
+     activity {string} 缺省取环境里的
+     executor {string} 执行者，缺省取环境里的
+     executeContext {string} 执行环境，缺省取环境里的
+	
+	 justep.xbl(组件ID).open2({'data':data, 'url':url, 'process':process, 'activity':activity, 'executor':executor, 'executorContext':executorContext});
+	
+		</xmp>
+ */
+
+/**
+	@name UI.windowFrame#refresh
+	@function
+	@description 刷新windowFrame组件中的iframe
+*/
+
+/**
+ @name UI.windowFrame#getFrame
+ @function
+ @returns {iframe}
+ @description 获取iframe对象
+*/
+
+/**
+ @name UI.windowFrame#getContentWindow
+ @function
+ @returns {window}
+ @description 获取对话框中内容的window对象
+*/
+
+/**
+ @name UI.windowFrame#getContentDocument
+ @function
+ @returns {document}
+ @description 获取对话框中内容的document对象
+*/

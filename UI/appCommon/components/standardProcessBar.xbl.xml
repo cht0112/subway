@@ -1,0 +1,126 @@
+<xbl xmlns="http://www.w3.org/ns/xbl" 
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	xmlns:justep="http://www.justep.com/x5#" 
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xui="http://www.justep.com/xui">
+	
+	<script src="/UI/appCommon/js/appCommon.js" />
+
+	<binding id="standardProcessBar" delete-bound-element="true">
+		<template template-type="xslt">
+			<xsl:template match="/*">
+				<xsl:variable name="id" select="@id" />
+				<xsl:variable name="data" select="@data" />
+				<xsl:variable name="processEngine" select="@process-engine" />
+				<xsl:variable name="executeReadonly" select="@execute-readonly" />
+				<xsl:variable name="executeRelevant" select="@execute-relevant" />
+				<xsl:variable name="navigatorBar" select="concat($id, '_navigatorBar')" />
+				<xsl:variable name="processBar" select="concat($id, '_processBar')" />
+				<xsl:variable name="getRowStateFun" select="concat($id, '_getRowState')" />
+				<xsl:variable name="getBackRelevantFun" select="concat($id, '_getBackRelevant')" />
+				<xsl:variable name="getAdvanceRelevantFun" select="concat($id, '_getAdvanceRelevant')" />
+				<xsl:variable name="getTransferRelevantFun" select="concat($id, '_getTransferRelevant')" />
+				<xsl:variable name="getSuspendRelevantFun" select="concat($id, '_getSuspendRelevant')" />
+				<xsl:variable name="getAbortRelevantFun" select="concat($id, '_getAbortRelevant')" />
+				<xsl:variable name="getCustomizedRelevantFun" select="concat($id, '_getCustomizedRelevant')" />
+				<xsl:variable name="getProcessChartRelevantFun" select="concat($id, '_getProcessChartRelevant')" />
+				<xsl:variable name="getExecuteListRelevantFun" select="concat($id, '_getExecuteListRelevant')" />
+				
+				<justep:root>
+					<xui:bar component="/UI/system/components/bar.xbl.xml#navigatorBar" mode="IMG_TXT_LR"
+						id="{$navigatorBar}" data="{$data}">
+						<item name="save-item" id="barItem7" />
+						<item name="refresh-item" id="barItem9" >
+							<xsl:attribute name="readonly">
+   				 				<xsl:value-of select="concat('call(''', $getRowStateFun, ''') = ''new''')" />
+  							</xsl:attribute>
+						</item>
+					</xui:bar>
+	      			<xui:bar component="/UI/system/components/processBar.xbl.xml#processBar" id="{$processBar}" process="{$processEngine}" mode="IMG_TXT_LR">    
+						<item name="back-process-item" >
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getBackRelevantFun, ''') ')" />
+  							</xsl:attribute>
+						</item>
+			            <item name="advance-process-item" > 
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getAdvanceRelevantFun, ''') ')" />
+  							</xsl:attribute>
+			            </item> 
+			            <item name="transfer-task-item" >
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getTransferRelevantFun, ''') ')" />
+  							</xsl:attribute>
+			            </item>
+			            <item name="suspend-process-item" >  
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getSuspendRelevantFun, ''') ')" />
+  							</xsl:attribute>
+			            </item>
+			            <item name="abort-process-item" >  
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getAbortRelevantFun, ''') ')" />
+  							</xsl:attribute>
+			            </item>
+			            <item name="customized-process-item">  
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getCustomizedRelevantFun, ''') ')" />
+  							</xsl:attribute>
+			            </item>
+			            <item name="process-chart-item">  
+							<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getProcessChartRelevantFun, ''') ')" />
+  							</xsl:attribute>
+			            </item>
+			            <item name="execute-list-item" > 	
+			            	<xsl:attribute name="relevant">
+   				 				<xsl:value-of select="concat('call(''', $getExecuteListRelevantFun, ''') ')" />
+  							</xsl:attribute>			
+			            </item>		
+	   				</xui:bar>
+					<xhtml:script>
+						function <xsl:value-of select="$getRowStateFun" /> () {
+							var d = justep.xbl('<xsl:value-of select="$data" />');
+							return d.getRowState(d.getRowId()); 
+						}
+						function <xsl:value-of select="$getBackRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("back");
+							return result;
+						}
+						function <xsl:value-of select="$getAdvanceRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("advance");
+							return result;
+						}
+						function <xsl:value-of select="$getTransferRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("transfer");
+							return result;
+						}
+						function <xsl:value-of select="$getSuspendRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("suspend");
+							return result;
+						}
+						function <xsl:value-of select="$getAbortRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("abort");
+							return result;
+						}
+						function <xsl:value-of select="$getCustomizedRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("customized");
+							return result;
+						}
+						function <xsl:value-of select="$getProcessChartRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("processChart");
+							return result;
+						}
+						function <xsl:value-of select="$getExecuteListRelevantFun" /> () {
+							var result = appCommon.ProcessBar.getProcessBarItemRelevant("executeList");
+							return result;
+						}
+					</xhtml:script>
+				</justep:root>
+			</xsl:template>
+		</template>
+	</binding>
+</xbl>

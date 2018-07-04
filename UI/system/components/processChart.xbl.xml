@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	<xbl:script type="text/javascript" src="/UI/system/components/processChart/js/processChart.js"/>
+	
+	<xbl:binding id="processChart">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+					<xsl:variable name="trackID" select="replace(generate-global-id(),'-','_')"/>
+					<xsl:variable name="pertID" select="replace(generate-global-id(),'-','_')"/>
+					<xsl:variable name="tabID" select="replace(generate-global-id(),'-','_')"/>
+					
+					<xhtml:div style="display:none" xblid="interface" trackID="{$trackID}" pertID="{$pertID}"/>
+					<!--  <xhtml:table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" style="table-layout: fixed;">
+						<xhtml:tr>
+							<xhtml:td>-->
+								<xhtml:div id="{$tabID}" component="/UI/system/components/tabs.xbl.xml#tabs" style="width:100%;height:100%;overflow:auto;"
+									xmlns:xui="http://www.justep.com/xui">
+									<xui:tab selected="true">
+										<xui:label>i18n{track-chart-in-process-chart}</xui:label>
+										<xhtml:div id="{$trackID}" onTrackItemClick="{@onTrackItemClick}" component="/UI/system/components/processChart.xbl.xml#processTrackChart" style="height:100%;"
+											ext="{@ext}"/>
+									</xui:tab>
+									<xui:tab>
+										<xui:label>i18n{pert-chart-in-process-chart}</xui:label>
+										<!--  
+										<xforms:action ev:event="xforms-select">
+											<xforms:script>
+												var tab = justep.xbl('<xsl:value-of select="$tabID"/>');
+												var self = tab.getXBLParentElement(tab.domNode).xblObject;
+												self.__loadBot();
+											</xforms:script>	
+										</xforms:action>
+										-->
+										<xhtml:div id="{$pertID}" onPertItemClick="{@onPertItemClick}" component="/UI/system/components/processChart.xbl.xml#processPertChart" style="height:100%;"
+											ext="{@ext}"/>
+									</xui:tab>
+								</xhtml:div>					
+						<!-- 	</xhtml:td>
+						</xhtml:tr>
+					</xhtml:table> -->
+				</root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation>
+			({
+				"_task" : null,
+				"_p" : null,
+				"_pi" : null,
+				"_bizData" : null,
+				"_chartData" : null,
+				"_botLoaded" : false,
+				
+				
+				"load" : function(){
+					var task = justep.Context.getTask();
+					if (task != null){
+						this.loadByTask(task);
+					}else{
+						var process = justep.Context.getCurrentProcess();
+						this.loadByData(process, null);
+					}
+				},
+				
+				"loadByTask" : function(task){
+					if (task != this._task){
+						this._task = task;
+						this.__load(null, null, null, task);
+					}
+				},
+				
+				"loadByPI" : function(pi){
+					if (pi != this._pi){
+						this._pi = pi;
+						this.__load(null, null, pi, null);
+					}
+				},
+				
+				"loadByData" : function(p, bizData){
+					if ((p != this._p) || (bizData != this._bizData)){
+						this._p = p;
+						this._bizData = bizData;
+						this.__load(bizData, p, null, null);
+					}
+				},
+				
+				"__load": function(bizData, p, pi, task) {
+					var ext = this.domNode.getAttribute('ext');
+					this._chartData = createActionStringAndExecuteActionGetFlowTrack(bizData, p, pi, task, ext);
+					var interface = this.getElementByXblID("interface");
+					justep.xbl(interface.getAttribute('trackID')).__loadByChartData(this._chartData);
+					justep.xbl(interface.getAttribute('pertID')).__loadByChartData(this._chartData);
+				}, 
+				
+				"__loadBot" : function(){
+					if (this._botLoaded == false){
+						this._botLoaded = true;
+						var interface = this.getElementByXblID("interface");
+						justep.xbl(interface.getAttribute('pertID')).__loadByChartData(this._chartData);
+					}
+				}
+			})	
+		</xbl:implementation>
+	</xbl:binding>
+	
+	
+	<!-- 
+		<xhtml:div id="trackChart-1" component="/UI/system/components/processChart.xbl.xml#processTrackChart"/>
+	-->
+	<xbl:binding id="processTrackChart">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+					<xsl:variable name="id" select="concat('track_', replace(generate-global-id(),'-','_'))"/>
+					
+					<xhtml:div style="display:none">
+						<xhtml:div xblid="interface" chartControlID="{$id}"/>	
+					</xhtml:div>
+					
+					
+					<xhtml:div id="bl2" style="height:100%;" component="/UI/system/components/borderLayout.xbl.xml#borderLayout">
+						<top size="40px">
+			            	<xhtml:table>
+									<xhtml:tr>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:green; width:100%;height:2px"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td align="">
+											<xhtml:span>i18n{finished-in-process-chart}</xhtml:span>
+										</xhtml:td>
+										<xhtml:td width="20"></xhtml:td>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:black; width:100%;height:2px"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td>
+											<xhtml:span>i18n{no-execute-in-process-chart}</xhtml:span>
+										</xhtml:td>
+										<xhtml:td width="20"></xhtml:td>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:red; width:100%;height:2px"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td>
+											<xhtml:span>i18n{back-in-process-chart}</xhtml:span>
+										</xhtml:td>
+										<xhtml:td width="20"></xhtml:td>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:#0080FF; border:1px #0080FF solid; width:100%;height:20px;border-style:solid;"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td>
+											<xhtml:span>i18n{active-activity-in-process-chart}</xhtml:span>
+										</xhtml:td>
+										<xhtml:td width="20"></xhtml:td>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:green; border:1px green solid; width:100%;height:20px; border-style:solid;"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td>
+											<xhtml:span>i18n{executed-in-process-chart}</xhtml:span>
+										</xhtml:td>
+										<xhtml:td width="20"></xhtml:td>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:#ff6666; border:1px #ff6666 solid; width:100%;height:20px;border-style:solid;"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td>
+											<xhtml:span>i18n{abort-in-process-chart}</xhtml:span>
+										</xhtml:td>
+										<xhtml:td width="20"></xhtml:td>
+										<xhtml:td width="30" >
+											<xhtml:div style="overflow:hidden;display:block;background:yellow; border:1px yellow solid; width:100%;height:20px;border-style:solid;"></xhtml:div>
+										</xhtml:td>
+										<xhtml:td>
+											<xhtml:span>i18n{suspend-in-process-chart}</xhtml:span>
+										</xhtml:td>
+									</xhtml:tr>
+								</xhtml:table>
+						</top>
+						<center  style="overflow:auto;">
+			            	<xhtml:div style="width:100%;height:100%;overflow:auto;">
+									<xsl:attribute name="id">
+										<xsl:value-of select="$id"/>
+									</xsl:attribute>
+								</xhtml:div>
+						</center>
+			 
+					</xhtml:div>
+					<!-- 
+					<xhtml:table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" style="table-layout: fixed;"
+						component="/UI/system/components/tableLayout.xbl.xml#tableLayout">
+						<xhtml:tr height="40px">
+							<xhtml:td>
+								
+							
+							</xhtml:td>
+						</xhtml:tr>
+						<xhtml:tr valign="top">
+							<xhtml:td>
+								
+							</xhtml:td>
+						</xhtml:tr>
+					</xhtml:table> -->
+				</root>
+			</xsl:template>
+		</xbl:template>		
+		<xbl:implementation>
+			({
+				"_task" : null,
+				"_p" : null,
+				"_pi" : null,
+				"_bizData" : null,
+				
+				"load" : function(){
+					var task = justep.Context.getTask();
+					if (task != null){
+						this.loadByTask(task);
+					}else{
+						var process = justep.Context.getCurrentProcess();
+						this.loadByData(process, null);
+					}
+				},
+				
+				
+				"loadByTask" : function(task){
+					if (task != this._task){
+						this._task = task;
+						this.__load(null, null, null, task);
+					}
+				},
+				
+				"loadByPI" : function(pi){
+					if (pi != this._pi){
+						this._pi = pi;
+						this.__load(null, null, pi, null);
+					}
+				},
+				
+				"loadByData" : function(p, bizData){
+					if ((p != this._p) || (bizData != this._bizData)){
+						this._p = p;
+						this._bizData = bizData;
+						this.__load(bizData, p, null, null);
+					}
+				},
+				
+				"__load": function(bizData, p, pi, task) {
+					var ext = this.domNode.getAttribute('ext');
+					var processChartData = createActionStringAndExecuteActionGetFlowTrack(bizData, p, pi, task, ext);
+					this.__loadByChartData(processChartData);
+				},
+				
+				"__loadByChartData": function(chartData) {
+					var interface = this.getElementByXblID("interface");
+					var onClick = this.domNode.getAttribute('onTrackItemClick');
+					if (onClick &amp;&amp; (onClick!='')){
+						onClick = justep.Function.get(onClick);
+					}
+					__wfLoadTrack(interface.getAttribute('chartControlID'), chartData, onClick);
+				},
+				
+				"getSelectedActivities" : function(){
+					var ret = [];
+					var interface = this.getElementByXblID("interface");
+					var canvas = JustepFlowTrack[interface.getAttribute('chartControlID')];
+					var selections = canvas.selections;
+					for(var id in selections){
+						if((selections[id].type!='Connection')&amp;&amp;(typeof selections[id].type!='undefined')){
+							var activity = canvas.modelData.processMainData[id];
+							ret.push(activity);
+						}
+					}
+					return ret;
+				},
+				"getTrackCanvas" : function(){
+					var ret = [];
+					var interface = this.getElementByXblID("interface");
+					var canvas = JustepFlowTrack[interface.getAttribute('chartControlID')];
+					return canvas;
+				}
+			})	
+		</xbl:implementation>
+	</xbl:binding>
+
+	<!-- 
+		<xhtml:div id="pertChart-1" component="/UI/system/components/processChart.xbl.xml#processPertChart"/>
+	-->
+	<xbl:binding id="processPertChart">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+					<xsl:variable name="id" select="concat('bot_', replace(generate-global-id(),'-','_'))"/>
+					<xhtml:div style="display:none">
+						<xhtml:div xblid="interface" chartControlID="{$id}"/>	
+					</xhtml:div>
+					<xhtml:div style="width:100%;height:100%;overflow:auto;">
+								<xsl:attribute name="id">
+									<xsl:value-of select="$id"/>
+								</xsl:attribute>
+					</xhtml:div>
+					<!--<xhtml:table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" style="table-layout: fixed;"
+						component="/UI/system/components/tableLayout.xbl.xml#tableLayout">
+						<xhtml:tr>
+							<xhtml:td>
+								<xhtml:div style="width:100%;height:100%;overflow:auto;">
+									<xsl:attribute name="id">
+										<xsl:value-of select="$id"/>
+									</xsl:attribute>
+								</xhtml:div>
+							</xhtml:td>
+						</xhtml:tr>
+					</xhtml:table>		-->			
+				</root>
+			</xsl:template>
+		</xbl:template>			
+		
+		<xbl:implementation>
+			({
+				"_task" : null,
+				"_p" : null,
+				"_pi" : null,
+				"_bizData" : null,
+				
+				"load" : function(){
+					var task = justep.Context.getTask();
+					if (task != null){
+						this.loadByTask(task);
+					}else{
+						var process = justep.Context.getCurrentProcess();
+						this.loadByData(process, null);
+					}
+				},
+				
+				
+				"loadByTask" : function(task){
+					if (task != this._task){
+						this._task = task;
+						this.__load(null, null, null, task);
+					}
+				},
+				
+				"loadByPI" : function(pi){
+					if (pi != this._pi){
+						this._pi = pi;
+						this.__load(null, null, pi, null);
+					}
+				},
+				
+				"loadByData" : function(p, bizData){
+					if ((p != this._p) || (bizData != this._bizData)){
+						this._p = p;
+						this._bizData = bizData;
+						this.__load(bizData, p, null, null);
+					}
+				},
+				
+				"__load": function(bizData, p, pi, task) {
+					var ext = this.domNode.getAttribute('ext');
+					var processChartData = createActionStringAndExecuteActionGetFlowTrack(bizData, p, pi, task, ext);
+					this.__loadByChartData(processChartData);
+				},
+				
+				"__loadByChartData": function(chartData) {
+					var interface = this.getElementByXblID("interface");
+					var onClick = this.domNode.getAttribute('onPertItemClick');
+					if (onClick &amp;&amp; (onClick!='')){
+						onClick = justep.Function.get(onClick);
+					}
+					
+					__wfLoadBot(interface.getAttribute('chartControlID'), chartData, onClick);
+				}
+				
+			})	
+		</xbl:implementation>
+	</xbl:binding>
+
+</xbl:xbl>	
+	

@@ -1,0 +1,49 @@
+<div id="settings_templet_inner" class="settings_content_inner">
+	<div id="setting_templet_header">
+		<div style="float:left">
+			当前主题：
+		</div>
+		<div id="setting_templet_current">
+			
+		</div>
+		<div style="clear:left"></div>
+	</div>
+	<div id="setting_templet_wrapper">
+		<ul></ul>
+	</div>
+</div>
+<script>
+	(function(){
+		$.triggerEvent("settingTemplateActivateEvent");
+		var $ul = $("ul", "#setting_templet_wrapper");
+		$ul.empty();
+		for(var i in portalConfig.themes){
+			var theme = portalConfig.themes[i];
+			$ul.append("<li themeData='" + i +
+				"'><div title='" + theme.tooltip +
+				"'/><span title='" + theme.title +
+				"' class='title'>" + theme.title +
+				"</span></li>"
+			);
+			if(theme.icon){
+				$("li",$ul).each(function(){
+					if($(this).attr("themeData")==i){
+						$(this).find("div").css('background','url('+theme.icon+')');  
+					}
+				})
+			}
+		};
+		
+		$("li",$ul).click(function(){
+			var themeData = $(this).attr("themeData");
+			$.jpolite.Data.system.Layout.saveTheme("{'theme':'" + themeData + "'}");
+			$('link[title]','head').each(function(){
+				this.disabled = true;
+				this.disabled = ($(this).attr('title')!= themeData);
+				$.triggerEvent("settingTemplateActivateEvent"); 
+			})
+		});
+		
+	}());
+
+</script>

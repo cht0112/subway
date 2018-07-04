@@ -1,0 +1,37 @@
+/**
+	@name UI.bizDataFilterMenu
+	@component /UI/system/components/bizDataFilterMenu.xbl.xml#bizDataFilterMenu
+	@class
+	@description <b>[rich]</b>通用查询对话框组件, 这个组建使用了UI.bizDataFilterPattern 和 UI.bizDataFilterDialog, 是一个更易于使用的组件。通过data属性和数据绑定。
+	@model UI
+	@example 
+	<b>xml格式：</b>
+	<xmp>
+	<xhtml:div component="/UI/system/components/bizDataFilterMenu.xbl.xml#bizDataFilterMenu" data="main"/>
+	</xmp>
+*/
+
+/**
+	@name UI.bizDataFilterMenu#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/bizDataFilterMenu.xbl.xml#bizDataFilterMenu"
+*/
+
+/**
+	@name UI.bizDataFilterMenu#id
+	@attribute
+	@required 
+	@description id标识
+*/
+
+/**
+	@name UI.bizDataFilterMenu#show
+	@function
+	@description 显示下拉菜单
+	@example
+	<xmp>
+	justep.xbl('bizDataFilterPattern_id').show();
+	</xmp>
+*/

@@ -1,0 +1,268 @@
+html,body{
+    height:100%;
+    width:100%;
+    padding:0;margin:0;
+}
+body{
+	border:2px solid greeen;
+    font-size:12px;
+}
+* {
+  font-style: normal;
+  font-family: 宋体, 'Arial Narrow', arial, serif;
+}
+.box-sizing{
+/*	box-sizing: border-box;*/
+/*	-moz-box-sizing: border-box; Mozilla/Firefox*/
+/*	-o-box-sizing: border-box; */
+/*	-icab-box-sizing: border-box; opera*/
+/*	-khtml-box-sizing: border-box; konqueror*/
+/*	-webkit-box-sizing: border-box; safari*/
+}
+ 
+.table-cell{
+  /*border:1px dotted gray;*/
+}
+
+.div-outline{
+  width:0;
+}
+
+.selection{
+   border:1px solid red;
+}
+
+.view{
+  border:0px dotted black;
+  margin:0px;
+  padding:0px;
+}
+.view-content{
+  border-color: transparent;
+  border-style: solid;
+  border-width: 2px;
+  margin:0px;
+  padding:0px;
+  width:100%;
+  height:100%;
+}
+.component-outline{
+ 
+}
+input{
+ /* height:23px;*/
+
+}
+input,textarea{
+  border:1px solid gray;
+}
+p{border:1px dotted;}
+
+.xform-input{
+  
+}
+.xform-date-input{
+   background:url(images/datePicker.gif) no-repeat right;
+}
+.xform-output{
+   background-color:#f7f7f7;
+}
+.xform-date-output{
+   background-color:#f7f7f7;
+   background-image:url(images/datePicker.gif);
+   background-repeat:no-repeat;
+   background-position:right;
+}
+.rich-eidtor{
+  background-image:url(images/rich-eidtor.gif);
+  height:120px;
+  width:350px;
+}
+
+.control-textarea{
+  height:120px;
+  width:350px;
+}
+
+.x-select{
+   background:url(images/combo_select.gif) no-repeat right;
+}
+.control-label{
+  background-color:#f7f7f7;
+  border-color: transparent;
+  border-style:solid;
+  border-width:1px;
+  padding-top:2px;
+  padding-bottom:1px;
+}
+.control{
+  margin:0px;
+  padding:0px;
+  line-height:20px;
+  width:100%;
+  height:100%;
+  background:white;
+  border:1px solid #B5D6E6;
+}
+
+.control-default{
+  height:23px;
+  width:150px;
+  float:left;
+}
+
+.control img{
+  margin:0px;
+  height:100%;
+  padding:0px;
+  margin-right:-4;
+  float:right;
+}
+
+/*
+.trigger{
+  BORDER-TOP: #2C59AA 1px solid; 
+  BORDER-RIGHT: #2C59AA 1px solid; 
+  BORDER-LEFT: #2C59AA 1px solid; 
+  BORDER-BOTTOM: #2C59AA 1px solid;
+  PADDING-RIGHT: 2px; 
+  PADDING-LEFT: 2px; 
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#C3DAF5); 
+  CURSOR: hand; 
+  COLOR: black; 
+  PADDING-TOP: 2px; 
+}
+*/
+
+.toolbar{
+  border:0px dotted #B5D6E6;
+  min-height: 28px;
+  display:table-row;
+}
+
+.toolbar a{
+	color: #000000;
+	text-decoration : none;
+}
+
+.bar{
+ border-collapse:collapse; 
+ border-spacing:0; 
+ display:table-cell;
+ border:0px solid transparent;
+ text-align:center;
+}
+.bar-item{
+   border:1px solid #B5D6E6;
+   margin-left:1px;
+   display:inline;
+   border-spacing:0;
+   white-space: nowrap;  
+}
+
+/**xyh 121029-在linux-webkit下，td上不能使用display-inline, 否则反而显示不在同一行 **/
+.toolbar-item{
+   border:1px solid #B5D6E6;
+   margin-left:1px;
+   border-spacing:0;
+   white-space: nowrap;  
+}
+
+.label{
+  min-height:20px;
+  min-width:32px;
+  white-space: nowrap;
+}
+
+.html-label{
+  min-width: 32px;
+  min-height: 20px;
+  white-space: nowrap;
+}
+
+.control-label-content{
+  height:100%;
+  width:100%;
+  line-height:20px;
+  display:inline-block;
+  white-space: nowrap;  
+}
+
+.cus-toolitem{
+	height:26px;
+	padding:0px;margin:0px;
+	/*border:1px solid #B5D6E6;*/
+	margin-left:1px;
+	border-collapse:collapse; 
+	border-spacing:0; 
+	display:inline;
+	white-space: nowrap;
+}
+
+/*
+.bar-item .xforms-trigger-label, .toolbar-item .xforms-trigger-label, .cus-toolitem .xforms-trigger-label{
+	white-space: nowrap;
+}
+*/
+	
+.cus-toolitem div{
+   float:left;
+}
+.complex-control{
+   overflow:hidden;
+   width:155px;
+   border-color: transparent;
+   border-style:solid;
+   border-width:1px;
+   padding:0px;
+   display:inline;
+}
+.complex-control-content{
+   position:relative;
+   margin:0px;
+   padding:0px;
+   width:100%;
+   height:100%;
+}
+.data{
+	float:left;
+	border:1px solid;
+	border-color: transparent;
+	width:60px;height:20px;margin:2px;
+}
+.select-box{
+position:absolute;
+  line-height:6px;height:6px ;width:6px ;overflow:hidden;border:0px solid black;background-color:green
+}
+.selected{
+  border-color:red !important;;
+  border-style:solid;
+  border-width:1px;
+  /*border:2px solid red !important;*/ 
+  /*background-color:#FFEC8B !important;*/
+}
+
+.html-div{
+  border:1px dotted gray;
+   
+}
+
+.html-span{
+  border:1px dotted gray;
+}
+
+.xforms-select{
+  border:1px solid gray;
+  padding: 2,0,2,2;
+}
+
+.select-item{
+	/*border:1px dotted gray;*/ 
+	display:inline;
+	margin-right:2;
+}
+
+.vertical .select-item{
+	/*border:1px dotted gray;*/ 
+	display:block;
+}

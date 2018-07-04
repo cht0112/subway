@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="bizStateFilter" tag-name="div" icon="Control_ListBox.gif" text="业务状态过滤" 
+		binding-component="/UI/appCommon/components/bizStateFilter.xbl.xml#bizStateFilter"
+		display-property="id" component-class="BizStateFilter" component-type="formControl"
+		design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true" />
+
+			<property name="filter-data" text="过滤数据集" required="true" is-id-ref="true" editor-ref="contextComponent" editor-parameter="data"/>
+			<property name="filter-relation" text="过滤关系" required="true" editor-ref="relationDlg" editor-parameter="filter-data"/>
+			<property name="default-value" text="当下拉列表选中数据为空时的过滤数据(xpath)" editor-ref="xpathEditor" default-value="'bsEditing,bsExecuting,bsFinished'"/>
+			<property name="default-label" text="当下拉列表选中数据为空时的显示文本(xpath)" editor-ref="xpathEditor" default-value="'编辑中,处理中,已完成'"/>
+			<property name="all-selected-label" text="全选显示(xpath)" editor-ref="xpathEditor" default-value="'全部'"/>
+
+			<property name="auto-refresh" text="当过滤条件改变时是否自动刷新数据（初始化过滤条件时不刷新）" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="multi-select" text="多选" editor-ref="booleanList" readonly="true" default-value="true"/>
+			<property name="value-separator" text="多选value分割字符" default-value="," />
+			<property name="label-separator" text="多选label分割字符" default-value="," />
+
+			<property name="auto-size" text="自动尺寸" editor-ref="booleanList" readonly="true" default-value="false"/>
+			<property name="style" text="样式" editor-ref="styleDialog" />
+		</properties>
+		
+		<events>  
+			<event name="onGetCondition" text="构造过滤条件"/>
+		</events>
+		
+		<property-editors>
+		</property-editors>
+
+		<templates>
+			<template name="default">
+				<![CDATA[ 
+				<xhtml:div component="/UI/appCommon/components/bizStateFilter.xbl.xml#bizStateFilter" style="width:80px">
+				</xhtml:div>
+		  		]]>
+		   	</template>
+		</templates>
+	</element>
+</elements>

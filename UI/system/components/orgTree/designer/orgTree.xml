@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="orgTree" tag-type="rich" tag-name="div" icon="orgTree.gif" text="机构树" 
+		binding-component="/UI/system/components/orgTree.xbl.xml#orgTree"
+        namespace="xhtml"
+		namespace-uri="http://www.w3.org/1999/xhtml"
+		is-complex-component="true"
+		display-property="id" component-class="OrgTree" component-type="formControl">
+		<properties>
+			<property name="id" text="编号" required="true" />
+			<property name="include-disable-org" text="包含禁用" default-value="false" editor-ref="booleanList" data-type="boolean"/>
+			<property name="manage-codes" text="管理权限类型编码,支持多个用','分隔"/>
+			<property name="show-org-types" readonly="true" text="显示的机构类型" editor-ref="orgKindsList"/>
+			<property name="use-virtual-root" text="显示组织tree虚根，当data上没有指定虚根时默认‘组织机构’" default-value="true" editor-ref="booleanList" data-type="boolean"/>
+			<property name="default-class" text="默认class" readonly="true" default-value="xui-orgTree"/>
+			<property name="class" text="class" editor-extend-data="xui-container:container"/>
+			<property name="style" text="样式" editor-ref="styleDialog">
+				<property name="width" text="宽度" is-style="true" />
+				<property name="height" text="高度" is-style="true" />
+			</property>
+		</properties>
+
+		<property-editors>
+		</property-editors>
+
+		<inner-component-config>
+			<item name="bizData" exclude-properties="writer,creator,relations,update-mode,direct-delete,confirm-delete,relation,data,confirm-delete-text,confirm-refresh,confirm-refresh-text,auto-new,store-type,node-level-relation">
+				<properties>
+					<property name="reader" readonly="true" editor-ref="" default-value="/system/logic/action/queryOrgAction"/>
+					
+					<property name="concept" readonly="true" editor-ref="" default-value="SA_OPOrg"/>
+					<property name="offset" readonly="true" editor-ref="" default-value="0"/>
+					<property name="limit" readonly="true" editor-ref="" default-value="-1"/>
+					<property name="is-tree" readonly="true" editor-ref="" default-value="true"/>			        
+		
+					<property name="parent-relation" readonly="true" editor-ref="" default-value="sParent"/>
+					<property name="node-kind-relation" readonly="true" editor-ref="" default-value="sNodeKind"/>
+					<property name="virtual-root" readonly="false" default-value="组织机构"/>
+					<property name="root-filter" readonly="false"/>      
+				</properties>
+			</item>
+			<item name="grid">
+				<properties>
+					<property name="data" readonly="true" editor-ref=""/> 
+					<property name="delay" readonly="true" editor-ref="" default-value="true"/>
+				</properties>
+			</item>	
+		</inner-component-config>
+
+		<toolbar>			
+			<item text="生成label" class="com.justep.studio.ui.editors.xui.component.FormControl" method="genaControlLabel"/>				
+		</toolbar>
+				
+		<templates>
+			<template name="default"><![CDATA[ 
+			<xhtml:div
+				xmlns:xui="http://www.justep.com/xui"
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				xmlns:xforms="http://www.justep.com/xforms"
+ 				component="/UI/system/components/orgTree.xbl.xml#orgTree">
+					<xforms:model>
+						<xui:data component="/UI/system/components/data.xbl.xml#bizData"/>
+					</xforms:model>
+					<xhtml:div style="width:100%;height:100%;" appearance="tree" component="/UI/system/components/grid.xbl.xml#grid">
+						<xui:column ref="sName" type="tree"/>
+					</xhtml:div>
+			</xhtml:div>
+		   ]]></template>
+		</templates>
+	</element>	
+</elements>

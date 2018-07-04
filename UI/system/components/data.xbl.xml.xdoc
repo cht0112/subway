@@ -1,0 +1,3401 @@
+/**
+	@name justep.Filters
+	@class 
+	@description data过滤条件对象
+	@see justep.XData#filters
+	@language js
+	@model UI
+	@example 
+  <xmp>
+	主要用于data的filter处理，filter之间使用and连接
+	filter使用标准的KSQL语法，支持变参，内存函数，SQL函数，详细语法参考KSQL说明
+    var data = justep.xbl('mainData');
+    var filters = data.filter;
+    filters.setFilter('filter1',"SA_OPPerson.sName like '%李%'");
+    filters.setFilter('filter2',"SA_OPPerson.sCode = :operatorCode() or SA_OPPerson.sCode = :code");
+    //给变参code赋值
+    //不同的数据类型使用相对应的方法setStringVar、setIntegerVar、setFloatVar、setDateVar、setTimeVar、setDateTimeVar
+    filters.setStringVar("code","code_abc");
+    //最终qureyAction的KSQL中where部分将增加 and ((SA_OPPerson.sName like '%李%') and (SA_OPPerson.sCode = :operatorCode() or SA_OPPerson.sCode = 'code_abc'))
+  </xmp>  
+*/	
+
+/**
+ @name justep.Filters#clear
+ @function
+ @description 清除所有filter
+*/
+
+/**
+ @name justep.Filters#setFilter
+ @function
+ @param	{string} name <b>[required]</b> - 过滤名称
+ @param	{string} filter {string} <b>[required]</b> - 过滤表达式 
+ @description 设置过滤条件
+*/
+
+/**
+ @name justep.Filters#setStringVar
+ @function
+ @param	{string} name <b>[required]</b> - 变参名
+ @param	{string} value <b>[required]</b> - 变参值 
+ @description 设置string变参
+*/
+
+/**
+ @name justep.Filters#setIntegerVar
+ @function
+ @param	{string} name <b>[required]</b> - 变参名
+ @param	value <b>[required]</b> - 变参值 
+ @description 设置integer变参
+*/
+
+/**
+ @name justep.Filters#setFloatVar
+ @function
+ @param	{string} name <b>[required]</b> - 变参名
+ @param	value <b>[required]</b> - 变参值 
+ @description 设置float变参
+*/
+
+/**
+ @name justep.Filters#setDateVar
+ @function
+ @param	{string} name <b>[required]</b> - 变参名
+ @param	{string/date} value <b>[required]</b> - 变参值 
+ @description 设置Date变参
+*/
+
+/**
+ @name justep.Filters#setTimeVar
+ @function
+ @param	{string} name <b>[required]</b> - 变参名
+ @param	{string/date} value <b>[required]</b> - 变参值 
+ @description 设置Time变参
+*/
+
+/**
+ @name justep.Filters#setDateTimeVar
+ @function
+ @param	{string} name <b>[required]</b> - 变参名
+ @param	{string/date} value <b>[required]</b> - 变参值 
+ @description 设置DateTime变参
+*/
+
+/**
+ @name justep.Filters#clearVars
+ @function
+ @description 清除变参列表
+*/
+
+/**
+ @name justep.Filters#getFilter
+ @function
+ @param	{string} name <b>[required]</b> - 过滤名称
+ @returns {string}	 
+ @description 返回对应过滤名称的过滤表达式
+*/
+
+/**
+ @name justep.Filters#deleteFilter
+ @function
+ @param	{string} name <b>[required]</b> - 过滤名称
+ @description 删除对应过滤名称的过滤表达式
+*/
+
+/**
+ @name justep.Filters#toString
+ @function
+ @description 返回所有过滤组成的过滤条件
+*/
+
+/**
+	@name justep.XData
+	@class 
+	@extends justep.ObjectEvent
+	@description data核心基础对象
+	@model UI
+	@language js
+	@example
+	<xmp>
+	数据刷新说明：
+		原则：
+			1、limit为-1时表示不分页加载数据，一次全部加载，反之
+			2、部分刷新函数提供“增量模式”参数，当使用“增量模式”时原修改数据不会覆盖，只是增加新刷新的数据
+			3、getCount()函数获取的是前端已经加载的记录数，getTotal()函数获取的是全部的记录数，包括分页没有加载的数据。getTotal()函数在refreshData或者loadData后可以使用
+ 		主要函数：
+ 			1、refreshData刷新首页或者全部数据，受limit影响
+			2、loadPageData加载指定页数据，limit!=-1时可以使用
+			3、loadNextPageData根据当前offset加载下一页数据，limit!=-1时可以使用
+			4、loadAllPageData分页时加载所有数据，limit!=-1时可以使用
+			5、loadTreeData用于延迟加载树形数据，refreshData后可以使用	
+	数据新增案例参考：justep.XData#newData
+	数据保存案例参考：justep.XData#saveData
+	遍历当前.W中的Data案例参考：justep.XData.each
+	统计函数参考：justep.XData.count、justep.XData.sum、justep.XData.avg、justep.XData.min、justep.XData.max
+	数据感知和规则计算参考：justep.XData.enableControls
+	过滤条件设置参考：justep.XData#setFilter
+	后端KSQL统计参考：justep.XData#getAggregateValue
+	数据遍历包括两种方式：
+		1、游标滚动方式：justep.XData#eof 游标滚动时会刺激感知组件数据刷新和规则计算
+		2、非游标滚动方式：如果只是数据查找请使用“非游标滚动数据遍历”
+		  var data = justep.xbl('mainData');
+		  vat iCount = data.getCount();
+		  for(var i=0;i<iCount;i++){
+		  	data.getValue('fName',data.getID(i));
+		  	data.setValue('fName','test'+i,data.getID(i));
+		  	...
+		  }		
+	数据查找参考：justep.XData#find
+	规则计算控制：
+		data默认采用优化规则计算原则，即只计算当前数据行的规则，当需要data在加载完数据后进行全部数据规则计算
+		可以在model事件onModelConstruct中使用justep.XData.closeOptimizeRule函数关闭优化	
+	</xmp>
+*/	
+
+/**
+	@name justep.XData.STATE
+	@constant
+	@type object 
+	@description data的状态常量
+	@example
+	  包括：justep.XData.STATE.NEW、justep.XData.STATE.DELETE、justep.XData.STATE.EDIT、justep.XData.STATE.NONE
+ */ 
+
+/**
+ @name justep.XData.each
+ @function
+ @param	{function} callback 回调函数
+ <br/><b>回调函数给出参数event格式：</b>
+<xmp>  
+ {
+	"data"   : data对象,
+	"cancel" ：boolean 通过修改成true终止当前循环，默认是false
+ }
+</xmp>
+ @description 遍历当前.W中的Data
+ @example
+  <xmp>
+    var dataIds = [];
+    justep.XData.each(function(event){
+    	dataIds.push(event.data.id);
+    });
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.count
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @param	{function} filterCallback 过滤的回调函数，需要返回boolean，为true时行有效，回调函数给出参数event，{'source':data对象，index：行索引，rowID：行Id}，缺省全部有效
+ @returns {number}
+ @description 获取data的记录数，函数返回的是前端当前已经加载的数据的记录数，不包含分页还没有加载到前端的数据
+ @example
+  <xmp>
+    //统计mainData中记录数
+    var count = justep.XData.count('mainData');
+    //统计mainData中fName姓“李”的记录数
+    var count = justep.XData.count('mainData',function(ev){
+    	var v = ev.source.getValue('fName',ev.rowID);
+    	return v.indexOf('李')==0;
+    });
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.sum
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @param	{string} column <b>[required]</b>进行统计的列
+ @param	{function} filterCallback 过滤的回调函数，需要返回boolean，为true时行有效，回调函数给出参数event，{'source':data对象，index：行索引，rowID：行Id}，缺省全部有效
+ @returns {number}
+ @description 获取data中指定列的合计，函数返回的是前端当前已经加载记录的合计，不包含分页还没有加载到前端的数据，注意：返回的数值精度受js的number精度影响
+ @example
+  <xmp>
+    //统计mainData中年龄fAge合计
+    var sum = justep.XData.sum('mainData','fAge');
+    //统计mainData中fName姓“李”的年龄fAge合计
+    var sum = justep.XData.sum('mainData','fAge',function(ev){
+    	var v = ev.source.getValue('fName',ev.rowID);
+    	return v.indexOf('李')==0;
+    });
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.avg
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @param	{string} column <b>[required]</b>进行统计的列
+ @param	{function} filterCallback 过滤的回调函数，需要返回boolean，为true时行有效，回调函数给出参数event，{'source':data对象，index：行索引，rowID：行Id}，缺省全部有效
+ @returns {number}
+ @description 获取data中指定列的平均值，函数返回的是前端当前已经加载记录的平均值，不包含分页还没有加载到前端的数据，注意：返回的数值精度受js的number精度影响
+ @example
+  <xmp>
+    //统计mainData中年龄fAge平均值
+    var avg = justep.XData.avg('mainData','fAge');
+    //统计mainData中fName姓“李”的年龄fAge平均值
+    var avg = justep.XData.avg('mainData','fAge',function(ev){
+    	var v = ev.source.getValue('fName',ev.rowID);
+    	return v.indexOf('李')==0;
+    });
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.min
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @param	{string} column <b>[required]</b>进行统计的列
+ @param	{function} filterCallback 过滤的回调函数，需要返回boolean，为true时行有效，回调函数给出参数event，{'source':data对象，index：行索引，rowID：行Id}，缺省全部有效
+ @returns {number}
+ @description 获取data中指定列的最小值，函数返回的是前端当前已经加载记录的最小值，不包含分页还没有加载到前端的数据，注意：返回的数值精度受js的number精度影响
+ @example
+  <xmp>
+    //统计mainData中年龄fAge最小值
+    var min = justep.XData.min('mainData','fAge');
+    //统计mainData中fName姓“李”的年龄fAge最小值
+    var avg = justep.XData.min('mainData','fAge',function(ev){
+    	var v = ev.source.getValue('fName',ev.rowID);
+    	return v.indexOf('李')==0;
+    });
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.max
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @param	{string} column <b>[required]</b>进行统计的列
+ @param	{function} filterCallback 过滤的回调函数，需要返回boolean，为true时行有效，回调函数给出参数event，{'source':data对象，index：行索引，rowID：行Id}，缺省全部有效
+ @returns {number}
+ @description 获取data中指定列的最大值，函数返回的是前端当前已经加载记录的最大值，不包含分页还没有加载到前端的数据，注意：返回的数值精度受js的number精度影响
+ @example
+  <xmp>
+    //统计mainData中年龄fAge最大值
+    var min = justep.XData.max('mainData','fAge');
+    //统计mainData中fName姓“李”的年龄fAge最大值
+    var avg = justep.XData.max('mainData','fAge',function(ev){
+    	var v = ev.source.getValue('fName',ev.rowID);
+    	return v.indexOf('李')==0;
+    });
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.openOptimizeRule
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @description 开启data的规则优化计算，减少全局数据规则计算提高性能（只计算当前行的规则），默认data都是优化模式
+ @see justep.XData.closeOptimizeRule
+*/
+
+/**
+ @name justep.XData.closeOptimizeRule
+ @function
+ @param	{string} dataId <b>[required]</b>data的Id
+ @description 关闭data的规则优化计算，性能有所影响，但是数据加载后每一行的规则都能计算，默认data都是优化模式
+ @see justep.XData.openOptimizeRule
+*/
+
+/**
+ @name justep.XData.xformsRefresh
+ @function
+ @param	{justep.XData} data <b>[required]</b>data对象
+ @description xforms刷新，刺激data的规则和关联感知组件刷新，当界面中的组件没有感知或者规则没有计算时可以使用这个方法强制刷新
+*/
+
+/**
+ @name justep.XData.refreshControls
+ @function
+ @description 刷新同步所有的控件，当控件还没有把数据写回data时可以调用此方法把数据同步回data
+*/
+
+/**
+ @name justep.XData.enableControls
+ @function
+ @description 数据感知开启，恢复所有感知组件数据感知和规则计算，和justep.XData.disableControls成对使用
+ @see justep.XData.disableControls
+ @example
+  <xmp>
+    //停止感知
+    justep.XData.disableControls();
+    try{
+    	...
+    }finally{
+      //恢复
+      justep.XData.enableControls();
+    }    
+  </xmp>  
+*/
+
+/**
+ @name justep.XData.disableControls
+ @function
+ @description 数据感知关闭，禁止所有感知组件数据感知和规则计算，和justep.XData.enableControls成对使用
+ @see justep.XData.enableControls
+*/
+
+/**
+ @name justep.XData.refreshData
+ @function
+ @param {string} dataId <b>[required]</b>data的id
+ @param {Object} options 新增参数，参数格式：{onError:function,onSuccess:function}，参数说明：onError{function}失败回调，onSuccess{function}成功回调
+ @returns {boolean}
+ @description 刷新指定id data的数据，等同于data组件上的refreshData方法
+*/
+
+/**
+ @name justep.XData.createUUID
+ @function
+ @returns {string}
+ @description 产生一个UUID
+*/
+
+/**
+	@name justep.XData#autoLoad
+	@property
+	@type boolean 
+	@description <b>[filed][readonly]</b>是否自动加载数据
+ */ 
+
+/**
+	@name justep.XData#loaded
+	@property
+	@type boolean 
+	@description <b>[filed][readonly]</b>是否加载过数据
+ */ 
+
+/**
+	@name justep.XData#active
+	@property
+	@type boolean 
+	@see justep.XData#open
+	@description <b>[filed][readonly]</b>是否打开，受open函数影响
+ */ 
+
+/**
+	@name justep.XData#id
+	@property
+	@type string 
+	@description <b>[filed][readonly]</b>data的id
+ */ 
+
+/**
+	@name justep.XData#directDeleteMode
+	@property
+	@type boolean 
+	@description <b>[filed]</b>直接删除方式，删除时直接进行数据提交，当为false时删除记录将在saveData时统一提交
+ */ 
+ 
+/**
+	@name justep.XData#deleteConfirm
+	@property
+	@type boolean 
+	@description <b>[filed]</b>删除确认提示
+	@see justep.XData#deleteConfirmText
+ */ 
+
+/**
+	@name justep.XData#deleteConfirmText
+	@property
+	@type string 
+	@description <b>[filed]</b>删除确认提示文本
+	@see justep.XData#deleteConfirm
+ */ 
+
+/**
+	@name justep.XData#refreshConfirm
+	@property
+	@type boolean 
+	@description <b>[filed]</b>数据修改后未保存刷新时的确认提示
+	@see justep.XData#refreshConfirmText
+ */ 
+
+/**
+	@name justep.XData#refreshConfirmText
+	@property
+	@type string 
+	@description <b>[filed]</b>未保存数据刷新确认提示文本
+	@see justep.XData#refreshConfirm
+ */ 
+
+/**
+	@name justep.XData#offset
+	@property
+	@type integer 
+	@description <b>[filed]</b>取数据的偏移量，运行时谨慎修改，会影响数据导航条分页取数据状态
+ */ 
+
+/**
+	@name justep.XData#limit
+	@property
+	@type integer 
+	@description <b>[filed]</b>分页取数据的页记录数，等于-1时不执行分页一次取全部数据，运行时谨慎修改，会影响数据导航条分页取数据状态
+ */ 
+	
+/**
+	@name justep.XData#validOnlyChangeData
+	@property
+	@type {boolean} 
+	@description <b>[filed]</b>数据有效性校验标记， true时只校验修改过的数据， false时只校验所有数据
+ */ 
+
+/**
+	@name justep.XData#filters
+	@property
+	@type {justep.Filters}
+	@description <b>[filed]</b>数据过滤条件控制对象
+ */ 
+
+/**
+ @name justep.XData#clear
+ @function
+ @description 清空data的所有数据，会触发data的onDataChanged事件
+*/
+
+/**
+ @name justep.XData#isVirtualRoot
+ @function
+ @param {string} rowid <b>[required]</b>行ID
+ @description 判断行ID是不是虚根
+*/
+
+/**
+ @name justep.XData#buildFilter
+ @function
+ @returns {string}
+ @description 生成返回过滤字符串
+*/
+
+/**
+	@name justep.XData#setReadonly
+	@function
+ 	@param {boolean} readonly <b>[required]</b>只读状态
+	@description 当没有设置data针对概念readonly规则时，通过当前函数设置data readonly状态有效
+ */ 
+
+/**
+ @name justep.XData#getFilter
+ @function
+ @param {string} name <b>[required]</b>过滤名称
+ @returns {string}
+ @description 返回指定名称的过滤表达式
+*/
+
+/**
+ @name justep.XData#setFilter
+ @function
+ @param {string} name <b>[required]</b>过滤名称
+ @param {string} filter <b>[required]</b>过滤表达式，标准的KSQL语法，如：SA_OPPerson.sName like '%李%'
+ @description 设置指定名称的过滤表达式，所有的过滤将按and连接
+ @example
+  <xmp>
+    var data = justep.xbl('mainData');
+    data.setFilter('filter1',"SA_OPPerson.sName like '%李%'");
+    data.setFilter('filter2',"SA_OPPerson.sCode = :operatorCode() or SA_OPPerson.sCode = :code");
+    //给变参code赋值
+    data.filter.setStringVar("code","code_abc");
+    //最终qureyAction的KSQL中where部分将增加 and ((SA_OPPerson.sName like '%李%') and (SA_OPPerson.sCode = :operatorCode() or SA_OPPerson.sCode = 'code_abc'))
+  </xmp>  
+*/
+
+/**
+ @name justep.XData#xformsRefresh
+ @function
+ @description xforms刷新，刺激data的规则和关联感知组件刷新，当界面中的组件没有感知或者规则没有计算时可以使用这个方法强制刷新
+*/
+
+/**
+ @name justep.XData#open
+ @function
+ @see justep.XData#active
+ @description 打开data，配合data的part缓存处理，注意：此方法基本上不需要调用，data的refreshData，newData等方法会主动调用
+*/
+
+/**
+ @name justep.XData#getInstance
+ @function
+ @description 获取data对应的instance对象，对应xforms中的instance对象
+*/
+
+/**
+ @name justep.XData#getStore
+ @function
+ @description 获取data对应的Store对象，目前data支持两种store类型，分别是grid和simple
+*/
+
+/**
+ @name justep.XData#getCurrentID
+ @function
+ @description 获取data当前的行Id
+ @see justep.XData#getID
+*/
+
+/**
+ @name justep.XData#getID
+ @function
+ @param {integer} index，索引从0开始，缺省返回当前行ID  
+ @description 获取data对应index的行Id
+ @see justep.XData#getCurrentID
+ @example
+  <xmp>
+    //获取当前行的id
+    justep.xbl('mainData').getID();
+    //获取第一行的id
+    justep.xbl('mainData').getID(0);
+  </xmp> 
+ */
+
+/**
+ @name justep.XData#setID
+ @function
+ @param {String} oldID 
+ @param {String} newID 
+ @description 设置行 Id
+*/
+
+/**
+ @name justep.XData#loadXML
+ @function
+ @param {string} doc <b>[required]</b>需要加载的doc数据，可以是string或者DOM，当给入无效值（null、undefined、''）方法不执行
+ @param {function} callback 数据加载后的回调
+ @param {boolean} append 数据增加模式 true/false
+ @param {boolean} noRender 默认加载完数据进行界面渲染
+ @description 加载数据，数据来自于Doc，可以通过此方法加载代码构造的data数据
+ @example
+  <xmp>
+    //加载空数据，等价于clear，注意doc给的是一个空格字符串
+    justep.xbl('mainData').loadXML(' ');
+  </xmp> 
+*/
+
+/**
+ @name justep.XData#loadJson
+ @function
+ @param {object} doc <b>[required]</b>需要加载的Json数据，可以是Json对象
+ @param {function} callback 数据加载后的回调
+ @param {boolean} append 数据增加模式 true/false
+ @param {boolean} noRender 默认加载完数据进行界面渲染
+ @description 加载数据，数据来自于Json
+*/
+
+/**
+ @name justep.XData#getDoc
+ @function
+ @returns {string} data的XML格式序列化字符串
+ @description 获取data的XML格式序列化字符串
+*/
+
+/**
+ @name justep.XData#getJson
+ @function
+ @returns {object} data的json格式序列化
+ @description 获取data的json格式序列化
+*/
+
+/**
+ @name justep.XData#getColumns
+ @function
+ @param {string} delim 分隔符
+ @returns {string}
+ @description 获取所有列id列表
+*/
+
+/**
+ @name justep.XData#isExist
+ @function
+ @param {string} rowID
+ @returns {boolean}
+ @description 判断行是否存在，只判断当前已经加载的数据
+*/
+
+/**
+ @name justep.XData#getUserData
+ @function
+ @param {string} name <b>[required]</b>名称
+ @param {string} rID 行id，在指定行上获取用户数据，当不给时获取全局用户扩展数据
+ @returns {string}
+ @description 获取用户扩展数据
+ @see justep.XData#setUserData
+ @example
+  <xmp>
+    典型用法：
+    1、当queryAction或者createAction返回Table时通过table.getProperties().put("name", "beijing")设置值可以使用justep.xbl(dataID).getUserData('name')获取
+    2、和setUserData函数配合使用扩展data的状态或者行状态
+    注意：5.2.6及以后版本提供    
+
+    典型用法1案例：
+    //biz端java中createAction设置扩展属性key
+	public static Table create(Table table, String concept, Map<String, String> defaultValues, String fnModel) {
+		Table t = BizData.create(table, concept, defaultValues, fnModel);
+		t.getProperties().put("key", "password");
+		return t;
+	}
+	//前端js中通过data获取    
+    justep.xbl('mainData').getUserData('key');
+    典型用法2案例：
+    //给当前行增加key
+    var data = justep.xbl('mainData');
+    var rowid = data.getCurrentID();
+    data.setUserData('key','abcdefg',rowid);
+    //读取行的key
+    data.getUserData('key'，rowid);    
+  </xmp>        
+*/
+
+/**
+ @name justep.XData#setUserData
+ @function
+ @param {string} name <b>[required]</b>名称
+ @param {string} value <b>[required]</b>数据
+ @param {string} rID 行id，在指定行上设置扩展用户数据，当不给时设置全局用户扩展数据
+ @description 设置用户扩展数据
+ @see justep.XData#getUserData
+*/
+
+/**
+ @name justep.XData#getAggregateValue
+ @function
+ @param {string} col <b>[required]</b>列名称
+ @returns {string}
+ @description 通过统计列名获取统计值，统计值来源于后端queryAction的aggregate参数定义，详细请参考queryAction
+ @see justep.XData#refreshData
+ @example
+ <xmp>
+  注意：
+  1、返回都是字符串类型
+  2、统计值更新依赖refreshData，data设置数据分页加载取后续页数据时不会刺激统计计算更新
+  后端queryAction的aggregate参数定义：count(SA_OPPerson) as personCount
+ //前端js中获取
+ justep.xbl('mainData').getAggregateValue('personCount')
+ </xmp>
+*/
+
+/**
+ @name justep.XData#getValue
+ @function
+ @param {string} col <b>[required]</b>列名称
+ @param {string} rowID 行ID，默认：当前行
+ @returns {string}
+ @description 通过列名和行ID获取列的值
+*/
+
+/**
+ @name justep.XData#setValue
+ @function
+ @param {string} col <b>[required]</b>列名称
+ @param {string} value <b>[required]</b>值
+ @param {string} rowID 行ID，默认：当前行
+ @description 通过列名和行ID设置列的值
+*/
+
+/**
+ @name justep.XData#getRowData
+ @function
+ @param {string} rowID <b>[required]</b>行ID
+ @returns {array}
+ @description 返回按列顺序组成的值数组
+ @see justep.XData#setRowData
+ @example
+ <xmp>
+     和setRowData函数配合使用可以实现同构data的行数据复制
+  //同构data(data1,data2)之间当前行数据复制
+  var data1 = justep.xbl('data1');
+  var rowData = data1.getRowData(data1.getCurrentID());
+  var data2 = justep.xbl('data2');
+  data2.setRowData(data2.getCurrentID(),rowData,data2.getColumns());
+ </xmp>
+ */
+
+/**
+ @name justep.XData#setRowData
+ @function
+ @param {string} rowID <b>[required]</b>行ID
+ @param {array} values <b>[required]</b>值数组
+ @param {array/string} columnIds 值对应的列列表,字符串数组或者','分隔的字符串
+ @param {boolean} refresh 刺激界面刷新和数据规则计算，默认：true
+ @description 设置行的数据，来自于数组，示例参见{@link justep.XData#getRowData}
+ @see justep.XData#getRowData
+*/
+
+/**
+ @name justep.XData#eof
+ @function
+ @returns {boolean}
+ @description 是否最后一条
+ @see justep.XData#bof
+ @see justep.XData#setIndex
+ @see justep.XData#first
+ @see justep.XData#last
+ @see justep.XData#next
+ @see justep.XData#pre
+ @example 
+ <xmp>
+     和游标滚动函数一起使用
+     注意：   游标滚动函数会刺激界面刷新和规则计算，数据量大时存在性能问题
+  //data数据遍历
+  var data = justep.xbl('data1');
+  //前到后遍历
+  data.first();
+  while(!data.eof()){
+  ...
+    data.next();
+  }
+  //后到前遍历
+  data.last();
+  while(!data.bof()){
+  ...
+    data.pre();
+  }
+  //使用setIndex遍历
+  vat iCount = data.getCount();
+  for(var i=0;i<iCount;i++){
+  	data.setIndex(i);
+  	...
+  }
+ </xmp>
+ */
+
+/**
+ @name justep.XData#bof
+ @function
+ @returns {boolean}
+ @description 是否第一条，示例参见{@link justep.XData#eof}
+ @see justep.XData#eof
+ @see justep.XData#setIndex
+ @see justep.XData#first
+ @see justep.XData#last
+ @see justep.XData#next
+ @see justep.XData#pre
+*/
+
+/**
+ @name justep.XData#setIndex
+ @function
+ @param {string} index <b>[required]</b>行索引
+ @description 移动数据游标，将index行指定为当前行，示例参见{@link justep.XData#eof}
+ @see justep.XData#bof
+ @see justep.XData#eof
+ @see justep.XData#first
+ @see justep.XData#last
+ @see justep.XData#next
+ @see justep.XData#pre
+*/
+
+/**
+ @name justep.XData#getIndex
+ @function
+ @param {string} rowID 行ID，默认：当前行
+ @returns {integer}
+ @description 获取指定行id的行索引
+*/
+
+/**
+ @name justep.XData#first
+ @function
+ @description 移动到第一条，示例参见{@link justep.XData#eof}
+ @see justep.XData#bof
+ @see justep.XData#eof
+ @see justep.XData#setIndex
+ @see justep.XData#last
+ @see justep.XData#next
+ @see justep.XData#pre
+*/
+
+/**
+ @name justep.XData#last
+ @function
+ @description 移动到最后一条，示例参见{@link justep.XData#eof}
+ @see justep.XData#bof
+ @see justep.XData#eof
+ @see justep.XData#setIndex
+ @see justep.XData#first
+ @see justep.XData#next
+ @see justep.XData#pre
+*/
+
+/**
+ @name justep.XData#next
+ @function
+ @description 移动到下一条，示例参见{@link justep.XData#eof}
+ @see justep.XData#bof
+ @see justep.XData#eof
+ @see justep.XData#setIndex
+ @see justep.XData#first
+ @see justep.XData#last
+ @see justep.XData#pre
+*/
+
+/**
+ @name justep.XData#pre
+ @function
+ @description 移动到前一条，示例参见{@link justep.XData#eof}
+ @see justep.XData#bof
+ @see justep.XData#eof
+ @see justep.XData#setIndex
+ @see justep.XData#first
+ @see justep.XData#last
+ @see justep.XData#next
+*/
+
+/**
+ @name justep.XData#find
+ @function
+ @param {array} fields <b>[required]</b>列列表
+ @param {array} values <b>[required]</b>值列表
+ @param {boolean} first 是否只是返回第一条
+ @param {boolean} caseInsensitive 忽略大小写
+ @param {boolean} partialKey 模糊查询
+ @returns {array} 行Id数组
+ @description 数据查找
+ @example
+  根据列和值匹配进行数据查找，可以匹配多列
+ <xmp>
+ //查找fName中包含"李"的提一条数据
+ var ids = justep.xbl('mainData').find(['fName'],['李'],true,true,true);
+ if(ids.length()>0) alert(ids[0]);
+ else alert('没有符合条件数据');
+ //查找fName="李四"，fAge=18的数据
+ var ids = justep.xbl('mainData').find(['fName','fAge'],['李',18]);
+ if(ids.length()==0) alert('没有符合条件数据');
+ </xmp>
+*/
+
+/**
+ @name justep.XData#insert
+ @function
+ @param {string} rowID <b>[required]</b>行的id
+ @param {integer} index 新增的位置
+ @param {map} values 列数据对象
+ <br/><b>参数格式：</b>
+<xmp>
+	{
+		列名:值,
+		列名:值,
+ 	 	...
+	}
+</xmp>	
+ @description 前端新增一行数据，状态需要开发者维护
+*/
+
+/**
+ @name justep.XData#remove
+ @function
+ @param {string} rowID <b>[required]</b>行的id
+ @description 移除一行数据，只在前端移除不影响数据库
+*/
+
+/**
+ @name justep.XData#removeByIndex
+ @function
+ @param {integer} index <b>[required]</b>行索引
+ @description 移除一行数据，只在前端移除不影响数据库
+*/
+
+/**
+ @name justep.XData#newData
+ @function
+ @param {Object} options 新增参数，支持多行新增
+<br/><b>参数格式：</b>
+<xmp>
+	{
+		"index" : integer - 新增位置,
+		"parentID" : string - 树形数据的父ID（非树形不需要）,
+		"defaultValues" : array - 新增行的默认值数组 ，数组的长度决定新增行数，数组中的对象是列的默认值
+            defaultValues格式：
+              	[
+              		{列名:默认值,...},
+              		{列名:默认值,...},
+              		...
+              	]
+		"onError" : function - 失败回调函数，function(event);
+         	event的格式：
+         		{
+         			"source" : {justep.XData} - 组件的js对象,
+         			"errorType" : {string} - 'server',
+         			"errorNode" : {object} - 错误信息,
+         			"httpError" : {boolean} - 是否http请求失败,
+         			"httpState" : {string} - http请求返回码
+         		}
+		"onSuccess" : function - 成功回调函数，function(event);
+         	event的格式：
+         		{
+         			"source" : {justep.XData} - 组件的js对象,
+         			"ids"    : {array} - 新增行的id数组
+              	}
+	}
+</xmp>              
+ @returns {array} 返回新增行的ids
+ @description 业务数据新增方法，支持返回多行（兼容原5.2.5版本以前index，parentID，defaultValues参数写法）
+ @see bizData#relationDefaultValues
+ @example 
+ <xmp>
+ 	//新增两行数据到最后，并且给出sName和sCode的默认值
+ 	var data = justep.xbl('mainData');
+ 	var options = {
+ 		index : data.getCount(),
+ 		defaultValues : [
+ 			{sName:'a1',sCode:'b1'},
+ 			{sName:'a2',sCode:'b2'}
+ 		]
+ 	};	
+ 	data.newData(options);
+ </xmp>
+*/
+
+/**
+ @name justep.XData#deleteAllRow
+ @function
+ @returns {boolean}
+ @description 业务数据全部删除方法，等同于遍历使用deleteData函数
+ @see justep.XData#deleteData
+*/
+
+/**
+ @name justep.XData#deleteData
+ @function
+ @param {array/string} rowIDs 行id数组，或者","分隔的字符串
+ @returns {boolean}
+ @see justep.XData#directDeleteMode
+ @see justep.XData#deleteConfirm
+ @description 业务数据删除方法，当directDeleteMode=true时直接提交后台删除，当deleteConfirm=true时会弹出删除确认框
+ @example 
+ <xmp>
+ //不提示直接提交后台删除当前行
+ var data = justp.xbl('mainData');
+ var deleteConfirm = data.deleteConfirm;
+ var directDeleteMode = data.directDeleteMode;
+ try{
+	 data.deleteConfirm = false;
+	 data.directDeleteMode = true;
+	 data.deleteData(data.getID());
+ }finally{
+ 	data.deleteConfirm = deleteConfirm;
+ 	data.directDeleteMode = directDeleteMode;
+ }
+ </xmp>
+*/
+
+/**
+ @name justep.XData#saveData
+ @function
+ @param {Object} options 新增参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+	         		{
+	         			"source" : {justep.XData} - 组件的js对象,
+	         			"errorType" : {string} - 'server',
+	         			"errorNode" : {object} - 错误信息,
+	         			"httpError" : {boolean} - 是否http请求失败,
+	         			"httpState" : {string} - http请求返回码
+	         		}
+		"onSuccess" : {function} - 成功回调，function(event),
+			event的格式：
+	         		{
+	         			"source" : {justep.XData} - 组件的js对象
+	              	}
+		"ignoreInvalid" : {boolean} - 保存时忽略有效性校验，默认false
+	}
+ </xmp>	
+ @returns {boolean} 
+ @description 业务数据保存方法，向后端提交修改的数据，包括从Data数据
+ @example 
+ <xmp>
+ 	//保存成功后刷新data
+ 	justep.xbl('mainData').saveData(
+	 {
+	 	"onSuccess" : function(event){
+	 		event.source.refreshData();
+	 	}
+ 	 });
+ </xmp>		
+*/
+
+/**
+ @name justep.XData#loadData
+ @function
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+	    	event的格式：
+	        	{
+	        		"source" : {justep.XData} - 组件的js对象,
+	        		"errorType" : {string} - 'server',
+	        		"errorNode" : {object} - 错误信息,
+	        		"httpError" : {boolean} - 是否http请求失败,
+	        		"httpState" : {string} - http请求返回码
+	         	}
+		"onSuccess" : {function} - 成功回调，function(event),
+	    	event的格式：
+	        	{
+					"source" : {justep.XData} - 组件的js对象
+	           	}
+	}
+ </xmp>	
+ @returns {boolean}
+ @see justep.XData#refreshData
+ @description 业务数据第一次加载，等同于只执行一次的refreshData函数，加载过后使用refreshData()刷新数据
+*/
+
+/**
+ @name justep.XData#refreshData
+ @function
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+				{
+					"source" : {justep.XData} - 组件的js对象,
+					"errorType" : {string} - 'server',
+					"errorNode" : {object} - 错误信息,
+					"httpError" : {boolean} - 是否http请求失败,
+					"httpState" : {string} - http请求返回码
+				}
+		"onSuccess" : {function} - 成功回调，function(event),
+			event的格式：
+				{
+					"source" : {justep.XData} - 组件的js对象
+				}
+	}
+ </xmp>	
+ @returns {boolean}
+ @see justep.XData#limit
+ @see justep.XData#refreshConfirm
+ @see justep.XData#refreshPageData
+ @see justep.XData#loadPageData
+ @see justep.XData#loadNextPageData
+ @see justep.XData#loadAllPageData
+ @see justep.XData#loadTreeData
+ @description 业务数据刷新，会刺激从data级联刷新，当limit!=-1时取第一页数据，当limit=-1时取全部数据，当refreshConfirm=true并且数据是编辑或者新增状态时刷新数据时显示刷新确认提示框
+ @example 
+ <xmp>
+ //强制刷新data
+ var data = justp.xbl('mainData');
+ var refreshConfirm = data.refreshConfirm;
+ try{
+	 data.refreshConfirm = false;
+	 data.refreshData();
+ }finally{
+ 	data.refreshConfirm = refreshConfirm;
+ }
+ </xmp>		
+*/
+
+/**
+ @name justep.XData#refreshPageData
+ @function
+ @param {integer} offset <b>[required]</b>取数据的偏移量
+ @param {integer} limit <b>[required]</b>取的条数
+ @param {boolean} append 是否增量模式，为true时不清除已经加载数据，为false时清空data后加载数据
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+				{
+					"source" : {justep.XData} - 组件的js对象,
+	         		"errorType" : {string} - 'server',
+	         		"errorNode" : {object} - 错误信息,
+	         		"httpError" : {boolean} - 是否http请求失败,
+	         		"httpState" : {string} - http请求返回码
+	         	}
+		"onSuccess" : {function} - 成功回调，function(event),
+			event的格式：
+	        	{
+	        		"source" : {justep.XData} - 组件的js对象
+	           	}
+	}
+ </xmp>	
+ @returns {boolean}
+ @description 根据指定offset、limit参数刷新业务数据，当需要影响data设置的offset、limit时使用，通常情况下不推荐使用
+ @see justep.XData#offset
+ @see justep.XData#limit
+ @see justep.XData#refreshData
+ @see justep.XData#loadPageData
+ @see justep.XData#loadNextPageData
+ @see justep.XData#loadAllPageData
+*/
+
+/**
+ @name justep.XData#loadNextPageData
+ @function
+ @param {boolean} append 是否增量模式，为true时不清除已经加载数据，为false时清空data后加载数据
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+	         		{
+	         			"source" : {justep.XData} - 组件的js对象,
+	         			"errorType" : {string} - 'server',
+	         			"errorNode" : {object} - 错误信息,
+	         			"httpError" : {boolean} - 是否http请求失败,
+	         			"httpState" : {string} - http请求返回码
+	         		}
+		"onSuccess" : {function} - 成功回调，function(event),
+			event的格式：
+	         		{
+	         			"source" : {justep.XData} - 组件的js对象
+	              	}
+	}
+ </xmp>	
+ @returns {boolean}
+ @description 加载下一页的数据，受offset、limit影响
+ @see justep.XData#offset
+ @see justep.XData#limit
+ @see justep.XData#refreshData
+ @see justep.XData#loadPageData
+ @see justep.XData#loadAllPageData
+*/
+
+/**
+ @name justep.XData#loadAllPageData
+ @function
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+	         		{
+	         			"source" : {justep.XData} - 组件的js对象,
+	         			"errorType" : {string} - 'server',
+	         			"errorNode" : {object} - 错误信息,
+	         			"httpError" : {boolean} - 是否http请求失败,
+	         			"httpState" : {string} - http请求返回码
+	         		}
+		"onSuccess" : {function} - 成功回调，function(event),
+	    	event的格式：
+	         		{
+	         			"source" : {justep.XData} - 组件的js对象
+	              	}
+	}
+ </xmp>	
+ @returns {boolean}
+ @description 在分页状态加载所有数据
+ @see justep.XData#offset
+ @see justep.XData#limit
+ @see justep.XData#refreshData
+ @see justep.XData#loadPageData
+ @see justep.XData#loadNextPageData
+*/
+
+/**
+ @name justep.XData#loadPageData
+ @function
+ @param {integer} pageIndex <b>[required]</b>页索引
+ @param {boolean} append 是否增量模式
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+	         	{
+	         		"source" : {justep.XData} - 组件的js对象,
+	         		"errorType" : {string} - 'server',
+	         		"errorNode" : {object} - 错误信息,
+	         		"httpError" : {boolean} - 是否http请求失败,
+	         		"httpState" : {string} - http请求返回码
+	         	}
+		"onSuccess" : {function} - 成功回调，function(event),
+	    	event的格式：
+	         	{
+	         		"source" : {justep.XData} - 组件的js对象
+	            }
+	}
+ </xmp>	
+ @returns {boolean}
+ @description 分页模式下加载第N页数据
+ @see justep.XData#offset
+ @see justep.XData#limit
+ @see justep.XData#refreshData
+ @see justep.XData#loadNextPageData
+ @see justep.XData#loadAllPageData
+*/
+
+/**
+ @name justep.XData#getCount
+ @function
+ @returns {integer}
+ @description 获取记录数
+*/
+
+/**
+ @name justep.XData#getTotal
+ @function
+ @returns {integer}
+ @description 返回data的全部记录数,包括分页没有加载的记录数
+*/
+
+/**
+ @name justep.XData#isChanged
+ @function
+ @param {string} type - 判断的类型all(全部数据包括从data数据状态，默认)/self(自己的数据，不包括从data)/slave(从data)
+ @returns {boolean}
+ @description 判断data是否修改
+ @example 
+ <xmp>
+ //判断data是否修改包括从data
+ justep.xbl('mainData').isChanged('all');
+ //判断data自身是否修改
+ justep.xbl('mainData').isChanged('self');
+ </xmp>		
+*/
+
+/**
+ @name justep.XData#getState
+ @function
+ @param {string} rowID <b>[required]</b>行ID
+ @returns {justep.XData.STATE}
+ @description 获取行id对应行的状态
+*/
+
+/**
+ @name justep.XData#setState
+ @function
+ @param {string} rowID <b>[required]</b>行ID
+ @param {justep.XData.STATE} state <b>[required]</b>状态 
+ @param {boolean} refresh 通知感知组件进行刷新，默认：true 
+ @description 设置行的状态，特殊说明：尽量不要主动修改行数据状态，当设置delete状态时相当于做删除动作，当data的更新模式为whereAll时谨慎使用（需要开发者保证数据一致性，否则将会影响保存操作）
+*/
+
+/**
+ @name justep.XData#getChangedIDs
+ @function
+ @param {justep.XData.STATE} type <b>[required]</b>状态
+ @param {string} delim 分隔符
+ @returns {string} 使用分隔符隔离的行id字符串
+ @description 获取修改的行id字符串，需要保存前获取
+*/
+
+/**
+ @name justep.XData#getChangedIDList
+ @function
+ @param {justep.XData.STATE} type <b>[required]</b>状态
+ @returns {array}
+ @description 获取修改的行id数组，需要保存前获取
+*/
+
+/**
+ @name justep.XData#isValid
+ @function
+ @returns {boolean}
+ @description 判断data是否违反约束
+ @example 
+ <xmp>
+ 	判断是否违反约束，根据this.validOnlyChangeData确定判断数据的范围，
+ 	this.validOnlyChangeData为true时只判断修改的数据，为false时判断全部数据
+ 	this.validOnlyChangeData默认为true
+ 	
+ 	此函数在saveData中被调用
+ </xmp>	
+*/
+
+/**
+ @name justep.XData#getInvalidInfo
+ @function
+ @returns {string}
+ @description 获取data违反约束的信息
+ @example 
+ <xmp>
+ 	获取data违反约束的信息，根据this.validOnlyChangeData确定判断数据的范围，
+ 	this.validOnlyChangeData为true时只判断修改的数据，为false时判断全部数据
+ 	this.validOnlyChangeData默认为true
+ 	
+ 	此函数在saveData中被调用
+ </xmp>	
+*/
+
+/**
+ @name justep.XData#revalidate
+ @function
+ @description 对当前data所有数据进行规则计算，会造成大量JS运算请谨慎使用 
+*/
+
+/**
+ @name justep.XData#collapseAll
+ @function
+ @description 树形数据折叠所有 
+ @see justep.XData#expandAll
+ @see justep.XData#collapseRow
+ @see justep.XData#expandRow
+ @see justep.XData#expandRows
+ @see justep.XData#expandRowsToLevel
+ @see justep.XData#expandTreeByIdPath
+*/
+
+/**
+ @name justep.XData#expandAll
+ @function
+ @param {boolean} onlyLoaded 仅展开已经加载的数据，当为true时只展开已经加载的数据，为false时会自动刺激未加载数据加载
+ @description 树形数据展开所有 
+ @see justep.XData#collapseAll
+ @see justep.XData#collapseRow
+ @see justep.XData#expandRow
+ @see justep.XData#expandRows
+ @see justep.XData#expandRowsToLevel
+ @see justep.XData#expandTreeByIdPath
+ @example 
+ <xmp>
+ 	//展开data已经加载的数据
+ 	justep.xbl('mainData').expandAll(true);
+ </xmp>	
+*/
+
+/**
+ @name justep.XData#collapseRow
+ @function
+ @param {string} rowID <b>[required]</b>行ID
+ @description 树形数据折叠行 
+ @see justep.XData#expandAll
+ @see justep.XData#collapseAll
+ @see justep.XData#expandRow
+ @see justep.XData#expandRows
+ @see justep.XData#expandRowsToLevel
+ @see justep.XData#expandTreeByIdPath
+ @example 
+ <xmp>
+ 	//折叠当前行
+ 	var data = justep.xbl('mainData');
+ 	data.collapseRow(data.getID());
+ </xmp>	
+*/
+
+/**
+ @name justep.XData#expandRow
+ @function
+ @param {string} rowID <b>[required]</b>行ID
+ @description 树形数据展开行 
+ @see justep.XData#expandAll
+ @see justep.XData#collapseAll
+ @see justep.XData#collapseRow
+ @see justep.XData#expandRows
+ @see justep.XData#expandRowsToLevel
+ @see justep.XData#expandTreeByIdPath
+ @example 
+ <xmp>
+ 	//展开当前行
+ 	var data = justep.xbl('mainData');
+ 	data.expandRow(data.getID());
+ </xmp>	
+*/
+
+/**
+ @name justep.XData#expandRows
+ @function
+ @param {string} rowIDs <b>[required]</b>行ID，","分隔的字符串
+ @description 树形数据展开指定的行
+ @see justep.XData#expandAll
+ @see justep.XData#collapseAll
+ @see justep.XData#expandRow
+ @see justep.XData#collapseRow
+ @see justep.XData#expandRowsToLevel
+ @see justep.XData#expandTreeByIdPath
+*/
+
+/**
+ @name justep.XData#expandRowsToLevel
+ @function
+ @param {integer} level <b>[required]</b>展开的层数
+ @param rowIDs {array} 从指定的行展开，默认从根开始展开
+ @description 树形数据展开到第N层
+ @see justep.XData#expandAll
+ @see justep.XData#collapseAll
+ @see justep.XData#expandRow
+ @see justep.XData#expandRows
+ @see justep.XData#collapseRow
+ @see justep.XData#expandTreeByIdPath
+*/
+
+/**
+ @name justep.XData#expandTreeByIdPath
+ @function
+ @param {string} path <b>[required]</b>树形数据的id Path
+ @param {function} callbak 回调函数
+ @description 树形数据按id path展开
+ @see justep.XData#expandAll
+ @see justep.XData#collapseAll
+ @see justep.XData#expandRow
+ @see justep.XData#expandRows
+ @see justep.XData#collapseRow
+ @see justep.XData#expandRowsToLevel
+ @example 
+ <xmp>
+	data.expandTreeByIdPath("/aaaa/bbbb");
+	特别说明组织机构的fId是带类型的需要fId.replace(/\.[^\/]+/g, "");
+	data.expandTreeByIdPath(fId.replace(/\.[^\/]+/g, ""));
+ </xmp> 
+*/
+
+/**
+ @name justep.XData#loadTreeData
+ @function
+ @param {string} parentId <b>[required]</b>加载树数据的父ID
+ @param {Object} options 刷新参数
+<br/><b>参数格式：</b>
+ <xmp>
+	{
+		"onError" : {function} - 失败回调，function(event),
+			event的格式：
+				{
+					"source" : {justep.XData} - 组件的js对象,
+					"errorType" : {string} - 'server',
+					"errorNode" : {object} - 错误信息,
+					"httpError" : {boolean} - 是否http请求失败,
+					"httpState" : {string} - http请求返回码
+				}
+		"onSuccess" : {function} - 成功回调，function(event),
+			event的格式：
+				{
+					"source" : {justep.XData} - 组件的js对象
+				}
+	}
+ </xmp>	
+ @returns {boolean}
+ @description 加载指定父ID的树数据
+ @example 
+ <xmp>
+ //加载当前行的子数据
+ var data = justep.xbl('mainData');
+ data.loadTreeData(data.getID());
+ </xmp>		
+*/
+
+/**
+	@name UI.bizData
+	@component /UI/system/components/data.xbl.xml#bizData
+	@class justep.XBizData
+	@extends justep.XData
+	@model UI
+	@description <b>[rich]</b>业务层绑定data，继承justep.XData的所有属性和方法
+	@example 
+	UI.bizData是和biz端createAction、queryAction、saveAction绑定的业务data
+	refreshData对应执行queryAction
+	saveData、deleteData对应执行saveAction
+	newData对应执行createAction
+		
+	<b>组件的xml格式：</b>	
+	<xmp>
+		<data id="main" component="/UI/system/components/data.xbl.xml#bizData"
+			concept="SA_WorkRecord"
+			relations="sName,sCreatorDeptName,sLastModifyTime..."
+			is-tree="true"
+			offset="1"
+			limit="20"
+			direct-delete="true"
+			confirm-delete="false"
+			confirm-delete-text="..."
+			confirm-refresh="false"
+			confirm-refresh-text="..."
+			order-by="sLastModifyTime:desc;sName:asc"
+			auto-load="true" store-type="grid/simple">
+			<reader action="SA_WorkRecordQueryAction"/>
+			<writer action="SA_WorkRecordSaveAction"/>
+			<creator action="SA_WorkRecordNewAction"/>
+			<!-- 主从描述 -->
+			<master data="" relation=""/>
+			<!-- 过滤 -->
+			<filter name="filter1">sName="aaa"</filter>
+			<filter name="filter2">...</filter>
+			<!-- 规则 -->
+			<rule concept="SA_WorkRecord"
+				readonly="call('getSystemParam', 'currentPersonID', 'biz') != data('main')/sCreatorPersonID"/>
+			<rule relation="sActualStartTime" readonly="1=1" default-value="" />
+			<rule relation="sName" constraint="data('main')/sName='aaa'"
+				alert="'名称不对了'" />
+			<rule relation="sActualFinishTime" readonly="1=1" />		   		
+			<!-- 计算列定义 -->
+			<calculate-relation relation="calculateRelation" />
+			<!-- 树相关定义 -->
+			<tree-option parent-path="" virtual-root="" root-filter=""
+				node-kind-path=""
+				node-level-path="" />
+		</data>	
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#component
+	@attribute
+	@required
+	@description 组件标识
+	@default "/UI/system/components/data.xbl.xml#bizData"
+*/
+
+/**
+	@name UI.bizData#id
+	@attribute
+	@required 
+	@description id标识
+*/
+
+/**
+	@name UI.bizData#concept
+	@attribute 
+	@required
+	@description 操作的概念，需要和queryAction中定义的一致
+*/
+
+/**
+	@name UI.bizData#relations
+	@attribute
+	@default queryAction中select定义 
+	@description data使用的关系，不能大于queryAction中select定义的范围
+*/
+
+/**
+	@name UI.bizData#is__sub__tree
+	@attribute 
+	@type boolean
+	@description 是否树形数据
+*/
+
+/**
+	@name UI.bizData#order__sub__by
+	@attribute 
+	@type string
+	@description 数据查询排序，如：sLastModifyTime:desc;sName:asc
+*/
+
+/**
+	@name UI.bizData#auto__sub__load
+	@attribute 
+	@type boolean
+	@default false
+	@description 自动加载数据，与auto-new属性互斥，默认：false
+*/
+
+/**
+	@name UI.bizData#auto__sub__new
+	@attribute 
+	@type boolean
+	@default false
+	@description 自动新增数据，与auto-load属性互斥，默认：false
+*/
+
+/**
+	@name UI.bizData#store__sub__type
+	@attribute 
+	@type string
+	@default grid
+	@description 数据内存存贮类型，取值：grid/simple
+*/
+
+/**
+	@name UI.bizData#data__sub__type
+	@attribute 
+	@type string
+	@default json
+	@description 前后台数据传递的格式，取值：xml/json
+*/
+
+/**
+	@name UI.bizData#update__sub__mode
+	@attribute 
+	@type string
+	@default whereVersion
+	@description 数据更新模式,取值：whereVersion/whereAll
+	@see UI.bizData#updateMode
+	@example
+	<xmp>
+	UI.bizData更新数据的原理:
+		解决数据更新冲突平台采用乐观锁实现，简单说就是多个人同时更新一条数据时只会一个更新成功；
+		平台中更新模式有两种：whereVersion,whereAll，其实还可以增加whereKey（目前没有）
+		whereVersion更新数据时使用key和version作为条件更新，使用data的save时平台会自动维护version，也就是说在更新语句中会做version+1，当version变化时说明数据已经被人修改，当前更新失败回滚
+		whereAll模式使用所有查询列的旧值做更新的条件，当条件不满足就说明数据已经被人修改，当前更新失败回滚
+		从数据严格性上说：whereKey<whereVersion<whereAll
+		平台UI.bizData默认使用whereVersion
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#limit
+	@attribute 
+	@type integer
+	@default 20
+	@description 分页取数据的页记录数，为-1时使用后台action的定义，默认：20
+*/
+
+/**
+	@name UI.bizData#confirm__sub__delete
+	@attribute 
+	@type boolean
+	@default true
+	@description 删除数据确认提示，默认：true
+*/
+
+/**
+	@name UI.bizData#confirm__sub__delete__sub__text
+	@attribute 
+	@type string
+	@description 删除数据确认提示文本
+*/
+
+/**
+	@name UI.bizData#confirm__sub__refresh
+	@attribute 
+	@type boolean
+	@default true
+	@description 数据未保存刷新数据确认提示，默认：true
+*/
+
+/**
+	@name UI.bizData#confirm__sub__refresh__sub__text
+	@attribute 
+	@type string
+	@description 数据未保存刷新数据确认提示文本
+*/
+
+/**
+	@name UI.bizData#direct__sub__delete
+	@attribute 
+	@type boolean
+	@default false
+	@description 直接删除模式，为true时调用删除将立即提交后台，否则在save时统一保存，默认：false
+*/
+
+/**
+	@name UI.bizData#reader
+	@attribute 
+	@type string
+	@required
+	@description 获取数据的action，通常指定概念的queryAction
+	@example
+	<b>xml格式：</b>
+	<xmp>
+		<reader action="/SA/task/logic/action/queryWorkRecordAction"/>
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#writer
+	@attribute 
+	@type string
+	@description 写数据的action，当保存或者删除数据提交时执行的action，通常指定概念的saveAction，当data数据不需要保存时可以不指定
+	@example
+	<b>xml格式：</b>
+	<xmp>
+		<writer action="/SA/task/logic/action/saveWorkRecordAction"/>
+	</xmp>
+*/
+				
+/**
+	@name UI.bizData#creator
+	@attribute 
+	@type string
+	@description 新增数据的action，通常指定概念的createAction，当data数据不需要新增时可以不指定
+	@example
+	<b>xml格式：</b>
+	<xmp>
+		<creator action="/SA/task/logic/action/createWorkRecordAction"/>
+	</xmp>
+*/
+				
+/**
+	@name UI.bizData#master                                                                                   
+	@attribute 
+	@description 主从关系
+	@example
+	<b>包括属性：</b>
+		data <b>[attribute]</b> 主Data
+
+		relation <b>[attribute]</b> 关联关系
+	
+	<b>xml格式：</b>
+	<xmp>
+		<master data="" relation=""/>
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#filter                                                                                   
+	@attribute 
+	@description 过滤
+	@see justep.XData#filters
+	@example
+	<b>包括属性：</b>
+		name <b>[attribute]</b> 过滤名称
+		
+		filter <b>[attribute]</b> 过滤表达式
+	
+	<b>xml格式：</b>
+	<xmp>
+		<filter name="filter1">sName="aaa"</filter>
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#rule                                                                                   
+	@attribute 
+	@type {UI.bizData_rule}
+	@see UI.bizData_rule
+	@description 规则
+	@example
+	<b>包括属性：</b>
+		concept <b>[attribute]</b> 概念
+
+		relation <b>[attribute]</b> 关系
+
+		readonly <b>[attribute]</b> 只读
+
+		calculate <b>[attribute]</b> 计算
+
+		required <b>[attribute]</b> 必填
+
+		relevant <b>[attribute]</b> 相关性
+
+		constraint <b>[attribute]</b> 约束
+
+		alert <b>[attribute]</b> 提示信息
+	属性具体说明见：UI.bizData_rule	
+
+	<b>xml格式：</b>
+	<xmp>
+		<rule relation="sName" constraint="data('main')/sName='aaa'"
+					alert="'名称不对了'" />
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule 
+	@component UI.bizData的规则
+	@model UI
+	@class                                                                                
+	@description UI.bizData的规则
+*/
+
+/**
+	@name UI.bizData_rule#concept                                                                                   
+	@attribute
+	@type {string}
+	@description 规则绑定的概念
+	@example
+	<xmp>
+		和concept绑定的规则只有readonly
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule#relation                                                                                   
+	@attribute
+	@type {string}
+	@description 规则绑定的列
+*/
+
+/**
+	@name UI.bizData_rule#readonly                                                                                   
+	@attribute
+	@type {string}
+	@description 列的只读规则，是xpath表达式
+	@example
+	<xmp>
+		表达式计算为true时所有绑定的感知组件只读，反之正常
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule#calculate                                                                                   
+	@attribute
+	@type {string}
+	@description 列的计算规则，是xpath表达式
+	@example
+	<xmp>
+		列的值通过表达式动态计算完成
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule#required                                                                                   
+	@attribute
+	@type {string}
+	@description 列的必填规则，是xpath表达式
+	@example
+	<xmp>
+		列的必填控制，当表达式计算结果为true时列必填，反之；
+		当列必填时，如果列值为空，提示alert指定的错误信息
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule#relevant                                                                                   
+	@attribute
+	@type {string}
+	@description 列的相关性规则，是xpath表达式
+	@example
+	<xmp>
+		表达式计算为true时所有绑定的感知组件可见，反之隐藏
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule#constraint                                                                                   
+	@attribute
+	@type {string}
+	@description 列的约束规则，是xpath表达式
+	@example
+	<xmp>
+		当表达式计算结果为false时列不满足约束，提示alert指定的错误信息
+	</xmp>
+*/
+
+/**
+	@name UI.bizData_rule#alert                                                                                   
+	@attribute
+	@type {string}
+	@description 列违反约束的提示信息，是xpath表达式
+	@example
+	<xmp>
+		显示编号的提示信息
+		<rule relation="sName" required="true()"
+					alert="'编号:[' + data('mainData')/sCode + ']名称不能为空'" />
+	</xmp>
+*/
+
+
+/**
+	@name UI.bizData#calculate__sub__relation                                                                                   
+	@attribute 
+	@description <b>[attribute]</b>计算关系
+	@example
+	包括属性：
+		relation <b>[attribute]</b> 关系名</p>
+		type <b>[attribute]</b> 数据类型</p>
+	<xmp>
+		xml格式:
+		<calculate-relation relation="calculateRelation" type="string"/>
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#tree__sub__option                                                                                   
+	@attribute 
+	@description 树参数
+	@see UI.bizData#setTreeRootFilter
+	@example
+	<b>包括属性：</b>
+		parent-relation <b>[attribute]</b> 父关系，形成父子树的父关系
+
+		virtual-root <b>[attribute]</b> 虚根
+
+		root-filter <b>[attribute]</b> 根过滤条件，当设置时树形数据将按节点加载数据
+
+		node-kind-relation <b>[attribute]</b> 节点类型关系，data操作时使用指定relation自动记录是否叶子节点信息
+
+		node-level-relation <b>[attribute]</b> 节点层次关系，data操作时使用指定relation自动记录树形层次
+
+	<b>xml格式：</b>
+	<xmp>
+		<tree-option parent-relation="" virtual-root="" root-filter=""
+			node-kind-relation=""
+			node-level-relation="" />
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#relationDefaultValues                                                                                   
+	@property 
+	@description newData时的关系默认值对象
+	@see justep.XData#newData
+	@example
+	<xmp>
+		对应createAction的defaultValues参数
+		
+		结构:
+		{ 
+			列名: 默认值,
+			列名: 默认值,
+			...
+		}
+
+		关于新增默认值优先级说明：
+		newData函数中的options.defaultValues(在事件onNewCreateParam中可以修改) >> relationDefaultValues >> createAction的defaultValues参数  >> concept上relation的defaultValue >> relation的defaultValue  
+		
+		//设置sName默认值为"工作记录"
+		justep.xbl('mainData').relationDefaultValues['sName'] = '工作记录';
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#slaveDatas                                                                                   
+	@property 
+	@description 从data的id数组
+	@example
+	<xmp>
+		//遍历从data
+		var data = justep.xbl('mainData');
+		for(var i in data.slaveDatas)
+			justep.xbl(in data.slaveDatas[i]);
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#masterData                                                                                   
+	@property 
+	@description 主data，不存在为null
+	@example
+	<xmp>
+		//获取主data的当前行ID
+		justep.xbl('mainData').masterData.getID();
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#updateMode                                                                                   
+	@property 
+	@description <b>[readonly]</b>data的更新模式，详细请参考：{@link UI.bizData#update__sub__mode}
+	@see UI.bizData#update__sub__mode
+*/
+
+/**
+	@name UI.bizData#newParam                                                                                   
+	@property 
+	@type justep.Request.ActionParam
+	@description <b>[filed][readonly]</b>data的新增参数，为createAction准备的action请求参数
+*/
+
+
+/**
+ @name UI.bizData#getParentRelation
+ @function
+ @returns {string}	 
+ @description 当是树形数据时，返回对应形成树的父关系
+*/
+
+/**
+ @name UI.bizData#getConceptName
+ @function
+ @returns {string}	 
+ @description 获取data操作的概念名
+ @example
+ <xmp>
+ 	biz端的queryAction中from参数定义为：SA_Task t1
+ 	SA_Task是概念名，指原概念的名称
+ 	t1是概念别名
+ 	通常情况下建议两者保持一致
+ </xmp>
+*/
+
+/**
+ @name UI.bizData#getConceptAliasName
+ @function
+ @returns {string}	 
+ @description 获取data操作的概念别名
+ @see UI.bizData#getConceptName
+*/
+
+/**
+ @name UI.bizData#getRelations
+ @function
+ @param {string} delim 分隔符
+ @returns {string} 使用分隔符连接的字符串
+ @description 获取所有列id列表字符串
+*/
+
+/**
+ @name UI.bizData#getRelationInfo
+ @function
+ @param {string} col <b>[required]</b>关系名
+ @returns {object} 
+<br/><b>格式：</b>
+<xmp>
+	{
+		"relation" : {string} 关系名,
+		"type" : {string} 关系的数据类型，如：String、Integer...，当是计算关系时为Object,
+		"label" : {string} 关系的显示名称，和当前语言环境有关，请参考平台相关多语言机制,
+		"define" : {string} 当前关系的定义描述，格式为：概念.关系，当是计算关系时为EXPRESS
+	}
+</xmp>
+ @description 获取列的信息
+*/
+
+/**
+ @name UI.bizData#setOrderBy
+ @function
+ @param {string} relation <b>[required]</b>关系名
+ @param {integer} type OrderBy的类型0:DESC/1:ASC,为null时清空对应关系的排序
+ @description 设置查询排序
+*/
+	
+/**
+ @name UI.bizData#getOrderBy
+ @function
+ @param {string} relation <b>[required]</b>关系名
+ @returns {integer} OrderBy的类型0:DESC/1:ASC
+ @description 获取查询排序
+*/
+
+/**
+ @name UI.bizData#clearOrderBy
+ @function
+ @description 清除data上的OrderBy定义
+*/
+
+/**
+ @name UI.bizData#getQueryAction
+ @function
+ @returns {string}
+ @description 获取查询biz action 名，对应reader属性
+ @see UI.bizData#reader
+*/
+
+/**
+ @name UI.bizData#getNewAction
+ @function
+ @returns {string}
+ @description 获取新增biz action 名，对应creator属性
+ @see UI.bizData#creator
+*/
+
+/**
+ @name UI.bizData#getSaveAction
+ @function
+ @returns {string}
+ @description 获取保存biz action 名，对应writer属性
+ @see UI.bizData#writer
+*/
+
+/**
+ @name UI.bizData#serializeRow
+ @function
+ @param {string} rowID <b>[required]</b>行Id
+ @param {boolean} useJson 是否使用Json格式序列化，默认值：false；
+ @returns {string}
+ @description 返回行序列化字符串
+*/
+
+/**
+ @name UI.bizData#serialize
+ @function
+ @param {boolean} onlyChanged - 仅序列化修改的数据
+ @param {boolean} hasXmlHead - 包含xml头标识，针对非JSON格式有效
+ @param {object} store - data的store，通常不需要设置；默认值：null
+ @param {boolean} useJson - 是否使用Json格式序列化，默认值：false；
+ @returns {string}
+ @description data数据的字符串序列化
+ @see UI.bizData#editDataSerialize
+  @example
+ <xmp>
+ //data作为action参数table进行sendBizRequest
+ 	var param = new justep.Request.ActionParam();
+	var data = this.serialize(false, false, null, true);
+	param.setTable('table', new justep.Request.TableParam(data));
+	//其他参数赋值
+	...
+ 	justep.Request.sendBizRequest2(
+ 		{
+ 			"contentType" : 'json',
+ 			"dataType" : 'json',
+ 			"action" : 'saveAction', 
+ 			"parameters" : param, 
+ 			"callback" : function(data){
+ 				if (data.state) alert('成功');
+ 				else alert('失败');
+ 			}
+ 		});
+ </xmp>
+*/
+
+/**
+ @name UI.bizData#setProcess
+ @function
+ @param {string} process <b>[required]</b>process
+ @description 设置data使用的process，当data不使用当前环境中的process时可以设置指定
+*/
+
+/**
+ @name UI.bizData#getProcess
+ @function
+ @return {string}
+ @description 获取data使用的process，没有set过时取环境中的process
+*/
+
+/**
+ @name UI.bizData#setActivity
+ @function
+ @param {string}  <b>[required]</b>activity
+ @description 设置data使用的activity，当data不使用当前环境中的activity时可以设置指定
+*/
+
+/**
+ @name UI.bizData#getActivity
+ @function
+ @return {string}
+ @description 获取data使用的activity，没有set过时取环境中的activity
+*/
+
+/**
+ @name UI.bizData#editDataSerialize
+ @function
+ @param {boolean} hasXmlHead <b>[required]</b>有没有xml头标识
+ @param {object} store data的store，通常不需要设置；
+ @param {boolean} useJson 是否使用Json格式序列化，默认值：false；
+ @returns {string}
+ @description data的编辑数据的字符串序列化
+ @see UI.bizData#serialize
+ @example
+ <xmp>
+ 	相当于如下调用：
+ 	bizData.serialize(true,...);
+ </xmp>
+*/
+
+/**
+ @name UI.bizData#setTreeRootFilter
+ @function
+ @param {string} filter <b>[required]</b>
+ @description 设置data是tree数据时设置根节点的filter
+ @example
+ <xmp>
+ 	当设置有效的RootFilter树data将采用分级加载数据，
+ 	也就是说当有RootFilter时调用refreshData只加载根级数据，
+ 	反之将加载所有数据
+ </xmp>	
+*/
+
+/**
+ @name UI.bizData#loadDataByMaster
+ @function
+ @description 根据主从关系加载当前从data的数据
+ @example
+ <xmp>
+ 	当设置了从data属性auto-load=false后需要手工调用此方法加载从数据
+ 	
+ 	//主动加载从data
+ 	var slaveData = justep.xbl('slave');
+ 	slaveData.loadDataByMaster();
+ </xmp>
+*/
+
+/**
+	@name UI.bizData#onCreate
+	@event
+	@description <b>[回调型事件]</b>组件创建时
+	@param {object} event
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.bizData#onDataChanged
+	@event
+	@description <b>[回调型事件]</b>数据发生变化（包括新增、刷新、删除、修改引起的变化），感知从data的变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"changedSource" ：触发变化的组件的js对象，当从data触发时返回从data对象,
+		"selfChanged" : 是否自身变化，false：从data触发的变化,
+		"type" : 触发变化的类型，包括：new、delete、refresh、valueChanged、clear，其他参数根据触发类型不同给出不同参数，参考onAfterNew等事件参数
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onValueChanged
+	@event
+	@description <b>[回调型事件]</b>数据变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"column" : 关系,
+		"rowIndex" : 行索引,
+		"value" : 新值,
+		"originalValue" : 旧值
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onValueChanging
+	@event
+	@description <b>[回调型事件]</b>数据变化中
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"column" : 关系,
+		"rowIndex" : 行索引,
+		"value" : 新值,通过修改它的值影响setvalue的行为,
+		"originalValue" : 旧值
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onIndexChanged
+	@event
+	@description <b>[回调型事件]</b>行记录变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"rowID" : 行Id,
+		"rowIndex" : 行索引
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onIndexChanging
+	@event
+	@description <b>[回调型事件]</b>行记录变化中
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"rowID" : 行Id,
+		"rowIndex" : 行索引,
+		"originalRowID" : 原行Id,
+		"originalRowIndex" : 原行索引
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onLoadSlave
+	@event
+	@description <b>[回调型事件]</b>data加载从数据
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onNewError
+	@event
+	@description <b>[回调型事件]</b>新增数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息XML,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onNewCreateParam
+	@event
+	@description <b>[回调型事件]</b>业务新增数据创建新增参数事件，可以增加和修改用户自定义的参数
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"param" : {justep.Request.ActionParam} 新增参数对象,
+		"defaultValues" : array - 新增行的默认值数组 ，数组的长度决定新增行数，数组中的对象是列的默认值
+			defaultValues格式：
+				[
+					{列名:默认值,...},
+					{列名:默认值,...},
+					...
+				]
+	}
+	</xmp>	
+	@see justep.XData#newData
+	@see justep.Request.ActionParam
+*/
+
+/**
+	@name UI.bizData#onBeforeNew
+	@event
+	@description <b>[回调型事件]</b>业务数据新增前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前new动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onCustomNew
+	@event
+	@description <b>[回调型事件]</b>业务数据新增接管，完全接管new动作，当不需要data的默认新增动作可以通过此事件接管
+	@see justep.XData.STATE
+	@see justep.XData#newData
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"data" : 行数据对象数组[{id,version,state,colValues},...]，数组的length决定新增的行数
+			data格式：
+				[
+					{
+						"id" : {string} 行ID,
+						"version" : {integer} 行版本，当update-mode="whereVersion"时有效,
+						"state" : {justep.XData.STATE} 行状态,
+						"colValues" : {object} 列的值
+							colValues格式:
+							{
+								"列名" : 默认值,
+								"列名" : 默认值,
+								...
+							}
+					},
+					...
+				]
+	}
+	</xmp>	
+	@example 
+		<xmp>
+    doCustomNew = function(event){
+        var result = [];
+        var cols = this.getColumns();
+        if(cols){
+                cols = cols.split(this.delim);
+        }
+        var o = {'id':id,'version':0,'state':justep.XData.STATE.NEW,'colValues':[]};
+        for(var j in cols){//给列赋值
+                o.colValues.push(列值);
+        }
+        result.push(o);
+        event.data = result;
+   }
+		</xmp>
+*/
+
+/**
+	@name UI.bizData#onAfterNew
+	@event
+	@description <b>[回调型事件]</b>业务数据新增后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"ids" : 新增的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onDeleteError
+	@event
+	@description <b>[回调型事件]</b>直接删除数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onBeforeDelete
+	@event
+	@description <b>[回调型事件]</b>业务数据删除前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前delete动作,
+		"deleteIDList" : 删除的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onCustomDelete
+	@event
+	@description <b>[回调型事件]</b>业务数据删除接管，完全接管delete动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前delete动作,
+		"deleteIDList" : 删除的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onAfterDelete
+	@event
+	@description <b>[回调型事件]</b>业务数据删除后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"deleteIDList" : 删除的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onRefreshError
+	@event
+	@description <b>[回调型事件]</b>刷新数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onBeforeRefresh
+	@event
+	@description <b>[回调型事件]</b>业务数据刷新前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前刷新动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onAfterRefresh
+	@event
+	@description <b>[回调型事件]</b>业务数据刷新后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+		"limit" : 页大小, 
+		"offset" : 偏移,
+		"success" : 是否成功刷新
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onBeforeRefreshTree
+	@event
+	@description <b>[回调型事件]</b>树形业务数据刷新前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前刷新动作,
+		"parent" : 当前刷新数据的父id
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onAfterRefreshTree
+	@event
+	@description <b>[回调型事件]</b>树形业务数据刷新成功后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"parent" : 当前刷新数据的父id
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onBeforeRefreshPage
+	@event
+	@description <b>[回调型事件]</b>业务数据页刷新前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前刷新动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onAfterRefreshPage
+	@event
+	@description <b>[回调型事件]</b>业务数据页刷新后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onCustomRefresh
+	@event
+	@description <b>[回调型事件]</b>业务数据刷新接管，完全接管刷新动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象, 
+		"cancel" : 可修改，设置为true后中断当前刷新动作, 
+		"limit" : 页大小, 
+		"offset":偏移
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onCustomRefreshTree
+	@event
+	@description <b>[回调型事件]</b>树形业务数据刷新接管，完全接管树形刷新动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onRefreshCreateParam
+	@event
+	@description <b>[回调型事件]</b>业务新增数据创建新增参数事件，可以增加和修改用户自定义的参数
+	@see justep.Request.ActionParam
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"param" : {justep.Request.ActionParam} 新增参数对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onSaveError
+	@event
+	@description <b>[回调型事件]</b>保存数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onSaveCreateParam
+	@event
+	@description <b>[回调型事件]</b>业务数据保存创建保存参数事件，可以增加和修改用户自定义的参数
+	@see justep.Request.ActionParam
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"param" : {justep.Request.ActionParam} 保存参数对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onBeforeSave
+	@event
+	@description <b>[回调型事件]</b>业务数据保存前，事件在批事务启动后触发，写在这个事件里的biz action请求将在一个批操作完成
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前保存动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onAfterSave
+	@event
+	@description <b>[回调型事件]</b>业务数据保存后，事件在批事务启动后触发，写在这个事件里的biz action请求将在一个批操作完成
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onCustomSave
+	@event
+	@description <b>[回调型事件]</b>业务数据保存接管，完全接管保存动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象, 
+		"cancel" : 可修改，设置为true后中断当前保存动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.bizData#onSaveCommit
+	@event
+	@description <b>[回调型事件]</b>业务数据保存事务提交后，数据提交成功
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data
+	@component /UI/system/components/data.xbl.xml#data
+	@class justep.XCommonData
+	@extends justep.XData
+	@model UI
+	@description <b>[rich]</b>普通data，继承justep.XData的所有属性和方法，需要开发者实现和接管new，save，refresh
+	@example 
+	<xmp>
+	通用的data组件，不感知biz的action，需要开发者通过接管onCustomNew、onCustomDelete、onCustomRefresh、onCustomSave事件实现新增、删除、刷新、保存逻辑
+	//xml描述案例
+	<data id="main" component="/UI/system/components/data.xbl.xml#data"
+		columns="name,value" src="/test/qqq.p"
+		auto-load="true" store-type="grid/simple">
+		<rows xmlns="">
+			<row id="aaa">
+				<cell>AAA</cell>
+				<cell>111</cell>
+			</row>
+		</rows>
+	</data>	
+	</xmp>
+*/
+
+/**
+	@name UI.data#component
+	@attribute
+	@required
+	@type {string}
+	@description 组件标识
+	@default "/UI/system/components/data.xbl.xml#data"
+*/
+
+/**
+	@name UI.data#id
+	@attribute 
+	@required
+	@type {string}
+	@description id标识
+*/
+
+/**
+	@name UI.data#columns
+	@attribute
+	@type {string}
+	@description data的列
+*/
+
+/**
+	@name UI.data#src
+	@attribute
+	@type {string}
+	@description data的来源URL
+*/
+
+/**
+	@name UI.data#auto__sub__load
+	@attribute 
+	@type {boolean}
+	@default false
+	@description 自动加载数据，与auto-new属性互斥，默认：false
+*/
+
+/**
+	@name UI.data#auto__sub__new
+	@attribute 
+	@type {boolean}
+	@default false
+	@description 自动新增数据，与auto-load属性互斥，默认：false
+*/
+
+/**
+	@name UI.data#store__sub__type
+	@attribute 
+	@type {string}
+	@description <b>[attribute]</b>数据内存存贮类型，取值：grid/simple
+*/
+
+/**
+	@name UI.data#data__sub__type
+	@attribute 
+	@type {string}
+	@description <b>[attribute]</b>数据序列化格式,支持xml/json
+*/
+
+/**
+	@name UI.data#default__sub__value                                                                                   
+	@attribute 
+	@description data默认值
+	@example
+	<b>xml格式：</b>
+	<xmp>
+	<rows xmlns="">
+		<!-- row行数据，id对应data的行id-->
+		<row id="aaa">
+			<!-- cell对应属性columns定义顺序 -->
+			<cell>AAA</cell>
+			<cell>111</cell>
+		</row>
+		<row id="bbb">
+			<cell>BBB</cell>
+			<cell>222</cell>
+		</row>
+		...
+	</rows>
+	</xmp>
+*/
+
+/**
+	@name UI.data#rule                                                                                   
+	@attribute 
+	@type {UI.data_rule}
+	@description 规则
+	@see UI.data_rule
+	@example
+	<b>包括属性：</b>
+		column <b>[attribute]</b> 列
+		
+		type <b>[attribute]</b> 数据类型
+
+		readonly <b>[attribute]</b> 只读
+
+		calculate <b>[attribute]</b> 计算
+
+		required <b>[attribute]</b> 必填
+
+		relevant <b>[attribute]</b> 相关性
+
+		constraint <b>[attribute]</b> 约束
+
+		alert <b>[attribute]</b> 提示信息
+	属性说明见：UI.data_rule
+
+	<b>xml格式：</b>
+	<xmp>
+	<rule column="sName" constraint="data('main')/sName='aaa'"
+					alert="'名称不对了'" />
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule 
+	@component data的规则
+	@model UI
+	@class                                                                                
+	@description data的规则
+*/
+
+/**
+	@name UI.data_rule#column                                                                                   
+	@attribute
+	@required 
+	@type {string}
+	@description 规则绑定的列
+*/
+
+/**
+	@name UI.data_rule#type                                                                                   
+	@attribute
+	@type {string}
+	@description 列的类型绑定，取值范围string,integer,float,boolean,date,time,dateTime
+	@example
+	<xmp>
+	当数据类型格式不匹配时会提示规则alert指定的错误信息
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule#readonly                                                                                   
+	@attribute
+	@type {string}
+	@description 列的只读规则，是xpath表达式
+	@example
+	<xmp>
+	表达式计算为true时所有绑定的感知组件只读，反之正常
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule#calculate                                                                                   
+	@attribute
+	@type {string}
+	@description 列的计算规则，是xpath表达式
+	@example
+	<xmp>
+	列的值通过表达式动态计算完成
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule#required                                                                                   
+	@attribute
+	@type {string}
+	@description 列的必填规则，是xpath表达式
+	@example
+	<xmp>
+	列的必填控制，当表达式计算结果为true时列必填，反之；
+	当列必填时，如果列值为空，提示alert指定的错误信息
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule#relevant                                                                                   
+	@attribute
+	@type {string}
+	@description 列的相关性规则，是xpath表达式
+	@example
+	<xmp>
+	表达式计算为true时所有绑定的感知组件可见，反之隐藏
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule#constraint                                                                                   
+	@attribute
+	@type {string}
+	@description 列的约束规则，是xpath表达式
+	@example
+	<xmp>
+	当表达式计算结果为false时列不满足约束，提示alert指定的错误信息
+	</xmp>
+*/
+
+/**
+	@name UI.data_rule#alert                                                                                   
+	@attribute
+	@type {string}
+	@description 列违反约束的提示信息，是xpath表达式
+	@example
+	<xmp>
+	显示编号的提示信息
+	<rule column="sName" required="true()"
+		alert="'编号:[' + data('mainData')/sCode + ']名称不能为空'" />
+	</xmp>
+*/
+
+/**
+	@name UI.data#onCreate
+	@event
+	@description <b>[回调型事件]</b>组件创建时
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onDataChanged
+	@event
+	@description <b>[回调型事件]</b>数据发生变化（包括新增、刷新、删除、修改引起的变化），感知从data的变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"changedSource" ：触发变化的组件的js对象，当从data触发时返回从data对象,
+		"selfChanged" : 是否自身变化，false：从data触发的变化,
+		"type" : 触发变化的类型，包括：new、delete、refresh、valueChanged、clear，其他参数根据触发类型不同给出不同参数，参考onAfterNew等事件参数
+	}
+	</xmp>
+*/
+
+
+/**
+	@name UI.data#onValueChanged
+	@event
+	@description <b>[回调型事件]</b>数据变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"column" : 列,
+		"rowIndex" : 行索引,
+		"value" : 新值,
+		"originalValue" : 旧值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onValueChanging
+	@event
+	@description <b>[回调型事件]</b>数据变化中
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"column" : 列,
+		"rowIndex" : 行索引,
+		"value" : 新值,通过修改它的值影响setvalue的行为,
+		"originalValue" : 旧值
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onIndexChanged
+	@event
+	@description <b>[回调型事件]</b>行记录变化
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"rowID" : 行Id,
+		"rowIndex" : 行索引
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onIndexChanging
+	@event
+	@description <b>[回调型事件]</b>行记录变化中
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"rowID" : 行Id,
+		"rowIndex" : 行索引,
+		"originalRowID" : 原行Id,
+		"originalRowIndex" : 原行索引
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onLoadSlave
+	@event
+	@description <b>[回调型事件]</b>data加载从数据
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onNewError
+	@event
+	@description <b>[回调型事件]</b>新增数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onBeforeNew
+	@event
+	@description <b>[回调型事件]</b>业务数据新增前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前new动作
+	}
+	</xmp>
+*/
+
+/**
+	@name UI.data#onCustomNew
+	@event
+	@description <b>[回调型事件]</b>业务数据新增接管，完全接管new动作，需要接管此事件完成data的newData逻辑
+	@see justep.XData.STATE
+	@see justep.XData#newData
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"data" : 行数据对象数组[{id,version,state,colValues},...]，数组的length决定新增的行数
+			data格式：
+				[
+					{
+						"id" : {string} 行ID,
+						"version" : {integer} 行版本，当update-mode="whereVersion"时有效,
+						"state" : {justep.XData.STATE} 行状态,
+						"colValues" : {object} 列的值
+							colValues格式:
+							{
+								"列名" : 默认值,
+								"列名" : 默认值,
+								...
+							}
+					},
+					...
+				]
+	}
+	</xmp>	
+	@example 
+		<xmp>
+    doCustomNew = function(event){
+        var result = [];
+        var cols = this.getColumns();
+        if(cols){
+                cols = cols.split(this.delim);
+        }
+        var o = {'id':id,'version':0,'state':justep.XData.STATE.NEW,'colValues':[]};
+        for(var j in cols){//给列赋值
+                o.colValues.push(列值);
+        }
+        result.push(o);
+        event.data = result;
+   }
+		</xmp>
+*/
+
+/**
+	@name UI.data#onAfterNew
+	@event
+	@description <b>[回调型事件]</b>业务数据新增后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"ids" : {array} 新增的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onDeleteError
+	@event
+	@description <b>[回调型事件]</b>直接删除数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onBeforeDelete
+	@event
+	@description <b>[回调型事件]</b>业务数据删除前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前delete动作,
+		"deleteIDList" : 删除的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onCustomDelete
+	@event
+	@description <b>[回调型事件]</b>业务数据删除接管，完全接管delete动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前delete动作, 
+		"deleteIDList" : 删除的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onAfterDelete
+	@event
+	@description <b>[回调型事件]</b>业务数据删除后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"deleteIDList" : 删除的行Id数组
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onRefreshError
+	@event
+	@description <b>[回调型事件]</b>刷新数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onBeforeRefresh
+	@event
+	@description <b>[回调型事件]</b>业务数据刷新前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前刷新动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onAfterRefresh
+	@event
+	@description <b>[回调型事件]</b>业务数据刷新后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+		"limit" : 页大小, 
+		"offset" : 偏移,
+		"success" : 是否成功刷新
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onBeforeRefreshTree
+	@event
+	@description <b>[回调型事件]</b>树形业务数据刷新前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前刷新动作,
+		"parent" : 当前刷新数据的父id
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onAfterRefreshTree
+	@event
+	@description <b>[回调型事件]</b>树形业务数据刷新成功后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"parent" : 当前刷新数据的父id
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onBeforeRefreshPage
+	@event
+	@description <b>[回调型事件]</b>业务数据页刷新前
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前刷新动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onAfterRefreshPage
+	@event
+	@description <b>[回调型事件]</b>业务数据页刷新后
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"limit" : 页大小, 
+		"offset" : 偏移,
+		"success" : 是否成功刷新
+	}
+	</xmp>		
+*/
+
+/**
+	@name UI.data#onCustomRefreshTree
+	@event
+	@description <b>[回调型事件]</b>树形业务数据刷新接管，完全接管树形刷新动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onCustomRefresh
+	@event
+	@description <b>[回调型事件]</b>业务数据刷新接管，完全接管刷新动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象, 
+		"cancel" : 可修改，设置为true后中断当前刷新动作, 
+		"limit" : 页大小, 
+		"offset" : 偏移
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onSaveError
+	@event
+	@description <b>[回调型事件]</b>保存数据失败
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"errorType" : 'server',
+		"errorNode" : 错误信息,
+		"httpError" : http请求失败(true/false),
+		"httpState" : http请求返回码
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onBeforeSave
+	@event
+	@description <b>[回调型事件]</b>业务数据保存前，事件在批事务启动后触发，写在这个事件里的biz action请求将在一个批操作完成
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象,
+		"cancel" : 可修改，设置为true后中断当前保存动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onAfterSave
+	@event
+	@description <b>[回调型事件]</b>业务数据保存后，事件在批事务启动后触发，写在这个事件里的biz action请求将在一个批操作完成
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source":组件的js对象
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onCustomSave
+	@event
+	@description <b>[回调型事件]</b>业务数据保存接管，完全接管保存动作
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象, 
+		"cancel" : 可修改，设置为true后中断当前保存动作
+	}
+	</xmp>	
+*/
+
+/**
+	@name UI.data#onSaveCommit
+	@event
+	@description <b>[回调型事件]</b>业务数据保存事务提交后，数据提交成功
+	@param {object} event 
+	<br/><b>结构如下：</b>
+	<xmp> 
+	{
+		"source" : 组件的js对象
+	}
+	</xmp>	
+*/

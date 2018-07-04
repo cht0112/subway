@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model xmlns="http://www.justep.com/model">
+<procedure name="mainActivityBeforeSaveCUSTOMER_COMPLAINT_FEEDBACKActionProcedure" code="ComplaintSettlingProcess.mainActivityBeforeSaveCUSTOMER_COMPLAINT_FEEDBACKAction"/><procedure name="mainActivityAfterSaveCUSTOMER_COMPLAINT_FEEDBACKActionProcedure" code="ComplaintSettlingProcess.mainActivityAfterSaveCUSTOMER_COMPLAINT_FEEDBACKAction"/></model>

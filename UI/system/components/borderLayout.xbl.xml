@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:justep="http://www.justep.com/x5#"
+	xmlns:xbl="http://www.w3.org/ns/xbl"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xforms="http://www.justep.com/xforms"
+	
+	xmlns:ev="http://www.w3.org/2001/xml-events"
+	script-type="text/javascript">
+	
+	<xbl:binding id="borderLayout">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<justep:root>
+					<xsl:variable name="baseCls" select="'xui-borderlayout'" />
+					<xsl:variable name="borderSize" select="if (@border-size != '') then @border-size else '0'" />
+					<xhtml:div class="{$baseCls}-root" borderSize='{$borderSize}'>
+					<xsl:for-each select="./*">
+					    <xsl:if test="name()='top'">
+							<xsl:variable name="size" select="if (@size != '') then @size else 'auto'" />
+							<xsl:variable name="borderSize" select="if (@border-size != '') then @border-size else '0'" />
+							<xhtml:div class="{$baseCls}-area {$baseCls}-top" size="{$size}">
+								<xsl:attribute name="style" select="@style"/>
+								<xsl:copy-of select="./*"/>
+							</xhtml:div>
+							<xhtml:div class="{$baseCls}-border {$baseCls}-border-top" style="height:{$borderSize}"/>
+						</xsl:if>	
+					    <xsl:if test="name()='left'">
+							<xsl:variable name="size" select="if (@size != '') then @size else 'auto'" />
+							<xsl:variable name="borderSize" select="if (@border-size != '') then @border-size else '0'" />
+							<xhtml:div class="{$baseCls}-area {$baseCls}-left" size="{$size}">
+								<xsl:attribute name="style" select="@style"/>
+								<xsl:copy-of select="./*"/>
+							</xhtml:div>
+							<xhtml:div class="{$baseCls}-border {$baseCls}-border-left" style="width:{$borderSize}"/>
+						</xsl:if>	
+					    <xsl:if test="name()='right'">
+							<xsl:variable name="size" select="if (@size != '') then @size else 'auto'" />
+							<xsl:variable name="borderSize" select="if (@border-size != '') then @border-size else '0'" />
+							<xhtml:div class="{$baseCls}-area {$baseCls}-right" size="{$size}">
+								<xsl:attribute name="style" select="@style"/>
+								<xsl:copy-of select="./*"/>
+							</xhtml:div>
+							<xhtml:div class="{$baseCls}-border {$baseCls}-border-right" style="width:{$borderSize}"/>
+						</xsl:if>	
+					    <xsl:if test="name()='bottom'">
+							<xsl:variable name="size" select="if (@size != '') then @size else 'auto'" />
+							<xsl:variable name="borderSize" select="if (@border-size != '') then @border-size else '0'" />
+							<xhtml:div class="{$baseCls}-area {$baseCls}-bottom" size="{$size}">
+								<xsl:attribute name="style" select="@style"/>
+								<xsl:copy-of select="./*"/>
+							</xhtml:div>
+							<xhtml:div class="{$baseCls}-border {$baseCls}-border-bottom" style="height:{$borderSize}"/>
+						</xsl:if>	
+					    <xsl:if test="name()='center'">
+							<xhtml:div class="{$baseCls}-area {$baseCls}-center">
+								<xsl:attribute name="style" select="@style"/>
+								<xsl:copy-of select="./*"/>
+							</xhtml:div>
+						</xsl:if>	
+					</xsl:for-each>
+					</xhtml:div>
+				</justep:root>
+			</xsl:template>
+		</xbl:template>
+	 
+		<xbl:implementation>
+			<![CDATA[
+
+		
+		({
+
+			"initXBL" : function() {
+			   	if(!this.domNode.id || this.domNode.id ==""){
+					this.domNode.id = (new UUID()).valueOf();
+			   	}
+			   	var baseCls = '.xui-borderlayout-';
+			   	var id = this.domNode.id; 
+			   	this.el = $("#" + id);
+			   	
+			   	this.rootEl = $("#" + id + " > div");
+			   	this.topEl = $("#" + id + " > div > " + baseCls + "top");
+			   	this.leftEl = $("#" + id + " > div > " + baseCls + "left");
+			   	this.rightEl = $("#" + id + " > div > " + baseCls + "right");
+			   	this.bottomEl = $("#" + id + " > div > " + baseCls + "bottom");
+			   	this.centerEl = $("#" + id + " > div > " + baseCls + "center");
+			   	this.topBorderEl = $("#" + id + " > div > " + baseCls + "border-top");
+			   	this.leftBorderEl = $("#" + id + " > div > " + baseCls + "border-left");
+			   	this.rightBorderEl = $("#" + id + " > div > " + baseCls + "border-right");
+			   	this.bottomBorderEl = $("#" + id + " > div > " + baseCls + "border-bottom");
+			   	
+			   	this.onWindowResize();
+			},
+			onWindowResize: function(){
+				var b = parseFloat(this.rootEl.attr('borderSize')),
+					top = left = right = bottom = 0,
+					w = this.el.width()-2*b, h = this.el.height()-2*b,
+					bp = function(el, isHeight){
+						return isHeight? (el.outerHeight()-el.height()): (el.outerWidth()-el.width());
+					},
+					size = function(el, isHeight){
+						var value = el.attr('size');
+						if(value!='auto'){
+							value = parseFloat(value) - bp(el, isHeight);
+						}
+						return value;
+					},
+					area = $(" >.xui-borderlayout-area", this.rootEl);
+
+/*				area.css({overflow:'hidden'});	
+				area.css({overflow:'auto'});
+*/				
+					
+				this.rootEl.height(h);
+				this.rootEl.width(w);
+				this.rootEl.css({top: b, left:b});					
+				if(this.topEl.get(0)){
+					this.topEl.css({top: top, left:left});
+					this.topEl.height(size(this.topEl, true));
+					this.topEl.width(w - bp(this.topEl));
+					top = this.topEl.outerHeight();
+					if(this.topBorderEl.get(0)){
+						this.topBorderEl.css({top: top,left:left});
+						top += this.topBorderEl.height();
+					} 
+				}
+				if(this.leftEl.get(0)){
+					this.leftEl.css({top: top, left:left});
+					this.leftEl.width(size(this.leftEl));
+					left = this.leftEl.outerWidth(); 
+					if(this.leftBorderEl.get(0)){
+						this.leftBorderEl.css({top: top, left: left});
+						left += this.leftBorderEl.width(); 
+					} 
+				}
+				if(this.rightEl.get(0)){
+					this.rightEl.css({top: top, right:right});
+					this.rightEl.width(size(this.rightEl));
+					right = this.rightEl.outerWidth(); 
+					if(this.rightBorderEl.get(0)){
+						this.rightBorderEl.css({top: top,right: right});
+						right += this.rightBorderEl.width();
+					} 
+				}
+				if(this.bottomEl.get(0)){
+					this.bottomEl.height(size(this.bottomEl, true));
+					this.bottomEl.width(w - bp(this.bottomEl));
+					bottom = this.bottomEl.outerHeight(); 
+					if(this.bottomBorderEl.get(0)){
+						this.bottomBorderEl.css({left:0, bottom: bottom});
+						bottom += this.bottomBorderEl.height();  
+					} 
+				}
+				this.centerEl.css({top: top, left: left});
+				this.centerEl.width(w - left - right - bp(this.centerEl));
+				h = h - top - bottom;
+				this.leftEl.height(h - bp(this.leftEl, true));  
+				this.centerEl.height(h - bp(this.centerEl, true));  
+				this.rightEl.height(h - bp(this.rightEl, true));
+				this.leftBorderEl.height(h);  
+				this.rightBorderEl.height(h);
+			}   	
+		})
+			]]>
+		
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style>
+			<![CDATA[
+				.borderLayout{
+					overflow: hidden;
+				}
+				.xui-borderlayout-root{
+					position: relative;
+					width: 100%;
+					height: 100%;
+					overflow: hidden;
+				}
+				.xui-borderlayout-area{
+					position: absolute;
+					/*overflow: hidden;*/
+				}
+				.xui-borderlayout-top{
+					top:0;
+					left:0;
+					width:100%;
+					height:100px;				
+				}
+				.xui-borderlayout-left{
+					top:100px;
+					left:0;
+					width:100px;
+					height:100px;				
+				}
+				.xui-borderlayout-right{
+					top:100px;
+					right:0;
+					width:100px;
+					height:100px;				
+				}
+				.xui-borderlayout-bottom{
+					left:0;
+					bottom:0;
+					width:100%;
+					height:100px;				
+				}
+				.xui-borderlayout-center{
+					top: 0;
+					left:0;
+					width:100%;
+					height:100%;				
+				}
+				.xui-borderlayout-border{
+					position: absolute;
+					background-color: white;					
+				}
+				.xui-borderlayout-border-top{
+					top: 95px;
+					left: 0;
+					width: 100%;
+					height: 5px;				
+				}
+				.xui-borderlayout-border-left{
+					top: 100px;
+					left: 95px;
+					width: 0;
+					height: 100px;				
+				}
+				.xui-borderlayout-border-right{
+					top: 100px;
+					right: 150px;
+					width: 0;
+					height: 100px;				
+				}
+				.xui-borderlayout-border-bottom{
+					bottom: 150px;
+					left: 0;
+					width: 100%;
+					height: 0;				
+				}
+			]]>
+			</xbl:style>
+		</xbl:resources>					
+	</xbl:binding>
+</xbl:xbl>

@@ -1,0 +1,327 @@
+/**
+	@name justep.doc
+	@class
+	@model UI
+	@language javascript
+	@description justep.doc 文档相关的基本命名空间
+*/
+
+/**
+	@name justep.doc.UrlType
+	@class
+	@model UI
+	@language javascript
+	@description justep.doc.UrlType 
+	不同情况需要的url是不一样的 
+	比如 下载 和在线查看的url就是不一样的
+	所以我们提供了UrlType这个枚举类来提供所有现在文档服务支持的url类型
+*/
+
+/**
+	@name justep.doc.UrlType#VIEW
+	@property
+	@description 在线浏览(自己做在线查看 可能需要)
+*/
+
+/**
+	@name justep.doc.UrlType#DOWNLOAD
+	@property
+	@description 下载文档(自己做下载 可能需要)
+*/
+
+/**
+	@name justep.doc.PartType
+	@class
+	@model UI
+	@language javascript
+	@description justep.doc.PartType 
+	每个在线可以编辑的文件 文档服务器会保留3个不同类型的文件副本
+*/
+
+/**
+	@name justep.doc.PartType#CONTENT
+	@property
+	@description 文件正文
+*/
+
+/**
+	@name justep.doc.PartType#REVISION
+	@property
+	@description 修订版
+*/
+
+/**
+	@name justep.doc.PartType#COMMENT
+	@property
+	@description 修订信息
+*/
+
+/**
+	@name justep.doc.Utils
+	@class
+	@model UI
+	@language javascript
+	@description justep.doc.Utils 包含文档相关的常用函数
+*/
+
+/**
+	@name justep.doc.Utils.getDocUrl
+	@function
+	@description 获取文档操作的url
+	@param {String} docIDorDocPath 可以传递文档id或者docPath
+	@param {justep.doc.UrlType} urlType （参考justep.doc.UrlType）
+	@param {String} versionID (可选参数) 具体某个版本
+	@param {justep.doc.PartType} partType (可选参数) 文档的某个类型
+	@returns {String} 操作文档的url
+	@example 
+	获取在线查看文档的url
+	justep.doc.Utils.getDocUrl("C5ED6BE02C400001269012911221C180",justep.doc.UrlType.VIEW);
+*/
+
+/**
+	@name justep.doc.Utils.queryDocInfo
+	@function
+	@description 获取文档的信息
+	@param {String} docID 文档的id
+	@returns {JSON} 
+	里面包含当前文档的所有信息
+	每一项的key 通过SA_DocNode的relation可以获取
+
+	@example
+	<xmp>
+	justep.doc.Utils.queryDocInfo("C5ED6BE02C400001269012911221C180");
+		返回的json结构
+	{"sLastWriterName":"system","sFileID":"17-defaultDocNameSpace","sLastWriteTime":"2013-11-19 09:53:59.0",
+	"sEditorName":"","sCreatorName":"system","sFlag":1,"sKind":"image/jpeg","sCreatorDeptName":"",
+	"sCacheName":"","sDocPath":"/defaultDocNameSpace","sDocName":"slmTest.jpg","sSize":1269745,
+	"sParentID":"defaultDocNameSpace","SA_DocNode":"C5ED6BE02C400001269012911221C180","version":3,"sEditorDeptName":"",
+	"sDocDisplayPath":"/文档中心","sLastWriterFID":"/ORG01.ogn/PSN01@ORG01.psm","sCreateTime":"2013-11-19 09:53:59.0",
+	"sRevisionCacheName":"","sEditorFID":"","sDocLiveVersionID":2,"sCreatorFID":"/ORG01.ogn/PSN01@ORG01.psm"}
+	</xmp>
+*/
+
+/**
+	@name justep.doc.Utils.changeDocName
+	@function
+	@description 根据docID修改指定文档的名字(注意带后缀，后缀要和原来的保持一直，调整后缀会造成文件类型识别错误，请谨慎!)
+	@param {String} docID 文档的id
+	@param {String} docName 要修改的名字
+	
+	@example
+	justep.doc.Utils.changeDocName("C5ED6BE02C400001269012911221C180","修改下名字.jpg");
+
+*/
+
+/**
+	@name justep.doc.Utils.bindUploader
+	@function
+	@description 给一个html元素绑定上传能力(推荐button或者div)
+	@param {JSON} params
+	<xmp>	   
+		params.uploaderID 按钮id
+		params.docPath    
+		params.clickCallBack  点击按钮的回调
+		params.submitCallBack 选中文件后的回调
+		params.completeCallBack  上传完成之后的回调
+		params.caller  （可选参数）参考js中call方法的caller参数说明，用来指定回调的this
+	</xmp>
+	@example
+	<xmp>
+	justep.doc.Utils.bindUploader({
+		uploaderID:'uploader',
+		docPath:"/defaultDocNameSpace",
+		clickCallBack:function(uploaderEle){
+			// this 为uploader 绑定的元素
+		},
+		submitCallBack:function(file,uploader){
+			
+		},
+		completeCallBack:function(docID,docName,docPath,fileID,kind,size,uploader){
+			// 如果在这里调用拉saveDoc 那么每次上传一个文件就自动保存拉，
+			//如果用户上传拉文件后，关闭页面，上传的文件仍然是已经保存的，所以推荐把saveDoc放在 业务数据的saveBefore中调用
+			justep.doc.Utils.saveDoc(docID,docName,docPath,fileID,kind,size);
+		},
+		caller:this
+	});
+	</xmp>
+*/
+
+/**
+	@name justep.doc.Utils.saveDoc
+	@function
+	@description  保存文件(参数一般来自 Uploader的complteteCallBack的回调的参数)
+	@param {String} docID 
+	@param {String} docName
+	@param {String} docPath
+	@param {String} fileID
+	@param {String} kind
+	@param {String} size
+	@example  参考 justep.doc.Utils.bindUploader的例子
+*/
+
+
+/**
+	@name justep.doc.Utils.browseDoc
+	@function
+	@description  在线浏览文件
+	@param {String} docID 
+	@param {String} versionID （可选）
+	@param {justep.doc.PartType} partType （可选）
+	@example  
+	justep.doc.Utils.browseDoc("C5EBCFD7BC100001765C71001BF01753");
+*/
+
+/**
+	@name justep.doc.Utils.downloadDoc
+	@function
+	@description  下载文件
+	@param {String} docID 
+	@param {String} versionID （可选）
+	@param {justep.doc.PartType} partType （可选）
+	@example  
+	justep.doc.Utils.downloadDoc("C5EBCFD7BC100001765C71001BF01753");
+*/
+
+/**
+	@name justep.doc.Utils.deleteDoc
+	@function
+	@param {String} docID 
+	@param {String} versionID （可选） -1 代表删除所有历史版本
+	@param {Boolean} isLogicDelete （可选）
+	@description  如果传versionID 一定是物理删除 历史版本不支持逻辑删除。如果是逻辑删除，参考reverseDoc函数恢复
+	@example  
+	物理删除文件
+	justep.doc.Utils.deleteDoc("C5EFC18AB8E0000147DD1EB4DE404220",true);
+	删除当前文件的第3个版本
+	justep.doc.Utils.deleteDoc("C5EFC18AB8E0000147DD1EB4DE404220","3");
+*/
+
+/**
+	@name justep.doc.Utils.reverseDoc
+	@function
+	@param {String} docID 
+	@description  还原删除的文件 
+	@example  
+	还原物理删除的文件
+	justep.doc.Utils.reverseDoc("C5EFC18AB8E0000147DD1EB4DE404220");
+*/
+
+/**
+	@name justep.doc.OfficeViewer
+	@class
+	@model UI
+	@language javascript
+	@description 获取指定id的元素对应的officeViewer控件对象(推荐使用officeViewer组件),如果指定id已经是officeViewer控件，不会再次创建。所以可以用于根据id获取控件的函数，但是推荐把第一次创建的对象缓存起来。
+	@param {String} id
+	@returns {Object} OfficeViewerObject 包含操作office控件的相关函数
+	<xmp>
+	 * GetProgIDByDocType       根据后缀名字获取ProgID
+	 * GetHttpResult            获取httpPost的返回值
+	 * CreateDoc				创建MSOffice中某个应用程序的文档
+	 * CreateWord				创建MSWord
+	 * CreateExcel				创建MSExcel
+	 * CreatePowerPoint			创建MSPowerPoint
+	 * CreateVisio				创建MSVisio
+	 * CreateProject			创建MSProject
+	 * IsDocOpened				判断是否打开了MSOffice中某个应用程序的文档
+	 * GetWordBookmarkCount     获取书签数量
+	 * WriteWordBookmarkInfo    为指定的书签写入值
+	 * HttpInit    				初始化http请求
+ 	 * HttpAddpostString 		添加请求参数    		
+	 * HttpOpenFileFromStream   打开文件
+	</xmp>
+	@example 
+	<xmp> 
+	利用officeViewer控件在id 为ov的div中打开docID为C5F00086F4000001C2671C1B3FE05030
+	的office文件
+	var docID = "C5F00086F4000001C2671C1B3FE05030";
+	var ocxObj = new justep.doc.Utils.getOfficeViewer('ov');
+	var path = justep.doc.Utils.getDocUrl(docID,justep.doc.UrlType.OFFICEDOWNLOAD);
+	var testPath = justep.doc.Utils.getDocUrl(docID,justep.doc.UrlType.VIEW);
+	var docInfo = justep.doc.Utils.queryDocInfo(docID);
+	ocxObj.HttpInit();
+	ocxObj.HttpAddpostString("FileID", docInfo.sFileID);
+	ocxObj.HttpAddPostString("FileExt",".doc");
+	ocxObj.HttpAddpostString("PartType", "content");
+	ocxObj.HttpOpenFileFromStream(path,'Word.Application');
+
+	注意这里的 ：
+	ocxObj.HttpAddPostString("FileExt",".doc");
+	一定要有 如果你是.docx后缀的文件 要写.docx
+	</xmp>
+*/
+
+/**
+	@name justep.doc.Dialog
+	@class
+	@model UI
+	@language javascript
+	@description justep.doc.Dialog 调用文档相关的弹出窗口
+*/
+
+
+/**
+	@name justep.doc.Dialog.openDocInfoDialog
+	@function
+	@param {Data} data 
+	@param {Function} afterEnsureFun 确定后的回调
+	@param {Object} caller 
+	@description  打开文件信息窗口 
+	@example  
+	docNode是bizData的id  concept推荐为SA_DocNode
+	推荐选中行是普通文件
+	用dialog展示当前bizData的选中行的信息
+	justep.doc.Dialog.openDocInfoDialog(justep.xbl('docNode'),function(){alert('close');},this);
+*/
+
+/**
+	@name justep.doc.Dialog.openDocDirInfoDialog
+	@function
+	@param {Data} data 
+	@param {Function} afterEnsureFun 确定后的回调
+	@param {Object} caller 
+	@description 打开文件夹信息窗口 
+	@example  
+	docNode是bizData的id concept推荐为SA_DocNode
+	用dialog展示当前bizData的选中行的信息
+	推荐选中行是dir
+	justep.doc.Dialog.openDocDirInfoDialog(justep.xbl('docNode'),function(){alert('close');},this);
+*/
+
+
+/**
+	@name justep.doc.Dialog.openDocHistoryDialog
+	@function
+	@param {String} docID
+	@param {String}  fileID
+	@param {String} docPath
+	@param {Number} access
+	@description 打开文件历史版本窗口
+	@example  
+	docNode是bizData的id concept推荐为SA_DocNode
+	用dialog展示当前bizData的选中行的信息
+	
+	justep.doc.Dialog.openDocHistoryDialog(justep.xbl('docNode').getID(),justep.xbl('docNode').getValue('sFileID'), justep.xbl('docNode').getValue('sDocPath'),1066);
+*/
+
+/**
+	@name justep.doc.Dialog.openOfficeDialog
+	@function
+	@param {String} callback
+	@param {JSON} OVP
+	@param {Object} caller
+	@description 打开office操作窗口（不推荐使用）
+	本api 是附件组件 调用附件编辑 从模版新建 时候打开的模态窗口
+	除非有非常特殊需求附件组件无法满足，而且在深入理解附件编辑机制情况下，调用此api。此api 依赖 windowDialog 提供的回调机制 发送保存和成文时候的信息。
+	@example
+	<xmp>  
+	结合windowDialog使用
+
+	var OVP = {"host":"/defaultDocNameSpace","userName":"system","userInitials":"system","programID":"OpenOffice",
+	"showField":false,"fileID":"27-defaultDocNameSpace","filename":"spring","fileExt":".docx",
+	"isPrint":true,"cacheName":"","revisionCacheName":""};
+
+	justep.doc.Dialog.openOfficeDialog(function(){debugger;},OVP,this);
+	</xmp>
+*/
+

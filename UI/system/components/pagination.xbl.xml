@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbl:xbl xmlns:xbl="http://www.w3.org/ns/xbl" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xsl:version="2.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" script-type="text/javascript">
+
+	<xbl:script type="text/javascript" src="/UI/system/components/pagination/pagination.js"/>
+	<xbl:binding id="pagination">
+		<xbl:template template-type="xslt">
+			<xsl:template match="/*">
+				<root>
+				</root>
+			</xsl:template>
+		</xbl:template>
+		<xbl:implementation> ({ 
+			"initXBL" : function() {
+				var el = $(this.domNode),
+					config = {
+						el: el,
+						dataId: el.attr('data'),
+						items: el.attr('items'),
+						align: el.attr('align'),
+						firstLabel: el.attr('first-label'),
+						preLabel: el.attr('pre-label'),
+						nextLabel: el.attr('next-label'),
+						lastLabel: el.attr('last-label'),
+						pageCount: el.attr('page-count')
+					};
+				justep.Object.extend(this, justep.Pagination, null, true);
+				justep.Pagination.call(this, config);
+			}
+		})
+		</xbl:implementation>
+		<xbl:resources>
+			<xbl:style src="./pagination/pagination.css"/>
+		</xbl:resources>		
+	</xbl:binding>
+</xbl:xbl>

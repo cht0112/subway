@@ -1,0 +1,180 @@
+/**
+	@name justep.Portal.FuncManager
+	@model UI
+	@class 
+	@language js
+	@description 这个类主要负责和功能树，功能操作，常用功能，打开功能相关数据状态的管理
+*/
+
+/**
+	@name justep.Portal.FuncManager#data
+	@model UI
+	@attribute
+	@description 功能树的数据， 数据结构如下 
+		<xmp>
+		{
+			id: 基于功能的url process activity params生成的标示
+			label: 显示的标签
+			url: 功能路径
+			params: query字符串
+			activity: 功能环节
+			process: 功能过程
+			icon: 图标
+			icon32: 32px的图标
+			icon64: 64px的图标
+			childNodes 子节点数组
+			executor: 执行者
+		}
+		</xmp>
+*/	
+
+/**
+	@name justep.Portal.FuncManager#run-func
+	@event 
+	@description <b>[回调型事件]</b>当运行功能的时候触发
+	@param {object} event 参数的格式和FuncManager#data属性结构一样
+*/
+
+/**
+	@name justep.Portal.FuncManager#active-func
+	@event 
+	@description <b>[回调型事件]</b>当打开一个已打开的功能时触发
+	@param {object} event 参数的格式和FuncManager#data属性结构一样
+*/
+
+/**
+	@name justep.Portal.FuncManager#close-func
+	@event 
+	@description <b>[回调型事件]</b>当关闭一个功能时触发
+	@param {object} event 参数的格式和FuncManager#data属性结构一样
+*/
+
+/**
+	@name justep.Portal.FuncManager#add-shortcut
+	@event 
+	@description <b>[回调型事件]</b>增加常用功能时候触发
+	@param {object} event 参数的格式和FuncManager#data属性结构一样
+*/
+
+/**
+	@name justep.Portal.FuncManager#remove-shortcut
+	@event 
+	@description <b>[回调型事件]</b>删除常用功能时候触发
+	@param {object} event 参数的格式和FuncManager#data属性结构一样
+*/
+
+/**
+	@name justep.Portal.FuncManager#refresh-func
+	@event 
+	@description <b>[回调型事件]</b>当一个功能刷新为另一个功能时触发
+	@param {object} event 参数的格式和FuncManager#data属性结构一样
+*/
+
+/**
+	@name justep.Portal.FuncManager#each
+	@function
+	@description 迭代功能树的节点
+	@param {Function} cb <b>[required]</b> 回调方法，回调方法接收的参数 item和 parent。item是节点数据，结构如data。Parent是它的父节点。当返回为ture 的时候终止迭代。
+*/
+
+/**
+	@name justep.Portal.FuncManager#runFunc
+	@function
+	@description 运行功能
+	@param {String} id <b>[required]</b> 功能的id
+	@param {String }executor 执行者的fid， 默认是当前用户 
+*/
+
+/**
+	@name justep.Portal.FuncManager#closeFunc
+	@function
+	@description 关闭功能
+	@param {String} id <b>[required]</b> 功能的id
+*/
+
+/**
+	@name justep.Portal.FuncManager#addShortcut
+	@function
+	@description 增加常用功能
+	@param {String} id <b>[required]</b> 功能的id
+*/
+
+/**
+	@name justep.Portal.FuncManager#removeShortcut
+	@function
+	@description 增加常用功能
+	@param {String} id <b>[required]</b> 功能的id
+*/
+
+/**
+	@name justep.Portal.FuncManager#moveShortcut
+	@function
+	@description 排序常用共能
+	@param {String} index <b>[required]</b> 以0开始的排序位置 
+	@param {String} id <b>[required]</b> 功能的id
+*/
+	
+/**
+	@name justep.Portal.FuncManager#eachShortcut
+	@function
+	@description 遍历常用功能
+	@param {Function} cb <b>[required]</b> 回调方法，参数data功能节点
+*/
+
+/**
+	@name justep.Portal.FuncManager#isShortcut
+	@function
+	@description 判断功能是否是常用功能
+	@param {String} id <b>[required]</b> 功能的id
+	@return {Boolean}
+*/
+
+/**
+	@name justep.Portal.FuncManager#isRuned
+	@function
+	@description 判断功能是否是已经运行
+	@param {String} id <b>[required]</b> 功能的id
+	@return {Boolean}
+*/
+	
+/**
+	@name justep.Portal.FuncManager#getRunedCount
+	@function
+	@description 描述返回正在运行的功能个数
+	@return {Integer}
+*/
+
+/**
+	@name justep.Portal.FuncManager#save
+	@function
+	@description 保存当前功能相关的状态到服务端，如常用功能
+	@return {Integer}
+*/
+
+/**
+	@name justep.Portal.FuncManager#getAgentCount
+	@function
+	@description 返回代理人的个数
+	@return {Integer}
+*/
+
+/**
+	@name justep.Portal.FuncManager#eachAgent
+	@function
+	@description 返回代理人的个数
+	@param {Function} cb <b>[required]</b> 回调方法, 参数是代理人的fid 
+*/
+
+/**
+	@name justep.Portal.FuncManager#openAgentPage
+	@function
+	@description 打开代理人的门户页面
+	@param {String} agentId <b>[required]</b> 为代理人的fid 
+*/
+
+/**
+	@name justep.Portal.FuncManager#cloasAllAgentPage
+	@function
+	@description 关闭所有打开的代理人页面
+*/
+

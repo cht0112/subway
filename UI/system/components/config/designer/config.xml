@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<elements>
+	<element name="config" tag-name="div" icon="config.gif" text="全局参数" 
+		binding-component="/UI/system/components/config.xbl.xml#config" display-property="id" 
+        component-class="Config" base-class="config"
+        component-type="formControl" design-view="web-designer">
+		<properties>
+			<property name="id" text="编号" required="true"/>		
+		</properties>
+
+		<toolbar>
+			<item text="添加项" method="addConfigItem"/>
+		</toolbar>
+		
+		<property-editors>
+		</property-editors>
+		
+		<templates>
+		   	<template name="default">
+		   		<![CDATA[ 
+				<xhtml:div component="/UI/system/components/config.xbl.xml#config"/>
+		   		]]>
+		   	</template>
+		</templates>
+	</element>
+
+	<element name="configItem" tag-name="item" icon="param.gif" text="参数" 
+		discriminate-condition="parent()/@component=/UI/system/components/config.xbl.xml#config" display-property="name">
+		<properties>
+			<property name="id" text="编号" required="true"/>
+			<property name="name" text="标识" required="true"/>		
+			<property name="value" text="值"/>
+			<property name="label" text="标签"/>
+		</properties>
+		
+		<property-editors>
+		</property-editors>
+		
+		<templates>
+		   	<template name="default">
+		   		<![CDATA[ 
+				<item label="" value="" name=""/>
+		   		]]>
+		   	</template>
+		</templates>
+	</element>
+</elements>
